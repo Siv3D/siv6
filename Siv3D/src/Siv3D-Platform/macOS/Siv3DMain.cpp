@@ -10,12 +10,16 @@
 //-----------------------------------------------
 
 # include <iostream>
+# include <Common/Siv3DEngine.hpp>
 
 void Main();
 
 int main(int, char*[])
 {
 	std::cout << "OpenSiv3D for macOS\n";
+	
+	using namespace s3d;
+	Siv3DEngine engine;
 	
 	Main();
 

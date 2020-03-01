@@ -10,6 +10,13 @@
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
 		2C7F9E24240BBFDC00BFCDCF /* ApplicationOptions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C7F9E22240BBFDC00BFCDCF /* ApplicationOptions.hpp */; };
 		2C7F9E25240BBFDC00BFCDCF /* ApplicationOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C7F9E23240BBFDC00BFCDCF /* ApplicationOptions.cpp */; };
+		2C7F9E29240BE07600BFCDCF /* Siv3DComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C7F9E26240BE07600BFCDCF /* Siv3DComponent.hpp */; };
+		2C7F9E2A240BE07600BFCDCF /* Siv3DEngine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C7F9E27240BE07600BFCDCF /* Siv3DEngine.hpp */; };
+		2C7F9E2B240BE07600BFCDCF /* Siv3DEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C7F9E28240BE07600BFCDCF /* Siv3DEngine.cpp */; };
+		2C7F9E31240BE08600BFCDCF /* DummyFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C7F9E2D240BE08600BFCDCF /* DummyFactory.cpp */; };
+		2C7F9E32240BE08600BFCDCF /* CDummy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C7F9E2E240BE08600BFCDCF /* CDummy.hpp */; };
+		2C7F9E33240BE08600BFCDCF /* IDummy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C7F9E2F240BE08600BFCDCF /* IDummy.hpp */; };
+		2C7F9E34240BE08600BFCDCF /* CDummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C7F9E30240BE08600BFCDCF /* CDummy.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A882240BA3AC00ED4230 /* Siv3DMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA1A881240BA3AC00ED4230 /* Siv3DMain.cpp */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
@@ -22,6 +29,13 @@
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C7F9E22240BBFDC00BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C7F9E23240BBFDC00BFCDCF /* ApplicationOptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApplicationOptions.cpp; sourceTree = "<group>"; };
+		2C7F9E26240BE07600BFCDCF /* Siv3DComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Siv3DComponent.hpp; sourceTree = "<group>"; };
+		2C7F9E27240BE07600BFCDCF /* Siv3DEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Siv3DEngine.hpp; sourceTree = "<group>"; };
+		2C7F9E28240BE07600BFCDCF /* Siv3DEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DEngine.cpp; sourceTree = "<group>"; };
+		2C7F9E2D240BE08600BFCDCF /* DummyFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DummyFactory.cpp; sourceTree = "<group>"; };
+		2C7F9E2E240BE08600BFCDCF /* CDummy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CDummy.hpp; sourceTree = "<group>"; };
+		2C7F9E2F240BE08600BFCDCF /* IDummy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IDummy.hpp; sourceTree = "<group>"; };
+		2C7F9E30240BE08600BFCDCF /* CDummy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDummy.cpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		2CA1A881240BA3AC00ED4230 /* Siv3DMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DMain.cpp; sourceTree = "<group>"; };
 		2CA1A886240BA58F00ED4230 /* Siv3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Siv3D.hpp; sourceTree = "<group>"; };
@@ -71,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7F9E21240BBFDC00BFCDCF /* Common */,
+				2C7F9E2C240BE08600BFCDCF /* Dummy */,
 			);
 			path = Siv3D;
 			sourceTree = "<group>";
@@ -78,10 +93,24 @@
 		2C7F9E21240BBFDC00BFCDCF /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				2C7F9E22240BBFDC00BFCDCF /* ApplicationOptions.hpp */,
 				2C7F9E23240BBFDC00BFCDCF /* ApplicationOptions.cpp */,
+				2C7F9E22240BBFDC00BFCDCF /* ApplicationOptions.hpp */,
+				2C7F9E26240BE07600BFCDCF /* Siv3DComponent.hpp */,
+				2C7F9E28240BE07600BFCDCF /* Siv3DEngine.cpp */,
+				2C7F9E27240BE07600BFCDCF /* Siv3DEngine.hpp */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		2C7F9E2C240BE08600BFCDCF /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				2C7F9E2D240BE08600BFCDCF /* DummyFactory.cpp */,
+				2C7F9E2E240BE08600BFCDCF /* CDummy.hpp */,
+				2C7F9E2F240BE08600BFCDCF /* IDummy.hpp */,
+				2C7F9E30240BE08600BFCDCF /* CDummy.cpp */,
+			);
+			path = Dummy;
 			sourceTree = "<group>";
 		};
 		2CA1A87B240BA38300ED4230 /* src */ = {
@@ -193,7 +222,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C7F9E29240BE07600BFCDCF /* Siv3DComponent.hpp in Headers */,
+				2C7F9E2A240BE07600BFCDCF /* Siv3DEngine.hpp in Headers */,
 				2C7F9E24240BBFDC00BFCDCF /* ApplicationOptions.hpp in Headers */,
+				2C7F9E32240BE08600BFCDCF /* CDummy.hpp in Headers */,
+				2C7F9E33240BE08600BFCDCF /* IDummy.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +335,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CA1A882240BA3AC00ED4230 /* Siv3DMain.cpp in Sources */,
+				2C7F9E34240BE08600BFCDCF /* CDummy.cpp in Sources */,
+				2C7F9E31240BE08600BFCDCF /* DummyFactory.cpp in Sources */,
+				2C7F9E2B240BE07600BFCDCF /* Siv3DEngine.cpp in Sources */,
 				2C7F9E25240BBFDC00BFCDCF /* ApplicationOptions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,7 +574,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../Siv3D/include;
+				HEADER_SEARCH_PATHS = (
+					../Siv3D/include,
+					../Siv3D/src/Siv3D,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -590,7 +629,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../Siv3D/include;
+				HEADER_SEARCH_PATHS = (
+					../Siv3D/include,
+					../Siv3D/src/Siv3D,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
