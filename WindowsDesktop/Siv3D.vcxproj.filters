@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{acba757f-66c3-44fe-944e-7a97e9a9fdb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{0215d587-dfaa-4496-896c-341348684fc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D">
+      <UniqueIdentifier>{d6a36ea8-4760-4ea7-835e-a042d5e8c3e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform">
+      <UniqueIdentifier>{ebba16ef-76a7-41d4-959a-9c7c2e2e6c5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty">
+      <UniqueIdentifier>{3d8f5f90-ea87-4da2-8021-a10bd76722db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop">
+      <UniqueIdentifier>{a0471f24-12be-4977-8e0f-194edd9bd66f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Siv3D">
+      <UniqueIdentifier>{94983735-9b51-4486-b199-8c60000e87e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Siv3D\Windows">
+      <UniqueIdentifier>{e6ed8ac0-a137-4479-9d52-105bf02a0522}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\OpenSiv3D_S6\Siv3D\include\Siv3D\Platform.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Windows\Libraries.hpp">
+      <Filter>include\Siv3D\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Windows\Windows.hpp">
+      <Filter>include\Siv3D\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Windows\Resource.hpp">
+      <Filter>include\Siv3D\Windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
