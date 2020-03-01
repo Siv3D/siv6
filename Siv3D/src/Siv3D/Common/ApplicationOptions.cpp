@@ -17,14 +17,19 @@ namespace s3d
 {
 	namespace detail
 	{
-		int EnableDebugHeapManager(bool enabled)
+		int EnableDebugHeapManager(const bool enabled)
 		{
 			return g_ApplicationOptions.debugHeapManager = enabled;
 		}
 
-		int EnableHeadlessMode(bool enabled)
+		int EnableHeadlessMode(const bool enabled)
 		{
 			return g_ApplicationOptions.headlessMode = enabled;
+		}
+
+		int EnableStdErr(const bool enabled)
+		{
+			return g_ApplicationOptions.stdErr = enabled;
 		}
 	}
 }
