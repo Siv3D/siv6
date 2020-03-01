@@ -31,6 +31,12 @@
     <Filter Include="src\Siv3D\Dummy">
       <UniqueIdentifier>{08e17fcc-fa9a-46a1-a94b-f8e53008156b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Console">
+      <UniqueIdentifier>{8383c205-cd97-444a-a17c-062e652fc324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Console">
+      <UniqueIdentifier>{85ddd086-16c9-4593-9e13-f0fea267aacd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -66,6 +72,15 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\Dummy\IDummy.hpp">
       <Filter>src\Siv3D\Dummy</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Console\IConsole.hpp">
+      <Filter>src\Siv3D\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Console\CConsole.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Console.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -82,6 +97,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Dummy\CDummy.cpp">
       <Filter>src\Siv3D\Dummy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Console\ConsoleFactory.cpp">
+      <Filter>src\Siv3D\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Console\CConsole.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Console\SivConsole.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Console</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

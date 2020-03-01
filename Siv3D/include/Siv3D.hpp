@@ -36,8 +36,17 @@
 
 # include <Siv3D/ApplicationOptions.hpp>
 
+# include <Siv3D/Console.hpp>
+
 # if !defined(SIV3D_LIBRARY_BUILD) && SIV3D_PLATFORM(WINDOWS)
 
 	# include <Siv3D/Windows/Libraries.hpp>
+
+# endif
+
+
+# if !defined(SIV3D_LIBRARY_BUILD) && !defined(NO_S3D_USING)
+
+using namespace s3d;
 
 # endif

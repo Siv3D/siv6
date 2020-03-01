@@ -11,6 +11,7 @@
 
 # include "Siv3DEngine.hpp"
 # include <Dummy/IDummy.hpp>
+# include <Console/IConsole.hpp>
 
 namespace s3d
 {
