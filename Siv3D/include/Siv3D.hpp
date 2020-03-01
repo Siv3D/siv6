@@ -34,6 +34,8 @@
 
 # include <Siv3D/Platform.hpp>
 
+# include <Siv3D/ApplicationOptions.hpp>
+
 # if !defined(SIV3D_LIBRARY_BUILD) && SIV3D_PLATFORM(WINDOWS)
 
 	# include <Siv3D/Windows/Libraries.hpp>

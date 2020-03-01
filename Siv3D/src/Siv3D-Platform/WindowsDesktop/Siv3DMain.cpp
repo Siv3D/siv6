@@ -9,14 +9,19 @@
 //
 //-----------------------------------------------
 
-# pragma once
-# include <future>
+# include <crtdbg.h>
 # include <Siv3D/Windows/Windows.hpp>
+# include <Common/ApplicationOptions.hpp>
 
 void Main();
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
+	if (g_ApplicationOptions.debugHeapManager)
+	{
+		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	}
+
 	Main();
 
 	return 0;
