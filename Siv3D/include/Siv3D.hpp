@@ -31,3 +31,11 @@
 # ifndef SIV3D_INCLUDED
 #	define SIV3D_INCLUDED
 # endif
+
+# include <Siv3D/Platform.hpp>
+
+# if !defined(SIV3D_LIBRARY_BUILD) && SIV3D_PLATFORM(WINDOWS)
+
+	# include <Siv3D/Windows/Libraries.hpp>
+
+# endif
