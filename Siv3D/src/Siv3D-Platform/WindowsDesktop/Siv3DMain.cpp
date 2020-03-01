@@ -12,6 +12,7 @@
 # include <crtdbg.h>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Common/ApplicationOptions.hpp>
+# include <Common/Siv3DEngine.hpp>
 
 void Main();
 
@@ -21,6 +22,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	{
 		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	}
+
+	using namespace s3d;
+	Siv3DEngine engine;
 
 	Main();
 
