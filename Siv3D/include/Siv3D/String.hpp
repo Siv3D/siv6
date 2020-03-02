@@ -66,7 +66,7 @@ namespace s3d
 		/// <summary>
 		/// 文字列をコピーして新しい文字列を作成します。
 		/// </summary>
-		/// <param name="text">
+		/// <param name="s">
 		/// コピーする文字列
 		/// </param>
 		SIV3D_NODISCARD_CXX20
@@ -103,6 +103,42 @@ namespace s3d
 		template <class StringViewIsh, class = IsStringViewIsh<StringViewIsh>>
 		SIV3D_NODISCARD_CXX20
 		explicit String(const StringViewIsh& viewish);
+
+		/// <summary>
+		/// 文字列が等しいかを調べます。
+		/// </summary>
+		/// <param name="lhs">
+		/// 比較する文字列
+		/// </param>
+		/// <param name="rhs">
+		/// 比較する文字列
+		/// </param>
+		/// <returns>
+		/// 等しければ true, それ以外の場合は false
+		/// </returns>	
+		[[nodiscard]]
+		friend bool operator ==(const String& lhs, const String& rhs)
+		{
+			return lhs.m_string == rhs.m_string;
+		}
+
+		/// <summary>
+		/// 文字列が等しくないかを調べます。
+		/// </summary>
+		/// <param name="lhs">
+		/// 比較する文字列
+		/// </param>
+		/// <param name="rhs">
+		/// 比較する文字列
+		/// </param>
+		/// <returns>
+		/// 等しくなければ true, それ以外の場合は false
+		/// </returns>
+		[[nodiscard]]
+		friend bool operator !=(const String& lhs, const String& rhs)
+		{
+			return lhs.m_string != rhs.m_string;
+		}
 	};
 }
 
