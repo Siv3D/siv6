@@ -34,6 +34,12 @@
 
 # include <Siv3D/Platform.hpp>
 
+# include <Siv3D/Types.hpp>
+
+# include <Siv3D/StringView.hpp>
+
+# include <Siv3D/String.hpp>
+
 # include <Siv3D/ApplicationOptions.hpp>
 
 # include <Siv3D/Console.hpp>
