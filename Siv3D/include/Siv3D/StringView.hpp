@@ -14,6 +14,5 @@
 
 namespace s3d
 {
-
+	using StringView = std::u32string_view;
 }
-

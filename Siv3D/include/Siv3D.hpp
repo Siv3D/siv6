@@ -54,5 +54,6 @@
 # if !defined(SIV3D_LIBRARY_BUILD) && !defined(NO_S3D_USING)
 
 using namespace s3d;
+using namespace std::literals;
 
 # endif
