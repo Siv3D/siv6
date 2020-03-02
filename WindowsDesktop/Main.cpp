@@ -7,11 +7,5 @@ SIV3D_OPTION_OUTPUT_STDERR(true);
 
 void Main()
 {
-	Console.open();
 
-	std::cout << "Siv3D for Windows\n";
-	std::cerr << "Err\n";
-
-	int n;
-	std::cin >> n;
 }
