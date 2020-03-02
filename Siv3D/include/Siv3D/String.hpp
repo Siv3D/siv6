@@ -51,6 +51,7 @@ namespace s3d
 		/// <summary>
 		/// default constructor
 		/// </summary>
+		SIV3D_NODISCARD_CXX20
 		String();
 
 		/// <summary>
@@ -59,6 +60,7 @@ namespace s3d
 		/// <param name="other">
 		/// コピーする文字列
 		/// </param>
+		SIV3D_NODISCARD_CXX20
 		String(const String& other);
 
 		/// <summary>
@@ -67,28 +69,39 @@ namespace s3d
 		/// <param name="text">
 		/// コピーする文字列
 		/// </param>
+		SIV3D_NODISCARD_CXX20
 		String(const string_type& s);
 
+		SIV3D_NODISCARD_CXX20
 		String(const String& other, size_type pos);
 
+		SIV3D_NODISCARD_CXX20
 		String(const String& other, size_type pos, size_type count);
 
+		SIV3D_NODISCARD_CXX20
 		String(const value_type* s);
 
+		SIV3D_NODISCARD_CXX20
 		String(const value_type* s, size_type count);
 
+		SIV3D_NODISCARD_CXX20
 		String(std::initializer_list<value_type> ilist);
 
+		SIV3D_NODISCARD_CXX20
 		String(size_t count, value_type ch);
 
 		template <class Iterator>
+		SIV3D_NODISCARD_CXX20
 		String(Iterator first, Iterator last);
 
+		SIV3D_NODISCARD_CXX20
 		String(String&& other) noexcept;
 
+		SIV3D_NODISCARD_CXX20
 		String(string_type&& s) noexcept;
 
 		template <class StringViewIsh, class = IsStringViewIsh<StringViewIsh>>
+		SIV3D_NODISCARD_CXX20
 		explicit String(const StringViewIsh& viewish);
 	};
 }
