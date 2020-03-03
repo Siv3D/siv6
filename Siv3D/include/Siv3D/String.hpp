@@ -120,6 +120,24 @@ namespace s3d
 			return m_string;
 		}
 
+		/// <summary>
+		/// 文字列をマルチバイト文字列に変換した結果を返します。
+		/// </summary>
+		/// <returns>
+		/// 変換された文字列
+		/// </returns>
+		[[nodiscard]]
+		std::string narrow() const;
+
+		/// <summary>
+		/// 文字列を std::wstring に変換した結果を返します。
+		/// </summary>
+		/// <returns>
+		/// 変換された文字列
+		/// </returns>
+		[[nodiscard]]
+		std::wstring toWstr() const;
+
 
 
 		/// <summary>

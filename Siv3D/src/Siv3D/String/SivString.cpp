@@ -10,8 +10,17 @@
 //-----------------------------------------------
 
 # include <Siv3D/String.hpp>
+# include <Siv3D/Unicode.hpp>
 
 namespace s3d
 {
+	std::string String::narrow() const
+	{
+		return Unicode::Narrow(m_string);
+	}
 
+	std::wstring String::toWstr() const
+	{
+		return Unicode::ToWstring(m_string);
+	}
 }
