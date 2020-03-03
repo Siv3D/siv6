@@ -39,5 +39,17 @@ namespace s3d
 		/// </returns>
 		[[nodiscard]]
 		std::string ToUTF8(StringView s);
+
+		/// <summary>
+		/// String を UTF-16 文字列に変換します。
+		/// </summary>
+		/// <param name="s">
+		/// String
+		/// </param>
+		/// <returns>
+		/// 変換された文字列
+		/// </returns>
+		[[nodiscard]]
+		std::u16string ToUTF16(StringView s);
 	}
 }
