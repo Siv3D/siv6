@@ -9,17 +9,6 @@
 //
 //-----------------------------------------------
 
-# include <Siv3D/Console.hpp>
-# include <Siv3D/Console/IConsole.hpp>
-# include <Siv3D/Common/Siv3DEngine.hpp>
-
-namespace s3d
-{
-	namespace detail
-	{
-		void Console_impl::open() const
-		{
-			Siv3DEngine::Get<ISiv3DConsole>()->open();
-		}
-	}
-}
+# pragma once
+# include "Platform.hpp"
+# include "Types.hpp"

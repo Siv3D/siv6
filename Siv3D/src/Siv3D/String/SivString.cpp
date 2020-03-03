@@ -9,17 +9,18 @@
 //
 //-----------------------------------------------
 
-# include <Siv3D/Console.hpp>
-# include <Siv3D/Console/IConsole.hpp>
-# include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Siv3D/String.hpp>
+# include <Siv3D/Unicode.hpp>
 
 namespace s3d
 {
-	namespace detail
+	std::string String::narrow() const
 	{
-		void Console_impl::open() const
-		{
-			Siv3DEngine::Get<ISiv3DConsole>()->open();
-		}
+		return Unicode::Narrow(m_string);
+	}
+
+	std::wstring String::toWstr() const
+	{
+		return Unicode::ToWstring(m_string);
 	}
 }

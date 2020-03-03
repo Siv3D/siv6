@@ -31,5 +31,10 @@ namespace s3d
 		{
 			return g_ApplicationOptions.stdErr = enabled;
 		}
+
+		int EnableTest(const bool enabled)
+		{
+			return g_ApplicationOptions.runTest = enabled;
+		}
 	}
 }

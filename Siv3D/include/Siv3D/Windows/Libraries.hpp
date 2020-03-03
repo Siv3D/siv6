@@ -12,18 +12,15 @@
 # pragma once
 # include <Siv3D/Platform.hpp>
 
+# if SIV3D_BUILD(DEBUG)
+#	define SIV3D_DEBUG_LIB_POSTFIX(s) #s
+# else
+#	define SIV3D_DEBUG_LIB_POSTFIX(s)
+# endif
+
 # pragma comment (linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
 # pragma comment (lib, "dwmapi")
 # pragma comment (lib, "winmm")
+# pragma comment (lib, "Siv3D" SIV3D_DEBUG_LIB_POSTFIX(_d))
 
-# if SIV3D_BUILD(DEBUG)
-
-	// Debug libraries
-	# pragma comment (lib, "Siv3D_d")
-
-# else
-
-	// Release libraries
-	# pragma comment (lib, "Siv3D")
-
-# endif
+# undef SIV3D_DEBUG_LIB_POSTFIX

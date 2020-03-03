@@ -10,8 +10,10 @@
 //-----------------------------------------------
 
 # include <iostream>
-# include <Common/Siv3DEngine.hpp>
+# include <Siv3D/Common/ApplicationOptions.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
 
+void PerformTest();
 void Main();
 
 int main(int, char*[])
@@ -20,6 +22,11 @@ int main(int, char*[])
 	
 	using namespace s3d;
 	Siv3DEngine engine;
+	
+	if (g_ApplicationOptions.runTest)
+	{
+		PerformTest();
+	}
 	
 	Main();
 

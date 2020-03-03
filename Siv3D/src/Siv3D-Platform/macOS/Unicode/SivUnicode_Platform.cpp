@@ -9,28 +9,20 @@
 //
 //-----------------------------------------------
 
-# include <Siv3D/Common/ApplicationOptions.hpp>
-# include "CConsole.hpp"
+# include <Siv3D/Unicode.hpp>
 
 namespace s3d
 {
-	CConsole::CConsole()
+	namespace Unicode
 	{
-		// do nothing
-	}
+		std::string Narrow(const StringView s)
+		{
+			return ToUTF8(s);
+		}
 
-	CConsole::~CConsole()
-	{
-		// do nothing
-	}
-
-	void CConsole::open()
-	{
-		// do nothing
-	}
-
-	void CConsole::close()
-	{
-		// do nothing
+		std::wstring ToWstring(const StringView s)
+		{
+			return std::wstring(s.begin(), s.end());
+		}
 	}
 }

@@ -16,6 +16,7 @@ struct ApplicationOptions
 	bool debugHeapManager = false;
 	bool headlessMode = false;
 	bool stdErr = false;
+	bool runTest = false;
 };
 
 extern ApplicationOptions g_ApplicationOptions;

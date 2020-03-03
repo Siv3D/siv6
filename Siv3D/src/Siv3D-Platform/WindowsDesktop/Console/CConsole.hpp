@@ -15,7 +15,7 @@
 
 namespace s3d
 {
-	class CConsole : public ISiv3DConsole
+	class CConsole final : public ISiv3DConsole
 	{
 	private:
 

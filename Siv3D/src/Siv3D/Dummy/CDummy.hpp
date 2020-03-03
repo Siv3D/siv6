@@ -14,7 +14,7 @@
 
 namespace s3d
 {
-	class CDummy : public ISiv3DDummy
+	class CDummy final : public ISiv3DDummy
 	{
 	private:
 

@@ -9,17 +9,10 @@
 //
 //-----------------------------------------------
 
-# include <Siv3D/Console.hpp>
-# include <Siv3D/Console/IConsole.hpp>
-# include <Siv3D/Common/Siv3DEngine.hpp>
+# pragma once
+# include <string_view>
 
 namespace s3d
 {
-	namespace detail
-	{
-		void Console_impl::open() const
-		{
-			Siv3DEngine::Get<ISiv3DConsole>()->open();
-		}
-	}
+	using StringView = std::u32string_view;
 }
