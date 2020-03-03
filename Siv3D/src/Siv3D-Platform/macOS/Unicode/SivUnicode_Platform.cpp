@@ -13,8 +13,16 @@
 
 namespace s3d
 {
-	namespace s3d
+	namespace Unicode
 	{
+		std::string Narrow(const StringView s)
+		{
+			return ToUTF8(s);
+		}
 
+		std::wstring ToWstring(const StringView s)
+		{
+			return std::wstring(s.begin(), s.end());
+		}
 	}
 }
