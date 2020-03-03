@@ -40,6 +40,9 @@
     <Filter Include="src\Siv3D\Unicode">
       <UniqueIdentifier>{5fb7da98-05b7-46e3-aea6-eaa5eb9fc4a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Unicode">
+      <UniqueIdentifier>{f3f6eb17-38f3-4190-a0bf-f932d6c1d6f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\SivUnicode.cpp">
       <Filter>src\Siv3D\Unicode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Unicode\SivUnicode_Platform.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Unicode</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
