@@ -1,0 +1,20 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install package
+      run: sudo apt install ninja-build
+    - name: cmake
+      run: mkdir build && cd build && cmake -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+      working-directory: Linux
+    - name: build
+      run: cmake --build Linux/build
+    - name: test
+      run: cd Linux/build ctest --output-on-fail
