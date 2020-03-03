@@ -40,6 +40,8 @@
 
 # include <Siv3D/String.hpp>
 
+# include <Siv3D/Unicode.hpp>
+
 # include <Siv3D/ApplicationOptions.hpp>
 
 # include <Siv3D/Console.hpp>

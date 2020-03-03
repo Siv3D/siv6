@@ -37,6 +37,9 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Console">
       <UniqueIdentifier>{85ddd086-16c9-4593-9e13-f0fea267aacd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Unicode">
+      <UniqueIdentifier>{5fb7da98-05b7-46e3-aea6-eaa5eb9fc4a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -91,6 +94,9 @@
       <Filter>include\Siv3D</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\String.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Unicode.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
   </ItemGroup>
