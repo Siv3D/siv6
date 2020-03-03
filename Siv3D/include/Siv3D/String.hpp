@@ -104,6 +104,24 @@ namespace s3d
 		SIV3D_NODISCARD_CXX20
 		explicit String(const StringViewIsh& viewish);
 
+
+
+
+
+		[[nodiscard]]
+		string_type& str() noexcept
+		{
+			return m_string;
+		}
+
+		[[nodiscard]]
+		const string_type& str() const noexcept
+		{
+			return m_string;
+		}
+
+
+
 		/// <summary>
 		/// 文字列が等しいかを調べます。
 		/// </summary>
