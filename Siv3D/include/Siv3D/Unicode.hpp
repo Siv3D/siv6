@@ -19,13 +19,25 @@ namespace s3d
 		/// <summary>
 		/// String を std::string に変換します。
 		/// </summary>
-		/// <param name="view">
+		/// <param name="s">
 		/// String
 		/// </param>
 		/// <returns>
 		/// 変換された文字列
 		/// </returns>
 		[[nodiscard]]
-		std::string Narrow(StringView view);
+		std::string Narrow(StringView s);
+
+		/// <summary>
+		/// String を UTF-8 文字列に変換します。
+		/// </summary>
+		/// <param name="s">
+		/// String
+		/// </param>
+		/// <returns>
+		/// 変換された文字列
+		/// </returns>
+		[[nodiscard]]
+		std::string ToUTF8(StringView s);
 	}
 }
