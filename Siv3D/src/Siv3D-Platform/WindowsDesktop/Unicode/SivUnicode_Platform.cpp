@@ -11,7 +11,7 @@
 
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Unicode.hpp>
-# include <Unicode/UnicodeUtility.hpp>
+# include <Siv3D/Unicode/UnicodeUtility.hpp>
 
 namespace s3d
 {

@@ -11,7 +11,7 @@
 
 # pragma once
 # include <cstdio>
-# include <Console/IConsole.hpp>
+# include <Siv3D/Console/IConsole.hpp>
 
 namespace s3d
 {
