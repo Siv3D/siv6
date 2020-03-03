@@ -1,6 +1,6 @@
 name: C/C++ CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -10,9 +10,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install package
-      run: sudo apt install ninja-build
+      run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo apt update
+        sudo apt install gcc-9 ninja-build
     - name: cmake
-      run: mkdir build && cd build && cmake -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+      run: mkdir build && cd build && CC=gcc-9 CXX=g++-9 cmake -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
       working-directory: Linux
     - name: build
       run: cmake --build Linux/build
