@@ -39,6 +39,24 @@ namespace s3d
 		[[nodiscard]]
 		size_t UTF16_Length(StringView s) noexcept;
 
-		void UTF16_Encode(char16** s, char32 codePoint) noexcept;
+		template <class Char16, std::enable_if_t<sizeof(Char16) == sizeof(char16_t)>* = nullptr>
+		void UTF16_Encode(Char16** s, char32 codePoint) noexcept
+		{
+			if (codePoint < 0x10000)
+			{
+				*(*s)++ = static_cast<Char16>(codePoint);
+			}
+			else if (codePoint < 0x110000)
+			{
+				// [Siv3D ToDo] 不正なビット列をはじく
+				*(*s)++ = static_cast<Char16>(((codePoint - 0x10000) >> 10) + 0xD800);
+				*(*s)++ = static_cast<Char16>((codePoint & 0x3FF) + 0xDC00);
+			}
+			else
+			{
+				// REPLACEMENT CHARACTER (0xFFFD)
+				*(*s)++ = static_cast<Char16>(0xFFFD);
+			}
+		}
 	}
 }
