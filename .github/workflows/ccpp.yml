@@ -15,9 +15,14 @@ jobs:
         sudo apt update
         sudo apt install gcc-9 ninja-build
     - name: cmake
-      run: mkdir build && cd build && CC=gcc-9 CXX=g++-9 cmake -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+      run: |
+        mkdir build
+        cd build
+        CC=gcc-9 CXX=g++-9 cmake -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
       working-directory: Linux
     - name: build
       run: cmake --build Linux/build
     - name: test
-      run: cd Linux/build ctest --output-on-fail
+      run: |
+        cd Linux/build
+        ctest --output-on-fail
