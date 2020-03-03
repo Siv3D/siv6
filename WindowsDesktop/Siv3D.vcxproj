@@ -47,6 +47,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\String\SivString.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\SivUnicode.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\UnicodeUtility.cpp" />
+    <ClCompile Include="..\Siv3D\src\Test\Siv3DTest.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
