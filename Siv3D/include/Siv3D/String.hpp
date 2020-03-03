@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <iostream>
 # include <string>
 # include "Common.hpp"
 # include "StringView.hpp"
@@ -155,7 +156,7 @@ namespace s3d
 		[[nodiscard]]
 		friend bool operator ==(const String& lhs, const String& rhs)
 		{
-			return lhs.m_string == rhs.m_string;
+			return (lhs.m_string == rhs.m_string);
 		}
 
 		/// <summary>
@@ -173,7 +174,19 @@ namespace s3d
 		[[nodiscard]]
 		friend bool operator !=(const String& lhs, const String& rhs)
 		{
-			return lhs.m_string != rhs.m_string;
+			return (lhs.m_string != rhs.m_string);
+		}
+
+
+
+		friend std::ostream& operator <<(std::ostream& output, const String& value)
+		{
+			return (output << value.narrow());
+		}
+
+		friend std::wostream& operator <<(std::wostream& output, const String& value)
+		{
+			return (output << value.toWstr());
 		}
 	};
 }
