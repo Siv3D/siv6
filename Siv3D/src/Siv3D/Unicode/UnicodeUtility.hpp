@@ -16,12 +16,29 @@ namespace s3d
 {
 	namespace detail
 	{
-		[[nodiscard]]
-		size_t UTF8_Length(const char32 codePoint) noexcept;
+		//
+		// UTF-8
+		//
 
 		[[nodiscard]]
-		size_t UTF8_Length(const StringView s) noexcept;
+		size_t UTF8_Length(char32 codePoint) noexcept;
 
-		void UTF8_Encode(char8** s, const char32 codePoint) noexcept;
+		[[nodiscard]]
+		size_t UTF8_Length(StringView s) noexcept;
+
+		void UTF8_Encode(char8** s, char32 codePoint) noexcept;
+
+
+		//
+		// UTF-16
+		//
+
+		[[nodiscard]]
+		size_t UTF16_Length(char32 codePoint) noexcept;
+
+		[[nodiscard]]
+		size_t UTF16_Length(StringView s) noexcept;
+
+		void UTF16_Encode(char16** s, char32 codePoint) noexcept;
 	}
 }
