@@ -47,5 +47,10 @@ namespace s3d
 
 			return result;
 		}
+
+		std::u32string ToUTF32(const StringView s)
+		{
+			return std::u32string(s.begin(), s.end());
+		}
 	}
 }

@@ -29,6 +29,18 @@ namespace s3d
 		std::string Narrow(StringView s);
 
 		/// <summary>
+		/// String を std::wstring に変換します。
+		/// </summary>
+		/// <param name="s">
+		/// String
+		/// </param>
+		/// <returns>
+		/// 変換された文字列
+		/// </returns>
+		[[nodiscard]]
+		std::wstring ToWstring(StringView s);
+
+		/// <summary>
 		/// String を UTF-8 文字列に変換します。
 		/// </summary>
 		/// <param name="s">
@@ -51,5 +63,17 @@ namespace s3d
 		/// </returns>
 		[[nodiscard]]
 		std::u16string ToUTF16(StringView s);
+
+		/// <summary>
+		/// String を UTF-32 文字列に変換します。
+		/// </summary>
+		/// <param name="s">
+		/// String
+		/// </param>
+		/// <returns>
+		/// 変換された文字列
+		/// </returns>
+		[[nodiscard]]
+		std::u32string ToUTF32(StringView s);
 	}
 }
