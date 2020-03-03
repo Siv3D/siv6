@@ -11,7 +11,7 @@
 
 # pragma once
 # include <string>
-# include "Types.hpp"
+# include "Common.hpp"
 # include "StringView.hpp"
 
 namespace s3d
