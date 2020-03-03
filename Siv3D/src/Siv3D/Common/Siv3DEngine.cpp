@@ -10,8 +10,8 @@
 //-----------------------------------------------
 
 # include "Siv3DEngine.hpp"
-# include <Dummy/IDummy.hpp>
-# include <Console/IConsole.hpp>
+# include <Siv3D/Dummy/IDummy.hpp>
+# include <Siv3D/Console/IConsole.hpp>
 
 namespace s3d
 {

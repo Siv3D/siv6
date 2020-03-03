@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include <Console/IConsole.hpp>
+# include <Siv3D/Console/IConsole.hpp>
 
 namespace s3d
 {

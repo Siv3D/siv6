@@ -10,8 +10,8 @@
 //-----------------------------------------------
 
 # include <iostream>
-# include <Common/ApplicationOptions.hpp>
-# include <Common/Siv3DEngine.hpp>
+# include <Siv3D/Common/ApplicationOptions.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
 
 void PerformTest();
 void Main();
