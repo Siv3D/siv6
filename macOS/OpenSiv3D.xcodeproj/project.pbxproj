@@ -12,6 +12,7 @@
 		2C436092240E14C2001657D2 /* SivUnicode_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C436091240E14C2001657D2 /* SivUnicode_Platform.cpp */; };
 		2C436095240E218F001657D2 /* UnicodeUtility.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C436093240E218F001657D2 /* UnicodeUtility.hpp */; };
 		2C436096240E218F001657D2 /* UnicodeUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C436094240E218F001657D2 /* UnicodeUtility.cpp */; };
+		2C436099240E309D001657D2 /* SivString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C436098240E309D001657D2 /* SivString.cpp */; };
 		2C43C288240BFFAC009B11E9 /* ConsoleFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C285240BFFAC009B11E9 /* ConsoleFactory.cpp */; };
 		2C43C289240BFFAC009B11E9 /* IConsole.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43C286240BFFAC009B11E9 /* IConsole.hpp */; };
 		2C43C28A240BFFAC009B11E9 /* SivConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C287240BFFAC009B11E9 /* SivConsole.cpp */; };
@@ -45,6 +46,7 @@
 		2C436091240E14C2001657D2 /* SivUnicode_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivUnicode_Platform.cpp; sourceTree = "<group>"; };
 		2C436093240E218F001657D2 /* UnicodeUtility.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UnicodeUtility.hpp; sourceTree = "<group>"; };
 		2C436094240E218F001657D2 /* UnicodeUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnicodeUtility.cpp; sourceTree = "<group>"; };
+		2C436098240E309D001657D2 /* SivString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivString.cpp; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C43C285240BFFAC009B11E9 /* ConsoleFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleFactory.cpp; sourceTree = "<group>"; };
 		2C43C286240BFFAC009B11E9 /* IConsole.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IConsole.hpp; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 			path = Unicode;
 			sourceTree = "<group>";
 		};
+		2C436097240E309D001657D2 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				2C436098240E309D001657D2 /* SivString.cpp */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
 		2C43C284240BFFAC009B11E9 /* Console */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 				2C7F9E21240BBFDC00BFCDCF /* Common */,
 				2C43C284240BFFAC009B11E9 /* Console */,
 				2C7F9E2C240BE08600BFCDCF /* Dummy */,
+				2C436097240E309D001657D2 /* String */,
 				2C43608D240E1458001657D2 /* Unicode */,
 			);
 			path = Siv3D;
@@ -421,6 +432,7 @@
 				2C436092240E14C2001657D2 /* SivUnicode_Platform.cpp in Sources */,
 				2C43608F240E1458001657D2 /* SivUnicode.cpp in Sources */,
 				2C7F9E25240BBFDC00BFCDCF /* ApplicationOptions.cpp in Sources */,
+				2C436099240E309D001657D2 /* SivString.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
