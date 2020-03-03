@@ -14,6 +14,7 @@
 # include <Common/ApplicationOptions.hpp>
 # include <Common/Siv3DEngine.hpp>
 
+void PerformTest();
 void Main();
 
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
@@ -25,6 +26,11 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 
 	using namespace s3d;
 	Siv3DEngine engine;
+
+	if (g_ApplicationOptions.runTest)
+	{
+		PerformTest();
+	}
 
 	Main();
 
