@@ -18,9 +18,11 @@ namespace s3d
 		int EnableDebugHeapManager(bool);
 		int EnableHeadlessMode(bool);
 		int EnableStdErr(bool);
+		int EnableTest(bool);
 	}
 }
 
 # define SIV3D_OPTION_DEBUG_HEAP_MANAGER(bool) const int dummy_s3d_enable_debug_heap_manager = s3d::detail::EnableDebugHeapManager(bool)
 # define SIV3D_OPTION_HEADLESS_MODE(bool) const int dummy_s3d_enable_headless_mode = s3d::detail::EnableHeadlessMode(bool)
 # define SIV3D_OPTION_OUTPUT_STDERR(bool) const int dummy_s3d_enable_stderr = s3d::detail::EnableStdErr(bool)
+# define SIV3D_OPTION_RUN_TEST(bool) const int dummy_s3d_enable_test = s3d::detail::EnableTest(bool)
