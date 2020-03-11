@@ -2470,7 +2470,7 @@ FMT_CONSTEXPR const Char* parse_format_specs(const Char* begin, const Char* end,
 template <bool IS_CONSTEXPR, typename T, typename Ptr = const T*>
 FMT_CONSTEXPR bool find(Ptr first, Ptr last, T value, Ptr& out) {
   for (out = first; out != last; ++out) {
-    if (*out == value) return true;
+    if (*out == static_cast<std::common_type_t<T, decltype(*out)>>(value)) return true;
   }
   return false;
 }
