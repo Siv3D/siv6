@@ -110,16 +110,46 @@ namespace s3d
 
 
 		[[nodiscard]]
-		string_type& str() noexcept
-		{
-			return m_string;
-		}
+		const value_type* c_str() const noexcept;
 
 		[[nodiscard]]
-		const string_type& str() const noexcept
-		{
-			return m_string;
-		}
+		const value_type* data() const noexcept;
+
+		[[nodiscard]]
+		value_type* data() noexcept;
+
+		[[nodiscard]]
+		string_type& str() noexcept;
+
+		[[nodiscard]]
+		const string_type& str() const noexcept;
+
+		[[nodiscard]]
+		size_t length() const noexcept;
+
+		[[nodiscard]]
+		size_t size() const noexcept;
+
+		[[nodiscard]]
+		size_t size_bytes() const noexcept;
+
+		[[nodiscard]]
+		bool empty() const noexcept;
+
+		[[nodiscard]]
+		bool isEmpty() const noexcept;
+
+		[[nodiscard]]
+		explicit operator bool() const noexcept;
+
+		[[nodiscard]]
+		size_t max_size() const noexcept;
+
+		[[nodiscard]]
+		size_t capacity() const noexcept;
+
+
+
 
 		/// <summary>
 		/// 文字列をマルチバイト文字列に変換した結果を返します。

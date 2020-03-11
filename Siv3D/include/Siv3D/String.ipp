@@ -92,4 +92,71 @@ namespace s3d
 	{
 	
 	}
+
+
+
+	inline const String::value_type* String::c_str() const noexcept
+	{
+		return m_string.c_str();
+	}
+
+	inline const String::value_type* String::data() const noexcept
+	{
+		return m_string.data();
+	}
+
+	inline String::value_type* String::data() noexcept
+	{
+		return m_string.data();
+	}
+
+	inline String::string_type& String::str() noexcept
+	{
+		return m_string;
+	}
+
+	inline const String::string_type& String::str() const noexcept
+	{
+		return m_string;
+	}
+
+	inline size_t String::length() const noexcept
+	{
+		return m_string.length();
+	}
+
+	inline size_t String::size() const noexcept
+	{
+		return m_string.size();
+	}
+
+	inline size_t String::size_bytes() const noexcept
+	{
+		return m_string.size() * sizeof(value_type);
+	}
+
+	inline bool String::empty() const noexcept
+	{
+		return m_string.empty();
+	}
+
+	inline bool String::isEmpty() const noexcept
+	{
+		return m_string.empty();
+	}
+
+	inline String::operator bool() const noexcept
+	{
+		return not m_string.empty();
+	}
+
+	inline size_t String::max_size() const noexcept
+	{
+		return m_string.max_size();
+	}
+
+	inline size_t String::capacity() const noexcept
+	{
+		return m_string.capacity();
+	}
 }
