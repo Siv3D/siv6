@@ -64,6 +64,9 @@
     <Filter Include="src\Siv3D\StringView">
       <UniqueIdentifier>{ad63d2d2-5695-4e93-81fc-f9f1f0672424}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Format">
+      <UniqueIdentifier>{f7fdfc9c-ecac-403a-b8b2-7234a2cfecb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -208,6 +211,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\StringView\SivStringView.cpp">
       <Filter>src\Siv3D\StringView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Format\SivFormat.cpp">
+      <Filter>src\Siv3D\Format</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
