@@ -103,11 +103,182 @@ namespace s3d
 
 		template <class StringViewIsh, class = IsStringViewIsh<StringViewIsh>>
 		SIV3D_NODISCARD_CXX20
-		explicit String(const StringViewIsh& viewish);
+		explicit String(const StringViewIsh& s);
 
+		operator StringView() const noexcept;
 
+		String& operator =(const String& other);
 
+		String& operator =(const string_type& text);
 
+		String& operator =(String&& other) noexcept;
+
+		String& operator =(string_type&& s) noexcept;
+
+		String& operator =(const value_type* s);
+
+		String& operator =(std::initializer_list<value_type> ilist);
+
+		template <class StringViewIsh, class = IsStringViewIsh<StringViewIsh>>
+		String& operator =(const StringViewIsh& s);
+
+		String& assign(const String& s);
+
+		String& assign(const string_type& s);
+
+		String& assign(const value_type* s);
+
+		String& assign(size_t count, value_type ch);
+
+		String& assign(String&& s) noexcept;
+
+		String& assign(string_type&& s) noexcept;
+
+		String& assign(std::initializer_list<value_type> ilist);
+
+		template <class StringViewIsh, class = IsStringViewIsh<StringViewIsh>>
+		String& assign(const StringViewIsh& s);
+
+		template <class Iterator>
+		String& assign(Iterator first, Iterator last);
+
+		String& operator <<(value_type ch);
+
+		String& operator +=(const String& s);
+
+		String& operator +=(const string_type& s);
+
+		String& operator +=(value_type ch);
+
+		String& operator +=(const value_type* s);
+
+		String& operator +=(std::initializer_list<value_type> ilist);
+
+		template <class StringViewIsh, class = IsStringViewIsh<StringViewIsh>>
+		String& operator +=(const StringViewIsh& s);
+
+		String& append(const String& s);
+
+		String& append(const string_type& s);
+
+		String& append(value_type ch);
+
+		String& append(const value_type* s);
+
+		String& append(const value_type* s, size_t count);
+
+		String& append(std::initializer_list<value_type> ilist);
+
+		String& append(size_t count, value_type ch);
+
+		template <class StringViewIsh, class = IsStringViewIsh<StringViewIsh>>
+		String& append(const StringViewIsh& s);
+
+		template <class Iterator>
+		String& append(Iterator first, Iterator last);
+
+		String& insert(size_t offset, const String& s);
+
+		String& insert(size_t offset, std::initializer_list<value_type> ilist);
+
+		String& insert(size_t offset, const value_type* s);
+
+		template <class StringViewIsh, class = String::IsStringViewIsh<StringViewIsh>>
+		String& insert(size_t offset, const StringViewIsh& s);
+
+		String& insert(size_t offset, size_t count, value_type ch);
+
+		iterator insert(const_iterator where, value_type ch);
+
+		iterator insert(const_iterator where, size_t count, value_type ch);
+
+		template <class Iterator>
+		iterator insert(const_iterator where, Iterator first, Iterator last);
+
+		template <class Iterator>
+		String& insert(const_iterator first1, const_iterator last1, Iterator first2, Iterator last2);
+
+		String& erase(size_t offset = 0, size_t count = npos);
+
+		iterator erase(const_iterator where);
+
+		iterator erase(const_iterator first, const_iterator last);
+
+		void clear() noexcept;
+
+		[[nodiscard]]
+		iterator begin() noexcept;
+
+		[[nodiscard]]
+		const_iterator begin() const noexcept;
+
+		[[nodiscard]]
+		const_iterator cbegin() const noexcept;
+
+		[[nodiscard]]
+		iterator end() noexcept;
+
+		[[nodiscard]]
+		const_iterator end() const noexcept;
+
+		[[nodiscard]]
+		const_iterator cend() const noexcept;
+
+		[[nodiscard]]
+		reverse_iterator rbegin() noexcept;
+
+		[[nodiscard]]
+		const_reverse_iterator rbegin() const noexcept;
+
+		[[nodiscard]]
+		const_reverse_iterator crbegin() const noexcept;
+
+		[[nodiscard]]
+		reverse_iterator rend() noexcept;
+
+		[[nodiscard]]
+		const_reverse_iterator rend() const noexcept;
+
+		[[nodiscard]]
+		const_reverse_iterator crend() const noexcept;
+
+		void shrink_to_fit();
+
+		void release();
+
+		[[nodiscard]]
+		value_type& at(size_t offset) &;
+
+		[[nodiscard]]
+		const value_type& at(size_t offset) const&;
+
+		[[nodiscard]]
+		value_type at(size_t offset) &&;
+
+		[[nodiscard]]
+		value_type& operator[](size_t offset) &;
+
+		[[nodiscard]]
+		const value_type& operator[](size_t offset) const&;
+
+		[[nodiscard]]
+		value_type operator[](size_t offset) &&;
+
+		void push_front(value_type ch);
+
+		void push_back(value_type ch);
+
+		void pop_front();
+
+		void pop_back();
+
+		[[nodiscard]] value_type& front();
+
+		[[nodiscard]] const value_type& front() const;
+
+		[[nodiscard]] value_type& back();
+
+		[[nodiscard]] const value_type& back() const;
 
 		[[nodiscard]]
 		const value_type* c_str() const noexcept;
@@ -148,8 +319,19 @@ namespace s3d
 		[[nodiscard]]
 		size_t capacity() const noexcept;
 
+		void resize(size_t newSize);
 
+		void resize(size_t newSize, value_type ch);
 
+		void reserve(size_t newCapacity);
+
+		void swap(String& other) noexcept;
+
+		[[nodiscard]]
+		String substr(size_t offset = 0, size_t count = npos) const;
+
+		[[nodiscard]]
+		StringView substrView(size_t offset = 0, size_t count = npos) const;
 
 		/// <summary>
 		/// 文字列をマルチバイト文字列に変換した結果を返します。
