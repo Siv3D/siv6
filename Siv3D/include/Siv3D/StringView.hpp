@@ -69,18 +69,6 @@ namespace s3d
 		constexpr const_iterator end() const noexcept;
 
 		[[nodiscard]]
-		friend constexpr const_iterator begin(const StringView& sv) noexcept
-		{
-			return sv.begin();
-		}
-
-		[[nodiscard]]
-		friend constexpr const_iterator end(const StringView& sv) noexcept
-		{
-			return sv.end();
-		}
-
-		[[nodiscard]]
 		constexpr const_iterator cbegin() const noexcept;
 
 		[[nodiscard]]
