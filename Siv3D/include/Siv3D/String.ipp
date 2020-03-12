@@ -132,7 +132,7 @@ namespace s3d
 
 	inline size_t String::size_bytes() const noexcept
 	{
-		return m_string.size() * sizeof(value_type);
+		return (m_string.size() * sizeof(value_type));
 	}
 
 	inline bool String::empty() const noexcept
