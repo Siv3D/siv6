@@ -33,6 +33,7 @@
 		2C439F472419D686001154C2 /* format-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F452419D686001154C2 /* format-inl.h */; };
 		2C439F482419D686001154C2 /* format.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F462419D686001154C2 /* format.cc */; };
 		2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F522419FC9E001154C2 /* SivStringView.cpp */; };
+		2C439F56241A6DEA001154C2 /* SivFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F55241A6DEA001154C2 /* SivFormat.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,10 @@
 		2C439F4F2419F81B001154C2 /* String.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = String.ipp; sourceTree = "<group>"; };
 		2C439F502419FC84001154C2 /* Fwd.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Fwd.hpp; sourceTree = "<group>"; };
 		2C439F522419FC9E001154C2 /* SivStringView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivStringView.cpp; sourceTree = "<group>"; };
+		2C439F55241A6DEA001154C2 /* SivFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivFormat.cpp; sourceTree = "<group>"; };
+		2C439F57241A6E0B001154C2 /* FormatData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatData.hpp; sourceTree = "<group>"; };
+		2C439F58241A6E0B001154C2 /* Format.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Format.hpp; sourceTree = "<group>"; };
+		2C439F59241A6E0B001154C2 /* PlaceHolder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlaceHolder.hpp; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -179,6 +184,7 @@
 				2C4360B8240E4EEC001657D2 /* Common */,
 				2C4360C0240E4EEC001657D2 /* Console */,
 				2C4360AF240E4EEC001657D2 /* Dummy */,
+				2C439F54241A6DEA001154C2 /* Format */,
 				2C4360BE240E4EEC001657D2 /* String */,
 				2C439F512419FC9E001154C2 /* StringView */,
 				2C4360B4240E4EEC001657D2 /* Unicode */,
@@ -272,6 +278,14 @@
 			path = StringView;
 			sourceTree = "<group>";
 		};
+		2C439F54241A6DEA001154C2 /* Format */ = {
+			isa = PBXGroup;
+			children = (
+				2C439F55241A6DEA001154C2 /* SivFormat.cpp */,
+			);
+			path = Format;
+			sourceTree = "<group>";
+		};
 		2C46FDBA226EE90600828870 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,11 +310,14 @@
 		2CA1A887240BA58F00ED4230 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
-				2C439F502419FC84001154C2 /* Fwd.hpp */,
 				2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */,
 				2C436088240E141C001657D2 /* Common.hpp */,
 				2C43C283240BFF95009B11E9 /* Console.hpp */,
+				2C439F58241A6E0B001154C2 /* Format.hpp */,
+				2C439F57241A6E0B001154C2 /* FormatData.hpp */,
 				2C439F4E2419D6CA001154C2 /* FormatLiteral.hpp */,
+				2C439F502419FC84001154C2 /* Fwd.hpp */,
+				2C439F59241A6E0B001154C2 /* PlaceHolder.hpp */,
 				2CA1A888240BA58F00ED4230 /* Platform.hpp */,
 				2C436087240E141C001657D2 /* String.hpp */,
 				2C439F4F2419F81B001154C2 /* String.ipp */,
@@ -493,6 +510,7 @@
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
 				2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
+				2C439F56241A6DEA001154C2 /* SivFormat.cpp in Sources */,
 				2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */,
 				2C4360D3240E4EEC001657D2 /* SivUnicode.cpp in Sources */,
 				2C4360CE240E4EEC001657D2 /* DummyFactory.cpp in Sources */,
