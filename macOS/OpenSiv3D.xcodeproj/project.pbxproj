@@ -32,6 +32,7 @@
 		2C4360DD240E4EEC001657D2 /* SivConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360C3240E4EEC001657D2 /* SivConsole.cpp */; };
 		2C439F472419D686001154C2 /* format-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F452419D686001154C2 /* format-inl.h */; };
 		2C439F482419D686001154C2 /* format.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F462419D686001154C2 /* format.cc */; };
+		2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F522419FC9E001154C2 /* SivStringView.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,8 @@
 		2C439F4D2419D6A5001154C2 /* format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = format.h; sourceTree = "<group>"; };
 		2C439F4E2419D6CA001154C2 /* FormatLiteral.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatLiteral.hpp; sourceTree = "<group>"; };
 		2C439F4F2419F81B001154C2 /* String.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = String.ipp; sourceTree = "<group>"; };
+		2C439F502419FC84001154C2 /* Fwd.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Fwd.hpp; sourceTree = "<group>"; };
+		2C439F522419FC9E001154C2 /* SivStringView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivStringView.cpp; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -173,11 +176,12 @@
 		2C4360AE240E4EEC001657D2 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
-				2C4360AF240E4EEC001657D2 /* Dummy */,
-				2C4360B4240E4EEC001657D2 /* Unicode */,
 				2C4360B8240E4EEC001657D2 /* Common */,
-				2C4360BE240E4EEC001657D2 /* String */,
 				2C4360C0240E4EEC001657D2 /* Console */,
+				2C4360AF240E4EEC001657D2 /* Dummy */,
+				2C4360BE240E4EEC001657D2 /* String */,
+				2C439F512419FC9E001154C2 /* StringView */,
+				2C4360B4240E4EEC001657D2 /* Unicode */,
 			);
 			path = Siv3D;
 			sourceTree = "<group>";
@@ -260,6 +264,14 @@
 			path = fmt;
 			sourceTree = "<group>";
 		};
+		2C439F512419FC9E001154C2 /* StringView */ = {
+			isa = PBXGroup;
+			children = (
+				2C439F522419FC9E001154C2 /* SivStringView.cpp */,
+			);
+			path = StringView;
+			sourceTree = "<group>";
+		};
 		2C46FDBA226EE90600828870 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +296,7 @@
 		2CA1A887240BA58F00ED4230 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C439F502419FC84001154C2 /* Fwd.hpp */,
 				2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */,
 				2C436088240E141C001657D2 /* Common.hpp */,
 				2C43C283240BFF95009B11E9 /* Console.hpp */,
@@ -475,6 +488,7 @@
 				2C4360C7240E4EEC001657D2 /* CConsole.cpp in Sources */,
 				2C4360D9240E4EEC001657D2 /* ApplicationOptions.cpp in Sources */,
 				2C4360DD240E4EEC001657D2 /* SivConsole.cpp in Sources */,
+				2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
 				2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */,
