@@ -115,4 +115,13 @@ TEST_CASE("FormatLiteral")
 		REQUIRE(U"{}"_fmt(U"OpenSiv3D") == U"OpenSiv3D");
 		REQUIRE(U"{}"_fmt(U"あいうえお") == U"あいうえお");
 	}
+
+	SECTION("formatter<String>")
+	{
+		const String s = U"ABCDE";
+		REQUIRE(U"{}"_fmt(s) == U"ABCDE");
+		REQUIRE(U"{0}"_fmt(s) == U"ABCDE");
+		REQUIRE(U"{:<6}"_fmt(s) == U"ABCDE ");
+		REQUIRE(U"{:*>10}"_fmt(s) == U"*****ABCDE");
+	}
 }
