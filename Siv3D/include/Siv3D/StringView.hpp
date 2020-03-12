@@ -249,6 +249,42 @@ namespace s3d
 		[[nodiscard]]
 		std::wstring toWstr() const;
 
+		[[nodiscard]]
+		friend constexpr bool operator ==(StringView x, StringView y) noexcept
+		{
+			return (x.compare(y) == 0);
+		}
+
+		[[nodiscard]]
+		friend constexpr bool operator !=(StringView x, StringView y) noexcept
+		{
+			return (x.compare(y) != 0);
+		}
+
+		[[nodiscard]]
+		friend constexpr bool operator <(StringView x, StringView y) noexcept
+		{
+			return (x.compare(y) < 0);
+		}
+
+		[[nodiscard]]
+		friend constexpr bool operator <=(StringView x, StringView y) noexcept
+		{
+			return (x.compare(y) <= 0);
+		}
+
+		[[nodiscard]]
+		friend constexpr bool operator >(StringView x, StringView y) noexcept
+		{
+			return (x.compare(y) > 0);
+		}
+
+		[[nodiscard]]
+		friend constexpr bool operator >=(StringView x, StringView y) noexcept
+		{
+			return (x.compare(y) >= 0);
+		}
+
 		friend std::ostream& operator <<(std::ostream& output, const StringView& value)
 		{
 			return (output << value.narrow());
@@ -259,24 +295,6 @@ namespace s3d
 			return (output << value.toWstr());
 		}
 	};
-
-	[[nodiscard]]
-	inline constexpr bool operator ==(StringView x, StringView y) noexcept;
-
-	[[nodiscard]]
-	inline constexpr bool operator !=(StringView x, StringView y) noexcept;
-
-	[[nodiscard]]
-	inline constexpr bool operator <(StringView x, StringView y) noexcept;
-
-	[[nodiscard]]
-	inline constexpr bool operator <=(StringView x, StringView y) noexcept;
-
-	[[nodiscard]]
-	inline constexpr bool operator >(StringView x, StringView y) noexcept;
-
-	[[nodiscard]]
-	inline constexpr bool operator >=(StringView x, StringView y) noexcept;
 
 	inline namespace Literals
 	{

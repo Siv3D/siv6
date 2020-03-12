@@ -353,6 +353,13 @@ namespace s3d
 
 
 
+
+
+
+
+
+
+
 		/// <summary>
 		/// 文字列が等しいかを調べます。
 		/// </summary>
@@ -369,6 +376,18 @@ namespace s3d
 		friend bool operator ==(const String& lhs, const String& rhs)
 		{
 			return (lhs.m_string == rhs.m_string);
+		}
+
+		[[nodiscard]]
+		friend bool operator ==(const value_type* lhs, const String& rhs)
+		{
+			return (lhs == rhs.str());
+		}
+
+		[[nodiscard]]
+		friend bool operator ==(const String& lhs, const value_type* rhs)
+		{
+			return (lhs.str() == rhs);
 		}
 
 		/// <summary>
@@ -389,7 +408,275 @@ namespace s3d
 			return (lhs.m_string != rhs.m_string);
 		}
 
+		[[nodiscard]]
+		friend bool operator !=(const value_type* lhs, const String& rhs)
+		{
+			return (lhs != rhs.str());
+		}
 
+		[[nodiscard]]
+		friend bool operator !=(const String& lhs, const value_type* rhs)
+		{
+			return (lhs.str() != rhs);
+		}
+
+		[[nodiscard]]
+		friend bool operator <(const String& lhs, const String& rhs)
+		{
+			return (lhs.m_string < rhs.m_string);
+		}
+
+		[[nodiscard]]
+		friend bool operator <(const value_type* lhs, const String& rhs)
+		{
+			return (lhs < rhs.str());
+		}
+
+		[[nodiscard]]
+		friend bool operator <(const String& lhs, const value_type* rhs)
+		{
+			return (lhs.str() < rhs);
+		}
+
+		[[nodiscard]]
+		friend bool operator >(const String& lhs, const String& rhs)
+		{
+			return (lhs.m_string > rhs.m_string);
+		}
+
+		[[nodiscard]]
+		friend bool operator >(const value_type* lhs, const String& rhs)
+		{
+			return (lhs > rhs.str());
+		}
+
+		[[nodiscard]]
+		friend bool operator >(const String& lhs, const value_type* rhs)
+		{
+			return (lhs.str() > rhs);
+		}
+
+		[[nodiscard]]
+		friend bool operator <=(const String& lhs, const String& rhs)
+		{
+			return (lhs.m_string <= rhs.m_string);
+		}
+
+		[[nodiscard]]
+		friend bool operator <=(const value_type* lhs, const String& rhs)
+		{
+			return (lhs <= rhs.str());
+		}
+
+		[[nodiscard]]
+		friend bool operator <=(const String& lhs, const value_type* rhs)
+		{
+			return (lhs.str() <= rhs);
+		}
+
+		[[nodiscard]]
+		friend bool operator >=(const String& lhs, const String& rhs)
+		{
+			return (lhs.m_string >= rhs.m_string);
+		}
+
+		[[nodiscard]]
+		friend bool operator >=(const value_type* lhs, const String& rhs)
+		{
+			return (lhs >= rhs.str());
+		}
+
+		[[nodiscard]]
+		friend bool operator >=(const String& lhs, const value_type* rhs)
+		{
+			return (lhs.str() >= rhs);
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String::value_type lhs, StringView rhs)
+		{
+			String result;
+			result.reserve(1 + rhs.size());
+			result.append(lhs);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String::value_type lhs, const String& rhs)
+		{
+			String result;
+			result.reserve(1 + rhs.size());
+			result.append(lhs);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String::value_type lhs, String&& rhs)
+		{
+			rhs.push_front(lhs);
+			return std::move(rhs);
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String::value_type* lhs, StringView rhs)
+		{
+			const size_t len = std::char_traits<String::value_type>::length(lhs);
+			String result;
+			result.reserve(len + rhs.size());
+			result.append(lhs, len);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String::value_type* lhs, const String& rhs)
+		{
+			const size_t len = std::char_traits<String::value_type>::length(lhs);
+			String result;
+			result.reserve(len + rhs.size());
+			result.append(lhs, len);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String::value_type* lhs, String&& rhs)
+		{
+			return std::move(rhs.insert(0, lhs));
+		}
+
+		[[nodiscard]]
+		friend String operator +(StringView lhs, const String::value_type rhs)
+		{
+			String result;
+			result.reserve(lhs.size() + 1);
+			result.append(lhs);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(StringView lhs, const String::value_type* rhs)
+		{
+			const size_t len = std::char_traits<String::value_type>::length(rhs);
+			String result;
+			result.reserve(lhs.size() + len);
+			result.append(lhs);
+			result.append(rhs, len);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(StringView lhs, StringView rhs)
+		{
+			String result;
+			result.reserve(lhs.size() + rhs.size());
+			result.append(lhs);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(StringView lhs, const String& rhs)
+		{
+			String result;
+			result.reserve(lhs.size() + rhs.size());
+			result.append(lhs);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(StringView lhs, String&& rhs)
+		{
+			return std::move(rhs.insert(0, lhs));
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String& lhs, const String::value_type rhs)
+		{
+			String result;
+			result.reserve(lhs.size() + 1);
+			result.append(lhs);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String& lhs, const String::value_type* rhs)
+		{
+			const size_t len = std::char_traits<String::value_type>::length(rhs);
+			String result;
+			result.reserve(lhs.size() + len);
+			result.append(lhs);
+			result.append(rhs, len);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String& lhs, StringView rhs)
+		{
+			String result;
+			result.reserve(lhs.size() + rhs.size());
+			result.append(lhs);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String& lhs, const String& rhs)
+		{
+			String result;
+			result.reserve(lhs.size() + rhs.size());
+			result.append(lhs);
+			result.append(rhs);
+			return result;
+		}
+
+		[[nodiscard]]
+		friend String operator +(const String& lhs, String&& rhs)
+		{
+			return std::move(rhs.insert(0, lhs));
+		}
+
+		[[nodiscard]]
+		friend String operator +(String&& lhs, const String::value_type rhs)
+		{
+			return std::move(lhs << rhs);
+		}
+
+		[[nodiscard]]
+		friend String operator +(String&& lhs, const String::value_type* rhs)
+		{
+			return std::move(lhs.append(rhs));
+		}
+
+		[[nodiscard]]
+		friend String operator +(String&& lhs, StringView rhs)
+		{
+			return std::move(lhs.append(rhs));
+		}
+
+		[[nodiscard]]
+		friend String operator +(String&& lhs, const String& rhs)
+		{
+			return std::move(lhs.append(rhs));
+		}
+
+		[[nodiscard]]
+		friend String operator +(String&& lhs, String&& rhs)
+		{
+			if (rhs.size() <= lhs.capacity() - lhs.size() || rhs.capacity() - rhs.size() < lhs.size())
+			{
+				return std::move(lhs.append(rhs));
+			}
+			else
+			{
+				return std::move(rhs.insert(0, lhs));
+			}
+		}
 
 		friend std::ostream& operator <<(std::ostream& output, const String& value)
 		{
@@ -401,6 +688,20 @@ namespace s3d
 			return (output << value.toWstr());
 		}
 	};
+
+	inline namespace Literals
+	{
+		inline namespace StringLiterals
+		{
+			[[nodiscard]]
+			inline String operator ""_s(const char32_t* s, const size_t length)
+			{
+				return String(s, length);
+			}
+		}
+	}
+
+	using FilePath = String;
 }
 
 # include "String.ipp"
