@@ -74,6 +74,7 @@
 		2C439F4C2419D6A5001154C2 /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
 		2C439F4D2419D6A5001154C2 /* format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = format.h; sourceTree = "<group>"; };
 		2C439F4E2419D6CA001154C2 /* FormatLiteral.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatLiteral.hpp; sourceTree = "<group>"; };
+		2C439F4F2419F81B001154C2 /* String.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = String.ipp; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -289,6 +290,7 @@
 				2C439F4E2419D6CA001154C2 /* FormatLiteral.hpp */,
 				2CA1A888240BA58F00ED4230 /* Platform.hpp */,
 				2C436087240E141C001657D2 /* String.hpp */,
+				2C439F4F2419F81B001154C2 /* String.ipp */,
 				2C43608A240E141C001657D2 /* String.ipp */,
 				2C43608B240E141D001657D2 /* StringView.hpp */,
 				2C436089240E141C001657D2 /* Types.hpp */,
