@@ -325,4 +325,34 @@ namespace s3d
 	{
 		return m_view.find_last_not_of(anyof, pos);
 	}
+
+	inline constexpr bool operator ==(const StringView x, const StringView y) noexcept
+	{
+		return (x.compare(y) == 0);
+	}
+
+	inline constexpr bool operator !=(const StringView x, const StringView y) noexcept
+	{
+		return not (x == y);
+	}
+
+	inline constexpr bool operator <(const StringView x, const StringView y) noexcept
+	{
+		return (x.compare(y) < 0);
+	}
+
+	inline constexpr bool operator <=(const StringView x, const StringView y) noexcept
+	{
+		return (x.compare(y) <= 0);
+	}
+
+	inline constexpr bool operator >(const StringView x, const StringView y) noexcept
+	{
+		return (x.compare(y) > 0);
+	}
+
+	inline constexpr bool operator >=(const StringView x, const StringView y) noexcept
+	{
+		return (x.compare(y) >= 0);
+	}
 }

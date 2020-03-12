@@ -12,6 +12,7 @@
 # pragma once
 # include <string_view>
 # include <string>
+# include "Fwd.hpp"
 
 namespace s3d
 {
@@ -229,7 +230,67 @@ namespace s3d
 
 		[[nodiscard]]
 		constexpr size_t lastIndexNotOfAny(const value_type* anyof, size_t pos = 0) const noexcept;
+
+		/// <summary>
+		/// 文字列をマルチバイト文字列に変換した結果を返します。
+		/// </summary>
+		/// <returns>
+		/// 変換された文字列
+		/// </returns>
+		[[nodiscard]]
+		std::string narrow() const;
+
+		/// <summary>
+		/// 文字列を std::wstring に変換した結果を返します。
+		/// </summary>
+		/// <returns>
+		/// 変換された文字列
+		/// </returns>
+		[[nodiscard]]
+		std::wstring toWstr() const;
+
+		friend std::ostream& operator <<(std::ostream& output, const StringView& value)
+		{
+			return (output << value.narrow());
+		}
+
+		friend std::wostream& operator <<(std::wostream& output, const StringView& value)
+		{
+			return (output << value.toWstr());
+		}
 	};
+
+	[[nodiscard]]
+	inline constexpr bool operator ==(StringView x, StringView y) noexcept;
+
+	[[nodiscard]]
+	inline constexpr bool operator !=(StringView x, StringView y) noexcept;
+
+	[[nodiscard]]
+	inline constexpr bool operator <(StringView x, StringView y) noexcept;
+
+	[[nodiscard]]
+	inline constexpr bool operator <=(StringView x, StringView y) noexcept;
+
+	[[nodiscard]]
+	inline constexpr bool operator >(StringView x, StringView y) noexcept;
+
+	[[nodiscard]]
+	inline constexpr bool operator >=(StringView x, StringView y) noexcept;
+
+	inline namespace Literals
+	{
+		inline namespace StringViewLiterals
+		{
+			[[nodiscard]]
+			constexpr StringView operator ""_sv(const char32_t* s, const size_t length) noexcept
+			{
+				return StringView(s, length);
+			}
+		}
+	}
+
+	using FilePathView = StringView;
 }
 
 # include "StringView.ipp"
