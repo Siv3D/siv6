@@ -132,6 +132,9 @@
 		2C439F76241DCEA9001154C2 /* bignum-dtoa.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "bignum-dtoa.cc"; sourceTree = "<group>"; };
 		2C439F8C241DF5CD001154C2 /* SivFormatInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivFormatInt.cpp; sourceTree = "<group>"; };
 		2C439F8E241DF5F8001154C2 /* FormatInt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatInt.hpp; sourceTree = "<group>"; };
+		2C439F8F241DFACF001154C2 /* NamedParameter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NamedParameter.hpp; sourceTree = "<group>"; };
+		2C439F90241DFACF001154C2 /* LetterCase.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LetterCase.hpp; sourceTree = "<group>"; };
+		2C439F91241DFACF001154C2 /* PredefinedNamedParameter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PredefinedNamedParameter.hpp; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -424,8 +427,11 @@
 				2C439F4E2419D6CA001154C2 /* FormatLiteral.hpp */,
 				2C439F502419FC84001154C2 /* Fwd.hpp */,
 				2C439F5B241DCE68001154C2 /* IntFormatter.hpp */,
+				2C439F90241DFACF001154C2 /* LetterCase.hpp */,
+				2C439F8F241DFACF001154C2 /* NamedParameter.hpp */,
 				2C439F59241A6E0B001154C2 /* PlaceHolder.hpp */,
 				2CA1A888240BA58F00ED4230 /* Platform.hpp */,
+				2C439F91241DFACF001154C2 /* PredefinedNamedParameter.hpp */,
 				2C436087240E141C001657D2 /* String.hpp */,
 				2C439F4F2419F81B001154C2 /* String.ipp */,
 				2C43608A240E141C001657D2 /* String.ipp */,
