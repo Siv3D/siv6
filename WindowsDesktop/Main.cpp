@@ -8,5 +8,10 @@ SIV3D_OPTION_RUN_TEST(true);
 
 void Main()
 {
+	Console(U"かきくけこ");
+	Console(String(U"あいうえお"));
+	Console(StringView(U"さしすせそ"));
 
+	int n;
+	std::cin >> n;
 }
