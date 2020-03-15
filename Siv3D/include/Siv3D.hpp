@@ -38,6 +38,9 @@
 
 # include <Siv3D/PlaceHolder.hpp>
 
+# include <Siv3D/NamedParameter.hpp>
+# include <Siv3D/PredefinedNamedParameter.hpp>
+
 # include <Siv3D/StringView.hpp>
 # include <Siv3D/String.hpp>
 # include <Siv3D/Unicode.hpp>

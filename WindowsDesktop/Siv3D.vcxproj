@@ -22,8 +22,11 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\IntFormatter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatLiteral.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Fwd.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\LetterCase.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\NamedParameter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PlaceHolder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Platform.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\PredefinedNamedParameter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\String.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\String.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\StringView.hpp" />
