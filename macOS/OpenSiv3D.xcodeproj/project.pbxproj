@@ -34,6 +34,28 @@
 		2C439F482419D686001154C2 /* format.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F462419D686001154C2 /* format.cc */; };
 		2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F522419FC9E001154C2 /* SivStringView.cpp */; };
 		2C439F56241A6DEA001154C2 /* SivFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F55241A6DEA001154C2 /* SivFormat.cpp */; };
+		2C439F60241DCE8B001154C2 /* SivFormatFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F5D241DCE8B001154C2 /* SivFormatFloat.cpp */; };
+		2C439F61241DCE8B001154C2 /* SivIntFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F5F241DCE8B001154C2 /* SivIntFormatter.cpp */; };
+		2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F63241DCEA9001154C2 /* string-to-double.h */; };
+		2C439F78241DCEA9001154C2 /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F64241DCEA9001154C2 /* utils.h */; };
+		2C439F79241DCEA9001154C2 /* bignum.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F65241DCEA9001154C2 /* bignum.cc */; };
+		2C439F7A241DCEA9001154C2 /* fixed-dtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F66241DCEA9001154C2 /* fixed-dtoa.h */; };
+		2C439F7B241DCEA9001154C2 /* string-to-double.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F67241DCEA9001154C2 /* string-to-double.cc */; };
+		2C439F7C241DCEA9001154C2 /* bignum-dtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F68241DCEA9001154C2 /* bignum-dtoa.h */; };
+		2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F69241DCEA9001154C2 /* fixed-dtoa.cc */; };
+		2C439F7E241DCEA9001154C2 /* double-to-string.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F6A241DCEA9001154C2 /* double-to-string.h */; };
+		2C439F7F241DCEA9001154C2 /* strtod.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F6B241DCEA9001154C2 /* strtod.h */; };
+		2C439F80241DCEA9001154C2 /* diy-fp.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F6C241DCEA9001154C2 /* diy-fp.h */; };
+		2C439F81241DCEA9001154C2 /* strtod.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F6D241DCEA9001154C2 /* strtod.cc */; };
+		2C439F82241DCEA9001154C2 /* cached-powers.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F6E241DCEA9001154C2 /* cached-powers.h */; };
+		2C439F83241DCEA9001154C2 /* double-conversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F6F241DCEA9001154C2 /* double-conversion.h */; };
+		2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F70241DCEA9001154C2 /* fast-dtoa.cc */; };
+		2C439F85241DCEA9001154C2 /* double-to-string.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F71241DCEA9001154C2 /* double-to-string.cc */; };
+		2C439F86241DCEA9001154C2 /* cached-powers.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F72241DCEA9001154C2 /* cached-powers.cc */; };
+		2C439F87241DCEA9001154C2 /* ieee.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F73241DCEA9001154C2 /* ieee.h */; };
+		2C439F88241DCEA9001154C2 /* bignum.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F74241DCEA9001154C2 /* bignum.h */; };
+		2C439F89241DCEA9001154C2 /* fast-dtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F75241DCEA9001154C2 /* fast-dtoa.h */; };
+		2C439F8A241DCEA9001154C2 /* bignum-dtoa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F76241DCEA9001154C2 /* bignum-dtoa.cc */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 /* End PBXBuildFile section */
@@ -83,6 +105,30 @@
 		2C439F57241A6E0B001154C2 /* FormatData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatData.hpp; sourceTree = "<group>"; };
 		2C439F58241A6E0B001154C2 /* Format.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Format.hpp; sourceTree = "<group>"; };
 		2C439F59241A6E0B001154C2 /* PlaceHolder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlaceHolder.hpp; sourceTree = "<group>"; };
+		2C439F5A241DCE68001154C2 /* FormatFloat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatFloat.hpp; sourceTree = "<group>"; };
+		2C439F5B241DCE68001154C2 /* IntFormatter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IntFormatter.hpp; sourceTree = "<group>"; };
+		2C439F5D241DCE8B001154C2 /* SivFormatFloat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivFormatFloat.cpp; sourceTree = "<group>"; };
+		2C439F5F241DCE8B001154C2 /* SivIntFormatter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivIntFormatter.cpp; sourceTree = "<group>"; };
+		2C439F63241DCEA9001154C2 /* string-to-double.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "string-to-double.h"; sourceTree = "<group>"; };
+		2C439F64241DCEA9001154C2 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		2C439F65241DCEA9001154C2 /* bignum.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bignum.cc; sourceTree = "<group>"; };
+		2C439F66241DCEA9001154C2 /* fixed-dtoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "fixed-dtoa.h"; sourceTree = "<group>"; };
+		2C439F67241DCEA9001154C2 /* string-to-double.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "string-to-double.cc"; sourceTree = "<group>"; };
+		2C439F68241DCEA9001154C2 /* bignum-dtoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bignum-dtoa.h"; sourceTree = "<group>"; };
+		2C439F69241DCEA9001154C2 /* fixed-dtoa.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fixed-dtoa.cc"; sourceTree = "<group>"; };
+		2C439F6A241DCEA9001154C2 /* double-to-string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "double-to-string.h"; sourceTree = "<group>"; };
+		2C439F6B241DCEA9001154C2 /* strtod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strtod.h; sourceTree = "<group>"; };
+		2C439F6C241DCEA9001154C2 /* diy-fp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "diy-fp.h"; sourceTree = "<group>"; };
+		2C439F6D241DCEA9001154C2 /* strtod.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = strtod.cc; sourceTree = "<group>"; };
+		2C439F6E241DCEA9001154C2 /* cached-powers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cached-powers.h"; sourceTree = "<group>"; };
+		2C439F6F241DCEA9001154C2 /* double-conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "double-conversion.h"; sourceTree = "<group>"; };
+		2C439F70241DCEA9001154C2 /* fast-dtoa.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "fast-dtoa.cc"; sourceTree = "<group>"; };
+		2C439F71241DCEA9001154C2 /* double-to-string.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "double-to-string.cc"; sourceTree = "<group>"; };
+		2C439F72241DCEA9001154C2 /* cached-powers.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "cached-powers.cc"; sourceTree = "<group>"; };
+		2C439F73241DCEA9001154C2 /* ieee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ieee.h; sourceTree = "<group>"; };
+		2C439F74241DCEA9001154C2 /* bignum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bignum.h; sourceTree = "<group>"; };
+		2C439F75241DCEA9001154C2 /* fast-dtoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "fast-dtoa.h"; sourceTree = "<group>"; };
+		2C439F76241DCEA9001154C2 /* bignum-dtoa.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "bignum-dtoa.cc"; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -121,6 +167,7 @@
 		2C43609A240E4EEC001657D2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2C439F62241DCEA9001154C2 /* double-conversion */,
 				2C439F442419D686001154C2 /* fmt */,
 				2C43609B240E4EEC001657D2 /* Catch2 */,
 			);
@@ -181,6 +228,8 @@
 		2C4360AE240E4EEC001657D2 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C439F5C241DCE8B001154C2 /* FormatFloat */,
+				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C4360B8240E4EEC001657D2 /* Common */,
 				2C4360C0240E4EEC001657D2 /* Console */,
 				2C4360AF240E4EEC001657D2 /* Dummy */,
@@ -286,6 +335,49 @@
 			path = Format;
 			sourceTree = "<group>";
 		};
+		2C439F5C241DCE8B001154C2 /* FormatFloat */ = {
+			isa = PBXGroup;
+			children = (
+				2C439F5D241DCE8B001154C2 /* SivFormatFloat.cpp */,
+			);
+			path = FormatFloat;
+			sourceTree = "<group>";
+		};
+		2C439F5E241DCE8B001154C2 /* IntFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				2C439F5F241DCE8B001154C2 /* SivIntFormatter.cpp */,
+			);
+			path = IntFormatter;
+			sourceTree = "<group>";
+		};
+		2C439F62241DCEA9001154C2 /* double-conversion */ = {
+			isa = PBXGroup;
+			children = (
+				2C439F63241DCEA9001154C2 /* string-to-double.h */,
+				2C439F64241DCEA9001154C2 /* utils.h */,
+				2C439F65241DCEA9001154C2 /* bignum.cc */,
+				2C439F66241DCEA9001154C2 /* fixed-dtoa.h */,
+				2C439F67241DCEA9001154C2 /* string-to-double.cc */,
+				2C439F68241DCEA9001154C2 /* bignum-dtoa.h */,
+				2C439F69241DCEA9001154C2 /* fixed-dtoa.cc */,
+				2C439F6A241DCEA9001154C2 /* double-to-string.h */,
+				2C439F6B241DCEA9001154C2 /* strtod.h */,
+				2C439F6C241DCEA9001154C2 /* diy-fp.h */,
+				2C439F6D241DCEA9001154C2 /* strtod.cc */,
+				2C439F6E241DCEA9001154C2 /* cached-powers.h */,
+				2C439F6F241DCEA9001154C2 /* double-conversion.h */,
+				2C439F70241DCEA9001154C2 /* fast-dtoa.cc */,
+				2C439F71241DCEA9001154C2 /* double-to-string.cc */,
+				2C439F72241DCEA9001154C2 /* cached-powers.cc */,
+				2C439F73241DCEA9001154C2 /* ieee.h */,
+				2C439F74241DCEA9001154C2 /* bignum.h */,
+				2C439F75241DCEA9001154C2 /* fast-dtoa.h */,
+				2C439F76241DCEA9001154C2 /* bignum-dtoa.cc */,
+			);
+			path = "double-conversion";
+			sourceTree = "<group>";
+		};
 		2C46FDBA226EE90600828870 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,8 +407,10 @@
 				2C43C283240BFF95009B11E9 /* Console.hpp */,
 				2C439F58241A6E0B001154C2 /* Format.hpp */,
 				2C439F57241A6E0B001154C2 /* FormatData.hpp */,
+				2C439F5A241DCE68001154C2 /* FormatFloat.hpp */,
 				2C439F4E2419D6CA001154C2 /* FormatLiteral.hpp */,
 				2C439F502419FC84001154C2 /* Fwd.hpp */,
+				2C439F5B241DCE68001154C2 /* IntFormatter.hpp */,
 				2C439F59241A6E0B001154C2 /* PlaceHolder.hpp */,
 				2CA1A888240BA58F00ED4230 /* Platform.hpp */,
 				2C436087240E141C001657D2 /* String.hpp */,
@@ -384,16 +478,28 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C439F89241DCEA9001154C2 /* fast-dtoa.h in Headers */,
+				2C439F87241DCEA9001154C2 /* ieee.h in Headers */,
 				2C4360D7240E4EEC001657D2 /* Siv3DComponent.hpp in Headers */,
 				2C4360C8240E4EEC001657D2 /* CConsole.hpp in Headers */,
+				2C439F82241DCEA9001154C2 /* cached-powers.h in Headers */,
 				2C4360D5240E4EEC001657D2 /* Siv3DEngine.hpp in Headers */,
 				2C4360C4240E4EEC001657D2 /* catch.hpp in Headers */,
 				2C4360D6240E4EEC001657D2 /* ApplicationOptions.hpp in Headers */,
 				2C439F472419D686001154C2 /* format-inl.h in Headers */,
+				2C439F7E241DCEA9001154C2 /* double-to-string.h in Headers */,
+				2C439F83241DCEA9001154C2 /* double-conversion.h in Headers */,
+				2C439F78241DCEA9001154C2 /* utils.h in Headers */,
 				2C4360D4240E4EEC001657D2 /* UnicodeUtility.hpp in Headers */,
+				2C439F7C241DCEA9001154C2 /* bignum-dtoa.h in Headers */,
 				2C4360CF240E4EEC001657D2 /* CDummy.hpp in Headers */,
+				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
 				2C4360DC240E4EEC001657D2 /* IConsole.hpp in Headers */,
+				2C439F7A241DCEA9001154C2 /* fixed-dtoa.h in Headers */,
+				2C439F80241DCEA9001154C2 /* diy-fp.h in Headers */,
+				2C439F7F241DCEA9001154C2 /* strtod.h in Headers */,
 				2C4360D0240E4EEC001657D2 /* IDummy.hpp in Headers */,
+				2C439F88241DCEA9001154C2 /* bignum.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,20 +608,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4360DB240E4EEC001657D2 /* ConsoleFactory.cpp in Sources */,
+				2C439F61241DCE8B001154C2 /* SivIntFormatter.cpp in Sources */,
 				2C4360C7240E4EEC001657D2 /* CConsole.cpp in Sources */,
+				2C439F81241DCEA9001154C2 /* strtod.cc in Sources */,
 				2C4360D9240E4EEC001657D2 /* ApplicationOptions.cpp in Sources */,
 				2C4360DD240E4EEC001657D2 /* SivConsole.cpp in Sources */,
 				2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */,
+				2C439F7B241DCEA9001154C2 /* string-to-double.cc in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
+				2C439F60241DCE8B001154C2 /* SivFormatFloat.cpp in Sources */,
 				2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
 				2C439F56241A6DEA001154C2 /* SivFormat.cpp in Sources */,
 				2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */,
+				2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */,
+				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
+				2C439F79241DCEA9001154C2 /* bignum.cc in Sources */,
 				2C4360D3240E4EEC001657D2 /* SivUnicode.cpp in Sources */,
 				2C4360CE240E4EEC001657D2 /* DummyFactory.cpp in Sources */,
 				2C4360C5240E4EEC001657D2 /* SivUnicode_Platform.cpp in Sources */,
+				2C439F8A241DCEA9001154C2 /* bignum-dtoa.cc in Sources */,
 				2C439F482419D686001154C2 /* format.cc in Sources */,
+				2C439F85241DCEA9001154C2 /* double-to-string.cc in Sources */,
+				2C439F86241DCEA9001154C2 /* cached-powers.cc in Sources */,
 				2C4360CD240E4EEC001657D2 /* Siv3DTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
