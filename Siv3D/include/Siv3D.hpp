@@ -74,6 +74,18 @@
 // Indexed iterator
 # include <Siv3D/Indexed.hpp>
 
+// メタ関数
+// Meta
+//# include <Siv3D/Meta.hpp>
+
+// 型特性
+// Type traits
+//# include <Siv3D/TypeTraits.hpp>
+
+// ユーティリティー
+// Utilities
+# include <Siv3D/Utility.hpp>
+
 # include <Siv3D/StringView.hpp>
 # include <Siv3D/String.hpp>
 # include <Siv3D/Unicode.hpp>
