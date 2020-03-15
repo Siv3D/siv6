@@ -56,6 +56,7 @@
 		2C439F88241DCEA9001154C2 /* bignum.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F74241DCEA9001154C2 /* bignum.h */; };
 		2C439F89241DCEA9001154C2 /* fast-dtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F75241DCEA9001154C2 /* fast-dtoa.h */; };
 		2C439F8A241DCEA9001154C2 /* bignum-dtoa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F76241DCEA9001154C2 /* bignum-dtoa.cc */; };
+		2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F8C241DF5CD001154C2 /* SivFormatInt.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 /* End PBXBuildFile section */
@@ -129,6 +130,8 @@
 		2C439F74241DCEA9001154C2 /* bignum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bignum.h; sourceTree = "<group>"; };
 		2C439F75241DCEA9001154C2 /* fast-dtoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "fast-dtoa.h"; sourceTree = "<group>"; };
 		2C439F76241DCEA9001154C2 /* bignum-dtoa.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "bignum-dtoa.cc"; sourceTree = "<group>"; };
+		2C439F8C241DF5CD001154C2 /* SivFormatInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivFormatInt.cpp; sourceTree = "<group>"; };
+		2C439F8E241DF5F8001154C2 /* FormatInt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatInt.hpp; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -228,12 +231,13 @@
 		2C4360AE240E4EEC001657D2 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
-				2C439F5C241DCE8B001154C2 /* FormatFloat */,
-				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C4360B8240E4EEC001657D2 /* Common */,
 				2C4360C0240E4EEC001657D2 /* Console */,
 				2C4360AF240E4EEC001657D2 /* Dummy */,
 				2C439F54241A6DEA001154C2 /* Format */,
+				2C439F5C241DCE8B001154C2 /* FormatFloat */,
+				2C439F8B241DF5CD001154C2 /* FormatInt */,
+				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C4360BE240E4EEC001657D2 /* String */,
 				2C439F512419FC9E001154C2 /* StringView */,
 				2C4360B4240E4EEC001657D2 /* Unicode */,
@@ -378,6 +382,14 @@
 			path = "double-conversion";
 			sourceTree = "<group>";
 		};
+		2C439F8B241DF5CD001154C2 /* FormatInt */ = {
+			isa = PBXGroup;
+			children = (
+				2C439F8C241DF5CD001154C2 /* SivFormatInt.cpp */,
+			);
+			path = FormatInt;
+			sourceTree = "<group>";
+		};
 		2C46FDBA226EE90600828870 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +420,7 @@
 				2C439F58241A6E0B001154C2 /* Format.hpp */,
 				2C439F57241A6E0B001154C2 /* FormatData.hpp */,
 				2C439F5A241DCE68001154C2 /* FormatFloat.hpp */,
+				2C439F8E241DF5F8001154C2 /* FormatInt.hpp */,
 				2C439F4E2419D6CA001154C2 /* FormatLiteral.hpp */,
 				2C439F502419FC84001154C2 /* Fwd.hpp */,
 				2C439F5B241DCE68001154C2 /* IntFormatter.hpp */,
@@ -617,6 +630,7 @@
 				2C439F7B241DCEA9001154C2 /* string-to-double.cc in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
+				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
 				2C439F60241DCE8B001154C2 /* SivFormatFloat.cpp in Sources */,
 				2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
