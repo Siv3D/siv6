@@ -39,17 +39,14 @@
 # include <Siv3D/PlaceHolder.hpp>
 
 # include <Siv3D/StringView.hpp>
-
 # include <Siv3D/String.hpp>
-
 # include <Siv3D/Unicode.hpp>
 
 # include <Siv3D/FormatLiteral.hpp>
-
-# include <Siv3D/FormatData.hpp>
-
 # include <Siv3D/IntFormatter.hpp>
-
+# include <Siv3D/FormatInt.hpp>
+# include <Siv3D/FormatFloat.hpp>
+# include <Siv3D/FormatData.hpp>
 # include <Siv3D/Format.hpp>
 
 # include <Siv3D/ApplicationOptions.hpp>

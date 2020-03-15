@@ -59,7 +59,7 @@ namespace s3d
 
 	void Formatter(FormatData& formatData, const long value)
 	{
-		if constexpr (sizeof(long) == 4)
+		if constexpr (sizeof(long) == sizeof(int32))
 		{
 			Formatter(formatData, static_cast<int32>(value));
 		}
@@ -71,7 +71,7 @@ namespace s3d
 
 	void Formatter(FormatData& formatData, const unsigned long value)
 	{
-		if constexpr (sizeof(unsigned long) == 4)
+		if constexpr (sizeof(unsigned long) == sizeof(uint32))
 		{
 			Formatter(formatData, static_cast<uint32>(value));
 		}

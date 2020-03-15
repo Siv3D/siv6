@@ -23,7 +23,7 @@ namespace s3d
 
 			ConsoleBuffer();
 
-			ConsoleBuffer(ConsoleBuffer&& other);
+			ConsoleBuffer(ConsoleBuffer&& other) noexcept;
 
 			~ConsoleBuffer();
 

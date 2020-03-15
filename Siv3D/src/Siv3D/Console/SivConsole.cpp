@@ -24,7 +24,7 @@ namespace s3d
 
 		}
 
-		ConsoleBuffer::ConsoleBuffer(ConsoleBuffer&& other)
+		ConsoleBuffer::ConsoleBuffer(ConsoleBuffer&& other) noexcept
 			: formatData(std::move(other.formatData))
 		{
 

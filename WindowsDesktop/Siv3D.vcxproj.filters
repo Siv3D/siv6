@@ -76,6 +76,9 @@
     <Filter Include="src\ThirdParty\double-conversion">
       <UniqueIdentifier>{29244e33-c97b-4389-bd56-3a82e7e2d72f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Common\FormatInt">
+      <UniqueIdentifier>{ed424eb9-3f0c-4742-ad48-267efa1e2ed4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -216,6 +219,9 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\cached-powers.h">
       <Filter>src\ThirdParty\double-conversion</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatInt.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -295,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\cached-powers.cc">
       <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\FormatInt\SivFormatInt.cpp">
+      <Filter>src\Siv3D\Common\FormatInt</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
