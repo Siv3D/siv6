@@ -67,6 +67,15 @@
     <Filter Include="src\Siv3D\Format">
       <UniqueIdentifier>{f7fdfc9c-ecac-403a-b8b2-7234a2cfecb7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\IntFormatter">
+      <UniqueIdentifier>{b4722747-7e40-41a3-a567-89aa12ca64ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Common\FormatFloat">
+      <UniqueIdentifier>{c86d5137-a036-4a36-80de-4e0b40d73ba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\double-conversion">
+      <UniqueIdentifier>{29244e33-c97b-4389-bd56-3a82e7e2d72f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -165,6 +174,48 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\PlaceHolder.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\IntFormatter.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatFloat.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\diy-fp.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\double-conversion.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\double-to-string.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\fast-dtoa.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\fixed-dtoa.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\ieee.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\string-to-double.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\strtod.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\utils.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\bignum.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\bignum-dtoa.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\cached-powers.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -214,6 +265,36 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Format\SivFormat.cpp">
       <Filter>src\Siv3D\Format</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\IntFormatter\SivIntFormatter.cpp">
+      <Filter>src\Siv3D\IntFormatter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\FormatFloat\SivFormatFloat.cpp">
+      <Filter>src\Siv3D\Common\FormatFloat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\double-to-string.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\fast-dtoa.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\fixed-dtoa.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\string-to-double.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\strtod.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum-dtoa.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\cached-powers.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

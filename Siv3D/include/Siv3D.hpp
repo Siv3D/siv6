@@ -48,6 +48,8 @@
 
 # include <Siv3D/FormatData.hpp>
 
+# include <Siv3D/IntFormatter.hpp>
+
 # include <Siv3D/Format.hpp>
 
 # include <Siv3D/ApplicationOptions.hpp>

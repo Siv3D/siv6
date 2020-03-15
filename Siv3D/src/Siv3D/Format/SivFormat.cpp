@@ -10,6 +10,8 @@
 //-----------------------------------------------
 
 # include <Siv3D/Format.hpp>
+# include <Siv3D/IntFormatter.hpp>
+# include <Siv3D/FormatFloat.hpp>
 
 namespace s3d
 {
@@ -23,9 +25,90 @@ namespace s3d
 		formatData.string.append(value ? U"true"_sv : U"false"_sv);
 	}
 
+	void Formatter(FormatData& formatData, const int8 value)
+	{
+		Formatter(formatData, static_cast<int32>(value));
+	}
 
+	void Formatter(FormatData& formatData, const uint8 value)
+	{
+		Formatter(formatData, static_cast<uint32>(value));
+	}
 
+	void Formatter(FormatData& formatData, const int16 value)
+	{
+		Formatter(formatData, static_cast<int32>(value));
+	}
 
+	void Formatter(FormatData& formatData, const uint16 value)
+	{
+		Formatter(formatData, static_cast<uint32>(value));
+	}
+
+	void Formatter(FormatData& formatData, const int32 value)
+	{
+		const detail::IntFormatter buffer(value);
+		formatData.string.append(buffer.c_str(), buffer.size());
+	}
+
+	void Formatter(FormatData& formatData, const uint32 value)
+	{
+		const detail::IntFormatter buffer(value);
+		formatData.string.append(buffer.c_str(), buffer.size());
+	}
+
+	void Formatter(FormatData& formatData, const long value)
+	{
+		if constexpr (sizeof(long) == 4)
+		{
+			Formatter(formatData, static_cast<int32>(value));
+		}
+		else
+		{
+			Formatter(formatData, static_cast<long long>(value));
+		}
+	}
+
+	void Formatter(FormatData& formatData, const unsigned long value)
+	{
+		if constexpr (sizeof(unsigned long) == 4)
+		{
+			Formatter(formatData, static_cast<uint32>(value));
+		}
+		else
+		{
+			Formatter(formatData, static_cast<unsigned long long>(value));
+		}
+	}
+
+	void Formatter(FormatData& formatData, const long long value)
+	{
+		const detail::IntFormatter buffer(value);
+		formatData.string.append(buffer.c_str(), buffer.size());
+	}
+
+	void Formatter(FormatData& formatData, const unsigned long long value)
+	{
+		const detail::IntFormatter buffer(value);
+		formatData.string.append(buffer.c_str(), buffer.size());
+	}
+
+	void Formatter(FormatData& formatData, const float value)
+	{
+		Formatter(formatData, static_cast<double>(value));
+	}
+
+	void Formatter(FormatData& formatData, const double value)
+	{
+		char32 buf[detail::FormatFloatBufferSize];
+		const size_t len = detail::FormatFloat(buf, value, formatData.decimalPlaces.value, false);
+		formatData.string.append(buf, len);
+	}
+
+	void Formatter(FormatData& formatData, const long double value)
+	{
+		Formatter(formatData, static_cast<double>(value));
+	}
 
 	void Formatter(FormatData& formatData, const char ch)
 	{

@@ -10,12 +10,18 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Platform.hpp"
-# include "Types.hpp"
+# include "Fwd.hpp"
 
 namespace s3d
 {
-	struct PlaceHolder_t;
-	class StringView;
-	class String;
+	namespace detail
+	{
+		inline constexpr size_t FormatFloatBufferSize = 384;
+
+		[[nodiscard]]
+		String FormatFloat(double value, int32 decimalPlace, bool fixed);
+
+		[[nodiscard]]
+		size_t FormatFloat(char32(&dst)[FormatFloatBufferSize], double value, int32 decimalPlace, bool fixed);
+	}
 }

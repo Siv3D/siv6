@@ -17,6 +17,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Console.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Format.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatData.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatFloat.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\IntFormatter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatLiteral.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Fwd.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PlaceHolder.hpp" />
@@ -42,6 +44,18 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\Dummy\IDummy.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Unicode\UnicodeUtility.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Catch2\catch.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\bignum-dtoa.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\bignum.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\cached-powers.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\diy-fp.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\double-conversion.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\double-to-string.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\fast-dtoa.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\fixed-dtoa.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\ieee.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\string-to-double.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\strtod.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\utils.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\fmt\format-inl.h" />
   </ItemGroup>
   <ItemGroup>
@@ -54,12 +68,22 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Console\SivConsole.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Dummy\CDummy.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Dummy\DummyFactory.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\FormatFloat\SivFormatFloat.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Format\SivFormat.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\IntFormatter\SivIntFormatter.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\StringView\SivStringView.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\String\SivString.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\SivUnicode.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\UnicodeUtility.cpp" />
     <ClCompile Include="..\Siv3D\src\Test\Siv3DTest.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum-dtoa.cc" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum.cc" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\cached-powers.cc" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\double-to-string.cc" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\fast-dtoa.cc" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\fixed-dtoa.cc" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\string-to-double.cc" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\strtod.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\fmt\format.cc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
