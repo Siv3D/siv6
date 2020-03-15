@@ -27,16 +27,16 @@ namespace s3d
 		{
 			size_t index;
 			It it;
-			bool operator != (const Iterator& other) const { return it != other.it; }
-			void operator ++() { ++index; ++it; }
-			auto operator *() const { return std::tie(index, *it); }
+			constexpr bool operator != (const Iterator& other) const { return it != other.it; }
+			constexpr void operator ++() { ++index; ++it; }
+			constexpr auto operator *() const { return std::tie(index, *it); }
 		};
 
 		struct IterableWrapper
 		{
 			Type iterable;
-			auto begin() { return Iterator{ 0, std::begin(iterable) }; }
-			auto end() { return Iterator{ 0, std::end(iterable) }; }
+			constexpr auto begin() { return Iterator{ 0, std::begin(iterable) }; }
+			constexpr auto end() { return Iterator{ 0, std::end(iterable) }; }
 		};
 
 		return IterableWrapper{ std::forward<Type>(iterable) };
@@ -57,16 +57,16 @@ namespace s3d
 		{
 			size_t index;
 			It it;
-			bool operator != (const Iterator& other) const { return it != other.it; }
-			void operator ++() { --index; ++it; }
-			auto operator *() const { return std::tie(index, *it); }
+			constexpr bool operator != (const Iterator& other) const { return it != other.it; }
+			constexpr void operator ++() { --index; ++it; }
+			constexpr auto operator *() const { return std::tie(index, *it); }
 		};
 
 		struct IterableWrapper
 		{
 			Type iterable;
-			auto begin() { return Iterator{ std::size(iterable) - 1, std::rbegin(iterable) }; }
-			auto end() { return Iterator{ 0, std::rend(iterable) }; }
+			constexpr auto begin() { return Iterator{ std::size(iterable) - 1, std::rbegin(iterable) }; }
+			constexpr auto end() { return Iterator{ 0, std::rend(iterable) }; }
 		};
 
 		return IterableWrapper{ std::forward<Type>(iterable) };
