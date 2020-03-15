@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <cstddef> // for size_t
 # include "Platform.hpp"
 # include "Types.hpp"
 
