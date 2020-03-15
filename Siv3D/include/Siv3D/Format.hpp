@@ -14,6 +14,8 @@
 # if  __has_include(<compare>)
 #	include <compare>
 # endif
+# include <array>
+# include <vector>
 # include "PlaceHolder.hpp"
 # include "FormatData.hpp"
 
@@ -309,35 +311,31 @@ namespace s3d
 		Formatter(formatData, std::begin(values), std::end(values));
 	}
 
-	//template <class Type, size_t N>
-	//inline void Formatter(FormatData& formatData, const std::array<Type, N>& v)
-	//{
-	//	Formatter(formatData, v.begin(), v.end());
-	//}
+	template <class Type, size_t N>
+	inline void Formatter(FormatData& formatData, const std::array<Type, N>& v)
+	{
+		Formatter(formatData, v.begin(), v.end());
+	}
 
-	//template <class Type, class Allocator = std::allocator<Type>>
-	//inline void Formatter(FormatData& formatData, const std::vector<Type, Allocator>& v)
-	//{
-	//	Formatter(formatData, v.begin(), v.end());
-	//}
+	template <class Type, class Allocator = std::allocator<Type>>
+	inline void Formatter(FormatData& formatData, const std::vector<Type, Allocator>& v)
+	{
+		Formatter(formatData, v.begin(), v.end());
+	}
 
-	//template <class Type>
-	//inline void Formatter(FormatData& formatData, const std::initializer_list<Type>& ilist)
-	//{
-	//	Formatter(formatData, ilist.begin(), ilist.end());
-	//}
+	template <class Type>
+	inline void Formatter(FormatData& formatData, const std::initializer_list<Type>& ilist)
+	{
+		Formatter(formatData, ilist.begin(), ilist.end());
+	}
 
-	//template <class Fitrst, class Second>
-	//inline void Formatter(FormatData& formatData, const std::pair<Fitrst, Second>& pair)
-	//{
-	//	formatData.string.push_back(U'{');
-
-	//	Formatter(formatData, pair.first);
-
-	//	formatData.string.append(U", "_sv);
-
-	//	Formatter(formatData, pair.second);
-
-	//	formatData.string.push_back(U'}');
-	//}
+	template <class Fitrst, class Second>
+	inline void Formatter(FormatData& formatData, const std::pair<Fitrst, Second>& pair)
+	{
+		formatData.string.push_back(U'{');
+		Formatter(formatData, pair.first);
+		formatData.string.append(U", "_sv);
+		Formatter(formatData, pair.second);
+		formatData.string.push_back(U'}');
+	}
 }

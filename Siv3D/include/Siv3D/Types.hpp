@@ -10,6 +10,9 @@
 //-----------------------------------------------
 
 # pragma once
+# if  __has_include(<concepts>)
+#	include <concepts>
+# endif
 # include <cstdint>
 
 namespace s3d

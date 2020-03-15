@@ -11,6 +11,7 @@
 
 # include <Siv3D/Format.hpp>
 # include <Siv3D/IntFormatter.hpp>
+# include <Siv3D/FormatInt.hpp>
 # include <Siv3D/FormatFloat.hpp>
 
 namespace s3d
@@ -140,8 +141,15 @@ namespace s3d
 		formatData.string.append(U"null"_sv);
 	}
 
+	void Formatter(FormatData& formatData, const void* value)
+	{
+		const String hex = ToHex(reinterpret_cast<std::uintptr_t>(value));
+		constexpr size_t HexRepresentationLength = (sizeof(void*) * 2);
 
-
+		formatData.string.reserve(formatData.string.size() + HexRepresentationLength);
+		formatData.string.append((HexRepresentationLength - hex.size()), U'0');
+		formatData.string.append(hex);
+	}
 
 	void Formatter(FormatData& formatData, const char32_t* s)
 	{
@@ -162,4 +170,60 @@ namespace s3d
 	{
 		formatData.string.append(s);
 	}
+
+# if __cpp_lib_three_way_comparison
+
+	void Formatter(FormatData& formatData, const std::strong_ordering value)
+	{
+		if (std::is_lt(value))
+		{
+			formatData.string.append(U"LT"_sv);
+		}
+		else if (std::is_gt(value))
+		{
+			formatData.string.append(U"GT"_sv);
+		}
+		else
+		{
+			formatData.string.append(U"EQ"_sv);
+		}
+	}
+
+	void Formatter(FormatData& formatData, const std::weak_ordering value)
+	{
+		if (std::is_lt(value))
+		{
+			formatData.string.append(U"LT"_sv);
+		}
+		else if (std::is_gt(value))
+		{
+			formatData.string.append(U"GT"_sv);
+		}
+		else
+		{
+			formatData.string.append(U"EQ"_sv);
+		}
+	}
+
+	void Formatter(FormatData& formatData, const std::partial_ordering value)
+	{
+		if (std::is_lt(value))
+		{
+			formatData.string.append(U"LT"_sv);
+		}
+		else if (std::is_gt(value))
+		{
+			formatData.string.append(U"GT"_sv);
+		}
+		else if (std::is_eq(value))
+		{
+			formatData.string.append(U"EQ"_sv);
+		}
+		else
+		{
+			formatData.string.append(U"UN"_sv);
+		}
+	}
+
+# endif
 }

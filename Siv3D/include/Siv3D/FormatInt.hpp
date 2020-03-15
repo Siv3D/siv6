@@ -17,66 +17,100 @@
 namespace s3d
 {
 	[[nodiscard]]
-	String ToString(const int8 value);
+	String ToString(int8 value);
 
 	[[nodiscard]]
-	String ToString(const uint8 value);
+	String ToString(uint8 value);
 
 	[[nodiscard]]
-	String ToString(const int16 value);
+	String ToString(int16 value);
 
 	[[nodiscard]]
-	String ToString(const uint16 value);
+	String ToString(uint16 value);
 
 	[[nodiscard]]
-	String ToString(const int32 value);
+	String ToString(int32 value);
 
 	[[nodiscard]]
-	String ToString(const uint32 value);
+	String ToString(uint32 value);
 
 	[[nodiscard]]
-	String ToString(const long value);
+	String ToString(long value);
 
 	[[nodiscard]]
-	String ToString(const unsigned long value);
+	String ToString(unsigned long value);
 
 	[[nodiscard]]
-	String ToString(const long long value);
+	String ToString(long long value);
 
 	[[nodiscard]]
-	String ToString(const unsigned long long value);
+	String ToString(unsigned long long value);
 
 
 	[[nodiscard]]
-	String ToString(const char value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(char value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const int8 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(int8 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const uint8 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(uint8 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const int16 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(int16 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const uint16 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(uint16 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const int32 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(int32 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const uint32 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(uint32 value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const long value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(long value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const unsigned long value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(unsigned long value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const long long value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(long long value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 	[[nodiscard]]
-	String ToString(const unsigned long long value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+	String ToString(unsigned long long value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
+
+
+# ifdef __cpp_lib_concepts
+	template <std::integral Integer>
+# else
+	template <class Integer>
+# endif
+	[[nodiscard]]
+	inline String ToBinary(Integer value)
+	{
+		return ToString(value, Arg::radix = 2);
+	}
+
+# ifdef __cpp_lib_concepts
+	template <std::integral Integer>
+# else
+	template <class Integer>
+# endif
+	[[nodiscard]]
+	inline String ToOctal(Integer value)
+	{
+		return ToString(value, Arg::radix = 8);
+	}
+
+# ifdef __cpp_lib_concepts
+	template <std::integral Integer>
+# else
+	template <class Integer>
+# endif
+	[[nodiscard]]
+	inline String ToHex(Integer value, LetterCase letterCase = LetterCase::Upper)
+	{
+		return ToString(value, Arg::radix = 16, letterCase);
+	}
 }

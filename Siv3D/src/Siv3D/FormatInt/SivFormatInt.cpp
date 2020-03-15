@@ -17,7 +17,11 @@ namespace s3d
 {
 	namespace detail
 	{
+	# ifdef __cpp_lib_concepts
+		template <std::unsigned_integral UnsignedInteger>
+	# else
 		template <class UnsignedInteger>
+	# endif
 		[[nodiscard]]
 		inline String ItoW(const UnsignedInteger value, const unsigned radix, const bool isNegative, const LetterCase letterCase)
 		{
@@ -129,17 +133,17 @@ namespace s3d
 
 	String ToString(const char value, Arg::radix_<uint32> radix, const LetterCase letterCase)
 	{
-		return detail::ItoW<uint8>(static_cast<uint8>(value), radix.value(), (radix.value() == 10 && value < 0), letterCase);
+		return detail::ItoW(static_cast<uint8>(value), radix.value(), (radix.value() == 10 && value < 0), letterCase);
 	}
 
 	String ToString(const int8 value, Arg::radix_<uint32> radix, const LetterCase letterCase)
 	{
-		return detail::ItoW<uint8>(static_cast<uint8>(value), radix.value(), (radix.value() == 10 && value < 0), letterCase);
+		return detail::ItoW(static_cast<uint8>(value), radix.value(), (radix.value() == 10 && value < 0), letterCase);
 	}
 
 	String ToString(const uint8 value, Arg::radix_<uint32> radix, const LetterCase letterCase)
 	{
-		return detail::ItoW<uint8>(value, radix.value(), false, letterCase);
+		return detail::ItoW(value, radix.value(), false, letterCase);
 	}
 
 	String ToString(const int16 value, Arg::radix_<uint32> radix, const LetterCase letterCase)
@@ -182,4 +186,3 @@ namespace s3d
 		return detail::ItoW(value, radix.value(), false, letterCase);
 	}
 }
-
