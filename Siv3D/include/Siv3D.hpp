@@ -70,6 +70,10 @@
 // Predefined named parameters
 # include <Siv3D/PredefinedNamedParameter.hpp>
 
+// 範囲をインデックス値とセットで列挙するユーティリティー
+// Indexed iterator
+# include <Siv3D/Indexed.hpp>
+
 # include <Siv3D/StringView.hpp>
 # include <Siv3D/String.hpp>
 # include <Siv3D/Unicode.hpp>
