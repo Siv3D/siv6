@@ -32,8 +32,22 @@
 #	define SIV3D_INCLUDED
 # endif
 
+//////////////////////////////////////////////////
+//
+// Utilities
+//
+//////////////////////////////////////////////////
+
+// プラットフォーム
+// Platform
 # include <Siv3D/Platform.hpp>
 
+// ライブラリのバージョン
+// Library version
+# include <Siv3D/Version.hpp>
+
+// 基本型
+// Types
 # include <Siv3D/Types.hpp>
 
 # include <Siv3D/PlaceHolder.hpp>
