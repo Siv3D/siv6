@@ -183,7 +183,7 @@ namespace s3d
 
 		String& insert(size_t offset, const value_type* s);
 
-		template <class StringViewIsh, class = String::IsStringViewIsh<StringViewIsh>>
+		template <class StringViewIsh, class = IsStringViewIsh<StringViewIsh>>
 		String& insert(size_t offset, const StringViewIsh& s);
 
 		String& insert(size_t offset, size_t count, value_type ch);
@@ -493,7 +493,7 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend String operator +(const String::value_type lhs, StringView rhs)
+		friend String operator +(const value_type lhs, StringView rhs)
 		{
 			String result;
 			result.reserve(1 + rhs.size());
@@ -503,7 +503,7 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend String operator +(const String::value_type lhs, const String& rhs)
+		friend String operator +(const value_type lhs, const String& rhs)
 		{
 			String result;
 			result.reserve(1 + rhs.size());
@@ -513,16 +513,16 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend String operator +(const String::value_type lhs, String&& rhs)
+		friend String operator +(const value_type lhs, String&& rhs)
 		{
 			rhs.push_front(lhs);
 			return std::move(rhs);
 		}
 
 		[[nodiscard]]
-		friend String operator +(const String::value_type* lhs, StringView rhs)
+		friend String operator +(const value_type* lhs, StringView rhs)
 		{
-			const size_t len = std::char_traits<String::value_type>::length(lhs);
+			const size_t len = std::char_traits<value_type>::length(lhs);
 			String result;
 			result.reserve(len + rhs.size());
 			result.append(lhs, len);
@@ -531,9 +531,9 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend String operator +(const String::value_type* lhs, const String& rhs)
+		friend String operator +(const value_type* lhs, const String& rhs)
 		{
-			const size_t len = std::char_traits<String::value_type>::length(lhs);
+			const size_t len = std::char_traits<value_type>::length(lhs);
 			String result;
 			result.reserve(len + rhs.size());
 			result.append(lhs, len);
@@ -542,13 +542,13 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend String operator +(const String::value_type* lhs, String&& rhs)
+		friend String operator +(const value_type* lhs, String&& rhs)
 		{
 			return std::move(rhs.insert(0, lhs));
 		}
 
 		[[nodiscard]]
-		friend String operator +(StringView lhs, const String::value_type rhs)
+		friend String operator +(StringView lhs, const value_type rhs)
 		{
 			String result;
 			result.reserve(lhs.size() + 1);
@@ -558,9 +558,9 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend String operator +(StringView lhs, const String::value_type* rhs)
+		friend String operator +(StringView lhs, const value_type* rhs)
 		{
-			const size_t len = std::char_traits<String::value_type>::length(rhs);
+			const size_t len = std::char_traits<value_type>::length(rhs);
 			String result;
 			result.reserve(lhs.size() + len);
 			result.append(lhs);
@@ -595,7 +595,7 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend String operator +(const String& lhs, const String::value_type rhs)
+		friend String operator +(const String& lhs, const value_type rhs)
 		{
 			String result;
 			result.reserve(lhs.size() + 1);
@@ -605,9 +605,9 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend String operator +(const String& lhs, const String::value_type* rhs)
+		friend String operator +(const String& lhs, const value_type* rhs)
 		{
-			const size_t len = std::char_traits<String::value_type>::length(rhs);
+			const size_t len = std::char_traits<value_type>::length(rhs);
 			String result;
 			result.reserve(lhs.size() + len);
 			result.append(lhs);
@@ -642,13 +642,13 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend String operator +(String&& lhs, const String::value_type rhs)
+		friend String operator +(String&& lhs, const value_type rhs)
 		{
 			return std::move(lhs << rhs);
 		}
 
 		[[nodiscard]]
-		friend String operator +(String&& lhs, const String::value_type* rhs)
+		friend String operator +(String&& lhs, const value_type* rhs)
 		{
 			return std::move(lhs.append(rhs));
 		}
