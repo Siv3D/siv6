@@ -50,9 +50,24 @@
 // Types
 # include <Siv3D/Types.hpp>
 
+// 前方宣言
+// Forward declarations
+# include <Siv3D/Fwd.hpp>
+
+// プレースホルダー
+// Place holder
 # include <Siv3D/PlaceHolder.hpp>
 
+// コピー禁止 Mixin
+// Non-copyable mixin
+# include <Siv3D/Uncopyable.hpp>
+
+// 名前付き引数
+// Named parameter
 # include <Siv3D/NamedParameter.hpp>
+
+// 定義済み名前付き引数
+// Predefined named parameters
 # include <Siv3D/PredefinedNamedParameter.hpp>
 
 # include <Siv3D/StringView.hpp>
