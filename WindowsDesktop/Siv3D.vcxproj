@@ -50,6 +50,8 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\ostream.h" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Console\CConsole.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Common\ApplicationOptions.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Common\Siv3DComponent.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.hpp" />
@@ -57,7 +59,9 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\Dummy\CDummy.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Dummy\IDummy.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Logger\ILogger.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\System\ISystem.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Unicode\UnicodeUtility.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\Window\IWindow.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Catch2\catch.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\bignum-dtoa.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\bignum.h" />
@@ -77,8 +81,10 @@
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Console\CConsole.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Time\SivTime.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Unicode\SivUnicode_Platform.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\ApplicationOptions.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Console\ConsoleFactory.cpp" />
@@ -93,8 +99,10 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Logger\SivLogger.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\StringView\SivStringView.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\String\SivString.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\System\SystemFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\SivUnicode.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\UnicodeUtility.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\Window\WindowFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Test\Siv3DTest.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum-dtoa.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum.cc" />

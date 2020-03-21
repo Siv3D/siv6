@@ -88,6 +88,18 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Time">
       <UniqueIdentifier>{a9bda051-0fc4-431b-9950-3f63a003e6ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\System">
+      <UniqueIdentifier>{aab8a81a-851d-4d0f-815f-b5011d90a80e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Window">
+      <UniqueIdentifier>{86db4054-daa9-41ac-a772-f631b9f59c0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\System">
+      <UniqueIdentifier>{15b57f30-ca11-4378-bd61-3492c69bfb61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Window">
+      <UniqueIdentifier>{a376889b-11d2-47be-acc0-75c328bdcf9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -273,6 +285,18 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\LogType.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Window\IWindow.hpp">
+      <Filter>src\Siv3D\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\System\ISystem.hpp">
+      <Filter>src\Siv3D\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -367,6 +391,18 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Time\SivTime.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Window\WindowFactory.cpp">
+      <Filter>src\Siv3D\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\System\SystemFactory.cpp">
+      <Filter>src\Siv3D\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
