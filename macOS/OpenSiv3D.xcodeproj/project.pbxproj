@@ -71,6 +71,7 @@
 		2C43B2E824264E3100D5CBBB /* CSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2E324264E3100D5CBBB /* CSystem.cpp */; };
 		2C43B2E924264E3100D5CBBB /* CWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2E524264E3100D5CBBB /* CWindow.cpp */; };
 		2C43B2EA24264E3100D5CBBB /* CWindow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43B2E624264E3100D5CBBB /* CWindow.hpp */; };
+		2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2EC2426630000D5CBBB /* SivError.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 /* End PBXBuildFile section */
@@ -172,6 +173,8 @@
 		2C43B2E324264E3100D5CBBB /* CSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSystem.cpp; sourceTree = "<group>"; };
 		2C43B2E524264E3100D5CBBB /* CWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWindow.cpp; sourceTree = "<group>"; };
 		2C43B2E624264E3100D5CBBB /* CWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CWindow.hpp; sourceTree = "<group>"; };
+		2C43B2EC2426630000D5CBBB /* SivError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivError.cpp; sourceTree = "<group>"; };
+		2C43B2EE2426631100D5CBBB /* Error.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Error.hpp; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -278,6 +281,7 @@
 				2C4360B8240E4EEC001657D2 /* Common */,
 				2C4360C0240E4EEC001657D2 /* Console */,
 				2C4360AF240E4EEC001657D2 /* Dummy */,
+				2C43B2EB2426630000D5CBBB /* Error */,
 				2C439F54241A6DEA001154C2 /* Format */,
 				2C439F5C241DCE8B001154C2 /* FormatFloat */,
 				2C439F8B241DF5CD001154C2 /* FormatInt */,
@@ -500,6 +504,14 @@
 			path = Window;
 			sourceTree = "<group>";
 		};
+		2C43B2EB2426630000D5CBBB /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				2C43B2EC2426630000D5CBBB /* SivError.cpp */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		2C46FDBA226EE90600828870 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,6 +540,7 @@
 				2C436088240E141C001657D2 /* Common.hpp */,
 				2C43B2C124260D9100D5CBBB /* Concepts.hpp */,
 				2C43C283240BFF95009B11E9 /* Console.hpp */,
+				2C43B2EE2426631100D5CBBB /* Error.hpp */,
 				2C439F58241A6E0B001154C2 /* Format.hpp */,
 				2C439F57241A6E0B001154C2 /* FormatData.hpp */,
 				2C439F5A241DCE68001154C2 /* FormatFloat.hpp */,
@@ -777,6 +790,7 @@
 				2C43B2CB2426223400D5CBBB /* LoggerFactory.cpp in Sources */,
 				2C4360C5240E4EEC001657D2 /* SivUnicode_Platform.cpp in Sources */,
 				2C439F8A241DCEA9001154C2 /* bignum-dtoa.cc in Sources */,
+				2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */,
 				2C439F482419D686001154C2 /* format.cc in Sources */,
 				2C439F85241DCEA9001154C2 /* double-to-string.cc in Sources */,
 				2C439F86241DCEA9001154C2 /* cached-powers.cc in Sources */,

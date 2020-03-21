@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -9,6 +9,8 @@
 //
 //-----------------------------------------------
 
+# include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Siv3D/Window/IWindow.hpp>
 # include "CSystem.hpp"
 
 namespace s3d
@@ -25,6 +27,6 @@ namespace s3d
 
 	void CSystem::init()
 	{
-
+		Siv3DEngine::Get<ISiv3DWindow>()->init();
 	}
 }
