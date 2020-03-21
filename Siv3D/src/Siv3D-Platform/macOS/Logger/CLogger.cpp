@@ -11,10 +11,13 @@
 
 # include <Siv3D/String.hpp>
 # include <Siv3D/FormatLiteral.hpp>
+# include <Siv3D/Time.hpp>
 # include "CLogger.hpp"
 
 namespace s3d
 {
+	const int64 g_applicationTime = Time::GetMillisec();
+
 	CLogger::CLogger()
 	{
 
@@ -27,11 +30,11 @@ namespace s3d
 
 	void CLogger::write(const LogType type, const StringView s)
 	{
-		//const int64 timeStamp = Time::GetMillisec() - g_applicationTime;
+		const int64 timeStamp = Time::GetMillisec() - g_applicationTime;
 
 		type;
 
-		const std::string output = U"{}\n"_fmt(s).narrow();
+		const std::string output = U"{}: {}\n"_fmt(timeStamp, s).narrow();
 
 		std::lock_guard lock(m_mutex);
 		{
