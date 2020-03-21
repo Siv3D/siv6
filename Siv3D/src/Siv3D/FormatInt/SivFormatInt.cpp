@@ -18,7 +18,7 @@ namespace s3d
 	namespace detail
 	{
 	# ifdef __cpp_lib_concepts
-		template <std::unsigned_integral UnsignedInteger>
+		template <Concept::UnsignedIntegral UnsignedInteger>
 	# else
 		template <class UnsignedInteger>
 	# endif

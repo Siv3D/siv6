@@ -13,6 +13,7 @@
 # include <cstddef> // for size_t
 # include "Platform.hpp"
 # include "Types.hpp"
+# include "Concepts.hpp"
 
 namespace s3d
 {

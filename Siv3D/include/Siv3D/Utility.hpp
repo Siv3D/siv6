@@ -13,6 +13,7 @@
 # include <algorithm>
 # include <type_traits>
 # include "PlaceHolder.hpp"
+# include "Concepts.hpp"
 
 namespace s3d
 {
@@ -41,14 +42,22 @@ namespace s3d
 
 		struct Max2_impl
 		{
+		# if __cpp_lib_concepts
+			template <Concept::Scalar Type>
+		# else
 			template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
+		# endif
 			[[nodiscard]]
 			constexpr Type operator()(Type a, Type b) const noexcept
 			{
 				return (a < b) ? b : a;
 			}
 
-			template <class Type, std::enable_if_t<!std::is_scalar_v<Type>>* = nullptr>
+		# if __cpp_lib_concepts
+			template <class Type>
+		# else
+			template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
+		# endif
 			[[nodiscard]]
 			constexpr const Type& operator()(const Type& a, const Type& b) const noexcept(noexcept(a < b))
 			{
@@ -93,14 +102,22 @@ namespace s3d
 	/// 2 つの値のうち大きい方の値。等しい場合は a
 	/// The greater of a and b. If they are equivalent, returns a
 	/// </returns>
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
 	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr Type Max(Type a, Type b) noexcept
 	{
 		return (a < b) ? b : a;
 	}
 
-	template <class Type, std::enable_if_t<!std::is_scalar_v<Type>>* = nullptr>
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr const Type& Max(const Type& a, const Type& b) noexcept(noexcept(a < b))
 	{
@@ -151,14 +168,22 @@ namespace s3d
 
 		struct Min2_impl
 		{
+		# if __cpp_lib_concepts
+			template <Concept::Scalar Type>
+		# else
 			template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
+		# endif
 			[[nodiscard]]
 			constexpr Type operator()(Type a, Type b) const noexcept
 			{
 				return (b < a) ? b : a;
 			}
 
-			template <class Type, std::enable_if_t<!std::is_scalar_v<Type>>* = nullptr>
+		# if __cpp_lib_concepts
+			template <class Type>
+		# else
+			template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
+		# endif
 			[[nodiscard]]
 			constexpr const Type& operator()(const Type& a, const Type& b) const noexcept(noexcept(b < a))
 			{
@@ -203,7 +228,11 @@ namespace s3d
 	/// 2 つの値のうち小さい方の値。等しい場合は a
 	/// The greater of a and b. If they are equivalent, returns a
 	/// </returns>
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
 	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr Type Min(Type a, Type b) noexcept
 	{
@@ -226,7 +255,11 @@ namespace s3d
 	/// 2 つの値のうち小さい方の値。等しい場合は a
 	/// The greater of a and b. If they are equivalent, returns a
 	/// </returns>
-	template <class Type, std::enable_if_t<!std::is_scalar_v<Type>>* = nullptr>
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr const Type& Min(const Type& a, const Type& b) noexcept(noexcept(b < a))
 	{
@@ -319,7 +352,11 @@ namespace s3d
 	/// v をクランプした値
 	/// The clamped value for the v
 	/// </returns>
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
 	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr Type Clamp(Type v, Type min, Type max) noexcept
 	{
@@ -336,7 +373,11 @@ namespace s3d
 		return v;
 	}
 
-	template <class Type, std::enable_if_t<!std::is_scalar_v<Type>>* = nullptr>
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr const Type& Clamp(const Type& v, const Type& min, const Type& max) noexcept(noexcept(max < v) && noexcept(v < min))
 	{
@@ -411,7 +452,11 @@ namespace s3d
 	/// 閉区間 [min, max] にある場合 true, それ以外の場合は false
 	/// Returns true if the value is in the closed interval [min, max], false otherwise
 	/// </returns>
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
 	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr bool InRange(Type v, Type min, Type max) noexcept
 	{
@@ -438,7 +483,11 @@ namespace s3d
 	/// 閉区間 [min, max] にある場合 true, それ以外の場合は false
 	/// Returns true if the value is in the closed interval [min, max], false otherwise
 	/// </returns>
-	template <class Type, std::enable_if_t<!std::is_scalar_v<Type>>* = nullptr>
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr bool InRange(const Type& v, const Type& min, const Type& max) noexcept(noexcept(v < min))
 	{
@@ -503,7 +552,11 @@ namespace s3d
 	/// 開区間 (min, max) にある場合 true, それ以外の場合は false
 	/// Returns true if the value is in the open interval (min, max), false otherwise
 	/// </returns>
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
 	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr bool InOpenRange(Type v, Type min, Type max) noexcept
 	{
@@ -530,7 +583,11 @@ namespace s3d
 	/// 開区間 (min, max) にある場合 true, それ以外の場合は false
 	/// Returns true if the value is in the open interval (min, max), false otherwise
 	/// </returns>
-	template <class Type, std::enable_if_t<!std::is_scalar_v<Type>>* = nullptr>
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr bool InOpenRange(const Type& v, const Type& min, const Type& max) noexcept(noexcept(v < min))
 	{

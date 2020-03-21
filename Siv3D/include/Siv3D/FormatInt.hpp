@@ -82,7 +82,7 @@ namespace s3d
 
 
 # ifdef __cpp_lib_concepts
-	template <std::integral Integer>
+	template <Concept::Integral Integer>
 # else
 	template <class Integer>
 # endif
@@ -93,7 +93,7 @@ namespace s3d
 	}
 
 # ifdef __cpp_lib_concepts
-	template <std::integral Integer>
+	template <Concept::Integral Integer>
 # else
 	template <class Integer>
 # endif
@@ -104,7 +104,7 @@ namespace s3d
 	}
 
 # ifdef __cpp_lib_concepts
-	template <std::integral Integer>
+	template <Concept::Integral Integer>
 # else
 	template <class Integer>
 # endif

@@ -14,6 +14,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ApplicationOptions.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Common.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Concepts.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Console.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Format.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatData.hpp" />
