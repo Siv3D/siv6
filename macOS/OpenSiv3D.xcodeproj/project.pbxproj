@@ -135,6 +135,11 @@
 		2C439F8F241DFACF001154C2 /* NamedParameter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NamedParameter.hpp; sourceTree = "<group>"; };
 		2C439F90241DFACF001154C2 /* LetterCase.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LetterCase.hpp; sourceTree = "<group>"; };
 		2C439F91241DFACF001154C2 /* PredefinedNamedParameter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PredefinedNamedParameter.hpp; sourceTree = "<group>"; };
+		2C43B2BF24260D9100D5CBBB /* Indexed.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Indexed.hpp; sourceTree = "<group>"; };
+		2C43B2C024260D9100D5CBBB /* Version.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Version.hpp; sourceTree = "<group>"; };
+		2C43B2C124260D9100D5CBBB /* Concepts.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Concepts.hpp; sourceTree = "<group>"; };
+		2C43B2C224260D9100D5CBBB /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
+		2C43B2C324260D9100D5CBBB /* Uncopyable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Uncopyable.hpp; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -417,6 +422,11 @@
 		2CA1A887240BA58F00ED4230 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C43B2C124260D9100D5CBBB /* Concepts.hpp */,
+				2C43B2BF24260D9100D5CBBB /* Indexed.hpp */,
+				2C43B2C324260D9100D5CBBB /* Uncopyable.hpp */,
+				2C43B2C224260D9100D5CBBB /* Utility.hpp */,
+				2C43B2C024260D9100D5CBBB /* Version.hpp */,
 				2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */,
 				2C436088240E141C001657D2 /* Common.hpp */,
 				2C43C283240BFF95009B11E9 /* Console.hpp */,
