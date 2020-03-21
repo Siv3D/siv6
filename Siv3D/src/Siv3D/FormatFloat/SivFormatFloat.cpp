@@ -17,17 +17,17 @@ namespace s3d
 {
 	namespace detail
 	{
+		using namespace double_conversion;
+
+		constexpr int FormatFlags = DoubleToStringConverter::UNIQUE_ZERO |
+			DoubleToStringConverter::EMIT_POSITIVE_EXPONENT_SIGN;
+
 		String FormatFloat(const double value, const int32 decimalPlace, const bool fixed)
 		{
-			using namespace double_conversion;
+			DoubleToStringConverter conv(FormatFlags, "inf", "nan", 'e', -324, 309, 0, 0);
 
-			const int flags = DoubleToStringConverter::UNIQUE_ZERO |
-				DoubleToStringConverter::EMIT_POSITIVE_EXPONENT_SIGN;
-			DoubleToStringConverter conv(flags, "inf", "nan", 'e', -324, 309, 0, 0);
-
-			const int bufferSize = FormatFloatBufferSize;
-			char buffer[bufferSize];
-			StringBuilder builder(buffer, bufferSize);
+			char buffer[FormatFloatBufferSize];
+			StringBuilder builder(buffer, FormatFloatBufferSize);
 
 			if (conv.ToFixed(value, decimalPlace, &builder))
 			{
@@ -66,15 +66,10 @@ namespace s3d
 
 		size_t FormatFloat(char32(&dst)[FormatFloatBufferSize], const double value, int32 decimalPlace, const bool fixed)
 		{
-			using namespace double_conversion;
+			DoubleToStringConverter conv(FormatFlags, "inf", "nan", 'e', -324, 309, 0, 0);
 
-			const int flags = DoubleToStringConverter::UNIQUE_ZERO |
-				DoubleToStringConverter::EMIT_POSITIVE_EXPONENT_SIGN;
-			DoubleToStringConverter conv(flags, "inf", "nan", 'e', -324, 309, 0, 0);
-
-			const int bufferSize = FormatFloatBufferSize;
-			char buffer[bufferSize];
-			StringBuilder builder(buffer, bufferSize);
+			char buffer[FormatFloatBufferSize];
+			StringBuilder builder(buffer, FormatFloatBufferSize);
 
 			if (conv.ToFixed(value, decimalPlace, &builder))
 			{
