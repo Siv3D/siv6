@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/Logger.hpp>
+# include <Siv3D/LogType.hpp>
 # include <Siv3D/Logger/ILogger.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 

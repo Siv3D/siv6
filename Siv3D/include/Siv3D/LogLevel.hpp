@@ -13,17 +13,24 @@
 
 namespace s3d
 {
-	enum class LogType;
-	class StringView;
-
-	class ISiv3DLogger
+	/// <summary>
+	/// ログの詳細度
+	/// </summary>
+	enum class LogLevel
 	{
-	public:
+		/// <summary>
+		/// リリース
+		/// </summary>
+		Release,
 
-		static ISiv3DLogger* Create();
+		/// <summary>
+		/// デバッグ
+		/// </summary>
+		Debug,
 
-		virtual ~ISiv3DLogger() = default;
-
-		virtual void write(LogType type, StringView s) = 0;
+		/// <summary>
+		/// 詳細
+		/// </summary>
+		Verbose,
 	};
 }

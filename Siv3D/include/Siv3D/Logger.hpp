@@ -16,46 +16,6 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// ログの詳細度
-	/// </summary>
-	enum class LogLevel
-	{
-		/// <summary>
-		/// リリース
-		/// </summary>
-		Release,
-
-		/// <summary>
-		/// デバッグ
-		/// </summary>
-		Debug,
-
-		/// <summary>
-		/// 詳細
-		/// </summary>
-		Verbose,
-	};
-
-	enum class LogType
-	{
-		Error,		// Release
-		
-		Fail,		// Release
-		
-		Warning,	// Release
-
-		App,		// Release
-		
-		Info,		// Release
-		
-		Debug,		// Debug
-		
-		Trace,		// Debug
-
-		Verbose,	// Verbose
-	};
-
 	namespace detail
 	{
 		struct LoggerBuffer
