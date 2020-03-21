@@ -13,6 +13,7 @@
 # include "Fwd.hpp"
 # include "PredefinedNamedParameter.hpp"
 # include "LetterCase.hpp"
+# include "String.hpp"
 
 namespace s3d
 {
