@@ -63,6 +63,14 @@
 		2C43B2CF2426227600D5CBBB /* CLogger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43B2CD2426227600D5CBBB /* CLogger.hpp */; };
 		2C43B2D02426227600D5CBBB /* CLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2CE2426227600D5CBBB /* CLogger.cpp */; };
 		2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2D32426434200D5CBBB /* SivTime.cpp */; };
+		2C43B2DD24264E1200D5CBBB /* WindowFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2D824264E1200D5CBBB /* WindowFactory.cpp */; };
+		2C43B2DE24264E1200D5CBBB /* IWindow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43B2D924264E1200D5CBBB /* IWindow.hpp */; };
+		2C43B2DF24264E1200D5CBBB /* ISystem.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43B2DB24264E1200D5CBBB /* ISystem.hpp */; };
+		2C43B2E024264E1200D5CBBB /* SystemFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2DC24264E1200D5CBBB /* SystemFactory.cpp */; };
+		2C43B2E724264E3100D5CBBB /* CSystem.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43B2E224264E3100D5CBBB /* CSystem.hpp */; };
+		2C43B2E824264E3100D5CBBB /* CSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2E324264E3100D5CBBB /* CSystem.cpp */; };
+		2C43B2E924264E3100D5CBBB /* CWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2E524264E3100D5CBBB /* CWindow.cpp */; };
+		2C43B2EA24264E3100D5CBBB /* CWindow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43B2E624264E3100D5CBBB /* CWindow.hpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 /* End PBXBuildFile section */
@@ -154,6 +162,16 @@
 		2C43B2CE2426227600D5CBBB /* CLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLogger.cpp; sourceTree = "<group>"; };
 		2C43B2D12426432200D5CBBB /* Time.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Time.hpp; sourceTree = "<group>"; };
 		2C43B2D32426434200D5CBBB /* SivTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivTime.cpp; sourceTree = "<group>"; };
+		2C43B2D524264DF200D5CBBB /* LogType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LogType.hpp; sourceTree = "<group>"; };
+		2C43B2D624264DF200D5CBBB /* LogLevel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LogLevel.hpp; sourceTree = "<group>"; };
+		2C43B2D824264E1200D5CBBB /* WindowFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowFactory.cpp; sourceTree = "<group>"; };
+		2C43B2D924264E1200D5CBBB /* IWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IWindow.hpp; sourceTree = "<group>"; };
+		2C43B2DB24264E1200D5CBBB /* ISystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ISystem.hpp; sourceTree = "<group>"; };
+		2C43B2DC24264E1200D5CBBB /* SystemFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemFactory.cpp; sourceTree = "<group>"; };
+		2C43B2E224264E3100D5CBBB /* CSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CSystem.hpp; sourceTree = "<group>"; };
+		2C43B2E324264E3100D5CBBB /* CSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSystem.cpp; sourceTree = "<group>"; };
+		2C43B2E524264E3100D5CBBB /* CWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWindow.cpp; sourceTree = "<group>"; };
+		2C43B2E624264E3100D5CBBB /* CWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CWindow.hpp; sourceTree = "<group>"; };
 		2C43C283240BFF95009B11E9 /* Console.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Console.hpp; sourceTree = "<group>"; };
 		2C7F9E1F240BBFC400BFCDCF /* ApplicationOptions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.hpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
@@ -221,8 +239,10 @@
 				2C4360A2240E4EEC001657D2 /* Console */,
 				2C43B2CC2426227600D5CBBB /* Logger */,
 				2C4360A1240E4EEC001657D2 /* Siv3DMain.cpp */,
+				2C43B2E124264E3100D5CBBB /* System */,
 				2C43B2D22426434200D5CBBB /* Time */,
 				2C43609F240E4EEC001657D2 /* Unicode */,
+				2C43B2E424264E3100D5CBBB /* Window */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -265,7 +285,9 @@
 				2C43B2C52426223400D5CBBB /* Logger */,
 				2C4360BE240E4EEC001657D2 /* String */,
 				2C439F512419FC9E001154C2 /* StringView */,
+				2C43B2DA24264E1200D5CBBB /* System */,
 				2C4360B4240E4EEC001657D2 /* Unicode */,
+				2C43B2D724264E1200D5CBBB /* Window */,
 			);
 			path = Siv3D;
 			sourceTree = "<group>";
@@ -442,6 +464,42 @@
 			path = Time;
 			sourceTree = "<group>";
 		};
+		2C43B2D724264E1200D5CBBB /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				2C43B2D824264E1200D5CBBB /* WindowFactory.cpp */,
+				2C43B2D924264E1200D5CBBB /* IWindow.hpp */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		2C43B2DA24264E1200D5CBBB /* System */ = {
+			isa = PBXGroup;
+			children = (
+				2C43B2DB24264E1200D5CBBB /* ISystem.hpp */,
+				2C43B2DC24264E1200D5CBBB /* SystemFactory.cpp */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		2C43B2E124264E3100D5CBBB /* System */ = {
+			isa = PBXGroup;
+			children = (
+				2C43B2E224264E3100D5CBBB /* CSystem.hpp */,
+				2C43B2E324264E3100D5CBBB /* CSystem.cpp */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		2C43B2E424264E3100D5CBBB /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				2C43B2E524264E3100D5CBBB /* CWindow.cpp */,
+				2C43B2E624264E3100D5CBBB /* CWindow.hpp */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
 		2C46FDBA226EE90600828870 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,6 +538,8 @@
 				2C439F5B241DCE68001154C2 /* IntFormatter.hpp */,
 				2C439F90241DFACF001154C2 /* LetterCase.hpp */,
 				2C43B2C42426221300D5CBBB /* Logger.hpp */,
+				2C43B2D624264DF200D5CBBB /* LogLevel.hpp */,
+				2C43B2D524264DF200D5CBBB /* LogType.hpp */,
 				2C439F8F241DFACF001154C2 /* NamedParameter.hpp */,
 				2C439F59241A6E0B001154C2 /* PlaceHolder.hpp */,
 				2CA1A888240BA58F00ED4230 /* Platform.hpp */,
@@ -553,6 +613,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C43B2DE24264E1200D5CBBB /* IWindow.hpp in Headers */,
+				2C43B2DF24264E1200D5CBBB /* ISystem.hpp in Headers */,
 				2C439F89241DCEA9001154C2 /* fast-dtoa.h in Headers */,
 				2C439F87241DCEA9001154C2 /* ieee.h in Headers */,
 				2C4360D7240E4EEC001657D2 /* Siv3DComponent.hpp in Headers */,
@@ -560,8 +622,10 @@
 				2C439F82241DCEA9001154C2 /* cached-powers.h in Headers */,
 				2C43B2C92426223400D5CBBB /* ILogger.hpp in Headers */,
 				2C4360D5240E4EEC001657D2 /* Siv3DEngine.hpp in Headers */,
+				2C43B2E724264E3100D5CBBB /* CSystem.hpp in Headers */,
 				2C4360C4240E4EEC001657D2 /* catch.hpp in Headers */,
 				2C4360D6240E4EEC001657D2 /* ApplicationOptions.hpp in Headers */,
+				2C43B2EA24264E3100D5CBBB /* CWindow.hpp in Headers */,
 				2C439F472419D686001154C2 /* format-inl.h in Headers */,
 				2C439F7E241DCEA9001154C2 /* double-to-string.h in Headers */,
 				2C439F83241DCEA9001154C2 /* double-conversion.h in Headers */,
@@ -684,6 +748,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C43B2E824264E3100D5CBBB /* CSystem.cpp in Sources */,
 				2C4360DB240E4EEC001657D2 /* ConsoleFactory.cpp in Sources */,
 				2C439F61241DCE8B001154C2 /* SivIntFormatter.cpp in Sources */,
 				2C4360C7240E4EEC001657D2 /* CConsole.cpp in Sources */,
@@ -693,6 +758,7 @@
 				2C4360DD240E4EEC001657D2 /* SivConsole.cpp in Sources */,
 				2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */,
 				2C439F7B241DCEA9001154C2 /* string-to-double.cc in Sources */,
+				2C43B2E924264E3100D5CBBB /* CWindow.cpp in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
@@ -702,6 +768,7 @@
 				2C439F56241A6DEA001154C2 /* SivFormat.cpp in Sources */,
 				2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */,
 				2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */,
+				2C43B2DD24264E1200D5CBBB /* WindowFactory.cpp in Sources */,
 				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
 				2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */,
 				2C439F79241DCEA9001154C2 /* bignum.cc in Sources */,
@@ -714,6 +781,7 @@
 				2C439F85241DCEA9001154C2 /* double-to-string.cc in Sources */,
 				2C439F86241DCEA9001154C2 /* cached-powers.cc in Sources */,
 				2C4360CD240E4EEC001657D2 /* Siv3DTest.cpp in Sources */,
+				2C43B2E024264E1200D5CBBB /* SystemFactory.cpp in Sources */,
 				2C43B2D02426227600D5CBBB /* CLogger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
