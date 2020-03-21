@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Fwd.hpp"
+# include "Common.hpp"
 # include "PredefinedNamedParameter.hpp"
 # include "LetterCase.hpp"
 # include "String.hpp"

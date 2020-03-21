@@ -10,10 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include <cstddef> // for size_t
-# include "Platform.hpp"
-# include "Types.hpp"
-# include "Concepts.hpp"
+# include "Common.hpp"
 
 namespace s3d
 {

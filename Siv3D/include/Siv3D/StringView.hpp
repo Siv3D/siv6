@@ -12,7 +12,7 @@
 # pragma once
 # include <string_view>
 # include <string>
-# include "Fwd.hpp"
+# include "Common.hpp"
 
 namespace s3d
 {

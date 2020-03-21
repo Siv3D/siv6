@@ -11,6 +11,7 @@
 
 # pragma once
 # include <cstdint>
+# include <cstddef> // for size_t
 
 namespace s3d
 {

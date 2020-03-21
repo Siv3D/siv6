@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Fwd.hpp"
+# include "Common.hpp"
 
 namespace s3d
 {

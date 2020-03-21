@@ -10,10 +10,12 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Fwd.hpp"
+# include "Common.hpp"
 
 namespace s3d
 {
+	class String;
+
 	namespace detail
 	{
 		inline constexpr size_t FormatFloatBufferSize = 384;

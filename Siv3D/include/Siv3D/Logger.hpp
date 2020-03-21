@@ -11,7 +11,7 @@
 
 # pragma once
 # include <memory>
-# include "Fwd.hpp"
+# include "Common.hpp"
 # include "Format.hpp"
 
 namespace s3d

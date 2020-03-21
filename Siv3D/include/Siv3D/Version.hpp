@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Types.hpp"
+# include "Common.hpp"
 
 /// <summary>
 /// ライブラリのバージョン表示

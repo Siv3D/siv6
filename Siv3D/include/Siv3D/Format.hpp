@@ -16,6 +16,7 @@
 # endif
 # include <array>
 # include <vector>
+# include "Common.hpp"
 # include "PlaceHolder.hpp"
 # include "FormatData.hpp"
 
