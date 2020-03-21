@@ -85,6 +85,9 @@
     <Filter Include="src\Siv3D\FormatInt">
       <UniqueIdentifier>{ed424eb9-3f0c-4742-ad48-267efa1e2ed4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Time">
+      <UniqueIdentifier>{a9bda051-0fc4-431b-9950-3f63a003e6ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -261,6 +264,9 @@
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.hpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Logger</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Time.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -352,6 +358,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Time\SivTime.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Time</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -12,7 +12,10 @@ void Main()
 	Console(String(U"あいうえお"));
 	Console(StringView(U"さしすせそ"));
 
-	Logger << 10;
+	Logger << Time::GetNanosec();
+	Logger << Time::GetNanosec();
+	Logger << Time::GetNanosec();
+	Logger << Time::GetNanosec();
 
 	int n;
 	std::cin >> n;
