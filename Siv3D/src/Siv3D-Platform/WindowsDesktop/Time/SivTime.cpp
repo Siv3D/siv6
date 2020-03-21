@@ -29,33 +29,32 @@ namespace s3d
 			::QueryPerformanceCounter(&counter);
 			return counter.QuadPart;
 		}
-
-		const double QPF_Sec		= (1 / QueryPerformanceFrequency());
-		const double QPF_Millisec	= (1'000 / QueryPerformanceFrequency());
-		const double QPF_Microsec	= (1'000'000 / QueryPerformanceFrequency());
-		const double QPF_Nanosec	= (1'000'000'000 / QueryPerformanceFrequency());
 	}
 
 	namespace Time
 	{
 		uint64 GetSec() noexcept
 		{
-			return static_cast<uint64>(detail::GetPerformanceCount() * detail::QPF_Sec);
+			static const double QPF_Sec = (1 / detail::QueryPerformanceFrequency());
+			return static_cast<uint64>(detail::GetPerformanceCount() * QPF_Sec);
 		}
 
 		uint64 GetMillisec() noexcept
 		{
-			return static_cast<uint64>(detail::GetPerformanceCount() * detail::QPF_Millisec);
+			static const double QPF_Millisec = (1'000 / detail::QueryPerformanceFrequency());
+			return static_cast<uint64>(detail::GetPerformanceCount() * QPF_Millisec);
 		}
 
 		uint64 GetMicrosec() noexcept
 		{
-			return static_cast<uint64>(detail::GetPerformanceCount() * detail::QPF_Microsec);
+			static const double QPF_Microsec = (1'000'000 / detail::QueryPerformanceFrequency());
+			return static_cast<uint64>(detail::GetPerformanceCount() * QPF_Microsec);
 		}
 
 		uint64 GetNanosec() noexcept
 		{
-			return static_cast<uint64>(detail::GetPerformanceCount() * detail::QPF_Nanosec);
+			static const double QPF_Nanosec = (1'000'000'000 / detail::QueryPerformanceFrequency());
+			return static_cast<uint64>(detail::GetPerformanceCount() * QPF_Nanosec);
 		}
 	}
 }
