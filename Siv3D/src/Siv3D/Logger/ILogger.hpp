@@ -10,17 +10,18 @@
 //-----------------------------------------------
 
 # pragma once
-# include <cstddef> // for size_t
-# include "Platform.hpp"
-# include "Types.hpp"
-# include "Concepts.hpp"
+# include <Siv3D/Fwd.hpp>
 
 namespace s3d
 {
-	struct PlaceHolder_t;
-	class StringView;
-	class String;
+	class ISiv3DLogger
+	{
+	public:
 
-	enum class LogLevel;
-	enum class LogType;
+		static ISiv3DLogger* Create();
+
+		virtual ~ISiv3DLogger() = default;
+
+		virtual void write(LogType type, StringView s) = 0;
+	};
 }

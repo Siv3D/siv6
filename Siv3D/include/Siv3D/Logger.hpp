@@ -16,20 +16,60 @@
 
 namespace s3d
 {
+	/// <summary>
+	/// ログの詳細度
+	/// </summary>
+	enum class LogLevel
+	{
+		/// <summary>
+		/// リリース
+		/// </summary>
+		Release,
+
+		/// <summary>
+		/// デバッグ
+		/// </summary>
+		Debug,
+
+		/// <summary>
+		/// 詳細
+		/// </summary>
+		Verbose,
+	};
+
+	enum class LogType
+	{
+		Error,		// Release
+		
+		Fail,		// Release
+		
+		Warning,	// Release
+
+		App,		// Release
+		
+		Info,		// Release
+		
+		Debug,		// Debug
+		
+		Trace,		// Debug
+
+		Verbose,	// Verbose
+	};
+
 	namespace detail
 	{
-		struct ConsoleBuffer
+		struct LoggerBuffer
 		{
 			std::unique_ptr<FormatData> formatData;
 
-			ConsoleBuffer();
+			LoggerBuffer();
 
-			ConsoleBuffer(ConsoleBuffer&& other) noexcept;
+			LoggerBuffer(LoggerBuffer&& other) noexcept;
 
-			~ConsoleBuffer();
+			~LoggerBuffer();
 
 			template <class Type>
-			ConsoleBuffer& operator <<(const Type& value)
+			LoggerBuffer& operator <<(const Type& value)
 			{
 				Formatter(*formatData, value);
 
@@ -37,22 +77,8 @@ namespace s3d
 			}
 		};
 
-		struct Console_impl
+		struct Logger_impl
 		{
-			void open() const;
-
-			void write(const char32_t* s) const;
-
-			void write(StringView s) const;
-
-			void write(const String& s) const;
-
-			template <class... Args>
-			void write(const Args&... args) const
-			{
-				return write(Format(args...));
-			}
-
 			void writeln(const char32_t* s) const;
 
 			void writeln(StringView s) const;
@@ -78,9 +104,9 @@ namespace s3d
 			}
 
 			template <class Type, class = decltype(Formatter(std::declval<FormatData&>(), std::declval<Type>()))>
-			ConsoleBuffer operator <<(const Type& value) const
+			LoggerBuffer operator <<(const Type& value) const
 			{
-				ConsoleBuffer buf;
+				LoggerBuffer buf;
 
 				Formatter(*buf.formatData, value);
 
@@ -89,5 +115,5 @@ namespace s3d
 		};
 	}
 
-	inline constexpr auto Console = detail::Console_impl();
+	inline constexpr auto Logger = detail::Logger_impl();
 }

@@ -12,6 +12,8 @@ void Main()
 	Console(String(U"あいうえお"));
 	Console(StringView(U"さしすせそ"));
 
+	Logger << 10;
+
 	int n;
 	std::cin >> n;
 }

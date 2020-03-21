@@ -70,13 +70,19 @@
     <Filter Include="src\Siv3D\IntFormatter">
       <UniqueIdentifier>{b4722747-7e40-41a3-a567-89aa12ca64ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Siv3D\Common\FormatFloat">
-      <UniqueIdentifier>{c86d5137-a036-4a36-80de-4e0b40d73ba0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\ThirdParty\double-conversion">
       <UniqueIdentifier>{29244e33-c97b-4389-bd56-3a82e7e2d72f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Siv3D\Common\FormatInt">
+    <Filter Include="src\Siv3D\Logger">
+      <UniqueIdentifier>{bf9a23a2-e0e7-4b79-9a43-6def99dc0916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Logger">
+      <UniqueIdentifier>{b96d29cd-541f-4d15-89e2-f1ccf481eb81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\FormatFloat">
+      <UniqueIdentifier>{c86d5137-a036-4a36-80de-4e0b40d73ba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\FormatInt">
       <UniqueIdentifier>{ed424eb9-3f0c-4742-ad48-267efa1e2ed4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -246,6 +252,15 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Concepts.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Logger.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Logger\ILogger.hpp">
+      <Filter>src\Siv3D\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Logger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -300,7 +315,7 @@
       <Filter>src\Siv3D\IntFormatter</Filter>
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\FormatFloat\SivFormatFloat.cpp">
-      <Filter>src\Siv3D\Common\FormatFloat</Filter>
+      <Filter>src\Siv3D\FormatFloat</Filter>
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\double-to-string.cc">
       <Filter>src\ThirdParty\double-conversion</Filter>
@@ -327,7 +342,16 @@
       <Filter>src\ThirdParty\double-conversion</Filter>
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\FormatInt\SivFormatInt.cpp">
-      <Filter>src\Siv3D\Common\FormatInt</Filter>
+      <Filter>src\Siv3D\FormatInt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Logger\LoggerFactory.cpp">
+      <Filter>src\Siv3D\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Logger\SivLogger.cpp">
+      <Filter>src\Siv3D\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Logger</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

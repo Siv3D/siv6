@@ -10,17 +10,23 @@
 //-----------------------------------------------
 
 # pragma once
-# include <cstddef> // for size_t
-# include "Platform.hpp"
-# include "Types.hpp"
-# include "Concepts.hpp"
+# include <mutex>
+# include <Siv3D/Logger/ILogger.hpp>
 
 namespace s3d
 {
-	struct PlaceHolder_t;
-	class StringView;
-	class String;
+	class CLogger final : public ISiv3DLogger
+	{
+	private:
 
-	enum class LogLevel;
-	enum class LogType;
+		std::mutex m_mutex;
+
+	public:
+
+		CLogger();
+
+		~CLogger() override;
+
+		void write(LogType type, StringView s) override;
+	};
 }

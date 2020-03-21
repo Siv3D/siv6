@@ -9,18 +9,12 @@
 //
 //-----------------------------------------------
 
-# pragma once
-# include <cstddef> // for size_t
-# include "Platform.hpp"
-# include "Types.hpp"
-# include "Concepts.hpp"
+# include <Logger/CLogger.hpp>
 
 namespace s3d
 {
-	struct PlaceHolder_t;
-	class StringView;
-	class String;
-
-	enum class LogLevel;
-	enum class LogType;
+	ISiv3DLogger* ISiv3DLogger::Create()
+	{
+		return new CLogger;
+	}
 }

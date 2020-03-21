@@ -97,7 +97,11 @@
 # include <Siv3D/FormatData.hpp>
 # include <Siv3D/Format.hpp>
 
+
 # include <Siv3D/ApplicationOptions.hpp>
+
+# include <Siv3D/Logger.hpp>
+
 
 # include <Siv3D/Console.hpp>
 
