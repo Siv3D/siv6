@@ -100,6 +100,9 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Window">
       <UniqueIdentifier>{a376889b-11d2-47be-acc0-75c328bdcf9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Error">
+      <UniqueIdentifier>{74946f0d-0ba0-4853-99de-bf1643a76e29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -297,6 +300,9 @@
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.hpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\System</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Error.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -403,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Error\SivError.cpp">
+      <Filter>src\Siv3D\Error</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,24 +9,14 @@
 //
 //-----------------------------------------------
 
-# include <Siv3D/Common/Siv3DEngine.hpp>
-# include <Siv3D/Window/IWindow.hpp>
-# include "CSystem.hpp"
+# include <Siv3D/Error.hpp>
 
 namespace s3d
 {
-	CSystem::CSystem()
+	void Formatter(FormatData& formatData, const Error& value)
 	{
+		const String s = U"["_s + value.type() + U"] " + value.what();
 
-	}
-
-	CSystem::~CSystem()
-	{
-
-	}
-
-	void CSystem::init()
-	{
-		Siv3DEngine::Get<ISiv3DWindow>()->init();
+		formatData.string.append(s);
 	}
 }

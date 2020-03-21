@@ -98,10 +98,15 @@
 # include <Siv3D/Format.hpp>
 
 
+# include <Siv3D/Error.hpp>
+
 # include <Siv3D/ApplicationOptions.hpp>
 
 # include <Siv3D/Time.hpp>
 
+
+# include <Siv3D/LogLevel.hpp>
+# include <Siv3D/LogType.hpp>
 # include <Siv3D/Logger.hpp>
 
 

@@ -13,6 +13,8 @@
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Common/ApplicationOptions.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Siv3D/System/ISystem.hpp>
+# include <Siv3D/Error.hpp>
 
 void PerformTest();
 void Main();
@@ -26,6 +28,15 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 
 	using namespace s3d;
 	Siv3DEngine engine;
+
+	try
+	{
+		Siv3DEngine::Get<ISiv3DSystem>()->init();
+	}
+	catch (const Error&)
+	{
+		return -1;
+	}
 
 	if (g_ApplicationOptions.runTest)
 	{
