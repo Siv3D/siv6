@@ -9,29 +9,29 @@
 //
 //-----------------------------------------------
 
+# include <Siv3D/Windows/Windows.hpp>
+# include <shellscalingapi.h>
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Indexed.hpp>
 # include <Siv3D/Unicode.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include "Monitor.hpp"
-# include <shellscalingapi.h>
 
 namespace s3d::detail
 {
 	BOOL CALLBACK MonitorCallback(HMONITOR handle, HDC, RECT*, LPARAM data)
 	{
-		MONITORINFOEXW monitorInfo = {};
-		monitorInfo.cbSize = sizeof(monitorInfo);
+		MONITORINFOEXW monitorInfo = { sizeof(monitorInfo) };
 
-		if (::GetMonitorInfoW(handle, (MONITORINFO*)&monitorInfo))
+		if (::GetMonitorInfoW(handle, &monitorInfo))
 		{
-			Monitor* monitor = (Monitor*)data;
+			Monitor* monitor = reinterpret_cast<Monitor*>(data);
 
 			if (Unicode::FromWString(monitorInfo.szDevice) == monitor->adapterName)
 			{
-				monitor->displayRect = monitorInfo.rcMonitor;
-				monitor->workArea = monitorInfo.rcWork;
-				monitor->handle = handle;
+				monitor->displayRect	= monitorInfo.rcMonitor;
+				monitor->workArea		= monitorInfo.rcWork;
+				monitor->handle			= handle;
 
 				uint32 dpiX = 0, dpiY = 0;
 				if (SUCCEEDED(::GetDpiForMonitor(handle, MDT_EFFECTIVE_DPI, &dpiX, &dpiY)))
@@ -49,35 +49,24 @@ namespace s3d::detail
 	Monitor CreateMonitor(const DISPLAY_DEVICEW& adapter, const DISPLAY_DEVICEW* display)
 	{
 		Monitor monitor;
-
-		monitor.adapterString = Unicode::FromWString(adapter.DeviceString);
-		monitor.adapterName = Unicode::FromWString(adapter.DeviceName);
-		monitor.isPrimaryAdapter = !!(adapter.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE);
+		monitor.adapterString		= Unicode::FromWString(adapter.DeviceString);
+		monitor.adapterName			= Unicode::FromWString(adapter.DeviceName);
+		monitor.isPrimaryAdapter	= !!(adapter.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE);
 
 		if (display)
 		{
-			monitor.displayString = Unicode::FromWString(display->DeviceString);
-			monitor.displayName = Unicode::FromWString(display->DeviceName);
+			monitor.displayString	= Unicode::FromWString(display->DeviceString);
+			monitor.displayName		= Unicode::FromWString(display->DeviceName);
 		}
 
 		{
 			const HDC hdc = ::CreateDCW(L"DISPLAY", adapter.DeviceName, nullptr, nullptr);
-			monitor.widthMillimeter = ::GetDeviceCaps(hdc, HORZSIZE);
-			monitor.heightMillimeter = ::GetDeviceCaps(hdc, VERTSIZE);
+			monitor.widthMillimeter		= ::GetDeviceCaps(hdc, HORZSIZE);
+			monitor.heightMillimeter	= ::GetDeviceCaps(hdc, VERTSIZE);
 			::DeleteDC(hdc);
 		}
 
-		DEVMODEW dm = {};
-		dm.dmSize = sizeof(dm);
-		::EnumDisplaySettingsW(adapter.DeviceName, ENUM_CURRENT_SETTINGS, &dm);
-
-		RECT rect;
-		rect.left = dm.dmPosition.x;
-		rect.top = dm.dmPosition.y;
-		rect.right = (dm.dmPosition.x + dm.dmPelsWidth);
-		rect.bottom = (dm.dmPosition.y + dm.dmPelsHeight);
-
-		::EnumDisplayMonitors(nullptr, &rect, MonitorCallback, (LPARAM)&monitor);
+		::EnumDisplayMonitors(nullptr, nullptr, MonitorCallback, (LPARAM)&monitor);
 
 		return monitor;
 	}
@@ -90,8 +79,7 @@ namespace s3d::detail
 
 		for (DWORD adapterIndex = 0;; ++adapterIndex)
 		{
-			DISPLAY_DEVICEW adapter = {};
-			adapter.cb = sizeof(adapter);
+			DISPLAY_DEVICEW adapter = { sizeof(adapter) };
 
 			if (!::EnumDisplayDevicesW(nullptr, adapterIndex, &adapter, 0))
 			{
@@ -107,8 +95,7 @@ namespace s3d::detail
 
 			for (;; displayIndex++)
 			{
-				DISPLAY_DEVICEW display = {};
-				display.cb = sizeof(display);
+				DISPLAY_DEVICEW display = { sizeof(display) };
 
 				if (!::EnumDisplayDevicesW(adapter.DeviceName, displayIndex, &display, 0))
 				{

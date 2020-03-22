@@ -111,6 +111,9 @@
 # include <Siv3D/LogType.hpp>
 # include <Siv3D/Logger.hpp>
 
+# include <Siv3D/PointVector.hpp>
+
+# include <Siv3D/Window.hpp>
 
 # include <Siv3D/Console.hpp>
 

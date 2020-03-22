@@ -10,6 +10,8 @@
 //-----------------------------------------------
 
 # include <Siv3D/Error.hpp>
+# include <Siv3D/Utility.hpp>
+# include <Siv3D/FormatLiteral.hpp>
 # include "CWindow.hpp"
 # include "WindowProc.hpp"
 
@@ -68,13 +70,54 @@ namespace s3d
 	{
 		LOG_TRACE(U"CWindow::init() ---");
 
+		::SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+
 		m_hInstance = ::GetModuleHandleW(nullptr);
 		
 		m_windowClassName = L"Siv3D App";//FileSystem::ModulePath().toWstr();
 
+		// WindowClass を登録
 		detail::RegisterWindowClass(m_hInstance, m_windowClassName.c_str());
 
+		// モニタを取得
 		m_monitors = detail::EnumActiveMonitors();
+		if (m_monitors.empty())
+		{
+			throw EngineError(U"EnumActiveMonitors() failed");
+		}
+
+		// ウィンドウを作成SW
+		const auto& monitor = m_monitors[0];
+		const double scale = monitor.getScale();
+
+		const int32 clientWidth = static_cast<int32>(m_clientSize.x * scale);
+		const int32 clientHeight = static_cast<int32>(m_clientSize.y * scale);
+		const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - clientWidth) / 2, 0);
+		const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - clientHeight) / 2, 0);
+		const int32 posX = (monitor.displayRect.left + offsetX);
+		const int32 posY = (monitor.displayRect.top + offsetY);
+
+		RECT windowRect = { posX, posY, (posX + clientWidth), (posY + clientHeight) };
+		::AdjustWindowRectExForDpi(&windowRect, WS_OVERLAPPEDWINDOW, FALSE, 0, monitor.displayDPI);
+
+		m_hWnd = ::CreateWindowExW(
+			0,
+			m_windowClassName.c_str(),
+			m_actualTitle.toWstr().c_str(),
+			m_style,
+			windowRect.left, windowRect.top,
+			(windowRect.right - windowRect.left), (windowRect.bottom - windowRect.top),
+			nullptr, // No parent window
+			nullptr, // No menu
+			m_hInstance,
+			nullptr);
+
+		if (!m_hWnd)
+		{
+			throw EngineError(U"CreateWindowExW() failed");
+		}
+
+		::ShowWindow(m_hWnd, SW_SHOW);
 
 		LOG_TRACE(U"--- CWindow::init()");
 	}

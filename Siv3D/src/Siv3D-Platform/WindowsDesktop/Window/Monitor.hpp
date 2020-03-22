@@ -29,6 +29,12 @@ namespace s3d
 		RECT workArea = {};
 		int32 displayDPI = 96;
 		bool isPrimaryAdapter = false;
+		
+		[[nodiscard]]
+		double getScale() const noexcept
+		{
+			return static_cast<double>(displayDPI) / USER_DEFAULT_SCREEN_DPI;
+		}
 	};
 
 	namespace detail

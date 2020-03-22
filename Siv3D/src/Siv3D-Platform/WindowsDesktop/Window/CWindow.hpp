@@ -12,6 +12,7 @@
 # pragma once
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Window.hpp>
 # include "Monitor.hpp"
 
 namespace s3d
@@ -23,8 +24,11 @@ namespace s3d
 		HWND m_hWnd = nullptr;
 		HINSTANCE m_hInstance = nullptr;
 		std::wstring m_windowClassName;
+		String m_actualTitle = SIV3D_BUILD(DEBUG) ? U"Siv3D App (Debug Build)" : U"Siv3D App";
 
 		Array<Monitor> m_monitors;
+		Size m_clientSize = Window::DefaultClientSize;
+		uint32 m_style = WS_OVERLAPPEDWINDOW & ~(WS_MAXIMIZEBOX | WS_THICKFRAME);
 
 	public:
 
