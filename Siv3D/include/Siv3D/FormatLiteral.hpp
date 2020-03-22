@@ -10,8 +10,8 @@
 //-----------------------------------------------
 
 # pragma once
-# include <fmt/format.h>
-# include <fmt/ostream.h>
+# include <ThirdParty/fmt/format.h>
+# include <ThirdParty/fmt/ostream.h>
 # include "String.hpp"
 
 namespace s3d
