@@ -16,6 +16,9 @@ namespace s3d
 {
 	namespace Unicode
 	{
+		[[nodiscard]]
+		String FromWString(std::wstring_view view);
+
 		/// <summary>
 		/// String を std::string に変換します。
 		/// </summary>

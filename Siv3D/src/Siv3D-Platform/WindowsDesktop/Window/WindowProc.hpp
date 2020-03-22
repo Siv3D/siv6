@@ -9,29 +9,9 @@
 //
 //-----------------------------------------------
 
-# pragma once
 # include <Siv3D/Windows/Windows.hpp>
-# include <Siv3D/Window/IWindow.hpp>
-# include "Monitor.hpp"
 
 namespace s3d
 {
-	class CWindow final : public ISiv3DWindow
-	{
-	private:
-
-		HWND m_hWnd = nullptr;
-		HINSTANCE m_hInstance = nullptr;
-		std::wstring m_windowClassName;
-
-		Array<Monitor> m_monitors;
-
-	public:
-
-		CWindow();
-
-		~CWindow() override;
-
-		void init() override;
-	};
+	LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 }

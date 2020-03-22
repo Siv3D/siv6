@@ -9,6 +9,7 @@
 //
 //-----------------------------------------------
 
+# include <miniutf/miniutf.hpp>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Unicode.hpp>
 # include <Siv3D/Unicode/UnicodeUtility.hpp>
@@ -41,6 +42,24 @@ namespace s3d
 
 	namespace Unicode
 	{
+		String FromWString(const std::wstring_view view)
+		{
+			const char16* pSrc = static_cast<const char16*>(static_cast<const void*>(view.data()));
+			const char16* const pSrcEnd = pSrc + view.size();
+
+			String result(detail::UTF32_Length(std::u16string_view(pSrc, view.size())), '0');
+			char32* pDst = &result[0];
+
+			while (pSrc != pSrcEnd)
+			{
+				int32 offset;
+				*pDst++ = detail::utf16_decode(pSrc, pSrcEnd - pSrc, offset);
+				pSrc += offset;
+			}
+
+			return result;
+		}
+
 		std::string Narrow(const StringView s)
 		{
 			return detail::ToMultiByte(ToWstring(s), CP_ACP);
