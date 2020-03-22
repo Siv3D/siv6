@@ -9,31 +9,18 @@
 //
 //-----------------------------------------------
 
+# include <Siv3D/EngineLog.hpp>
+# include <Siv3D/StringView.hpp>
+# include <Siv3D/Logger/ILogger.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
-# include <Siv3D/Window/IWindow.hpp>
-# include <Siv3D/Common.hpp>
-# include <Siv3D/String.hpp>
-# include "CSystem.hpp"
 
 namespace s3d
 {
-	CSystem::CSystem()
+	namespace Internal
 	{
-
-	}
-
-	CSystem::~CSystem()
-	{
-
-	}
-
-	void CSystem::init()
-	{
-		LOG_TRACE(U"CSystem::init() ---");
-
-		Siv3DEngine::Get<ISiv3DWindow>()->init();
-
-
-		LOG_TRACE(U"--- CSystem::init()");
+		void OutputEngineLog(const LogType type, const StringView s)
+		{
+			Siv3DEngine::Get<ISiv3DLogger>()->write(type, s);
+		}
 	}
 }

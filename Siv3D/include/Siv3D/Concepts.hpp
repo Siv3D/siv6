@@ -38,6 +38,9 @@ namespace s3d
 
 		template <class Type>
 		concept Arithmetic = std::is_arithmetic_v<Type>;
+
+		template <class Type>
+		concept Enum = std::is_enum_v<Type>;
 	}
 }
 

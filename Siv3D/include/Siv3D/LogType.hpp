@@ -25,8 +25,6 @@ namespace s3d
 
 		Info,		// Release
 
-		Debug,		// Debug
-
 		Trace,		// Debug
 
 		Verbose,	// Verbose

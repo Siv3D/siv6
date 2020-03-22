@@ -593,4 +593,59 @@ namespace s3d
 	{
 		return (min < v) && (v < max);
 	}
+
+	namespace detail
+	{
+		struct FromEnum_impl
+		{
+		# if __cpp_lib_concepts
+			template <Concept::Enum Enum>
+		# else
+			template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
+		# endif
+			[[nodiscard]]
+			constexpr auto operator ()(Enum x) const noexcept
+			{
+				return static_cast<std::underlying_type_t<Enum>>(x);
+			}
+
+			[[nodiscard]]
+			constexpr auto operator ()(PlaceHolder_t) const noexcept
+			{
+				return FromEnum_impl();
+			}
+		};
+	}
+
+	inline constexpr auto FromEnum = detail::FromEnum_impl();
+
+	namespace detail
+	{
+	# if __cpp_lib_concepts
+		template <Concept::Enum Enum>
+	# else
+		template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
+	# endif
+		struct ToEnum_impl
+		{
+			[[nodiscard]]
+			constexpr auto operator ()(std::underlying_type_t<Enum> x) const noexcept
+			{
+				return Enum{ x };
+			}
+
+			[[nodiscard]]
+			constexpr auto operator ()(PlaceHolder_t) const noexcept
+			{
+				return ToEnum_impl();
+			}
+		};
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Enum Enum>
+# else
+	template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
+# endif
+	inline constexpr auto ToEnum = detail::ToEnum_impl<Enum>();
 }

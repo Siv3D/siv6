@@ -25,6 +25,10 @@ namespace s3d
 
 	void CWindow::init()
 	{
+		LOG_TRACE(U"CWindow::init() ---");
 
+
+
+		LOG_TRACE(U"--- CWindow::init()");
 	}
 }
