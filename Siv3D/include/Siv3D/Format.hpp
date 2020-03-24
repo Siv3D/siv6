@@ -10,15 +10,10 @@
 //-----------------------------------------------
 
 # pragma once
-# include <xmmintrin.h>
-# if  __has_include(<compare>)
-#	include <compare>
-# endif
-# include <array>
-# include <vector>
 # include "Common.hpp"
 # include "PlaceHolder.hpp"
 # include "FormatData.hpp"
+# include "Formatter.hpp"
 
 namespace s3d
 {
@@ -75,6 +70,8 @@ namespace s3d
 
 		public:
 
+		# if __cpp_lib_concepts
+
 			/// <summary>
 			/// 一連の引数を文字列に変換します。
 			/// </summary>
@@ -84,6 +81,28 @@ namespace s3d
 			/// <returns>
 			/// 引数を文字列に変換して連結した文字列
 			/// </returns>
+			template <Concept::Formattable... Args>
+			[[nodiscard]]
+			String operator ()(const Args&... args) const
+			{
+				FormatData formatData;
+
+				Apply(formatData, args...);
+
+				return std::move(formatData.string);
+			}
+
+			template <class... Args>
+			[[nodiscard]]
+			String operator ()(const Args&...) const
+			{
+				// Format できない値が Format() に渡されたときに発生するエラーです
+				static_assert(0, "Format(): Unformattable parameter value detected");
+				return String();
+			}
+
+		# else
+
 			template <class... Args, std::enable_if_t<FormatArgValidation<Args...>::value>* = nullptr>
 			[[nodiscard]]
 			String operator ()(const Args&... args) const
@@ -104,6 +123,8 @@ namespace s3d
 
 				return String();
 			}
+
+		# endif
 
 			/// <summary>
 			/// 引数を文字列に変換します。
@@ -207,136 +228,4 @@ namespace s3d
 	}
 
 	inline constexpr auto Format = detail::Format_impl();
-
-	void Formatter(FormatData& formatData, FormatData::DecimalPlaces decimalPlace);
-
-	void Formatter(FormatData& formatData, bool value);
-
-	void Formatter(FormatData& formatData, int8 value);
-
-	void Formatter(FormatData& formatData, uint8 value);
-
-	void Formatter(FormatData& formatData, int16 value);
-
-	void Formatter(FormatData& formatData, uint16 value);
-
-	void Formatter(FormatData& formatData, int32 value);
-
-	void Formatter(FormatData& formatData, uint32 value);
-
-	void Formatter(FormatData& formatData, long value);
-
-	void Formatter(FormatData& formatData, unsigned long value);
-
-	void Formatter(FormatData& formatData, long long value);
-
-	void Formatter(FormatData& formatData, unsigned long long value);
-
-	void Formatter(FormatData& formatData, float value);
-
-	void Formatter(FormatData& formatData, double value);
-
-	void Formatter(FormatData& formatData, long double value);
-
-	void Formatter(FormatData& formatData, char ch);
-
-	void Formatter(FormatData& formatData, char8_t ch);
-
-	void Formatter(FormatData& formatData, char16_t ch);
-
-	void Formatter(FormatData& formatData, wchar_t ch);
-
-	void Formatter(FormatData& formatData, char32_t ch);
-
-	void Formatter(FormatData& formatData, std::nullptr_t);
-
-	void Formatter(FormatData& formatData, const void* value);
-
-	void Formatter(FormatData& formatData, const char*) = delete;
-
-	void Formatter(FormatData& formatData, const char8_t*) = delete;
-
-	void Formatter(FormatData& formatData, const char16_t*) = delete;
-
-	void Formatter(FormatData& formatData, const wchar_t*) = delete;
-
-	void Formatter(FormatData& formatData, const char32_t*);
-
-	void Formatter(FormatData& formatData, StringView s);
-
-	void Formatter(FormatData& formatData, const std::u32string& s);
-
-	void Formatter(FormatData& formatData, const String& s);
-
-	void Formatter(FormatData& formatData, __m128 value);
-
-# if __cpp_lib_three_way_comparison
-
-	void Formatter(FormatData& formatData, std::strong_ordering value);
-
-	void Formatter(FormatData& formatData, std::weak_ordering value);
-
-	void Formatter(FormatData& formatData, std::partial_ordering value);
-
-# endif
-
-	template <class ForwardIt>
-	inline void Formatter(FormatData& formatData, ForwardIt first, ForwardIt last)
-	{
-		formatData.string.push_back(U'{');
-
-		bool isFirst = true;
-
-		while (first != last)
-		{
-			if (isFirst)
-			{
-				isFirst = false;
-			}
-			else
-			{
-				formatData.string.append(U", "_sv);
-			}
-
-			Formatter(formatData, *first);
-
-			++first;
-		}
-
-		formatData.string.push_back(U'}');
-	}
-
-	template <class Type, size_t N>
-	inline void Formatter(FormatData& formatData, const Type(&values)[N])
-	{
-		Formatter(formatData, std::begin(values), std::end(values));
-	}
-
-	template <class Type, size_t N>
-	inline void Formatter(FormatData& formatData, const std::array<Type, N>& v)
-	{
-		Formatter(formatData, v.begin(), v.end());
-	}
-
-	template <class Type, class Allocator = std::allocator<Type>>
-	inline void Formatter(FormatData& formatData, const std::vector<Type, Allocator>& v)
-	{
-		Formatter(formatData, v.begin(), v.end());
-	}
-
-	template <class Type>
-	inline void Formatter(FormatData& formatData, const std::initializer_list<Type>& ilist)
-	{
-		Formatter(formatData, ilist.begin(), ilist.end());
-	}
-
-	template <class Fitrst, class Second>
-	inline void Formatter(FormatData& formatData, const std::pair<Fitrst, Second>& pair)
-	{
-		formatData.string.push_back(U'{');
-		Formatter(formatData, pair.first);
-		formatData.string.append(U", "_sv);
-		Formatter(formatData, pair.second);
-		formatData.string.push_back(U'}');
-	}
 }

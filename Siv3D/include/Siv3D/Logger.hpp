@@ -12,7 +12,7 @@
 # pragma once
 # include <memory>
 # include "Common.hpp"
-# include "FormatData.hpp"
+# include "Formatter.hpp"
 
 namespace s3d
 {
@@ -28,7 +28,11 @@ namespace s3d
 
 			~LoggerBuffer();
 
-			template <class Type>
+		# if __cpp_lib_concepts
+			template <Concept::Formattable Type>
+		# else
+			template <class Type, class = decltype(Formatter(std::declval<FormatData&>(), std::declval<Type>()))>
+		# endif
 			LoggerBuffer& operator <<(const Type& value)
 			{
 				Formatter(*formatData, value);
@@ -45,22 +49,62 @@ namespace s3d
 
 			void writeln(const String& s) const;
 
-			template <class... Args>
-			void writeln(const Args&... args) const
-			{
-				return write(Format(args..., U'\n'));
-			}
-
 			void operator()(const char32_t* s) const;
 
 			void operator()(StringView s) const;
 
 			void operator()(const String& s) const;
 
+		# if __cpp_lib_concepts
+
+			template <Concept::Formattable... Args>
+			void writeln(const Args&... args) const
+			{
+				return writeln(Format(args...));
+			}
+
+			template <class... Args>
+			void writeln(const Args&... args) const
+			{
+				// Format できない値が Logger.writeln() に渡されたときに発生するエラーです
+				static_assert(0, "Logger.writeln(): Unformattable parameter value detected");
+			}
+
+			template <Concept::Formattable... Args>
+			void operator()(const Args&... args) const
+			{
+				return writeln(Format(args...));
+			}
+
 			template <class... Args>
 			void operator()(const Args&... args) const
 			{
-				return write(Format(args..., U'\n'));
+				// Format できない値が Logger() に渡されたときに発生するエラーです
+				static_assert(0, "Logger(): Unformattable parameter value detected");
+			}
+
+			template <Concept::Formattable Type>
+			LoggerBuffer operator <<(const Type& value) const
+			{
+				LoggerBuffer buf;
+
+				Formatter(*buf.formatData, value);
+
+				return buf;
+			}
+
+		# else
+
+			template <class... Args>
+			void writeln(const Args&... args) const
+			{
+				return writeln(Format(args...));
+			}
+
+			template <class... Args>
+			void operator()(const Args&... args) const
+			{
+				return writeln(Format(args...));
 			}
 
 			template <class Type, class = decltype(Formatter(std::declval<FormatData&>(), std::declval<Type>()))>
@@ -72,6 +116,8 @@ namespace s3d
 
 				return buf;
 			}
+
+		# endif
 		};
 	}
 

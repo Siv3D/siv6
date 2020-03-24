@@ -30,12 +30,14 @@ namespace s3d
 
 		virtual ~Error() = default;
 
-		const String& what() const
+		[[nodiscard]]
+		const String& what() const noexcept
 		{
 			return m_what;
 		}
 
-		virtual StringView type() const
+		[[nodiscard]]
+		virtual StringView type() const noexcept
 		{
 			return StringView(U"Error");
 		}
@@ -57,7 +59,8 @@ namespace s3d
 
 		using Error::Error;
 
-		StringView type() const override
+		[[nodiscard]]
+		StringView type() const noexcept override
 		{
 			return StringView(U"ParseError");
 		}
@@ -69,7 +72,8 @@ namespace s3d
 
 		using Error::Error;
 
-		StringView type() const override
+		[[nodiscard]]
+		StringView type() const noexcept override
 		{
 			return StringView(U"EngineError");
 		}

@@ -46,7 +46,6 @@ namespace s3d
 #	define LOG_INFO(S)		s3d::Internal::OutputEngineLog(s3d::LogType::Info,		S)
 #	define LOG_TRACE(S)		s3d::Internal::OutputEngineLog(s3d::LogType::Trace,		S)
 #	define LOG_VERBOSE(S)	s3d::Internal::OutputEngineLog(s3d::LogType::Verbose,	S)
-
 #	define LOG_SCOPED_TRACE(S)	const s3d::Internal::ScopedEngineLog s3d_scoped_trace{s3d::LogType::Trace, S}
 
 # else
@@ -57,5 +56,6 @@ namespace s3d
 #	define LOG_INFO(S)		s3d::Internal::OutputEngineLog(s3d::LogType::Info,		S)
 #	define LOG_TRACE(S)		s3d::Internal::OutputEngineLog(s3d::LogType::Trace,		S)
 #	define LOG_VERBOSE(S)	((void)0)
+#	define LOG_SCOPED_TRACE(S)	const s3d::Internal::ScopedEngineLog s3d_scoped_trace{s3d::LogType::Trace, S}
 
 # endif

@@ -26,13 +26,13 @@ namespace s3d
 		}
 
 		GetFunctionNoThrow::GetFunctionNoThrow(HMODULE module, const char* name)
-			: p(reinterpret_cast<void*>(::GetProcAddress(module, name)))
+			: p(static_cast<const void*>(::GetProcAddress(module, name)))
 		{
 			LOG_TRACE(U"DLL::GetFunctionNoThrow::GetFunctionNoThrow(name = \"{}\") p = {}"_fmt(Unicode::Widen(name), p));
 		}
 
 		GetFunction::GetFunction(HMODULE module, const char* name)
-			: p(reinterpret_cast<void*>(::GetProcAddress(module, name)))
+			: p(static_cast<const void*>(::GetProcAddress(module, name)))
 		{
 			LOG_TRACE(U"DLL::GetFunction::GetFunction(name = \"{}\") p = {}"_fmt(Unicode::Widen(name), p));
 

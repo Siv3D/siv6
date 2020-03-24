@@ -12,7 +12,7 @@
 # pragma once
 # include <memory>
 # include "Common.hpp"
-# include "FormatData.hpp"
+# include "Formatter.hpp"
 
 namespace s3d
 {
@@ -28,7 +28,11 @@ namespace s3d
 
 			~ConsoleBuffer();
 
-			template <class Type>
+		# if __cpp_lib_concepts
+			template <Concept::Formattable Type>
+		# else
+			template <class Type, class = decltype(Formatter(std::declval<FormatData&>(), std::declval<Type>()))>
+		# endif
 			ConsoleBuffer& operator <<(const Type& value)
 			{
 				Formatter(*formatData, value);
@@ -47,29 +51,82 @@ namespace s3d
 
 			void write(const String& s) const;
 
-			template <class... Args>
-			void write(const Args&... args) const
-			{
-				return write(Format(args...));
-			}
-
 			void writeln(const char32_t* s) const;
 
 			void writeln(StringView s) const;
 
 			void writeln(const String& s) const;
 
-			template <class... Args>
-			void writeln(const Args&... args) const
-			{
-				return write(Format(args..., U'\n'));
-			}
-
 			void operator()(const char32_t* s) const;
 
 			void operator()(StringView s) const;
 
 			void operator()(const String& s) const;
+
+		# if __cpp_lib_concepts
+			
+			template <Concept::Formattable... Args>
+			void write(const Args&... args) const
+			{
+				return write(Format(args...));
+			}
+
+			template <class... Args>
+			void write(const Args&... args) const
+			{
+				// Format できない値が Console.write() に渡されたときに発生するエラーです
+				static_assert(0, "Console.write(): Unformattable parameter value detected");
+			}
+
+			template <Concept::Formattable... Args>
+			void writeln(const Args&... args) const
+			{
+				return write(Format(args..., U'\n'));
+			}
+
+			template <class... Args>
+			void writeln(const Args&... args) const
+			{
+				// Format できない値が Console.writeln() に渡されたときに発生するエラーです
+				static_assert(0, "Console.writeln(): Unformattable parameter value detected");
+			}
+
+			template <Concept::Formattable... Args>
+			void operator()(const Args&... args) const
+			{
+				return write(Format(args..., U'\n'));
+			}
+
+			template <class... Args>
+			void operator()(const Args&... args) const
+			{
+				// Format できない値が Console() に渡されたときに発生するエラーです
+				static_assert(0, "Console(): Unformattable parameter value detected");
+			}
+
+			template <Concept::Formattable Type>
+			ConsoleBuffer operator <<(const Type& value) const
+			{
+				ConsoleBuffer buf;
+
+				Formatter(*buf.formatData, value);
+
+				return buf;
+			}
+
+		# else
+
+			template <class... Args>
+			void write(const Args&... args) const
+			{
+				return write(Format(args...));
+			}
+
+			template <class... Args>
+			void writeln(const Args&... args) const
+			{
+				return write(Format(args..., U'\n'));
+			}
 
 			template <class... Args>
 			void operator()(const Args&... args) const
@@ -86,6 +143,8 @@ namespace s3d
 
 				return buf;
 			}
+	
+		# endif
 		};
 	}
 

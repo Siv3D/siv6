@@ -27,7 +27,7 @@ namespace s3d
 		{
 		private:
 
-			void* p;
+			const void* p;
 
 		public:
 
@@ -35,9 +35,9 @@ namespace s3d
 			GetFunctionNoThrow(HMODULE module, const char* name);
 
 			template <class Type>
-			operator Type() const
+			operator Type() const noexcept
 			{
-				return reinterpret_cast<Type>(p);
+				return static_cast<Type>(p);
 			}
 		};
 
@@ -45,7 +45,7 @@ namespace s3d
 		{
 		private:
 
-			void* p;
+			const void* p;
 
 		public:
 
@@ -53,9 +53,9 @@ namespace s3d
 			GetFunction(HMODULE module, const char* name);
 
 			template <class Type>
-			operator Type() const
+			operator Type() const noexcept
 			{
-				return reinterpret_cast<Type>(p);
+				return static_cast<Type>(p);
 			}
 		};
 	}
@@ -78,7 +78,7 @@ namespace s3d
 		{
 		private:
 
-			void* p;
+			const void* p;
 
 		public:
 
@@ -86,9 +86,9 @@ namespace s3d
 			GetFunctionNoThrow(void* module, const char* name);
 
 			template <class Type>
-			operator Type() const
+			operator Type() const noexcept
 			{
-				return reinterpret_cast<Type>(p);
+				return static_cast<Type>(p);
 			}
 		};
 
@@ -96,7 +96,7 @@ namespace s3d
 		{
 		private:
 
-			void* p;
+			const void* p;
 
 		public:
 
@@ -104,9 +104,9 @@ namespace s3d
 			GetFunction(void* module, const char* name);
 
 			template <class Type>
-			operator Type() const
+			operator Type() const noexcept
 			{
-				return reinterpret_cast<Type>(p);
+				return static_cast<Type>(p);
 			}
 		};
 	}

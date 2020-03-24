@@ -21,7 +21,7 @@ namespace s3d::detail
 		LOG_SCOPED_TRACE(U"SetDPIAwareness()");
 
 		// Windows 10 1607-
-		if (HMODULE user32 = DLL::LoadSystemLibrary(L"user32.dll"))
+		if (const HMODULE user32 = DLL::LoadSystemLibrary(L"user32.dll"))
 		{
 			decltype(SetThreadDpiAwarenessContext)* p_SetThreadDpiAwarenessContext = DLL::GetFunctionNoThrow(user32, "SetThreadDpiAwarenessContext");
 
@@ -37,7 +37,7 @@ namespace s3d::detail
 		}
 
 		// Windows 8.1-
-		if (HINSTANCE shcore = DLL::LoadSystemLibrary(L"shcore.dll"))
+		if (const HMODULE shcore = DLL::LoadSystemLibrary(L"shcore.dll"))
 		{
 			decltype(SetProcessDpiAwareness)* p_SetProcessDpiAwareness = DLL::GetFunctionNoThrow(shcore, "SetProcessDpiAwareness");
 
