@@ -38,26 +38,46 @@ namespace s3d
 
 			return result;
 		}
+
+		[[nodiscard]]
+		static std::u16string FromMultiByte(const std::string_view view, const uint32 code)
+		{
+			if (view.empty())
+			{
+				return std::u16string();
+			}
+
+			const int32 length = ::MultiByteToWideChar(code, 0, view.data(), static_cast<int32>(view.length()),
+				nullptr, 0);
+
+			if (length == 0)
+			{
+				return std::u16string();
+			}
+
+			std::u16string result(length, u'\0');
+
+			if (length != ::MultiByteToWideChar(code, 0, view.data(), static_cast<int32>(view.length()),
+				static_cast<wchar_t*>(static_cast<void*>(&result[0])), length))
+			{
+				result.clear();
+			}
+
+			return result;
+		}
 	}
 
 	namespace Unicode
 	{
+		String Widen(const std::string_view view)
+		{
+			return FromUTF16(detail::FromMultiByte(view, CP_ACP));
+		}
+
 		String FromWString(const std::wstring_view view)
 		{
 			const char16* pSrc = static_cast<const char16*>(static_cast<const void*>(view.data()));
-			const char16* const pSrcEnd = pSrc + view.size();
-
-			String result(detail::UTF32_Length(std::u16string_view(pSrc, view.size())), '0');
-			char32* pDst = &result[0];
-
-			while (pSrc != pSrcEnd)
-			{
-				int32 offset;
-				*pDst++ = detail::utf16_decode(pSrc, pSrcEnd - pSrc, offset);
-				pSrc += offset;
-			}
-
-			return result;
+			return FromUTF16(std::u16string_view(pSrc, view.size()));
 		}
 
 		std::string Narrow(const StringView s)

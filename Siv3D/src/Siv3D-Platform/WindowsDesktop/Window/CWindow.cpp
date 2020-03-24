@@ -13,6 +13,7 @@
 # include <Siv3D/Utility.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include "CWindow.hpp"
+# include "DPIAwareness.hpp"
 # include "WindowProc.hpp"
 
 namespace s3d
@@ -21,7 +22,7 @@ namespace s3d
 	{
 		static void RegisterWindowClass(HINSTANCE hInstance, const wchar_t* className)
 		{
-			LOG_TRACE(U"RegisterWindowClass() ---");
+			LOG_SCOPED_TRACE(U"RegisterWindowClass()");
 
 			const WNDCLASSEX windowClass
 			{
@@ -40,8 +41,6 @@ namespace s3d
 			{
 				throw EngineError(U"RegisterClassExW() failed");
 			}
-
-			LOG_TRACE(U"--- RegisterWindowClass()");
 		}
 	}
 
@@ -52,7 +51,7 @@ namespace s3d
 
 	CWindow::~CWindow()
 	{
-		LOG_TRACE(U"CWindow::~CWindow() ---");
+		LOG_SCOPED_TRACE(U"CWindow::~CWindow()");
 
 		if (m_hWnd)
 		{
@@ -62,18 +61,19 @@ namespace s3d
 
 		LOG_VERBOSE(U"UnregisterClassW()");
 		::UnregisterClassW(m_windowClassName.c_str(), m_hInstance);
-
-		LOG_TRACE(U"--- CWindow::~CWindow()");
 	}
 
 	void CWindow::init()
 	{
-		LOG_TRACE(U"CWindow::init() ---");
+		LOG_SCOPED_TRACE(U"CWindow::init()");
 
-		::SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+		// DPI awareness を有効化
+		detail::SetDPIAwareness();
 
+		// hInstance を取得
 		m_hInstance = ::GetModuleHandleW(nullptr);
 		
+		// WindowClass の名前を生成
 		m_windowClassName = L"Siv3D App";//FileSystem::ModulePath().toWstr();
 
 		// WindowClass を登録
@@ -118,7 +118,5 @@ namespace s3d
 		}
 
 		::ShowWindow(m_hWnd, SW_SHOW);
-
-		LOG_TRACE(U"--- CWindow::init()");
 	}
 }

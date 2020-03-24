@@ -17,6 +17,12 @@ namespace s3d
 	namespace Unicode
 	{
 		[[nodiscard]]
+		String Widen(std::string_view view);
+
+		[[nodiscard]]
+		String FromUTF16(std::u16string_view view);
+
+		[[nodiscard]]
 		String FromWString(std::wstring_view view);
 
 		/// <summary>

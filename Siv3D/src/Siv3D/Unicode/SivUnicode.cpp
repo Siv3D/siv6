@@ -9,6 +9,7 @@
 //
 //-----------------------------------------------
 
+# include <miniutf/miniutf.hpp>
 # include <Siv3D/Unicode.hpp>
 # include "UnicodeUtility.hpp"
 
@@ -16,6 +17,24 @@ namespace s3d
 {
 	namespace Unicode
 	{
+		String FromUTF16(const std::u16string_view view)
+		{
+			String result(detail::UTF32_Length(view), '0');
+
+			const char16* pSrc = view.data();
+			const char16* const pSrcEnd = pSrc + view.size();
+			char32* pDst = &result[0];
+
+			while (pSrc != pSrcEnd)
+			{
+				int32 offset;
+				*pDst++ = detail::utf16_decode(pSrc, pSrcEnd - pSrc, offset);
+				pSrc += offset;
+			}
+
+			return result;
+		}
+
 		std::string ToUTF8(const StringView s)
 		{
 			std::string result(detail::UTF8_Length(s), '0');

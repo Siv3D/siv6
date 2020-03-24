@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/Windows/Windows.hpp>
-# include <shellscalingapi.h>
+# include <ShellScalingApi.h> // for GetDpiForMonitor()
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Indexed.hpp>
 # include <Siv3D/Unicode.hpp>
@@ -21,8 +21,11 @@ namespace s3d::detail
 {
 	BOOL CALLBACK MonitorCallback(HMONITOR handle, HDC, RECT*, LPARAM data)
 	{
+		LOG_SCOPED_TRACE(U"MonitorCallback()");
+
 		MONITORINFOEXW monitorInfo = { sizeof(monitorInfo) };
 
+		LOG_VERBOSE(U"GetMonitorInfoW()");
 		if (::GetMonitorInfoW(handle, &monitorInfo))
 		{
 			Monitor* monitor = reinterpret_cast<Monitor*>(data);
@@ -34,6 +37,7 @@ namespace s3d::detail
 				monitor->handle			= handle;
 
 				uint32 dpiX = 0, dpiY = 0;
+				LOG_VERBOSE(U"GetDpiForMonitor()");
 				if (SUCCEEDED(::GetDpiForMonitor(handle, MDT_EFFECTIVE_DPI, &dpiX, &dpiY)))
 				{
 					monitor->displayDPI = dpiX;
@@ -43,11 +47,13 @@ namespace s3d::detail
 			}
 		}
 
-		return TRUE;
+		return true;
 	}
 
 	Monitor CreateMonitor(const DISPLAY_DEVICEW& adapter, const DISPLAY_DEVICEW* display)
 	{
+		LOG_SCOPED_TRACE(U"CreateMonitor()");
+
 		Monitor monitor;
 		monitor.adapterString		= Unicode::FromWString(adapter.DeviceString);
 		monitor.adapterName			= Unicode::FromWString(adapter.DeviceName);
@@ -66,6 +72,7 @@ namespace s3d::detail
 			::DeleteDC(hdc);
 		}
 
+		LOG_VERBOSE(U"EnumDisplayMonitors()");
 		::EnumDisplayMonitors(nullptr, nullptr, MonitorCallback, (LPARAM)&monitor);
 
 		return monitor;
@@ -73,7 +80,7 @@ namespace s3d::detail
 
 	Array<Monitor> EnumActiveMonitors()
 	{
-		LOG_TRACE(U"EnumActiveMonitors() ---");
+		LOG_SCOPED_TRACE(U"EnumActiveMonitors()");
 
 		Array<Monitor> monitors;
 
@@ -81,6 +88,7 @@ namespace s3d::detail
 		{
 			DISPLAY_DEVICEW adapter = { sizeof(adapter) };
 
+			LOG_VERBOSE(U"EnumDisplayDevicesW(nullptr, {}, ...)"_fmt(adapterIndex));
 			if (!::EnumDisplayDevicesW(nullptr, adapterIndex, &adapter, 0))
 			{
 				break;
@@ -97,6 +105,7 @@ namespace s3d::detail
 			{
 				DISPLAY_DEVICEW display = { sizeof(display) };
 
+				LOG_VERBOSE(U"EnumDisplayDevicesW(\"{}\", {}, ...)"_fmt(Unicode::FromWString(adapter.DeviceName), displayIndex));
 				if (!::EnumDisplayDevicesW(adapter.DeviceName, displayIndex, &display, 0))
 				{
 					break;
@@ -137,8 +146,6 @@ namespace s3d::detail
 			LOG_TRACE(U"- displayDPI: {}"_fmt(monitor.displayDPI));
 			LOG_TRACE(U"- handle: {}"_fmt((void*)monitor.handle));
 		}
-
-		LOG_TRACE(U"--- EnumActiveMonitors()");
 
 		return monitors;
 	}

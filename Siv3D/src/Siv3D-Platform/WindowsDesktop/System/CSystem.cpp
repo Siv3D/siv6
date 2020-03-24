@@ -29,11 +29,8 @@ namespace s3d
 
 	void CSystem::init()
 	{
-		LOG_TRACE(U"CSystem::init() ---");
+		LOG_SCOPED_TRACE(U"CSystem::init()");
 
 		Siv3DEngine::Get<ISiv3DWindow>()->init();
-
-
-		LOG_TRACE(U"--- CSystem::init()");
 	}
 }

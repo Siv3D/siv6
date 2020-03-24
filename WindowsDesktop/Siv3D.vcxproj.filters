@@ -109,8 +109,8 @@
     <Filter Include="src\ThirdParty\miniutf">
       <UniqueIdentifier>{6f677924-4afd-43bd-ba7a-ca7a15934ab3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Monitor">
-      <UniqueIdentifier>{7bbca726-3926-4a0c-b366-25b2ac63d622}</UniqueIdentifier>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\DLL">
+      <UniqueIdentifier>{e2ef10a8-201e-40ed-9caf-204bbe8d3b7f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -336,6 +336,12 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\PointVector.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\DPIAwareness.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\DLL.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -454,6 +460,12 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\Monitor.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\DPIAwareness.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\DLL\SivDLL.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\DLL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -12,14 +12,28 @@
 # pragma once
 # include "Platform.hpp"
 # include "LogType.hpp"
+# include "StringView.hpp"
 
 namespace s3d
 {
-	class StringView;
-
 	namespace Internal
 	{
 		void OutputEngineLog(LogType type, StringView s);
+
+		class ScopedEngineLog
+		{
+		private:
+
+			LogType m_type;
+
+			StringView m_s;
+
+		public:
+
+			ScopedEngineLog(LogType type, StringView s);
+
+			~ScopedEngineLog();
+		};
 	}
 }
 
@@ -32,6 +46,8 @@ namespace s3d
 #	define LOG_INFO(S)		s3d::Internal::OutputEngineLog(s3d::LogType::Info,		S)
 #	define LOG_TRACE(S)		s3d::Internal::OutputEngineLog(s3d::LogType::Trace,		S)
 #	define LOG_VERBOSE(S)	s3d::Internal::OutputEngineLog(s3d::LogType::Verbose,	S)
+
+#	define LOG_SCOPED_TRACE(S)	const s3d::Internal::ScopedEngineLog s3d_scoped_trace{s3d::LogType::Trace, S}
 
 # else
 
