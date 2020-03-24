@@ -21,7 +21,7 @@ namespace s3d
 	{
 		struct init_t {};
 
-		explicit constexpr PlaceHolder_t(init_t) {}
+		explicit constexpr PlaceHolder_t(init_t) noexcept {}
 	};
 
 	namespace Arg

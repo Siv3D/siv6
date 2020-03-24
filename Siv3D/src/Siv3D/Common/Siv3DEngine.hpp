@@ -45,7 +45,7 @@ namespace s3d
 
 		template <class Interface>
 		[[nodiscard]]
-		static auto* Get()
+		static auto* Get() noexcept
 		{
 			return std::get<Siv3DComponent<Interface>>(pEngine->m_components).get();
 		}

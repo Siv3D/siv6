@@ -15,10 +15,10 @@ namespace s3d
 {
 	namespace detail
 	{
-		int EnableDebugHeapManager(bool);
-		int EnableHeadlessMode(bool);
-		int EnableStdErr(bool);
-		int EnableTest(bool);
+		int EnableDebugHeapManager(bool) noexcept;
+		int EnableHeadlessMode(bool) noexcept;
+		int EnableStdErr(bool) noexcept;
+		int EnableTest(bool) noexcept;
 	}
 }
 

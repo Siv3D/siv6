@@ -23,7 +23,7 @@ namespace s3d
 			Siv3DEngine::Get<ISiv3DLogger>()->write(type, s);
 		}
 
-		ScopedEngineLog::ScopedEngineLog(const LogType type, const  StringView s)
+		ScopedEngineLog::ScopedEngineLog(const LogType type, const StringView s)
 			: m_type(type)
 			, m_s(s)
 		{
