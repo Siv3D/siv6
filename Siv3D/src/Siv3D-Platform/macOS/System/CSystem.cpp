@@ -29,4 +29,9 @@ namespace s3d
 	{
 		Siv3DEngine::Get<ISiv3DWindow>()->init();
 	}
+
+	bool CSystem::update()
+	{
+		return(false);
+	}
 }

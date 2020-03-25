@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -25,5 +25,7 @@ namespace s3d
 		~CSystem() override;
 
 		void init() override;
+		
+		bool update() override;
 	};
 }
