@@ -118,6 +118,9 @@
 
 # include <Siv3D/Console.hpp>
 
+# include <Siv3D/UserAction.hpp>
+
+
 # if !defined(SIV3D_LIBRARY_BUILD) && SIV3D_PLATFORM(WINDOWS)
 
 	# include <Siv3D/Windows/Libraries.hpp>

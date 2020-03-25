@@ -112,6 +112,9 @@
     <Filter Include="src\Siv3D\Formatter">
       <UniqueIdentifier>{f7fdfc9c-ecac-403a-b8b2-7234a2cfecb7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\UserAction">
+      <UniqueIdentifier>{14fa93c1-3279-4aaf-ace0-47e00c15ae16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -345,6 +348,18 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Formatter.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\UserAction.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\UserAction\CUserAction.hpp">
+      <Filter>src\Siv3D\UserAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\UserAction\IUSerAction.hpp">
+      <Filter>src\Siv3D\UserAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\System.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -469,6 +484,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Formatter\SivFormatter.cpp">
       <Filter>src\Siv3D\Formatter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\UserAction\CUserAction.cpp">
+      <Filter>src\Siv3D\UserAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\UserAction\UserActionFactory.cpp">
+      <Filter>src\Siv3D\UserAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\System\SivSystem.cpp">
+      <Filter>src\Siv3D\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

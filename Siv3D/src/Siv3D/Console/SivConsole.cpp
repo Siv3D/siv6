@@ -41,7 +41,7 @@ namespace s3d
 
 		void Console_impl::open() const
 		{
-			Siv3DEngine::Get<ISiv3DConsole>()->open();
+			SIV3D_ENGINE(Console)->open();
 		}
 
 		void Console_impl::write(const char32_t* s) const

@@ -58,7 +58,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 
 	try
 	{
-		Siv3DEngine::Get<ISiv3DSystem>()->init();
+		SIV3D_ENGINE(System)->init();
 	}
 	catch (const Error&)
 	{

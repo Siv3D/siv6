@@ -10,19 +10,14 @@
 //-----------------------------------------------
 
 # pragma once
+# include "Common.hpp"
 
 namespace s3d
 {
-	class ISiv3DSystem
+	namespace System
 	{
-	public:
+		bool Update();
 
-		static ISiv3DSystem* Create();
-
-		virtual ~ISiv3DSystem() = default;
-
-		virtual void init() = 0;
-
-		virtual bool update() = 0;
-	};
+		void Exit() noexcept;
+	}
 }

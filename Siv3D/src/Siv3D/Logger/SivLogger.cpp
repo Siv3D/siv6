@@ -41,17 +41,17 @@ namespace s3d
 
 		void Logger_impl::writeln(const char32_t* s) const
 		{
-			Siv3DEngine::Get<ISiv3DLogger>()->write(LogType::App, s);
+			SIV3D_ENGINE(Logger)->write(LogType::App, s);
 		}
 
 		void Logger_impl::writeln(const StringView s) const
 		{
-			Siv3DEngine::Get<ISiv3DLogger>()->write(LogType::App, s);
+			SIV3D_ENGINE(Logger)->write(LogType::App, s);
 		}
 
 		void Logger_impl::writeln(const String& s) const
 		{
-			Siv3DEngine::Get<ISiv3DLogger>()->write(LogType::App, s);
+			SIV3D_ENGINE(Logger)->write(LogType::App, s);
 		}
 
 		void Logger_impl::operator()(const char32_t* s) const

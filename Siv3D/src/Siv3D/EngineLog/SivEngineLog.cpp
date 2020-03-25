@@ -20,19 +20,19 @@ namespace s3d
 	{
 		void OutputEngineLog(const LogType type, const StringView s)
 		{
-			Siv3DEngine::Get<ISiv3DLogger>()->write(type, s);
+			SIV3D_ENGINE(Logger)->write(type, s);
 		}
 
 		ScopedEngineLog::ScopedEngineLog(const LogType type, const StringView s)
 			: m_type(type)
 			, m_s(s)
 		{
-			Siv3DEngine::Get<ISiv3DLogger>()->write(m_type, m_s + U" ---"_s);
+			SIV3D_ENGINE(Logger)->write(m_type, m_s + U" ---"_s);
 		}
 
 		ScopedEngineLog::~ScopedEngineLog()
 		{
-			Siv3DEngine::Get<ISiv3DLogger>()->write(m_type, U"--- "_s + m_s);
+			SIV3D_ENGINE(Logger)->write(m_type, U"--- "_s + m_s);
 		}
 	}
 }

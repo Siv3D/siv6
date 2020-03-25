@@ -9,6 +9,7 @@
 //
 //-----------------------------------------------
 
+# include <Siv3D/Common.hpp>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Common/ApplicationOptions.hpp>
 # include "CConsole.hpp"
@@ -22,6 +23,8 @@ namespace s3d
 
 	CConsole::~CConsole()
 	{
+		LOG_SCOPED_TRACE(U"CConsole::~CConsole()");
+
 		close();
 	}
 
@@ -31,6 +34,8 @@ namespace s3d
 		{
 			return;
 		}
+
+		LOG_SCOPED_TRACE(U"CConsole::open()");
 
 		::AllocConsole();
 		::freopen_s(&m_fpOut, "CONOUT$", "w", stdout);

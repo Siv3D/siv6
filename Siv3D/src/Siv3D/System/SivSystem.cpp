@@ -9,23 +9,23 @@
 //
 //-----------------------------------------------
 
-# pragma once
+# include <Siv3D/System.hpp>
 # include <Siv3D/System/ISystem.hpp>
+# include <Siv3D/UserAction/IUSerAction.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
 {
-	class CSystem final : public ISiv3DSystem
+	namespace System
 	{
-	private:
+		bool Update()
+		{
+			return SIV3D_ENGINE(System)->update();
+		}
 
-	public:
-
-		CSystem();
-
-		~CSystem() override;
-
-		void init() override;
-
-		bool update() override;
-	};
+		void Exit() noexcept
+		{
+			SIV3D_ENGINE(UserAction)->reportUserActions(UserAction::SystemExitCalled);
+		}
+	}
 }

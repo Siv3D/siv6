@@ -9,20 +9,12 @@
 //
 //-----------------------------------------------
 
-# pragma once
+# include "CUserAction.hpp"
 
 namespace s3d
 {
-	class ISiv3DSystem
+	ISiv3DUserAction* ISiv3DUserAction::Create()
 	{
-	public:
-
-		static ISiv3DSystem* Create();
-
-		virtual ~ISiv3DSystem() = default;
-
-		virtual void init() = 0;
-
-		virtual bool update() = 0;
-	};
+		return new CUserAction;
+	}
 }
