@@ -14,6 +14,7 @@
 		2C4231D2242B0BDE00A16BCA /* UserActionFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231CE242B0BDE00A16BCA /* UserActionFactory.cpp */; };
 		2C4231D4242B0BDE00A16BCA /* CUserAction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4231D0242B0BDE00A16BCA /* CUserAction.hpp */; };
 		2C4231D6242B0C6700A16BCA /* IUserAction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4231D5242B0C6700A16BCA /* IUserAction.hpp */; };
+		2C4231D8242B0F2900A16BCA /* SivSystem_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231D7242B0F2900A16BCA /* SivSystem_Platform.cpp */; };
 		2C4360C4240E4EEC001657D2 /* catch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43609C240E4EEC001657D2 /* catch.hpp */; };
 		2C4360C5240E4EEC001657D2 /* SivUnicode_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360A0240E4EEC001657D2 /* SivUnicode_Platform.cpp */; };
 		2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360A1240E4EEC001657D2 /* Siv3DMain.cpp */; };
@@ -97,6 +98,7 @@
 		2C4231CE242B0BDE00A16BCA /* UserActionFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UserActionFactory.cpp; sourceTree = "<group>"; };
 		2C4231D0242B0BDE00A16BCA /* CUserAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CUserAction.hpp; sourceTree = "<group>"; };
 		2C4231D5242B0C6700A16BCA /* IUserAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IUserAction.hpp; sourceTree = "<group>"; };
+		2C4231D7242B0F2900A16BCA /* SivSystem_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivSystem_Platform.cpp; sourceTree = "<group>"; };
 		2C436087240E141C001657D2 /* String.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = String.hpp; sourceTree = "<group>"; };
 		2C436088240E141C001657D2 /* Common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Common.hpp; sourceTree = "<group>"; };
 		2C436089240E141C001657D2 /* Types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Types.hpp; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 			children = (
 				2C43B2E324264E3100D5CBBB /* CSystem.cpp */,
 				2C43B2E224264E3100D5CBBB /* CSystem.hpp */,
+				2C4231D7242B0F2900A16BCA /* SivSystem_Platform.cpp */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				2C4360D3240E4EEC001657D2 /* SivUnicode.cpp in Sources */,
 				2C4360CE240E4EEC001657D2 /* DummyFactory.cpp in Sources */,
 				2C43B2CB2426223400D5CBBB /* LoggerFactory.cpp in Sources */,
+				2C4231D8242B0F2900A16BCA /* SivSystem_Platform.cpp in Sources */,
 				2C4360C5240E4EEC001657D2 /* SivUnicode_Platform.cpp in Sources */,
 				2C439F8A241DCEA9001154C2 /* bignum-dtoa.cc in Sources */,
 				2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */,

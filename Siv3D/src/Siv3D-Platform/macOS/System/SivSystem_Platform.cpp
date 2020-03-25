@@ -9,29 +9,21 @@
 //
 //-----------------------------------------------
 
-# include <Siv3D/Common/Siv3DEngine.hpp>
-# include <Siv3D/Window/IWindow.hpp>
-# include "CSystem.hpp"
+# include <unistd.h>
+# include <Siv3D/System.hpp>
 
 namespace s3d
 {
-	CSystem::CSystem()
+	namespace System
 	{
-
-	}
-
-	CSystem::~CSystem()
-	{
-
-	}
-
-	void CSystem::init()
-	{
-		SIV3D_ENGINE(Window)->init();
-	}
-
-	bool CSystem::update()
-	{
-		return(false);
+		void Sleep(const int32 milliseconds)
+		{
+			if (milliseconds < 0)
+			{
+				return;
+			}
+			
+			::usleep(static_cast<uint32>(milliseconds) * 1000);
+		}
 	}
 }

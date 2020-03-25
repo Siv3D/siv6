@@ -27,7 +27,7 @@ int main(int, char*[])
 	
 	try
 	{
-		Siv3DEngine::Get<ISiv3DSystem>()->init();
+		SIV3D_ENGINE(System)->init();
 	}
 	catch (const Error&)
 	{
