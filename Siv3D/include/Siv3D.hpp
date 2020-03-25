@@ -120,6 +120,8 @@
 
 # include <Siv3D/UserAction.hpp>
 
+# include <Siv3D/System.hpp>
+
 
 # if !defined(SIV3D_LIBRARY_BUILD) && SIV3D_PLATFORM(WINDOWS)
 

@@ -27,5 +27,20 @@ namespace s3d
 		{
 			SIV3D_ENGINE(UserAction)->reportUserActions(UserAction::SystemExitCalled);
 		}
+
+		void SetTerminationTriggers(const uint32 userActionFlags) noexcept
+		{
+			SIV3D_ENGINE(UserAction)->setTerminationTriggers(userActionFlags);
+		}
+
+		uint32 GetTerminationTriggers() noexcept
+		{
+			return SIV3D_ENGINE(UserAction)->getTerminationTriggers();
+		}
+
+		uint32 GetUserActions() noexcept
+		{
+			return SIV3D_ENGINE(UserAction)->getPreviousUserActions();
+		}
 	}
 }

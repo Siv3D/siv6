@@ -15,11 +15,12 @@
 namespace s3d
 {
 	/// <summary>
-	/// アプリケーションを終了させるためのユーザアクション
+	/// アプリケーションを終了させるためのユーザアクションを表します。
 	/// User Actions for Application Termination
 	/// </summary>
 	/// <remarks>
 	/// System::SetTerminationTriggers(), System::GetTerminationTriggers(), System::GetUserActions() で使われる定数
+	/// | 演算子で複数の値を組み合わせることができます。
 	/// Constants used for System::SetTerminationTriggers(), System::GetTerminationTriggers(), and System::GetUserActions()
 	/// </remarks>
 	namespace UserAction
@@ -27,53 +28,53 @@ namespace s3d
 		enum Flag : uint32
 		{
 			/// <summary>
-			/// ユーザーがアプリケーションウィドウの閉じるボタンを押した。
+			/// アプリケーションウィドウの閉じるボタンを押す操作です。
 			/// The user has clicked the close button of the application window.
 			/// </summary>
 			CloseButtonClicked = 0b000001u,
 
 			/// <summary>
-			/// ユーザーがエスケープキーを押した
+			/// エスケープキーを押す操作です。
 			/// The user has pressed the escape key.
 			/// </summary>
 			EscapeKeyDown = 0b000010u,
 
 			/// <summary>
-			/// ユーザーがウィンドウを非アクティブにした
+			/// ウィンドウを非アクティブにする操作です。
 			/// The application window has been deactivated.
 			/// </summary>
 			WindowDeactivated = 0b000100u,
 
 			/// <summary>
-			/// ユーザーが何らかのキーを押した
+			/// 何らかのキーを押す操作です。
 			/// The user has pressed a key.
 			/// </summary>
 			AnyKeyDown = 0b001000u,
 
 			/// <summary>
-			/// ユーザーが何らかのマウスのボタンを押した
+			/// 何らかのマウスのボタンを押す操作です。
 			/// The user has pressed a mouse button.
 			/// </summary>
 			MouseButtonDown = 0b010000u,
 
 			/// <summary>
-			/// ユーザーが何らかのキーかマウスのボタンを押した
+			/// 何らかのキー、または何らかのマウスのボタンを押す操作です。
 			/// The user has pressed a key or a mouse button.
 			/// </summary>
 			AnyKeyOrMouseDown = (AnyKeyDown | MouseButtonDown),
 
 			/// <summary>
-			/// デフォルト設定 (CloseButtonClicked | EscapeKeyDown)
+			/// アプリケーションウィドウの閉じるボタンを押すか、エスケープキーを押す操作です。
 			/// Default (CloseButtonClicked | EscapeKeyDown)
 			/// </summary>
 			Default = (CloseButtonClicked | EscapeKeyDown),
 
 			/// <summary>
-			/// 設定しない
+			/// アプリケーションを終了させるためのユーザアクションを設定しないことを示します。
 			/// None
 			/// </summary>
 			/// <remarks>
-			/// このフラグを単独で使用した場合、メインループを終了するために System::Exit() を明示的に呼ぶ必要があります。
+			/// System::SetTerminationTriggers() にこの定数のみを渡した場合、メインループから抜けるには break や return を使うか、System::Exit() を呼ぶ必要があります。
 			/// When this flag is set exclusively, you must explicitly call System::Exit() to exit the main loop.
 			/// </remarks>
 			None = 0u,

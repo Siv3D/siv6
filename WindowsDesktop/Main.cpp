@@ -1,30 +1,24 @@
 ﻿
 # include <Siv3D.hpp>
-# include <Siv3D/Windows/Windows.hpp>
 
 SIV3D_OPTION_DEBUG_HEAP_MANAGER(true);
-SIV3D_OPTION_HEADLESS_MODE(true);
+SIV3D_OPTION_HEADLESS_MODE(false);
 SIV3D_OPTION_OUTPUT_STDERR(true);
 SIV3D_OPTION_RUN_TEST(false);
 
-
 void Main()
 {
-	::Sleep(4000);
+	int32 frameCount = 0;
 
-	//Console(U"かきくけこ");
-	//Console(String(U"あいうえお"));
-	//Console(StringView(U"さしすせそ"));
+	while (System::Update())
+	{
+		System::Sleep(16);
 
-	//Logger << Time::GetNanosec();
-	//Logger << Time::GetNanosec();
-	//Logger << Time::GetNanosec();
-	//Logger << Time::GetNanosec();
+		++frameCount;
 
-	//auto s = Format(U"aaa", 20, U"aaa", std::wstring{});
-
-	//Apply(10, 20);
-
-	//int n;
-	//std::cin >> n;
+		if (frameCount > 60 * 8)
+		{
+			System::Exit();
+		}
+	}
 }

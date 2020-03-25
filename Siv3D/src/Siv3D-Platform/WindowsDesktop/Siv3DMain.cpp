@@ -42,6 +42,8 @@ namespace s3d
 
 	static void MainThread()
 	{
+		LOG_SCOPED_TRACE(U"MainThread");
+
 		Main();
 	}
 }
@@ -69,7 +71,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 	{
 		PerformTest();
 	}
-
+	
 	const std::future<void> f = std::async(std::launch::async, MainThread);
 
 	while (!f._Is_ready())
@@ -77,7 +79,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 		PumpMessages();
 
 		::timeBeginPeriod(1);
-		::Sleep(1);
+		{
+			::Sleep(1);
+		}
 		::timeEndPeriod(1);
 	}
 

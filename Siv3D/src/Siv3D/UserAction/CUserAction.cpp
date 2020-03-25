@@ -73,7 +73,7 @@ namespace s3d
 		}
 		else if (triggerdActions & UserAction::SystemExitCalled)
 		{
-			LOG_INFO(U"🚪 System::Update(): System::Exit() has been called");
+			LOG_INFO(U"🚪 System::Update(): System::Exit() has called");
 		}
 	}
 }

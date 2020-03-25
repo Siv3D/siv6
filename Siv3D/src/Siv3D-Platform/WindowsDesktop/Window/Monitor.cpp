@@ -131,7 +131,7 @@ namespace s3d::detail
 
 		for (auto [i, monitor] : Indexed(monitors))
 		{
-			LOG_TRACE(U"🖥️ Monitor[{}]{} ---"_fmt(i, monitor.isPrimaryAdapter ? U" (primary)" : U""));
+			LOG_TRACE(U"🖥️ Monitor[{}]{}"_fmt(i, monitor.isPrimaryAdapter ? U" (primary)" : U""));
 			LOG_TRACE(U"- adapterName: {}"_fmt(monitor.adapterName));
 			LOG_TRACE(U"- adapterString: {}"_fmt(monitor.adapterString));
 			LOG_TRACE(U"- displayName: {}"_fmt(monitor.displayName));
