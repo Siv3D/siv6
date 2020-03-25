@@ -22,5 +22,7 @@ namespace s3d
 		virtual ~ISiv3DWindow() = default;
 
 		virtual void init() = 0;
+
+		virtual void update() = 0;
 	};
 }

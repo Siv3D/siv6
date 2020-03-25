@@ -119,4 +119,9 @@ namespace s3d
 
 		::ShowWindow(m_hWnd, SW_SHOW);
 	}
+
+	void CWindow::update()
+	{
+
+	}
 }
