@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -10,13 +10,22 @@
 //-----------------------------------------------
 
 # pragma once
+# include <Siv3D/Window.hpp>
+# include <Siv3D/String.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <GLFW/glfw3.h>
 
 namespace s3d
 {
 	class CWindow final : public ISiv3DWindow
 	{
 	private:
+		
+		GLFWwindow* m_window = nullptr;
+		
+		Size m_clientSize = Window::DefaultClientSize;
+		
+		String m_actualTitle = SIV3D_BUILD(DEBUG) ? U"Siv3D App (Debug Build)" : U"Siv3D App";
 
 	public:
 
