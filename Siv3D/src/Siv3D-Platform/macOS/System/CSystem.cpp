@@ -11,6 +11,7 @@
 
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/UserAction/IUserAction.hpp>
 # include "CSystem.hpp"
 
 namespace s3d
@@ -32,6 +33,13 @@ namespace s3d
 
 	bool CSystem::update()
 	{
-		return(false);
+		if (SIV3D_ENGINE(UserAction)->terminationTriggered())
+		{
+			return false;
+		}
+		
+		SIV3D_ENGINE(Window)->update();
+		
+		return true;
 	}
 }

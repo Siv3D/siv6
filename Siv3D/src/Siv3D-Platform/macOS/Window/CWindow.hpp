@@ -34,5 +34,7 @@ namespace s3d
 		~CWindow() override;
 
 		void init() override;
+		
+		void update() override;
 	};
 }
