@@ -107,12 +107,13 @@
 
 # include <Siv3D/Time.hpp>
 
-
 # include <Siv3D/LogLevel.hpp>
 # include <Siv3D/LogType.hpp>
 # include <Siv3D/Logger.hpp>
 
 # include <Siv3D/PointVector.hpp>
+
+# include <Siv3D/Rectangle.hpp>
 
 # include <Siv3D/Window.hpp>
 
