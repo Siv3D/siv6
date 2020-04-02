@@ -13,6 +13,8 @@
 
 namespace s3d
 {
+	class String;
+
 	class ISiv3DWindow
 	{
 	public:
@@ -24,5 +26,9 @@ namespace s3d
 		virtual void init() = 0;
 
 		virtual void update() = 0;
+
+		virtual void setWindowTitle(const String& title) = 0;
+
+		virtual const String& getWindowTitle() const noexcept = 0;
 	};
 }
