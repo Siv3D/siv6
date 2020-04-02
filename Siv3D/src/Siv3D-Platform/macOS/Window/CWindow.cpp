@@ -74,4 +74,31 @@ namespace s3d
 			::glfwSetWindowShouldClose(m_window, GLFW_FALSE);
 		}
 	}
+
+	void CWindow::setWindowTitle(const String& title)
+	{
+		if (m_title == title)
+		{
+			return;
+		}
+		
+		if constexpr (SIV3D_BUILD(DEBUG))
+		{
+			//const String statistics = Siv3DEngine::Get<ISiv3DProfiler>()->getSimpleStatistics();
+			m_actualTitle = title + U" (Debug Build) | ";
+		}
+		else
+		{
+			m_actualTitle = title;
+		}
+		
+		m_title = title;
+
+		::glfwSetWindowTitle(m_window, m_actualTitle.narrow().c_str());
+	}
+
+	const String& CWindow::getWindowTitle() const noexcept
+	{
+		return m_title;
+	}
 }

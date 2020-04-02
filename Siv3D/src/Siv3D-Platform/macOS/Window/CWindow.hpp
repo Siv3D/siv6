@@ -25,7 +25,8 @@ namespace s3d
 		
 		Size m_clientSize = Window::DefaultClientSize;
 		
-		String m_actualTitle = SIV3D_BUILD(DEBUG) ? U"Siv3D App (Debug Build)" : U"Siv3D App";
+		String m_title = String(Window::DefaultTitle);
+		String m_actualTitle = String(SIV3D_BUILD(DEBUG) ? U"Siv3D App (Debug Build)"_sv : Window::DefaultTitle);
 
 	public:
 
@@ -36,5 +37,9 @@ namespace s3d
 		void init() override;
 		
 		void update() override;
+		
+		void setWindowTitle(const String& title) override;
+
+		const String& getWindowTitle() const noexcept override;
 	};
 }

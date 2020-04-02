@@ -12,6 +12,8 @@ void Main()
 	
 	while (System::Update())
 	{
+		Window::SetTitle(frameCount);
+		
 		System::Sleep(16);
 		
 		if (++frameCount > 60*8)
