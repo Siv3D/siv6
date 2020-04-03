@@ -40,8 +40,24 @@ namespace s3d
 		{
 			throw EngineError(U"glfwInit() failed");
 		}
+		
+		const bool useMetal = false;
 
-		::glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+		if constexpr (useMetal)
+		{
+			// Metal
+			::glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+		}
+		else
+		{
+			// OpenGL 4.1
+			::glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+			::glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+			::glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+			::glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+			::glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, SIV3D_BUILD(DEBUG) ? GLFW_TRUE : GLFW_FALSE);
+		}
+		
 		::glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 	
 		m_window = ::glfwCreateWindow(m_clientSize.x, m_clientSize.y,
