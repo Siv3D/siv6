@@ -58,7 +58,7 @@ namespace s3d
 	{
 		const Size backBufferSize(800, 600);// = Window::ClientSize();
 		const Size sceneSize(800, 600);// = Scene::Size();
-		return U"[{}] {} FPS | W {}x{} | S {}x{}"_fmt(
+		return U"{} | {} FPS | W {}x{} | S {}x{}"_fmt(
 			U"OpenGL",
 			m_currentFPS,
 			backBufferSize.x, backBufferSize.y,

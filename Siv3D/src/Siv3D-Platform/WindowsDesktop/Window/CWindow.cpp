@@ -92,14 +92,14 @@ namespace s3d
 		const auto& monitor = m_monitors[0];
 		const double scale = monitor.getScale();
 
-		const int32 clientWidth = static_cast<int32>(m_clientSize.x * scale);
-		const int32 clientHeight = static_cast<int32>(m_clientSize.y * scale);
-		const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - clientWidth) / 2, 0);
-		const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - clientHeight) / 2, 0);
+		m_actualClientSize.x = static_cast<int32>(m_clientSize.x * scale);
+		m_actualClientSize.y = static_cast<int32>(m_clientSize.y * scale);
+		const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - m_actualClientSize.x) / 2, 0);
+		const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - m_actualClientSize.y) / 2, 0);
 		const int32 posX = (monitor.displayRect.left + offsetX);
 		const int32 posY = (monitor.displayRect.top + offsetY);
 
-		RECT windowRect = { posX, posY, (posX + clientWidth), (posY + clientHeight) };
+		RECT windowRect = { posX, posY, (posX + m_actualClientSize.x), (posY + m_actualClientSize.y) };
 		::AdjustWindowRectExForDpi(&windowRect, WS_OVERLAPPEDWINDOW, FALSE, 0, monitor.displayDPI);
 
 		m_hWnd = ::CreateWindowExW(

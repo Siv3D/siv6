@@ -24,11 +24,14 @@ namespace s3d
 		HWND m_hWnd = nullptr;
 		HINSTANCE m_hInstance = nullptr;
 		std::wstring m_windowClassName;
+		
 		String m_title = String(Window::DefaultTitle);
 		String m_actualTitle = String(SIV3D_BUILD(DEBUG) ? U"Siv3D App (Debug Build)"_sv : Window::DefaultTitle);
 
 		Array<Monitor> m_monitors;
+
 		Size m_clientSize = Window::DefaultClientSize;
+		Size m_actualClientSize = Window::DefaultClientSize;
 		uint32 m_style = WS_OVERLAPPEDWINDOW & ~(WS_MAXIMIZEBOX | WS_THICKFRAME);
 
 	public:
