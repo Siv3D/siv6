@@ -14,6 +14,7 @@
 # include <Siv3D/Logger/ILogger.hpp>
 # include <Siv3D/System/ISystem.hpp>
 # include <Siv3D/UserAction/IUserAction.hpp>
+# include <Siv3D/Scene/IScene.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Console/IConsole.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>

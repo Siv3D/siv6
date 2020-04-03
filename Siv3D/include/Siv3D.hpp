@@ -117,6 +117,8 @@
 
 # include <Siv3D/Window.hpp>
 
+# include <Siv3D/Scene.hpp>
+
 # include <Siv3D/Console.hpp>
 
 # include <Siv3D/UserAction.hpp>

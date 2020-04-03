@@ -11,6 +11,7 @@
 
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Scene/IScene.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
 # include <Siv3D/UserAction/IUSerAction.hpp>
 # include <Siv3D/Common.hpp>
@@ -60,6 +61,15 @@ namespace s3d
 		SIV3D_ENGINE(Renderer)->flush();
 		SIV3D_ENGINE(Renderer)->present();
 
+		//
+		// previous frame
+		//
+		// -----------------------------------
+		//
+		// current frame
+		//
+
+		SIV3D_ENGINE(Scene)->update();
 		SIV3D_ENGINE(Window)->update();
 		SIV3D_ENGINE(Renderer)->clear();
 	

@@ -130,6 +130,9 @@
     <Filter Include="src\ThirdParty\GL">
       <UniqueIdentifier>{5772cef1-f0b2-4805-a282-e7896b94c31a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Scene">
+      <UniqueIdentifier>{91c22bf3-d0b3-4546-819b-2878e5c4f0ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -393,6 +396,15 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\GL\wglew.h">
       <Filter>src\ThirdParty\GL</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Scene\CScene.hpp">
+      <Filter>src\Siv3D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Scene\IScene.hpp">
+      <Filter>src\Siv3D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Scene.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -541,6 +553,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\ThirdParty\GLEW\glew.c">
       <Filter>src\ThirdParty\GLEW</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Scene\CScene.cpp">
+      <Filter>src\Siv3D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Scene\SceneFactory.cpp">
+      <Filter>src\Siv3D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Scene\SivScene.cpp">
+      <Filter>src\Siv3D\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
