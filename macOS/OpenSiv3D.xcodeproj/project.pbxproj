@@ -118,6 +118,11 @@
 		2C4CBE632437236000F8B7A6 /* IScene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE5E2437236000F8B7A6 /* IScene.hpp */; };
 		2C4CBE642437236000F8B7A6 /* CScene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE5F2437236000F8B7A6 /* CScene.hpp */; };
 		2C4CBE652437236000F8B7A6 /* SivScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE602437236000F8B7A6 /* SivScene.cpp */; };
+		2C4CBE6D24376B5300F8B7A6 /* ProfilerFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE6824376B5300F8B7A6 /* ProfilerFactory.cpp */; };
+		2C4CBE6E24376B5300F8B7A6 /* IProfiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE6924376B5300F8B7A6 /* IProfiler.hpp */; };
+		2C4CBE6F24376B5300F8B7A6 /* CProfiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE6A24376B5300F8B7A6 /* CProfiler.hpp */; };
+		2C4CBE7024376B5300F8B7A6 /* CProfiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE6B24376B5300F8B7A6 /* CProfiler.cpp */; };
+		2C4CBE7124376B5300F8B7A6 /* SivProfiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE6C24376B5300F8B7A6 /* SivProfiler.cpp */; };
 		2C6898162436066800C36C25 /* SivWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6898152436066800C36C25 /* SivWindow.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
@@ -238,6 +243,12 @@
 		2C4CBE5E2437236000F8B7A6 /* IScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IScene.hpp; sourceTree = "<group>"; };
 		2C4CBE5F2437236000F8B7A6 /* CScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CScene.hpp; sourceTree = "<group>"; };
 		2C4CBE602437236000F8B7A6 /* SivScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivScene.cpp; sourceTree = "<group>"; };
+		2C4CBE6624376B3C00F8B7A6 /* Profiler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Profiler.hpp; sourceTree = "<group>"; };
+		2C4CBE6824376B5300F8B7A6 /* ProfilerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProfilerFactory.cpp; sourceTree = "<group>"; };
+		2C4CBE6924376B5300F8B7A6 /* IProfiler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IProfiler.hpp; sourceTree = "<group>"; };
+		2C4CBE6A24376B5300F8B7A6 /* CProfiler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CProfiler.hpp; sourceTree = "<group>"; };
+		2C4CBE6B24376B5300F8B7A6 /* CProfiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CProfiler.cpp; sourceTree = "<group>"; };
+		2C4CBE6C24376B5300F8B7A6 /* SivProfiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivProfiler.cpp; sourceTree = "<group>"; };
 		2C6897DF2436064900C36C25 /* Siv3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Siv3D.hpp; sourceTree = "<group>"; };
 		2C6897E12436064900C36C25 /* Concepts.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Concepts.hpp; sourceTree = "<group>"; };
 		2C6897E22436064900C36C25 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
@@ -452,6 +463,7 @@
 				2C4231C5242B0B9200A16BCA /* Formatter */,
 				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C43B2C52426223400D5CBBB /* Logger */,
+				2C4CBE6724376B5300F8B7A6 /* Profiler */,
 				2C4CBE4324370FC600F8B7A6 /* Renderer */,
 				2C4CBE5B2437236000F8B7A6 /* Scene */,
 				2C4360BE240E4EEC001657D2 /* String */,
@@ -738,6 +750,18 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
+		2C4CBE6724376B5300F8B7A6 /* Profiler */ = {
+			isa = PBXGroup;
+			children = (
+				2C4CBE6824376B5300F8B7A6 /* ProfilerFactory.cpp */,
+				2C4CBE6924376B5300F8B7A6 /* IProfiler.hpp */,
+				2C4CBE6A24376B5300F8B7A6 /* CProfiler.hpp */,
+				2C4CBE6B24376B5300F8B7A6 /* CProfiler.cpp */,
+				2C4CBE6C24376B5300F8B7A6 /* SivProfiler.cpp */,
+			);
+			path = Profiler;
+			sourceTree = "<group>";
+		};
 		2C6897DE2436064900C36C25 /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +802,7 @@
 				2C6897F22436064900C36C25 /* Point.hpp */,
 				2C6897F02436064900C36C25 /* PointVector.hpp */,
 				2C6897F12436064900C36C25 /* PredefinedNamedParameter.hpp */,
+				2C4CBE6624376B3C00F8B7A6 /* Profiler.hpp */,
 				2C6897FB2436064900C36C25 /* Rectangle.hpp */,
 				2C4CBE5A2437230600F8B7A6 /* Scene.hpp */,
 				2C6898042436064900C36C25 /* String.hpp */,
@@ -889,11 +914,13 @@
 				2C439F83241DCEA9001154C2 /* double-conversion.h in Headers */,
 				2C439F78241DCEA9001154C2 /* utils.h in Headers */,
 				2C4360D4240E4EEC001657D2 /* UnicodeUtility.hpp in Headers */,
+				2C4CBE6F24376B5300F8B7A6 /* CProfiler.hpp in Headers */,
 				2C4CBE5624370FFA00F8B7A6 /* glew.h in Headers */,
 				2C4231D4242B0BDE00A16BCA /* CUserAction.hpp in Headers */,
 				2C439F7C241DCEA9001154C2 /* bignum-dtoa.h in Headers */,
 				2C4360CF240E4EEC001657D2 /* CDummy.hpp in Headers */,
 				2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */,
+				2C4CBE6E24376B5300F8B7A6 /* IProfiler.hpp in Headers */,
 				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
 				2C4360DC240E4EEC001657D2 /* IConsole.hpp in Headers */,
 				2C423257242B19ED00A16BCA /* posix_thread.h in Headers */,
@@ -1040,8 +1067,10 @@
 				2C439F7B241DCEA9001154C2 /* string-to-double.cc in Sources */,
 				2C4231D2242B0BDE00A16BCA /* UserActionFactory.cpp in Sources */,
 				2C43B2E924264E3100D5CBBB /* CWindow.cpp in Sources */,
+				2C4CBE6D24376B5300F8B7A6 /* ProfilerFactory.cpp in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
+				2C4CBE7024376B5300F8B7A6 /* CProfiler.cpp in Sources */,
 				2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */,
 				2C423250242B155E00A16BCA /* window.c in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
@@ -1078,6 +1107,7 @@
 				2C439F86241DCEA9001154C2 /* cached-powers.cc in Sources */,
 				2C4360CD240E4EEC001657D2 /* Siv3DTest.cpp in Sources */,
 				2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */,
+				2C4CBE7124376B5300F8B7A6 /* SivProfiler.cpp in Sources */,
 				2C4CBE592437100100F8B7A6 /* glew.c in Sources */,
 				2C43B2E024264E1200D5CBBB /* SystemFactory.cpp in Sources */,
 				2C43B2D02426227600D5CBBB /* CLogger.cpp in Sources */,
