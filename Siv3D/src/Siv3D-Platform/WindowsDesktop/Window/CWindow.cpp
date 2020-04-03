@@ -132,31 +132,23 @@ namespace s3d
 
 	void CWindow::setWindowTitle(const String& title)
 	{
+		String newActualTitle = title;
+		
 		if constexpr (SIV3D_BUILD(DEBUG))
 		{
 			const String statistics = SIV3D_ENGINE(Profiler)->getSimpleStatistics();
-			const String newActualTitle = title + U" (Debug Build) | " + statistics;
-
-			if (m_actualTitle != newActualTitle)
-			{
-				::SetWindowTextW(m_hWnd, newActualTitle.toWstr().c_str());
-				m_actualTitle = newActualTitle;
-			}
-
-			m_title = title;
+			newActualTitle += U" (Debug Build) | ";
+			newActualTitle += statistics;
 		}
-		else
+
+		if (m_actualTitle != newActualTitle)
 		{
-			const String newActualTitle = title;
-
-			if (m_actualTitle != newActualTitle)
-			{
-				::SetWindowTextW(m_hWnd, newActualTitle.toWstr().c_str());
-			}
-
-			m_title = title;
-			m_actualTitle = title;
+			LOG_VERBOSE(U"SetWindowTextW(\"{}\")"_fmt(newActualTitle));
+			::SetWindowTextW(m_hWnd, newActualTitle.toWstr().c_str());
+			m_actualTitle.swap(newActualTitle);
 		}
+
+		m_title = title;
 	}
 
 	const String& CWindow::getWindowTitle() const noexcept
