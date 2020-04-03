@@ -41,5 +41,7 @@ namespace s3d
 		void setWindowTitle(const String& title) override;
 
 		const String& getWindowTitle() const noexcept override;
+		
+		void* getHandle() const noexcept override;
 	};
 }

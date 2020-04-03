@@ -107,6 +107,12 @@
 		2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2EC2426630000D5CBBB /* SivError.cpp */; };
 		2C44429E24271E1700557D51 /* SivEngineLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C44429D24271E1700557D51 /* SivEngineLog.cpp */; };
 		2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4442A02427AA7C00557D51 /* miniutf.hpp */; };
+		2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */; };
+		2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */; };
+		2C4CBE4C24370FE300F8B7A6 /* CRenderer_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */; };
+		2C4CBE4D24370FE300F8B7A6 /* CRenderer_GL4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE4A24370FE300F8B7A6 /* CRenderer_GL4.cpp */; };
+		2C4CBE5624370FFA00F8B7A6 /* glew.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE5224370FFA00F8B7A6 /* glew.h */; };
+		2C4CBE592437100100F8B7A6 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE582437100100F8B7A6 /* glew.c */; };
 		2C6898162436066800C36C25 /* SivWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6898152436066800C36C25 /* SivWindow.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
@@ -215,6 +221,12 @@
 		2C43B2EC2426630000D5CBBB /* SivError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivError.cpp; sourceTree = "<group>"; };
 		2C44429D24271E1700557D51 /* SivEngineLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivEngineLog.cpp; sourceTree = "<group>"; };
 		2C4442A02427AA7C00557D51 /* miniutf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miniutf.hpp; sourceTree = "<group>"; };
+		2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderer.hpp; sourceTree = "<group>"; };
+		2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererFactory.cpp; sourceTree = "<group>"; };
+		2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_GL4.hpp; sourceTree = "<group>"; };
+		2C4CBE4A24370FE300F8B7A6 /* CRenderer_GL4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderer_GL4.cpp; sourceTree = "<group>"; };
+		2C4CBE5224370FFA00F8B7A6 /* glew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glew.h; sourceTree = "<group>"; };
+		2C4CBE582437100100F8B7A6 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glew.c; sourceTree = "<group>"; };
 		2C6897DF2436064900C36C25 /* Siv3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Siv3D.hpp; sourceTree = "<group>"; };
 		2C6897E12436064900C36C25 /* Concepts.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Concepts.hpp; sourceTree = "<group>"; };
 		2C6897E22436064900C36C25 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
@@ -254,9 +266,6 @@
 		2C6898052436064900C36C25 /* StringView.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringView.ipp; sourceTree = "<group>"; };
 		2C6898062436064900C36C25 /* Indexed.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Indexed.hpp; sourceTree = "<group>"; };
 		2C6898072436064900C36C25 /* Common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Common.hpp; sourceTree = "<group>"; };
-		2C6898092436064900C36C25 /* Libraries.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Libraries.hpp; sourceTree = "<group>"; };
-		2C68980A2436064900C36C25 /* Windows.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Windows.hpp; sourceTree = "<group>"; };
-		2C68980B2436064900C36C25 /* Resource.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Resource.hpp; sourceTree = "<group>"; };
 		2C68980C2436064900C36C25 /* LogType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LogType.hpp; sourceTree = "<group>"; };
 		2C68980D2436064900C36C25 /* Types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Types.hpp; sourceTree = "<group>"; };
 		2C68980E2436064900C36C25 /* Format.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Format.hpp; sourceTree = "<group>"; };
@@ -352,10 +361,12 @@
 		2C43609A240E4EEC001657D2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				2C4231D9242B155E00A16BCA /* GLFW */,
 				2C43609B240E4EEC001657D2 /* Catch2 */,
 				2C439F62241DCEA9001154C2 /* double-conversion */,
 				2C439F442419D686001154C2 /* fmt */,
+				2C4CBE4E24370FFA00F8B7A6 /* GL */,
+				2C4CBE572437100100F8B7A6 /* GLEW */,
+				2C4231D9242B155E00A16BCA /* GLFW */,
 				2C44429F2427AA7C00557D51 /* miniutf */,
 			);
 			path = ThirdParty;
@@ -382,6 +393,7 @@
 			children = (
 				2C4360A2240E4EEC001657D2 /* Console */,
 				2C43B2CC2426227600D5CBBB /* Logger */,
+				2C4CBE4624370FE300F8B7A6 /* Renderer */,
 				2C4360A1240E4EEC001657D2 /* Siv3DMain.cpp */,
 				2C43B2E124264E3100D5CBBB /* System */,
 				2C43B2D22426434200D5CBBB /* Time */,
@@ -429,6 +441,7 @@
 				2C4231C5242B0B9200A16BCA /* Formatter */,
 				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C43B2C52426223400D5CBBB /* Logger */,
+				2C4CBE4324370FC600F8B7A6 /* Renderer */,
 				2C4360BE240E4EEC001657D2 /* String */,
 				2C439F512419FC9E001154C2 /* StringView */,
 				2C43B2DA24264E1200D5CBBB /* System */,
@@ -659,6 +672,48 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		2C4CBE4324370FC600F8B7A6 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
+		2C4CBE4624370FE300F8B7A6 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */,
+				2C4CBE4824370FE300F8B7A6 /* GL4 */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
+		2C4CBE4824370FE300F8B7A6 /* GL4 */ = {
+			isa = PBXGroup;
+			children = (
+				2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */,
+				2C4CBE4A24370FE300F8B7A6 /* CRenderer_GL4.cpp */,
+			);
+			path = GL4;
+			sourceTree = "<group>";
+		};
+		2C4CBE4E24370FFA00F8B7A6 /* GL */ = {
+			isa = PBXGroup;
+			children = (
+				2C4CBE5224370FFA00F8B7A6 /* glew.h */,
+			);
+			path = GL;
+			sourceTree = "<group>";
+		};
+		2C4CBE572437100100F8B7A6 /* GLEW */ = {
+			isa = PBXGroup;
+			children = (
+				2C4CBE582437100100F8B7A6 /* glew.c */,
+			);
+			path = GLEW;
+			sourceTree = "<group>";
+		};
 		2C6897DE2436064900C36C25 /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -714,19 +769,8 @@
 				2C6897F62436064900C36C25 /* Vector2D.hpp */,
 				2C6897FF2436064900C36C25 /* Version.hpp */,
 				2C6897FD2436064900C36C25 /* Window.hpp */,
-				2C6898082436064900C36C25 /* Windows */,
 			);
 			path = Siv3D;
-			sourceTree = "<group>";
-		};
-		2C6898082436064900C36C25 /* Windows */ = {
-			isa = PBXGroup;
-			children = (
-				2C6898092436064900C36C25 /* Libraries.hpp */,
-				2C68980A2436064900C36C25 /* Windows.hpp */,
-				2C68980B2436064900C36C25 /* Resource.hpp */,
-			);
-			path = Windows;
 			sourceTree = "<group>";
 		};
 		2C6898102436064900C36C25 /* ThirdParty */ = {
@@ -819,15 +863,18 @@
 				2C439F83241DCEA9001154C2 /* double-conversion.h in Headers */,
 				2C439F78241DCEA9001154C2 /* utils.h in Headers */,
 				2C4360D4240E4EEC001657D2 /* UnicodeUtility.hpp in Headers */,
+				2C4CBE5624370FFA00F8B7A6 /* glew.h in Headers */,
 				2C4231D4242B0BDE00A16BCA /* CUserAction.hpp in Headers */,
 				2C439F7C241DCEA9001154C2 /* bignum-dtoa.h in Headers */,
 				2C4360CF240E4EEC001657D2 /* CDummy.hpp in Headers */,
+				2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */,
 				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
 				2C4360DC240E4EEC001657D2 /* IConsole.hpp in Headers */,
 				2C423257242B19ED00A16BCA /* posix_thread.h in Headers */,
 				2C439F7A241DCEA9001154C2 /* fixed-dtoa.h in Headers */,
 				2C4231D6242B0C6700A16BCA /* IUserAction.hpp in Headers */,
 				2C439F80241DCEA9001154C2 /* diy-fp.h in Headers */,
+				2C4CBE4C24370FE300F8B7A6 /* CRenderer_GL4.hpp in Headers */,
 				2C43B2CF2426227600D5CBBB /* CLogger.hpp in Headers */,
 				2C439F7F241DCEA9001154C2 /* strtod.h in Headers */,
 				2C4360D0240E4EEC001657D2 /* IDummy.hpp in Headers */,
@@ -957,6 +1004,7 @@
 				2C43B2CA2426223400D5CBBB /* SivLogger.cpp in Sources */,
 				2C423258242B19ED00A16BCA /* posix_thread.c in Sources */,
 				2C4360D9240E4EEC001657D2 /* ApplicationOptions.cpp in Sources */,
+				2C4CBE4D24370FE300F8B7A6 /* CRenderer_GL4.cpp in Sources */,
 				2C42321C242B155E00A16BCA /* cocoa_init.m in Sources */,
 				2C4360DD240E4EEC001657D2 /* SivConsole.cpp in Sources */,
 				2C42324F242B155E00A16BCA /* cocoa_monitor.m in Sources */,
@@ -967,6 +1015,7 @@
 				2C43B2E924264E3100D5CBBB /* CWindow.cpp in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
+				2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */,
 				2C423250242B155E00A16BCA /* window.c in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
 				2C423246242B155E00A16BCA /* nsgl_context.m in Sources */,
@@ -999,6 +1048,7 @@
 				2C439F86241DCEA9001154C2 /* cached-powers.cc in Sources */,
 				2C4360CD240E4EEC001657D2 /* Siv3DTest.cpp in Sources */,
 				2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */,
+				2C4CBE592437100100F8B7A6 /* glew.c in Sources */,
 				2C43B2E024264E1200D5CBBB /* SystemFactory.cpp in Sources */,
 				2C43B2D02426227600D5CBBB /* CLogger.cpp in Sources */,
 			);
@@ -1229,6 +1279,8 @@
 					"$(inherited)",
 					__MACOSX_CORE__,
 					_GLFW_COCOA,
+					GLEW_STATIC,
+					GLEW_NO_GLU,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1287,6 +1339,8 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					__MACOSX_CORE__,
 					_GLFW_COCOA,
+					GLEW_STATIC,
+					GLEW_NO_GLU,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

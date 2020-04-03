@@ -101,4 +101,9 @@ namespace s3d
 	{
 		return m_title;
 	}
+
+	void* CWindow::getHandle() const noexcept
+	{
+		return m_window;
+	}
 }

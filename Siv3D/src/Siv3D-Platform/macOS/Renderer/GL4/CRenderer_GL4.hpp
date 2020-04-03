@@ -10,26 +10,29 @@
 //-----------------------------------------------
 
 # pragma once
-# include <Siv3D/System/ISystem.hpp>
+# include <Siv3D/Common.hpp>
+# include <Siv3D/Renderer/IRenderer.hpp>
 
 namespace s3d
 {
-	class CSystem final : public ISiv3DSystem
+	class CRenderer_GL4 final : public ISiv3DRenderer
 	{
 	private:
 
 	public:
 
-		CSystem();
+		CRenderer_GL4();
 
-		~CSystem() override;
+		~CRenderer_GL4() override;
 
 		void init() override;
-		
+
 		void onMainThreadStart() override;
 
-		void onMainThreadTerminate() override;
-		
-		bool update() override;
+		void clear() override;
+
+		void flush() override;
+
+		bool present() override;
 	};
 }

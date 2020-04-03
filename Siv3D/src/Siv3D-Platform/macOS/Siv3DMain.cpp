@@ -39,7 +39,11 @@ int main(int, char*[])
 		PerformTest();
 	}
 	
+	SIV3D_ENGINE(System)->onMainThreadStart();
+	
 	Main();
 
+	SIV3D_ENGINE(System)->onMainThreadTerminate();
+	
 	return 0;
 }
