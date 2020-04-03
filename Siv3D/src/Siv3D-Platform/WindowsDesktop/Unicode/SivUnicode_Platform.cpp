@@ -40,14 +40,14 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		static std::u16string FromMultiByte(const std::string_view view, const uint32 code)
+		static std::u16string FromMultiByte(const std::string_view s, const uint32 code)
 		{
-			if (view.empty())
+			if (s.empty())
 			{
 				return std::u16string();
 			}
 
-			const int32 length = ::MultiByteToWideChar(code, 0, view.data(), static_cast<int32>(view.length()),
+			const int32 length = ::MultiByteToWideChar(code, 0, s.data(), static_cast<int32>(s.length()),
 				nullptr, 0);
 
 			if (length == 0)
@@ -57,7 +57,7 @@ namespace s3d
 
 			std::u16string result(length, u'\0');
 
-			if (length != ::MultiByteToWideChar(code, 0, view.data(), static_cast<int32>(view.length()),
+			if (length != ::MultiByteToWideChar(code, 0, s.data(), static_cast<int32>(s.length()),
 				static_cast<wchar_t*>(static_cast<void*>(&result[0])), length))
 			{
 				result.clear();
@@ -69,15 +69,15 @@ namespace s3d
 
 	namespace Unicode
 	{
-		String Widen(const std::string_view view)
+		String Widen(const std::string_view s)
 		{
-			return FromUTF16(detail::FromMultiByte(view, CP_ACP));
+			return FromUTF16(detail::FromMultiByte(s, CP_ACP));
 		}
 
-		String FromWString(const std::wstring_view view)
+		String FromWString(const std::wstring_view s)
 		{
-			const char16* pSrc = static_cast<const char16*>(static_cast<const void*>(view.data()));
-			return FromUTF16(std::u16string_view(pSrc, view.size()));
+			const char16* pSrc = static_cast<const char16*>(static_cast<const void*>(s.data()));
+			return FromUTF16(std::u16string_view(pSrc, s.size()));
 		}
 
 		std::string Narrow(const StringView s)

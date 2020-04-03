@@ -17,12 +17,30 @@ namespace s3d
 {
 	namespace Unicode
 	{
-		String FromUTF16(const std::u16string_view view)
+		String FromUTF8(const std::string_view s)
 		{
-			String result(detail::UTF32_Length(view), '0');
+			String result(detail::UTF32_Length(s), '0');
 
-			const char16* pSrc = view.data();
-			const char16* const pSrcEnd = pSrc + view.size();
+			const char8* pSrc = s.data();
+			const char8* const pSrcEnd = pSrc + s.size();
+			char32* pDst = &result[0];
+
+			while (pSrc != pSrcEnd)
+			{
+				int32 offset;
+				*pDst++ = detail::utf8_decode(pSrc, pSrcEnd - pSrc, offset);
+				pSrc += offset;
+			}
+
+			return result;
+		}
+
+		String FromUTF16(const std::u16string_view s)
+		{
+			String result(detail::UTF32_Length(s), '0');
+
+			const char16* pSrc = s.data();
+			const char16* const pSrcEnd = pSrc + s.size();
 			char32* pDst = &result[0];
 
 			while (pSrc != pSrcEnd)
@@ -33,6 +51,11 @@ namespace s3d
 			}
 
 			return result;
+		}
+
+		String FromUTF32(const std::u32string_view s)
+		{
+			return String(s);
 		}
 
 		std::string ToUTF8(const StringView s)

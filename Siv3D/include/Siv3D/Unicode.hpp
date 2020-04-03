@@ -17,13 +17,19 @@ namespace s3d
 	namespace Unicode
 	{
 		[[nodiscard]]
-		String Widen(std::string_view view);
+		String Widen(std::string_view s);
 
 		[[nodiscard]]
-		String FromUTF16(std::u16string_view view);
+		String FromWString(std::wstring_view s);
 
 		[[nodiscard]]
-		String FromWString(std::wstring_view view);
+		String FromUTF8(std::string_view s);
+
+		[[nodiscard]]
+		String FromUTF16(std::u16string_view s);
+
+		[[nodiscard]]
+		String FromUTF32(std::u32string_view s);
 
 		/// <summary>
 		/// String を std::string に変換します。
