@@ -115,6 +115,8 @@
 
 # include <Siv3D/Rectangle.hpp>
 
+# include <Siv3D/Profiler.hpp>
+
 # include <Siv3D/Window.hpp>
 
 # include <Siv3D/Scene.hpp>

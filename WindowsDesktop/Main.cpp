@@ -10,9 +10,7 @@ void Main()
 {
 	while (System::Update())
 	{
-		Window::SetTitle(Scene::FrameCount());
-
-		if (Scene::FrameCount() > 60 * 16)
+		if (Scene::FrameCount() > 60 * 30)
 		{
 			System::Exit();
 		}

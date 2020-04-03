@@ -12,6 +12,8 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/Utility.hpp>
 # include <Siv3D/FormatLiteral.hpp>
+# include <Siv3D/Profiler/IProfiler.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
 # include "CWindow.hpp"
 # include "DPIAwareness.hpp"
 # include "WindowProc.hpp"
@@ -31,7 +33,7 @@ namespace s3d
 				.lpfnWndProc	= WindowProc,
 				.hInstance		= hInstance,
 				.hIcon			= ::LoadIconW(hInstance, MAKEINTRESOURCEW(100)),
-				.hCursor		= nullptr,
+				.hCursor		= ::LoadCursorW(nullptr, IDC_ARROW),
 				.hbrBackground	= static_cast<HBRUSH>(::GetStockObject(DKGRAY_BRUSH)),
 				.lpszClassName	= className
 			};
@@ -122,29 +124,39 @@ namespace s3d
 
 	void CWindow::update()
 	{
-
+		if constexpr (SIV3D_BUILD(DEBUG))
+		{
+			setWindowTitle(m_title);
+		}
 	}
 
 	void CWindow::setWindowTitle(const String& title)
 	{
-		if (m_title == title)
-		{
-			return;
-		}
-
 		if constexpr (SIV3D_BUILD(DEBUG))
 		{
-			//const String statistics = Siv3DEngine::Get<ISiv3DProfiler>()->getSimpleStatistics();
-			m_actualTitle = title + U" (Debug Build) | ";
+			const String statistics = SIV3D_ENGINE(Profiler)->getSimpleStatistics();
+			const String newActualTitle = title + U" (Debug Build) | " + statistics;
+
+			if (m_actualTitle != newActualTitle)
+			{
+				::SetWindowTextW(m_hWnd, newActualTitle.toWstr().c_str());
+				m_actualTitle = newActualTitle;
+			}
+
+			m_title = title;
 		}
 		else
 		{
+			const String newActualTitle = title;
+
+			if (m_actualTitle != newActualTitle)
+			{
+				::SetWindowTextW(m_hWnd, newActualTitle.toWstr().c_str());
+			}
+
+			m_title = title;
 			m_actualTitle = title;
 		}
-
-		m_title = title;
-
-		::SetWindowTextW(m_hWnd, m_actualTitle.toWstr().c_str());
 	}
 
 	const String& CWindow::getWindowTitle() const noexcept
