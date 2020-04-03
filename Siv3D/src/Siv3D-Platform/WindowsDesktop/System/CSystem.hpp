@@ -26,6 +26,10 @@ namespace s3d
 
 		void init() override;
 
+		void onMainThreadStart() override;
+
+		void onMainThreadTerminate() override;
+
 		bool update() override;
 	};
 }

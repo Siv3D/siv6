@@ -124,6 +124,12 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer\GL4">
       <UniqueIdentifier>{30ff6301-d2d0-45f2-a456-1a48664740f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ThirdParty\GLEW">
+      <UniqueIdentifier>{147b7035-ac5a-40fb-9776-52a6dbb176a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\GL">
+      <UniqueIdentifier>{5772cef1-f0b2-4805-a282-e7896b94c31a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -381,6 +387,12 @@
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\CRenderer_GL4.hpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\GL4</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\GL\glew.h">
+      <Filter>src\ThirdParty\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\GL\wglew.h">
+      <Filter>src\ThirdParty\GL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -526,6 +538,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\CRenderer_GL4.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\GL4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\GLEW\glew.c">
+      <Filter>src\ThirdParty\GLEW</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

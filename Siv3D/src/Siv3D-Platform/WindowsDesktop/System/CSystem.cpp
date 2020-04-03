@@ -38,6 +38,18 @@ namespace s3d
 		SIV3D_ENGINE(Renderer)->init();
 	}
 
+	void CSystem::onMainThreadStart()
+	{
+		LOG_SCOPED_TRACE(U"CSystem::onMainThreadStart()");
+
+		SIV3D_ENGINE(Renderer)->onMainThreadStart();
+	}
+
+	void CSystem::onMainThreadTerminate()
+	{
+		LOG_SCOPED_TRACE(U"CSystem::onMainThreadTerminate()");
+	}
+
 	bool CSystem::update()
 	{
 		if (SIV3D_ENGINE(UserAction)->terminationTriggered())
@@ -45,7 +57,11 @@ namespace s3d
 			return false;
 		}
 
+		SIV3D_ENGINE(Renderer)->flush();
+		SIV3D_ENGINE(Renderer)->present();
+
 		SIV3D_ENGINE(Window)->update();
+		SIV3D_ENGINE(Renderer)->clear();
 	
 		return true;
 	}

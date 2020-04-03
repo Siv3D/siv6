@@ -31,5 +31,13 @@ namespace s3d
 		~CRenderer_GL4() override;
 
 		void init() override;
+
+		void onMainThreadStart() override;
+
+		void clear() override;
+
+		void flush() override;
+
+		bool present() override;
 	};
 }

@@ -44,7 +44,11 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"MainThread");
 
+		SIV3D_ENGINE(System)->onMainThreadStart();
+
 		Main();
+
+		SIV3D_ENGINE(System)->onMainThreadTerminate();
 	}
 }
 

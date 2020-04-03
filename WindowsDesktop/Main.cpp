@@ -12,11 +12,11 @@ void Main()
 
 	while (System::Update())
 	{
-		System::Sleep(16);
+		Window::SetTitle(frameCount);
 
 		++frameCount;
 
-		if (frameCount > 60 * 8)
+		if (frameCount > 60 * 16)
 		{
 			System::Exit();
 		}
