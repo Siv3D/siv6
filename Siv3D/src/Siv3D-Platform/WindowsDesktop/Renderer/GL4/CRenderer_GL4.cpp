@@ -10,8 +10,11 @@
 //-----------------------------------------------
 
 # include "CRenderer_GL4.hpp"
+# include <GL/glew.h>
 # include <GL/GL.h>
 # include <Siv3D/Error.hpp>
+# include <Siv3D/Unicode.hpp>
+# include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
@@ -78,6 +81,37 @@ namespace s3d
 		}
 
 		m_glContext = ::wglCreateContext(m_hDC);
+
+		{
+			if (!::wglMakeCurrent(m_hDC, m_glContext))
+			{
+				throw EngineError(U"wglMakeCurrent() failed");
+			}
+
+			if (GLenum err = ::glewInit();
+				err != GLEW_OK)
+			{
+				throw EngineError(U"glewInit() failed");
+			}
+
+			const String renderer = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_RENDERER)));
+			const String vendor = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VENDOR)));
+			const String version = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VERSION)));
+			const String glslVersion = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_SHADING_LANGUAGE_VERSION)));
+
+			GLint major = 0, minor = 0;
+			::glGetIntegerv(GL_MAJOR_VERSION, &major);
+			::glGetIntegerv(GL_MINOR_VERSION, &minor);
+
+			//LOG_TEST(U"renderer: {}"_fmt(renderer));
+			//LOG_TEST(U"vendor: {}"_fmt(vendor));
+			//LOG_TEST(U"version: {}"_fmt(version));
+			//LOG_TEST(U"glslVersion: {}"_fmt(glslVersion));
+			//LOG_TEST(U"GL_MAJOR_VERSION: {}"_fmt(major));
+			//LOG_TEST(U"GL_MINOR_VERSION: {}"_fmt(minor));
+
+			::wglMakeCurrent(nullptr, nullptr);
+		}
 	}
 
 	void CRenderer_GL4::onMainThreadStart()
