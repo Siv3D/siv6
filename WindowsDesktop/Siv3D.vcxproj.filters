@@ -115,6 +115,15 @@
     <Filter Include="src\Siv3D\UserAction">
       <UniqueIdentifier>{14fa93c1-3279-4aaf-ace0-47e00c15ae16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Renderer">
+      <UniqueIdentifier>{8be56205-63c0-4ad8-9be6-fa5d9cf37ea3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer">
+      <UniqueIdentifier>{7da6f383-45d8-4743-bcd8-ba7b2c68bdd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer\GL4">
+      <UniqueIdentifier>{30ff6301-d2d0-45f2-a456-1a48664740f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -366,6 +375,12 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Rectangle.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Renderer\IRenderer.hpp">
+      <Filter>src\Siv3D\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\CRenderer_GL4.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\GL4</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -505,6 +520,12 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Window\SivWindow.cpp">
       <Filter>src\Siv3D\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\RendererFactory.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\CRenderer_GL4.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\GL4</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

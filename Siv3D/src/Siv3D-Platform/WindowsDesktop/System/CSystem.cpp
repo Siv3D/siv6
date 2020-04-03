@@ -11,6 +11,7 @@
 
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Renderer/IRenderer.hpp>
 # include <Siv3D/UserAction/IUSerAction.hpp>
 # include <Siv3D/Common.hpp>
 # include <Siv3D/String.hpp>
@@ -33,6 +34,8 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CSystem::init()");
 
 		SIV3D_ENGINE(Window)->init();
+
+		SIV3D_ENGINE(Renderer)->init();
 	}
 
 	bool CSystem::update()

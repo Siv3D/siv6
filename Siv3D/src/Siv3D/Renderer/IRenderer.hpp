@@ -13,24 +13,14 @@
 
 namespace s3d
 {
-	class String;
-
-	class ISiv3DWindow
+	class ISiv3DRenderer
 	{
 	public:
 
-		static ISiv3DWindow* Create();
+		static ISiv3DRenderer* Create();
 
-		virtual ~ISiv3DWindow() = default;
+		virtual ~ISiv3DRenderer() = default;
 
 		virtual void init() = 0;
-
-		virtual void update() = 0;
-
-		virtual void setWindowTitle(const String& title) = 0;
-
-		virtual const String& getWindowTitle() const noexcept = 0;
-
-		virtual void* getHandle() const noexcept = 0;
 	};
 }
