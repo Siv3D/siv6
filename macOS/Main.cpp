@@ -8,15 +8,13 @@ SIV3D_OPTION_RUN_TEST(false);
 
 void Main()
 {
-	int32 frameCount = 0;
-	
 	while (System::Update())
 	{
-		Window::SetTitle(frameCount);
+		Window::SetTitle(Scene::FrameCount());
 		
 		System::Sleep(16);
 		
-		if (++frameCount > 60*8)
+		if (Scene::FrameCount() > 60*8)
 		{
 			System::Exit();
 		}

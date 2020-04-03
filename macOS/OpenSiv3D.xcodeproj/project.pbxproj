@@ -113,6 +113,11 @@
 		2C4CBE4D24370FE300F8B7A6 /* CRenderer_GL4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE4A24370FE300F8B7A6 /* CRenderer_GL4.cpp */; };
 		2C4CBE5624370FFA00F8B7A6 /* glew.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE5224370FFA00F8B7A6 /* glew.h */; };
 		2C4CBE592437100100F8B7A6 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE582437100100F8B7A6 /* glew.c */; };
+		2C4CBE612437236000F8B7A6 /* SceneFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE5C2437236000F8B7A6 /* SceneFactory.cpp */; };
+		2C4CBE622437236000F8B7A6 /* CScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE5D2437236000F8B7A6 /* CScene.cpp */; };
+		2C4CBE632437236000F8B7A6 /* IScene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE5E2437236000F8B7A6 /* IScene.hpp */; };
+		2C4CBE642437236000F8B7A6 /* CScene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE5F2437236000F8B7A6 /* CScene.hpp */; };
+		2C4CBE652437236000F8B7A6 /* SivScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE602437236000F8B7A6 /* SivScene.cpp */; };
 		2C6898162436066800C36C25 /* SivWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6898152436066800C36C25 /* SivWindow.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
@@ -227,6 +232,12 @@
 		2C4CBE4A24370FE300F8B7A6 /* CRenderer_GL4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderer_GL4.cpp; sourceTree = "<group>"; };
 		2C4CBE5224370FFA00F8B7A6 /* glew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glew.h; sourceTree = "<group>"; };
 		2C4CBE582437100100F8B7A6 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glew.c; sourceTree = "<group>"; };
+		2C4CBE5A2437230600F8B7A6 /* Scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		2C4CBE5C2437236000F8B7A6 /* SceneFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneFactory.cpp; sourceTree = "<group>"; };
+		2C4CBE5D2437236000F8B7A6 /* CScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CScene.cpp; sourceTree = "<group>"; };
+		2C4CBE5E2437236000F8B7A6 /* IScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IScene.hpp; sourceTree = "<group>"; };
+		2C4CBE5F2437236000F8B7A6 /* CScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CScene.hpp; sourceTree = "<group>"; };
+		2C4CBE602437236000F8B7A6 /* SivScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivScene.cpp; sourceTree = "<group>"; };
 		2C6897DF2436064900C36C25 /* Siv3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Siv3D.hpp; sourceTree = "<group>"; };
 		2C6897E12436064900C36C25 /* Concepts.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Concepts.hpp; sourceTree = "<group>"; };
 		2C6897E22436064900C36C25 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
@@ -442,6 +453,7 @@
 				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C43B2C52426223400D5CBBB /* Logger */,
 				2C4CBE4324370FC600F8B7A6 /* Renderer */,
+				2C4CBE5B2437236000F8B7A6 /* Scene */,
 				2C4360BE240E4EEC001657D2 /* String */,
 				2C439F512419FC9E001154C2 /* StringView */,
 				2C43B2DA24264E1200D5CBBB /* System */,
@@ -714,6 +726,18 @@
 			path = GLEW;
 			sourceTree = "<group>";
 		};
+		2C4CBE5B2437236000F8B7A6 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				2C4CBE5C2437236000F8B7A6 /* SceneFactory.cpp */,
+				2C4CBE5D2437236000F8B7A6 /* CScene.cpp */,
+				2C4CBE5E2437236000F8B7A6 /* IScene.hpp */,
+				2C4CBE5F2437236000F8B7A6 /* CScene.hpp */,
+				2C4CBE602437236000F8B7A6 /* SivScene.cpp */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		2C6897DE2436064900C36C25 /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,6 +779,7 @@
 				2C6897F02436064900C36C25 /* PointVector.hpp */,
 				2C6897F12436064900C36C25 /* PredefinedNamedParameter.hpp */,
 				2C6897FB2436064900C36C25 /* Rectangle.hpp */,
+				2C4CBE5A2437230600F8B7A6 /* Scene.hpp */,
 				2C6898042436064900C36C25 /* String.hpp */,
 				2C6897F52436064900C36C25 /* String.ipp */,
 				2C6897FA2436064900C36C25 /* StringView.hpp */,
@@ -858,6 +883,7 @@
 				2C423220242B155E00A16BCA /* cocoa_platform.h in Headers */,
 				2C43B2EA24264E3100D5CBBB /* CWindow.hpp in Headers */,
 				2C439F472419D686001154C2 /* format-inl.h in Headers */,
+				2C4CBE642437236000F8B7A6 /* CScene.hpp in Headers */,
 				2C439F7E241DCEA9001154C2 /* double-to-string.h in Headers */,
 				2C423254242B19D100A16BCA /* egl_context.h in Headers */,
 				2C439F83241DCEA9001154C2 /* double-conversion.h in Headers */,
@@ -883,6 +909,7 @@
 				2C439F88241DCEA9001154C2 /* bignum.h in Headers */,
 				2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */,
 				2C42323D242B155E00A16BCA /* cocoa_joystick.h in Headers */,
+				2C4CBE632437236000F8B7A6 /* IScene.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,16 +1046,19 @@
 				2C423250242B155E00A16BCA /* window.c in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
 				2C423246242B155E00A16BCA /* nsgl_context.m in Sources */,
+				2C4CBE652437236000F8B7A6 /* SivScene.cpp in Sources */,
 				2C4231CB242B0BD300A16BCA /* SivSystem.cpp in Sources */,
 				2C439F60241DCE8B001154C2 /* SivFormatFloat.cpp in Sources */,
 				2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
+				2C4CBE612437236000F8B7A6 /* SceneFactory.cpp in Sources */,
 				2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */,
 				2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */,
 				2C43B2DD24264E1200D5CBBB /* WindowFactory.cpp in Sources */,
 				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
 				2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */,
 				2C423253242B19D100A16BCA /* egl_context.c in Sources */,
+				2C4CBE622437236000F8B7A6 /* CScene.cpp in Sources */,
 				2C42321B242B155E00A16BCA /* monitor.c in Sources */,
 				2C439F79241DCEA9001154C2 /* bignum.cc in Sources */,
 				2C4360D3240E4EEC001657D2 /* SivUnicode.cpp in Sources */,
