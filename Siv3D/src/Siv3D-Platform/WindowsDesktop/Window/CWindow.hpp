@@ -25,6 +25,9 @@ namespace s3d
 		HWND m_hWnd = nullptr;
 		HINSTANCE m_hInstance = nullptr;
 		std::wstring m_windowClassName;
+
+		HMODULE m_user32 = nullptr;
+		decltype(GetSystemMetricsForDpi)* m_pGetSystemMetricsForDpi = nullptr;
 		
 		String m_title = String(Window::DefaultTitle);
 		String m_actualTitle = String(SIV3D_BUILD(DEBUG) ? U"Siv3D App (Debug Build)"_sv : Window::DefaultTitle);
@@ -32,6 +35,9 @@ namespace s3d
 		Array<Monitor> m_monitors;
 
 		WindowState m_state;
+		uint32 m_dpi = USER_DEFAULT_SCREEN_DPI;
+
+		int32 getSystemMetrics(int32 index) const;
 
 	public:
 
@@ -57,7 +63,7 @@ namespace s3d
 
 		void onFrameBufferResize(const Size& size);
 
-		void onDPIChange(int32 dpi, double scaling, const Point& pos);
+		void onDPIChange(uint32 dpi, double scaling, const Point& pos);
 
 		void onBoundsUpdate();
 	};

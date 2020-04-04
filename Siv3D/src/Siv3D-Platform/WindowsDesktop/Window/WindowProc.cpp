@@ -91,7 +91,7 @@ namespace s3d
 			{
 				LOG_TRACE(U"WM_DPICHANGED");
 
-				const int32 newDPI = HIWORD(wParam);
+				const uint32 newDPI = HIWORD(wParam);
 				const double scaling = (static_cast<double>(newDPI) / USER_DEFAULT_SCREEN_DPI);
 				
 				const RECT rect = *reinterpret_cast<const RECT*>(lParam);

@@ -13,5 +13,5 @@
 
 namespace s3d::detail
 {
-	void SetDPIAwareness();
+	void SetDPIAwareness(HMODULE user32);
 }

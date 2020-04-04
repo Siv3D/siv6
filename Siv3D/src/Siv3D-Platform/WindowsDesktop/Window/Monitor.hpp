@@ -27,7 +27,7 @@ namespace s3d
 		HMONITOR handle = nullptr;
 		RECT displayRect = {};
 		RECT workArea = {};
-		int32 displayDPI = 96;
+		uint32 displayDPI = 96;
 		bool isPrimaryAdapter = false;
 		
 		[[nodiscard]]

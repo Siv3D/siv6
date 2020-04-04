@@ -49,35 +49,30 @@ namespace s3d
 			}
 		}
 
-		void DisableTouchFeedbackVisualization(HWND hWND)
+		void DisableTouchFeedbackVisualization(HWND hWND, HMODULE user32)
 		{
-			if (HMODULE user32 = DLL::LoadSystemLibrary(L"User32.dll"))
+			if (decltype(SetWindowFeedbackSetting) * pSetWindowFeedbackSetting = DLL::GetFunctionNoThrow(user32, "SetWindowFeedbackSetting"))
 			{
-				if (decltype(SetWindowFeedbackSetting) * pSetWindowFeedbackSetting = DLL::GetFunctionNoThrow(user32, "SetWindowFeedbackSetting"))
+				static constexpr std::array<FEEDBACK_TYPE, 11> feedbackTypes =
 				{
-					static constexpr std::array<FEEDBACK_TYPE, 11> feedbackTypes =
-					{
-						FEEDBACK_TOUCH_CONTACTVISUALIZATION,
-						FEEDBACK_PEN_BARRELVISUALIZATION,
-						FEEDBACK_PEN_TAP,
-						FEEDBACK_PEN_DOUBLETAP,
-						FEEDBACK_PEN_PRESSANDHOLD,
-						FEEDBACK_PEN_RIGHTTAP,
-						FEEDBACK_TOUCH_TAP,
-						FEEDBACK_TOUCH_DOUBLETAP,
-						FEEDBACK_TOUCH_PRESSANDHOLD,
-						FEEDBACK_TOUCH_RIGHTTAP,
-						FEEDBACK_GESTURE_PRESSANDTAP,
-					};
+					FEEDBACK_TOUCH_CONTACTVISUALIZATION,
+					FEEDBACK_PEN_BARRELVISUALIZATION,
+					FEEDBACK_PEN_TAP,
+					FEEDBACK_PEN_DOUBLETAP,
+					FEEDBACK_PEN_PRESSANDHOLD,
+					FEEDBACK_PEN_RIGHTTAP,
+					FEEDBACK_TOUCH_TAP,
+					FEEDBACK_TOUCH_DOUBLETAP,
+					FEEDBACK_TOUCH_PRESSANDHOLD,
+					FEEDBACK_TOUCH_RIGHTTAP,
+					FEEDBACK_GESTURE_PRESSANDTAP,
+				};
 
-					for (const auto& feedbackType : feedbackTypes)
-					{
-						BOOL val = FALSE;
-						pSetWindowFeedbackSetting(hWND, feedbackType, 0, sizeof(BOOL), &val);
-					}
+				for (const auto& feedbackType : feedbackTypes)
+				{
+					BOOL val = FALSE;
+					pSetWindowFeedbackSetting(hWND, feedbackType, 0, sizeof(BOOL), &val);
 				}
-
-				::FreeLibrary(user32);
 			}
 		}
 
@@ -118,14 +113,32 @@ namespace s3d
 
 		LOG_VERBOSE(U"UnregisterClassW()");
 		::UnregisterClassW(m_windowClassName.c_str(), m_hInstance);
+
+		if (m_user32)
+		{
+			::FreeLibrary(m_user32);
+			m_user32 = nullptr;
+		}
 	}
 
 	void CWindow::init()
 	{
 		LOG_SCOPED_TRACE(U"CWindow::init()");
 
+		// user32.dll
+		{
+			m_user32 = DLL::LoadSystemLibrary(L"user32.dll");
+
+			if (!m_user32)
+			{
+				throw EngineError(U"Failed to load `user32.dll`");
+			}
+
+			m_pGetSystemMetricsForDpi = DLL::GetFunctionNoThrow(m_user32, "GetSystemMetricsForDpi");
+		}
+
 		// DPI awareness を有効化
-		detail::SetDPIAwareness();
+		detail::SetDPIAwareness(m_user32);
 
 		// hInstance を取得
 		m_hInstance = ::GetModuleHandleW(nullptr);
@@ -146,6 +159,7 @@ namespace s3d
 		// ウィンドウを作成SW
 		const auto& monitor = m_monitors[0];
 		const double scale = monitor.getScale();
+		m_dpi = monitor.displayDPI;
 
 		m_state.frameBufferSize.x = static_cast<int32>(m_state.clientSize.x * scale);
 		m_state.frameBufferSize.y = static_cast<int32>(m_state.clientSize.y * scale);
@@ -156,7 +170,7 @@ namespace s3d
 		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
 
 		RECT windowRect = { posX, posY, (posX + m_state.frameBufferSize.x), (posY + m_state.frameBufferSize.y) };
-		::AdjustWindowRectExForDpi(&windowRect, windowStyleFlags, FALSE, 0, monitor.displayDPI);
+		::AdjustWindowRectExForDpi(&windowRect, windowStyleFlags, FALSE, 0, m_dpi);
 
 		m_hWnd = ::CreateWindowExW(
 			0,
@@ -176,7 +190,7 @@ namespace s3d
 		}
 
 		// Disable touch feedback visualization that causes frame rate drops
-		detail::DisableTouchFeedbackVisualization(m_hWnd);
+		detail::DisableTouchFeedbackVisualization(m_hWnd, m_user32);
 
 		::ShowWindow(m_hWnd, SW_SHOW);
 	}
@@ -272,9 +286,10 @@ namespace s3d
 		}
 	}
 
-	void CWindow::onDPIChange(const int32 dpi, const double scaling, const Point& pos)
+	void CWindow::onDPIChange(const uint32 dpi, const double scaling, const Point& pos)
 	{
 		LOG_TRACE(U"CWindow::onDPIChange(dpi = {} ({:.0f}%))"_fmt(dpi, scaling * 100));
+		m_dpi = dpi;
 
 		const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
 		const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
@@ -309,25 +324,44 @@ namespace s3d
 	{
 		LOG_VERBOSE(U"CWindow::onBoundsUpdate()");
 
-		RECT windowRect;
-		::DwmGetWindowAttribute(m_hWnd, DWMWA_EXTENDED_FRAME_BOUNDS, &windowRect, sizeof(RECT));
+		// bounds
+		{
+			RECT windowRect;
+			::DwmGetWindowAttribute(m_hWnd, DWMWA_EXTENDED_FRAME_BOUNDS, &windowRect, sizeof(RECT));
+			m_state.bounds = detail::ToRect(windowRect);
+			LOG_VERBOSE(U"- bounds: {}"_fmt(m_state.bounds));
+		}
 
-		m_state.bounds = detail::ToRect(windowRect);
-		LOG_VERBOSE(U"- new bounds: {}"_fmt(m_state.bounds));
+		// frame thickness
+		{
+			const Size frameSize
+			{
+				getSystemMetrics(SM_CXBORDER),
+				getSystemMetrics(SM_CYBORDER)
+			};
+			m_state.frameSize = frameSize;
+			LOG_VERBOSE(U"- frameSize: {}"_fmt(frameSize));
+		}
 
-		//Size frameSize;
-		//if (const int32 addedBorder = ::GetSystemMetrics(SM_CXPADDEDBORDER))
-		//{
-		//	frameSize.x = ::GetSystemMetrics(SM_CXFRAME) + addedBorder;
-		//	frameSize.y = ::GetSystemMetrics(SM_CYFRAME) + addedBorder;
-		//}
-		//else
-		//{
-		//	frameSize.x = ::GetSystemMetrics(SM_CXFIXEDFRAME);
-		//	frameSize.y = ::GetSystemMetrics(SM_CYFIXEDFRAME);
-		//}
-		//int32 titleBarHeight = ::GetSystemMetrics(SM_CYCAPTION);
+		// title bar height
+		{
+			const int32 titleBarHeight = (getSystemMetrics(SM_CYCAPTION)
+				+ getSystemMetrics(SM_CYFRAME)
+				+ getSystemMetrics(SM_CXPADDEDBORDER));
+			m_state.titleBarHeight = titleBarHeight;
+			LOG_VERBOSE(U"- titleBarHeight: {}"_fmt(titleBarHeight));
+		}
+	}
 
-		//LOG_VERBOSE(U"- new: {} {}"_fmt(frameSize, titleBarHeight));
+	int32 CWindow::getSystemMetrics(const int32 index) const
+	{
+		if (m_pGetSystemMetricsForDpi)
+		{
+			return m_pGetSystemMetricsForDpi(index, m_dpi);
+		}
+		else
+		{
+			return ::GetSystemMetrics(index);
+		}
 	}
 }

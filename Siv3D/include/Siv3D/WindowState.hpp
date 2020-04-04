@@ -30,6 +30,10 @@ namespace s3d
 
 		WindowStyle style = WindowStyle::Fixed;
 
+		Size frameSize = Size(0, 0);
+
+		int32 titleBarHeight = 0;
+
 		bool minimized = false;
 
 		bool maximized = false;
