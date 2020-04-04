@@ -10,9 +10,6 @@ void Main()
 {
 	while (System::Update())
 	{
-		if (Scene::FrameCount() > 60 * 30)
-		{
-			System::Exit();
-		}
+
 	}
 }

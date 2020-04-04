@@ -218,10 +218,31 @@ namespace s3d
 		constexpr Rectangle(const Rectangle<Type>& r) noexcept
 			: pos(static_cast<value_type>(r.x), static_cast<value_type>(r.y))
 			, size(static_cast<value_type>(r.w), static_cast<value_type>(r.h)) {}
+
+
+
+
+		template <class CharType>
+		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Rectangle& value)
+		{
+			return output << CharType('(')
+				<< value.x << CharType(',') << CharType(' ')
+				<< value.y << CharType(',') << CharType(' ')
+				<< value.w << CharType(',') << CharType(' ')
+				<< value.h << CharType(')');
+		}
+
+		template <class CharType>
+		friend std::basic_istream<CharType>& operator >>(std::basic_istream<CharType>& input, Rectangle& value)
+		{
+			CharType unused;
+			return input >> unused
+				>> value.x >> unused
+				>> value.y >> unused
+				>> value.w >> unused
+				>> value.h >> unused;
+		}
 	};
-
-
-
 
 	/// <summary>
 	/// 長方形（要素が int 型）

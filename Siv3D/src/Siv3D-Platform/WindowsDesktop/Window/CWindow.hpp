@@ -13,6 +13,7 @@
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Window.hpp>
+# include <Siv3D/WindowState.hpp>
 # include "Monitor.hpp"
 
 namespace s3d
@@ -30,8 +31,8 @@ namespace s3d
 
 		Array<Monitor> m_monitors;
 
-		Size m_clientSize = Window::DefaultClientSize;
-		Size m_actualClientSize = Window::DefaultClientSize;
+		WindowState m_state;
+
 		uint32 m_style = WS_OVERLAPPEDWINDOW & ~(WS_MAXIMIZEBOX | WS_THICKFRAME);
 
 	public:
@@ -49,5 +50,15 @@ namespace s3d
 		const String& getWindowTitle() const noexcept override;
 
 		void* getHandle() const noexcept override;
+
+		const WindowState& getState() const noexcept override;
+
+		void onResize(bool minimized, bool maximized);
+
+		void onFrameBufferResize(const Size& size);
+
+		void onDPIChange(int32 dpi, double scaling, const Point& pos);
+
+		void onBoundsUpdate(const Rect& rect);
 	};
 }

@@ -30,6 +30,37 @@ namespace s3d
 		constexpr Point(value_type _x, value_type _y) noexcept
 			: x(_x)
 			, y(_y) {}
+
+
+
+
+
+
+
+		[[nodiscard]]
+		constexpr bool isZero() const noexcept
+		{
+			return ((x == 0) && (y == 0));
+		}
+
+
+
+		template <class CharType>
+		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Point& value)
+		{
+			return output << CharType('(')
+				<< value.x << CharType(',') << CharType(' ')
+				<< value.y << CharType(')');
+		}
+
+		template <class CharType>
+		friend std::basic_istream<CharType>& operator >>(std::basic_istream<CharType>& input, Point& value)
+		{
+			CharType unused;
+			return input >> unused
+				>> value.x >> unused
+				>> value.y >> unused;
+		}
 	};
 
 	using Size = Point;

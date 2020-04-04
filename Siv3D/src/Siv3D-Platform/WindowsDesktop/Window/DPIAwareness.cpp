@@ -20,6 +20,22 @@ namespace s3d::detail
 	{
 		LOG_SCOPED_TRACE(U"SetDPIAwareness()");
 
+		// Windows 10 1703-
+		if (const HMODULE user32 = DLL::LoadSystemLibrary(L"user32.dll"))
+		{
+			decltype(SetProcessDpiAwarenessContext)* p_SetProcessDpiAwarenessContext = DLL::GetFunctionNoThrow(user32, "SetProcessDpiAwarenessContext");
+
+			if (p_SetProcessDpiAwarenessContext)
+			{
+				LOG_VERBOSE(U"SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2)");
+				p_SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+				::FreeLibrary(user32);
+				return;
+			}
+
+			::FreeLibrary(user32);
+		}
+
 		// Windows 10 1607-
 		if (const HMODULE user32 = DLL::LoadSystemLibrary(L"user32.dll"))
 		{

@@ -20,4 +20,24 @@ namespace s3d
 
 	enum class LogLevel;
 	enum class LogType;
+
+	struct Point;
+	using Size = Point;
+	template <class Type> struct Vector2D;
+	using Float2 = Vector2D<float>;
+	using Vec2 = Vector2D<double>;
+
+
+	//////////////////////////////////////////////////////
+	//
+	//	Rectangle.hpp
+	//
+	template <class SizeType> struct Rectangle;
+	using Rect = Rectangle<Point>;
+	using RectF = Rectangle<Vec2>;
+
+
+
+
+	struct WindowState;
 }

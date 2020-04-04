@@ -92,14 +92,14 @@ namespace s3d
 		const auto& monitor = m_monitors[0];
 		const double scale = monitor.getScale();
 
-		m_actualClientSize.x = static_cast<int32>(m_clientSize.x * scale);
-		m_actualClientSize.y = static_cast<int32>(m_clientSize.y * scale);
-		const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - m_actualClientSize.x) / 2, 0);
-		const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - m_actualClientSize.y) / 2, 0);
+		m_state.frameBufferSize.x = static_cast<int32>(m_state.clientSize.x * scale);
+		m_state.frameBufferSize.y = static_cast<int32>(m_state.clientSize.y * scale);
+		const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - m_state.frameBufferSize.x) / 2, 0);
+		const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - m_state.frameBufferSize.y) / 2, 0);
 		const int32 posX = (monitor.displayRect.left + offsetX);
 		const int32 posY = (monitor.displayRect.top + offsetY);
 
-		RECT windowRect = { posX, posY, (posX + m_actualClientSize.x), (posY + m_actualClientSize.y) };
+		RECT windowRect = { posX, posY, (posX + m_state.frameBufferSize.x), (posY + m_state.frameBufferSize.y) };
 		::AdjustWindowRectExForDpi(&windowRect, WS_OVERLAPPEDWINDOW, FALSE, 0, monitor.displayDPI);
 
 		m_hWnd = ::CreateWindowExW(
@@ -143,7 +143,7 @@ namespace s3d
 
 		if (m_actualTitle != newActualTitle)
 		{
-			LOG_VERBOSE(U"SetWindowTextW(\"{}\")"_fmt(newActualTitle));
+			//LOG_VERBOSE(U"SetWindowTextW(\"{}\")"_fmt(newActualTitle));
 			::SetWindowTextW(m_hWnd, newActualTitle.toWstr().c_str());
 			m_actualTitle.swap(newActualTitle);
 		}
@@ -159,5 +159,84 @@ namespace s3d
 	void* CWindow::getHandle() const noexcept
 	{
 		return m_hWnd;
+	}
+
+	const WindowState& CWindow::getState() const noexcept
+	{
+		return m_state;
+	}
+
+	void CWindow::onResize(const bool minimized, const bool maximized)
+	{
+		LOG_TRACE(U"CWindow::onResize(minimized = {}, maximized = {})"_fmt(minimized, maximized));
+
+		if (minimized)
+		{
+			m_state.minimized = true;
+			m_state.maximized = false;
+		}
+		else if (maximized)
+		{
+			m_state.minimized = false;
+			m_state.maximized = true;
+		}
+		else
+		{
+			m_state.minimized = false;
+			m_state.maximized = false;
+		}
+	}
+
+	void CWindow::onFrameBufferResize(const Size& size)
+	{
+		LOG_TRACE(U"CWindow::onFrameBufferResize(size = {})"_fmt(size));
+
+		if (size.isZero())
+		{
+			// window minimized
+		}
+		else
+		{
+			m_state.frameBufferSize = size;
+		}
+	}
+
+	void CWindow::onDPIChange(const int32 dpi, const double scaling, const Point& pos)
+	{
+		LOG_TRACE(U"CWindow::onDPIChange(dpi = {} ({:.0f}%))"_fmt(dpi, scaling * 100));
+
+		const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
+		const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
+
+		RECT rect;
+		rect.left	= pos.x;
+		rect.top	= pos.y;
+		rect.right	= pos.x + newClientWidth;
+		rect.bottom	= pos.y + newClientHeight;
+
+		::AdjustWindowRectExForDpi(&rect, WS_OVERLAPPEDWINDOW, FALSE, 0, dpi);
+
+		const int32 newWindowWidth = (rect.right - rect.left);
+		const int32 newWindowHeight = (rect.bottom - rect.top);
+		const UINT flags = (SWP_NOACTIVATE | SWP_NOZORDER);
+
+		LOG_VERBOSE(U"SetWindowPos({}, {}, {}, {}, {:#x})"_fmt(
+			rect.left, rect.top,
+			newWindowWidth, newWindowHeight,
+			flags));
+
+		::SetWindowPos(m_hWnd, HWND_TOP,
+			rect.left, rect.top,
+			newWindowWidth, newWindowHeight,
+			flags);
+
+		m_state.scaling = scaling;
+	}
+
+	void CWindow::onBoundsUpdate(const Rect& rect)
+	{
+		LOG_VERBOSE(U"CWindow::onBoundsUpdate(rect = {})"_fmt(rect));
+
+		m_state.bounds = rect;
 	}
 }

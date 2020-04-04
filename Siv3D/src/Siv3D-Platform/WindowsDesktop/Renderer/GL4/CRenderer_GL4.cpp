@@ -103,12 +103,12 @@ namespace s3d
 			::glGetIntegerv(GL_MAJOR_VERSION, &major);
 			::glGetIntegerv(GL_MINOR_VERSION, &minor);
 
-			//LOG_TEST(U"renderer: {}"_fmt(renderer));
-			//LOG_TEST(U"vendor: {}"_fmt(vendor));
-			//LOG_TEST(U"version: {}"_fmt(version));
-			//LOG_TEST(U"glslVersion: {}"_fmt(glslVersion));
-			//LOG_TEST(U"GL_MAJOR_VERSION: {}"_fmt(major));
-			//LOG_TEST(U"GL_MINOR_VERSION: {}"_fmt(minor));
+			LOG_INFO(U"renderer: {}"_fmt(renderer));
+			LOG_INFO(U"vendor: {}"_fmt(vendor));
+			LOG_INFO(U"version: {}"_fmt(version));
+			LOG_INFO(U"glslVersion: {}"_fmt(glslVersion));
+			LOG_INFO(U"GL_MAJOR_VERSION: {}"_fmt(major));
+			LOG_INFO(U"GL_MINOR_VERSION: {}"_fmt(minor));
 
 			::wglMakeCurrent(nullptr, nullptr);
 		}
@@ -130,6 +130,12 @@ namespace s3d
 	{
 		::glClearColor(0.8f, 0.9f, 1.0f, 1.0f);
 		::glClear(GL_COLOR_BUFFER_BIT);
+
+		//GLint dims[4] = { 0 };
+		//::glGetIntegerv(GL_VIEWPORT, dims);
+		//GLint fbWidth = dims[2];
+		//GLint fbHeight = dims[3];
+		//LOG_TEST(U"{}x{}"_fmt(fbWidth, fbHeight));
 	}
 
 	void CRenderer_GL4::flush()

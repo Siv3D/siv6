@@ -10,11 +10,10 @@
 //-----------------------------------------------
 
 # pragma once
+# include <Siv3D/Fwd.hpp>
 
 namespace s3d
 {
-	class String;
-
 	class ISiv3DWindow
 	{
 	public:
@@ -32,5 +31,7 @@ namespace s3d
 		virtual const String& getWindowTitle() const noexcept = 0;
 
 		virtual void* getHandle() const noexcept = 0;
+
+		virtual const WindowState& getState() const noexcept = 0;
 	};
 }
