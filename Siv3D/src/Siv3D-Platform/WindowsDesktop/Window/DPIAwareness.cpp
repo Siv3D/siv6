@@ -46,6 +46,7 @@ namespace s3d::detail
 				LOG_VERBOSE(U"SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2)");
 				p_SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
 				::FreeLibrary(user32);
+				::SetProcessDPIAware();
 				return;
 			}
 

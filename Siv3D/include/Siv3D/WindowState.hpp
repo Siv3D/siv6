@@ -14,6 +14,7 @@
 # include "PointVector.hpp"
 # include "Rectangle.hpp"
 # include "Window.hpp"
+# include "WindowStyle.hpp"
 
 namespace s3d
 {
@@ -27,8 +28,12 @@ namespace s3d
 
 		Rect bounds = Rect(0);
 
+		WindowStyle style = WindowStyle::Fixed;
+
 		bool minimized = false;
 
 		bool maximized = false;
+
+		bool focused = true;
 	};
 }

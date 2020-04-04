@@ -12,11 +12,15 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/Utility.hpp>
 # include <Siv3D/FormatLiteral.hpp>
+# include <Siv3D/UserAction.hpp>
+# include <Siv3D/DLL.hpp>
 # include <Siv3D/Profiler/IProfiler.hpp>
+# include <Siv3D/UserAction/IUSerAction.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include "CWindow.hpp"
 # include "DPIAwareness.hpp"
 # include "WindowProc.hpp"
+# include <dwmapi.h>
 
 namespace s3d
 {
@@ -43,6 +47,57 @@ namespace s3d
 			{
 				throw EngineError(U"RegisterClassExW() failed");
 			}
+		}
+
+		void DisableTouchFeedbackVisualization(HWND hWND)
+		{
+			if (HMODULE user32 = DLL::LoadSystemLibrary(L"User32.dll"))
+			{
+				if (decltype(SetWindowFeedbackSetting) * pSetWindowFeedbackSetting = DLL::GetFunctionNoThrow(user32, "SetWindowFeedbackSetting"))
+				{
+					static constexpr std::array<FEEDBACK_TYPE, 11> feedbackTypes =
+					{
+						FEEDBACK_TOUCH_CONTACTVISUALIZATION,
+						FEEDBACK_PEN_BARRELVISUALIZATION,
+						FEEDBACK_PEN_TAP,
+						FEEDBACK_PEN_DOUBLETAP,
+						FEEDBACK_PEN_PRESSANDHOLD,
+						FEEDBACK_PEN_RIGHTTAP,
+						FEEDBACK_TOUCH_TAP,
+						FEEDBACK_TOUCH_DOUBLETAP,
+						FEEDBACK_TOUCH_PRESSANDHOLD,
+						FEEDBACK_TOUCH_RIGHTTAP,
+						FEEDBACK_GESTURE_PRESSANDTAP,
+					};
+
+					for (const auto& feedbackType : feedbackTypes)
+					{
+						BOOL val = FALSE;
+						pSetWindowFeedbackSetting(hWND, feedbackType, 0, sizeof(BOOL), &val);
+					}
+				}
+
+				::FreeLibrary(user32);
+			}
+		}
+
+		constexpr uint32 GetWindowStyleFlags(const WindowStyle style) noexcept
+		{
+			switch (style)
+			{
+			case WindowStyle::Fixed:
+				return (WS_OVERLAPPEDWINDOW & ~(WS_MAXIMIZEBOX | WS_THICKFRAME));
+			case WindowStyle::Frameless:
+				return (WS_POPUP | WS_VISIBLE | WS_MINIMIZEBOX);
+			case WindowStyle::Sizable:
+			default:
+				return WS_OVERLAPPEDWINDOW;
+			}
+		}
+
+		inline constexpr Rect ToRect(const RECT& rect) noexcept
+		{
+			return Rect(rect.left, rect.top, (rect.right - rect.left), (rect.bottom - rect.top));
 		}
 	}
 
@@ -98,15 +153,16 @@ namespace s3d
 		const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - m_state.frameBufferSize.y) / 2, 0);
 		const int32 posX = (monitor.displayRect.left + offsetX);
 		const int32 posY = (monitor.displayRect.top + offsetY);
+		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
 
 		RECT windowRect = { posX, posY, (posX + m_state.frameBufferSize.x), (posY + m_state.frameBufferSize.y) };
-		::AdjustWindowRectExForDpi(&windowRect, WS_OVERLAPPEDWINDOW, FALSE, 0, monitor.displayDPI);
+		::AdjustWindowRectExForDpi(&windowRect, windowStyleFlags, FALSE, 0, monitor.displayDPI);
 
 		m_hWnd = ::CreateWindowExW(
 			0,
 			m_windowClassName.c_str(),
 			m_actualTitle.toWstr().c_str(),
-			m_style,
+			windowStyleFlags,
 			windowRect.left, windowRect.top,
 			(windowRect.right - windowRect.left), (windowRect.bottom - windowRect.top),
 			nullptr, // No parent window
@@ -118,6 +174,9 @@ namespace s3d
 		{
 			throw EngineError(U"CreateWindowExW() failed");
 		}
+
+		// Disable touch feedback visualization that causes frame rate drops
+		detail::DisableTouchFeedbackVisualization(m_hWnd);
 
 		::ShowWindow(m_hWnd, SW_SHOW);
 	}
@@ -187,6 +246,18 @@ namespace s3d
 		}
 	}
 
+	void CWindow::onFocus(const bool focused)
+	{
+		LOG_TRACE(U"CWindow::onFocus(focused = {})"_fmt(focused));
+
+		if (!focused)
+		{
+			SIV3D_ENGINE(UserAction)->reportUserActions(UserAction::WindowDeactivated);
+		}
+
+		m_state.focused = focused;
+	}
+
 	void CWindow::onFrameBufferResize(const Size& size)
 	{
 		LOG_TRACE(U"CWindow::onFrameBufferResize(size = {})"_fmt(size));
@@ -207,14 +278,15 @@ namespace s3d
 
 		const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
 		const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
-
-		RECT rect;
-		rect.left	= pos.x;
-		rect.top	= pos.y;
-		rect.right	= pos.x + newClientWidth;
-		rect.bottom	= pos.y + newClientHeight;
-
-		::AdjustWindowRectExForDpi(&rect, WS_OVERLAPPEDWINDOW, FALSE, 0, dpi);
+		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
+		RECT rect
+		{
+			.left	= pos.x,
+			.top	= pos.y,
+			.right	= pos.x + newClientWidth,
+			.bottom	= pos.y + newClientHeight,
+		};
+		::AdjustWindowRectExForDpi(&rect, windowStyleFlags, FALSE, 0, dpi);
 
 		const int32 newWindowWidth = (rect.right - rect.left);
 		const int32 newWindowHeight = (rect.bottom - rect.top);
@@ -233,10 +305,29 @@ namespace s3d
 		m_state.scaling = scaling;
 	}
 
-	void CWindow::onBoundsUpdate(const Rect& rect)
+	void CWindow::onBoundsUpdate()
 	{
-		LOG_VERBOSE(U"CWindow::onBoundsUpdate(rect = {})"_fmt(rect));
+		LOG_VERBOSE(U"CWindow::onBoundsUpdate()");
 
-		m_state.bounds = rect;
+		RECT windowRect;
+		::DwmGetWindowAttribute(m_hWnd, DWMWA_EXTENDED_FRAME_BOUNDS, &windowRect, sizeof(RECT));
+
+		m_state.bounds = detail::ToRect(windowRect);
+		LOG_VERBOSE(U"- new bounds: {}"_fmt(m_state.bounds));
+
+		//Size frameSize;
+		//if (const int32 addedBorder = ::GetSystemMetrics(SM_CXPADDEDBORDER))
+		//{
+		//	frameSize.x = ::GetSystemMetrics(SM_CXFRAME) + addedBorder;
+		//	frameSize.y = ::GetSystemMetrics(SM_CYFRAME) + addedBorder;
+		//}
+		//else
+		//{
+		//	frameSize.x = ::GetSystemMetrics(SM_CXFIXEDFRAME);
+		//	frameSize.y = ::GetSystemMetrics(SM_CYFIXEDFRAME);
+		//}
+		//int32 titleBarHeight = ::GetSystemMetrics(SM_CYCAPTION);
+
+		//LOG_VERBOSE(U"- new: {} {}"_fmt(frameSize, titleBarHeight));
 	}
 }

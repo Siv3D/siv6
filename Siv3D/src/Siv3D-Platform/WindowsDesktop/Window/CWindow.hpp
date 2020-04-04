@@ -33,8 +33,6 @@ namespace s3d
 
 		WindowState m_state;
 
-		uint32 m_style = WS_OVERLAPPEDWINDOW & ~(WS_MAXIMIZEBOX | WS_THICKFRAME);
-
 	public:
 
 		CWindow();
@@ -55,10 +53,12 @@ namespace s3d
 
 		void onResize(bool minimized, bool maximized);
 
+		void onFocus(bool focused);
+
 		void onFrameBufferResize(const Size& size);
 
 		void onDPIChange(int32 dpi, double scaling, const Point& pos);
 
-		void onBoundsUpdate(const Rect& rect);
+		void onBoundsUpdate();
 	};
 }

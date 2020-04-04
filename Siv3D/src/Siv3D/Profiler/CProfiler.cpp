@@ -12,7 +12,10 @@
 # include <Siv3D/String.hpp>
 # include <Siv3D/PointVector.hpp>
 # include <Siv3D/FormatLiteral.hpp>
+# include <Siv3D/WindowState.hpp>
 # include <Siv3D/Time.hpp>
+# include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
 # include "CProfiler.hpp"
 
 namespace s3d
@@ -56,12 +59,12 @@ namespace s3d
 
 	String CProfiler::getSimpleStatistics() const
 	{
-		const Size backBufferSize(800, 600);// = Window::ClientSize();
+		const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
 		const Size sceneSize(800, 600);// = Scene::Size();
-		return U"{} | {} FPS | W {}x{} | S {}x{}"_fmt(
+		return U"{} | {} FPS | F {}x{} | S {}x{}"_fmt(
 			U"OpenGL",
 			m_currentFPS,
-			backBufferSize.x, backBufferSize.y,
+			frameBufferSize.x, frameBufferSize.y,
 			sceneSize.x, sceneSize.y);
 	}
 }

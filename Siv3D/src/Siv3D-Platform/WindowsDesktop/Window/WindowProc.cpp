@@ -19,14 +19,6 @@
 
 namespace s3d
 {
-	namespace detail
-	{
-		inline constexpr Rect ToRect(const RECT& rect)
-		{
-			return Rect(rect.left, rect.top, (rect.right - rect.left), (rect.bottom - rect.top));
-		}
-	}
-
 	LRESULT CALLBACK WindowProc(const HWND hWnd, const UINT message, const WPARAM wParam, const LPARAM lParam)
 	{
 		switch (message)
@@ -39,12 +31,20 @@ namespace s3d
 
 				return 0; // WM_DESTROY を発生させない
 			}
+		case WM_SETFOCUS:
+			{
+				LOG_TRACE(U"WM_SETFOCUS");
+
+				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onFocus(true);
+				
+				break;
+			}
 		case WM_KILLFOCUS:
 			{
 				LOG_TRACE(U"WM_KILLFOCUS");
 
-				SIV3D_ENGINE(UserAction)->reportUserActions(UserAction::WindowDeactivated);
-				
+				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onFocus(false);
+
 				break;
 			}
 		case WM_KEYDOWN:
@@ -75,6 +75,8 @@ namespace s3d
 				case SC_SCREENSAVE:
 				case SC_MONITORPOWER:
 					return 0;
+				case SC_KEYMENU:
+					return 0;
 				}
 
 				break;
@@ -83,7 +85,7 @@ namespace s3d
 			{
 				LOG_TRACE(U"WM_DISPLAYCHANGE");
 				
-				return 1;
+				return true;
 			}
 		case WM_DPICHANGED:
 			{
@@ -97,17 +99,14 @@ namespace s3d
 				
 				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onDPIChange(newDPI, scaling, pos);
 
-				return 1;
+				return true;
 			}
 		case WM_SIZE:
 			{
 				LOG_TRACE(U"WM_SIZE");
 
 				auto pCWindow = dynamic_cast<CWindow*>(SIV3D_ENGINE(Window));
-
-				RECT windowRect = {};
-				::GetWindowRect(hWnd, &windowRect);
-				pCWindow->onBoundsUpdate(detail::ToRect(windowRect));
+				pCWindow->onBoundsUpdate();
 
 				const bool minimized = (wParam == SIZE_MINIMIZED);
 				const bool maximized = (wParam == SIZE_MAXIMIZED)
@@ -123,9 +122,7 @@ namespace s3d
 			{
 				LOG_VERBOSE(U"WM_MOVE");
 
-				RECT windowRect = {};
-				::GetWindowRect(hWnd, &windowRect);
-				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onBoundsUpdate(detail::ToRect(windowRect));
+				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onBoundsUpdate();
 
 				return 0;
 			}
@@ -149,6 +146,10 @@ namespace s3d
 				*/
 
 				break;
+			}
+        case WM_ERASEBKGND:
+			{
+				return true;
 			}
 		}
 
