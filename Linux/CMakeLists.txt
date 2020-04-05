@@ -30,6 +30,7 @@ target_include_directories(
   ../Siv3D/include
   ../Siv3D/src
   ../Siv3D/src/Siv3D-Platform/Linux
+  ../Siv3D/src/ThirdParty
   )
 
 enable_testing()
