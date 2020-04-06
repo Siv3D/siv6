@@ -7,12 +7,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(
   Siv3D
-  # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Console/CConsole.cpp
-  # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Siv3DMain.cpp
-  # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Unicode/SivUnicode_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Console/CConsole.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Logger/CLogger.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Renderer/RendererFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3DMain.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/System/CSystem.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/System/SivSystem_Platform.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Unicode/SivUnicode_Platform.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Window/CWindow.cpp
   ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Common/Siv3DEngine.cpp
   ../Siv3D/src/Siv3D/Console/ConsoleFactory.cpp
@@ -20,6 +23,7 @@ add_library(
   ../Siv3D/src/Siv3D/Dummy/CDummy.cpp
   ../Siv3D/src/Siv3D/Dummy/DummyFactory.cpp
   ../Siv3D/src/Siv3D/String/SivString.cpp
+  ../Siv3D/src/Siv3D/StringView/SivStringView.cpp
   ../Siv3D/src/Siv3D/Unicode/SivUnicode.cpp
   ../Siv3D/src/Siv3D/Unicode/UnicodeUtility.cpp
 
