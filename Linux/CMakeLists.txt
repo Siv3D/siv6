@@ -5,6 +5,9 @@ cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(OpenGL_GL_PREFERENCE GLVND)
+find_package(OpenGL REQUIRED)
+
 add_library(
   Siv3D
   ../Siv3D/src/Siv3D-Platform/Linux/Console/CConsole.cpp
@@ -38,6 +41,8 @@ add_library(
   ../Siv3D/src/Siv3D/UserAction/UserActionFactory.cpp
   ../Siv3D/src/Siv3D/Unicode/SivUnicode.cpp
   ../Siv3D/src/Siv3D/Unicode/UnicodeUtility.cpp
+  ../Siv3D/src/Siv3D/Window/SivWindow.cpp
+  ../Siv3D/src/Siv3D/Window/WindowFactory.cpp
 
   ../Siv3D/src/ThirdParty/fmt/format.cc
   )
@@ -50,7 +55,13 @@ target_include_directories(
   ../Siv3D/src
   ../Siv3D/src/Siv3D-Platform/Linux
   ../Siv3D/src/ThirdParty
+  PRIVATE
+  ${OPENGL_INCLUDE_DIR}
   )
+target_link_libraries(
+  Siv3D
+  PRIVATE
+  ${OPENGL_LIBRARIES})
 
 enable_testing()
 
