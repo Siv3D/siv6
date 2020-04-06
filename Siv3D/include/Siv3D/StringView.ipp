@@ -169,7 +169,11 @@ namespace s3d
 		*this = StringView();
 	}
 
+#if defined(__GNUC__) && !defined(__clang__)
+	inline StringView::size_type StringView::copy(value_type* dst, const size_type n, const size_type pos) const
+#else
 	inline constexpr StringView::size_type StringView::copy(value_type* dst, const size_type n, const size_type pos) const
+#endif
 	{
 		return m_view.copy(dst, n, pos);
 	}
