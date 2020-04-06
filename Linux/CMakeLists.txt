@@ -9,6 +9,7 @@ add_library(
   Siv3D
   ../Siv3D/src/Siv3D-Platform/Linux/Console/CConsole.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Logger/CLogger.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Renderer/GL4/CRenderer_GL4.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Renderer/RendererFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3DMain.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/System/CSystem.cpp
@@ -22,8 +23,19 @@ add_library(
   ../Siv3D/src/Siv3D/Console/SivConsole.cpp
   ../Siv3D/src/Siv3D/Dummy/CDummy.cpp
   ../Siv3D/src/Siv3D/Dummy/DummyFactory.cpp
+  ../Siv3D/src/Siv3D/EngineLog/SivEngineLog.cpp
+  ../Siv3D/src/Siv3D/Profiler/CProfiler.cpp
+  ../Siv3D/src/Siv3D/Profiler/ProfilerFactory.cpp
+  ../Siv3D/src/Siv3D/Profiler/SivProfiler.cpp
+  ../Siv3D/src/Siv3D/Scene/CScene.cpp
+  ../Siv3D/src/Siv3D/Scene/SceneFactory.cpp
+  ../Siv3D/src/Siv3D/Scene/SivScene.cpp
   ../Siv3D/src/Siv3D/String/SivString.cpp
   ../Siv3D/src/Siv3D/StringView/SivStringView.cpp
+  ../Siv3D/src/Siv3D/System/SivSystem.cpp
+  ../Siv3D/src/Siv3D/System/SystemFactory.cpp
+  ../Siv3D/src/Siv3D/UserAction/CUserAction.cpp
+  ../Siv3D/src/Siv3D/UserAction/UserActionFactory.cpp
   ../Siv3D/src/Siv3D/Unicode/SivUnicode.cpp
   ../Siv3D/src/Siv3D/Unicode/UnicodeUtility.cpp
 
