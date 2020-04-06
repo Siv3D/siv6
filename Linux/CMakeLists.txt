@@ -22,6 +22,8 @@ add_library(
   ../Siv3D/src/Siv3D/String/SivString.cpp
   ../Siv3D/src/Siv3D/Unicode/SivUnicode.cpp
   ../Siv3D/src/Siv3D/Unicode/UnicodeUtility.cpp
+
+  ../Siv3D/src/ThirdParty/fmt/format.cc
   )
 
 target_include_directories(
