@@ -17,6 +17,11 @@
 
 namespace s3d
 {
+	namespace detail
+	{
+		void AppendInt(char32** p, const long value);
+	}
+
 	[[nodiscard]]
 	String ToString(int8 value);
 

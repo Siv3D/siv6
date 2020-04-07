@@ -28,7 +28,8 @@ namespace s3d
 
 		HMODULE m_user32 = nullptr;
 		decltype(GetSystemMetricsForDpi)* m_pGetSystemMetricsForDpi = nullptr;
-		
+		decltype(AdjustWindowRectExForDpi)* m_pAdjustWindowRectExForDpi = nullptr;
+
 		String m_title = String(Window::DefaultTitle);
 		String m_actualTitle = String(SIV3D_BUILD(DEBUG) ? U"Siv3D App (Debug Build)"_sv : Window::DefaultTitle);
 
@@ -36,8 +37,11 @@ namespace s3d
 
 		WindowState m_state;
 		uint32 m_dpi = USER_DEFAULT_SCREEN_DPI;
+		Size m_border = Size(0, 0);
 
 		int32 getSystemMetrics(int32 index) const;
+
+		Rect adjustWindowRect(const Point& pos, const Size& size, int32 windowStyleFlags) const;
 
 	public:
 
@@ -57,14 +61,20 @@ namespace s3d
 
 		const WindowState& getState() const noexcept override;
 
+		void setStyle(WindowStyle style) override;
+
+		void setMinimumFrameBufferSize(const Size& size) override;
+
 		void onResize(bool minimized, bool maximized);
 
 		void onFocus(bool focused);
 
 		void onFrameBufferResize(const Size& size);
 
-		void onDPIChange(uint32 dpi, double scaling, const Point& pos);
+		void onDPIChange(uint32 dpi, const Point& pos);
 
 		void onBoundsUpdate();
+
+		void onMinMaxInfo(LPMINMAXINFO pMinMaxInfo);
 	};
 }

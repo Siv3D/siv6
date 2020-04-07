@@ -26,5 +26,21 @@ namespace s3d
 		{
 			return SIV3D_ENGINE(Window)->getWindowTitle();
 		}
+
+		[[nodiscard]]
+		const WindowState& GetState() noexcept
+		{
+			return SIV3D_ENGINE(Window)->getState();
+		}
+
+		void SetStyle(const WindowStyle style)
+		{
+			SIV3D_ENGINE(Window)->setStyle(style);
+		}
+
+		void SetMinimumFrameBufferSize(const Size& size)
+		{
+			SIV3D_ENGINE(Window)->setMinimumFrameBufferSize(size);
+		}
 	}
 }

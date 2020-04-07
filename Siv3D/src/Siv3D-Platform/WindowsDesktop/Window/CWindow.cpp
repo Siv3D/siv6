@@ -135,6 +135,7 @@ namespace s3d
 			}
 
 			m_pGetSystemMetricsForDpi = DLL::GetFunctionNoThrow(m_user32, "GetSystemMetricsForDpi");
+			m_pAdjustWindowRectExForDpi = DLL::GetFunctionNoThrow(m_user32, "AdjustWindowRectExForDpi");
 		}
 
 		// DPI awareness を有効化
@@ -150,43 +151,45 @@ namespace s3d
 		detail::RegisterWindowClass(m_hInstance, m_windowClassName.c_str());
 
 		// モニタを取得
-		m_monitors = detail::EnumActiveMonitors();
-		if (m_monitors.empty())
 		{
-			throw EngineError(U"EnumActiveMonitors() failed");
+			m_monitors = detail::EnumActiveMonitors();
+			if (m_monitors.empty())
+			{
+				throw EngineError(U"EnumActiveMonitors() failed");
+			}
 		}
 
-		// ウィンドウを作成SW
-		const auto& monitor = m_monitors[0];
-		const double scale = monitor.getScale();
-		m_dpi = monitor.displayDPI;
-
-		m_state.frameBufferSize.x = static_cast<int32>(m_state.clientSize.x * scale);
-		m_state.frameBufferSize.y = static_cast<int32>(m_state.clientSize.y * scale);
-		const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - m_state.frameBufferSize.x) / 2, 0);
-		const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - m_state.frameBufferSize.y) / 2, 0);
-		const int32 posX = (monitor.displayRect.left + offsetX);
-		const int32 posY = (monitor.displayRect.top + offsetY);
-		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
-
-		RECT windowRect = { posX, posY, (posX + m_state.frameBufferSize.x), (posY + m_state.frameBufferSize.y) };
-		::AdjustWindowRectExForDpi(&windowRect, windowStyleFlags, FALSE, 0, m_dpi);
-
-		m_hWnd = ::CreateWindowExW(
-			0,
-			m_windowClassName.c_str(),
-			m_actualTitle.toWstr().c_str(),
-			windowStyleFlags,
-			windowRect.left, windowRect.top,
-			(windowRect.right - windowRect.left), (windowRect.bottom - windowRect.top),
-			nullptr, // No parent window
-			nullptr, // No menu
-			m_hInstance,
-			nullptr);
-
-		if (!m_hWnd)
+		// ウィンドウを作成
 		{
-			throw EngineError(U"CreateWindowExW() failed");
+			const auto& monitor = m_monitors[0];
+			const double scale = monitor.getScale();
+			m_dpi = monitor.displayDPI;
+
+			m_state.frameBufferSize.x = static_cast<int32>(m_state.clientSize.x * scale);
+			m_state.frameBufferSize.y = static_cast<int32>(m_state.clientSize.y * scale);
+			const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - m_state.frameBufferSize.x) / 2, 0);
+			const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - m_state.frameBufferSize.y) / 2, 0);
+			const int32 posX = (monitor.displayRect.left + offsetX);
+			const int32 posY = (monitor.displayRect.top + offsetY);
+			const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
+			const Rect windowRect = adjustWindowRect(Point(posX, posY), m_state.frameBufferSize, windowStyleFlags);
+
+			m_hWnd = ::CreateWindowExW(
+				0,
+				m_windowClassName.c_str(),
+				m_actualTitle.toWstr().c_str(),
+				windowStyleFlags,
+				windowRect.x, windowRect.y,
+				windowRect.w, windowRect.h,
+				nullptr, // No parent window
+				nullptr, // No menu
+				m_hInstance,
+				nullptr);
+
+			if (!m_hWnd)
+			{
+				throw EngineError(U"CreateWindowExW() failed");
+			}
 		}
 
 		// Disable touch feedback visualization that causes frame rate drops
@@ -239,6 +242,57 @@ namespace s3d
 		return m_state;
 	}
 
+	void CWindow::setStyle(const WindowStyle style)
+	{
+		LOG_TRACE(U"CWindow::setStyle(style = {})"_fmt(FromEnum(style)));
+
+		//if (m_state.fullscreen)
+		//{
+		//	m_state.style = style;
+		//	setFullscreen(false, unspecified, WindowResizeOption::KeepSceneSize);
+		//	return;
+		//}
+
+		if (m_state.style == style)
+		{
+			return;
+		}
+
+		const auto current = m_state.style;
+		const bool triggerWindowResize = ((current == WindowStyle::Frameless) || (style == WindowStyle::Frameless));
+		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(style);
+
+		m_state.style = style;
+		::SetWindowLongW(m_hWnd, GWL_STYLE, windowStyleFlags);
+
+		{
+			const double scaling = (static_cast<double>(m_dpi) / USER_DEFAULT_SCREEN_DPI);
+			const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
+			const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
+			const Rect windowRect = adjustWindowRect(m_state.bounds.pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
+			const UINT flags = ((triggerWindowResize ? 0 : SWP_NOSIZE) | SWP_NOMOVE | SWP_NOZORDER | SWP_NOREDRAW | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+
+			LOG_VERBOSE(U"SetWindowPos({}, {}, {}, {}, {:#x})"_fmt(
+				windowRect.x, windowRect.y,
+				windowRect.w, windowRect.h,
+				flags));
+
+			::SetWindowPos(
+				m_hWnd,
+				HWND_NOTOPMOST,
+				windowRect.x, windowRect.y,
+				windowRect.w, windowRect.h,
+				flags);
+		}
+
+		::ShowWindow(m_hWnd, SW_NORMAL);
+	}
+
+	void CWindow::setMinimumFrameBufferSize(const Size& size)
+	{
+		m_state.minFrameBufferSize = size;
+	}
+
 	void CWindow::onResize(const bool minimized, const bool maximized)
 	{
 		LOG_TRACE(U"CWindow::onResize(minimized = {}, maximized = {})"_fmt(minimized, maximized));
@@ -286,35 +340,26 @@ namespace s3d
 		}
 	}
 
-	void CWindow::onDPIChange(const uint32 dpi, const double scaling, const Point& pos)
+	void CWindow::onDPIChange(const uint32 dpi, const Point& pos)
 	{
+		const double scaling = (static_cast<double>(dpi) / USER_DEFAULT_SCREEN_DPI);
 		LOG_TRACE(U"CWindow::onDPIChange(dpi = {} ({:.0f}%))"_fmt(dpi, scaling * 100));
 		m_dpi = dpi;
 
 		const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
 		const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
 		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
-		RECT rect
-		{
-			.left	= pos.x,
-			.top	= pos.y,
-			.right	= pos.x + newClientWidth,
-			.bottom	= pos.y + newClientHeight,
-		};
-		::AdjustWindowRectExForDpi(&rect, windowStyleFlags, FALSE, 0, dpi);
-
-		const int32 newWindowWidth = (rect.right - rect.left);
-		const int32 newWindowHeight = (rect.bottom - rect.top);
+		const Rect windowRect = adjustWindowRect(pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
 		const UINT flags = (SWP_NOACTIVATE | SWP_NOZORDER);
 
 		LOG_VERBOSE(U"SetWindowPos({}, {}, {}, {}, {:#x})"_fmt(
-			rect.left, rect.top,
-			newWindowWidth, newWindowHeight,
+			windowRect.x, windowRect.y,
+			windowRect.w, windowRect.h,
 			flags));
 
 		::SetWindowPos(m_hWnd, HWND_TOP,
-			rect.left, rect.top,
-			newWindowWidth, newWindowHeight,
+			windowRect.x, windowRect.y,
+			windowRect.w, windowRect.h,
 			flags);
 
 		m_state.scaling = scaling;
@@ -351,6 +396,20 @@ namespace s3d
 			m_state.titleBarHeight = titleBarHeight;
 			LOG_VERBOSE(U"- titleBarHeight: {}"_fmt(titleBarHeight));
 		}
+
+		// border
+		{
+			const DWORD windowStyleFlags = ::GetWindowLong(m_hWnd, GWL_STYLE);
+			const Rect dummyWindowRect = adjustWindowRect(Point(0, 0), Size(0, 0), windowStyleFlags);		
+			m_border = dummyWindowRect.size;
+			LOG_VERBOSE(U"- border: {}"_fmt(m_border));
+		}
+	}
+
+	void CWindow::onMinMaxInfo(LPMINMAXINFO pMinMaxInfo)
+	{
+		pMinMaxInfo->ptMinTrackSize.x = (m_state.minFrameBufferSize.x + m_border.x);
+		pMinMaxInfo->ptMinTrackSize.y = (m_state.minFrameBufferSize.y + m_border.y);
 	}
 
 	int32 CWindow::getSystemMetrics(const int32 index) const
@@ -363,5 +422,22 @@ namespace s3d
 		{
 			return ::GetSystemMetrics(index);
 		}
+	}
+
+	Rect CWindow::adjustWindowRect(const Point& pos, const Size& size, const int32 windowStyleFlags) const
+	{
+		RECT rect = { pos.x, pos.y, (pos.x + size.x), (pos.y + size.y) };
+		const int32 windowExStyleFlags = ::GetWindowLong(m_hWnd, GWL_EXSTYLE);
+
+		if (m_pAdjustWindowRectExForDpi)
+		{
+			m_pAdjustWindowRectExForDpi(&rect, windowStyleFlags, false, windowExStyleFlags, m_dpi);
+		}
+		else
+		{
+			::AdjustWindowRectEx(&rect, windowStyleFlags, false, windowExStyleFlags);
+		}
+		
+		return Rect(rect.left, rect.top, (rect.right - rect.left), (rect.bottom - rect.top));
 	}
 }

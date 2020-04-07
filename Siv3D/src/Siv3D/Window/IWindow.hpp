@@ -33,5 +33,9 @@ namespace s3d
 		virtual void* getHandle() const noexcept = 0;
 
 		virtual const WindowState& getState() const noexcept = 0;
+
+		virtual void setStyle(WindowStyle style) = 0;
+
+		virtual void setMinimumFrameBufferSize(const Size& size) = 0;
 	};
 }

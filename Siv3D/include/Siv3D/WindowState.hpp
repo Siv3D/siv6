@@ -24,6 +24,8 @@ namespace s3d
 
 		Size frameBufferSize = Window::DefaultClientSize;
 
+		Size minFrameBufferSize = Size(1, 1);
+
 		double scaling = 1.0;
 
 		Rect bounds = Rect(0);

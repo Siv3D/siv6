@@ -39,5 +39,6 @@ namespace s3d
 
 
 
+	enum class WindowStyle;
 	struct WindowState;
 }

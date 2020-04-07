@@ -14,9 +14,12 @@
 # include "Formatter.hpp"
 # include "PointVector.hpp"
 # include "StringView.hpp"
+# include "WindowStyle.hpp"
 
 namespace s3d
 {
+	struct WindowState;
+
 	namespace Window
 	{
 		inline constexpr Size DefaultClientSize = Size(800, 600);
@@ -46,5 +49,12 @@ namespace s3d
 		/// </summary>
 		[[nodiscard]]
 		const String& GetTitle() noexcept;
+
+		[[nodiscard]]
+		const WindowState& GetState() noexcept;
+
+		void SetStyle(WindowStyle style);
+
+		void SetMinimumFrameBufferSize(const Size& size);
 	}
 }

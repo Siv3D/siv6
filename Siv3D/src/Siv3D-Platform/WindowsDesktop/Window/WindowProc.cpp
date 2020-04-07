@@ -92,12 +92,10 @@ namespace s3d
 				LOG_TRACE(U"WM_DPICHANGED");
 
 				const uint32 newDPI = HIWORD(wParam);
-				const double scaling = (static_cast<double>(newDPI) / USER_DEFAULT_SCREEN_DPI);
-				
 				const RECT rect = *reinterpret_cast<const RECT*>(lParam);
 				const Point pos(rect.left, rect.top);
 				
-				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onDPIChange(newDPI, scaling, pos);
+				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onDPIChange(newDPI, pos);
 
 				return true;
 			}
@@ -150,6 +148,15 @@ namespace s3d
         case WM_ERASEBKGND:
 			{
 				return true;
+			}
+		case WM_GETMINMAXINFO:
+			{
+				LOG_TRACE(U"WM_GETMINMAXINFO");
+
+				LPMINMAXINFO pMinMaxInfo = reinterpret_cast<LPMINMAXINFO>(lParam);
+				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onMinMaxInfo(pMinMaxInfo);
+
+				break;
 			}
 		}
 

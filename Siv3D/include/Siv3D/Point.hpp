@@ -11,6 +11,7 @@
 
 # pragma once
 # include "Common.hpp"
+# include "FormatData.hpp"
 
 namespace s3d
 {
@@ -64,4 +65,6 @@ namespace s3d
 	};
 
 	using Size = Point;
+
+	void Formatter(FormatData& formatData, const Point& value);
 }

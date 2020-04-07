@@ -17,6 +17,46 @@ namespace s3d
 {
 	namespace detail
 	{
+		void AppendInt(char32** const p, const long value)
+		{
+			bool negative;
+			unsigned long val;
+
+			if (value < 0)
+			{
+				negative = true;
+				val = -value;
+			}
+			else
+			{
+				negative = false;
+				val = value;
+			}
+
+			char32 buffer[12];
+			char32* pos = &buffer[11];
+			*pos = U'\0';
+
+			do
+			{
+				*(--pos) = U'0' + static_cast<char32>(val % 10);
+
+				val = val / 10;
+
+			} while (val != 0);
+
+			if (negative)
+			{
+				*(--pos) = U'-';
+			}
+
+			const size_t length = &buffer[11] - pos;
+
+			std::memcpy(*p, pos, length * sizeof(char32));
+
+			*p += length;
+		}
+
 	# ifdef __cpp_lib_concepts
 		template <Concept::UnsignedIntegral UnsignedInteger>
 	# else
