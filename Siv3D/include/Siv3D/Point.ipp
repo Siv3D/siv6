@@ -10,7 +10,16 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Point.hpp"
-# include "Vector2D.hpp"
-# include "Point.ipp"
 
+namespace s3d
+{
+	inline constexpr Float2 Point::operator * (const float s) const noexcept
+	{
+		return{ x * s, y * s };
+	}
+
+	inline constexpr Vec2 Point::operator * (const double s) const noexcept
+	{
+		return{ x * s, y * s };
+	}
+}

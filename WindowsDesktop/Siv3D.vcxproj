@@ -37,6 +37,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\PlaceHolder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Platform.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Point.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Point.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PointVector.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PredefinedNamedParameter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Profiler.hpp" />

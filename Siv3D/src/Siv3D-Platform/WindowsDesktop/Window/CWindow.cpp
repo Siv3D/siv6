@@ -94,6 +94,11 @@ namespace s3d
 		{
 			return Rect(rect.left, rect.top, (rect.right - rect.left), (rect.bottom - rect.top));
 		}
+
+		inline constexpr double GetScaling(uint32 dpi) noexcept
+		{
+			return (static_cast<double>(dpi) / USER_DEFAULT_SCREEN_DPI);
+		}
 	}
 
 	CWindow::CWindow()
@@ -114,11 +119,7 @@ namespace s3d
 		LOG_VERBOSE(U"UnregisterClassW()");
 		::UnregisterClassW(m_windowClassName.c_str(), m_hInstance);
 
-		if (m_user32)
-		{
-			::FreeLibrary(m_user32);
-			m_user32 = nullptr;
-		}
+		DLL::UnloadSystemLibrary(m_user32);
 	}
 
 	void CWindow::init()
@@ -128,12 +129,6 @@ namespace s3d
 		// user32.dll
 		{
 			m_user32 = DLL::LoadSystemLibrary(L"user32.dll");
-
-			if (!m_user32)
-			{
-				throw EngineError(U"Failed to load `user32.dll`");
-			}
-
 			m_pGetSystemMetricsForDpi = DLL::GetFunctionNoThrow(m_user32, "GetSystemMetricsForDpi");
 			m_pAdjustWindowRectExForDpi = DLL::GetFunctionNoThrow(m_user32, "AdjustWindowRectExForDpi");
 		}
@@ -151,12 +146,10 @@ namespace s3d
 		detail::RegisterWindowClass(m_hInstance, m_windowClassName.c_str());
 
 		// モニタを取得
+		if (m_monitors = detail::EnumActiveMonitors();
+			m_monitors.empty())
 		{
-			m_monitors = detail::EnumActiveMonitors();
-			if (m_monitors.empty())
-			{
-				throw EngineError(U"EnumActiveMonitors() failed");
-			}
+			throw EngineError(U"EnumActiveMonitors() failed");
 		}
 
 		// ウィンドウを作成
@@ -165,14 +158,12 @@ namespace s3d
 			const double scale = monitor.getScale();
 			m_dpi = monitor.displayDPI;
 
-			m_state.frameBufferSize.x = static_cast<int32>(m_state.clientSize.x * scale);
-			m_state.frameBufferSize.y = static_cast<int32>(m_state.clientSize.y * scale);
+			m_state.frameBufferSize = (m_state.clientSize * scale).asPoint();
 			const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - m_state.frameBufferSize.x) / 2, 0);
 			const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - m_state.frameBufferSize.y) / 2, 0);
-			const int32 posX = (monitor.displayRect.left + offsetX);
-			const int32 posY = (monitor.displayRect.top + offsetY);
+			const Point pos(monitor.displayRect.left + offsetX, monitor.displayRect.top + offsetY);
 			const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
-			const Rect windowRect = adjustWindowRect(Point(posX, posY), m_state.frameBufferSize, windowStyleFlags);
+			const Rect windowRect = adjustWindowRect(pos, m_state.frameBufferSize, windowStyleFlags);
 
 			m_hWnd = ::CreateWindowExW(
 				0,
@@ -219,7 +210,6 @@ namespace s3d
 
 		if (m_actualTitle != newActualTitle)
 		{
-			//LOG_VERBOSE(U"SetWindowTextW(\"{}\")"_fmt(newActualTitle));
 			::SetWindowTextW(m_hWnd, newActualTitle.toWstr().c_str());
 			m_actualTitle.swap(newActualTitle);
 		}
@@ -261,16 +251,15 @@ namespace s3d
 		const auto current = m_state.style;
 		const bool triggerWindowResize = ((current == WindowStyle::Frameless) || (style == WindowStyle::Frameless));
 		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(style);
-
 		m_state.style = style;
+
 		::SetWindowLongPtrW(m_hWnd, GWL_STYLE, windowStyleFlags);
 
 		{
 			const Point pos = m_state.bounds.pos;
-			const double scaling = (static_cast<double>(m_dpi) / USER_DEFAULT_SCREEN_DPI);
-			const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
-			const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
-			const Rect windowRect = adjustWindowRect(pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
+			const double scaling = detail::GetScaling(m_dpi);
+			const Size newClientSize = (m_state.clientSize * scaling).asPoint();
+			const Rect windowRect = adjustWindowRect(pos, newClientSize, windowStyleFlags);
 			const UINT flags = ((triggerWindowResize ? 0 : SWP_NOSIZE) | SWP_NOZORDER | SWP_NOREDRAW | SWP_NOACTIVATE | SWP_FRAMECHANGED);
 
 			setWindowPos(windowRect, flags);
@@ -291,11 +280,10 @@ namespace s3d
 		}
 
 		{
-			const double scaling = (static_cast<double>(m_dpi) / USER_DEFAULT_SCREEN_DPI);
-			const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
-			const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
+			const double scaling = detail::GetScaling(m_dpi);
+			const Size newClientSize = (m_state.clientSize * scaling).asPoint();
 			const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
-			const Rect windowRect = adjustWindowRect(pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
+			const Rect windowRect = adjustWindowRect(pos, newClientSize, windowStyleFlags);
 			const UINT flags = (SWP_DEFERERASE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 
 			setWindowPos(windowRect, flags);
@@ -356,7 +344,7 @@ namespace s3d
 
 	void CWindow::onDPIChange(const uint32 dpi, const Point& suggestedPos)
 	{
-		const double scaling = (static_cast<double>(dpi) / USER_DEFAULT_SCREEN_DPI);
+		const double scaling = detail::GetScaling(m_dpi);
 		LOG_SCOPED_TRACE(U"CWindow::onDPIChange()");
 		LOG_TRACE(U"- dpi = {}({:.0f}%), suggestedPos = {}"_fmt(dpi, scaling * 100, suggestedPos));
 
@@ -364,18 +352,16 @@ namespace s3d
 		m_state.scaling = scaling;
 		onBoundsUpdate();
 
-		const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
-		const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
+		const Size newClientSize = (m_state.clientSize * scaling).asPoint();
 		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
-		Rect windowRect = adjustWindowRect(m_state.bounds.pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
+		Rect windowRect = adjustWindowRect(m_state.bounds.pos, newClientSize, windowStyleFlags);
 		
 		if (m_state.style != WindowStyle::Frameless)
 		{
-			windowRect.y = suggestedPos.y - m_state.titleBarHeight;
+			windowRect.y = (suggestedPos.y - m_state.titleBarHeight);
 		}
 
 		constexpr UINT flags = (SWP_NOACTIVATE | SWP_NOZORDER);
-
 		setWindowPos(windowRect, flags);
 	}
 
@@ -393,11 +379,7 @@ namespace s3d
 
 		// frame thickness
 		{
-			const Size frameSize
-			{
-				getSystemMetrics(SM_CXBORDER),
-				getSystemMetrics(SM_CYBORDER)
-			};
+			const Size frameSize(getSystemMetrics(SM_CXBORDER), getSystemMetrics(SM_CYBORDER));
 			m_state.frameSize = frameSize;
 			LOG_VERBOSE(U"- frameSize: {}"_fmt(frameSize));
 		}
@@ -405,8 +387,7 @@ namespace s3d
 		// title bar height
 		{
 			const int32 titleBarHeight = (getSystemMetrics(SM_CYCAPTION)
-				+ getSystemMetrics(SM_CYFRAME)
-				+ getSystemMetrics(SM_CXPADDEDBORDER));
+				+ getSystemMetrics(SM_CYFRAME) + getSystemMetrics(SM_CXPADDEDBORDER));
 			m_state.titleBarHeight = titleBarHeight;
 			LOG_VERBOSE(U"- titleBarHeight: {}"_fmt(titleBarHeight));
 		}
@@ -442,8 +423,8 @@ namespace s3d
 	{
 		LOG_VERBOSE(U"CWindow::adjustWindowRect({}, {}, {:#x})"_fmt(pos, size, windowStyleFlags));
 
-		RECT rect = { pos.x, pos.y, (pos.x + size.x), (pos.y + size.y) };
 		const DWORD windowExStyleFlags = static_cast<DWORD>(::GetWindowLongPtrW(m_hWnd, GWL_EXSTYLE));
+		RECT rect = { pos.x, pos.y, (pos.x + size.x), (pos.y + size.y) };
 
 		if (m_pAdjustWindowRectExForDpi)
 		{

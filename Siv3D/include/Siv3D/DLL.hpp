@@ -21,7 +21,12 @@ namespace s3d
 	namespace DLL
 	{
 		[[nodiscard]]
+		HMODULE LoadSystemLibraryNoThrow(const wchar_t* library);
+
+		[[nodiscard]]
 		HMODULE LoadSystemLibrary(const wchar_t* library);
+
+		void UnloadSystemLibrary(HMODULE& library);
 
 		class GetFunctionNoThrow
 		{

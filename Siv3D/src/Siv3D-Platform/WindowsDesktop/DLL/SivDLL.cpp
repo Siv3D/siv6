@@ -18,11 +18,35 @@ namespace s3d
 {
 	namespace DLL
 	{
+		HMODULE LoadSystemLibraryNoThrow(const wchar_t* library)
+		{
+			LOG_TRACE(U"DLL::LoadSystemLibraryNoThrow(\"{}\")"_fmt(Unicode::FromWString(library)));
+
+			return ::LoadLibraryExW(library, nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
+		}
+
 		HMODULE LoadSystemLibrary(const wchar_t* library)
 		{
 			LOG_TRACE(U"DLL::LoadSystemLibrary(\"{}\")"_fmt(Unicode::FromWString(library)));
 
-			return ::LoadLibraryExW(library, nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
+			const HMODULE hModule = ::LoadLibraryExW(library, nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
+
+			if (!hModule)
+			{
+				throw EngineError(U"Failed to load `{}`"_fmt(Unicode::FromWString(library)));
+			}
+
+			return hModule;
+		}
+
+		void UnloadSystemLibrary(HMODULE& library)
+		{
+			if (library)
+			{
+				::FreeLibrary(library);
+				
+				library = nullptr;
+			}
 		}
 
 		GetFunctionNoThrow::GetFunctionNoThrow(HMODULE module, const char* name)

@@ -44,6 +44,15 @@ namespace s3d
 		constexpr Vector2D(const Vector2D<U>& v) noexcept
 			: x(static_cast<value_type>(v.x))
 			, y(static_cast<value_type>(v.y)) {}
+
+
+
+
+		[[nodiscard]]
+		constexpr Point asPoint() const noexcept
+		{
+			return{ static_cast<Point::value_type>(x), static_cast<Point::value_type>(y) };
+		}
 	};
 
 	using Float2 = Vector2D<float>;
