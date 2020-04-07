@@ -359,6 +359,8 @@ namespace s3d
 		m_state.virtualSize = size;
 		constexpr UINT flags = (SWP_NOACTIVATE | SWP_NOZORDER);
 		setWindowPos(windowRect, flags);
+
+		return true;
 	}
 
 	void CWindow::setMinimumFrameBufferSize(const Size& size)

@@ -12,6 +12,7 @@
 # pragma once
 # include "Common.hpp"
 # include "FormatData.hpp"
+# include "FormatLiteral.hpp"
 
 namespace s3d
 {
@@ -92,3 +93,30 @@ namespace s3d
 
 	void Formatter(FormatData& formatData, const Point& value);
 }
+
+template <>
+struct fmt::formatter<s3d::Point, s3d::char32>
+{
+	std::u32string representation;
+
+	auto parse(basic_format_parse_context<s3d::char32>& ctx)
+	{
+		return s3d::detail::GetFormatTag(representation, ctx);
+	}
+
+	template <class FormatContext>
+	auto format(const s3d::Point& value, FormatContext& ctx)
+	{
+		if (representation.empty())
+		{
+			return format_to(ctx.out(), U"({}, {})", value.x, value.y);
+		}
+		else
+		{
+			const std::u32string format
+				= (U"({:" + representation + U"}, {:" + representation + U"})");
+
+			return format_to(ctx.out(), format, value.x, value.y);
+		}
+	}
+};
