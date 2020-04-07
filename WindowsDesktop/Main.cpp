@@ -9,11 +9,13 @@ SIV3D_OPTION_RUN_TEST(false);
 void Main()
 {
 	//Window::SetStyle(WindowStyle::Frameless);
-	Window::SetStyle(WindowStyle::Sizable);
-	//Window::SetMinimumFrameBufferSize(Size(600, 300));
+	//Window::SetStyle(WindowStyle::Sizable);
+	//Window::SetMinimumFrameBufferSize(Size(400, 400));
 
 	//Window::SetPos(100, 100);
 	//Window::Resize(400, 300);
+
+	//Window::Maximize();
 
 	while (System::Update())
 	{
@@ -21,6 +23,11 @@ void Main()
 			Window::GetState().frameBufferSize,
 			Window::GetState().virtualSize,
 			Window::GetState().scaling));
+
+		//if (Scene::FrameCount() == 200)
+		//{
+		//	Window::ResizeFrameBuffer(400, 400);
+		//}
 
 		//if (Scene::FrameCount() == 100)
 		//{

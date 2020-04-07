@@ -91,6 +91,21 @@ namespace s3d
 			return Resize(Size(width, height));
 		}
 
+		bool ResizeFrameBuffer(const Size& size)
+		{
+			if (!InRange(size.x, 1, 8192) || !InRange(size.y, 1, 8192))
+			{
+				throw Error(U"Window::ResizeFrameBuffer(): width and height must be in the range [1, 8192]");
+			}
+
+			return SIV3D_ENGINE(Window)->setFrameBufferSize(size);
+		}
+
+		bool ResizeFrameBuffer(const int32 width, const int32 height)
+		{
+			return ResizeFrameBuffer(Size(width, height));
+		}
+
 		void SetMinimumFrameBufferSize(const Size& size)
 		{
 			SIV3D_ENGINE(Window)->setMinimumFrameBufferSize(size);

@@ -280,8 +280,6 @@ namespace s3d
 			return;
 		}
 
-		//m_dpiLock = false;
-
 		{
 			const double scaling = detail::GetScaling(m_dpi);
 			const Size newFrameBufferSize = (m_state.virtualSize * scaling).asPoint();
@@ -320,25 +318,47 @@ namespace s3d
 
 	bool CWindow::setVirtualSize(const Size& size)
 	{
-		LOG_TRACE(U"CWindow::resize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow::setVirtualSize(size = {})"_fmt(size));
+
+		const double scaling = detail::GetScaling(m_dpi);
+		const Size newFrameBufferSize = (size * scaling).asPoint();
+
+		return setFrameBufferSize(newFrameBufferSize);
+	}
+
+	bool CWindow::setFrameBufferSize(const Size& size)
+	{
+		LOG_TRACE(U"CWindow::setFrameBufferSize(size = {})"_fmt(size));
 
 		if (m_state.virtualSize == size)
 		{
 			return true;
 		}
 
-		//m_dpiLock = false;
+		if (m_state.fullscreen)
+		{
+			return(false);
+		}
 
-		const double scaling = detail::GetScaling(m_dpi);
-		const Size newFrameBufferSize = (size * scaling).asPoint();
+		if (m_state.maximized)
+		{
+			restore();
+		}
+
+		const Size newFrameBufferSize = size;
+
+		if ((newFrameBufferSize.x < m_state.minFrameBufferSize.x)
+			|| (newFrameBufferSize.y < m_state.minFrameBufferSize.y))
+		{
+			return false;
+		}
+
 		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
 		Rect windowRect = adjustWindowRect(m_state.bounds.pos, newFrameBufferSize, windowStyleFlags);
-		
+
 		m_state.virtualSize = size;
 		constexpr UINT flags = (SWP_NOACTIVATE | SWP_NOZORDER);
 		setWindowPos(windowRect, flags);
-
-		return true;
 	}
 
 	void CWindow::setMinimumFrameBufferSize(const Size& size)
