@@ -68,7 +68,15 @@ namespace s3d
 
 		void setPos(const Point& pos) override;
 
+		void maximize() override;
+
+		void restore() override;
+
+		void minimize() override;
+
 		void setMinimumFrameBufferSize(const Size& size) override;
+
+
 
 		void onResize(bool minimized, bool maximized);
 

@@ -59,6 +59,21 @@ namespace s3d
 			return GetState().bounds.pos;
 		}
 
+		void Maximize()
+		{
+			SIV3D_ENGINE(Window)->maximize();
+		}
+
+		void Restore()
+		{
+			SIV3D_ENGINE(Window)->restore();
+		}
+
+		void Minimize()
+		{
+			SIV3D_ENGINE(Window)->minimize();
+		}
+
 		void SetMinimumFrameBufferSize(const Size& size)
 		{
 			SIV3D_ENGINE(Window)->setMinimumFrameBufferSize(size);

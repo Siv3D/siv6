@@ -38,6 +38,12 @@ namespace s3d
 
 		virtual void setPos(const Point& pos) = 0;
 
+		virtual void maximize() = 0;
+
+		virtual void restore() = 0;
+
+		virtual void minimize() = 0;
+
 		virtual void setMinimumFrameBufferSize(const Size& size) = 0;
 	};
 }

@@ -49,7 +49,7 @@ namespace s3d
 			}
 		}
 
-		void DisableTouchFeedbackVisualization(HWND hWND, HMODULE user32)
+		static void DisableTouchFeedbackVisualization(HWND hWND, HMODULE user32)
 		{
 			if (decltype(SetWindowFeedbackSetting) * pSetWindowFeedbackSetting = DLL::GetFunctionNoThrow(user32, "SetWindowFeedbackSetting"))
 			{
@@ -76,7 +76,7 @@ namespace s3d
 			}
 		}
 
-		constexpr uint32 GetWindowStyleFlags(const WindowStyle style) noexcept
+		inline constexpr uint32 GetWindowStyleFlags(const WindowStyle style) noexcept
 		{
 			switch (style)
 			{
@@ -288,6 +288,31 @@ namespace s3d
 
 			setWindowPos(windowRect, flags);
 		}
+	}
+
+	void CWindow::maximize()
+	{
+		LOG_TRACE(U"CWindow::maximize()");
+
+		if (m_state.style == WindowStyle::Fixed)
+		{
+			LOG_FAIL(U"A window with WindowStyle::Fixed cannot be maximized");
+			return;
+		}
+
+		::ShowWindow(m_hWnd, SW_MAXIMIZE);
+	}
+
+	void CWindow::restore()
+	{
+		LOG_TRACE(U"CWindow::restore()");
+		::ShowWindow(m_hWnd, SW_RESTORE);
+	}
+
+	void CWindow::minimize()
+	{
+		LOG_TRACE(U"CWindow::minimize()");
+		::ShowWindow(m_hWnd, SW_MINIMIZE);
 	}
 
 	void CWindow::setMinimumFrameBufferSize(const Size& size)

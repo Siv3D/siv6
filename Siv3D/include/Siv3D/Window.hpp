@@ -74,6 +74,22 @@ namespace s3d
 		[[nodiscard]]
 		Point GetPos() noexcept;
 
+		/// <summary>
+		/// ウィンドウを最大化します。
+		/// </summary>
+		void Maximize();
+
+		/// <summary>
+		/// 最大・最小化されたウィンドウを元のサイズに戻します。
+		/// </summary>
+		void Restore();
+
+		/// <summary>
+		/// ウィンドウを最小化します。
+		/// </summary>
+		void Minimize();
+
+
 		void SetMinimumFrameBufferSize(const Size& size);
 	}
 }
