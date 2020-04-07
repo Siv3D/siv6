@@ -151,10 +151,24 @@ namespace s3d
 			}
 		case WM_GETMINMAXINFO:
 			{
-				LOG_TRACE(U"WM_GETMINMAXINFO");
+				//LOG_VERBOSE(U"WM_GETMINMAXINFO");
 
 				LPMINMAXINFO pMinMaxInfo = reinterpret_cast<LPMINMAXINFO>(lParam);
 				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onMinMaxInfo(pMinMaxInfo);
+
+				break;
+			}
+		case WM_ENTERSIZEMOVE:
+			{
+				LOG_TRACE(U"WM_ENTERSIZEMOVE");
+				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onEnterSizeMove();
+
+				break;
+			}
+		case WM_EXITSIZEMOVE:
+			{
+				LOG_TRACE(U"WM_EXITSIZEMOVE");
+				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onExitSizeMove();
 
 				break;
 			}

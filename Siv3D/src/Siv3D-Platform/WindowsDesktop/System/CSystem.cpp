@@ -28,7 +28,7 @@ namespace s3d
 
 	CSystem::~CSystem()
 	{
-
+		LOG_SCOPED_TRACE(U"CSystem::~CSystem()");
 	}
 
 	void CSystem::init()

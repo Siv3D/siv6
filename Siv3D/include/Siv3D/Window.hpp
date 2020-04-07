@@ -90,6 +90,11 @@ namespace s3d
 		void Minimize();
 
 
+		bool Resize(const Size& size);
+
+		bool Resize(int32 width, int32 height);
+
+
 		void SetMinimumFrameBufferSize(const Size& size);
 	}
 }

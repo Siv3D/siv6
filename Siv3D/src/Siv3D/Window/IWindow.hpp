@@ -44,6 +44,8 @@ namespace s3d
 
 		virtual void minimize() = 0;
 
+		virtual bool setVirtualSize(const Size& size) = 0;
+
 		virtual void setMinimumFrameBufferSize(const Size& size) = 0;
 	};
 }

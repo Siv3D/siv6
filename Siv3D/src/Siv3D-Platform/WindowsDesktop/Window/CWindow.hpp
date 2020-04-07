@@ -14,6 +14,7 @@
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Window.hpp>
 # include <Siv3D/WindowState.hpp>
+# include <Siv3D/Optional.hpp>
 # include "Monitor.hpp"
 
 namespace s3d
@@ -74,6 +75,8 @@ namespace s3d
 
 		void minimize() override;
 
+		bool setVirtualSize(const Size& size) override;
+
 		void setMinimumFrameBufferSize(const Size& size) override;
 
 
@@ -89,5 +92,9 @@ namespace s3d
 		void onBoundsUpdate();
 
 		void onMinMaxInfo(LPMINMAXINFO pMinMaxInfo);
+
+		void onEnterSizeMove();
+
+		void onExitSizeMove();
 	};
 }

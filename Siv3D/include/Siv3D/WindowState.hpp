@@ -20,7 +20,7 @@ namespace s3d
 {
 	struct WindowState
 	{
-		Size clientSize = Window::DefaultClientSize;
+		Size virtualSize = Window::DefaultClientSize;
 
 		Size frameBufferSize = Window::DefaultClientSize;
 
@@ -43,5 +43,7 @@ namespace s3d
 		bool maximized = false;
 
 		bool focused = true;
+
+		bool sizeMove = false;
 	};
 }

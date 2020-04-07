@@ -10,6 +10,8 @@
 //-----------------------------------------------
 
 # include <Siv3D/Window.hpp>
+# include <Siv3D/Utility.hpp>
+# include <Siv3D/Error.hpp>
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
@@ -72,6 +74,21 @@ namespace s3d
 		void Minimize()
 		{
 			SIV3D_ENGINE(Window)->minimize();
+		}
+
+		bool Resize(const Size& size)
+		{
+			if (!InRange(size.x, 1, 8192) || !InRange(size.y, 1, 8192))
+			{
+				throw Error(U"Window::Resize(): width and height must be in the range [1, 8192]");
+			}
+
+			return SIV3D_ENGINE(Window)->setVirtualSize(size);
+		}
+
+		bool Resize(const int32 width, const int32 height)
+		{
+			return Resize(Size(width, height));
 		}
 
 		void SetMinimumFrameBufferSize(const Size& size)

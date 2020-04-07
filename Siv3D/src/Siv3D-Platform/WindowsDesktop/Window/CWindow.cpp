@@ -157,8 +157,9 @@ namespace s3d
 			const auto& monitor = m_monitors[0];
 			const double scale = monitor.getScale();
 			m_dpi = monitor.displayDPI;
+			m_state.scaling = detail::GetScaling(m_dpi);
 
-			m_state.frameBufferSize = (m_state.clientSize * scale).asPoint();
+			m_state.frameBufferSize = (m_state.virtualSize * scale).asPoint();
 			const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - m_state.frameBufferSize.x) / 2, 0);
 			const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - m_state.frameBufferSize.y) / 2, 0);
 			const Point pos(monitor.displayRect.left + offsetX, monitor.displayRect.top + offsetY);
@@ -258,8 +259,8 @@ namespace s3d
 		{
 			const Point pos = m_state.bounds.pos;
 			const double scaling = detail::GetScaling(m_dpi);
-			const Size newClientSize = (m_state.clientSize * scaling).asPoint();
-			const Rect windowRect = adjustWindowRect(pos, newClientSize, windowStyleFlags);
+			const Size newFrameBufferSize = (m_state.virtualSize * scaling).asPoint();
+			const Rect windowRect = adjustWindowRect(pos, newFrameBufferSize, windowStyleFlags);
 			const UINT flags = ((triggerWindowResize ? 0 : SWP_NOSIZE) | SWP_NOZORDER | SWP_NOREDRAW | SWP_NOACTIVATE | SWP_FRAMECHANGED);
 
 			setWindowPos(windowRect, flags);
@@ -279,11 +280,13 @@ namespace s3d
 			return;
 		}
 
+		//m_dpiLock = false;
+
 		{
 			const double scaling = detail::GetScaling(m_dpi);
-			const Size newClientSize = (m_state.clientSize * scaling).asPoint();
+			const Size newFrameBufferSize = (m_state.virtualSize * scaling).asPoint();
 			const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
-			const Rect windowRect = adjustWindowRect(pos, newClientSize, windowStyleFlags);
+			const Rect windowRect = adjustWindowRect(pos, newFrameBufferSize, windowStyleFlags);
 			const UINT flags = (SWP_DEFERERASE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 
 			setWindowPos(windowRect, flags);
@@ -313,6 +316,29 @@ namespace s3d
 	{
 		LOG_TRACE(U"CWindow::minimize()");
 		::ShowWindow(m_hWnd, SW_MINIMIZE);
+	}
+
+	bool CWindow::setVirtualSize(const Size& size)
+	{
+		LOG_TRACE(U"CWindow::resize(size = {})"_fmt(size));
+
+		if (m_state.virtualSize == size)
+		{
+			return true;
+		}
+
+		//m_dpiLock = false;
+
+		const double scaling = detail::GetScaling(m_dpi);
+		const Size newFrameBufferSize = (size * scaling).asPoint();
+		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
+		Rect windowRect = adjustWindowRect(m_state.bounds.pos, newFrameBufferSize, windowStyleFlags);
+		
+		m_state.virtualSize = size;
+		constexpr UINT flags = (SWP_NOACTIVATE | SWP_NOZORDER);
+		setWindowPos(windowRect, flags);
+
+		return true;
 	}
 
 	void CWindow::setMinimumFrameBufferSize(const Size& size)
@@ -364,22 +390,24 @@ namespace s3d
 		else
 		{
 			m_state.frameBufferSize = size;
+			m_state.virtualSize = (m_state.frameBufferSize * (1.0 / m_state.scaling)).asPoint();
 		}
 	}
 
 	void CWindow::onDPIChange(const uint32 dpi, const Point& suggestedPos)
 	{
-		const double scaling = detail::GetScaling(m_dpi);
+		const double scaling = detail::GetScaling(dpi);
 		LOG_SCOPED_TRACE(U"CWindow::onDPIChange()");
 		LOG_TRACE(U"- dpi = {}({:.0f}%), suggestedPos = {}"_fmt(dpi, scaling * 100, suggestedPos));
 
 		m_dpi = dpi;
 		m_state.scaling = scaling;
+
 		onBoundsUpdate();
 
-		const Size newClientSize = (m_state.clientSize * scaling).asPoint();
+		const Size newFrameBufferSize = (m_state.virtualSize * scaling).asPoint();
 		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
-		Rect windowRect = adjustWindowRect(m_state.bounds.pos, newClientSize, windowStyleFlags);
+		Rect windowRect = adjustWindowRect(suggestedPos, newFrameBufferSize, windowStyleFlags);
 		
 		if (m_state.style != WindowStyle::Frameless)
 		{
@@ -430,6 +458,16 @@ namespace s3d
 	{
 		pMinMaxInfo->ptMinTrackSize.x = (m_state.minFrameBufferSize.x + m_border.x);
 		pMinMaxInfo->ptMinTrackSize.y = (m_state.minFrameBufferSize.y + m_border.y);
+	}
+
+	void CWindow::onEnterSizeMove()
+	{
+		m_state.sizeMove = true;
+	}
+
+	void CWindow::onExitSizeMove()
+	{
+		m_state.sizeMove = false;
 	}
 
 	int32 CWindow::getSystemMetrics(const int32 index) const
