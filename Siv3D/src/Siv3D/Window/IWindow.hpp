@@ -36,6 +36,8 @@ namespace s3d
 
 		virtual void setStyle(WindowStyle style) = 0;
 
+		virtual void setPos(const Point& pos) = 0;
+
 		virtual void setMinimumFrameBufferSize(const Size& size) = 0;
 	};
 }

@@ -36,6 +36,8 @@ namespace s3d
 
 		int32 titleBarHeight = 0;
 
+		bool fullscreen = false;
+
 		bool minimized = false;
 
 		bool maximized = false;

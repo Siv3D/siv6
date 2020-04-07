@@ -38,10 +38,13 @@ namespace s3d
 		WindowState m_state;
 		uint32 m_dpi = USER_DEFAULT_SCREEN_DPI;
 		Size m_border = Size(0, 0);
+		Size m_targetWindowPos = Point(0, 0);
 
 		int32 getSystemMetrics(int32 index) const;
 
 		Rect adjustWindowRect(const Point& pos, const Size& size, int32 windowStyleFlags) const;
+
+		void setWindowPos(const Rect& rect, UINT flags);
 
 	public:
 
@@ -63,6 +66,8 @@ namespace s3d
 
 		void setStyle(WindowStyle style) override;
 
+		void setPos(const Point& pos) override;
+
 		void setMinimumFrameBufferSize(const Size& size) override;
 
 		void onResize(bool minimized, bool maximized);
@@ -71,7 +76,7 @@ namespace s3d
 
 		void onFrameBufferResize(const Size& size);
 
-		void onDPIChange(uint32 dpi, const Point& pos);
+		void onDPIChange(uint32 dpi, const Point& suggestedPos);
 
 		void onBoundsUpdate();
 

@@ -23,9 +23,9 @@ namespace s3d
 			SIV3D_ENGINE(Logger)->write(type, s);
 		}
 
-		ScopedEngineLog::ScopedEngineLog(const LogType type, const StringView s)
+		ScopedEngineLog::ScopedEngineLog(const LogType type, String s)
 			: m_type(type)
-			, m_s(s)
+			, m_s(std::move(s))
 		{
 			SIV3D_ENGINE(Logger)->write(m_type, m_s + U" ---"_s);
 		}

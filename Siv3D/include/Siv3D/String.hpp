@@ -12,7 +12,9 @@
 # pragma once
 # include <iostream>
 # include <string>
-# include "Common.hpp"
+# include "Platform.hpp"
+# include "Types.hpp"
+# include "Concepts.hpp"
 # include "StringView.hpp"
 
 namespace s3d

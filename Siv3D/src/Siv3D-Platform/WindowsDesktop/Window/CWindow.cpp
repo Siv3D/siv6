@@ -244,14 +244,14 @@ namespace s3d
 
 	void CWindow::setStyle(const WindowStyle style)
 	{
-		LOG_TRACE(U"CWindow::setStyle(style = {})"_fmt(FromEnum(style)));
+		LOG_SCOPED_TRACE(U"CWindow::setStyle(style = {})"_fmt(FromEnum(style)));
 
-		//if (m_state.fullscreen)
-		//{
+		if (m_state.fullscreen)
+		{
 		//	m_state.style = style;
 		//	setFullscreen(false, unspecified, WindowResizeOption::KeepSceneSize);
-		//	return;
-		//}
+			return;
+		}
 
 		if (m_state.style == style)
 		{
@@ -263,29 +263,43 @@ namespace s3d
 		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(style);
 
 		m_state.style = style;
-		::SetWindowLongW(m_hWnd, GWL_STYLE, windowStyleFlags);
+		::SetWindowLongPtrW(m_hWnd, GWL_STYLE, windowStyleFlags);
+
+		{
+			const Point pos = m_state.bounds.pos;
+			const double scaling = (static_cast<double>(m_dpi) / USER_DEFAULT_SCREEN_DPI);
+			const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
+			const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
+			const Rect windowRect = adjustWindowRect(pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
+			const UINT flags = ((triggerWindowResize ? 0 : SWP_NOSIZE) | SWP_NOZORDER | SWP_NOREDRAW | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+
+			setWindowPos(windowRect, flags);
+		}
+
+		onBoundsUpdate();
+
+		::ShowWindow(m_hWnd, SW_NORMAL);
+	}
+
+	void CWindow::setPos(const Point& pos)
+	{
+		LOG_SCOPED_TRACE(U"CWindow::setPos(pos = {})"_fmt(pos));
+
+		if (m_state.fullscreen)
+		{
+			return;
+		}
 
 		{
 			const double scaling = (static_cast<double>(m_dpi) / USER_DEFAULT_SCREEN_DPI);
 			const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
 			const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
-			const Rect windowRect = adjustWindowRect(m_state.bounds.pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
-			const UINT flags = ((triggerWindowResize ? 0 : SWP_NOSIZE) | SWP_NOMOVE | SWP_NOZORDER | SWP_NOREDRAW | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+			const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
+			const Rect windowRect = adjustWindowRect(pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
+			const UINT flags = (SWP_DEFERERASE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 
-			LOG_VERBOSE(U"SetWindowPos({}, {}, {}, {}, {:#x})"_fmt(
-				windowRect.x, windowRect.y,
-				windowRect.w, windowRect.h,
-				flags));
-
-			::SetWindowPos(
-				m_hWnd,
-				HWND_NOTOPMOST,
-				windowRect.x, windowRect.y,
-				windowRect.w, windowRect.h,
-				flags);
+			setWindowPos(windowRect, flags);
 		}
-
-		::ShowWindow(m_hWnd, SW_NORMAL);
 	}
 
 	void CWindow::setMinimumFrameBufferSize(const Size& size)
@@ -340,29 +354,29 @@ namespace s3d
 		}
 	}
 
-	void CWindow::onDPIChange(const uint32 dpi, const Point& pos)
+	void CWindow::onDPIChange(const uint32 dpi, const Point& suggestedPos)
 	{
 		const double scaling = (static_cast<double>(dpi) / USER_DEFAULT_SCREEN_DPI);
-		LOG_TRACE(U"CWindow::onDPIChange(dpi = {} ({:.0f}%))"_fmt(dpi, scaling * 100));
+		LOG_SCOPED_TRACE(U"CWindow::onDPIChange()");
+		LOG_TRACE(U"- dpi = {}({:.0f}%), suggestedPos = {}"_fmt(dpi, scaling * 100, suggestedPos));
+
 		m_dpi = dpi;
+		m_state.scaling = scaling;
+		onBoundsUpdate();
 
 		const int32 newClientWidth = static_cast<int32>(m_state.clientSize.x * scaling);
 		const int32 newClientHeight = static_cast<int32>(m_state.clientSize.y * scaling);
 		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
-		const Rect windowRect = adjustWindowRect(pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
-		const UINT flags = (SWP_NOACTIVATE | SWP_NOZORDER);
+		Rect windowRect = adjustWindowRect(m_state.bounds.pos, Size(newClientWidth, newClientHeight), windowStyleFlags);
+		
+		if (m_state.style != WindowStyle::Frameless)
+		{
+			windowRect.y = suggestedPos.y - m_state.titleBarHeight;
+		}
 
-		LOG_VERBOSE(U"SetWindowPos({}, {}, {}, {}, {:#x})"_fmt(
-			windowRect.x, windowRect.y,
-			windowRect.w, windowRect.h,
-			flags));
+		constexpr UINT flags = (SWP_NOACTIVATE | SWP_NOZORDER);
 
-		::SetWindowPos(m_hWnd, HWND_TOP,
-			windowRect.x, windowRect.y,
-			windowRect.w, windowRect.h,
-			flags);
-
-		m_state.scaling = scaling;
+		setWindowPos(windowRect, flags);
 	}
 
 	void CWindow::onBoundsUpdate()
@@ -426,8 +440,10 @@ namespace s3d
 
 	Rect CWindow::adjustWindowRect(const Point& pos, const Size& size, const int32 windowStyleFlags) const
 	{
+		LOG_VERBOSE(U"CWindow::adjustWindowRect({}, {}, {:#x})"_fmt(pos, size, windowStyleFlags));
+
 		RECT rect = { pos.x, pos.y, (pos.x + size.x), (pos.y + size.y) };
-		const int32 windowExStyleFlags = ::GetWindowLong(m_hWnd, GWL_EXSTYLE);
+		const DWORD windowExStyleFlags = static_cast<DWORD>(::GetWindowLongPtrW(m_hWnd, GWL_EXSTYLE));
 
 		if (m_pAdjustWindowRectExForDpi)
 		{
@@ -439,5 +455,29 @@ namespace s3d
 		}
 		
 		return Rect(rect.left, rect.top, (rect.right - rect.left), (rect.bottom - rect.top));
+	}
+
+	void CWindow::setWindowPos(const Rect& rect, const UINT flags)
+	{
+		m_targetWindowPos = rect.pos;
+
+		Point pos = rect.pos;
+		if (m_state.style != WindowStyle::Frameless)
+		{
+			pos.x += m_state.frameSize.x;
+			pos.y += m_state.titleBarHeight;
+		}
+		
+		const Size size = rect.size;
+
+		LOG_VERBOSE(U"SetWindowPos({}, {}, {}, {}, {:#x})"_fmt(
+			pos.x, pos.y,
+			size.x, size.y,
+			flags));
+
+		::SetWindowPos(m_hWnd, HWND_TOP,
+			pos.x, pos.y,
+			size.x, size.y,
+			flags);
 	}
 }

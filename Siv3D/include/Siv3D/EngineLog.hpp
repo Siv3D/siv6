@@ -13,6 +13,7 @@
 # include "Platform.hpp"
 # include "LogType.hpp"
 # include "StringView.hpp"
+# include "String.hpp"
 
 namespace s3d
 {
@@ -26,11 +27,11 @@ namespace s3d
 
 			LogType m_type;
 
-			StringView m_s;
+			String m_s;
 
 		public:
 
-			ScopedEngineLog(LogType type, StringView s);
+			ScopedEngineLog(LogType type, String s);
 
 			~ScopedEngineLog();
 		};

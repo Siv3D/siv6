@@ -36,7 +36,17 @@ namespace s3d
 
 
 
+		[[nodiscard]]
+		constexpr bool operator ==(const Point& p) const noexcept
+		{
+			return (x == p.x) && (y == p.y);
+		}
 
+		[[nodiscard]]
+		constexpr bool operator !=(const Point& p) const noexcept
+		{
+			return (x != p.x) || (y != p.y);
+		}
 
 		[[nodiscard]]
 		constexpr bool isZero() const noexcept

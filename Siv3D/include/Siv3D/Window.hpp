@@ -55,6 +55,25 @@ namespace s3d
 
 		void SetStyle(WindowStyle style);
 
+		/// <summary>
+		/// 現在のウィンドウスタイルを返します。
+		/// </summary>
+		[[nodiscard]]
+		WindowStyle GetStyle() noexcept;
+
+		/// <summary>
+		/// ウィンドウを指定した座標に移動させます。
+		/// </summary>
+		void SetPos(const Point& pos);
+
+		/// <summary>
+		/// ウィンドウを指定した座標に移動させます。
+		/// </summary>
+		void SetPos(int32 x, int32 y);
+
+		[[nodiscard]]
+		Point GetPos() noexcept;
+
 		void SetMinimumFrameBufferSize(const Size& size);
 	}
 }

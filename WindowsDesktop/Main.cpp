@@ -9,16 +9,58 @@ SIV3D_OPTION_RUN_TEST(false);
 void Main()
 {
 	//Window::SetStyle(WindowStyle::Frameless);
-	Window::SetStyle(WindowStyle::Sizable);
-	Window::SetMinimumFrameBufferSize(Size(600, 300));
+	//Window::SetStyle(WindowStyle::Sizable);
+	//Window::SetMinimumFrameBufferSize(Size(600, 300));
+
+	Window::SetPos(100, 100);
 
 	while (System::Update())
 	{
 		Window::SetTitle(Window::GetState().frameBufferSize);
 
+		if (Scene::FrameCount() == 100)
+		{
+			Window::SetStyle(WindowStyle::Frameless);
+		}
+
+		if (Scene::FrameCount() == 200)
+		{
+			Window::SetPos(200, 200);
+		}
+
+		if (Scene::FrameCount() == 300)
+		{
+			Window::SetStyle(WindowStyle::Sizable);
+		}
+
 		if (Scene::FrameCount() == 400)
 		{
-			//Window::SetStyle(WindowStyle::Sizable);
+			Window::SetPos(3200, 200);
+		}
+
+		if (Scene::FrameCount() == 500)
+		{
+			Window::SetStyle(WindowStyle::Frameless);
+		}
+
+		if (Scene::FrameCount() == 600)
+		{
+			Window::SetPos(3300, 300);
+		}
+
+		if (Scene::FrameCount() == 500)
+		{
+			Window::SetStyle(WindowStyle::Sizable);
+		}
+
+		if (Scene::FrameCount() == 800)
+		{
+			Window::SetPos(100, 100);
+		}
+
+		if (Scene::FrameCount() == 900)
+		{
+			Window::SetStyle(WindowStyle::Frameless);
 		}
 	}
 }
