@@ -107,6 +107,7 @@
 		2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2EC2426630000D5CBBB /* SivError.cpp */; };
 		2C44429E24271E1700557D51 /* SivEngineLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C44429D24271E1700557D51 /* SivEngineLog.cpp */; };
 		2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4442A02427AA7C00557D51 /* miniutf.hpp */; };
+		2C47A9A9243CA7D800FD33B4 /* SivPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */; };
 		2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */; };
 		2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */; };
 		2C4CBE4C24370FE300F8B7A6 /* CRenderer_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */; };
@@ -231,6 +232,11 @@
 		2C43B2EC2426630000D5CBBB /* SivError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivError.cpp; sourceTree = "<group>"; };
 		2C44429D24271E1700557D51 /* SivEngineLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivEngineLog.cpp; sourceTree = "<group>"; };
 		2C4442A02427AA7C00557D51 /* miniutf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miniutf.hpp; sourceTree = "<group>"; };
+		2C47A9A5243CA7B000FD33B4 /* WindowState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowState.hpp; sourceTree = "<group>"; };
+		2C47A9A6243CA7BC00FD33B4 /* WindowStyle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowStyle.hpp; sourceTree = "<group>"; };
+		2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivPoint.cpp; sourceTree = "<group>"; };
+		2C47A9AA243CA7EE00FD33B4 /* Point.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Point.ipp; sourceTree = "<group>"; };
+		2C47A9AB243CA80200FD33B4 /* Optional.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Optional.hpp; sourceTree = "<group>"; };
 		2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderer.hpp; sourceTree = "<group>"; };
 		2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererFactory.cpp; sourceTree = "<group>"; };
 		2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_GL4.hpp; sourceTree = "<group>"; };
@@ -463,6 +469,7 @@
 				2C4231C5242B0B9200A16BCA /* Formatter */,
 				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C43B2C52426223400D5CBBB /* Logger */,
+				2C47A9A7243CA7D800FD33B4 /* Point */,
 				2C4CBE6724376B5300F8B7A6 /* Profiler */,
 				2C4CBE4324370FC600F8B7A6 /* Renderer */,
 				2C4CBE5B2437236000F8B7A6 /* Scene */,
@@ -696,6 +703,14 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		2C47A9A7243CA7D800FD33B4 /* Point */ = {
+			isa = PBXGroup;
+			children = (
+				2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */,
+			);
+			path = Point;
+			sourceTree = "<group>";
+		};
 		2C4CBE4324370FC600F8B7A6 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -797,9 +812,11 @@
 				2C6897EC2436064900C36C25 /* LogLevel.hpp */,
 				2C68980C2436064900C36C25 /* LogType.hpp */,
 				2C6897ED2436064900C36C25 /* NamedParameter.hpp */,
+				2C47A9AB243CA80200FD33B4 /* Optional.hpp */,
 				2C6898012436064900C36C25 /* PlaceHolder.hpp */,
 				2C6897F82436064900C36C25 /* Platform.hpp */,
 				2C6897F22436064900C36C25 /* Point.hpp */,
+				2C47A9AA243CA7EE00FD33B4 /* Point.ipp */,
 				2C6897F02436064900C36C25 /* PointVector.hpp */,
 				2C6897F12436064900C36C25 /* PredefinedNamedParameter.hpp */,
 				2C4CBE6624376B3C00F8B7A6 /* Profiler.hpp */,
@@ -819,6 +836,8 @@
 				2C6897F62436064900C36C25 /* Vector2D.hpp */,
 				2C6897FF2436064900C36C25 /* Version.hpp */,
 				2C6897FD2436064900C36C25 /* Window.hpp */,
+				2C47A9A5243CA7B000FD33B4 /* WindowState.hpp */,
+				2C47A9A6243CA7BC00FD33B4 /* WindowStyle.hpp */,
 			);
 			path = Siv3D;
 			sourceTree = "<group>";
@@ -1109,6 +1128,7 @@
 				2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */,
 				2C4CBE7124376B5300F8B7A6 /* SivProfiler.cpp in Sources */,
 				2C4CBE592437100100F8B7A6 /* glew.c in Sources */,
+				2C47A9A9243CA7D800FD33B4 /* SivPoint.cpp in Sources */,
 				2C43B2E024264E1200D5CBBB /* SystemFactory.cpp in Sources */,
 				2C43B2D02426227600D5CBBB /* CLogger.cpp in Sources */,
 			);

@@ -12,6 +12,7 @@
 # pragma once
 # include <Siv3D/Window.hpp>
 # include <Siv3D/String.hpp>
+# include <Siv3D/WindowState.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <GLFW/glfw3.h>
 
@@ -22,12 +23,12 @@ namespace s3d
 	private:
 		
 		GLFWwindow* m_window = nullptr;
-		
-		Size m_clientSize = Window::DefaultClientSize;
-		
+
 		String m_title = String(Window::DefaultTitle);
 		String m_actualTitle = String(SIV3D_BUILD(DEBUG) ? U"Siv3D App (Debug Build)"_sv : Window::DefaultTitle);
 
+		WindowState m_state;
+		
 	public:
 
 		CWindow();
@@ -43,5 +44,23 @@ namespace s3d
 		const String& getWindowTitle() const noexcept override;
 		
 		void* getHandle() const noexcept override;
+		
+		const WindowState& getState() const noexcept override;
+
+		void setStyle(WindowStyle style) override;
+
+		void setPos(const Point& pos) override;
+
+		void maximize() override;
+
+		void restore() override;
+
+		void minimize() override;
+
+		bool setVirtualSize(const Size& size) override;
+
+		bool setFrameBufferSize(const Size& size) override;
+
+		void setMinimumFrameBufferSize(const Size& size) override;
 	};
 }

@@ -61,7 +61,7 @@ namespace s3d
 		
 		::glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 	
-		m_window = ::glfwCreateWindow(m_clientSize.x, m_clientSize.y,
+		m_window = ::glfwCreateWindow(m_state.virtualSize.x, m_state.virtualSize.y,
 									  m_actualTitle.narrow().c_str(), nullptr, nullptr);
 		
 		if (!m_window)
@@ -110,7 +110,6 @@ namespace s3d
 
 		if (m_actualTitle != newActualTitle)
 		{
-			LOG_VERBOSE(U"glfwSetWindowTitle(\"{}\")"_fmt(newActualTitle));
 			::glfwSetWindowTitle(m_window, newActualTitle.narrow().c_str());
 			m_actualTitle.swap(newActualTitle);
 		}
@@ -126,5 +125,65 @@ namespace s3d
 	void* CWindow::getHandle() const noexcept
 	{
 		return m_window;
+	}
+
+	const WindowState& CWindow::getState() const noexcept
+	{
+		return m_state;
+	}
+
+	void CWindow::setStyle(const WindowStyle style)
+	{
+	
+	}
+
+	void CWindow::setPos(const Point& pos)
+	{
+	
+	}
+
+	void CWindow::maximize()
+	{
+		LOG_TRACE(U"CWindow::maximize()");
+
+		if (m_state.style == WindowStyle::Fixed)
+		{
+			//LOG_FAIL(U"A window with WindowStyle::Fixed cannot be maximized");
+			return;
+		}
+		
+		::glfwMaximizeWindow(m_window);
+	}
+
+	void CWindow::restore()
+	{
+		LOG_TRACE(U"CWindow::restore()");
+		::glfwRestoreWindow(m_window);
+	}
+
+	void CWindow::minimize()
+	{
+		LOG_TRACE(U"CWindow::minimize()");
+		::glfwIconifyWindow(m_window);
+	}
+
+	bool CWindow::setVirtualSize(const Size& size)
+	{
+		//LOG_TRACE(U"CWindow::setVirtualSize(size = {})"_fmt(size));
+
+		const double scaling = m_state.scaling;
+		const Size newFrameBufferSize = (size * scaling).asPoint();
+
+		return setFrameBufferSize(newFrameBufferSize);
+	}
+
+	bool CWindow::setFrameBufferSize(const Size& size)
+	{
+		return(false);
+	}
+
+	void CWindow::setMinimumFrameBufferSize(const Size& size)
+	{
+		m_state.minFrameBufferSize = size;
 	}
 }
