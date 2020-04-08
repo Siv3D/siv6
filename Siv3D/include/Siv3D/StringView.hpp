@@ -132,7 +132,7 @@ namespace s3d
 
 		constexpr void clear() noexcept;
 
-		constexpr size_type copy(value_type* dst, size_type n, size_type pos = 0) const;
+		size_type copy(value_type* dst, size_type n, size_type pos = 0) const;
 
 		[[nodiscard]]
 		constexpr StringView substr(size_type pos = 0, size_type n = npos) const;

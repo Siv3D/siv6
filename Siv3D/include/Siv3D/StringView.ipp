@@ -169,7 +169,7 @@ namespace s3d
 		*this = StringView();
 	}
 
-	inline constexpr StringView::size_type StringView::copy(value_type* dst, const size_type n, const size_type pos) const
+	inline StringView::size_type StringView::copy(value_type* dst, const size_type n, const size_type pos) const
 	{
 		return m_view.copy(dst, n, pos);
 	}
