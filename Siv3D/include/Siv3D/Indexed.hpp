@@ -51,7 +51,7 @@ namespace s3d
 
 	template <class Type, class It = decltype(std::rbegin(std::declval<Type>())), class = decltype(std::rend(std::declval<Type>()))>
 	[[nodiscard]]
-	inline constexpr auto IndexedRefReversed(Type&& iterable)
+	inline constexpr auto ReverseIndexedRef(Type&& iterable)
 	{
 		struct Iterator
 		{
@@ -74,8 +74,8 @@ namespace s3d
 
 	template <class Type, class It = decltype(std::crbegin(std::declval<Type>())), class = decltype(std::crend(std::declval<Type>()))>
 	[[nodiscard]]
-	inline constexpr auto IndexedReversed(Type&& iterable)
+	inline constexpr auto ReverseIndexed(Type&& iterable)
 	{
-		return IndexedRefReversed<Type, It>(std::forward<Type>(iterable));
+		return ReverseIndexedRef<Type, It>(std::forward<Type>(iterable));
 	}
 }

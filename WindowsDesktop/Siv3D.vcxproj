@@ -33,6 +33,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Logger.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LogLevel.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LogType.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Meta.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\NamedParameter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Optional.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PlaceHolder.hpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Unicode.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\UserAction.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Utility.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Utility.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Vector2D.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Version.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Window.hpp" />

@@ -14,6 +14,7 @@
 # include <type_traits>
 # include "Common.hpp"
 # include "PlaceHolder.hpp"
+# include "Utility.ipp"
 
 namespace s3d
 {
@@ -22,49 +23,6 @@ namespace s3d
 	//	Max
 	//
 	//////////////////////////////////////////////////
-
-	namespace detail
-	{
-		template <class Type>
-		struct Max1_impl
-		{
-			const Type& a;
-
-			constexpr Max1_impl(const Type& _a) noexcept
-				: a(_a) {}
-
-			[[nodiscard]]
-			constexpr const Type& operator()(const Type& b) const noexcept(noexcept(a < b))
-			{
-				return (a < b) ? b : a;
-			}
-		};
-
-		struct Max2_impl
-		{
-		# if __cpp_lib_concepts
-			template <Concept::Scalar Type>
-		# else
-			template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
-		# endif
-			[[nodiscard]]
-			constexpr Type operator()(Type a, Type b) const noexcept
-			{
-				return (a < b) ? b : a;
-			}
-
-		# if __cpp_lib_concepts
-			template <class Type>
-		# else
-			template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
-		# endif
-			[[nodiscard]]
-			constexpr const Type& operator()(const Type& a, const Type& b) const noexcept(noexcept(a < b))
-			{
-				return (a < b) ? b : a;
-			}
-		};
-	}
 
 	template <class Type>
 	[[nodiscard]]
@@ -148,49 +106,6 @@ namespace s3d
 	//	Min
 	//
 	//////////////////////////////////////////////////
-
-	namespace detail
-	{
-		template <class Type>
-		struct Min1_impl
-		{
-			const Type& a;
-
-			constexpr Min1_impl(const Type& _a) noexcept
-				: a(_a) {}
-
-			[[nodiscard]]
-			constexpr const Type& operator()(const Type& b) const noexcept(noexcept(b < a))
-			{
-				return (b < a) ? b : a;
-			}
-		};
-
-		struct Min2_impl
-		{
-		# if __cpp_lib_concepts
-			template <Concept::Scalar Type>
-		# else
-			template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
-		# endif
-			[[nodiscard]]
-			constexpr Type operator()(Type a, Type b) const noexcept
-			{
-				return (b < a) ? b : a;
-			}
-
-		# if __cpp_lib_concepts
-			template <class Type>
-		# else
-			template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
-		# endif
-			[[nodiscard]]
-			constexpr const Type& operator()(const Type& a, const Type& b) const noexcept(noexcept(b < a))
-			{
-				return (b < a) ? b : a;
-			}
-		};
-	}
 
 	template <class Type>
 	[[nodiscard]]
@@ -291,41 +206,6 @@ namespace s3d
 	//
 	//////////////////////////////////////////////////
 
-	namespace detail
-	{
-		template <class Type>
-		class Clamp_impl
-		{
-		private:
-
-			const Type& min;
-
-			const Type& max;
-
-		public:
-
-			constexpr Clamp_impl(const Type& _min, const Type& _max) noexcept
-				: min(_min)
-				, max(_max) {}
-
-			[[nodiscard]]
-			constexpr const Type& operator()(const Type& v) const noexcept(noexcept(max < v) && noexcept(v < min))
-			{
-				if (max < v)
-				{
-					return max;
-				}
-
-				if (v < min)
-				{
-					return min;
-				}
-
-				return v;
-			}
-		};
-	}
-
 	template <class Type>
 	[[nodiscard]] constexpr auto Clamp(PlaceHolder_t, const Type& min, const Type& max) noexcept
 	{
@@ -373,6 +253,26 @@ namespace s3d
 		return v;
 	}
 
+	/// <summary>
+	/// 最小値と最大値の範囲にクランプした値を返します。
+	/// Clamps the value to the specified minimum and maximum range
+	/// </summary>
+	/// <param name="v">
+	/// クランプする値
+	/// A value to clamp
+	/// </param>
+	/// <param name="min">
+	/// 範囲の最小値
+	/// The specified minimum range
+	/// </param>
+	/// <param name="max">
+	/// 範囲の最大値
+	/// The specified maximum range
+	/// </param>
+	/// <returns>
+	/// v をクランプした値
+	/// The clamped value for the v
+	/// </returns>
 # if __cpp_lib_concepts
 	template <class Type>
 # else
@@ -399,31 +299,6 @@ namespace s3d
 	//	InRange
 	//
 	//////////////////////////////////////////////////
-
-	namespace detail
-	{
-		template <class Type>
-		class InRange_impl
-		{
-		private:
-
-			const Type& min;
-
-			const Type& max;
-
-		public:
-
-			constexpr InRange_impl(const Type& _min, const Type& _max) noexcept
-				: min(_min)
-				, max(_max) {}
-
-			[[nodiscard]]
-			constexpr bool operator()(const Type& v) const noexcept(noexcept(min <= v))
-			{
-				return (min <= v) && (v <= max);
-			}
-		};
-	}
 
 	template <class Type>
 	[[nodiscard]]
@@ -500,31 +375,6 @@ namespace s3d
 	//
 	//////////////////////////////////////////////////
 
-	namespace detail
-	{
-		template <class Type>
-		class InOpenRange_impl
-		{
-		private:
-
-			const Type& min;
-
-			const Type& max;
-
-		public:
-
-			constexpr InOpenRange_impl(const Type& _min, const Type& _max) noexcept
-				: min(_min)
-				, max(_max) {}
-
-			[[nodiscard]]
-			constexpr bool operator()(const Type& v) const noexcept(noexcept(min < v))
-			{
-				return (min < v) && (v < max);
-			}
-		};
-	}
-
 	template <class Type>
 	[[nodiscard]]
 	inline constexpr auto InOpenRange(PlaceHolder_t, const Type& min, const Type& max) noexcept
@@ -594,53 +444,19 @@ namespace s3d
 		return (min < v) && (v < max);
 	}
 
-	namespace detail
-	{
-		struct FromEnum_impl
-		{
-		# if __cpp_lib_concepts
-			template <Concept::Enum Enum>
-		# else
-			template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
-		# endif
-			[[nodiscard]]
-			constexpr auto operator ()(Enum x) const noexcept
-			{
-				return static_cast<std::underlying_type_t<Enum>>(x);
-			}
-
-			[[nodiscard]]
-			constexpr auto operator ()(PlaceHolder_t) const noexcept
-			{
-				return FromEnum_impl();
-			}
-		};
-	}
+	//////////////////////////////////////////////////
+	//
+	//	FromEnum
+	//
+	//////////////////////////////////////////////////
 
 	inline constexpr auto FromEnum = detail::FromEnum_impl();
 
-	namespace detail
-	{
-	# if __cpp_lib_concepts
-		template <Concept::Enum Enum>
-	# else
-		template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
-	# endif
-		struct ToEnum_impl
-		{
-			[[nodiscard]]
-			constexpr auto operator ()(std::underlying_type_t<Enum> x) const noexcept
-			{
-				return Enum{ x };
-			}
-
-			[[nodiscard]]
-			constexpr auto operator ()(PlaceHolder_t) const noexcept
-			{
-				return ToEnum_impl();
-			}
-		};
-	}
+	//////////////////////////////////////////////////
+	//
+	//	ToEnum
+	//
+	//////////////////////////////////////////////////
 
 # if __cpp_lib_concepts
 	template <Concept::Enum Enum>
@@ -648,4 +464,65 @@ namespace s3d
 	template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
 # endif
 	inline constexpr auto ToEnum = detail::ToEnum_impl<Enum>();
+
+	//////////////////////////////////////////////////
+	//
+	//	IsOdd
+	//
+	//////////////////////////////////////////////////
+
+	inline constexpr auto IsOdd = detail::IsOdd_impl();
+
+	//////////////////////////////////////////////////
+	//
+	//	IsEven
+	//
+	//////////////////////////////////////////////////
+
+	inline constexpr auto IsEven = detail::IsEven_impl();
+
+	//////////////////////////////////////////////////
+	//
+	//	Identity
+	//
+	//////////////////////////////////////////////////
+
+	inline constexpr auto Identity = detail::Identity_impl();
+
+
+	/// <summary>
+	/// コンテナから条件を満たす要素を削除します。
+	/// </summary>
+	/// <param name="c">
+	/// コンテナ
+	/// </param>
+	/// <param name="pred">
+	/// 条件
+	/// </param>
+	/// <returns>
+	/// なし
+	/// </returns>
+	template <class Container, class Pred>
+	inline void Erase_if(Container& c, Pred pred)
+	{
+		c.erase(std::remove_if(std::begin(c), std::end(c), pred), std::end(c));
+	}
+
+	template <class Container, class Pred>
+	inline void EraseNodes_if(Container& c, Pred pred)
+	{
+		auto first = c.begin();
+		const auto last = c.end();
+		while (first != last)
+		{
+			if (pred(*first))
+			{
+				first = c.erase(first);
+			}
+			else
+			{
+				++first;
+			}
+		}
+	}
 }

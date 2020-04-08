@@ -64,10 +64,11 @@ namespace s3d
 	/// UTF-16 character
 	/// </summary>
 	using char16 = char16_t;
+	static_assert(sizeof(char16) == 2);
 
 	/// <summary>
 	/// UTF-32 character
 	/// </summary>
 	using char32 = char32_t;
+	static_assert(sizeof(char32) == 4);
 }
-

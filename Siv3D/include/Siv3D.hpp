@@ -76,7 +76,7 @@
 
 // メタ関数
 // Meta
-//# include <Siv3D/Meta.hpp>
+# include <Siv3D/Meta.hpp>
 
 // 型特性
 // Type traits
@@ -85,6 +85,18 @@
 // ユーティリティー
 // Utilities
 # include <Siv3D/Utility.hpp>
+
+// ファンクター
+// Functor
+//# include <Siv3D/Functor.hpp>
+
+// エンディアン
+// Endian
+//# include <Siv3D/Endian.hpp>
+
+// バイト
+// Byte
+//# include <Siv3D/Byte.hpp>
 
 # include <Siv3D/StringView.hpp>
 # include <Siv3D/String.hpp>
