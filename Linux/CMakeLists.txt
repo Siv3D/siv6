@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(
-  Siv3D
+  Siv3D STATIC
   # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Console/CConsole.cpp
   # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Siv3DMain.cpp
   # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Unicode/SivUnicode_Platform.cpp
