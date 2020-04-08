@@ -34,7 +34,8 @@
 
 //////////////////////////////////////////////////
 //
-// Utilities
+//	ユーティリティ
+//	Utilities
 //
 //////////////////////////////////////////////////
 
@@ -68,7 +69,7 @@
 
 // 定義済み名前付き引数
 // Predefined named parameters
-# include <Siv3D/PredefinedNamedParameter.hpp>
+# include <Siv3D/PredefinedNamedParameter.hpp> // [Siv3D ToDo]
 
 // 範囲をインデックス値とセットで列挙するユーティリティー
 // Indexed iterator
@@ -78,9 +79,9 @@
 // Meta
 # include <Siv3D/Meta.hpp>
 
-// 型特性
-// Type traits
-//# include <Siv3D/TypeTraits.hpp>
+// 浮動小数点数型の共通型
+// Common Float
+# include <Siv3D/CommonFloat.hpp>
 
 // ユーティリティー
 // Utilities
@@ -92,18 +93,119 @@
 
 // エンディアン
 // Endian
-//# include <Siv3D/Endian.hpp>
+# include <Siv3D/Endian.hpp>
 
 // バイト
 // Byte
-//# include <Siv3D/Byte.hpp>
+# include <Siv3D/Byte.hpp> // [Siv3D ToDo] istream
 
-# include <Siv3D/StringView.hpp>
-# include <Siv3D/String.hpp>
-# include <Siv3D/Unicode.hpp>
+// スレッド
+// Thread
+//# include <Siv3D/Threading.hpp> // [Siv3D ToDo]
 
-# include <Siv3D/Array.hpp>
+// 並列実行タスク
+// Concurrent task
+//# include <Siv3D/ConcurrentTask.hpp> // [Siv3D ToDo]
 
+// メモリアライメント
+// Memory alignment
+//# include <Siv3D/AlignedMemory.hpp> // [Siv3D ToDo]
+
+// メモリアライメント対応アロケーター
+// Aligned allocator
+//# include <Siv3D/AlignedAllocator.hpp> // [Siv3D ToDo]
+
+// 動的配列（一次元）
+// Array
+# include <Siv3D/Array.hpp> // [Siv3D ToDo]
+
+// 動的配列（二次元）
+// 2D array
+//# include <Siv3D/Grid.hpp> // [Siv3D ToDo]
+
+// ハッシュ
+// Hash
+//# include <Siv3D/Hash.hpp> // [Siv3D ToDo]
+
+// ハッシュテーブル
+// Hash table
+//# include <Siv3D/HashTable.hpp> // [Siv3D ToDo]
+
+// ハッシュセット
+// Hash set
+//# include <Siv3D/HashSet.hpp> // [Siv3D ToDo]
+
+// kd 木
+// kd-tree
+//# include <Siv3D/KDTree.hpp> // [Siv3D ToDo]
+
+// 範囲
+// Range
+//# include <Siv3D/Step.hpp> // [Siv3D ToDo]
+
+// 2D 範囲
+// 2D range
+//# include <Siv3D/Step2D.hpp> // [Siv3D ToDo]
+
+// 無限リスト
+// Infinite list
+//# include <Siv3D/InfiniteList.hpp> // [Siv3D ToDo]
+
+// 無効値を持つ値
+// Optional
+# include <Siv3D/Optional.hpp> // [Siv3D ToDo]
+
+// 特に指定しないことを表す無効値
+// Representation of an unspecified value
+//# include <Siv3D/Unspecified.hpp> // [Siv3D ToDo]
+
+// イテレータによる範囲の表現
+// Range iterator
+//# include <Siv3D/RangeIterator.hpp> // [Siv3D ToDo]
+
+// map と each の省略表記
+// simple each and map
+//# include <Siv3D/Evaluater.hpp> // [Siv3D ToDo]
+
+// スコープ・ガード
+// Scope guard
+//# include <Siv3D/ScopeGuard.hpp>
+
+// エラー
+// Error
+# include <Siv3D/Error.hpp>
+
+//////////////////////////////////////////////////
+//
+//	文字列と数値
+//	String and Number
+//
+//////////////////////////////////////////////////
+
+// 文字
+// Character
+//# include <Siv3D/Char.hpp> // [Siv3D ToDo]
+
+// 文字列ビュー
+// String view
+# include <Siv3D/StringView.hpp> // [Siv3D ToDo]
+
+// 文字列
+// String
+# include <Siv3D/String.hpp> // [Siv3D ToDo]
+
+// Unicode
+// Unicode
+# include <Siv3D/Unicode.hpp> // [Siv3D ToDo]
+
+// アルファベットの大文字・小文字
+// Letter case
+# include <Siv3D/LetterCase.hpp>
+
+
+
+
+// [Siv3D ToDo]
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/IntFormatter.hpp>
 # include <Siv3D/FormatInt.hpp>
@@ -111,9 +213,6 @@
 # include <Siv3D/FormatData.hpp>
 # include <Siv3D/Formatter.hpp>
 # include <Siv3D/Format.hpp>
-
-
-# include <Siv3D/Error.hpp>
 
 # include <Siv3D/ApplicationOptions.hpp>
 

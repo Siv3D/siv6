@@ -15,7 +15,7 @@ namespace s3d
 {
 	void Formatter(FormatData& formatData, const Error& value)
 	{
-		const String s = U"["_s + value.type() + U"] " + value.what();
+		const String s = (U"["_s + value.type() + U"] " + value.what());
 
 		formatData.string.append(s);
 	}

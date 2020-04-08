@@ -78,6 +78,15 @@ namespace s3d
 			return StringView(U"EngineError");
 		}
 	};
+}
 
+//////////////////////////////////////////////////
+//
+//	Format
+//
+//////////////////////////////////////////////////
+
+namespace s3d
+{
 	void Formatter(FormatData& formatData, const Error& value);
 }
