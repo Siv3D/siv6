@@ -52,23 +52,23 @@ namespace s3d
 			"6061626364656667686970717273747576777879"
 			"8081828384858687888990919293949596979899";
 
-		IntFormatter::IntFormatter(const std::int32_t value) noexcept
+		IntFormatter::IntFormatter(const int32 value) noexcept
 		{
 			format_signed(value);
 		}
 
-		IntFormatter::IntFormatter(const std::int64_t value) noexcept
+		IntFormatter::IntFormatter(const int64 value) noexcept
 		{
 			format_signed(value);
 		}
 
-		IntFormatter::IntFormatter(const std::uint32_t value) noexcept
+		IntFormatter::IntFormatter(const uint32 value) noexcept
 			: str_(format_decimal(value))
 		{
 
 		}
 
-		IntFormatter::IntFormatter(const std::uint64_t value) noexcept
+		IntFormatter::IntFormatter(const uint64 value) noexcept
 			: str_(format_decimal(value))
 		{
 
@@ -95,7 +95,7 @@ namespace s3d
 			return String(str_, size());
 		}
 
-		char32* IntFormatter::format_decimal(std::uint64_t value) noexcept
+		char32* IntFormatter::format_decimal(uint64 value) noexcept
 		{
 			char32* buffer_end = buffer_ + BUFFER_SIZE - 1;
 
@@ -119,7 +119,7 @@ namespace s3d
 			return buffer_end;
 		}
 
-		void IntFormatter::format_signed(std::int64_t value) noexcept
+		void IntFormatter::format_signed(int64 value) noexcept
 		{
 			uint64 abs_value = static_cast<uint64>(value);
 			bool negative = value < 0;
