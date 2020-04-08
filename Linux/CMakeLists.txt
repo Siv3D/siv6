@@ -5,12 +5,15 @@ cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+pkg_check_modules(LIBSIV3D REQUIRED gl)
+
 add_library(
   Siv3D STATIC
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Console/CConsole.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Logger/CLogger.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Unicode/SivUnicode_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3DMain.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Window/SivWindow.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Common/Siv3DEngine.cpp
@@ -79,6 +82,7 @@ target_include_directories(
   ../Siv3D/src/Siv3D-Platform/macOS_Linux
   ../Siv3D/src/Siv3D-Platform/Linux
   ../Siv3D/src/ThirdParty
+  ${LIBSIV3D_INCLUDE_DIRS}
   )
 
 enable_testing()
