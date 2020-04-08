@@ -84,6 +84,7 @@ target_include_directories(
   Siv3D
   PUBLIC
   ../Siv3D/include
+  ../Siv3D/include/ThirdParty
   ../Siv3D/src
   ../Siv3D/src/Siv3D-Platform/macOS_Linux
   ../Siv3D/src/Siv3D-Platform/Linux
