@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(PkgConfig)
 
-pkg_check_modules(LIBSIV3D REQUIRED gl)
+pkg_check_modules(LIBSIV3D QUIET gl)
 
 add_library(
   Siv3D STATIC
@@ -15,6 +15,10 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Logger/CLogger.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Unicode/SivUnicode_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3DMain.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Renderer/GL4/CRenderer_GL4.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Renderer/RendererFactory.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/System/SivSystem.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Window/SivWindow.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
