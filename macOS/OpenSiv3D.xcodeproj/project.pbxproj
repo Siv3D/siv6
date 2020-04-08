@@ -42,6 +42,7 @@
 		2C423254242B19D100A16BCA /* egl_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423252242B19D100A16BCA /* egl_context.h */; };
 		2C423257242B19ED00A16BCA /* posix_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423255242B19ED00A16BCA /* posix_thread.h */; };
 		2C423258242B19ED00A16BCA /* posix_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C423256242B19ED00A16BCA /* posix_thread.c */; };
+		2C435BBE243DA633001CAAD8 /* CWindow_macOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C435BBD243DA632001CAAD8 /* CWindow_macOS.mm */; };
 		2C4360C4240E4EEC001657D2 /* catch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43609C240E4EEC001657D2 /* catch.hpp */; };
 		2C4360C5240E4EEC001657D2 /* SivUnicode_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360A0240E4EEC001657D2 /* SivUnicode_Platform.cpp */; };
 		2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360A1240E4EEC001657D2 /* Siv3DMain.cpp */; };
@@ -167,6 +168,7 @@
 		2C423252242B19D100A16BCA /* egl_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = egl_context.h; sourceTree = "<group>"; };
 		2C423255242B19ED00A16BCA /* posix_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = posix_thread.h; sourceTree = "<group>"; };
 		2C423256242B19ED00A16BCA /* posix_thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = posix_thread.c; sourceTree = "<group>"; };
+		2C435BBD243DA632001CAAD8 /* CWindow_macOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CWindow_macOS.mm; sourceTree = "<group>"; };
 		2C43609C240E4EEC001657D2 /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		2C4360A0240E4EEC001657D2 /* SivUnicode_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivUnicode_Platform.cpp; sourceTree = "<group>"; };
 		2C4360A1240E4EEC001657D2 /* Siv3DMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DMain.cpp; sourceTree = "<group>"; };
@@ -662,6 +664,7 @@
 		2C43B2E424264E3100D5CBBB /* Window */ = {
 			isa = PBXGroup;
 			children = (
+				2C435BBD243DA632001CAAD8 /* CWindow_macOS.mm */,
 				2C43B2E524264E3100D5CBBB /* CWindow.cpp */,
 				2C43B2E624264E3100D5CBBB /* CWindow.hpp */,
 			);
@@ -1131,6 +1134,7 @@
 				2C47A9A9243CA7D800FD33B4 /* SivPoint.cpp in Sources */,
 				2C43B2E024264E1200D5CBBB /* SystemFactory.cpp in Sources */,
 				2C43B2D02426227600D5CBBB /* CLogger.cpp in Sources */,
+				2C435BBE243DA633001CAAD8 /* CWindow_macOS.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
