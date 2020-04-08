@@ -95,7 +95,7 @@ namespace s3d
 }
 
 template <>
-struct fmt::formatter<s3d::Point, s3d::char32>
+struct SIV3D_HIDDEN fmt::formatter<s3d::Point, s3d::char32>
 {
 	std::u32string tag;
 

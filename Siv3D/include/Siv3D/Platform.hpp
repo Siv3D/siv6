@@ -175,6 +175,23 @@
 
 //////////////////////////////////////////////////
 //
+//	visibility
+//
+//////////////////////////////////////////////////
+
+# if SIV3D_PLATFORM(MACOS) || SIV3D_PLATFORM(LINUX)
+
+	# define SIV3D_HIDDEN __attribute__((visibility("hidden")))
+
+# else
+
+	# define SIV3D_HIDDEN
+
+# endif
+
+
+//////////////////////////////////////////////////
+//
 //	コンパイラ拡張
 //	Compiler Extensions
 //

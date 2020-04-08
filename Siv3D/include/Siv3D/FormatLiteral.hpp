@@ -79,7 +79,7 @@ namespace s3d
 }
 
 template <>
-struct fmt::formatter<s3d::String, s3d::char32>
+struct SIV3D_HIDDEN fmt::formatter<s3d::String, s3d::char32>
 {
 	std::u32string tag;
 
@@ -106,7 +106,7 @@ struct fmt::formatter<s3d::String, s3d::char32>
 };
 
 template <>
-struct fmt::formatter<s3d::StringView, s3d::char32>
+struct SIV3D_HIDDEN fmt::formatter<s3d::StringView, s3d::char32>
 {
 	std::u32string tag;
 
