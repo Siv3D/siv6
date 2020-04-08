@@ -6,6 +6,8 @@ enable_language(C)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_CXX_FLAGS "-D_GLFW_X11")
+
 find_package(PkgConfig)
 
 pkg_check_modules(LIBSIV3D REQUIRED gl)
