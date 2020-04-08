@@ -81,26 +81,25 @@ namespace s3d
 template <>
 struct fmt::formatter<s3d::String, s3d::char32>
 {
-	std::u32string representation;
+	std::u32string tag;
 
 	auto parse(basic_format_parse_context<s3d::char32>& ctx)
 	{
-		return s3d::detail::GetFormatTag(representation, ctx);
+		return s3d::detail::GetFormatTag(tag, ctx);
 	}
 
 	template <class FormatContext>
-	auto format(const s3d::String& x, FormatContext& ctx)
+	auto format(const s3d::String& value, FormatContext& ctx)
 	{
-		const basic_string_view<s3d::char32> sv(x.data(), x.size());
+		const basic_string_view<s3d::char32> sv(value.data(), value.size());
 
-		if (representation.empty())
+		if (tag.empty())
 		{
 			return format_to(ctx.out(), sv);
 		}
 		else
 		{
-			const std::u32string format = (U"{:" + representation + U'}');
-
+			const std::u32string format = (U"{:" + tag + U'}');
 			return format_to(ctx.out(), format, sv);
 		}
 	}
@@ -109,26 +108,25 @@ struct fmt::formatter<s3d::String, s3d::char32>
 template <>
 struct fmt::formatter<s3d::StringView, s3d::char32>
 {
-	std::u32string representation;
+	std::u32string tag;
 
 	auto parse(basic_format_parse_context<s3d::char32>& ctx)
 	{
-		return s3d::detail::GetFormatTag(representation, ctx);
+		return s3d::detail::GetFormatTag(tag, ctx);
 	}
 
 	template <class FormatContext>
-	auto format(const s3d::StringView& x, FormatContext& ctx)
+	auto format(const s3d::StringView& value, FormatContext& ctx)
 	{
-		const basic_string_view<s3d::char32> sv(x.data(), x.size());
+		const basic_string_view<s3d::char32> sv(value.data(), value.size());
 
-		if (representation.empty())
+		if (tag.empty())
 		{
 			return format_to(ctx.out(), sv);
 		}
 		else
 		{
-			const std::u32string format = (U"{:" + representation + U'}');
-
+			const std::u32string format = (U"{:" + tag + U'}');
 			return format_to(ctx.out(), format, sv);
 		}
 	}

@@ -19,6 +19,7 @@
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include "CWindow.hpp"
 # include "DPIAwareness.hpp"
+# include "TouchFeedback.hpp"
 # include "WindowProc.hpp"
 # include <dwmapi.h>
 
@@ -33,7 +34,7 @@ namespace s3d
 			const WNDCLASSEX windowClass
 			{
 				.cbSize			= sizeof(WNDCLASSEX),
-				.style			= CS_HREDRAW | CS_VREDRAW,
+				.style			= (CS_HREDRAW | CS_VREDRAW),
 				.lpfnWndProc	= WindowProc,
 				.hInstance		= hInstance,
 				.hIcon			= ::LoadIconW(hInstance, MAKEINTRESOURCEW(100)),
@@ -46,33 +47,6 @@ namespace s3d
 			if (!::RegisterClassExW(&windowClass))
 			{
 				throw EngineError(U"RegisterClassExW() failed");
-			}
-		}
-
-		static void DisableTouchFeedbackVisualization(HWND hWND, HMODULE user32)
-		{
-			if (decltype(SetWindowFeedbackSetting) * pSetWindowFeedbackSetting = DLL::GetFunctionNoThrow(user32, "SetWindowFeedbackSetting"))
-			{
-				static constexpr std::array<FEEDBACK_TYPE, 11> feedbackTypes =
-				{
-					FEEDBACK_TOUCH_CONTACTVISUALIZATION,
-					FEEDBACK_PEN_BARRELVISUALIZATION,
-					FEEDBACK_PEN_TAP,
-					FEEDBACK_PEN_DOUBLETAP,
-					FEEDBACK_PEN_PRESSANDHOLD,
-					FEEDBACK_PEN_RIGHTTAP,
-					FEEDBACK_TOUCH_TAP,
-					FEEDBACK_TOUCH_DOUBLETAP,
-					FEEDBACK_TOUCH_PRESSANDHOLD,
-					FEEDBACK_TOUCH_RIGHTTAP,
-					FEEDBACK_GESTURE_PRESSANDTAP,
-				};
-
-				for (const auto& feedbackType : feedbackTypes)
-				{
-					BOOL val = FALSE;
-					pSetWindowFeedbackSetting(hWND, feedbackType, 0, sizeof(BOOL), &val);
-				}
 			}
 		}
 
@@ -449,22 +423,17 @@ namespace s3d
 			RECT windowRect;
 			::DwmGetWindowAttribute(m_hWnd, DWMWA_EXTENDED_FRAME_BOUNDS, &windowRect, sizeof(RECT));
 			m_state.bounds = detail::ToRect(windowRect);
-			LOG_VERBOSE(U"- bounds: {}"_fmt(m_state.bounds));
 		}
 
 		// frame thickness
 		{
-			const Size frameSize(getSystemMetrics(SM_CXBORDER), getSystemMetrics(SM_CYBORDER));
-			m_state.frameSize = frameSize;
-			LOG_VERBOSE(U"- frameSize: {}"_fmt(frameSize));
+			m_state.frameSize = Size(getSystemMetrics(SM_CXBORDER), getSystemMetrics(SM_CYBORDER));
 		}
 
 		// title bar height
 		{
-			const int32 titleBarHeight = (getSystemMetrics(SM_CYCAPTION)
+			m_state.titleBarHeight = (getSystemMetrics(SM_CYCAPTION)
 				+ getSystemMetrics(SM_CYFRAME) + getSystemMetrics(SM_CXPADDEDBORDER));
-			m_state.titleBarHeight = titleBarHeight;
-			LOG_VERBOSE(U"- titleBarHeight: {}"_fmt(titleBarHeight));
 		}
 
 		// border
@@ -472,8 +441,13 @@ namespace s3d
 			const DWORD windowStyleFlags = ::GetWindowLong(m_hWnd, GWL_STYLE);
 			const Rect dummyWindowRect = adjustWindowRect(Point(0, 0), Size(0, 0), windowStyleFlags);		
 			m_border = dummyWindowRect.size;
-			LOG_VERBOSE(U"- border: {}"_fmt(m_border));
 		}
+
+		LOG_VERBOSE(U"- bounds: {}, frameSize: {}, titleBarHeight: {}, border: {}"_fmt(
+			m_state.bounds,
+			m_state.frameSize,
+			m_state.titleBarHeight,
+			m_border));
 	}
 
 	void CWindow::onMinMaxInfo(LPMINMAXINFO pMinMaxInfo)

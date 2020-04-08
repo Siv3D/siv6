@@ -432,6 +432,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Optional.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\TouchFeedback.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -601,6 +604,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Point\SivPoint.cpp">
       <Filter>src\Siv3D\Point</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\TouchFeedback.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

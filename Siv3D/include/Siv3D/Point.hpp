@@ -97,25 +97,24 @@ namespace s3d
 template <>
 struct fmt::formatter<s3d::Point, s3d::char32>
 {
-	std::u32string representation;
+	std::u32string tag;
 
 	auto parse(basic_format_parse_context<s3d::char32>& ctx)
 	{
-		return s3d::detail::GetFormatTag(representation, ctx);
+		return s3d::detail::GetFormatTag(tag, ctx);
 	}
 
 	template <class FormatContext>
 	auto format(const s3d::Point& value, FormatContext& ctx)
 	{
-		if (representation.empty())
+		if (tag.empty())
 		{
 			return format_to(ctx.out(), U"({}, {})", value.x, value.y);
 		}
 		else
 		{
 			const std::u32string format
-				= (U"({:" + representation + U"}, {:" + representation + U"})");
-
+				= (U"({:" + tag + U"}, {:" + tag + U"})");
 			return format_to(ctx.out(), format, value.x, value.y);
 		}
 	}
