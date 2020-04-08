@@ -56,19 +56,19 @@ namespace s3d
 
 			char32* str_;
 
-			char32* format_decimal(uint64 value) noexcept;
+			char32* format_decimal(std::uint64_t value) noexcept;
 
-			void format_signed(int64 value) noexcept;
+			void format_signed(std::int64_t value) noexcept;
 
 		public:
 
-			explicit IntFormatter(int32 value) noexcept;
+			explicit IntFormatter(std::int32_t value) noexcept;
 
-			explicit IntFormatter(int64 value) noexcept;
+			explicit IntFormatter(std::int64_t value) noexcept;
 
-			explicit IntFormatter(uint32 value) noexcept;
+			explicit IntFormatter(std::uint32_t value) noexcept;
 
-			explicit IntFormatter(uint64 value) noexcept;
+			explicit IntFormatter(std::uint64_t value) noexcept;
 
 			std::size_t size() const noexcept;
 
