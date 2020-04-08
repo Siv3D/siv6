@@ -19,7 +19,7 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/Linux/Renderer/RendererFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Time/SivTime.cpp
-  ../Siv3D/src/Siv3D-Platform/Linux/Window/SivWindow.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Window/CWindow.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Common/Siv3DEngine.cpp
