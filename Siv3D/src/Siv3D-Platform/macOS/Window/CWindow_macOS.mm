@@ -19,9 +19,7 @@ namespace s3d
 	void Siv3D_MacOS_UpdateWindowState(GLFWwindow* handle, WindowState& state)
 	{
 		NSWindow* window = glfwGetCocoaWindow(handle);
-		
-		//state.maximized = false;//([window isZoomed] && (state.style != WindowStyle::Frameless));
-		
+
 		CGFloat contentHeight = [window contentRectForFrameRect: window.frame].size.height;
 		state.titleBarHeight = (window.frame.size.height - contentHeight);
 	}
