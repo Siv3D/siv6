@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include "UnicodeUtility.hpp"
+# include <miniutf/miniutf.hpp>
 
 namespace s3d
 {
@@ -131,6 +132,48 @@ namespace s3d
 			}
 
 			return result;
+		}
+
+		size_t UTF32_Length(const std::string_view s) noexcept
+		{
+			size_t length = 0;
+
+			const char8* pSrc = s.data();
+			const char8* const pSrcEnd = pSrc + s.size();
+
+			while (pSrc != pSrcEnd)
+			{
+				int32 offset;
+
+				utf8_decode(pSrc, pSrcEnd - pSrc, offset);
+
+				pSrc += offset;
+
+				++length;
+			}
+
+			return length;
+		}
+
+		size_t UTF32_Length(const std::u16string_view s) noexcept
+		{
+			const char16* pSrc = s.data();
+			const char16* const pSrcEnd = pSrc + s.size();
+
+			size_t length = 0;
+
+			while (pSrc != pSrcEnd)
+			{
+				int32 offset;
+
+				utf16_decode(pSrc, pSrcEnd - pSrc, offset);
+
+				pSrc += offset;
+
+				++length;
+			}
+
+			return length;
 		}
 	}
 }

@@ -52,6 +52,90 @@
     <Filter Include="src\Test">
       <UniqueIdentifier>{94202a6e-b1a8-4de5-8185-a290074fb6a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\ThirdParty">
+      <UniqueIdentifier>{5df90db8-212a-43c6-96ff-3cd793e1328c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ThirdParty\fmt">
+      <UniqueIdentifier>{b84b9362-37e7-4931-a0f3-fa2d1511a560}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\fmt">
+      <UniqueIdentifier>{159908a3-b912-4bab-9321-4f5104b1d7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\StringView">
+      <UniqueIdentifier>{ad63d2d2-5695-4e93-81fc-f9f1f0672424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\IntFormatter">
+      <UniqueIdentifier>{b4722747-7e40-41a3-a567-89aa12ca64ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\double-conversion">
+      <UniqueIdentifier>{29244e33-c97b-4389-bd56-3a82e7e2d72f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Logger">
+      <UniqueIdentifier>{bf9a23a2-e0e7-4b79-9a43-6def99dc0916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Logger">
+      <UniqueIdentifier>{b96d29cd-541f-4d15-89e2-f1ccf481eb81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\FormatFloat">
+      <UniqueIdentifier>{c86d5137-a036-4a36-80de-4e0b40d73ba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\FormatInt">
+      <UniqueIdentifier>{ed424eb9-3f0c-4742-ad48-267efa1e2ed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Time">
+      <UniqueIdentifier>{a9bda051-0fc4-431b-9950-3f63a003e6ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\System">
+      <UniqueIdentifier>{aab8a81a-851d-4d0f-815f-b5011d90a80e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Window">
+      <UniqueIdentifier>{86db4054-daa9-41ac-a772-f631b9f59c0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\System">
+      <UniqueIdentifier>{15b57f30-ca11-4378-bd61-3492c69bfb61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Window">
+      <UniqueIdentifier>{a376889b-11d2-47be-acc0-75c328bdcf9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Error">
+      <UniqueIdentifier>{74946f0d-0ba0-4853-99de-bf1643a76e29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\EngineLog">
+      <UniqueIdentifier>{93770f53-f718-458f-acc4-2397526a340b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\miniutf">
+      <UniqueIdentifier>{6f677924-4afd-43bd-ba7a-ca7a15934ab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\DLL">
+      <UniqueIdentifier>{e2ef10a8-201e-40ed-9caf-204bbe8d3b7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Formatter">
+      <UniqueIdentifier>{f7fdfc9c-ecac-403a-b8b2-7234a2cfecb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\UserAction">
+      <UniqueIdentifier>{14fa93c1-3279-4aaf-ace0-47e00c15ae16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Renderer">
+      <UniqueIdentifier>{8be56205-63c0-4ad8-9be6-fa5d9cf37ea3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer">
+      <UniqueIdentifier>{7da6f383-45d8-4743-bcd8-ba7b2c68bdd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer\GL4">
+      <UniqueIdentifier>{30ff6301-d2d0-45f2-a456-1a48664740f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\GLEW">
+      <UniqueIdentifier>{147b7035-ac5a-40fb-9776-52a6dbb176a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\GL">
+      <UniqueIdentifier>{5772cef1-f0b2-4805-a282-e7896b94c31a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Scene">
+      <UniqueIdentifier>{91c22bf3-d0b3-4546-819b-2878e5c4f0ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Profiler">
+      <UniqueIdentifier>{957c381f-381e-4aa3-bc14-c302d1340067}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -120,6 +204,225 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\Catch2\catch.hpp">
       <Filter>src\ThirdParty\Catch2</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\core.h">
+      <Filter>include\ThirdParty\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\fmt\format-inl.h">
+      <Filter>src\ThirdParty\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\format.h">
+      <Filter>include\ThirdParty\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\ostream.h">
+      <Filter>include\ThirdParty\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatLiteral.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\StringView.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Fwd.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatData.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Format.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\PlaceHolder.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\IntFormatter.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatFloat.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\diy-fp.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\double-conversion.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\double-to-string.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\fast-dtoa.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\fixed-dtoa.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\ieee.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\string-to-double.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\strtod.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\utils.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\bignum.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\bignum-dtoa.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\double-conversion\cached-powers.h">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatInt.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\NamedParameter.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\PredefinedNamedParameter.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\LetterCase.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Version.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Uncopyable.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Indexed.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Utility.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Concepts.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Logger.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Logger\ILogger.hpp">
+      <Filter>src\Siv3D\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Time.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\LogLevel.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\LogType.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Window\IWindow.hpp">
+      <Filter>src\Siv3D\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\System\ISystem.hpp">
+      <Filter>src\Siv3D\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Error.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\EngineLog.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\miniutf\miniutf.hpp">
+      <Filter>src\ThirdParty\miniutf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\WindowProc.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Array.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\Monitor.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Point.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Window.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\PointVector.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\DPIAwareness.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\DLL.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Formatter.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\UserAction.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\UserAction\CUserAction.hpp">
+      <Filter>src\Siv3D\UserAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\UserAction\IUSerAction.hpp">
+      <Filter>src\Siv3D\UserAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\System.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Vector2D.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Rectangle.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Renderer\IRenderer.hpp">
+      <Filter>src\Siv3D\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\CRenderer_GL4.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\GL4</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\GL\glew.h">
+      <Filter>src\ThirdParty\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\GL\wglew.h">
+      <Filter>src\ThirdParty\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Scene\CScene.hpp">
+      <Filter>src\Siv3D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Scene\IScene.hpp">
+      <Filter>src\Siv3D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Scene.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\CProfiler.hpp">
+      <Filter>src\Siv3D\Profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\IProfiler.hpp">
+      <Filter>src\Siv3D\Profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Profiler.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\WindowState.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\WindowStyle.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -160,6 +463,132 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Test\Siv3DTest.cpp">
       <Filter>src\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\fmt\format.cc">
+      <Filter>src\ThirdParty\fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\StringView\SivStringView.cpp">
+      <Filter>src\Siv3D\StringView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\IntFormatter\SivIntFormatter.cpp">
+      <Filter>src\Siv3D\IntFormatter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\FormatFloat\SivFormatFloat.cpp">
+      <Filter>src\Siv3D\FormatFloat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\double-to-string.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\fast-dtoa.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\fixed-dtoa.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\string-to-double.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\strtod.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum-dtoa.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\cached-powers.cc">
+      <Filter>src\ThirdParty\double-conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\FormatInt\SivFormatInt.cpp">
+      <Filter>src\Siv3D\FormatInt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Logger\LoggerFactory.cpp">
+      <Filter>src\Siv3D\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Logger\SivLogger.cpp">
+      <Filter>src\Siv3D\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Time\SivTime.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Window\WindowFactory.cpp">
+      <Filter>src\Siv3D\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\System\SystemFactory.cpp">
+      <Filter>src\Siv3D\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Error\SivError.cpp">
+      <Filter>src\Siv3D\Error</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\EngineLog\SivEngineLog.cpp">
+      <Filter>src\Siv3D\EngineLog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\WindowProc.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\Monitor.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\DPIAwareness.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\DLL\SivDLL.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\DLL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Formatter\SivFormatter.cpp">
+      <Filter>src\Siv3D\Formatter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\UserAction\CUserAction.cpp">
+      <Filter>src\Siv3D\UserAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\UserAction\UserActionFactory.cpp">
+      <Filter>src\Siv3D\UserAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\System\SivSystem.cpp">
+      <Filter>src\Siv3D\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\SivSystem_Platform.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Window\SivWindow.cpp">
+      <Filter>src\Siv3D\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\RendererFactory.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\CRenderer_GL4.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\GL4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\GLEW\glew.c">
+      <Filter>src\ThirdParty\GLEW</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Scene\CScene.cpp">
+      <Filter>src\Siv3D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Scene\SceneFactory.cpp">
+      <Filter>src\Siv3D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Scene\SivScene.cpp">
+      <Filter>src\Siv3D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Profiler\CProfiler.cpp">
+      <Filter>src\Siv3D\Profiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Profiler\ProfilerFactory.cpp">
+      <Filter>src\Siv3D\Profiler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Profiler\SivProfiler.cpp">
+      <Filter>src\Siv3D\Profiler</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

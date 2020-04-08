@@ -15,6 +15,16 @@ namespace s3d
 {
 	namespace Unicode
 	{
+		String Widen(const std::string_view s)
+		{
+			return FromUTF8(s);
+		}
+	
+		String Widen(const std::wstring_view s)
+		{
+			return String(s.begin(), s.end());
+		}
+	
 		std::string Narrow(const StringView s)
 		{
 			return ToUTF8(s);

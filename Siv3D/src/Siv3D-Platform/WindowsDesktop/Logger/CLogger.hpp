@@ -1,0 +1,32 @@
+﻿//-----------------------------------------------
+//
+//	This file is part of the Siv3D Engine.
+//
+//	Copyright (c) 2008-2020 Ryo Suzuki
+//	Copyright (c) 2016-2020 OpenSiv3D Project
+//
+//	Licensed under the MIT License.
+//
+//-----------------------------------------------
+
+# pragma once
+# include <mutex>
+# include <Siv3D/Logger/ILogger.hpp>
+
+namespace s3d
+{
+	class CLogger final : public ISiv3DLogger
+	{
+	private:
+
+		std::mutex m_mutex;
+
+	public:
+
+		CLogger();
+
+		~CLogger() override;
+
+		void write(LogType type, StringView s) override;
+	};
+}

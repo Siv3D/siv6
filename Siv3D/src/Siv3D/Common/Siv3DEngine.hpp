@@ -16,7 +16,14 @@
 namespace s3d
 {
 	class ISiv3DDummy;
+	class ISiv3DLogger;
+	class ISiv3DSystem;
+	class ISiv3DProfiler;
+	class ISiv3DUserAction;
+	class ISiv3DWindow;
+	class ISiv3DScene;
 	class ISiv3DConsole;
+	class ISiv3DRenderer;
 
 	class Siv3DEngine
 	{
@@ -26,7 +33,14 @@ namespace s3d
 
 		std::tuple<
 			Siv3DComponent<ISiv3DDummy>,
-			Siv3DComponent<ISiv3DConsole>> m_components;
+			Siv3DComponent<ISiv3DLogger>,
+			Siv3DComponent<ISiv3DSystem>,
+			Siv3DComponent<ISiv3DProfiler>,
+			Siv3DComponent<ISiv3DUserAction>,
+			Siv3DComponent<ISiv3DWindow>,
+			Siv3DComponent<ISiv3DScene>,
+			Siv3DComponent<ISiv3DConsole>,
+			Siv3DComponent<ISiv3DRenderer>> m_components;
 
 	public:
 
@@ -39,9 +53,11 @@ namespace s3d
 
 		template <class Interface>
 		[[nodiscard]]
-		static auto* Get()
+		static auto* Get() noexcept
 		{
 			return std::get<Siv3DComponent<Interface>>(pEngine->m_components).get();
 		}
 	};
+
+	# define SIV3D_ENGINE(COMPONENT) Siv3DEngine::Get<ISiv3D##COMPONENT>()
 }

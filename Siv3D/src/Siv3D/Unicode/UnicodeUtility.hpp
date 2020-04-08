@@ -58,5 +58,14 @@ namespace s3d
 				*(*s)++ = static_cast<Char16>(0xFFFD);
 			}
 		}
+
+		//
+		// UTF-32
+		//
+		[[nodiscard]]
+		size_t UTF32_Length(std::string_view s) noexcept;
+
+		[[nodiscard]]
+		size_t UTF32_Length(std::u16string_view s) noexcept;
 	}
 }

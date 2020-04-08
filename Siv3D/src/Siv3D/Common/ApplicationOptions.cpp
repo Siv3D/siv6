@@ -17,22 +17,22 @@ namespace s3d
 {
 	namespace detail
 	{
-		int EnableDebugHeapManager(const bool enabled)
+		int EnableDebugHeapManager(const bool enabled) noexcept
 		{
 			return g_ApplicationOptions.debugHeapManager = enabled;
 		}
 
-		int EnableHeadlessMode(const bool enabled)
+		int EnableHeadlessMode(const bool enabled) noexcept
 		{
 			return g_ApplicationOptions.headlessMode = enabled;
 		}
 
-		int EnableStdErr(const bool enabled)
+		int EnableStdErr(const bool enabled) noexcept
 		{
 			return g_ApplicationOptions.stdErr = enabled;
 		}
 
-		int EnableTest(const bool enabled)
+		int EnableTest(const bool enabled) noexcept
 		{
 			return g_ApplicationOptions.runTest = enabled;
 		}

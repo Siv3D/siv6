@@ -32,19 +32,103 @@
 #	define SIV3D_INCLUDED
 # endif
 
+//////////////////////////////////////////////////
+//
+// Utilities
+//
+//////////////////////////////////////////////////
+
+// プラットフォーム
+// Platform
 # include <Siv3D/Platform.hpp>
 
+// ライブラリのバージョン
+// Library version
+# include <Siv3D/Version.hpp>
+
+// 基本型
+// Types
 # include <Siv3D/Types.hpp>
 
+// 前方宣言
+// Forward declarations
+# include <Siv3D/Fwd.hpp>
+
+// プレースホルダー
+// Place holder
+# include <Siv3D/PlaceHolder.hpp>
+
+// コピー禁止 Mixin
+// Non-copyable mixin
+# include <Siv3D/Uncopyable.hpp>
+
+// 名前付き引数
+// Named parameter
+# include <Siv3D/NamedParameter.hpp>
+
+// 定義済み名前付き引数
+// Predefined named parameters
+# include <Siv3D/PredefinedNamedParameter.hpp>
+
+// 範囲をインデックス値とセットで列挙するユーティリティー
+// Indexed iterator
+# include <Siv3D/Indexed.hpp>
+
+// メタ関数
+// Meta
+//# include <Siv3D/Meta.hpp>
+
+// 型特性
+// Type traits
+//# include <Siv3D/TypeTraits.hpp>
+
+// ユーティリティー
+// Utilities
+# include <Siv3D/Utility.hpp>
+
 # include <Siv3D/StringView.hpp>
-
 # include <Siv3D/String.hpp>
-
 # include <Siv3D/Unicode.hpp>
+
+# include <Siv3D/Array.hpp>
+
+# include <Siv3D/FormatLiteral.hpp>
+# include <Siv3D/IntFormatter.hpp>
+# include <Siv3D/FormatInt.hpp>
+# include <Siv3D/FormatFloat.hpp>
+# include <Siv3D/FormatData.hpp>
+# include <Siv3D/Formatter.hpp>
+# include <Siv3D/Format.hpp>
+
+
+# include <Siv3D/Error.hpp>
 
 # include <Siv3D/ApplicationOptions.hpp>
 
+# include <Siv3D/Time.hpp>
+
+# include <Siv3D/LogLevel.hpp>
+# include <Siv3D/LogType.hpp>
+# include <Siv3D/Logger.hpp>
+
+# include <Siv3D/PointVector.hpp>
+
+# include <Siv3D/Rectangle.hpp>
+
+# include <Siv3D/Profiler.hpp>
+
+# include <Siv3D/WindowStyle.hpp>
+
+# include <Siv3D/Window.hpp>
+
+# include <Siv3D/Scene.hpp>
+
 # include <Siv3D/Console.hpp>
+
+# include <Siv3D/UserAction.hpp>
+
+# include <Siv3D/System.hpp>
+
 
 # if !defined(SIV3D_LIBRARY_BUILD) && SIV3D_PLATFORM(WINDOWS)
 
