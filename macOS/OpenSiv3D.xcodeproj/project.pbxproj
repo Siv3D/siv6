@@ -43,6 +43,7 @@
 		2C423257242B19ED00A16BCA /* posix_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423255242B19ED00A16BCA /* posix_thread.h */; };
 		2C423258242B19ED00A16BCA /* posix_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C423256242B19ED00A16BCA /* posix_thread.c */; };
 		2C435BBE243DA633001CAAD8 /* CWindow_macOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C435BBD243DA632001CAAD8 /* CWindow_macOS.mm */; };
+		2C435BC6243E085D001CAAD8 /* SivByte.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C435BC5243E085D001CAAD8 /* SivByte.cpp */; };
 		2C4360C4240E4EEC001657D2 /* catch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43609C240E4EEC001657D2 /* catch.hpp */; };
 		2C4360C5240E4EEC001657D2 /* SivUnicode_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360A0240E4EEC001657D2 /* SivUnicode_Platform.cpp */; };
 		2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360A1240E4EEC001657D2 /* Siv3DMain.cpp */; };
@@ -169,6 +170,12 @@
 		2C423255242B19ED00A16BCA /* posix_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = posix_thread.h; sourceTree = "<group>"; };
 		2C423256242B19ED00A16BCA /* posix_thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = posix_thread.c; sourceTree = "<group>"; };
 		2C435BBD243DA632001CAAD8 /* CWindow_macOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CWindow_macOS.mm; sourceTree = "<group>"; };
+		2C435BBF243E0829001CAAD8 /* Meta.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Meta.hpp; sourceTree = "<group>"; };
+		2C435BC0243E0833001CAAD8 /* Utility.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.ipp; sourceTree = "<group>"; };
+		2C435BC1243E084A001CAAD8 /* Endian.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Endian.hpp; sourceTree = "<group>"; };
+		2C435BC2243E084B001CAAD8 /* Byte.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Byte.hpp; sourceTree = "<group>"; };
+		2C435BC3243E084B001CAAD8 /* CommonFloat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommonFloat.hpp; sourceTree = "<group>"; };
+		2C435BC5243E085D001CAAD8 /* SivByte.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivByte.cpp; sourceTree = "<group>"; };
 		2C43609C240E4EEC001657D2 /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		2C4360A0240E4EEC001657D2 /* SivUnicode_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivUnicode_Platform.cpp; sourceTree = "<group>"; };
 		2C4360A1240E4EEC001657D2 /* Siv3DMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DMain.cpp; sourceTree = "<group>"; };
@@ -388,6 +395,14 @@
 			path = GLFW;
 			sourceTree = "<group>";
 		};
+		2C435BC4243E085D001CAAD8 /* Byte */ = {
+			isa = PBXGroup;
+			children = (
+				2C435BC5243E085D001CAAD8 /* SivByte.cpp */,
+			);
+			path = Byte;
+			sourceTree = "<group>";
+		};
 		2C43609A240E4EEC001657D2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,6 +476,7 @@
 		2C4360AE240E4EEC001657D2 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C435BC4243E085D001CAAD8 /* Byte */,
 				2C4360B8240E4EEC001657D2 /* Common */,
 				2C4360C0240E4EEC001657D2 /* Console */,
 				2C4360AF240E4EEC001657D2 /* Dummy */,
@@ -795,10 +811,13 @@
 			children = (
 				2C6897E42436064900C36C25 /* ApplicationOptions.hpp */,
 				2C6897EE2436064900C36C25 /* Array.hpp */,
+				2C435BC2243E084B001CAAD8 /* Byte.hpp */,
 				2C6898072436064900C36C25 /* Common.hpp */,
+				2C435BC3243E084B001CAAD8 /* CommonFloat.hpp */,
 				2C6897E12436064900C36C25 /* Concepts.hpp */,
 				2C6897FE2436064900C36C25 /* Console.hpp */,
 				2C6897E92436064900C36C25 /* DLL.hpp */,
+				2C435BC1243E084A001CAAD8 /* Endian.hpp */,
 				2C6897E62436064900C36C25 /* EngineLog.hpp */,
 				2C6897FC2436064900C36C25 /* Error.hpp */,
 				2C68980E2436064900C36C25 /* Format.hpp */,
@@ -814,6 +833,7 @@
 				2C6897E22436064900C36C25 /* Logger.hpp */,
 				2C6897EC2436064900C36C25 /* LogLevel.hpp */,
 				2C68980C2436064900C36C25 /* LogType.hpp */,
+				2C435BBF243E0829001CAAD8 /* Meta.hpp */,
 				2C6897ED2436064900C36C25 /* NamedParameter.hpp */,
 				2C47A9AB243CA80200FD33B4 /* Optional.hpp */,
 				2C6898012436064900C36C25 /* PlaceHolder.hpp */,
@@ -836,6 +856,7 @@
 				2C6897E82436064900C36C25 /* Unicode.hpp */,
 				2C6897F42436064900C36C25 /* UserAction.hpp */,
 				2C6897E52436064900C36C25 /* Utility.hpp */,
+				2C435BC0243E0833001CAAD8 /* Utility.ipp */,
 				2C6897F62436064900C36C25 /* Vector2D.hpp */,
 				2C6897FF2436064900C36C25 /* Version.hpp */,
 				2C6897FD2436064900C36C25 /* Window.hpp */,
@@ -1094,6 +1115,7 @@
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
 				2C4CBE7024376B5300F8B7A6 /* CProfiler.cpp in Sources */,
 				2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */,
+				2C435BC6243E085D001CAAD8 /* SivByte.cpp in Sources */,
 				2C423250242B155E00A16BCA /* window.c in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
 				2C423246242B155E00A16BCA /* nsgl_context.m in Sources */,
