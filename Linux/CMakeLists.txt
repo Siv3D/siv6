@@ -7,12 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(
   Siv3D STATIC
-  # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Console/CConsole.cpp
-  # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Siv3DMain.cpp
-  # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Unicode/SivUnicode_Platform.cpp
-  ../Siv3D/src/Siv3D-Platform/Linux/Console/CConsole.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Console/CConsole.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Logger/CLogger.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Unicode/SivUnicode_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3DMain.cpp
-  ../Siv3D/src/Siv3D-Platform/Linux/Unicode/SivUnicode_Platform.cpp
   ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Common/Siv3DEngine.cpp
   ../Siv3D/src/Siv3D/Console/ConsoleFactory.cpp
