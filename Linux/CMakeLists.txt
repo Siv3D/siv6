@@ -7,9 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(
   Siv3D
-  # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Console/CConsole.cpp
-  # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Siv3DMain.cpp
-  # ../Siv3D/src/Siv3D-Platform/WindowsDesktop/Unicode/SivUnicode_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Console/CConsole.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3DMain.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Unicode/SivUnicode_Platform.cpp
@@ -30,6 +27,7 @@ target_include_directories(
   ../Siv3D/include
   ../Siv3D/src
   ../Siv3D/src/Siv3D-Platform/Linux
+  ../Siv3D/src/ThirdParty
   )
 
 enable_testing()
