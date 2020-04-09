@@ -17,7 +17,7 @@ namespace s3d
 {
 	namespace detail
 	{
-		static uint64 clock_gettime_ns()
+		inline uint64 clock_gettime_ns() noexcept
 		{
 			timespec ts;
 			clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -27,22 +27,22 @@ namespace s3d
 
 	namespace Time
 	{
-		uint64 GetSec()
+		uint64 GetSec() noexcept
 		{
 			return GetNanosec() / 1'000'000'000;
 		}
 		
-		uint64 GetMillisec()
+		uint64 GetMillisec() noexcept
 		{
 			return GetNanosec() / 1'000'000;
 		}
 		
-		uint64 GetMicrosec()
+		uint64 GetMicrosec() noexcept
 		{
 			return GetNanosec() / 1'000;
 		}
 		
-		uint64 GetNanosec()
+		uint64 GetNanosec() noexcept
 		{
 			return detail::clock_gettime_ns();
 		}
