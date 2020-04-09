@@ -106,6 +106,7 @@ add_executable(
 
 target_link_libraries(Siv3DTest PRIVATE
   Siv3D
+  pthread 
   ${LIBSIV3D_LIBRARIES}
   )
 
