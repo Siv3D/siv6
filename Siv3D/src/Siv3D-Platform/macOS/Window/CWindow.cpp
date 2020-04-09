@@ -256,7 +256,7 @@ namespace s3d
 		
 		// titleBarHeight
 		Siv3D_MacOS_UpdateWindowState(m_window, m_state);
-		LOG_TEST(U"title bar: {}"_fmt(m_state.titleBarHeight));
+		//LOG_TEST(U"title bar: {}"_fmt(m_state.titleBarHeight));
 		
 		// bounds
 		int32 windowPosX, windowPosY, windowSizeX, windowSizeY;
