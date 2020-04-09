@@ -11,7 +11,7 @@ set(CMAKE_C_FLAGS "-D_GLFW_X11")
 
 find_package(PkgConfig)
 
-pkg_check_modules(LIBSIV3D REQUIRED gl)
+pkg_check_modules(LIBSIV3D REQUIRED glib-2.0 gl x11)
 
 add_library(
   Siv3D STATIC
@@ -82,6 +82,7 @@ add_library(
   ../Siv3D/src/ThirdParty/double-conversion/string-to-double.cc
   ../Siv3D/src/ThirdParty/double-conversion/strtod.cc
   ../Siv3D/src/ThirdParty/fmt/format.cc
+  ../Siv3D/src/Test/Siv3DTest.cpp
   )
 
 target_include_directories(
@@ -100,13 +101,20 @@ enable_testing()
 
 add_executable(
   Siv3DTest
-  ../Siv3D/src/Test/Siv3DTest.cpp
   ../Linux/Main.cpp
   )
-target_link_libraries(Siv3DTest PRIVATE Siv3D)
+
+target_link_libraries(Siv3DTest PRIVATE
+  Siv3D
+  pthread
+  ${LIBSIV3D_LIBRARIES}
+  ${CMAKE_DL_LIBS}
+  )
+
 target_include_directories(
   Siv3DTest
   PRIVATE ../Siv3D/src/ThirdParty)
+
 add_test(
   NAME Siv3DTest
   COMMAND Siv3DTest)
