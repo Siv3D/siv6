@@ -103,10 +103,16 @@ add_executable(
   ../Siv3D/src/Test/Siv3DTest.cpp
   ../Linux/Main.cpp
   )
-target_link_libraries(Siv3DTest PRIVATE Siv3D)
+
+target_link_libraries(Siv3DTest PRIVATE
+  Siv3D
+  ${LIBSIV3D_LIBRARIES}
+  )
+
 target_include_directories(
   Siv3DTest
   PRIVATE ../Siv3D/src/ThirdParty)
+
 add_test(
   NAME Siv3DTest
   COMMAND Siv3DTest)
