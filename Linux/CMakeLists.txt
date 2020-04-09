@@ -11,7 +11,7 @@ set(CMAKE_C_FLAGS "-D_GLFW_X11")
 
 find_package(PkgConfig)
 
-pkg_check_modules(LIBSIV3D REQUIRED gl)
+pkg_check_modules(LIBSIV3D REQUIRED gl x11)
 
 add_library(
   Siv3D STATIC
