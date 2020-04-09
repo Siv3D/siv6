@@ -253,6 +253,9 @@ namespace s3d
 
 	void CWindow::updateState()
 	{
+		// frameBufferSize
+		::glfwGetFramebufferSize(m_window, &m_state.frameBufferSize.x, &m_state.frameBufferSize.y);
+
 		// scaling
 		float xScale, yScale;
 		::glfwGetWindowContentScale(m_window, &xScale, &yScale);
