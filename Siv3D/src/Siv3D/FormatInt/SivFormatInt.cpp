@@ -9,6 +9,7 @@
 //
 //-----------------------------------------------
 
+# include <cstring>
 # include <Siv3D/FormatInt.hpp>
 # include <Siv3D/String.hpp>
 # include <Siv3D/IntFormatter.hpp>
