@@ -20,6 +20,14 @@
 
 namespace s3d
 {
+	namespace detail
+	{
+		static void ErrorCallback(int error, const char* description)
+		{
+			std::cout << "Error: " << description << '\n';
+		}
+	}
+
 	CWindow::CWindow()
 	{
 
@@ -36,6 +44,8 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CWindow::init()");
 		
+		::glfwSetErrorCallback(detail::ErrorCallback);
+
 		//::glfwInitHint(GLFW_COCOA_CHDIR_RESOURCES, GLFW_FALSE);
 		
 		if (!::glfwInit())
@@ -43,11 +53,10 @@ namespace s3d
 			throw EngineError(U"glfwInit() failed");
 		}
 		
-		const bool useMetal = false;
+		const bool noAPI = true;
 
-		if constexpr (useMetal)
+		if constexpr (noAPI)
 		{
-			// Metal
 			::glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 		}
 		else
