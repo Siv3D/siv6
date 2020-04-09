@@ -106,8 +106,9 @@ add_executable(
 
 target_link_libraries(Siv3DTest PRIVATE
   Siv3D
-  pthread 
+  pthread
   ${LIBSIV3D_LIBRARIES}
+  ${CMAKE_DL_LIBS}
   )
 
 target_include_directories(
