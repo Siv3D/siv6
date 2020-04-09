@@ -82,6 +82,7 @@ add_library(
   ../Siv3D/src/ThirdParty/double-conversion/string-to-double.cc
   ../Siv3D/src/ThirdParty/double-conversion/strtod.cc
   ../Siv3D/src/ThirdParty/fmt/format.cc
+  ../Siv3D/src/Test/Siv3DTest.cpp
   )
 
 target_include_directories(
@@ -100,7 +101,6 @@ enable_testing()
 
 add_executable(
   Siv3DTest
-  ../Siv3D/src/Test/Siv3DTest.cpp
   ../Linux/Main.cpp
   )
 
