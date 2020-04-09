@@ -101,7 +101,7 @@ enable_testing()
 add_executable(
   Siv3DTest
   ../Siv3D/src/Test/Siv3DTest.cpp
-  ../Linux/Main2.cpp
+  ../Linux/Main.cpp
   )
 
 target_link_libraries(Siv3DTest PRIVATE

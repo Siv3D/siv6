@@ -26,4 +26,4 @@ jobs:
     - name: test
       run: |
         cd Linux/build
-        ctest --output-on-fail
+        ctest --output-on-failure --verbose
