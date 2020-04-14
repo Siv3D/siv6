@@ -110,6 +110,13 @@
 		2C44429E24271E1700557D51 /* SivEngineLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C44429D24271E1700557D51 /* SivEngineLog.cpp */; };
 		2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4442A02427AA7C00557D51 /* miniutf.hpp */; };
 		2C47A9A9243CA7D800FD33B4 /* SivPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */; };
+		2C481E1224460B5700A5D88D /* bit_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0C24460B5700A5D88D /* bit_utils.h */; };
+		2C481E1324460B5700A5D88D /* cpuinfo_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */; };
+		2C481E1424460B5700A5D88D /* cpu_features_cache_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0E24460B5700A5D88D /* cpu_features_cache_info.h */; };
+		2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C481E0F24460B5700A5D88D /* cpuinfo_x86.c */; };
+		2C481E1624460B5700A5D88D /* cpuid_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E1024460B5700A5D88D /* cpuid_x86.h */; };
+		2C481E1724460B5700A5D88D /* cpu_features_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E1124460B5700A5D88D /* cpu_features_macros.h */; };
+		2C481E1A24460BBA00A5D88D /* SivCPUInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C481E1924460BBA00A5D88D /* SivCPUInfo.cpp */; };
 		2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */; };
 		2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */; };
 		2C4CBE4C24370FE300F8B7A6 /* CRenderer_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */; };
@@ -246,6 +253,14 @@
 		2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivPoint.cpp; sourceTree = "<group>"; };
 		2C47A9AA243CA7EE00FD33B4 /* Point.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Point.ipp; sourceTree = "<group>"; };
 		2C47A9AB243CA80200FD33B4 /* Optional.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Optional.hpp; sourceTree = "<group>"; };
+		2C481E0A24460B3D00A5D88D /* CPUInfo.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CPUInfo.hpp; sourceTree = "<group>"; };
+		2C481E0C24460B5700A5D88D /* bit_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_utils.h; sourceTree = "<group>"; };
+		2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpuinfo_x86.h; sourceTree = "<group>"; };
+		2C481E0E24460B5700A5D88D /* cpu_features_cache_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_features_cache_info.h; sourceTree = "<group>"; };
+		2C481E0F24460B5700A5D88D /* cpuinfo_x86.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cpuinfo_x86.c; sourceTree = "<group>"; };
+		2C481E1024460B5700A5D88D /* cpuid_x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpuid_x86.h; sourceTree = "<group>"; };
+		2C481E1124460B5700A5D88D /* cpu_features_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_features_macros.h; sourceTree = "<group>"; };
+		2C481E1924460BBA00A5D88D /* SivCPUInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivCPUInfo.cpp; sourceTree = "<group>"; };
 		2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderer.hpp; sourceTree = "<group>"; };
 		2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererFactory.cpp; sourceTree = "<group>"; };
 		2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_GL4.hpp; sourceTree = "<group>"; };
@@ -443,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				2C43609B240E4EEC001657D2 /* Catch2 */,
+				2C481E0B24460B5700A5D88D /* cpu_features */,
 				2C439F62241DCEA9001154C2 /* double-conversion */,
 				2C439F442419D686001154C2 /* fmt */,
 				2C4CBE4E24370FFA00F8B7A6 /* GL */,
@@ -496,6 +512,7 @@
 				2C435BC4243E085D001CAAD8 /* Byte */,
 				2C4360B8240E4EEC001657D2 /* Common */,
 				2C4360C0240E4EEC001657D2 /* Console */,
+				2C481E1824460BBA00A5D88D /* CPUInfo */,
 				2C4360AF240E4EEC001657D2 /* Dummy */,
 				2C44429C24271E1700557D51 /* EngineLog */,
 				2C43B2EB2426630000D5CBBB /* Error */,
@@ -738,6 +755,27 @@
 			path = Point;
 			sourceTree = "<group>";
 		};
+		2C481E0B24460B5700A5D88D /* cpu_features */ = {
+			isa = PBXGroup;
+			children = (
+				2C481E0C24460B5700A5D88D /* bit_utils.h */,
+				2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */,
+				2C481E0E24460B5700A5D88D /* cpu_features_cache_info.h */,
+				2C481E0F24460B5700A5D88D /* cpuinfo_x86.c */,
+				2C481E1024460B5700A5D88D /* cpuid_x86.h */,
+				2C481E1124460B5700A5D88D /* cpu_features_macros.h */,
+			);
+			path = cpu_features;
+			sourceTree = "<group>";
+		};
+		2C481E1824460BBA00A5D88D /* CPUInfo */ = {
+			isa = PBXGroup;
+			children = (
+				2C481E1924460BBA00A5D88D /* SivCPUInfo.cpp */,
+			);
+			path = CPUInfo;
+			sourceTree = "<group>";
+		};
 		2C4CBE4324370FC600F8B7A6 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -824,6 +862,7 @@
 				2C435BC3243E084B001CAAD8 /* CommonFloat.hpp */,
 				2C6897E12436064900C36C25 /* Concepts.hpp */,
 				2C6897FE2436064900C36C25 /* Console.hpp */,
+				2C481E0A24460B3D00A5D88D /* CPUInfo.hpp */,
 				2C6897E92436064900C36C25 /* DLL.hpp */,
 				2C435BC1243E084A001CAAD8 /* Endian.hpp */,
 				2C6897E62436064900C36C25 /* EngineLog.hpp */,
@@ -942,6 +981,7 @@
 				2C423222242B155E00A16BCA /* glfw3.h in Headers */,
 				2C42321D242B155E00A16BCA /* internal.h in Headers */,
 				2C43B2DE24264E1200D5CBBB /* IWindow.hpp in Headers */,
+				2C481E1424460B5700A5D88D /* cpu_features_cache_info.h in Headers */,
 				2C43B2DF24264E1200D5CBBB /* ISystem.hpp in Headers */,
 				2C439F89241DCEA9001154C2 /* fast-dtoa.h in Headers */,
 				2C439F87241DCEA9001154C2 /* ieee.h in Headers */,
@@ -955,6 +995,7 @@
 				2C43B2E724264E3100D5CBBB /* CSystem.hpp in Headers */,
 				2C4360C4240E4EEC001657D2 /* catch.hpp in Headers */,
 				2C4360D6240E4EEC001657D2 /* ApplicationOptions.hpp in Headers */,
+				2C481E1724460B5700A5D88D /* cpu_features_macros.h in Headers */,
 				2C423220242B155E00A16BCA /* cocoa_platform.h in Headers */,
 				2C43B2EA24264E3100D5CBBB /* CWindow.hpp in Headers */,
 				2C439F472419D686001154C2 /* format-inl.h in Headers */,
@@ -966,6 +1007,7 @@
 				2C439F78241DCEA9001154C2 /* utils.h in Headers */,
 				2C4360D4240E4EEC001657D2 /* UnicodeUtility.hpp in Headers */,
 				2C4CBE6F24376B5300F8B7A6 /* CProfiler.hpp in Headers */,
+				2C481E1324460B5700A5D88D /* cpuinfo_x86.h in Headers */,
 				2C4CBE5624370FFA00F8B7A6 /* glew.h in Headers */,
 				2C435BCC243E14D1001CAAD8 /* CConsole.hpp in Headers */,
 				2C4231D4242B0BDE00A16BCA /* CUserAction.hpp in Headers */,
@@ -973,6 +1015,7 @@
 				2C4360CF240E4EEC001657D2 /* CDummy.hpp in Headers */,
 				2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */,
 				2C4CBE6E24376B5300F8B7A6 /* IProfiler.hpp in Headers */,
+				2C481E1224460B5700A5D88D /* bit_utils.h in Headers */,
 				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
 				2C4360DC240E4EEC001657D2 /* IConsole.hpp in Headers */,
 				2C423257242B19ED00A16BCA /* posix_thread.h in Headers */,
@@ -988,6 +1031,7 @@
 				2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */,
 				2C42323D242B155E00A16BCA /* cocoa_joystick.h in Headers */,
 				2C4CBE632437236000F8B7A6 /* IScene.hpp in Headers */,
+				2C481E1624460B5700A5D88D /* cpuid_x86.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,6 +1175,7 @@
 				2C4231CB242B0BD300A16BCA /* SivSystem.cpp in Sources */,
 				2C439F60241DCE8B001154C2 /* SivFormatFloat.cpp in Sources */,
 				2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */,
+				2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
 				2C4CBE612437236000F8B7A6 /* SceneFactory.cpp in Sources */,
 				2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */,
@@ -1139,6 +1184,7 @@
 				2C43B2DD24264E1200D5CBBB /* WindowFactory.cpp in Sources */,
 				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
 				2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */,
+				2C481E1A24460BBA00A5D88D /* SivCPUInfo.cpp in Sources */,
 				2C423253242B19D100A16BCA /* egl_context.c in Sources */,
 				2C4CBE622437236000F8B7A6 /* CScene.cpp in Sources */,
 				2C42321B242B155E00A16BCA /* monitor.c in Sources */,
