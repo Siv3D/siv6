@@ -17,6 +17,11 @@ namespace s3d
 {
 	namespace Unicode
 	{
+		String WidenAscii(const std::string_view asciiText)
+		{
+			return String(asciiText.begin(), asciiText.end());
+		}
+
 		String FromUTF8(const std::string_view s)
 		{
 			String result(detail::UTF32_Length(s), '0');
@@ -56,6 +61,22 @@ namespace s3d
 		String FromUTF32(const std::u32string_view s)
 		{
 			return String(s);
+		}
+
+		std::string NarrowAscii(const StringView asciiText)
+		{
+			std::string result(asciiText.length(), '\0');
+
+			const char32* pSrc = asciiText.data();
+			const char32* const pSrcEnd = pSrc + asciiText.size();
+			char* pDst = &result[0];
+
+			while (pSrc != pSrcEnd)
+			{
+				*pDst++ = static_cast<char>(*pSrc++);
+			}
+
+			return result;
 		}
 
 		std::string ToUTF8(const StringView s)
