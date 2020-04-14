@@ -23,4 +23,19 @@ namespace s3d
 	{
 		return Unicode::ToWstring(m_string);
 	}
+
+	std::string String::toUTF8() const
+	{
+		return Unicode::ToUTF8(m_string);
+	}
+
+	std::u16string String::toUTF16() const
+	{
+		return Unicode::ToUTF16(m_string);
+	}
+
+	const std::u32string& String::toUTF32() const noexcept
+	{
+		return m_string;
+	}
 }

@@ -202,9 +202,9 @@ namespace s3d
 
 		String& erase(size_t offset = 0, size_t count = npos);
 
-		iterator erase(const_iterator where);
+		iterator erase(const_iterator where) noexcept;
 
-		iterator erase(const_iterator first, const_iterator last);
+		iterator erase(const_iterator first, const_iterator last) noexcept;
 
 		void clear() noexcept;
 
@@ -258,13 +258,13 @@ namespace s3d
 		value_type at(size_t offset) &&;
 
 		[[nodiscard]]
-		value_type& operator[](size_t offset) &;
+		value_type& operator[](size_t offset) & noexcept;
 
 		[[nodiscard]]
-		const value_type& operator[](size_t offset) const&;
+		const value_type& operator[](size_t offset) const& noexcept;
 
 		[[nodiscard]]
-		value_type operator[](size_t offset) &&;
+		value_type operator[](size_t offset) && noexcept;
 
 		void push_front(value_type ch);
 
@@ -272,15 +272,15 @@ namespace s3d
 
 		void pop_front();
 
-		void pop_back();
+		void pop_back() noexcept;
 
-		[[nodiscard]] value_type& front();
+		[[nodiscard]] value_type& front() noexcept;
 
-		[[nodiscard]] const value_type& front() const;
+		[[nodiscard]] const value_type& front() const noexcept;
 
-		[[nodiscard]] value_type& back();
+		[[nodiscard]] value_type& back() noexcept;
 
-		[[nodiscard]] const value_type& back() const;
+		[[nodiscard]] const value_type& back() const noexcept;
 
 		[[nodiscard]]
 		const value_type* c_str() const noexcept;
@@ -333,7 +333,10 @@ namespace s3d
 		String substr(size_t offset = 0, size_t count = npos) const;
 
 		[[nodiscard]]
-		StringView substrView(size_t offset = 0, size_t count = npos) const;
+		StringView substrView(size_t offset = 0, size_t count = npos) const &;
+
+		[[nodiscard]]
+		StringView substrView(size_t offset = 0, size_t count = npos) && = delete;
 
 		/// <summary>
 		/// 文字列をマルチバイト文字列に変換した結果を返します。
@@ -353,7 +356,329 @@ namespace s3d
 		[[nodiscard]]
 		std::wstring toWstr() const;
 
+		/// <summary>
+		/// 文字列を UTF8 の std::string にエンコードします。
+		/// </summary>
+		/// <returns>
+		/// UTF8 でエンコードされた std::string
+		/// </returns>
+		[[nodiscard]]
+		std::string toUTF8() const;
 
+		/// <summary>
+		/// 文字列を UTF16 の std::u16string にエンコードします。
+		/// </summary>
+		/// <returns>
+		/// UTF16 でエンコードされた std::u16string
+		/// </returns>
+		[[nodiscard]]
+		std::u16string toUTF16() const;
+
+		/// <summary>
+		/// 文字列を UTF32 の std::u32string にエンコードします。
+		/// </summary>
+		/// <returns>
+		/// UTF32 でエンコードされた std::u32string
+		/// </returns>
+		[[nodiscard]]
+		const std::u32string& toUTF32() const noexcept;
+
+		/// <summary>
+		/// 文字列を指定した位置から検索し、最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="text">
+		/// 検索する文字列
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置
+		/// </param>
+		/// <returns>
+		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t indexOf(const String& s, size_t offset = 0) const noexcept;
+
+		/// <summary>
+		/// 文字列を指定した位置から検索し、最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="text">
+		/// 検索する文字列
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置
+		/// </param>
+		/// <remarks>
+		/// text は NULL 終端されている必要があります。
+		/// </remarks>
+		/// <returns>
+		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t indexOf(const value_type* s, size_t offset = 0) const noexcept;
+
+		/// <summary>
+		/// 文字を指定した位置から検索し、最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="ch">
+		/// 検索する文字
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置
+		/// </param>
+		/// <returns>
+		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t indexOf(value_type ch, size_t offset = 0) const noexcept;
+
+		/// <summary>
+		/// 文字を指定した位置から検索し、最初にそれとは異なる文字が現れた位置を返します。
+		/// </summary>
+		/// <param name="ch">
+		/// 検索する文字
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置
+		/// </param>
+		/// <returns>
+		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t indexOfNot(value_type ch, size_t offset = 0) const noexcept;
+
+		/// <summary>
+		/// 文字列を後方から逆順に検索し、最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="text">
+		/// 検索する文字列
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置。npos の場合は終端から
+		/// </param>
+		/// <returns>
+		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t lastIndexOf(const String& text, size_t offset = npos) const noexcept;
+
+		/// <summary>
+		/// 文字列を後方から逆順に検索し、最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="text">
+		/// 検索する文字列
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置。npos の場合は終端から
+		/// </param>
+		/// <remarks>
+		/// text は NULL 終端されている必要があります。
+		/// </remarks>
+		/// <returns>
+		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t lastIndexOf(const value_type* text, size_t offset = npos) const noexcept;
+
+		/// <summary>
+		/// 文字を後方から逆順に検索し、最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="ch">
+		/// 検索する文字
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置。npos の場合は終端から
+		/// </param>
+		/// <returns>
+		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t lastIndexOf(value_type ch, size_t offset = npos) const noexcept;
+
+		/// <summary>
+		/// 文字を後方から逆順に検索し、最初にそれとは異なる文字が現れた位置を返します。
+		/// </summary>
+		/// <param name="ch">
+		/// 検索する文字
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置。npos の場合は終端から
+		/// </param>
+		/// <returns>
+		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t lastIndexNotOf(value_type ch, size_t offset = npos) const noexcept;
+
+		/// <summary>
+		/// 検索する文字のいずれかが最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="anyof">
+		/// 検索する文字の集合
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置
+		/// </param>
+		/// <returns>
+		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t indexOfAny(const String& anyof, size_t offset = 0) const noexcept;
+
+		/// <summary>
+		/// 検索する文字のいずれかが最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="anyof">
+		/// 検索する文字の集合
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置
+		/// </param>
+		/// <remarks>
+		/// text は NULL 終端されている必要があります。
+		/// </remarks>
+		/// <returns>
+		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t indexOfAny(const value_type* anyof, size_t offset = 0) const noexcept;
+
+		/// <summary>
+		/// 文字を後方から逆順に検索し、検索する文字のいずれかが最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="anyof">
+		/// 検索する文字の集合
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置。npos の場合は終端から
+		/// </param>
+		/// <returns>
+		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t lastIndexOfAny(const String& anyof, size_t offset = npos) const noexcept;
+
+		/// <summary>
+		/// 文字を後方から逆順に検索し、検索する文字のいずれかが最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="anyof">
+		/// 検索する文字の集合
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置。npos の場合は終端から
+		/// </param>
+		/// <remarks>
+		/// anyof は NULL 終端されている必要があります。
+		/// </remarks>
+		/// <returns>
+		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t lastIndexOfAny(const value_type* anyof, size_t offset = npos) const noexcept;
+
+		/// <summary>
+		/// 検索する文字に含まれない文字が最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="anyof">
+		/// 検索する文字の集合
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置
+		/// </param>
+		/// <returns>
+		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t indexNotOfAny(const String& anyof, size_t offset = 0) const;
+
+		/// <summary>
+		/// 検索する文字に含まれない文字が最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="anyof">
+		/// 検索する文字の集合
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置
+		/// </param>
+		/// <remarks>
+		/// anyof は NULL 終端されている必要があります。
+		/// </remarks>
+		/// <returns>
+		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t indexNotOfAny(const value_type* anyof, size_t offset = 0) const;
+
+		/// <summary>
+		/// 文字を後方から逆順に検索し、検索する文字に含まれない文字が最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="anyof">
+		/// 検索する文字の集合
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置。npos の場合は終端から
+		/// </param>
+		/// <returns>
+		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t lastIndexNotOfAny(const String& anyof, size_t offset = npos) const;
+
+		/// <summary>
+		/// 文字を後方から逆順に検索し、検索する文字に含まれない文字が最初に現れた位置を返します。
+		/// </summary>
+		/// <param name="anyof">
+		/// 検索する文字の集合
+		/// </param>
+		/// <param name="offset">
+		/// 検索を開始する位置。npos の場合は終端から
+		/// </param>
+		/// <remarks>
+		/// anyof は NULL 終端されている必要があります。
+		/// </remarks>
+		/// <returns>
+		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
+		/// </returns>
+		[[nodiscard]]
+		size_t lastIndexNotOfAny(const value_type* anyof, size_t offset = npos) const;
+
+		/// <summary>
+		/// 文字列の大小を比較します。
+		/// </summary>
+		/// <param name="text">
+		/// 比較対象の文字列
+		/// </param>
+		/// <returns>
+		/// 比較結果。等しければ 0, 小さければ &lt;0, 大きければ &gt;0
+		/// </returns>
+		[[nodiscard]]
+		int32 compare(const String& text) const noexcept;
+
+		/// <summary>
+		/// 文字列の大小を比較します。
+		/// </summary>
+		/// <param name="text">
+		/// 比較対象の文字列
+		/// </param>
+		/// <returns>
+		/// 比較結果。等しければ 0, 小さければ &lt;0, 大きければ &gt;0
+		/// </returns>
+		[[nodiscard]]
+		int32 compare(StringView view) const noexcept;
+
+		/// <summary>
+		/// 文字列の大小を比較します。
+		/// </summary>
+		/// <param name="text">
+		/// 比較対象の文字列
+		/// </param>
+		/// <remarks>
+		/// text は NULL 終端されている必要があります。
+		/// </remarks>
+		/// <returns>
+		/// 比較結果。等しければ 0, 小さければ &lt;0, 大きければ &gt;0
+		/// </returns>
+		[[nodiscard]]
+		int32 compare(const value_type* text) const noexcept;
 
 
 
@@ -375,7 +700,7 @@ namespace s3d
 		/// 等しければ true, それ以外の場合は false
 		/// </returns>	
 		[[nodiscard]]
-		friend bool operator ==(const String& lhs, const String& rhs)
+		friend bool operator ==(const String& lhs, const String& rhs) noexcept
 		{
 			return (lhs.m_string == rhs.m_string);
 		}
@@ -405,7 +730,7 @@ namespace s3d
 		/// 等しくなければ true, それ以外の場合は false
 		/// </returns>
 		[[nodiscard]]
-		friend bool operator !=(const String& lhs, const String& rhs)
+		friend bool operator !=(const String& lhs, const String& rhs) noexcept
 		{
 			return (lhs.m_string != rhs.m_string);
 		}
@@ -423,7 +748,7 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend bool operator <(const String& lhs, const String& rhs)
+		friend bool operator <(const String& lhs, const String& rhs) noexcept
 		{
 			return (lhs.m_string < rhs.m_string);
 		}
@@ -441,7 +766,7 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend bool operator >(const String& lhs, const String& rhs)
+		friend bool operator >(const String& lhs, const String& rhs) noexcept
 		{
 			return (lhs.m_string > rhs.m_string);
 		}
@@ -459,7 +784,7 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend bool operator <=(const String& lhs, const String& rhs)
+		friend bool operator <=(const String& lhs, const String& rhs) noexcept
 		{
 			return (lhs.m_string <= rhs.m_string);
 		}
@@ -477,7 +802,7 @@ namespace s3d
 		}
 
 		[[nodiscard]]
-		friend bool operator >=(const String& lhs, const String& rhs)
+		friend bool operator >=(const String& lhs, const String& rhs) noexcept
 		{
 			return (lhs.m_string >= rhs.m_string);
 		}

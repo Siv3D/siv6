@@ -367,12 +367,12 @@ namespace s3d
 		return *this;
 	}
 
-	inline String::iterator String::erase(const_iterator where)
+	inline String::iterator String::erase(const_iterator where) noexcept
 	{
 		return m_string.erase(where);
 	}
 
-	inline String::iterator String::erase(const_iterator first, const_iterator last)
+	inline String::iterator String::erase(const_iterator first, const_iterator last) noexcept
 	{
 		return m_string.erase(first, last);
 	}
@@ -469,17 +469,17 @@ namespace s3d
 		return m_string.at(offset);
 	}
 
-	inline String::value_type& String::operator[](const size_t offset)&
+	inline String::value_type& String::operator[](const size_t offset)& noexcept
 	{
 		return m_string[offset];
 	}
 
-	inline const String::value_type& String::operator[](const size_t offset) const&
+	inline const String::value_type& String::operator[](const size_t offset) const& noexcept
 	{
 		return m_string[offset];
 	}
 
-	inline String::value_type String::operator[](const size_t offset) &&
+	inline String::value_type String::operator[](const size_t offset) && noexcept
 	{
 		return std::move(m_string[offset]);
 	}
@@ -499,27 +499,27 @@ namespace s3d
 		m_string.erase(m_string.begin());
 	}
 
-	inline void String::pop_back()
+	inline void String::pop_back() noexcept
 	{
 		m_string.pop_back();
 	}
 
-	inline String::value_type& String::front()
+	inline String::value_type& String::front() noexcept
 	{
 		return m_string.front();
 	}
 
-	inline const String::value_type& String::front() const
+	inline const String::value_type& String::front() const noexcept
 	{
 		return m_string.front();
 	}
 
-	inline String::value_type& String::back()
+	inline String::value_type& String::back() noexcept
 	{
 		return m_string.back();
 	}
 
-	inline const String::value_type& String::back() const
+	inline const String::value_type& String::back() const noexcept
 	{
 		return m_string.back();
 	}
@@ -614,7 +614,7 @@ namespace s3d
 		return m_string.substr(offset, count);
 	}
 
-	inline StringView String::substrView(const size_t offset, const size_t count) const
+	inline StringView String::substrView(const size_t offset, const size_t count) const &
 	{
 		if (offset > size())
 		{
@@ -622,5 +622,100 @@ namespace s3d
 		}
 
 		return StringView(data() + offset, std::min(count, size() - offset));
+	}
+
+	inline size_t String::indexOf(const String& s, const size_t offset) const noexcept
+	{
+		return m_string.find(s.data(), offset, s.length());
+	}
+
+	inline size_t String::indexOf(const value_type* s, const size_t offset) const noexcept
+	{
+		return m_string.find(s, offset, traits_type::length(s));
+	}
+
+	inline size_t String::indexOf(const value_type ch, const size_t offset) const noexcept
+	{
+		return m_string.find(ch, offset);
+	}
+
+	inline size_t String::indexOfNot(const value_type ch, const size_t offset) const noexcept
+	{
+		return m_string.find_first_not_of(ch, offset);
+	}
+
+	inline size_t String::lastIndexOf(const String& s, const size_t offset) const noexcept
+	{
+		return m_string.rfind(s.data(), offset, s.length());
+	}
+
+	inline size_t String::lastIndexOf(const value_type* s, const size_t offset) const noexcept
+	{
+		return m_string.rfind(s, offset, traits_type::length(s));
+	}
+
+	inline size_t String::lastIndexOf(const value_type ch, const size_t offset) const noexcept
+	{
+		return m_string.rfind(ch, offset);
+	}
+
+	inline size_t String::lastIndexNotOf(const value_type ch, const size_t offset) const noexcept
+	{
+		return m_string.find_last_not_of(ch, offset);
+	}
+
+	inline size_t String::indexOfAny(const String& anyof, const size_t offset) const noexcept
+	{
+		return m_string.find_first_of(anyof.data(), offset, anyof.length());
+	}
+
+	inline size_t String::indexOfAny(const value_type* anyof, const size_t offset) const noexcept
+	{
+		return m_string.find_first_of(anyof, offset, traits_type::length(anyof));
+	}
+
+	inline size_t String::lastIndexOfAny(const String& anyof, const size_t offset) const noexcept
+	{
+		return m_string.find_last_of(anyof.data(), offset, anyof.length());
+	}
+
+	inline size_t String::lastIndexOfAny(const value_type* anyof, const size_t offset) const noexcept
+	{
+		return m_string.find_last_of(anyof, offset, traits_type::length(anyof));
+	}
+
+	inline size_t String::indexNotOfAny(const String& anyof, const size_t offset) const
+	{
+		return m_string.find_first_not_of(anyof.data(), offset, anyof.length());
+	}
+
+	inline size_t String::indexNotOfAny(const value_type* anyof, const size_t offset) const
+	{
+		return m_string.find_first_not_of(anyof, offset, traits_type::length(anyof));
+	}
+
+	inline size_t String::lastIndexNotOfAny(const String& anyof, const size_t offset) const
+	{
+		return m_string.find_last_not_of(anyof.data(), offset, anyof.length());
+	}
+
+	inline size_t String::lastIndexNotOfAny(const value_type* anyof, const size_t offset) const
+	{
+		return m_string.find_last_not_of(anyof, offset, traits_type::length(anyof));
+	}
+
+	inline int32 String::compare(const String& text) const noexcept
+	{
+		return m_string.compare(text.m_string);
+	}
+
+	inline int32 String::compare(const StringView view) const noexcept
+	{
+		return m_string.compare(std::u32string_view(view.data(), view.size()));
+	}
+
+	inline int32 String::compare(const value_type* text) const noexcept
+	{
+		return m_string.compare(text);
 	}
 }
