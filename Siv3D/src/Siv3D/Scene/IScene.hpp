@@ -14,7 +14,7 @@
 
 namespace s3d
 {
-	class ISiv3DScene
+	class SIV3D_NOVTABLE ISiv3DScene
 	{
 	public:
 

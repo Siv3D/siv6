@@ -19,7 +19,7 @@ namespace s3d
 		inline constexpr uint32 SystemExitCalled = 0x10000000u;
 	}
 
-	class ISiv3DUserAction
+	class SIV3D_NOVTABLE ISiv3DUserAction
 	{
 	public:
 

@@ -202,12 +202,16 @@
     # define SIV3D_DISABLE_MSVC_WARNINGS_PUSH(warnings)	\
 			 __pragma(warning(push))					\
 			 __pragma(warning(disable: warnings))
+
 	# define SIV3D_DISABLE_MSVC_WARNINGS_POP()			\
 			 __pragma(warning(pop))
+
+	# define SIV3D_NOVTABLE __declspec(novtable)
 
 # else
 
 	# define SIV3D_DISABLE_MSVC_WARNINGS_PUSH(warnings)
 	# define SIV3D_DISABLE_MSVC_WARNINGS_POP()
+	# define SIV3D_NOVTABLE
 
 # endif

@@ -14,7 +14,7 @@
 
 namespace s3d
 {
-	class ISiv3DWindow
+	class SIV3D_NOVTABLE ISiv3DWindow
 	{
 	public:
 

@@ -16,7 +16,7 @@ namespace s3d
 {
 	class String;
 
-	class ISiv3DProfiler
+	class SIV3D_NOVTABLE ISiv3DProfiler
 	{
 	public:
 

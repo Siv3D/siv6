@@ -10,10 +10,11 @@
 //-----------------------------------------------
 
 # pragma once
+# include <Siv3D/Platform.hpp>
 
 namespace s3d
 {
-	class ISiv3DSystem
+	class SIV3D_NOVTABLE ISiv3DSystem
 	{
 	public:
 

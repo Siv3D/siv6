@@ -10,13 +10,14 @@
 //-----------------------------------------------
 
 # pragma once
+# include <Siv3D/Platform.hpp>
 
 namespace s3d
 {
 	enum class LogType;
 	class StringView;
 
-	class ISiv3DLogger
+	class SIV3D_NOVTABLE ISiv3DLogger
 	{
 	public:
 
