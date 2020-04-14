@@ -142,6 +142,12 @@
     <Filter Include="src\Siv3D\Byte">
       <UniqueIdentifier>{b5e58420-68a2-4686-bea6-dbb609355755}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ThirdParty\cpu_features">
+      <UniqueIdentifier>{ab4a5cc1-b03d-4941-acdc-9c8de285ad0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\CPUInfo">
+      <UniqueIdentifier>{4718c08a-b5be-4347-8f4c-593d10881451}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -453,6 +459,24 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Byte.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\cpu_features\cpuinfo_x86.h">
+      <Filter>src\ThirdParty\cpu_features</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\cpu_features\cpu_features_cache_info.h">
+      <Filter>src\ThirdParty\cpu_features</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\cpu_features\cpu_features_macros.h">
+      <Filter>src\ThirdParty\cpu_features</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\cpu_features\bit_utils.h">
+      <Filter>src\ThirdParty\cpu_features</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\cpu_features\cpuid_x86.h">
+      <Filter>src\ThirdParty\cpu_features</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\CPUInfo.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -628,6 +652,12 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Byte\SivByte.cpp">
       <Filter>src\Siv3D\Byte</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\cpu_features\cpuinfo_x86.c">
+      <Filter>src\ThirdParty\cpu_features</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\CPUInfo\SivCPUInfo.cpp">
+      <Filter>src\Siv3D\CPUInfo</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

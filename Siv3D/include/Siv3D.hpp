@@ -216,6 +216,8 @@
 
 # include <Siv3D/ApplicationOptions.hpp>
 
+# include <Siv3D/CPUInfo.hpp>
+
 # include <Siv3D/Time.hpp>
 
 # include <Siv3D/LogLevel.hpp>

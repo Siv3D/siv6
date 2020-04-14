@@ -29,6 +29,7 @@ add_library(
   ../Siv3D/src/Siv3D/Common/Siv3DEngine.cpp
   ../Siv3D/src/Siv3D/Console/ConsoleFactory.cpp
   ../Siv3D/src/Siv3D/Console/SivConsole.cpp
+  ../Siv3D/src/Siv3D/CPUInfo/SivCPUInfo.cpp
   ../Siv3D/src/Siv3D/Dummy/CDummy.cpp
   ../Siv3D/src/Siv3D/Dummy/DummyFactory.cpp
   ../Siv3D/src/Siv3D/EngineLog/SivEngineLog.cpp
@@ -56,6 +57,20 @@ add_library(
   ../Siv3D/src/Siv3D/UserAction/UserActionFactory.cpp
   ../Siv3D/src/Siv3D/Window/SivWindow.cpp
   ../Siv3D/src/Siv3D/Window/WindowFactory.cpp
+
+  ../Siv3D/src/ThirdParty/cpu_features/cpuinfo_x86.c
+
+  ../Siv3D/src/ThirdParty/double-conversion/bignum-dtoa.cc
+  ../Siv3D/src/ThirdParty/double-conversion/bignum.cc
+  ../Siv3D/src/ThirdParty/double-conversion/cached-powers.cc
+  ../Siv3D/src/ThirdParty/double-conversion/double-to-string.cc
+  ../Siv3D/src/ThirdParty/double-conversion/fast-dtoa.cc
+  ../Siv3D/src/ThirdParty/double-conversion/fixed-dtoa.cc
+  ../Siv3D/src/ThirdParty/double-conversion/string-to-double.cc
+  ../Siv3D/src/ThirdParty/double-conversion/strtod.cc
+
+  ../Siv3D/src/ThirdParty/fmt/format.cc
+  
   ../Siv3D/src/ThirdParty/GLEW/glew.c
   ../Siv3D/src/ThirdParty/GLFW/context.c
   ../Siv3D/src/ThirdParty/GLFW/egl_context.c
@@ -73,15 +88,7 @@ add_library(
   ../Siv3D/src/ThirdParty/GLFW/x11_monitor.c
   ../Siv3D/src/ThirdParty/GLFW/x11_window.c
   ../Siv3D/src/ThirdParty/GLFW/xkb_unicode.c
-  ../Siv3D/src/ThirdParty/double-conversion/bignum-dtoa.cc
-  ../Siv3D/src/ThirdParty/double-conversion/bignum.cc
-  ../Siv3D/src/ThirdParty/double-conversion/cached-powers.cc
-  ../Siv3D/src/ThirdParty/double-conversion/double-to-string.cc
-  ../Siv3D/src/ThirdParty/double-conversion/fast-dtoa.cc
-  ../Siv3D/src/ThirdParty/double-conversion/fixed-dtoa.cc
-  ../Siv3D/src/ThirdParty/double-conversion/string-to-double.cc
-  ../Siv3D/src/ThirdParty/double-conversion/strtod.cc
-  ../Siv3D/src/ThirdParty/fmt/format.cc
+
   ../Siv3D/src/Test/Siv3DTest.cpp
   )
 
