@@ -70,13 +70,26 @@ namespace s3d
 
 			explicit IntFormatter(uint64 value) noexcept;
 
-			std::size_t size() const noexcept;
+			std::size_t size() const noexcept
+			{
+				return buffer_ - str_ + BUFFER_SIZE - 1;
+			}
 
-			const char32* data() const  noexcept;
+			const char32* data() const  noexcept
+			{
+				return str_;
+			}
 
-			const char32* c_str() const noexcept;
+			const char32* c_str() const noexcept
+			{
+				buffer_[BUFFER_SIZE - 1] = '\0';
+				return str_;
+			}
 
-			String str() const;
+			String str() const
+			{
+				return String(str_, size());
+			}
 		};
 		//
 		//////////////////////////////////////////////////////////////////////////////

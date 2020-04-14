@@ -74,27 +74,6 @@ namespace s3d
 
 		}
 
-		std::size_t IntFormatter::size() const noexcept
-		{
-			return buffer_ - str_ + BUFFER_SIZE - 1;
-		}
-
-		const char32* IntFormatter::data() const noexcept
-		{
-			return str_;
-		}
-
-		const char32* IntFormatter::c_str() const noexcept
-		{
-			buffer_[BUFFER_SIZE - 1] = '\0';
-			return str_;
-		}
-
-		String IntFormatter::str() const
-		{
-			return String(str_, size());
-		}
-
 		char32* IntFormatter::format_decimal(uint64 value) noexcept
 		{
 			char32* buffer_end = buffer_ + BUFFER_SIZE - 1;
