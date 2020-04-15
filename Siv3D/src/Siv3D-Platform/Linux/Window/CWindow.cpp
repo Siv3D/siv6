@@ -53,7 +53,7 @@ namespace s3d
 			throw EngineError(U"glfwInit() failed");
 		}
 		
-		const bool noAPI = true;
+		const bool noAPI = false;
 
 		if constexpr (noAPI)
 		{
