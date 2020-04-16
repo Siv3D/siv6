@@ -89,16 +89,16 @@ namespace s3d
 		constexpr const_reverse_iterator crend() const noexcept;
 
 		[[nodiscard]]
-		constexpr const_reference operator[](size_type index) const;
+		constexpr const_reference operator[](size_type index) const noexcept;
 
 		[[nodiscard]]
 		constexpr const_reference at(size_type index) const;
 
 		[[nodiscard]]
-		constexpr const_reference front() const;
+		constexpr const_reference front() const noexcept;
 
 		[[nodiscard]]
-		constexpr const_reference back() const;
+		constexpr const_reference back() const noexcept;
 
 		[[nodiscard]]
 		constexpr const_pointer data() const noexcept;
@@ -138,61 +138,61 @@ namespace s3d
 		constexpr StringView substr(size_type pos = 0, size_type n = npos) const;
 
 		[[nodiscard]]
-		constexpr int32 compare(StringView sv) const noexcept;
+		constexpr int32 compare(StringView s) const noexcept;
 
 		[[nodiscard]]
-		constexpr int32 compare(size_type pos1, size_type n1, StringView sv) const noexcept;
+		constexpr int32 compare(size_type pos1, size_type n1, StringView s) const noexcept;
 
 		[[nodiscard]]
-		constexpr int32 compare(size_type pos1, size_type n1, StringView sv, size_type pos2, size_type n2) const noexcept;
+		constexpr int32 compare(size_type pos1, size_type n1, StringView s, size_type pos2, size_type n2) const noexcept;
 
 		[[nodiscard]]
-		constexpr int32 compare(const value_type* str) const noexcept;
+		constexpr int32 compare(const value_type* s) const noexcept;
 
 		[[nodiscard]]
-		constexpr int32 compare(size_type pos1, size_type n1, const value_type* str) const noexcept;
+		constexpr int32 compare(size_type pos1, size_type n1, const value_type* s) const noexcept;
 
 		[[nodiscard]]
-		constexpr int32 compare(size_type pos1, size_type n1, const value_type* str, size_type n2) const noexcept;
+		constexpr int32 compare(size_type pos1, size_type n1, const value_type* s, size_type n2) const noexcept;
 
 		[[nodiscard]]
-		constexpr bool starts_with(value_type ch) const;
+		constexpr bool starts_with(value_type ch) const noexcept;
 
 		[[nodiscard]]
-		constexpr bool starts_with(StringView text) const;
+		constexpr bool starts_with(StringView text) const noexcept;
 
 		[[nodiscard]]
-		bool ends_with(value_type ch) const;
+		bool ends_with(value_type ch) const noexcept;
 
 		[[nodiscard]]
-		constexpr bool ends_with(StringView text) const;
+		constexpr bool ends_with(StringView text) const noexcept;
 
 		[[nodiscard]]
-		constexpr size_type indexOf(StringView str, size_type pos = 0) const noexcept;
+		constexpr size_type indexOf(StringView s, size_type pos = 0) const noexcept;
 
 		[[nodiscard]]
 		constexpr size_type indexOf(value_type ch, size_type pos = 0) const noexcept;
 
 		[[nodiscard]]
-		constexpr size_type indexOf(const value_type* str, size_type pos, size_type count) const noexcept;
+		constexpr size_type indexOf(const value_type* s, size_type pos, size_type count) const noexcept;
 
 		[[nodiscard]]
-		constexpr size_type indexOf(const value_type* str, size_type pos = 0) const noexcept;
+		constexpr size_type indexOf(const value_type* s, size_type pos = 0) const noexcept;
 
 		[[nodiscard]]
 		constexpr size_t indexOfNot(value_type ch, size_t pos = 0) const noexcept;
 
 		[[nodiscard]]
-		constexpr size_type lastIndexOf(StringView str, size_type pos = npos) const noexcept;
+		constexpr size_type lastIndexOf(StringView s, size_type pos = npos) const noexcept;
 
 		[[nodiscard]]
 		constexpr size_type lastIndexOf(value_type ch, size_type pos = npos) const noexcept;
 
 		[[nodiscard]]
-		constexpr size_type lastIndexOf(const value_type* str, size_type pos, size_type count) const noexcept;
+		constexpr size_type lastIndexOf(const value_type* s, size_type pos, size_type count) const noexcept;
 
 		[[nodiscard]]
-		constexpr size_type lastIndexOf(const value_type* str, size_type pos = npos) const noexcept;
+		constexpr size_type lastIndexOf(const value_type* s, size_type pos = npos) const noexcept;
 
 		[[nodiscard]]
 		constexpr size_t lastIndexNotOf(value_type ch, size_t pos = npos) const noexcept;
@@ -286,15 +286,14 @@ namespace s3d
 		}
 	};
 
+	inline void swap(StringView& a, StringView& b) noexcept;
+
 	inline namespace Literals
 	{
 		inline namespace StringViewLiterals
 		{
 			[[nodiscard]]
-			constexpr StringView operator ""_sv(const char32_t* s, const size_t length) noexcept
-			{
-				return StringView(s, length);
-			}
+			constexpr StringView operator ""_sv(const char32_t* s, size_t length) noexcept;
 		}
 	}
 

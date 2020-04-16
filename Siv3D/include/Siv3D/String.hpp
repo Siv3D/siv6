@@ -143,6 +143,9 @@ namespace s3d
 
 		template <class Iterator>
 		String& assign(Iterator first, Iterator last);
+		
+		[[nodiscard]]
+		allocator_type get_allocator() const;
 
 		String& operator <<(value_type ch);
 
@@ -1016,15 +1019,14 @@ namespace s3d
 		}
 	};
 
+	inline void swap(String& a, String& b) noexcept;
+
 	inline namespace Literals
 	{
 		inline namespace StringLiterals
 		{
 			[[nodiscard]]
-			inline String operator ""_s(const char32_t* s, const size_t length)
-			{
-				return String(s, length);
-			}
+			inline String operator ""_s(const char32_t* s, size_t length);
 		}
 	}
 

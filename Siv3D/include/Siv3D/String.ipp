@@ -199,6 +199,11 @@ namespace s3d
 		return *this;
 	}
 
+	inline String::allocator_type String::get_allocator() const
+	{
+		return m_string.get_allocator();
+	}
+
 	inline String& String::operator <<(const value_type ch)
 	{
 		return append(ch);
@@ -717,5 +722,21 @@ namespace s3d
 	inline int32 String::compare(const value_type* s) const noexcept
 	{
 		return m_string.compare(s);
+	}
+
+	inline void swap(String& a, String& b) noexcept
+	{
+		a.swap(b);
+	}
+
+	inline namespace Literals
+	{
+		inline namespace StringLiterals
+		{
+			inline String operator ""_s(const char32_t* s, const size_t length)
+			{
+				return String(s, length);
+			}
+		}
 	}
 }

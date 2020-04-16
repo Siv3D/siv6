@@ -80,7 +80,7 @@ namespace s3d
 		return m_view.crend();
 	}
 
-	inline constexpr StringView::const_reference StringView::operator[](const size_type index) const
+	inline constexpr StringView::const_reference StringView::operator[](const size_type index) const noexcept
 	{
 		return m_view[index];
 	}
@@ -95,14 +95,14 @@ namespace s3d
 		return m_view[index];
 	}
 
-	inline constexpr StringView::const_reference StringView::front() const
+	inline constexpr StringView::const_reference StringView::front() const noexcept
 	{
 		assert(not empty() && "cannot call StringView::front() on empty StringView");
 
 		return m_view[0];
 	}
 
-	inline constexpr StringView::const_reference StringView::back() const
+	inline constexpr StringView::const_reference StringView::back() const noexcept
 	{
 		assert(not empty() && "cannot call StringView::back() on empty StringView");
 
@@ -184,61 +184,61 @@ namespace s3d
 		return StringView(m_view.data() + pos, std::min(n, m_view.size() - pos));
 	}
 
-	inline constexpr int32 StringView::compare(const StringView sv) const noexcept
+	inline constexpr int32 StringView::compare(const StringView s) const noexcept
 	{
-		return m_view.compare(sv.m_view);
+		return m_view.compare(s.m_view);
 	}
 
-	inline constexpr int32 StringView::compare(const size_type pos1, const size_type n1, const StringView sv) const noexcept
+	inline constexpr int32 StringView::compare(const size_type pos1, const size_type n1, const StringView s) const noexcept
 	{
-		return m_view.compare(pos1, n1, sv.m_view);
+		return m_view.compare(pos1, n1, s.m_view);
 	}
 
-	inline constexpr int32 StringView::compare(const size_type pos1, const size_type n1, const StringView sv, const size_type pos2, const size_type n2) const noexcept
+	inline constexpr int32 StringView::compare(const size_type pos1, const size_type n1, const StringView s, const size_type pos2, const size_type n2) const noexcept
 	{
-		return m_view.compare(pos1, n1, sv.m_view, pos2, n2);
+		return m_view.compare(pos1, n1, s.m_view, pos2, n2);
 	}
 
-	inline constexpr int32 StringView::compare(const value_type* str) const noexcept
+	inline constexpr int32 StringView::compare(const value_type* s) const noexcept
 	{
-		return m_view.compare(str);
+		return m_view.compare(s);
 	}
 
-	inline constexpr int32 StringView::compare(const size_type pos1, const size_type n1, const value_type* str) const noexcept
+	inline constexpr int32 StringView::compare(const size_type pos1, const size_type n1, const value_type* s) const noexcept
 	{
-		return m_view.compare(pos1, n1, str);
+		return m_view.compare(pos1, n1, s);
 	}
 
-	inline constexpr int32 StringView::compare(const size_type pos1, const size_type n1, const value_type* str, const size_type n2) const noexcept
+	inline constexpr int32 StringView::compare(const size_type pos1, const size_type n1, const value_type* s, const size_type n2) const noexcept
 	{
-		return m_view.compare(pos1, n1, str, n2);
+		return m_view.compare(pos1, n1, s, n2);
 	}
 
-	inline constexpr bool StringView::starts_with(const value_type ch) const
+	inline constexpr bool StringView::starts_with(const value_type ch) const noexcept
 	{
 		return (not empty()) && (front() == ch);
 	}
 
-	inline constexpr bool StringView::starts_with(const StringView text) const
+	inline constexpr bool StringView::starts_with(const StringView text) const noexcept
 	{
 		return (m_view.size() >= text.size())
 			&& (std::char_traits<value_type>::compare(m_view.data(), text.data(), text.size()) == 0);
 	}
 
-	inline bool StringView::ends_with(const value_type ch) const
+	inline bool StringView::ends_with(const value_type ch) const noexcept
 	{
 		return (not empty()) && (back() == ch);
 	}
 
-	inline constexpr bool StringView::ends_with(const StringView text) const
+	inline constexpr bool StringView::ends_with(const StringView text) const noexcept
 	{
 		return (m_view.size() >= text.size())
 			&& (std::char_traits<value_type>::compare(m_view.data() + m_view.size() - text.size(), text.data(), text.size()) == 0);
 	}
 
-	inline constexpr StringView::size_type StringView::indexOf(const StringView str, const size_type pos) const noexcept
+	inline constexpr StringView::size_type StringView::indexOf(const StringView s, const size_type pos) const noexcept
 	{
-		return m_view.find(str.m_view, pos);
+		return m_view.find(s.m_view, pos);
 	}
 
 	inline constexpr StringView::size_type StringView::indexOf(const value_type ch, const size_type pos) const noexcept
@@ -246,14 +246,14 @@ namespace s3d
 		return m_view.find(ch, pos);
 	}
 
-	inline constexpr StringView::size_type StringView::indexOf(const value_type* str, const size_type pos, const size_type count) const noexcept
+	inline constexpr StringView::size_type StringView::indexOf(const value_type* s, const size_type pos, const size_type count) const noexcept
 	{
-		return m_view.find(str, pos, count);
+		return m_view.find(s, pos, count);
 	}
 
-	inline constexpr StringView::size_type StringView::indexOf(const value_type* str, const size_type pos) const noexcept
+	inline constexpr StringView::size_type StringView::indexOf(const value_type* s, const size_type pos) const noexcept
 	{
-		return m_view.find(str, pos);
+		return m_view.find(s, pos);
 	}
 
 	inline constexpr size_t StringView::indexOfNot(const value_type ch, const size_t pos) const noexcept
@@ -261,9 +261,9 @@ namespace s3d
 		return m_view.find_first_not_of(ch, pos);
 	}
 
-	inline constexpr StringView::size_type StringView::lastIndexOf(const StringView str, const size_type pos) const noexcept
+	inline constexpr StringView::size_type StringView::lastIndexOf(const StringView s, const size_type pos) const noexcept
 	{
-		return m_view.rfind(str.m_view, pos);
+		return m_view.rfind(s.m_view, pos);
 	}
 
 	inline constexpr StringView::size_type StringView::lastIndexOf(const value_type ch, const size_type pos) const noexcept
@@ -271,14 +271,14 @@ namespace s3d
 		return m_view.rfind(ch, pos);
 	}
 
-	inline constexpr StringView::size_type StringView::lastIndexOf(const value_type* str, const size_type pos, const size_type count) const noexcept
+	inline constexpr StringView::size_type StringView::lastIndexOf(const value_type* s, const size_type pos, const size_type count) const noexcept
 	{
-		return m_view.rfind(str, pos, count);
+		return m_view.rfind(s, pos, count);
 	}
 
-	inline constexpr StringView::size_type StringView::lastIndexOf(const value_type* str, const size_type pos) const noexcept
+	inline constexpr StringView::size_type StringView::lastIndexOf(const value_type* s, const size_type pos) const noexcept
 	{
-		return m_view.rfind(str, pos);
+		return m_view.rfind(s, pos);
 	}
 
 	inline constexpr size_t StringView::lastIndexNotOf(const value_type ch, const size_t pos) const noexcept
@@ -324,5 +324,21 @@ namespace s3d
 	inline constexpr size_t StringView::lastIndexNotOfAny(const value_type* anyof, const size_t pos) const noexcept
 	{
 		return m_view.find_last_not_of(anyof, pos);
+	}
+
+	inline void swap(StringView& a, StringView& b) noexcept
+	{
+		a.swap(b);
+	}
+
+	inline namespace Literals
+	{
+		inline namespace StringViewLiterals
+		{
+			constexpr StringView operator ""_sv(const char32_t* s, const size_t length) noexcept
+			{
+				return StringView(s, length);
+			}
+		}
 	}
 }
