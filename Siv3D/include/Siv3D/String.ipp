@@ -704,18 +704,18 @@ namespace s3d
 		return m_string.find_last_not_of(anyof, offset, traits_type::length(anyof));
 	}
 
-	inline int32 String::compare(const String& text) const noexcept
+	inline int32 String::compare(const String& s) const noexcept
 	{
-		return m_string.compare(text.m_string);
+		return m_string.compare(s.m_string);
 	}
 
-	inline int32 String::compare(const StringView view) const noexcept
+	inline int32 String::compare(const StringView s) const noexcept
 	{
-		return m_string.compare(std::u32string_view(view.data(), view.size()));
+		return m_string.compare(std::u32string_view(s.data(), s.size()));
 	}
 
-	inline int32 String::compare(const value_type* text) const noexcept
+	inline int32 String::compare(const value_type* s) const noexcept
 	{
-		return m_string.compare(text);
+		return m_string.compare(s);
 	}
 }

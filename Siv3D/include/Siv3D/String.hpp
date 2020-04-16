@@ -111,7 +111,7 @@ namespace s3d
 
 		String& operator =(const String& other);
 
-		String& operator =(const string_type& text);
+		String& operator =(const string_type& s);
 
 		String& operator =(String&& other) noexcept;
 
@@ -386,7 +386,7 @@ namespace s3d
 		/// <summary>
 		/// 文字列を指定した位置から検索し、最初に現れた位置を返します。
 		/// </summary>
-		/// <param name="text">
+		/// <param name="s">
 		/// 検索する文字列
 		/// </param>
 		/// <param name="offset">
@@ -401,14 +401,14 @@ namespace s3d
 		/// <summary>
 		/// 文字列を指定した位置から検索し、最初に現れた位置を返します。
 		/// </summary>
-		/// <param name="text">
+		/// <param name="s">
 		/// 検索する文字列
 		/// </param>
 		/// <param name="offset">
 		/// 検索を開始する位置
 		/// </param>
 		/// <remarks>
-		/// text は NULL 終端されている必要があります。
+		/// s は NULL 終端されている必要があります。
 		/// </remarks>
 		/// <returns>
 		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
@@ -449,7 +449,7 @@ namespace s3d
 		/// <summary>
 		/// 文字列を後方から逆順に検索し、最初に現れた位置を返します。
 		/// </summary>
-		/// <param name="text">
+		/// <param name="s">
 		/// 検索する文字列
 		/// </param>
 		/// <param name="offset">
@@ -459,25 +459,25 @@ namespace s3d
 		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
 		/// </returns>
 		[[nodiscard]]
-		size_t lastIndexOf(const String& text, size_t offset = npos) const noexcept;
+		size_t lastIndexOf(const String& s, size_t offset = npos) const noexcept;
 
 		/// <summary>
 		/// 文字列を後方から逆順に検索し、最初に現れた位置を返します。
 		/// </summary>
-		/// <param name="text">
+		/// <param name="s">
 		/// 検索する文字列
 		/// </param>
 		/// <param name="offset">
 		/// 検索を開始する位置。npos の場合は終端から
 		/// </param>
 		/// <remarks>
-		/// text は NULL 終端されている必要があります。
+		/// s は NULL 終端されている必要があります。
 		/// </remarks>
 		/// <returns>
 		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
 		/// </returns>
 		[[nodiscard]]
-		size_t lastIndexOf(const value_type* text, size_t offset = npos) const noexcept;
+		size_t lastIndexOf(const value_type* s, size_t offset = npos) const noexcept;
 
 		/// <summary>
 		/// 文字を後方から逆順に検索し、最初に現れた位置を返します。
@@ -534,7 +534,7 @@ namespace s3d
 		/// 検索を開始する位置
 		/// </param>
 		/// <remarks>
-		/// text は NULL 終端されている必要があります。
+		/// anyof は NULL 終端されている必要があります。
 		/// </remarks>
 		/// <returns>
 		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
@@ -644,41 +644,41 @@ namespace s3d
 		/// <summary>
 		/// 文字列の大小を比較します。
 		/// </summary>
-		/// <param name="text">
+		/// <param name="s">
 		/// 比較対象の文字列
 		/// </param>
 		/// <returns>
 		/// 比較結果。等しければ 0, 小さければ &lt;0, 大きければ &gt;0
 		/// </returns>
 		[[nodiscard]]
-		int32 compare(const String& text) const noexcept;
+		int32 compare(const String& s) const noexcept;
 
 		/// <summary>
 		/// 文字列の大小を比較します。
 		/// </summary>
-		/// <param name="text">
+		/// <param name="s">
 		/// 比較対象の文字列
 		/// </param>
 		/// <returns>
 		/// 比較結果。等しければ 0, 小さければ &lt;0, 大きければ &gt;0
 		/// </returns>
 		[[nodiscard]]
-		int32 compare(StringView view) const noexcept;
+		int32 compare(StringView s) const noexcept;
 
 		/// <summary>
 		/// 文字列の大小を比較します。
 		/// </summary>
-		/// <param name="text">
+		/// <param name="s">
 		/// 比較対象の文字列
 		/// </param>
 		/// <remarks>
-		/// text は NULL 終端されている必要があります。
+		/// s は NULL 終端されている必要があります。
 		/// </remarks>
 		/// <returns>
 		/// 比較結果。等しければ 0, 小さければ &lt;0, 大きければ &gt;0
 		/// </returns>
 		[[nodiscard]]
-		int32 compare(const value_type* text) const noexcept;
+		int32 compare(const value_type* s) const noexcept;
 
 
 
