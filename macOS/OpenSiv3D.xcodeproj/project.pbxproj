@@ -279,6 +279,8 @@
 		2C4CBE6A24376B5300F8B7A6 /* CProfiler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CProfiler.hpp; sourceTree = "<group>"; };
 		2C4CBE6B24376B5300F8B7A6 /* CProfiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CProfiler.cpp; sourceTree = "<group>"; };
 		2C4CBE6C24376B5300F8B7A6 /* SivProfiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivProfiler.cpp; sourceTree = "<group>"; };
+		2C57484924489836008D9BCE /* Char.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Char.hpp; sourceTree = "<group>"; };
+		2C57484A24489836008D9BCE /* Char.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Char.ipp; sourceTree = "<group>"; };
 		2C6897DF2436064900C36C25 /* Siv3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Siv3D.hpp; sourceTree = "<group>"; };
 		2C6897E12436064900C36C25 /* Concepts.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Concepts.hpp; sourceTree = "<group>"; };
 		2C6897E22436064900C36C25 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
@@ -858,6 +860,8 @@
 				2C6897E42436064900C36C25 /* ApplicationOptions.hpp */,
 				2C6897EE2436064900C36C25 /* Array.hpp */,
 				2C435BC2243E084B001CAAD8 /* Byte.hpp */,
+				2C57484924489836008D9BCE /* Char.hpp */,
+				2C57484A24489836008D9BCE /* Char.ipp */,
 				2C6898072436064900C36C25 /* Common.hpp */,
 				2C435BC3243E084B001CAAD8 /* CommonFloat.hpp */,
 				2C6897E12436064900C36C25 /* Concepts.hpp */,
