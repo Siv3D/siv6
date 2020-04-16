@@ -40,7 +40,7 @@ namespace s3d
 		}
 	}
 
-	CPUInfo g_CPUInfo = detail::InitCPUInfo();
+	const CPUInfo g_CPUInfo = detail::InitCPUInfo();
 
 	const CPUInfo& GetCPUInfo() noexcept
 	{
