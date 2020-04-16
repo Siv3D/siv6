@@ -240,39 +240,39 @@ namespace s3d
 		std::wstring toWstr() const;
 
 		[[nodiscard]]
-		friend constexpr bool operator ==(StringView x, StringView y) noexcept
+		friend constexpr bool operator ==(StringView lhs, StringView rhs) noexcept
 		{
-			return (x.compare(y) == 0);
+			return (lhs.compare(rhs) == 0);
 		}
 
 		[[nodiscard]]
-		friend constexpr bool operator !=(StringView x, StringView y) noexcept
+		friend constexpr bool operator !=(StringView lhs, StringView rhs) noexcept
 		{
-			return (x.compare(y) != 0);
+			return (lhs.compare(rhs) != 0);
 		}
 
 		[[nodiscard]]
-		friend constexpr bool operator <(StringView x, StringView y) noexcept
+		friend constexpr bool operator <(StringView lhs, StringView rhs) noexcept
 		{
-			return (x.compare(y) < 0);
+			return (lhs.compare(rhs) < 0);
 		}
 
 		[[nodiscard]]
-		friend constexpr bool operator <=(StringView x, StringView y) noexcept
+		friend constexpr bool operator <=(StringView lhs, StringView rhs) noexcept
 		{
-			return (x.compare(y) <= 0);
+			return (lhs.compare(rhs) <= 0);
 		}
 
 		[[nodiscard]]
-		friend constexpr bool operator >(StringView x, StringView y) noexcept
+		friend constexpr bool operator >(StringView lhs, StringView rhs) noexcept
 		{
-			return (x.compare(y) > 0);
+			return (lhs.compare(rhs) > 0);
 		}
 
 		[[nodiscard]]
-		friend constexpr bool operator >=(StringView x, StringView y) noexcept
+		friend constexpr bool operator >=(StringView lhs, StringView rhs) noexcept
 		{
-			return (x.compare(y) >= 0);
+			return (lhs.compare(rhs) >= 0);
 		}
 
 		friend std::ostream& operator <<(std::ostream& output, const StringView& value)

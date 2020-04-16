@@ -11,6 +11,7 @@
 
 # include <Siv3D/String.hpp>
 # include <Siv3D/Unicode.hpp>
+# include <Siv3D/Char.hpp>
 
 namespace s3d
 {
@@ -37,5 +38,98 @@ namespace s3d
 	const std::u32string& String::toUTF32() const noexcept
 	{
 		return m_string;
+	}
+
+	int32 String::case_insensitive_compare(const StringView view) const noexcept
+	{
+		auto first1 = begin(), last1 = end();
+		auto first2 = view.begin(), last2 = view.end();
+
+		for (; (first1 != last1) && (first2 != last2); ++first1, ++first2)
+		{
+			const int32 c = CaseInsensitiveCompare(*first1, *first2);
+
+			if (c != 0)
+			{
+				return c;
+			}
+		}
+
+		if ((first1 == last1) && (first2 != last2))
+		{
+			return -1;
+		}
+		else if ((first1 != last1) && (first2 == last2))
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	bool String::case_insensitive_equals(const StringView view) const noexcept
+	{
+		if (length() != view.length())
+		{
+			return false;
+		}
+
+		auto first1 = begin(), last1 = end();
+		auto first2 = view.begin(), last2 = view.end();
+
+		for (; (first1 != last1) && (first2 != last2); ++first1, ++first2)
+		{
+			const int32 c = CaseInsensitiveCompare(*first1, *first2);
+
+			if (c != 0)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	String& String::capitalize() noexcept
+	{
+		for (auto& c : m_string)
+		{
+			if (IsAlpha(c))
+			{
+				c = ToUpper(c);
+				break;
+			}
+		}
+
+		return *this;
+	}
+
+	String String::expandTabs(const size_t tabSize) const
+	{
+		const size_t tabCount = count(value_type('\t'));
+		const size_t new_size = m_string.length() + (tabCount * tabSize);
+
+		String result(new_size, value_type('\0'));
+
+		value_type* dst = &result[0];
+
+		for (const auto c : m_string)
+		{
+			if (c == value_type('\t'))
+			{
+				for (size_t i = 0; i < tabSize; ++i)
+				{
+					*dst++ = value_type(' ');
+				}
+			}
+			else
+			{
+				*dst++ = c;
+			}
+		}
+
+		return result;
 	}
 }

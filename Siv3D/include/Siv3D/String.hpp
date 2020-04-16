@@ -16,6 +16,7 @@
 # include "Types.hpp"
 # include "Concepts.hpp"
 # include "StringView.hpp"
+# include "Utility.hpp"
 
 namespace s3d
 {
@@ -275,15 +276,23 @@ namespace s3d
 
 		void pop_front();
 
+		void popFrontN(size_t n);
+
 		void pop_back() noexcept;
 
-		[[nodiscard]] value_type& front() noexcept;
+		void popBackN(size_t n) noexcept;
 
-		[[nodiscard]] const value_type& front() const noexcept;
+		[[nodiscard]]
+		value_type& front() noexcept;
 
-		[[nodiscard]] value_type& back() noexcept;
+		[[nodiscard]]
+		const value_type& front() const noexcept;
 
-		[[nodiscard]] const value_type& back() const noexcept;
+		[[nodiscard]]
+		value_type& back() noexcept;
+
+		[[nodiscard]]
+		const value_type& back() const noexcept;
 
 		[[nodiscard]]
 		const value_type* c_str() const noexcept;
@@ -331,6 +340,54 @@ namespace s3d
 		void reserve(size_t newCapacity);
 
 		void swap(String& other) noexcept;
+
+		/// <summary>
+		/// 指定した文字から始まるかを調べます。
+		/// </summary>
+		/// <param name="ch">
+		/// 検索する文字
+		/// </param>
+		/// <returns>
+		/// 指定した文字から始まる場合 true, それ以外の場合は false
+		/// </returns>
+		[[nodiscard]]
+		bool starts_with(value_type ch) const noexcept;
+		
+		/// <summary>
+		/// 指定した文字列から始まるかを調べます。
+		/// </summary>
+		/// <param name="str">
+		/// 検索する文字列
+		/// </param>
+		/// <returns>
+		/// 指定した文字列から始まる場合 true, それ以外の場合は false
+		/// </returns>
+		[[nodiscard]]
+		bool starts_with(StringView s) const;
+
+		/// <summary>
+		/// 指定した文字で終わるかを調べます。
+		/// </summary>
+		/// <param name="ch">
+		/// 検索する文字
+		/// </param>
+		/// <returns>
+		/// 指定した文字で終わる場合 true, それ以外の場合は false
+		/// </returns>
+		[[nodiscard]]
+		bool ends_with(value_type ch) const noexcept;
+
+		/// <summary>
+		/// 指定した文字列で終わるかを調べます。
+		/// </summary>
+		/// <param name="s">
+		/// 検索する文字列
+		/// </param>
+		/// <returns>
+		/// 指定した文字列で終わる場合 true, それ以外の場合は false
+		/// </returns>
+		[[nodiscard]]
+		bool ends_with(StringView s) const;
 
 		[[nodiscard]]
 		String substr(size_t offset = 0, size_t count = npos) const;
@@ -399,25 +456,7 @@ namespace s3d
 		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
 		/// </returns>
 		[[nodiscard]]
-		size_t indexOf(const String& s, size_t offset = 0) const noexcept;
-
-		/// <summary>
-		/// 文字列を指定した位置から検索し、最初に現れた位置を返します。
-		/// </summary>
-		/// <param name="s">
-		/// 検索する文字列
-		/// </param>
-		/// <param name="offset">
-		/// 検索を開始する位置
-		/// </param>
-		/// <remarks>
-		/// s は NULL 終端されている必要があります。
-		/// </remarks>
-		/// <returns>
-		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
-		/// </returns>
-		[[nodiscard]]
-		size_t indexOf(const value_type* s, size_t offset = 0) const noexcept;
+		size_t indexOf(StringView s, size_t offset = 0) const noexcept;
 
 		/// <summary>
 		/// 文字を指定した位置から検索し、最初に現れた位置を返します。
@@ -462,25 +501,7 @@ namespace s3d
 		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
 		/// </returns>
 		[[nodiscard]]
-		size_t lastIndexOf(const String& s, size_t offset = npos) const noexcept;
-
-		/// <summary>
-		/// 文字列を後方から逆順に検索し、最初に現れた位置を返します。
-		/// </summary>
-		/// <param name="s">
-		/// 検索する文字列
-		/// </param>
-		/// <param name="offset">
-		/// 検索を開始する位置。npos の場合は終端から
-		/// </param>
-		/// <remarks>
-		/// s は NULL 終端されている必要があります。
-		/// </remarks>
-		/// <returns>
-		/// 検索した文字列が最初に現れた位置。見つからなかった場合は npos
-		/// </returns>
-		[[nodiscard]]
-		size_t lastIndexOf(const value_type* s, size_t offset = npos) const noexcept;
+		size_t lastIndexOf(StringView s, size_t offset = npos) const noexcept;
 
 		/// <summary>
 		/// 文字を後方から逆順に検索し、最初に現れた位置を返します。
@@ -525,25 +546,7 @@ namespace s3d
 		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
 		/// </returns>
 		[[nodiscard]]
-		size_t indexOfAny(const String& anyof, size_t offset = 0) const noexcept;
-
-		/// <summary>
-		/// 検索する文字のいずれかが最初に現れた位置を返します。
-		/// </summary>
-		/// <param name="anyof">
-		/// 検索する文字の集合
-		/// </param>
-		/// <param name="offset">
-		/// 検索を開始する位置
-		/// </param>
-		/// <remarks>
-		/// anyof は NULL 終端されている必要があります。
-		/// </remarks>
-		/// <returns>
-		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
-		/// </returns>
-		[[nodiscard]]
-		size_t indexOfAny(const value_type* anyof, size_t offset = 0) const noexcept;
+		size_t indexOfAny(StringView anyof, size_t offset = 0) const noexcept;
 
 		/// <summary>
 		/// 文字を後方から逆順に検索し、検索する文字のいずれかが最初に現れた位置を返します。
@@ -558,25 +561,7 @@ namespace s3d
 		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
 		/// </returns>
 		[[nodiscard]]
-		size_t lastIndexOfAny(const String& anyof, size_t offset = npos) const noexcept;
-
-		/// <summary>
-		/// 文字を後方から逆順に検索し、検索する文字のいずれかが最初に現れた位置を返します。
-		/// </summary>
-		/// <param name="anyof">
-		/// 検索する文字の集合
-		/// </param>
-		/// <param name="offset">
-		/// 検索を開始する位置。npos の場合は終端から
-		/// </param>
-		/// <remarks>
-		/// anyof は NULL 終端されている必要があります。
-		/// </remarks>
-		/// <returns>
-		/// 検索した文字が最初に現れた位置。見つからなかった場合は npos
-		/// </returns>
-		[[nodiscard]]
-		size_t lastIndexOfAny(const value_type* anyof, size_t offset = npos) const noexcept;
+		size_t lastIndexOfAny(StringView anyof, size_t offset = npos) const noexcept;
 
 		/// <summary>
 		/// 検索する文字に含まれない文字が最初に現れた位置を返します。
@@ -591,25 +576,7 @@ namespace s3d
 		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
 		/// </returns>
 		[[nodiscard]]
-		size_t indexNotOfAny(const String& anyof, size_t offset = 0) const;
-
-		/// <summary>
-		/// 検索する文字に含まれない文字が最初に現れた位置を返します。
-		/// </summary>
-		/// <param name="anyof">
-		/// 検索する文字の集合
-		/// </param>
-		/// <param name="offset">
-		/// 検索を開始する位置
-		/// </param>
-		/// <remarks>
-		/// anyof は NULL 終端されている必要があります。
-		/// </remarks>
-		/// <returns>
-		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
-		/// </returns>
-		[[nodiscard]]
-		size_t indexNotOfAny(const value_type* anyof, size_t offset = 0) const;
+		size_t indexNotOfAny(StringView anyof, size_t offset = 0) const;
 
 		/// <summary>
 		/// 文字を後方から逆順に検索し、検索する文字に含まれない文字が最初に現れた位置を返します。
@@ -624,25 +591,7 @@ namespace s3d
 		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
 		/// </returns>
 		[[nodiscard]]
-		size_t lastIndexNotOfAny(const String& anyof, size_t offset = npos) const;
-
-		/// <summary>
-		/// 文字を後方から逆順に検索し、検索する文字に含まれない文字が最初に現れた位置を返します。
-		/// </summary>
-		/// <param name="anyof">
-		/// 検索する文字の集合
-		/// </param>
-		/// <param name="offset">
-		/// 検索を開始する位置。npos の場合は終端から
-		/// </param>
-		/// <remarks>
-		/// anyof は NULL 終端されている必要があります。
-		/// </remarks>
-		/// <returns>
-		/// 検索した文字とは異なる文字が最初に現れた位置。見つからなかった場合は npos
-		/// </returns>
-		[[nodiscard]]
-		size_t lastIndexNotOfAny(const value_type* anyof, size_t offset = npos) const;
+		size_t lastIndexNotOfAny(StringView anyof, size_t offset = npos) const;
 
 		/// <summary>
 		/// 文字列の大小を比較します。
@@ -683,9 +632,263 @@ namespace s3d
 		[[nodiscard]]
 		int32 compare(const value_type* s) const noexcept;
 
+		/// <summary>
+		/// 英字の大小を無視して文字列の大小を比較します。
+		/// </summary>
+		/// <param name="s">
+		/// 比較対象の文字列
+		/// </param>
+		/// <returns>
+		/// 比較結果。等しければ 0, 小さければ -1, 大きければ 1
+		/// </returns>
+		[[nodiscard]]
+		int32 case_insensitive_compare(StringView s) const noexcept;
+
+		/// <summary>
+		/// 英字の大小を無視して文字列を比較します。
+		/// </summary>
+		/// <param name="s">
+		/// 比較対象の文字列
+		/// </param>
+		/// <returns>
+		/// 英字の大小を無視した時に文字列が等しい場合 true, それ以外の場合は false
+		/// </returns>
+		[[nodiscard]]
+		bool case_insensitive_equals(StringView s) const noexcept;
+
+		/// <summary>
+		/// 全ての文字が条件を満たすかを返します。
+		/// </summary>
+		/// <param name="f">
+		/// 条件を記述した関数
+		/// </param>
+		/// <returns>
+		/// 条件を満たさない文字が 1 つでもあれば false, それ以外の場合は true
+		/// </returns>
+		template <class Fty = decltype(Identity), std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		bool all(Fty f = Id) const;
+
+		/// <summary>
+		/// 少なくとも 1 つの文字が条件を満たすかを返します。
+		/// </summary>
+		/// <param name="f">
+		/// 条件を記述した関数
+		/// </param>
+		/// <returns>
+		/// 条件を満たす文字が 1 つでもあれば true, それ以外の場合は false
+		/// </returns>
+		template <class Fty = decltype(Identity), std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		bool any(Fty f = Id) const;
+
+		/// <summary>
+		/// 最初に登場する英字を大文字にします。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& capitalize() noexcept;
+
+		/// <summary>
+		/// 最初に登場する英字を大文字にした文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String capitalized() const&;
+
+		/// <summary>
+		/// 最初に登場する英字を大文字にした文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String capitalized() &&;
+
+		/// <summary>
+		/// 指定した文字の個数を数えます。
+		/// </summary>
+		/// <param name="ch">
+		/// 検索する文字
+		/// </param>
+		/// <returns>
+		/// 見つかった文字の個数
+		/// </returns>
+		[[nodiscard]]
+		size_t count(value_type ch) const noexcept;
+
+		/// <summary>
+		/// 指定した文字列の個数を数えます。
+		/// </summary>
+		/// <param name="s">
+		/// 検索する文字列
+		/// </param>
+		/// <remarks>
+		/// "aaa" から "aa" を検索する場合の結果は 2 です。
+		/// </remarks>
+		/// <returns>
+		/// 見つかった文字列の個数
+		/// </returns>
+		[[nodiscard]]
+		size_t count(StringView s) const;
+
+		/// <summary>
+		/// 条件に合う文字の個数を数えます。
+		/// </summary>
+		/// <param name="f">
+		/// 条件を記述した関数
+		/// </param>
+		/// <returns>
+		/// 見つかった文字の個数
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		size_t count_if(Fty f) const;
+
+		/// <summary>
+		/// 文字列の各文字への参照を引数に、先頭の文字から順に関数を呼び出します。
+		/// </summary>
+		/// <param name="f">
+		/// 各文字への参照を引数にとる関数
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32&>>* = nullptr>
+		String& each(Fty f);
+
+		/// <summary>
+		/// 文字列の各文字への参照を引数に、先頭の文字から順に関数を呼び出します。
+		/// </summary>
+		/// <param name="f">
+		/// 各文字への参照を引数にとる関数
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32>>* = nullptr>
+		const String& each(Fty f) const;
+
+		/// <summary>
+		/// 文字列の各文字のインデックスと参照を引数に、先頭の文字から順に関数を呼び出します。
+		/// </summary>
+		/// <param name="f">
+		/// 各文字のインデックスと参照を引数にとる関数
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, size_t, char32&>>* = nullptr>
+		String& each_index(Fty f);
+
+		/// <summary>
+		/// 文字列の各文字のインデックスと参照を引数に、先頭の文字から順に関数を呼び出します。
+		/// </summary>
+		/// <param name="f">
+		/// 各文字のインデックスと参照を引数にとる関数
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, size_t, char32>>* = nullptr>
+		const String& each_index(Fty f) const;
+
+		/// <summary>
+		/// タブ文字を半角空白に置換した文字列を返します。
+		/// </summary>
+		/// <param name="tabSize">
+		/// タブ置換後の半角空白の数
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String expandTabs(size_t tabSize = 4) const;
+
+		/// <summary>
+		/// 指定した位置の文字を返します。指定されたインデックスが存在しない場合はデフォルト値を返します。
+		/// </summary>
+		/// <param name="index">
+		/// 位置
+		/// </param>
+		/// <param name="defaultValue">
+		/// インデックスが存在しない場合に返されるデフォルト値
+		/// </param>
+		/// <returns>
+		/// 指定した位置の文字、もしくはデフォルト値
+		/// </returns>
+		[[nodiscard]]
+		value_type fetch(size_t index, value_type defaultValue) const noexcept;
+
+		/// <summary>
+		/// 文字列のサイズを変えずに、全文字を指定された文字で置換します。
+		/// </summary>
+		/// <param name="value">
+		/// 置換後の文字
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& fill(value_type value);
+
+		/// <summary>
+		/// 指定した条件に合う文字のみを含む新しい文字列を返します。
+		/// </summary>
+		/// <param name="f">
+		/// 条件を記述した関数
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]] String filter(Fty f) const;
+
+		/// <summary>
+		/// 指定した文字が含まれているかを調べます。
+		/// </summary>
+		/// <param name="ch">
+		/// 検索する文字
+		/// </param>
+		/// <returns>
+		/// 検索した文字が見つかった場合 true, それ以外の場合は false
+		/// </returns>
+		[[nodiscard]]
+		bool includes(value_type ch) const;
+
+		/// <summary>
+		/// 指定した文字列が含まれているかを調べます。
+		/// </summary>
+		/// <param name="s">
+		/// 検索する文字列
+		/// </param>
+		/// <remarks>
+		/// str は NULL 終端されている必要があります。
+		/// </remarks>
+		/// <returns>
+		/// 検索した文字列が見つかった場合 true, それ以外の場合は false
+		/// </returns>
+		[[nodiscard]]
+		bool includes(StringView s) const;
+
+		/// <summary>
+		/// 指定した条件に合う文字が含まれているかを調べます。
+		/// </summary>
+		/// <param name="f">
+		/// 条件を記述した関数
+		/// </param>
+		/// <returns>
+		/// 検索した文字が見つかった場合 true, それ以外の場合は false
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		bool includes_if(Fty f) const;
 
 
 
+		// [Siv3D ToDo]
 
 
 

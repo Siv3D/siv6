@@ -504,9 +504,19 @@ namespace s3d
 		m_string.erase(m_string.begin());
 	}
 
+	inline void String::popFrontN(const size_t n)
+	{
+		m_string.erase(m_string.begin(), m_string.begin() + Min(n, m_string.size()));
+	}
+
 	inline void String::pop_back() noexcept
 	{
 		m_string.pop_back();
+	}
+
+	inline void String::popBackN(const size_t n) noexcept
+	{
+		m_string.erase(m_string.end() - Min(n, m_string.size()), m_string.end());
 	}
 
 	inline String::value_type& String::front() noexcept
@@ -614,6 +624,36 @@ namespace s3d
 		m_string.swap(other.m_string);
 	}
 
+	inline bool String::starts_with(const value_type ch) const noexcept
+	{
+		return (not m_string.empty() && (m_string.front() == ch));
+	}
+
+	inline bool String::starts_with(const StringView s) const
+	{
+		if (size() < s.size())
+		{
+			return false;
+		}
+
+		return std::equal(s.begin(), s.end(), begin());
+	}
+
+	inline bool String::ends_with(const value_type ch) const noexcept
+	{
+		return (not m_string.empty() && (m_string.back() == ch));
+	}
+
+	inline bool String::ends_with(const StringView s) const
+	{
+		if (size() < s.size())
+		{
+			return false;
+		}
+
+		return std::equal(s.begin(), s.end(), end() - s.size());
+	}
+
 	inline String String::substr(const size_t offset, const size_t count) const
 	{
 		return m_string.substr(offset, count);
@@ -629,14 +669,9 @@ namespace s3d
 		return StringView(data() + offset, std::min(count, size() - offset));
 	}
 
-	inline size_t String::indexOf(const String& s, const size_t offset) const noexcept
+	inline size_t String::indexOf(const StringView s, const size_t offset) const noexcept
 	{
 		return m_string.find(s.data(), offset, s.length());
-	}
-
-	inline size_t String::indexOf(const value_type* s, const size_t offset) const noexcept
-	{
-		return m_string.find(s, offset, traits_type::length(s));
 	}
 
 	inline size_t String::indexOf(const value_type ch, const size_t offset) const noexcept
@@ -649,14 +684,9 @@ namespace s3d
 		return m_string.find_first_not_of(ch, offset);
 	}
 
-	inline size_t String::lastIndexOf(const String& s, const size_t offset) const noexcept
+	inline size_t String::lastIndexOf(const StringView s, const size_t offset) const noexcept
 	{
 		return m_string.rfind(s.data(), offset, s.length());
-	}
-
-	inline size_t String::lastIndexOf(const value_type* s, const size_t offset) const noexcept
-	{
-		return m_string.rfind(s, offset, traits_type::length(s));
 	}
 
 	inline size_t String::lastIndexOf(const value_type ch, const size_t offset) const noexcept
@@ -669,44 +699,24 @@ namespace s3d
 		return m_string.find_last_not_of(ch, offset);
 	}
 
-	inline size_t String::indexOfAny(const String& anyof, const size_t offset) const noexcept
+	inline size_t String::indexOfAny(const StringView anyof, const size_t offset) const noexcept
 	{
 		return m_string.find_first_of(anyof.data(), offset, anyof.length());
 	}
 
-	inline size_t String::indexOfAny(const value_type* anyof, const size_t offset) const noexcept
-	{
-		return m_string.find_first_of(anyof, offset, traits_type::length(anyof));
-	}
-
-	inline size_t String::lastIndexOfAny(const String& anyof, const size_t offset) const noexcept
+	inline size_t String::lastIndexOfAny(const StringView anyof, const size_t offset) const noexcept
 	{
 		return m_string.find_last_of(anyof.data(), offset, anyof.length());
 	}
 
-	inline size_t String::lastIndexOfAny(const value_type* anyof, const size_t offset) const noexcept
-	{
-		return m_string.find_last_of(anyof, offset, traits_type::length(anyof));
-	}
-
-	inline size_t String::indexNotOfAny(const String& anyof, const size_t offset) const
+	inline size_t String::indexNotOfAny(const StringView anyof, const size_t offset) const
 	{
 		return m_string.find_first_not_of(anyof.data(), offset, anyof.length());
 	}
 
-	inline size_t String::indexNotOfAny(const value_type* anyof, const size_t offset) const
-	{
-		return m_string.find_first_not_of(anyof, offset, traits_type::length(anyof));
-	}
-
-	inline size_t String::lastIndexNotOfAny(const String& anyof, const size_t offset) const
+	inline size_t String::lastIndexNotOfAny(const StringView anyof, const size_t offset) const
 	{
 		return m_string.find_last_not_of(anyof.data(), offset, anyof.length());
-	}
-
-	inline size_t String::lastIndexNotOfAny(const value_type* anyof, const size_t offset) const
-	{
-		return m_string.find_last_not_of(anyof, offset, traits_type::length(anyof));
 	}
 
 	inline int32 String::compare(const String& s) const noexcept
@@ -723,6 +733,158 @@ namespace s3d
 	{
 		return m_string.compare(s);
 	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	[[nodiscard]]
+	inline bool String::all(Fty f) const
+	{
+		return std::all_of(m_string.begin(), m_string.end(), f);
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	[[nodiscard]]
+	inline bool String::any(Fty f) const
+	{
+		return std::any_of(m_string.begin(), m_string.end(), f);
+	}
+
+	inline String String::capitalized() const&
+	{
+		return String(*this).capitalize();
+	}
+
+	inline String String::capitalized()&&
+	{
+		capitalize();
+
+		return std::move(*this);
+	}
+
+	inline size_t String::count(const value_type ch) const noexcept
+	{
+		return std::count(m_string.begin(), m_string.end(), ch);
+	}
+
+	inline size_t String::count(const StringView s) const
+	{
+		size_t count = 0;
+
+		for (auto it = begin();; ++it, ++count)
+		{
+			it = std::search(it, end(), s.begin(), s.end());
+
+			if (it == end())
+			{
+				return count;
+			}
+		}
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	[[nodiscard]]
+	inline size_t String::count_if(Fty f) const
+	{
+		return std::count_if(m_string.begin(), m_string.end(), f);
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32&>>*>
+	inline String& String::each(Fty f)
+	{
+		for (auto& c : m_string)
+		{
+			f(c);
+		}
+
+		return *this;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32>>*>
+	inline const String& String::each(Fty f) const
+	{
+		for (const auto c : m_string)
+		{
+			f(c);
+		}
+
+		return *this;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, size_t, char32&>>*>
+	inline String& String::each_index(Fty f)
+	{
+		size_t i = 0;
+
+		for (auto& c : m_string)
+		{
+			f(i++, c);
+		}
+
+		return *this;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, size_t, char32>>*>
+	inline const String& String::each_index(Fty f) const
+	{
+		size_t i = 0;
+
+		for (const auto c : m_string)
+		{
+			f(i++, c);
+		}
+
+		return *this;
+	}
+
+	inline String::value_type String::fetch(const size_t index, const value_type defaultValue) const noexcept
+	{
+		if (index >= size())
+		{
+			return defaultValue;
+		}
+
+		return m_string[index];
+	}
+
+	inline String& String::fill(const value_type value)
+	{
+		std::fill(m_string.begin(), m_string.end(), value);
+
+		return *this;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline String String::filter(Fty f) const
+	{
+		String new_array;
+
+		for (const auto c : m_string)
+		{
+			if (f(c))
+			{
+				new_array.push_back(c);
+			}
+		}
+
+		return new_array;
+	}
+
+	inline bool String::includes(const value_type ch) const
+	{
+		return indexOf(ch) != String::npos;
+	}
+
+	inline bool String::includes(const StringView s) const
+	{
+		return indexOf(s) != String::npos;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline bool String::includes_if(Fty f) const
+	{
+		return any(f);
+	}
+
+
 
 	inline void swap(String& a, String& b) noexcept
 	{

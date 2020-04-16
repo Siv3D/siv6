@@ -221,10 +221,10 @@ namespace s3d
 	inline bool IsPrint(char32 ch);
 
 	[[nodiscard]]
-	inline constexpr bool CaseInsensitiveEquals(char32 a, char32 b) noexcept;
+	inline constexpr int32 CaseInsensitiveCompare(char32 a, char32 b) noexcept;
 
 	[[nodiscard]]
-	inline constexpr int32 CaseInsensitiveCompare(char32 a, char32 b) noexcept;
+	inline constexpr bool CaseInsensitiveEquals(char32 a, char32 b) noexcept;
 }
 
 # include "Char.ipp"

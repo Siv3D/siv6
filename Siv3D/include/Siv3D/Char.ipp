@@ -126,11 +126,6 @@ namespace s3d
 		}
 	}
 
-	inline constexpr bool CaseInsensitiveEquals(const char32 a, const char32 b) noexcept
-	{
-		return (ToLower(a) == ToLower(b));
-	}
-
 	inline constexpr int32 CaseInsensitiveCompare(const char32 a, const char32 b) noexcept
 	{
 		if (IsAlpha(a) && IsAlpha(b))
@@ -141,5 +136,10 @@ namespace s3d
 		{
 			return detail::Compare(a, b);
 		}
+	}
+
+	inline constexpr bool CaseInsensitiveEquals(const char32 a, const char32 b) noexcept
+	{
+		return (ToLower(a) == ToLower(b));
 	}
 }
