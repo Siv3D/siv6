@@ -10,9 +10,18 @@
 //-----------------------------------------------
 
 # pragma once
+# include <functional>
 
 namespace s3d
 {
+	namespace detail
+	{
+		inline constexpr bool IsTrimmable(char32 ch) noexcept
+		{
+			return (ch <= 0x20) || ((ch - 0x7F) <= (0x9F - 0x7F));
+		};
+	}
+
 	inline String::String()
 		: m_string()
 	{
@@ -748,12 +757,12 @@ namespace s3d
 		return std::any_of(m_string.begin(), m_string.end(), f);
 	}
 
-	inline String String::capitalized() const&
+	inline String String::capitalized() const &
 	{
 		return String(*this).capitalize();
 	}
 
-	inline String String::capitalized()&&
+	inline String String::capitalized() &&
 	{
 		capitalize();
 
@@ -883,6 +892,304 @@ namespace s3d
 	{
 		return any(f);
 	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline String& String::keep_if(Fty f)
+	{
+		m_string.erase(std::remove_if(m_string.begin(), m_string.end(), std::not_fn(f)), m_string.end());
+
+		return *this;
+	}
+
+	inline String String::lowercased() const &
+	{
+		return String(*this).lowercase();
+	}
+
+	inline String String::lowercased() &&
+	{
+		lowercase();
+
+		return std::move(*this);
+	}
+
+	inline String String::lpadded(const size_t length, const value_type fillChar) &&
+	{
+		lpad(length, fillChar);
+
+		return std::move(*this);
+	}
+
+	inline String& String::ltrim()
+	{
+		m_string.erase(m_string.begin(), std::find_if_not(m_string.begin(), m_string.end(), detail::IsTrimmable));
+
+		return *this;
+	}
+
+	inline String String::ltrimmed() const&
+	{
+		return String(std::find_if_not(m_string.begin(), m_string.end(), detail::IsTrimmable), m_string.end());
+	}
+
+	inline String String::ltrimmed()&&
+	{
+		ltrim();
+
+		return std::move(*this);
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32>>*>
+	auto String::map(Fty f) const
+	{
+		using T = std::decay_t<std::invoke_result_t<Fty, char32>>;
+		Array<T, std::allocator<T>> new_array;
+
+		new_array.reserve(size());
+
+		for (const auto v : m_string)
+		{
+			new_array.push_back(f(v));
+		}
+
+		return new_array;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	[[nodiscard]]
+	inline bool String::none(Fty f) const
+	{
+		return std::none_of(m_string.begin(), m_string.end(), f);
+	}
+
+	inline String& String::remove(const value_type ch)
+	{
+		m_string.erase(std::remove(m_string.begin(), m_string.end(), ch), m_string.end());
+
+		return *this;
+	}
+
+	inline String& String::remove(const StringView s)
+	{
+		return *this = removed(s);
+	}
+
+	inline String String::removed(const value_type ch) const&
+	{
+		String new_string;
+
+		for (const auto c : m_string)
+		{
+			if (c != ch)
+			{
+				new_string.push_back(c);
+			}
+		}
+
+		return new_string;
+	}
+
+	inline String String::removed(const value_type ch)&&
+	{
+		remove(ch);
+
+		return std::move(*this);
+	}
+
+	inline String String::removed(const StringView s) const
+	{
+		String result;
+
+		for (auto it = begin(); it != end();)
+		{
+			const auto it2 = it;
+
+			result.append(it2, it = std::search(it, end(), s.begin(), s.end()));
+
+			if (it != end())
+			{
+				it += s.size();
+			}
+		}
+
+		return result;
+	}
+
+	inline String& String::remove_at(const size_t index)
+	{
+		if (m_string.size() <= index)
+		{
+			throw std::out_of_range("String::remove_at() index out of range");
+		}
+
+		m_string.erase(m_string.begin() + index);
+
+		return *this;
+	}
+
+	inline String String::removed_at(const size_t index) const&
+	{
+		if (m_string.size() <= index)
+		{
+			throw std::out_of_range("String::removed_at() index out of range");
+		}
+
+		String new_string;
+
+		new_string.reserve(m_string.length() - 1);
+
+		new_string.assign(m_string.begin(), m_string.begin() + index);
+
+		new_string.append(m_string.begin() + index + 1, m_string.end());
+
+		return new_string;
+	}
+
+	inline String String::removed_at(const size_t index)&&
+	{
+		remove_at(index);
+
+		return std::move(*this);
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline String& String::remove_if(Fty f)
+	{
+		m_string.erase(std::remove_if(m_string.begin(), m_string.end(), f), m_string.end());
+
+		return *this;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline String String::removed_if(Fty f) const&
+	{
+		String new_string;
+
+		for (const auto c : m_string)
+		{
+			if (not f(c))
+			{
+				new_string.push_back(c);
+			}
+		}
+
+		return new_string;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline String String::removed_if(Fty f)&&
+	{
+		remove_if(f);
+
+		return std::move(*this);
+	}
+
+	inline String& String::replace(const value_type oldChar, const value_type newChar)
+	{
+		for (auto& c : m_string)
+		{
+			if (c == oldChar)
+			{
+				c = newChar;
+			}
+		}
+
+		return *this;
+	}
+
+	inline String& String::replace(const StringView oldStr, const StringView newStr)
+	{
+		return *this = replaced(oldStr, newStr);
+	}
+
+	inline String String::replaced(const value_type oldChar, const value_type newChar) const&
+	{
+		return String(*this).replace(oldChar, newChar);
+	}
+
+	inline String String::replaced(const value_type oldChar, const value_type newChar)&&
+	{
+		replace(oldChar, newChar);
+
+		return std::move(*this);
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline String& String::replace_if(Fty f, const value_type newChar)
+	{
+		for (auto& c : m_string)
+		{
+			if (f(c))
+			{
+				c = newChar;
+			}
+		}
+
+		return *this;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline String String::replaced_if(Fty f, const value_type newChar) const&&
+	{
+		return String(*this).replace_if(f, newChar);
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline String String::replaced_if(Fty f, const value_type newChar)&
+	{
+		replace_if(f, newChar);
+
+		return std::move(*this);
+	}
+
+	inline String& String::reverse()
+	{
+		std::reverse(m_string.begin(), m_string.end());
+
+		return *this;
+	}
+
+	inline String String::reversed() const&
+	{
+		return String(m_string.rbegin(), m_string.rend());
+	}
+
+	inline String String::reversed()&&
+	{
+		reverse();
+
+		return *this;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32&>>*>
+	inline String& String::reverse_each(Fty f)
+	{
+		auto it = m_string.rbegin();
+		const auto itEnd = m_string.rend();
+
+		while (it != itEnd)
+		{
+			f(*it++);
+		}
+
+		return *this;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32>>*>
+	inline const String& String::reverse_each(Fty f) const
+	{
+		auto it = m_string.rbegin();
+		const auto itEnd = m_string.rend();
+
+		while (it != itEnd)
+		{
+			f(*it++);
+		}
+
+		return *this;
+	}
+
+
 
 
 

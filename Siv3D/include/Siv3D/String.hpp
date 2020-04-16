@@ -17,6 +17,7 @@
 # include "Concepts.hpp"
 # include "StringView.hpp"
 # include "Utility.hpp"
+# include "Array.hpp"
 
 namespace s3d
 {
@@ -393,10 +394,10 @@ namespace s3d
 		String substr(size_t offset = 0, size_t count = npos) const;
 
 		[[nodiscard]]
-		StringView substrView(size_t offset = 0, size_t count = npos) const &;
+		StringView substrView(size_t offset = 0, size_t count = npos) const&;
 
 		[[nodiscard]]
-		StringView substrView(size_t offset = 0, size_t count = npos) && = delete;
+		StringView substrView(size_t offset = 0, size_t count = npos)&& = delete;
 
 		/// <summary>
 		/// 文字列をマルチバイト文字列に変換した結果を返します。
@@ -706,7 +707,7 @@ namespace s3d
 		/// 新しい文字列
 		/// </returns>
 		[[nodiscard]]
-		String capitalized() &&;
+		String capitalized()&&;
 
 		/// <summary>
 		/// 指定した文字の個数を数えます。
@@ -885,6 +886,454 @@ namespace s3d
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
 		[[nodiscard]]
 		bool includes_if(Fty f) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		String& keep_if(Fty f);
+
+		/// <summary>
+		/// 指定した 1 行の文字数で改行するようにした新しい文字列を返します。
+		/// </summary>
+		/// <param name="width">
+		/// 1 行の文字数
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String layout(size_t width) const;
+
+		/// <summary>
+		/// 英字をすべて小文字にします。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& lowercase() noexcept;
+
+		/// <summary>
+		/// 英字をすべて小文字にした新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String lowercased() const&;
+
+		/// <summary>
+		/// 英字をすべて小文字にした新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String lowercased()&&;
+
+		/// <summary>
+		/// 文字列の左を埋め文字で埋めます。
+		/// </summary>
+		/// <param name="length">
+		/// 文字列の左を埋め文字で埋めた後の文字列の長さ
+		/// </param>
+		/// <param name="fillChar">
+		/// 埋め文字
+		/// </param>
+		/// <remarks>
+		/// 元の文字列の長さが <paramref name="length"/> より大きい場合、変更は行われません。 
+		/// </remarks>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& lpad(size_t length, value_type fillChar = U' ');
+
+		/// <summary>
+		/// 文字列の左を埋め文字で埋めた新しい文字列を返します。
+		/// </summary>
+		/// <param name="length">
+		/// 文字列の左を埋め文字で埋めた後の文字列の長さ
+		/// </param>
+		/// <param name="fillChar">
+		/// 埋め文字
+		/// </param>
+		/// <remarks>
+		/// 元の文字列の長さが <paramref name="length"/> より大きい場合、元の文字列のコピーが返ります。 
+		/// </remarks>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String lpadded(size_t length, value_type fillChar = U' ') const&;
+
+		/// <summary>
+		/// 文字列を指定された文字で左詰めした新しい文字列を返します。
+		/// </summary>
+		/// <param name="length">
+		/// 左詰めした後の文字列の長さ
+		/// </param>
+		/// <param name="fillChar">
+		/// 左詰め用の埋め文字
+		/// </param>
+		/// <remarks>
+		/// 元の文字列の長さが <paramref name="length"/> より大きい場合、元の文字列のコピーが返ります。 
+		/// </remarks>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String lpadded(size_t length, value_type fillChar = U' ')&&;
+
+		/// <summary>
+		/// 文字列の先頭にある空白文字を削除します。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& ltrim();
+
+		/// <summary>
+		/// 文字列の先頭にある空白文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String ltrimmed() const&;
+
+		/// <summary>
+		/// 文字列の先頭にある空白文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String ltrimmed()&&;
+
+		/// <summary>
+		/// 文字列の各文字に関数を適用した戻り値からなる配列を返します。
+		/// </summary>
+		/// <param name="f">
+		/// 各文字に適用する関数
+		/// </param>
+		/// <returns>
+		/// 文字列の各文字に関数を適用した戻り値からなる配列
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32>>* = nullptr>
+		auto map(Fty f) const;
+
+		/// <summary>
+		/// 全ての文字が条件を満たさないかを返します。
+		/// </summary>
+		/// <param name="f">
+		/// 条件を記述した関数
+		/// </param>
+		/// <returns>
+		/// 条件を満たす文字が 1 つでもあれば false, それ以外の場合は true
+		/// </returns>
+		template <class Fty = decltype(Identity), std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		bool none(Fty f = Identity) const;
+
+		/// <summary>
+		/// 指定した文字を文字列から削除します。
+		/// </summary>
+		/// <param name="ch">
+		/// 削除する文字
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& remove(value_type ch);
+
+		/// <summary>
+		/// 指定した文字列をもとの文字列から削除します。
+		/// </summary>
+		/// <param name="view">
+		/// 削除する文字列
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& remove(StringView s);
+
+		/// <summary>
+		/// 指定した文字を除去した新しい文字列を返します。
+		/// </summary>
+		/// <param name="ch">
+		/// 除去対象の文字
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String removed(value_type ch) const&;
+
+		/// <summary>
+		/// 指定した文字を除去した新しい文字列を返します。
+		/// </summary>
+		/// <param name="ch">
+		/// 除去対象の文字
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String removed(value_type ch)&&;
+
+		/// <summary>
+		/// 指定した文字列を除去した新しい文字列を返します。
+		/// </summary>
+		/// <param name="str">
+		/// 除去対象の文字列
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String removed(StringView s) const;
+
+		/// <summary>
+		/// 指定したインデックスの文字を文字列から削除します。
+		/// </summary>
+		/// <param name="index">
+		/// インデックス
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& remove_at(size_t index);
+
+		/// <summary>
+		/// 指定したインデックスの文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <param name="index">
+		/// インデックス
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String removed_at(size_t index) const&;
+
+		/// <summary>
+		/// 指定したインデックスの文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <param name="index">
+		/// インデックス
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String removed_at(size_t index)&&;
+
+		/// <summary>
+		/// 指定した条件を満たす文字を削除します。
+		/// </summary>
+		/// <param name="f">
+		/// 検索する条件
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		String& remove_if(Fty f);
+
+		/// <summary>
+		/// 指定した条件を満たす文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <param name="f">
+		/// 検索する条件
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		String removed_if(Fty f) const&;
+
+		/// <summary>
+		/// 指定した条件を満たす文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <param name="f">
+		/// 検索する条件
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		String removed_if(Fty f)&&;
+
+		/// <summary>
+		/// 指定した文字を置換します。
+		/// </summary>
+		/// <param name="oldChar">
+		/// 置換対象の文字
+		/// </param>
+		/// <param name="newChar">
+		/// 置換後の文字
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& replace(value_type oldChar, value_type newChar);
+
+		/// <summary>
+		/// 指定した文字列を置換します。
+		/// </summary>
+		/// <param name="oldStr">
+		/// 置換対象の文字列
+		/// </param>
+		/// <param name="newStr">
+		/// 置換後の文字列
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& replace(const StringView oldStr, const StringView newStr);
+
+		/// <summary>
+		/// 指定した文字を置換した新しい文字列を返します。
+		/// </summary>
+		/// <param name="oldChar">
+		/// 置換対象の文字
+		/// </param>
+		/// <param name="newChar">
+		/// 置換後の文字
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String replaced(value_type oldChar, value_type newChar) const&;
+
+		/// <summary>
+		/// 指定した文字を置換した新しい文字列を返します。
+		/// </summary>
+		/// <param name="oldChar">
+		/// 置換対象の文字
+		/// </param>
+		/// <param name="newChar">
+		/// 置換後の文字
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String replaced(value_type oldChar, value_type newChar)&&;
+
+		/// <summary>
+		/// 指定した文字列を置換した新しい文字列を返します。
+		/// </summary>
+		/// <param name="oldStr">
+		/// 置換対象の文字列
+		/// </param>
+		/// <param name="newChar">
+		/// 置換後の文字列
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String replaced(StringView oldStr, StringView newStr) const;
+
+		/// <summary>
+		/// 指定した条件を満たす文字を別の文字に置き換えます。
+		/// </summary>
+		/// <param name="f">
+		/// 検索する条件
+		/// </param>
+		/// <param name="newChar">
+		/// 置換後の文字
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		String& replace_if(Fty f, const value_type newChar);
+
+		/// <summary>
+		/// 指定した条件を満たす文字を別の文字に置き換えます。
+		/// </summary>
+		/// <param name="f">
+		/// 検索する条件
+		/// </param>
+		/// <param name="newChar">
+		/// 置換後の文字
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		String replaced_if(Fty f, const value_type newChar) const&&;
+
+		/// <summary>
+		/// 指定した条件を満たす文字を別の文字に置き換えた新しい文字列を返します。
+		/// </summary>
+		/// <param name="f">
+		/// 検索する条件
+		/// </param>
+		/// <param name="newChar">
+		/// 置換後の文字
+		/// </param>
+		/// <returns>
+		/// 指定した条件を満たす文字を別の文字に置き換えた新しい文字列
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		String replaced_if(Fty f, const value_type newChar)&;
+
+		/// <summary>
+		/// 文字列を反転します。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& reverse();
+
+		/// <summary>
+		/// 反転した文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String reversed() const&;
+
+		/// <summary>
+		/// 反転した文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String reversed()&&;
+
+		/// <summary>
+		/// 文字列の各文字への参照を引数に、末尾の文字から順に関数を呼び出します。
+		/// </summary>
+		/// <param name="f">
+		/// 各文字への参照を引数にとる関数
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32&>>* = nullptr>
+		String& reverse_each(Fty f);
+
+		/// <summary>
+		/// 文字列の各文字への参照を引数に、末尾の文字から順に関数を呼び出します。
+		/// </summary>
+		/// <param name="f">
+		/// 各文字への参照を引数にとる関数
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32>>* = nullptr>
+		const String& reverse_each(Fty f) const;
+
+
 
 
 

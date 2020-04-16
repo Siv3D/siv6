@@ -132,4 +132,104 @@ namespace s3d
 
 		return result;
 	}
+
+	String String::layout(const size_t width) const
+	{
+		String result;
+
+		result.reserve(m_string.length());
+
+		size_t count = 0;
+
+		for (const auto c : m_string)
+		{
+			if (c == value_type('\n'))
+			{
+				result.push_back(value_type('\n'));
+
+				count = 0;
+			}
+			else if (c != value_type('\r'))
+			{
+				if (width <= count)
+				{
+					result.push_back(value_type('\n'));
+
+					count = 0;
+				}
+
+				result.push_back(c);
+
+				++count;
+			}
+		}
+
+		return result;
+	}
+
+	String& String::lowercase() noexcept
+	{
+		for (auto& c : m_string)
+		{
+			c = ToLower(c);
+		}
+
+		return *this;
+	}
+
+	String& String::lpad(const size_t length, const value_type fillChar)
+	{
+		if (length <= m_string.length())
+		{
+			return *this;
+		}
+
+		m_string.insert(m_string.begin(), length - m_string.length(), fillChar);
+
+		return *this;
+	}
+
+	String String::lpadded(const size_t length, const value_type fillChar) const &
+	{
+		if (length <= m_string.length())
+		{
+			return *this;
+		}
+
+		String new_string;
+
+		new_string.reserve(length);
+
+		new_string.assign(length - m_string.length(), fillChar);
+
+		new_string.append(m_string);
+
+		return new_string;
+	}
+
+	String String::replaced(const StringView oldStr, const StringView newStr) const
+	{
+		String new_string;
+
+		if (newStr.length() >= oldStr.length())
+		{
+			new_string.reserve(m_string.length());
+		}
+
+		const auto itEnd = m_string.end();
+		auto itCurrent = m_string.begin();
+		auto itNext = std::search(itCurrent, itEnd, oldStr.begin(), oldStr.end());
+
+		while (itNext != itEnd)
+		{
+			new_string.append(itCurrent, itNext);
+			new_string.append(newStr);
+			itCurrent = itNext + oldStr.length();
+			itNext = std::search(itCurrent, itEnd, oldStr.begin(), oldStr.end());
+		}
+
+		new_string.append(itCurrent, itNext);
+
+		return new_string;
+	}
 }
