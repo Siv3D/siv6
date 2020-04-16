@@ -15,6 +15,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\ApplicationOptions.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Array.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Byte.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Char.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Char.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Common.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\CommonFloat.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Concepts.hpp" />

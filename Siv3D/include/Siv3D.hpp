@@ -184,7 +184,7 @@
 
 // 文字
 // Character
-//# include <Siv3D/Char.hpp> // [Siv3D ToDo]
+# include <Siv3D/Char.hpp>
 
 // 文字列ビュー
 // String view
