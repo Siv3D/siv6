@@ -667,7 +667,7 @@ namespace s3d
 		/// </returns>
 		template <class Fty = decltype(Identity), std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
 		[[nodiscard]]
-		bool all(Fty f = Id) const;
+		bool all(Fty f = Identity) const;
 
 		/// <summary>
 		/// 少なくとも 1 つの文字が条件を満たすかを返します。
@@ -680,7 +680,7 @@ namespace s3d
 		/// </returns>
 		template <class Fty = decltype(Identity), std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
 		[[nodiscard]]
-		bool any(Fty f = Id) const;
+		bool any(Fty f = Identity) const;
 
 		/// <summary>
 		/// 最初に登場する英字を大文字にします。
