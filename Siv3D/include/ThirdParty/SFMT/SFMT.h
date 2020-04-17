@@ -5,6 +5,8 @@
 #   define HAVE_SSE2
 # endif
 
+#define SFMT_MEXP 19937
+
 /**
  * @file SFMT.h
  *
