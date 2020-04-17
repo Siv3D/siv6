@@ -79,6 +79,7 @@ namespace s3d
 			/// 内部状態の初期化に使われるシード値
 			/// seed value to use in the initialization of the internal state
 			/// </param>
+			SIV3D_NODISCARD_CXX20
 			explicit constexpr SplitMix64(State_t seed) noexcept
 				: x(seed) {}
 
@@ -99,6 +100,7 @@ namespace s3d
 			}
 
 			template <size_t N>
+			[[nodiscard]]
 			constexpr std::array<result_type, N> generateSeeds() noexcept
 			{
 				std::array<result_type, N> seeds = {};

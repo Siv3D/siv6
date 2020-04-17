@@ -89,6 +89,9 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\core.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\format.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\ostream.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\SFMT\SFMT-params.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\SFMT\SFMT-params19937.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\SFMT\SFMT.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxh3.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxhash.h" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Console\CConsole.hpp" />
@@ -139,6 +142,9 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\GL\glew.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\GL\wglew.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\miniutf\miniutf.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\SFMT\SFMT-common.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\SFMT\SFMT-sse2-msc.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\SFMT\SFMT-sse2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Console\CConsole.cpp" />
@@ -201,6 +207,7 @@
     <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\strtod.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\fmt\format.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\GLEW\glew.c" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\SFMT\SFMT.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

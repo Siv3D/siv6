@@ -145,14 +145,16 @@
 //
 //////////////////////////////////////////////////
 
-# if (__has_cpp_attribute(nodiscard) >= 201907L)
+#if defined(__cplusplus)
+	# if (__has_cpp_attribute(nodiscard) >= 201907L)
 
-	# define SIV3D_NODISCARD_CXX20 [[nodiscard]]
+		# define SIV3D_NODISCARD_CXX20 [[nodiscard]]
 
-# else
+	# else
 
-	# define SIV3D_NODISCARD_CXX20
+		# define SIV3D_NODISCARD_CXX20
 
+	# endif
 # endif
 
 

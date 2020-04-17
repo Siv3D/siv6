@@ -89,6 +89,8 @@ add_library(
   ../Siv3D/src/ThirdParty/GLFW/x11_window.c
   ../Siv3D/src/ThirdParty/GLFW/xkb_unicode.c
 
+  ../Siv3D/src/ThirdParty/SFMT/SFMT.c
+
   ../Siv3D/src/Test/Siv3DTest.cpp
   )
 

@@ -63,7 +63,7 @@ namespace s3d
 			/// seed value to use in the initialization of the internal state
 			/// </param>
 			SIV3D_NODISCARD_CXX20
-				explicit constexpr Xoshiro256StarStar(uint64 seed) noexcept
+			explicit constexpr Xoshiro256StarStar(uint64 seed) noexcept
 				: s(SplitMix64{ seed }.generateSeeds<4>()) {}
 
 			/// <summary>
@@ -75,7 +75,7 @@ namespace s3d
 			/// seed values to use in the initialization of the internal state
 			/// </param>
 			SIV3D_NODISCARD_CXX20
-				explicit constexpr Xoshiro256StarStar(const State_t& seeds) noexcept
+			explicit constexpr Xoshiro256StarStar(const State_t& seeds) noexcept
 				: s(seeds) {}
 
 			/// <summary>
