@@ -252,6 +252,18 @@
 		2C4719F32449698A00BAC3E8 /* Hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hash.hpp; sourceTree = "<group>"; };
 		2C4719F5244969A300BAC3E8 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxhash.h; sourceTree = "<group>"; };
 		2C4719F6244969A300BAC3E8 /* xxh3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxh3.h; sourceTree = "<group>"; };
+		2C4719F7244990D300BAC3E8 /* RNG.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RNG.hpp; sourceTree = "<group>"; };
+		2C4719F8244990D300BAC3E8 /* SMFT.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SMFT.hpp; sourceTree = "<group>"; };
+		2C4719F9244990D300BAC3E8 /* SplitMix64.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SplitMix64.hpp; sourceTree = "<group>"; };
+		2C4719FA244990D300BAC3E8 /* Xoroshiro128Plus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Xoroshiro128Plus.hpp; sourceTree = "<group>"; };
+		2C4719FB244990D300BAC3E8 /* Xoshiro256StarStar.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Xoshiro256StarStar.hpp; sourceTree = "<group>"; };
+		2C4719FC244990DF00BAC3E8 /* Number.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Number.ipp; sourceTree = "<group>"; };
+		2C4719FD244990DF00BAC3E8 /* Number.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Number.hpp; sourceTree = "<group>"; };
+		2C4719FE244990FD00BAC3E8 /* FormatInt.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatInt.ipp; sourceTree = "<group>"; };
+		2C4719FF244990FD00BAC3E8 /* EngineLog.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EngineLog.ipp; sourceTree = "<group>"; };
+		2C471A00244990FD00BAC3E8 /* Formatter.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Formatter.ipp; sourceTree = "<group>"; };
+		2C471A01244990FD00BAC3E8 /* Endian.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Endian.ipp; sourceTree = "<group>"; };
+		2C471A02244990FD00BAC3E8 /* Byte.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Byte.ipp; sourceTree = "<group>"; };
 		2C47A9A5243CA7B000FD33B4 /* WindowState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowState.hpp; sourceTree = "<group>"; };
 		2C47A9A6243CA7BC00FD33B4 /* WindowStyle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowStyle.hpp; sourceTree = "<group>"; };
 		2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivPoint.cpp; sourceTree = "<group>"; };
@@ -870,11 +882,10 @@
 		2C6897E02436064900C36C25 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
-				2C4719F32449698A00BAC3E8 /* Hash.hpp */,
-				2C4719F22449698A00BAC3E8 /* Hash.ipp */,
 				2C6897E42436064900C36C25 /* ApplicationOptions.hpp */,
 				2C6897EE2436064900C36C25 /* Array.hpp */,
 				2C435BC2243E084B001CAAD8 /* Byte.hpp */,
+				2C471A02244990FD00BAC3E8 /* Byte.ipp */,
 				2C57484924489836008D9BCE /* Char.hpp */,
 				2C57484A24489836008D9BCE /* Char.ipp */,
 				2C6898072436064900C36C25 /* Common.hpp */,
@@ -884,15 +895,21 @@
 				2C481E0A24460B3D00A5D88D /* CPUInfo.hpp */,
 				2C6897E92436064900C36C25 /* DLL.hpp */,
 				2C435BC1243E084A001CAAD8 /* Endian.hpp */,
+				2C471A01244990FD00BAC3E8 /* Endian.ipp */,
 				2C6897E62436064900C36C25 /* EngineLog.hpp */,
+				2C4719FF244990FD00BAC3E8 /* EngineLog.ipp */,
 				2C6897FC2436064900C36C25 /* Error.hpp */,
 				2C68980E2436064900C36C25 /* Format.hpp */,
 				2C6897EF2436064900C36C25 /* FormatData.hpp */,
 				2C6898022436064900C36C25 /* FormatFloat.hpp */,
 				2C6897E32436064900C36C25 /* FormatInt.hpp */,
+				2C4719FE244990FD00BAC3E8 /* FormatInt.ipp */,
 				2C6898032436064900C36C25 /* FormatLiteral.hpp */,
 				2C6897F92436064900C36C25 /* Formatter.hpp */,
+				2C471A00244990FD00BAC3E8 /* Formatter.ipp */,
 				2C6897EA2436064900C36C25 /* Fwd.hpp */,
+				2C4719F32449698A00BAC3E8 /* Hash.hpp */,
+				2C4719F22449698A00BAC3E8 /* Hash.ipp */,
 				2C6898062436064900C36C25 /* Indexed.hpp */,
 				2C6897F72436064900C36C25 /* IntFormatter.hpp */,
 				2C6897E72436064900C36C25 /* LetterCase.hpp */,
@@ -901,6 +918,8 @@
 				2C68980C2436064900C36C25 /* LogType.hpp */,
 				2C435BBF243E0829001CAAD8 /* Meta.hpp */,
 				2C6897ED2436064900C36C25 /* NamedParameter.hpp */,
+				2C4719FD244990DF00BAC3E8 /* Number.hpp */,
+				2C4719FC244990DF00BAC3E8 /* Number.ipp */,
 				2C47A9AB243CA80200FD33B4 /* Optional.hpp */,
 				2C6898012436064900C36C25 /* PlaceHolder.hpp */,
 				2C6897F82436064900C36C25 /* Platform.hpp */,
@@ -910,7 +929,10 @@
 				2C6897F12436064900C36C25 /* PredefinedNamedParameter.hpp */,
 				2C4CBE6624376B3C00F8B7A6 /* Profiler.hpp */,
 				2C6897FB2436064900C36C25 /* Rectangle.hpp */,
+				2C4719F7244990D300BAC3E8 /* RNG.hpp */,
 				2C4CBE5A2437230600F8B7A6 /* Scene.hpp */,
+				2C4719F8244990D300BAC3E8 /* SMFT.hpp */,
+				2C4719F9244990D300BAC3E8 /* SplitMix64.hpp */,
 				2C6898042436064900C36C25 /* String.hpp */,
 				2C6897F52436064900C36C25 /* String.ipp */,
 				2C6897FA2436064900C36C25 /* StringView.hpp */,
@@ -928,6 +950,8 @@
 				2C6897FD2436064900C36C25 /* Window.hpp */,
 				2C47A9A5243CA7B000FD33B4 /* WindowState.hpp */,
 				2C47A9A6243CA7BC00FD33B4 /* WindowStyle.hpp */,
+				2C4719FA244990D300BAC3E8 /* Xoroshiro128Plus.hpp */,
+				2C4719FB244990D300BAC3E8 /* Xoshiro256StarStar.hpp */,
 			);
 			path = Siv3D;
 			sourceTree = "<group>";
