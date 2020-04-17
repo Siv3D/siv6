@@ -17,6 +17,8 @@ namespace s3d::detail
 {
 	void DisableTouchFeedbackVisualization(HWND hWND, HMODULE user32)
 	{
+		LOG_VERBOSE(U"DisableTouchFeedbackVisualization()");
+
 		if (decltype(SetWindowFeedbackSetting) * pSetWindowFeedbackSetting = DLL::GetFunctionNoThrow(user32, "SetWindowFeedbackSetting"))
 		{
 			static constexpr std::array<FEEDBACK_TYPE, 11> feedbackTypes =

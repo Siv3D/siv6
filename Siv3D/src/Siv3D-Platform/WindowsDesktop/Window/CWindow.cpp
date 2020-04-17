@@ -140,6 +140,7 @@ namespace s3d
 			const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
 			const Rect windowRect = adjustWindowRect(pos, m_state.frameBufferSize, windowStyleFlags);
 
+			LOG_VERBOSE(U"CreateWindowExW()");
 			m_hWnd = ::CreateWindowExW(
 				0,
 				m_windowClassName.c_str(),
@@ -161,6 +162,7 @@ namespace s3d
 		// Disable touch feedback visualization that causes frame rate drops
 		detail::DisableTouchFeedbackVisualization(m_hWnd, m_user32);
 
+		LOG_VERBOSE(U"ShowWindow()");
 		::ShowWindow(m_hWnd, SW_SHOW);
 	}
 
