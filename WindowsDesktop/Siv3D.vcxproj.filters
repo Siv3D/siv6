@@ -148,6 +148,9 @@
     <Filter Include="src\Siv3D\CPUInfo">
       <UniqueIdentifier>{4718c08a-b5be-4347-8f4c-593d10881451}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\ThirdParty\xxHash">
+      <UniqueIdentifier>{3ab4fa6b-4a46-4e7c-8389-8cdc4434ab97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -482,6 +485,18 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Char.ipp">
       <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Hash.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Hash.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxh3.h">
+      <Filter>include\ThirdParty\xxHash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxhash.h">
+      <Filter>include\ThirdParty\xxHash</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

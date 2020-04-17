@@ -125,7 +125,7 @@
 
 // ハッシュ
 // Hash
-//# include <Siv3D/Hash.hpp> // [Siv3D ToDo]
+# include <Siv3D/Hash.hpp> // [Siv3D ToDo]
 
 // ハッシュテーブル
 // Hash table

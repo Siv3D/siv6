@@ -41,6 +41,9 @@ namespace s3d
 
 		template <class Type>
 		concept Enum = std::is_enum_v<Type>;
+
+		template <class Type>
+		concept TriviallyCopyable = std::is_trivially_copyable_v<Type>;
 	}
 }
 

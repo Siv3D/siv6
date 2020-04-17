@@ -31,6 +31,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatFloat.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatInt.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Formatter.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Hash.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Hash.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Indexed.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IntFormatter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatLiteral.hpp" />
@@ -74,6 +76,8 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\core.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\format.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\ostream.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxh3.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxhash.h" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Console\CConsole.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\CRenderer_GL4.hpp" />
