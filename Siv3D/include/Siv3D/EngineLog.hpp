@@ -12,31 +12,7 @@
 # pragma once
 # include "Platform.hpp"
 # include "LogType.hpp"
-# include "StringView.hpp"
-# include "String.hpp"
-
-namespace s3d
-{
-	namespace Internal
-	{
-		void OutputEngineLog(LogType type, StringView s);
-
-		class ScopedEngineLog
-		{
-		private:
-
-			LogType m_type;
-
-			String m_s;
-
-		public:
-
-			ScopedEngineLog(LogType type, String s);
-
-			~ScopedEngineLog();
-		};
-	}
-}
+# include "EngineLog.ipp"
 
 # if SIV3D_BUILD(DEBUG)
 

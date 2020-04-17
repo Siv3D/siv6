@@ -28,10 +28,7 @@ namespace s3d
 	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
 # endif
 	[[nodiscard]]
-	inline constexpr Byte operator <<(const Byte value, const Integer shift) noexcept
-	{
-		return static_cast<Byte>(static_cast<unsigned char>(static_cast<unsigned int>(value) << shift));
-	}
+	inline constexpr Byte operator <<(Byte value, Integer shift) noexcept;
 
 # if __cpp_lib_concepts
 	template <Concept::Integral Integer>
@@ -39,75 +36,42 @@ namespace s3d
 	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
 # endif
 	[[nodiscard]]
-	inline constexpr Byte operator >>(const Byte value, const Integer shift) noexcept
-	{
-		return static_cast<Byte>(static_cast<unsigned char>(static_cast<unsigned int>(value) >> shift));
-	}
+	inline constexpr Byte operator >>(Byte value, Integer shift) noexcept;
 
 	[[nodiscard]]
-	inline constexpr Byte operator |(const Byte x, const Byte y) noexcept
-	{
-		return static_cast<Byte>(static_cast<unsigned char>(static_cast<unsigned int>(x) | static_cast<unsigned int>(y)));
-	}
+	inline constexpr Byte operator |(Byte x, Byte y) noexcept;
 
 	[[nodiscard]]
-	inline constexpr Byte operator &(const Byte x, const Byte y) noexcept
-	{
-		return static_cast<Byte>(static_cast<unsigned char>(static_cast<unsigned int>(x) & static_cast<unsigned int>(y)));
-	}
+	inline constexpr Byte operator &(Byte x, Byte y) noexcept;
 
 	[[nodiscard]]
-	inline constexpr Byte operator ^(const Byte x, const Byte y) noexcept
-	{
-		return static_cast<Byte>(static_cast<unsigned char>(static_cast<unsigned int>(x) ^ static_cast<unsigned int>(y)));
-	}
+	inline constexpr Byte operator ^(Byte x, Byte y) noexcept;
 
 	[[nodiscard]]
-	inline constexpr Byte operator ~(const Byte value) noexcept
-	{
-		return static_cast<Byte>(static_cast<unsigned char>(~static_cast<unsigned int>(value)));
-	}
+	inline constexpr Byte operator ~(Byte value) noexcept;
 
 # if __cpp_lib_concepts
 	template <Concept::Integral Integer>
 # else
 	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
 # endif
-	inline constexpr Byte& operator <<=(Byte& value, const Integer shift) noexcept
-	{
-		return value = (value << shift);
-	}
+	inline constexpr Byte& operator <<=(Byte& value, Integer shift) noexcept;
 
 # if __cpp_lib_concepts
 	template <Concept::Integral Integer>
 # else
 	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
 # endif
-	inline constexpr Byte& operator >>=(Byte& value, const Integer shift) noexcept
-	{
-		return value = (value >> shift);
-	}
+	inline constexpr Byte& operator >>=(Byte& value, Integer shift) noexcept;
 
-	inline constexpr Byte& operator |=(Byte& x, const Byte y) noexcept
-	{
-		return x = (x | y);
-	}
+	inline constexpr Byte& operator |=(Byte& x, Byte y) noexcept;
 
-	inline constexpr Byte& operator &=(Byte& x, const Byte y) noexcept
-	{
-		return x = (x & y);
-	}
+	inline constexpr Byte& operator &=(Byte& x, Byte y) noexcept;
 
-	inline constexpr Byte& operator ^=(Byte& x, const Byte y) noexcept
-	{
-		return x = (x ^ y);
-	}
+	inline constexpr Byte& operator ^=(Byte& x, Byte y) noexcept;
 
 	[[nodiscard]]
-	inline constexpr uint8 AsUint8(Byte value) noexcept
-	{
-		return static_cast<uint8>(value);
-	}
+	inline constexpr uint8 AsUint8(Byte value) noexcept;
 }
 
 //////////////////////////////////////////////////
@@ -147,3 +111,5 @@ namespace std
 		}
 	};
 }
+
+# include "Byte.ipp"

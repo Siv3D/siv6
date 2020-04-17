@@ -17,11 +17,6 @@
 
 namespace s3d
 {
-	namespace detail
-	{
-		void AppendInt(char32** p, const long value);
-	}
-
 	[[nodiscard]]
 	String ToString(int8 value);
 
@@ -93,10 +88,7 @@ namespace s3d
 	template <class Integer>
 # endif
 	[[nodiscard]]
-	inline String ToBinary(Integer value)
-	{
-		return ToString(value, Arg::radix = 2);
-	}
+	inline String ToBinary(Integer value);
 
 # ifdef __cpp_lib_concepts
 	template <Concept::Integral Integer>
@@ -104,10 +96,7 @@ namespace s3d
 	template <class Integer>
 # endif
 	[[nodiscard]]
-	inline String ToOctal(Integer value)
-	{
-		return ToString(value, Arg::radix = 8);
-	}
+	inline String ToOctal(Integer value);
 
 # ifdef __cpp_lib_concepts
 	template <Concept::Integral Integer>
@@ -115,8 +104,7 @@ namespace s3d
 	template <class Integer>
 # endif
 	[[nodiscard]]
-	inline String ToHex(Integer value, LetterCase letterCase = LetterCase::Upper)
-	{
-		return ToString(value, Arg::radix = 16, letterCase);
-	}
+	inline String ToHex(Integer value, LetterCase letterCase = LetterCase::Upper);
 }
+
+# include "FormatInt.ipp"

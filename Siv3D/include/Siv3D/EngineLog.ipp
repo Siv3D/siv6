@@ -10,18 +10,28 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Types.hpp"
+# include "StringView.hpp"
+# include "String.hpp"
 
 namespace s3d
 {
-	[[nodiscard]]
-	inline uint16 SwapEndian(uint16 value) noexcept;
+	namespace Internal
+	{
+		void OutputEngineLog(LogType type, StringView s);
 
-	[[nodiscard]]
-	inline uint32 SwapEndian(uint32 value) noexcept;
+		class ScopedEngineLog
+		{
+		private:
 
-	[[nodiscard]]
-	inline uint64 SwapEndian(uint64 value) noexcept;
+			LogType m_type;
+
+			String m_s;
+
+		public:
+
+			ScopedEngineLog(LogType type, String s);
+
+			~ScopedEngineLog();
+		};
+	}
 }
-
-# include "Endian.ipp"

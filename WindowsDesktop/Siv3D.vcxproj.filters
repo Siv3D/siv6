@@ -486,9 +486,6 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Char.ipp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\Hash.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Hash.ipp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
@@ -517,6 +514,24 @@
       <Filter>include\Siv3D</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Number.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Byte.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Endian.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\EngineLog.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatInt.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Formatter.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Hash.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
   </ItemGroup>
