@@ -495,9 +495,6 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxhash.h">
       <Filter>include\ThirdParty\xxHash</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\RNG.hpp">
-      <Filter>include\Siv3D</Filter>
-    </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\SplitMix64.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
@@ -532,6 +529,12 @@
       <Filter>include\Siv3D</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Hash.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\PRNG.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\HardwareRNG.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
   </ItemGroup>

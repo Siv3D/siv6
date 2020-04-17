@@ -240,7 +240,8 @@
 
 # include <Siv3D/Rectangle.hpp>
 
-# include <Siv3D/RNG.hpp>
+# include <Siv3D/HardwareRNG.hpp>
+# include <Siv3D/PRNG.hpp>
 
 # include <Siv3D/Profiler.hpp>
 

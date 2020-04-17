@@ -36,6 +36,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatInt.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Formatter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Formatter.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\HardwareRNG.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Hash.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Hash.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Indexed.hpp" />
@@ -59,7 +60,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\PredefinedNamedParameter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Profiler.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Rectangle.hpp" />
-    <ClInclude Include="..\Siv3D\include\Siv3D\RNG.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\PRNG.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Scene.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\SMFT.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\SplitMix64.hpp" />
