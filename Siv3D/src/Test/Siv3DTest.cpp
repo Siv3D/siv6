@@ -13,7 +13,7 @@
 
 # if SIV3D_PLATFORM(WINDOWS)
 #	include <conio.h>
-#	pragma warning(disable : 6237 6319 26439 26451 26495 26812)
+#	pragma warning(disable : 6237 6319 26439 26495)
 # endif
 
 # define CATCH_CONFIG_RUNNER

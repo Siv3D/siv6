@@ -10,10 +10,8 @@
 //-----------------------------------------------
 
 # pragma once
-SIV3D_DISABLE_MSVC_WARNINGS_PUSH(26812)
 # include <ThirdParty/fmt/format.h>
 # include <ThirdParty/fmt/ostream.h>
-SIV3D_DISABLE_MSVC_WARNINGS_POP()
 # include "String.hpp"
 
 namespace s3d
