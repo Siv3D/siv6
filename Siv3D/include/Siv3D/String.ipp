@@ -1189,6 +1189,74 @@ namespace s3d
 		return *this;
 	}
 
+	inline String String::rotated(const std::ptrdiff_t count) const&
+	{
+		return String(*this).rotate(count);
+	}
+
+	inline String String::rotated(const std::ptrdiff_t count)&&
+	{
+		rotate(count);
+
+		return std::move(*this);
+	}
+
+	inline String& String::rpad(const size_t length, const value_type fillChar)
+	{
+		if (length <= m_string.length())
+		{
+			return *this;
+		}
+
+		m_string.append(length - m_string.length(), fillChar);
+
+		return *this;
+	}
+
+	inline String String::rpadded(const size_t length, const value_type fillChar) const&
+	{
+		if (length <= m_string.length())
+		{
+			return *this;
+		}
+
+		String new_string;
+
+		new_string.reserve(length);
+
+		new_string.assign(m_string);
+
+		new_string.append(length - m_string.length(), fillChar);
+
+		return new_string;
+	}
+
+	inline String String::rpadded(const size_t length, const value_type fillChar)&&
+	{
+		rpad(length, fillChar);
+
+		return std::move(*this);
+	}
+
+	inline String& String::rtrim()
+	{
+		m_string.erase(std::find_if_not(m_string.rbegin(), m_string.rend(), detail::IsTrimmable).base(), m_string.end());
+
+		return *this;
+	}
+
+	inline String String::rtrimmed() const&
+	{
+		return String(m_string.begin(), std::find_if_not(m_string.rbegin(), m_string.rend(), detail::IsTrimmable).base());
+	}
+
+	inline String String::rtrimmed()&&
+	{
+		rtrim();
+
+		return std::move(*this);
+	}
+
 
 
 

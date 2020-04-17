@@ -232,4 +232,34 @@ namespace s3d
 
 		return new_string;
 	}
+
+	String& String::rotate(std::ptrdiff_t count)
+	{
+		if (m_string.empty())
+		{
+			;
+		}
+		else if (count > 0) // rotation to the left
+		{
+			if (static_cast<size_t>(count) > m_string.size())
+			{
+				count %= m_string.size();
+			}
+
+			std::rotate(m_string.begin(), m_string.begin() + count, m_string.end());
+		}
+		else if (count < 0) // rotation to the right
+		{
+			count = -count;
+
+			if (static_cast<size_t>(count) > m_string.size())
+			{
+				count %= m_string.size();
+			}
+
+			std::rotate(m_string.rbegin(), m_string.rbegin() + count, m_string.rend());
+		}
+
+		return *this;
+	}
 }

@@ -14,6 +14,6 @@
 
 namespace s3d
 {
-	template <class Type>
-	using Array = std::vector<Type>;
+	template <class Type, class Allocator = std::allocator<Type>>
+	using Array = std::vector<Type, Allocator>;
 }

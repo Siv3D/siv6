@@ -1333,6 +1333,121 @@ namespace s3d
 		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, char32>>* = nullptr>
 		const String& reverse_each(Fty f) const;
 
+		/// <summary>
+		/// 文字列の各文字の位置をシフトさせ、はみ出た文字は反対側に挿入します。
+		/// </summary>
+		/// <param name="count">
+		/// 文字をシフトする数
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& rotate(std::ptrdiff_t count = 1);
+
+		/// <summary>
+		/// 文字列の各文字の位置をシフトさせ、はみ出た文字を反対側に挿入した新しい文字列を返します。
+		/// </summary>
+		/// <param name="count">
+		/// 文字をシフトする数
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String rotated(std::ptrdiff_t count = 1) const&;
+
+		/// <summary>
+		/// 文字列の各文字の位置をシフトさせ、はみ出た文字を反対側に挿入した新しい文字列を返します。
+		/// </summary>
+		/// <param name="count">
+		/// 文字をシフトする数
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String rotated(std::ptrdiff_t count = 1)&&;
+
+		/// <summary>
+		/// 文字列の右を埋め文字で埋めます。
+		/// </summary>
+		/// <param name="length">
+		/// 文字列の右を埋め文字で埋めた後の文字列の長さ
+		/// </param>
+		/// <param name="fillChar">
+		/// 埋め文字
+		/// </param>
+		/// <remarks>
+		/// 元の文字列の長さが <paramref name="length"/> より大きい場合、変更は行われません。 
+		/// </remarks>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& rpad(size_t length, value_type fillChar = U' ');
+
+		/// <summary>
+		/// 文字列を指定された文字で右詰めした新しい文字列を返します。
+		/// </summary>
+		/// <param name="length">
+		/// 右詰めした後の文字列の長さ
+		/// </param>
+		/// <param name="fillChar">
+		/// 右詰め用の埋め文字
+		/// </param>
+		/// <remarks>
+		/// 元の文字列の長さが <paramref name="length"/> より大きい場合、元の文字列のコピーが返ります。 
+		/// </remarks>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String rpadded(size_t length, value_type fillChar = U' ') const&;
+
+		/// <summary>
+		/// 文字列の右を埋め文字で埋めた新しい文字列を返します。
+		/// </summary>
+		/// <param name="length">
+		/// 文字列の右を埋め文字で埋めた後の文字列の長さ
+		/// </param>
+		/// <param name="fillChar">
+		/// 埋め文字
+		/// </param>
+		/// <remarks>
+		/// 元の文字列の長さが <paramref name="length"/> より大きい場合、元の文字列のコピーが返ります。 
+		/// </remarks>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String rpadded(size_t length, value_type fillChar = U' ')&&;
+
+		/// <summary>
+		/// 文字列の末尾にある空白文字を削除します。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& rtrim();
+
+		/// <summary>
+		/// 文字列の末尾にある空白文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String rtrimmed() const&;
+
+		/// <summary>
+		/// 文字列の末尾にある空白文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String rtrimmed()&&;
+
+
 
 
 
