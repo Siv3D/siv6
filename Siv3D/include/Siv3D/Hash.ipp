@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include <xxHash/xxh3.h>
+# include <ThirdParty/xxHash/xxh3.h>
 
 namespace s3d
 {

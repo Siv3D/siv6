@@ -248,6 +248,10 @@
 		2C43B2EC2426630000D5CBBB /* SivError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivError.cpp; sourceTree = "<group>"; };
 		2C44429D24271E1700557D51 /* SivEngineLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivEngineLog.cpp; sourceTree = "<group>"; };
 		2C4442A02427AA7C00557D51 /* miniutf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miniutf.hpp; sourceTree = "<group>"; };
+		2C4719F22449698A00BAC3E8 /* Hash.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hash.ipp; sourceTree = "<group>"; };
+		2C4719F32449698A00BAC3E8 /* Hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hash.hpp; sourceTree = "<group>"; };
+		2C4719F5244969A300BAC3E8 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxhash.h; sourceTree = "<group>"; };
+		2C4719F6244969A300BAC3E8 /* xxh3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxh3.h; sourceTree = "<group>"; };
 		2C47A9A5243CA7B000FD33B4 /* WindowState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowState.hpp; sourceTree = "<group>"; };
 		2C47A9A6243CA7BC00FD33B4 /* WindowStyle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WindowStyle.hpp; sourceTree = "<group>"; };
 		2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivPoint.cpp; sourceTree = "<group>"; };
@@ -749,6 +753,15 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		2C4719F4244969A300BAC3E8 /* xxHash */ = {
+			isa = PBXGroup;
+			children = (
+				2C4719F5244969A300BAC3E8 /* xxhash.h */,
+				2C4719F6244969A300BAC3E8 /* xxh3.h */,
+			);
+			path = xxHash;
+			sourceTree = "<group>";
+		};
 		2C47A9A7243CA7D800FD33B4 /* Point */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,6 +870,8 @@
 		2C6897E02436064900C36C25 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C4719F32449698A00BAC3E8 /* Hash.hpp */,
+				2C4719F22449698A00BAC3E8 /* Hash.ipp */,
 				2C6897E42436064900C36C25 /* ApplicationOptions.hpp */,
 				2C6897EE2436064900C36C25 /* Array.hpp */,
 				2C435BC2243E084B001CAAD8 /* Byte.hpp */,
@@ -920,6 +935,7 @@
 		2C6898102436064900C36C25 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2C4719F4244969A300BAC3E8 /* xxHash */,
 				2C6898112436064900C36C25 /* fmt */,
 			);
 			path = ThirdParty;
