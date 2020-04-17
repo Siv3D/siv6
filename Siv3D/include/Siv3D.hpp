@@ -169,7 +169,7 @@
 
 // スコープ・ガード
 // Scope guard
-//# include <Siv3D/ScopeGuard.hpp>
+//# include <Siv3D/ScopeGuard.hpp> // [Siv3D ToDo]
 
 // エラー
 // Error
@@ -201,6 +201,18 @@
 // アルファベットの大文字・小文字
 // Letter case
 # include <Siv3D/LetterCase.hpp>
+
+// 数値
+// Number
+# include <Siv3D/Number.hpp>
+
+// 多倍長整数
+// Arbitrary precision integer type
+//# include <Siv3D/BigInt.hpp> // [Siv3D ToDo]
+
+// 多倍長浮動小数点数
+// 100 decimal digits precision floating point type
+//# include <Siv3D/BigFloat.hpp> // [Siv3D ToDo]
 
 
 
