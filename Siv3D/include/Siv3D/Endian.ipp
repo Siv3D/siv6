@@ -69,7 +69,7 @@ namespace s3d
 		return ret;
 	}
 
-	inline uint64 SwapEndian(const uint64 value) noexcept
+	inline uint64 SwapEndian(uint64 value) noexcept
 	{
 		value = ((value & 0x00000000FFFFFFFFull) << 32) | ((value & 0xFFFFFFFF00000000ull) >> 32);
 		value = ((value & 0x0000FFFF0000FFFFull) << 16) | ((value & 0xFFFF0000FFFF0000ull) >> 16);
