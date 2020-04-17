@@ -209,7 +209,8 @@ namespace s3d
 	//////////////////////////////////////////////////
 
 	template <class Type>
-	[[nodiscard]] constexpr auto Clamp(PlaceHolder_t, const Type& min, const Type& max) noexcept
+	[[nodiscard]]
+	constexpr auto Clamp(PlaceHolder_t, const Type& min, const Type& max) noexcept
 	{
 		return detail::Clamp_impl<Type>(min, max);
 	}

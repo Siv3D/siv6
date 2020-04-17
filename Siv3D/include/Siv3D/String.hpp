@@ -848,7 +848,8 @@ namespace s3d
 		/// 新しい文字列
 		/// </returns>
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
-		[[nodiscard]] String filter(Fty f) const;
+		[[nodiscard]]
+		String filter(Fty f) const;
 
 		/// <summary>
 		/// 指定した文字が含まれているかを調べます。
