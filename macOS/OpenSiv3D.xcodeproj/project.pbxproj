@@ -289,6 +289,7 @@
 		2C4A0DEB244A039C005F5D76 /* SFMT.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SFMT.c; sourceTree = "<group>"; };
 		2C4A0DEC244A039C005F5D76 /* SFMT-sse2-msc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFMT-sse2-msc.h"; sourceTree = "<group>"; };
 		2C4A0DED244A039C005F5D76 /* SFMT-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFMT-common.h"; sourceTree = "<group>"; };
+		2C4A0DF2244A06F8005F5D76 /* ApplicationOptions.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.ipp; sourceTree = "<group>"; };
 		2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderer.hpp; sourceTree = "<group>"; };
 		2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererFactory.cpp; sourceTree = "<group>"; };
 		2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_GL4.hpp; sourceTree = "<group>"; };
@@ -916,9 +917,8 @@
 		2C6897E02436064900C36C25 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
-				2C4A0DE4244A035D005F5D76 /* HardwareRNG.hpp */,
-				2C4A0DE3244A0356005F5D76 /* PRNG.hpp */,
 				2C6897E42436064900C36C25 /* ApplicationOptions.hpp */,
+				2C4A0DF2244A06F8005F5D76 /* ApplicationOptions.ipp */,
 				2C6897EE2436064900C36C25 /* Array.hpp */,
 				2C435BC2243E084B001CAAD8 /* Byte.hpp */,
 				2C471A02244990FD00BAC3E8 /* Byte.ipp */,
@@ -944,6 +944,7 @@
 				2C6897F92436064900C36C25 /* Formatter.hpp */,
 				2C471A00244990FD00BAC3E8 /* Formatter.ipp */,
 				2C6897EA2436064900C36C25 /* Fwd.hpp */,
+				2C4A0DE4244A035D005F5D76 /* HardwareRNG.hpp */,
 				2C4719F32449698A00BAC3E8 /* Hash.hpp */,
 				2C4719F22449698A00BAC3E8 /* Hash.ipp */,
 				2C6898062436064900C36C25 /* Indexed.hpp */,
@@ -963,6 +964,7 @@
 				2C47A9AA243CA7EE00FD33B4 /* Point.ipp */,
 				2C6897F02436064900C36C25 /* PointVector.hpp */,
 				2C6897F12436064900C36C25 /* PredefinedNamedParameter.hpp */,
+				2C4A0DE3244A0356005F5D76 /* PRNG.hpp */,
 				2C4CBE6624376B3C00F8B7A6 /* Profiler.hpp */,
 				2C6897FB2436064900C36C25 /* Rectangle.hpp */,
 				2C4CBE5A2437230600F8B7A6 /* Scene.hpp */,
