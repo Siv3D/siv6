@@ -678,6 +678,11 @@ namespace s3d
 		return StringView(data() + offset, std::min(count, size() - offset));
 	}
 
+	inline uint64 String::hash() const noexcept
+	{
+		return Hash::FNV1a(data(), size_bytes());
+	}
+
 	inline size_t String::indexOf(const StringView s, const size_t offset) const noexcept
 	{
 		return m_string.find(s.data(), offset, s.length());

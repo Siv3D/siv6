@@ -15,6 +15,7 @@
 # include <string>
 # include "Platform.hpp"
 # include "Types.hpp"
+# include "Hash.hpp"
 
 namespace s3d
 {
@@ -298,6 +299,19 @@ namespace s3d
 	}
 
 	using FilePathView = StringView;
+}
+
+namespace std
+{
+	template <>
+	struct hash<s3d::StringView>
+	{
+		[[nodiscard]]
+		size_t operator()(const s3d::StringView& value) const noexcept
+		{
+			return s3d::Hash::FNV1a(value.data(), value.size_bytes());
+		}
+	};
 }
 
 # include "StringView.ipp"

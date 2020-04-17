@@ -262,4 +262,26 @@ namespace s3d
 
 		return *this;
 	}
+
+	std::istream& operator >>(std::istream& input, String& value)
+	{
+		std::string s;
+
+		input >> s;
+
+		value = Unicode::Widen(s);
+
+		return input;
+	}
+
+	std::wistream& operator >>(std::wistream& input, String& value)
+	{
+		std::wstring s;
+
+		input >> s;
+
+		value = Unicode::FromWString(s);
+
+		return input;
+	}
 }

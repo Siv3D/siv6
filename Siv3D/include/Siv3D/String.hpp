@@ -444,6 +444,9 @@ namespace s3d
 		[[nodiscard]]
 		const std::u32string& toUTF32() const noexcept;
 
+		[[nodiscard]]
+		uint64 hash() const noexcept;
+
 		/// <summary>
 		/// 文字列を指定した位置から検索し、最初に現れた位置を返します。
 		/// </summary>
@@ -1788,6 +1791,10 @@ namespace s3d
 
 	inline void swap(String& a, String& b) noexcept;
 
+	std::istream& operator >>(std::istream& input, String& value);
+
+	std::wistream& operator >>(std::wistream& input, String& value);
+
 	inline namespace Literals
 	{
 		inline namespace StringLiterals
@@ -1798,6 +1805,19 @@ namespace s3d
 	}
 
 	using FilePath = String;
+}
+
+namespace std
+{
+	template <>
+	struct hash<s3d::String>
+	{
+		[[nodiscard]]
+		size_t operator()(const s3d::String& value) const noexcept
+		{
+			return value.hash();
+		}
+	};
 }
 
 # include "String.ipp"
