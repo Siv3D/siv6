@@ -11,7 +11,7 @@
 
 # pragma once
 # include <array>
-# include "Types.hpp"
+# include "Common.hpp"
 # include "Number.hpp"
 
 namespace s3d

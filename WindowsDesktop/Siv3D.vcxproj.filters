@@ -151,11 +151,8 @@
     <Filter Include="include\ThirdParty\xxHash">
       <UniqueIdentifier>{3ab4fa6b-4a46-4e7c-8389-8cdc4434ab97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\ThirdParty\SFMT">
-      <UniqueIdentifier>{5aa07f81-78b4-47f6-a3ac-2457dc1444a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\ThirdParty\SFMT">
-      <UniqueIdentifier>{61cd40dd-0fe2-4065-8574-a609427adb5f}</UniqueIdentifier>
+    <Filter Include="src\Siv3D\Random">
+      <UniqueIdentifier>{77351a51-8ed2-4fef-ba5a-014b87037bd8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -543,25 +540,10 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\HardwareRNG.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\include\ThirdParty\SFMT\SFMT.h">
-      <Filter>include\ThirdParty\SFMT</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\include\ThirdParty\SFMT\SFMT-params.h">
-      <Filter>include\ThirdParty\SFMT</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\include\ThirdParty\SFMT\SFMT-params19937.h">
-      <Filter>include\ThirdParty\SFMT</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\src\ThirdParty\SFMT\SFMT-common.h">
-      <Filter>src\ThirdParty\SFMT</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\src\ThirdParty\SFMT\SFMT-sse2.h">
-      <Filter>src\ThirdParty\SFMT</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\src\ThirdParty\SFMT\SFMT-sse2-msc.h">
-      <Filter>src\ThirdParty\SFMT</Filter>
-    </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\ApplicationOptions.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Random.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
   </ItemGroup>
@@ -746,8 +728,8 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\CPUInfo\SivCPUInfo.cpp">
       <Filter>src\Siv3D\CPUInfo</Filter>
     </ClCompile>
-    <ClCompile Include="..\Siv3D\src\ThirdParty\SFMT\SFMT.c">
-      <Filter>src\ThirdParty\SFMT</Filter>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Random\SivRandom.cpp">
+      <Filter>src\Siv3D\Random</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

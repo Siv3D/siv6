@@ -242,6 +242,7 @@
 
 # include <Siv3D/HardwareRNG.hpp>
 # include <Siv3D/PRNG.hpp>
+# include <Siv3D/Random.hpp>
 
 # include <Siv3D/Profiler.hpp>
 

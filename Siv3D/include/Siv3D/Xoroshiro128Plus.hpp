@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Types.hpp"
+# include "Common.hpp"
 # include "Number.hpp"
 # include "HardwareRNG.hpp"
 # include "SplitMix64.hpp"
