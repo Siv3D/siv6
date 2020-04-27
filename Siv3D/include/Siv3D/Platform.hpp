@@ -22,6 +22,7 @@
 # define SIV3D_PLATFORM_PRIVATE_DEFINITION_WINDOWS()	0
 # define SIV3D_PLATFORM_PRIVATE_DEFINITION_MACOS()		0
 # define SIV3D_PLATFORM_PRIVATE_DEFINITION_LINUX()		0
+# define SIV3D_PLATFORM_PRIVATE_DEFINITION_WEB()		0
 
 # if defined(_WIN32)
 
@@ -40,6 +41,12 @@
 	# define SIV3D_PLATFORM_NAME	U"Linux"
 	# undef  SIV3D_PLATFORM_PRIVATE_DEFINITION_LINUX
 	# define SIV3D_PLATFORM_PRIVATE_DEFINITION_LINUX()		1
+
+# elif defined(__EMSCRIPTEN__)
+
+	# define SIV3D_PLATFORM_NAME	U"Web"
+	# undef  SIV3D_PLATFORM_PRIVATE_DEFINITION_WEB
+	# define SIV3D_PLATFORM_PRIVATE_DEFINITION_WEB()		1
 
 # else
 
@@ -73,6 +80,11 @@
 	# define SIV3D_INTRINSIC_PRIVATE_DEFINITION_SSE()	1
 
 # elif SIV3D_PLATFORM(LINUX)
+
+	# undef  SIV3D_INTRINSIC_PRIVATE_DEFINITION_SSE
+	# define SIV3D_INTRINSIC_PRIVATE_DEFINITION_SSE()	1
+
+# elif SIV3D_PLATFORM(WEB)
 
 	# undef  SIV3D_INTRINSIC_PRIVATE_DEFINITION_SSE
 	# define SIV3D_INTRINSIC_PRIVATE_DEFINITION_SSE()	1
@@ -115,11 +127,11 @@
 //
 //////////////////////////////////////////////////
 
-# if SIV3D_PLATFORM(WINDOWS) && (_MSC_VER < 1925)
+# if SIV3D_PLATFORM(WINDOWS) && (_MSC_VER < 1926)
 
 	// お使いの Visual Studio のバージョンが古い場合、このエラーが発生します
 	// This error occures when your Visual Studio version is not up to date.
-	# error Please update the Visual Studio. Visual Studio 2019 16.5 or later is required to build this project.
+	# error Please update the Visual Studio. Visual Studio 2019 16.6 or later is required to build this project.
 
 # endif
 
@@ -181,7 +193,7 @@
 //
 //////////////////////////////////////////////////
 
-# if SIV3D_PLATFORM(MACOS) || SIV3D_PLATFORM(LINUX)
+# if SIV3D_PLATFORM(MACOS) || SIV3D_PLATFORM(LINUX) || SIV3D_PLATFORM(WEB)
 
 	# define SIV3D_HIDDEN __attribute__((visibility("hidden")))
 
