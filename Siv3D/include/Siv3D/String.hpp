@@ -16,6 +16,7 @@
 # include "Types.hpp"
 # include "Concepts.hpp"
 # include "StringView.hpp"
+# include "Unicode.hpp"
 # include "Utility.hpp"
 # include "Array.hpp"
 
@@ -1788,13 +1789,31 @@ namespace s3d
 		{
 			return (output << value.toWstr());
 		}
+
+		friend std::istream& operator >>(std::istream& input, String& value)
+		{
+			std::string s;
+
+			input >> s;
+
+			value = Unicode::Widen(s);
+
+			return input;
+		}
+
+		friend std::wistream& operator >>(std::wistream& input, String& value)
+		{
+			std::wstring s;
+
+			input >> s;
+
+			value = Unicode::FromWString(s);
+
+			return input;
+		}
 	};
 
 	inline void swap(String& a, String& b) noexcept;
-
-	std::istream& operator >>(std::istream& input, String& value);
-
-	std::wistream& operator >>(std::wistream& input, String& value);
 
 	inline namespace Literals
 	{

@@ -10,10 +10,12 @@
 //-----------------------------------------------
 
 # pragma once
-# include "String.hpp"
+# include "StringView.hpp"
 
 namespace s3d
 {
+	class String;
+
 	/// <summary>
 	/// 文字列のエンコードの変換
 	/// </summary>

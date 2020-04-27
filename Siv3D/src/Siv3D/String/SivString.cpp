@@ -10,36 +10,10 @@
 //-----------------------------------------------
 
 # include <Siv3D/String.hpp>
-# include <Siv3D/Unicode.hpp>
 # include <Siv3D/Char.hpp>
 
 namespace s3d
 {
-	std::string String::narrow() const
-	{
-		return Unicode::Narrow(m_string);
-	}
-
-	std::wstring String::toWstr() const
-	{
-		return Unicode::ToWstring(m_string);
-	}
-
-	std::string String::toUTF8() const
-	{
-		return Unicode::ToUTF8(m_string);
-	}
-
-	std::u16string String::toUTF16() const
-	{
-		return Unicode::ToUTF16(m_string);
-	}
-
-	const std::u32string& String::toUTF32() const noexcept
-	{
-		return m_string;
-	}
-
 	int32 String::case_insensitive_compare(const StringView view) const noexcept
 	{
 		auto first1 = begin(), last1 = end();
@@ -261,27 +235,5 @@ namespace s3d
 		}
 
 		return *this;
-	}
-
-	std::istream& operator >>(std::istream& input, String& value)
-	{
-		std::string s;
-
-		input >> s;
-
-		value = Unicode::Widen(s);
-
-		return input;
-	}
-
-	std::wistream& operator >>(std::wistream& input, String& value)
-	{
-		std::wstring s;
-
-		input >> s;
-
-		value = Unicode::FromWString(s);
-
-		return input;
 	}
 }
