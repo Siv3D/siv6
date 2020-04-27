@@ -117,10 +117,6 @@
 		2C481E1624460B5700A5D88D /* cpuid_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E1024460B5700A5D88D /* cpuid_x86.h */; };
 		2C481E1724460B5700A5D88D /* cpu_features_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E1124460B5700A5D88D /* cpu_features_macros.h */; };
 		2C481E1A24460BBA00A5D88D /* SivCPUInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C481E1924460BBA00A5D88D /* SivCPUInfo.cpp */; };
-		2C4A0DEE244A039C005F5D76 /* SFMT-sse2.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4A0DEA244A039C005F5D76 /* SFMT-sse2.h */; };
-		2C4A0DEF244A039C005F5D76 /* SFMT.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A0DEB244A039C005F5D76 /* SFMT.c */; };
-		2C4A0DF0244A039C005F5D76 /* SFMT-sse2-msc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4A0DEC244A039C005F5D76 /* SFMT-sse2-msc.h */; };
-		2C4A0DF1244A039C005F5D76 /* SFMT-common.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4A0DED244A039C005F5D76 /* SFMT-common.h */; };
 		2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */; };
 		2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */; };
 		2C4CBE4C24370FE300F8B7A6 /* CRenderer_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */; };
@@ -140,6 +136,7 @@
 		2C6898162436066800C36C25 /* SivWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6898152436066800C36C25 /* SivWindow.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
+		2CD7B6312456BC2600194496 /* SivRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7B6302456BC2600194496 /* SivRandom.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -282,13 +279,6 @@
 		2C481E1924460BBA00A5D88D /* SivCPUInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivCPUInfo.cpp; sourceTree = "<group>"; };
 		2C4A0DE3244A0356005F5D76 /* PRNG.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PRNG.hpp; sourceTree = "<group>"; };
 		2C4A0DE4244A035D005F5D76 /* HardwareRNG.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HardwareRNG.hpp; sourceTree = "<group>"; };
-		2C4A0DE6244A037D005F5D76 /* SFMT-params.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SFMT-params.h"; sourceTree = "<group>"; };
-		2C4A0DE7244A037D005F5D76 /* SFMT-params19937.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SFMT-params19937.h"; sourceTree = "<group>"; };
-		2C4A0DE8244A037D005F5D76 /* SFMT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFMT.h; sourceTree = "<group>"; };
-		2C4A0DEA244A039C005F5D76 /* SFMT-sse2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFMT-sse2.h"; sourceTree = "<group>"; };
-		2C4A0DEB244A039C005F5D76 /* SFMT.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SFMT.c; sourceTree = "<group>"; };
-		2C4A0DEC244A039C005F5D76 /* SFMT-sse2-msc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFMT-sse2-msc.h"; sourceTree = "<group>"; };
-		2C4A0DED244A039C005F5D76 /* SFMT-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFMT-common.h"; sourceTree = "<group>"; };
 		2C4A0DF2244A06F8005F5D76 /* ApplicationOptions.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.ipp; sourceTree = "<group>"; };
 		2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderer.hpp; sourceTree = "<group>"; };
 		2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererFactory.cpp; sourceTree = "<group>"; };
@@ -360,6 +350,8 @@
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		2CA7F73D1CA7F3B100495647 /* libSiv3D.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSiv3D.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA7F74E1CA7F43D00495647 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; usesTabs = 1; };
+		2CD7B62E2456BC0B00194496 /* Random.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Random.hpp; sourceTree = "<group>"; };
+		2CD7B6302456BC2600194496 /* SivRandom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivRandom.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -496,7 +488,6 @@
 				2C4CBE572437100100F8B7A6 /* GLEW */,
 				2C4231D9242B155E00A16BCA /* GLFW */,
 				2C44429F2427AA7C00557D51 /* miniutf */,
-				2C4A0DE9244A039C005F5D76 /* SFMT */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -555,6 +546,7 @@
 				2C43B2C52426223400D5CBBB /* Logger */,
 				2C47A9A7243CA7D800FD33B4 /* Point */,
 				2C4CBE6724376B5300F8B7A6 /* Profiler */,
+				2CD7B62F2456BC2600194496 /* Random */,
 				2C4CBE4324370FC600F8B7A6 /* Renderer */,
 				2C4CBE5B2437236000F8B7A6 /* Scene */,
 				2C4360BE240E4EEC001657D2 /* String */,
@@ -817,27 +809,6 @@
 			path = CPUInfo;
 			sourceTree = "<group>";
 		};
-		2C4A0DE5244A037D005F5D76 /* SFMT */ = {
-			isa = PBXGroup;
-			children = (
-				2C4A0DE6244A037D005F5D76 /* SFMT-params.h */,
-				2C4A0DE7244A037D005F5D76 /* SFMT-params19937.h */,
-				2C4A0DE8244A037D005F5D76 /* SFMT.h */,
-			);
-			path = SFMT;
-			sourceTree = "<group>";
-		};
-		2C4A0DE9244A039C005F5D76 /* SFMT */ = {
-			isa = PBXGroup;
-			children = (
-				2C4A0DEA244A039C005F5D76 /* SFMT-sse2.h */,
-				2C4A0DEB244A039C005F5D76 /* SFMT.c */,
-				2C4A0DEC244A039C005F5D76 /* SFMT-sse2-msc.h */,
-				2C4A0DED244A039C005F5D76 /* SFMT-common.h */,
-			);
-			path = SFMT;
-			sourceTree = "<group>";
-		};
 		2C4CBE4324370FC600F8B7A6 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -966,6 +937,7 @@
 				2C6897F12436064900C36C25 /* PredefinedNamedParameter.hpp */,
 				2C4A0DE3244A0356005F5D76 /* PRNG.hpp */,
 				2C4CBE6624376B3C00F8B7A6 /* Profiler.hpp */,
+				2CD7B62E2456BC0B00194496 /* Random.hpp */,
 				2C6897FB2436064900C36C25 /* Rectangle.hpp */,
 				2C4CBE5A2437230600F8B7A6 /* Scene.hpp */,
 				2C4719F8244990D300BAC3E8 /* SMFT.hpp */,
@@ -997,7 +969,6 @@
 			isa = PBXGroup;
 			children = (
 				2C6898112436064900C36C25 /* fmt */,
-				2C4A0DE5244A037D005F5D76 /* SFMT */,
 				2C4719F4244969A300BAC3E8 /* xxHash */,
 			);
 			path = ThirdParty;
@@ -1053,6 +1024,14 @@
 			path = ../Siv3D;
 			sourceTree = "<group>";
 		};
+		2CD7B62F2456BC2600194496 /* Random */ = {
+			isa = PBXGroup;
+			children = (
+				2CD7B6302456BC2600194496 /* SivRandom.cpp */,
+			);
+			path = Random;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1069,7 +1048,6 @@
 				2C439F87241DCEA9001154C2 /* ieee.h in Headers */,
 				2C423226242B155E00A16BCA /* xkb_unicode.h in Headers */,
 				2C42323B242B155E00A16BCA /* mappings.h in Headers */,
-				2C4A0DF1244A039C005F5D76 /* SFMT-common.h in Headers */,
 				2C4360D7240E4EEC001657D2 /* Siv3DComponent.hpp in Headers */,
 				2C439F82241DCEA9001154C2 /* cached-powers.h in Headers */,
 				2C43B2C92426223400D5CBBB /* ILogger.hpp in Headers */,
@@ -1086,7 +1064,6 @@
 				2C435BD3243E1600001CAAD8 /* CLogger.hpp in Headers */,
 				2C439F7E241DCEA9001154C2 /* double-to-string.h in Headers */,
 				2C423254242B19D100A16BCA /* egl_context.h in Headers */,
-				2C4A0DF0244A039C005F5D76 /* SFMT-sse2-msc.h in Headers */,
 				2C439F83241DCEA9001154C2 /* double-conversion.h in Headers */,
 				2C439F78241DCEA9001154C2 /* utils.h in Headers */,
 				2C4360D4240E4EEC001657D2 /* UnicodeUtility.hpp in Headers */,
@@ -1099,7 +1076,6 @@
 				2C4360CF240E4EEC001657D2 /* CDummy.hpp in Headers */,
 				2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */,
 				2C4CBE6E24376B5300F8B7A6 /* IProfiler.hpp in Headers */,
-				2C4A0DEE244A039C005F5D76 /* SFMT-sse2.h in Headers */,
 				2C481E1224460B5700A5D88D /* bit_utils.h in Headers */,
 				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
 				2C4360DC240E4EEC001657D2 /* IConsole.hpp in Headers */,
@@ -1239,6 +1215,7 @@
 				2C4360D9240E4EEC001657D2 /* ApplicationOptions.cpp in Sources */,
 				2C4CBE4D24370FE300F8B7A6 /* CRenderer_GL4.cpp in Sources */,
 				2C42321C242B155E00A16BCA /* cocoa_init.m in Sources */,
+				2CD7B6312456BC2600194496 /* SivRandom.cpp in Sources */,
 				2C4360DD240E4EEC001657D2 /* SivConsole.cpp in Sources */,
 				2C42324F242B155E00A16BCA /* cocoa_monitor.m in Sources */,
 				2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */,
@@ -1249,7 +1226,6 @@
 				2C4CBE6D24376B5300F8B7A6 /* ProfilerFactory.cpp in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
-				2C4A0DEF244A039C005F5D76 /* SFMT.c in Sources */,
 				2C4CBE7024376B5300F8B7A6 /* CProfiler.cpp in Sources */,
 				2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */,
 				2C435BCF243E15A5001CAAD8 /* SivUnicode_Platform.cpp in Sources */,

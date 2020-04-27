@@ -402,7 +402,7 @@ namespace s3d::detail
 	 * @param sfmt SFMT internal state
 	 * @return double on [0,1) with 53-bit resolution
 	 */
-	inline constexpr double sfmt_genrand_res53(sfmt_t* sfmt) noexcept
+	inline double sfmt_genrand_res53(sfmt_t* sfmt) noexcept
 	{
 		return sfmt_to_res53(sfmt_genrand_uint64(sfmt));
 	}
