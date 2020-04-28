@@ -254,9 +254,6 @@
 		2C4719F5244969A300BAC3E8 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxhash.h; sourceTree = "<group>"; };
 		2C4719F6244969A300BAC3E8 /* xxh3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxh3.h; sourceTree = "<group>"; };
 		2C4719F8244990D300BAC3E8 /* SMFT.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SMFT.hpp; sourceTree = "<group>"; };
-		2C4719F9244990D300BAC3E8 /* SplitMix64.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SplitMix64.hpp; sourceTree = "<group>"; };
-		2C4719FA244990D300BAC3E8 /* Xoroshiro128Plus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Xoroshiro128Plus.hpp; sourceTree = "<group>"; };
-		2C4719FB244990D300BAC3E8 /* Xoshiro256StarStar.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Xoshiro256StarStar.hpp; sourceTree = "<group>"; };
 		2C4719FC244990DF00BAC3E8 /* Number.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Number.ipp; sourceTree = "<group>"; };
 		2C4719FD244990DF00BAC3E8 /* Number.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Number.hpp; sourceTree = "<group>"; };
 		2C4719FE244990FD00BAC3E8 /* FormatInt.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatInt.ipp; sourceTree = "<group>"; };
@@ -280,6 +277,7 @@
 		2C4A0DE3244A0356005F5D76 /* PRNG.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PRNG.hpp; sourceTree = "<group>"; };
 		2C4A0DE4244A035D005F5D76 /* HardwareRNG.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HardwareRNG.hpp; sourceTree = "<group>"; };
 		2C4A0DF2244A06F8005F5D76 /* ApplicationOptions.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ApplicationOptions.ipp; sourceTree = "<group>"; };
+		2C4A83E32457E7A4007AAE76 /* XoshiroCpp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XoshiroCpp.hpp; sourceTree = "<group>"; };
 		2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderer.hpp; sourceTree = "<group>"; };
 		2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererFactory.cpp; sourceTree = "<group>"; };
 		2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_GL4.hpp; sourceTree = "<group>"; };
@@ -809,6 +807,14 @@
 			path = CPUInfo;
 			sourceTree = "<group>";
 		};
+		2C4A83E22457E7A4007AAE76 /* Xoshiro-cpp */ = {
+			isa = PBXGroup;
+			children = (
+				2C4A83E32457E7A4007AAE76 /* XoshiroCpp.hpp */,
+			);
+			path = "Xoshiro-cpp";
+			sourceTree = "<group>";
+		};
 		2C4CBE4324370FC600F8B7A6 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -941,7 +947,6 @@
 				2C6897FB2436064900C36C25 /* Rectangle.hpp */,
 				2C4CBE5A2437230600F8B7A6 /* Scene.hpp */,
 				2C4719F8244990D300BAC3E8 /* SMFT.hpp */,
-				2C4719F9244990D300BAC3E8 /* SplitMix64.hpp */,
 				2C6898042436064900C36C25 /* String.hpp */,
 				2C6897F52436064900C36C25 /* String.ipp */,
 				2C6897FA2436064900C36C25 /* StringView.hpp */,
@@ -959,8 +964,6 @@
 				2C6897FD2436064900C36C25 /* Window.hpp */,
 				2C47A9A5243CA7B000FD33B4 /* WindowState.hpp */,
 				2C47A9A6243CA7BC00FD33B4 /* WindowStyle.hpp */,
-				2C4719FA244990D300BAC3E8 /* Xoroshiro128Plus.hpp */,
-				2C4719FB244990D300BAC3E8 /* Xoshiro256StarStar.hpp */,
 			);
 			path = Siv3D;
 			sourceTree = "<group>";
@@ -969,6 +972,7 @@
 			isa = PBXGroup;
 			children = (
 				2C6898112436064900C36C25 /* fmt */,
+				2C4A83E22457E7A4007AAE76 /* Xoshiro-cpp */,
 				2C4719F4244969A300BAC3E8 /* xxHash */,
 			);
 			path = ThirdParty;

@@ -9,6 +9,7 @@
 //
 //-----------------------------------------------
 
+# include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/Profiler/IProfiler.hpp>
 # include <Siv3D/Window/IWindow.hpp>
