@@ -154,6 +154,9 @@
     <Filter Include="src\Siv3D\Random">
       <UniqueIdentifier>{77351a51-8ed2-4fef-ba5a-014b87037bd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\ThirdParty\Xoshiro-cpp">
+      <UniqueIdentifier>{1d187a7e-074c-4e85-9d25-190a09edc15d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -498,15 +501,6 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxhash.h">
       <Filter>include\ThirdParty\xxHash</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\SplitMix64.hpp">
-      <Filter>include\Siv3D</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\Xoroshiro128Plus.hpp">
-      <Filter>include\Siv3D</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\Xoshiro256StarStar.hpp">
-      <Filter>include\Siv3D</Filter>
-    </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\SMFT.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
@@ -545,6 +539,9 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Random.hpp">
       <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\Xoshiro-cpp\XoshiroCpp.hpp">
+      <Filter>include\ThirdParty\Xoshiro-cpp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

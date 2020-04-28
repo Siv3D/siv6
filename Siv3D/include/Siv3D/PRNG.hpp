@@ -10,7 +10,19 @@
 //-----------------------------------------------
 
 # pragma once
-# include <Siv3D/SplitMix64.hpp>
-# include <Siv3D/Xoroshiro128Plus.hpp>
-# include <Siv3D/Xoshiro256StarStar.hpp>
 # include <Siv3D/SMFT.hpp>
+# include <ThirdParty/Xoshiro-cpp/XoshiroCpp.hpp>
+
+namespace s3d::PRNG
+{
+	using SplitMix64			= XoshiroCpp::SplitMix64;
+	using Xoshiro256Plus		= XoshiroCpp::Xoshiro256Plus;
+	using Xoshiro256PlusPlus	= XoshiroCpp::Xoshiro256PlusPlus;
+	using Xoshiro256StarStar	= XoshiroCpp::Xoshiro256StarStar;
+	using Xoroshiro128Plus		= XoshiroCpp::Xoroshiro128Plus;
+	using Xoroshiro128PlusPlus	= XoshiroCpp::Xoroshiro128PlusPlus;
+	using Xoroshiro128StarStar	= XoshiroCpp::Xoroshiro128StarStar;
+	using Xoshiro128Plus		= XoshiroCpp::Xoshiro128Plus;
+	using Xoshiro128PlusPlus	= XoshiroCpp::Xoshiro128PlusPlus;
+	using Xoshiro128StarStar	= XoshiroCpp::Xoshiro128StarStar;
+}

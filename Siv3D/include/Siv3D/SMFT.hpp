@@ -10,10 +10,12 @@
 //-----------------------------------------------
 
 # pragma once
+# include <cassert>
+# include "Platform.hpp"
 # include "Types.hpp"
 # include "Number.hpp"
 # include "HardwareRNG.hpp"
-# include "SplitMix64.hpp"
+# include <ThirdParty/Xoshiro-cpp/XoshiroCpp.hpp>
 
 # if SIV3D_INTRINSIC(SSE)
 #   define HAVE_SSE2
@@ -485,7 +487,7 @@ namespace s3d
 
 			void seed(uint64 seed) noexcept
 			{
-				SplitMix64 splitmix64(seed);
+				XoshiroCpp::SplitMix64 splitmix64(seed);
 
 				uint32 keys[SeedSequencCount * 2];
 
