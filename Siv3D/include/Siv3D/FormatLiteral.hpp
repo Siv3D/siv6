@@ -18,17 +18,7 @@ namespace s3d
 {
 	namespace detail
 	{
-		struct FormatHelper : fmt::basic_string_view<char32>
-		{
-			using fmt::basic_string_view<char32>::basic_string_view;
-
-			template <class... Args>
-			[[nodiscard]]
-			String operator()(Args&& ...args) const
-			{
-				return fmt::format(*this, std::forward<Args>(args)...);
-			}
-		};
+		struct FormatHelper;
 
 		template <class ParseContext>
 		inline auto GetFormatTag(std::u32string& representation, ParseContext& ctx)
@@ -46,32 +36,20 @@ namespace s3d
 	}
 
 	[[nodiscard]]
-	inline detail::FormatHelper Fmt(const String& s) noexcept
-	{
-		return detail::FormatHelper{ s.c_str(), s.size() };
-	}
+	inline detail::FormatHelper Fmt(const String& s) noexcept;
 
 	[[nodiscard]]
-	constexpr detail::FormatHelper Fmt(StringView s) noexcept
-	{
-		return detail::FormatHelper{ s.data(), s.size() };
-	}
+	inline constexpr detail::FormatHelper Fmt(StringView s) noexcept;
 
 	[[nodiscard]]
-	constexpr detail::FormatHelper Fmt(const char32* s) noexcept
-	{
-		return detail::FormatHelper{ s, std::char_traits<char32>::length(s) };
-	}
+	inline constexpr detail::FormatHelper Fmt(const char32* s) noexcept;
 
 	inline namespace Literals
 	{
 		inline namespace FormatLiterals
 		{
 			[[nodiscard]]
-			constexpr detail::FormatHelper operator ""_fmt(const char32* s, size_t length) noexcept
-			{
-				return detail::FormatHelper{ s, length };
-			}
+			constexpr detail::FormatHelper operator ""_fmt(const char32 * s, size_t length) noexcept;
 		}
 	}
 }
@@ -129,3 +107,5 @@ struct SIV3D_HIDDEN fmt::formatter<s3d::StringView, s3d::char32>
 		}
 	}
 };
+
+# include "FormatLiteral.ipp"

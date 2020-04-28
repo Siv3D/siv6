@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <cstring>
 # if  __has_include(<bit>)
 #	include <bit>
 # endif

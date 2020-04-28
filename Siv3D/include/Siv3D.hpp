@@ -230,12 +230,35 @@
 // Format (floating point)
 # include <Siv3D/FormatFloat.hpp>
 
-// [Siv3D ToDo]
-# include <Siv3D/FormatLiteral.hpp>
-# include <Siv3D/IntFormatter.hpp>
 # include <Siv3D/FormatData.hpp>
-# include <Siv3D/Formatter.hpp>
+
+# include <Siv3D/Formatter.hpp> // [Siv3D ToDo]
+
+// 文字列フォーマット
+// Format
 # include <Siv3D/Format.hpp>
+
+// 文字列フォーマットリテラル
+// Formatting literal
+# include <Siv3D/FormatLiteral.hpp>
+
+// 文字列 → bool 変換
+// Text to bool conversion
+//# include <Siv3D/ParseBool.hpp> // [Siv3D ToDo]
+
+// 文字列 → 整数 変換
+// Text to integer conversion
+//# include <Siv3D/ParseInt.hpp> // [Siv3D ToDo]
+
+// 文字列 → 浮動小数点数 変換
+// Text to float conversion
+//# include <Siv3D/ParseFloat.hpp> // [Siv3D ToDo]
+
+// 文字列 → 値 変換
+// Text to value conversion
+//# include <Siv3D/Parse.hpp> // [Siv3D ToDo]
+
+
 
 # include <Siv3D/ApplicationOptions.hpp>
 

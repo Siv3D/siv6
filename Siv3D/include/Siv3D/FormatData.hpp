@@ -34,20 +34,16 @@ namespace s3d
 	};
 
 	[[nodiscard]]
-	constexpr FormatData::DecimalPlaces DecimalPlaces(int32 width) noexcept
-	{
-		return FormatData::DecimalPlaces(width);
-	}
+	inline constexpr FormatData::DecimalPlaces DecimalPlaces(int32 width) noexcept;
 
 	inline namespace Literals
 	{
 		inline namespace DecimalPlaceLiterals
 		{
 			[[nodiscard]]
-			constexpr FormatData::DecimalPlaces operator ""_dp(unsigned long long width) noexcept
-			{
-				return DecimalPlaces(static_cast<int32>(width));
-			}
+			constexpr FormatData::DecimalPlaces operator ""_dp(unsigned long long width) noexcept;
 		}
 	}
 }
+
+# include "FormatData.ipp"
