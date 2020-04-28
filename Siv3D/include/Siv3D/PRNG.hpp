@@ -10,8 +10,9 @@
 //-----------------------------------------------
 
 # pragma once
-# include <Siv3D/SMFT.hpp>
 # include <ThirdParty/Xoshiro-cpp/XoshiroCpp.hpp>
+# include "Common.hpp"
+# include "SMFT.hpp"
 
 namespace s3d::PRNG
 {

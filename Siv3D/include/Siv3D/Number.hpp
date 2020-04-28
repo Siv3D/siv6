@@ -12,7 +12,7 @@
 # pragma once
 # include <limits>
 # include <cmath>
-# include "Concepts.hpp"
+# include "Common.hpp"
 
 namespace s3d
 {

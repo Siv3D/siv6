@@ -10,13 +10,14 @@
 //-----------------------------------------------
 
 # pragma once
+# include <array>
+# include <vector>
+
+# include "Common.hpp"
 # include <xmmintrin.h>
 # if  __has_include(<compare>)
 #	include <compare>
 # endif
-# include <array>
-# include <vector>
-# include "Common.hpp"
 # include "FormatData.hpp"
 
 namespace s3d

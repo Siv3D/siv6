@@ -12,6 +12,7 @@
 # include <array>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/DLL.hpp>
+# include <Siv3D/EngineLog.hpp>
 
 namespace s3d::detail
 {

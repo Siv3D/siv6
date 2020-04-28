@@ -12,7 +12,7 @@
 # pragma once
 # include <cwctype>
 # include <wchar.h>
-# include "Types.hpp"
+# include "Common.hpp"
 
 /*
 # ASCII Table

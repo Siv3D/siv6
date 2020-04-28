@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/Common.hpp>
+# include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Common/ApplicationOptions.hpp>
 # include "CConsole.hpp"

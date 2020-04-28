@@ -13,6 +13,7 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Unicode.hpp>
+# include <Siv3D/EngineLog.hpp>
 
 namespace s3d
 {

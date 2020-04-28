@@ -12,7 +12,7 @@
 # pragma once
 # include <array>
 # include <random>
-# include "Types.hpp"
+# include "Common.hpp"
 
 namespace s3d
 {

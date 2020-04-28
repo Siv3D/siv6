@@ -13,6 +13,7 @@
 # include <ShellScalingApi.h> // for SetProcessDpiAwareness()
 # include <Siv3D/StringView.hpp>
 # include <Siv3D/DLL.hpp>
+# include <Siv3D/EngineLog.hpp>
 
 namespace s3d::detail
 {

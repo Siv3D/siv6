@@ -14,6 +14,7 @@
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/Time.hpp>
+# include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include "CProfiler.hpp"

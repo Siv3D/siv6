@@ -16,6 +16,7 @@
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/System/ISystem.hpp>
 # include <Siv3D/Error.hpp>
+# include <Siv3D/EngineLog.hpp>
 
 void PerformTest();
 void Main();

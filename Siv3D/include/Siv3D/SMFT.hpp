@@ -11,11 +11,10 @@
 
 # pragma once
 # include <cassert>
-# include "Platform.hpp"
-# include "Types.hpp"
+# include <ThirdParty/Xoshiro-cpp/XoshiroCpp.hpp>
+# include "Common.hpp"
 # include "Number.hpp"
 # include "HardwareRNG.hpp"
-# include <ThirdParty/Xoshiro-cpp/XoshiroCpp.hpp>
 
 # if SIV3D_INTRINSIC(SSE)
 #   define HAVE_SSE2

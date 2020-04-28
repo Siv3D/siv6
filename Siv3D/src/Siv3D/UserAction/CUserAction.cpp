@@ -9,6 +9,7 @@
 //
 //-----------------------------------------------
 
+# include <Siv3D/EngineLog.hpp>
 # include "CUserAction.hpp"
 
 namespace s3d

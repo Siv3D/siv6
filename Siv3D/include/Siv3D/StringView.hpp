@@ -13,8 +13,7 @@
 # include <iostream>
 # include <string_view>
 # include <string>
-# include "Platform.hpp"
-# include "Types.hpp"
+# include "Common.hpp"
 # include "Hash.hpp"
 
 namespace s3d

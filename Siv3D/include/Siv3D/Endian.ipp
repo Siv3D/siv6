@@ -10,7 +10,8 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Platform.hpp"
+# include "Endian.hpp"
+
 # if SIV3D_PLATFORM(WINDOWS)
 #	include <cstdlib>
 # elif SIV3D_PLATFORM(MACOS)

@@ -15,6 +15,7 @@
 # include <Siv3D/Indexed.hpp>
 # include <Siv3D/Unicode.hpp>
 # include <Siv3D/FormatLiteral.hpp>
+# include <Siv3D/EngineLog.hpp>
 # include "Monitor.hpp"
 
 namespace s3d::detail

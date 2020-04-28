@@ -17,6 +17,7 @@
 # include <Siv3D/UserAction/IUSerAction.hpp>
 # include <Siv3D/Common.hpp>
 # include <Siv3D/String.hpp>
+# include <Siv3D/EngineLog.hpp>
 # include "CSystem.hpp"
 
 namespace s3d

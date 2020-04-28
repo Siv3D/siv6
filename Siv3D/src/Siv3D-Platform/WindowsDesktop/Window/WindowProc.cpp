@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/Error.hpp>
+# include <Siv3D/EngineLog.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/UserAction.hpp>
 # include <Siv3D/UserAction/IUSerAction.hpp>

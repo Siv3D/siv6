@@ -10,8 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include <type_traits>
-# include "Concepts.hpp"
+# include "Common.hpp"
 
 namespace s3d
 {

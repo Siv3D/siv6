@@ -12,9 +12,7 @@
 # pragma once
 # include <algorithm>
 # include <type_traits>
-# include "Platform.hpp"
-# include "Types.hpp"
-# include "Concepts.hpp"
+# include "Common.hpp"
 # include "PlaceHolder.hpp"
 # include "Utility.ipp"
 

@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include "Common.hpp"
 # include "String.hpp"
 # include "FormatData.hpp"
 

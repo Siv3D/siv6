@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Platform.hpp"
+# include "Common.hpp"
 # include "LogType.hpp"
 # include "EngineLog.ipp"
 

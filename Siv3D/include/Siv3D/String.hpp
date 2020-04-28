@@ -12,9 +12,7 @@
 # pragma once
 # include <iostream>
 # include <string>
-# include "Platform.hpp"
-# include "Types.hpp"
-# include "Concepts.hpp"
+# include "Common.hpp"
 # include "StringView.hpp"
 # include "Unicode.hpp"
 # include "Utility.hpp"
