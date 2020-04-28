@@ -14,10 +14,10 @@
 
 namespace s3d
 {
-	int32 String::case_insensitive_compare(const StringView view) const noexcept
+	int32 String::case_insensitive_compare(const StringView s) const noexcept
 	{
 		auto first1 = begin(), last1 = end();
-		auto first2 = view.begin(), last2 = view.end();
+		auto first2 = s.begin(), last2 = s.end();
 
 		for (; (first1 != last1) && (first2 != last2); ++first1, ++first2)
 		{
@@ -43,15 +43,15 @@ namespace s3d
 		}
 	}
 
-	bool String::case_insensitive_equals(const StringView view) const noexcept
+	bool String::case_insensitive_equals(const StringView s) const noexcept
 	{
-		if (length() != view.length())
+		if (length() != s.length())
 		{
 			return false;
 		}
 
 		auto first1 = begin(), last1 = end();
-		auto first2 = view.begin(), last2 = view.end();
+		auto first2 = s.begin(), last2 = s.end();
 
 		for (; (first1 != last1) && (first2 != last2); ++first1, ++first2)
 		{
@@ -235,5 +235,130 @@ namespace s3d
 		}
 
 		return *this;
+	}
+
+	Array<String> String::split(const value_type ch) const
+	{
+		if (m_string.empty())
+		{
+			return{};
+		}
+
+		Array<String> result(1);
+
+		const value_type* pSrc = m_string.data();
+		const value_type* const pSrcEnd = pSrc + m_string.length();
+		String* currentLine = &result.back();
+
+		while (pSrc != pSrcEnd)
+		{
+			if (*pSrc == ch)
+			{
+				result.emplace_back();
+				currentLine = &result.back();
+			}
+			else
+			{
+				currentLine->push_back(*pSrc);
+			}
+
+			++pSrc;
+		}
+
+		return result;
+	}
+
+	std::pair<String, String> String::split_at(const size_t pos) const
+	{
+		return{ substr(0, pos), substr(pos) };
+	}
+
+	Array<String> String::split_lines() const
+	{
+		if (m_string.empty())
+		{
+			return{};
+		}
+
+		Array<String> result(1);
+
+		const value_type* pSrc = m_string.data();
+		const value_type* const pSrcEnd = pSrc + m_string.length();
+		String* currentLine = &result.back();
+
+		while (pSrc != pSrcEnd)
+		{
+			if (*pSrc == value_type('\n'))
+			{
+				result.emplace_back();
+				currentLine = &result.back();
+			}
+			else if (*pSrc != value_type('\r'))
+			{
+				currentLine->push_back(*pSrc);
+			}
+
+			++pSrc;
+		}
+
+		return result;
+	}
+
+	String String::values_at(std::initializer_list<size_t> indices) const
+	{
+		String new_array;
+
+		new_array.reserve(indices.size());
+
+		for (auto index : indices)
+		{
+			if (index >= m_string.size())
+			{
+				throw std::out_of_range("String::values_at() index out of range");
+			}
+
+			new_array.push_back(m_string[index]);
+		}
+
+		return new_array;
+	}
+
+	String& String::xml_escape()
+	{
+		return *this = xml_escaped();
+	}
+
+	String String::xml_escaped() const
+	{
+		String new_string;
+
+		new_string.reserve(m_string.length());
+
+		for (const auto c : m_string)
+		{
+			switch (c)
+			{
+			case value_type('\"'):
+				new_string.append(U"&quot;"_sv);
+				break;
+			case value_type('&'):
+				new_string.append(U"&amp;"_sv);
+				break;
+			case value_type('\''):
+				new_string.append(U"&apos;"_sv);
+				break;
+			case value_type('<'):
+				new_string.append(U"&lt;"_sv);
+				break;
+			case value_type('>'):
+				new_string.append(U"&gt;"_sv);
+				break;
+			default:
+				new_string.push_back(c);
+				break;
+			}
+		}
+
+		return new_string;
 	}
 }

@@ -13,6 +13,7 @@
 # include <cassert>
 # include <stdexcept>
 # include <algorithm>
+# include "Utility.hpp"
 
 namespace s3d
 {
@@ -181,7 +182,7 @@ namespace s3d
 			throw std::out_of_range("StringView::substr()");
 		}
 
-		return StringView(m_view.data() + pos, std::min(n, m_view.size() - pos));
+		return StringView(m_view.data() + pos, Min(n, m_view.size() - pos));
 	}
 
 	inline constexpr int32 StringView::compare(const StringView s) const noexcept

@@ -46,12 +46,8 @@ namespace s3d
 		concept TriviallyCopyable = std::is_trivially_copyable_v<Type>;
 
 		template <class Type>
-		concept UniformRandomBitGenerator = std::invocable<Type&> && std::unsigned_integral<std::invoke_result_t<Type&>> && requires {
-			{ (Type::min)() } -> std::same_as<std::invoke_result_t<Type&>>;
-			{ (Type::max)() } -> std::same_as<std::invoke_result_t<Type&>>;
-			requires std::bool_constant<(Type::min() < Type::max())>::value;
-		};
-		// std::enable_if_t<std::is_invocable_v<URNG&> && std::is_unsigned_v<std::invoke_result_t<URNG&>>>* = nullptr
+		concept UniformRandomBitGenerator = std::invocable<Type&> && std::unsigned_integral<std::invoke_result_t<Type&>>;
+		// std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr
 	}
 }
 

@@ -10,7 +10,10 @@
 //-----------------------------------------------
 
 # pragma once
+# include <unordered_set>
 # include <functional>
+# include "Random.hpp"
+# include "Char.hpp"
 
 namespace s3d
 {
@@ -19,6 +22,22 @@ namespace s3d
 		inline constexpr bool IsTrimmable(char32 ch) noexcept
 		{
 			return (ch <= 0x20) || ((ch - 0x7F) <= (0x9F - 0x7F));
+		};
+
+		template <class Type>
+		class StableUniqueHelper
+		{
+		private:
+
+			std::unordered_set<Type> m_set;
+
+		public:
+
+			[[nodiscard]]
+			bool operator()(const Type& value)
+			{
+				return m_set.insert(value).second;
+			}
 		};
 	}
 
@@ -675,7 +694,7 @@ namespace s3d
 			throw std::out_of_range("String::substrView() index out of range");
 		}
 
-		return StringView(data() + offset, std::min(count, size() - offset));
+		return StringView(data() + offset, Min(count, size() - offset));
 	}
 
 	inline std::string String::narrow() const
@@ -1287,9 +1306,267 @@ namespace s3d
 		return std::move(*this);
 	}
 
+	inline String& String::shuffle()
+	{
+		return shuffle(GetDefaultRNG());
+	}
 
+# if __cpp_lib_concepts
+	template <Concept::UniformRandomBitGenerator URBG>
+# else
+	template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
+# endif
+	inline String& String::shuffle(URBG&& rbg)
+	{
+		std::shuffle(m_string.begin(), m_string.end(), std::forward<URBG>(rbg));
 
+		return *this;
+	}
 
+	inline String String::shuffled() const&
+	{
+		return shuffled(GetDefaultRNG());
+	}
+
+	inline String String::shuffled()&&
+	{
+		return shuffled(GetDefaultRNG());
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::UniformRandomBitGenerator URBG>
+# else
+	template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
+# endif
+	inline String String::shuffled(URBG&& rbg) const&
+	{
+		return String(*this).shuffle(std::forward<URBG>(rbg));
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::UniformRandomBitGenerator URBG>
+# else
+	template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
+# endif
+	inline String String::shuffled(URBG&& rbg)&&
+	{
+		std::shuffle(m_string.begin(), m_string.end(), std::forward<URBG>(rbg));
+
+		return std::move(*this);
+	}
+
+	inline String& String::swapcase() noexcept
+	{
+		for (auto& v : m_string)
+		{
+			if (IsLower(v))
+			{
+				v -= 32;
+			}
+			else if (IsUpper(v))
+			{
+				v += 32;
+			}
+		}
+
+		return *this;
+	}
+
+	inline String String::swapcased() const&
+	{
+		return String(*this).swapcase();
+	}
+
+	inline String String::swapcased()&&
+	{
+		swapcase();
+
+		return std::move(*this);
+	}
+
+	inline String& String::trim()
+	{
+		m_string.erase(m_string.begin(), std::find_if_not(m_string.begin(), m_string.end(), detail::IsTrimmable));
+
+		m_string.erase(std::find_if_not(m_string.rbegin(), m_string.rend(), detail::IsTrimmable).base(), m_string.end());
+
+		return *this;
+	}
+
+	inline String String::trimmed() const&
+	{
+		return String(std::find_if_not(m_string.begin(), m_string.end(), detail::IsTrimmable), std::find_if_not(m_string.rbegin(), m_string.rend(), detail::IsTrimmable).base());
+	}
+
+	inline String String::trimmed()&&
+	{
+		trim();
+
+		return std::move(*this);
+	}
+
+	inline String& String::uppercase() noexcept
+	{
+		for (auto& v : m_string)
+		{
+			if (IsLower(v))
+			{
+				v -= 32;
+			}
+		}
+
+		return *this;
+	}
+
+	inline String String::uppercased() const&
+	{
+		return String(*this).uppercase();
+	}
+
+	inline String String::uppercased()&&
+	{
+		uppercase();
+
+		return std::move(*this);
+	}
+
+	inline String& String::rsort() noexcept
+	{
+		std::sort(begin(), end(), std::greater<>());
+
+		return *this;
+	}
+
+	inline String String::rsorted() const&
+	{
+		return String(*this).rsort();
+	}
+
+	inline String String::rsorted()&&
+	{
+		rsort();
+
+		return std::move(*this);
+	}
+
+	inline String& String::sort() noexcept
+	{
+		std::sort(m_string.begin(), m_string.end());
+
+		return *this;
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32, char32>>*>
+	inline String& String::sort_by(Fty f)
+	{
+		std::sort(m_string.begin(), m_string.end(), f);
+
+		return *this;
+	}
+
+	inline String String::sorted() const&
+	{
+		return String(*this).sort();
+	}
+
+	inline String String::sorted()&&
+	{
+		std::sort(m_string.begin(), m_string.end());
+
+		return std::move(*this);
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32, char32>>*>
+	inline String String::sorted_by(Fty f) const&
+	{
+		return String(*this).sort_by(f);
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32, char32>>*>
+	inline String String::sorted_by(Fty f)&&
+	{
+		std::sort(m_string.begin(), m_string.end(), f);
+
+		return std::move(*this);
+	}
+
+	inline String String::take(const size_t n) const
+	{
+		return String(m_string.begin(), m_string.begin() + Min(n, m_string.size()));
+	}
+
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>*>
+	inline String String::take_while(Fty f) const
+	{
+		return String(m_string.begin(), std::find_if_not(m_string.begin(), m_string.end(), f));
+	}
+
+	inline String& String::stable_unique()
+	{
+		// [Siv3D ToDo: 最適化]
+		return *this = stable_uniqued();
+	}
+
+	inline String String::stable_uniqued() const
+	{
+		String result;
+
+		detail::StableUniqueHelper<value_type> pred;
+
+		std::copy_if(m_string.begin(), m_string.end(), std::back_inserter(result), std::ref(pred));
+
+		return result;
+	}
+
+	inline String& String::sort_and_unique()
+	{
+		sort();
+
+		m_string.erase(std::unique(m_string.begin(), m_string.end()), m_string.end());
+
+		return *this;
+	}
+
+	inline String String::sorted_and_uniqued() const&
+	{
+		return String(*this).sort_and_unique();
+	}
+
+	inline String String::sorted_and_uniqued()&&
+	{
+		sort();
+
+		m_string.erase(std::unique(m_string.begin(), m_string.end()), m_string.end());
+
+		m_string.shrink_to_fit();
+
+		return std::move(*this);
+	}
+
+	inline String& String::unique_consecutive()
+	{
+		m_string.erase(std::unique(m_string.begin(), m_string.end()), m_string.end());
+
+		return *this;
+	}
+
+	inline String String::uniqued_consecutive() const&
+	{
+		String result;
+
+		std::unique_copy(m_string.begin(), m_string.end(), std::back_inserter(result));
+
+		return result;
+	}
+
+	inline String String::uniqued_consecutive()&&
+	{
+		m_string.erase(std::unique(m_string.begin(), m_string.end()), m_string.end());
+
+		m_string.shrink_to_fit();
+
+		return std::move(*this);
+	}
 
 	inline void swap(String& a, String& b) noexcept
 	{

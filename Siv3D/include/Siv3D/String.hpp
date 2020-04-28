@@ -1450,15 +1450,381 @@ namespace s3d
 		[[nodiscard]]
 		String rtrimmed()&&;
 
+		/// <summary>
+		/// 文字列をランダムに並び替えます。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& shuffle();
 
+		/// <summary>
+		/// 指定された乱数生成器を使って文字列をランダムに並び替えます。
+		/// </summary>
+		/// <param name="rbg">
+		/// 使用する乱数生成器
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+	# if __cpp_lib_concepts
+		template <Concept::UniformRandomBitGenerator URBG>
+	# else
+		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# endif
+		String& shuffle(URBG&& rbg);
 
+		/// <summary>
+		/// ランダムに並び替えた新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		[[nodiscard]]
+		String shuffled() const&;
 
+		/// <summary>
+		/// ランダムに並び替えた新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// ランダムに並び替えられた文字列
+		/// </returns>
+		[[nodiscard]]
+		String shuffled()&&;
 
+		/// <summary>
+		/// 指定された乱数生成器を使ってランダムに並び替えた新しい文字列を返します。
+		/// </summary>
+		/// <param name="rbg">
+		/// 使用する乱数生成器
+		/// </param>
+		/// <returns>
+		/// ランダムに並び替えられた文字列
+		/// </returns>
+	# if __cpp_lib_concepts
+		template <Concept::UniformRandomBitGenerator URBG>
+	# else
+		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		String shuffled(URBG&& rbg) const&;
 
-		// [Siv3D ToDo]
+		/// <summary>
+		/// 指定された乱数生成器を使ってランダムに並び替えた新しい文字列を返します。
+		/// </summary>
+		/// <param name="rbg">
+		/// 使用する乱数生成器
+		/// </param>
+		/// <returns>
+		/// ランダムに並び替えられた文字列
+		/// </returns>
+	# if __cpp_lib_concepts
+		template <Concept::UniformRandomBitGenerator URBG>
+	# else
+		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		String shuffled(URBG&& rbg)&&;
 
+		/// <summary>
+		/// 指定した区切り文字で文字列を分割します。
+		/// </summary>
+		/// <param name="ch">
+		/// 区切り文字
+		/// </param>
+		/// <returns>
+		/// 分割された文字列
+		/// </returns>
+		[[nodiscard]]
+		Array<String, std::allocator<String>> split(value_type ch) const;
 
+		[[nodiscard]]
+		std::pair<String, String> split_at(size_t pos) const;
 
+		[[nodiscard]]
+		Array<String, std::allocator<String>> split_lines() const;
+
+		/// <summary>
+		/// 英字の大文字と小文字を入れ替えます。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& swapcase() noexcept;
+
+		/// <summary>
+		/// 英字の大文字と小文字を入れ替えた文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String swapcased() const&;
+
+		/// <summary>
+		/// 英字の大文字と小文字を入れ替えた文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String swapcased()&&;
+
+		/// <summary>
+		/// 文字列の先頭と末尾にある空白文字を削除します。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& trim();
+
+		/// <summary>
+		/// 文字列の先頭と末尾にある空白文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String trimmed() const&;
+
+		/// <summary>
+		/// 文字列の先頭と末尾にある空白文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String trimmed()&&;
+
+		/// <summary>
+		/// 英字をすべて大文字にします。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& uppercase() noexcept;
+
+		/// <summary>
+		/// 英字をすべて大文字にした文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String uppercased() const&;
+
+		/// <summary>
+		/// 英字をすべて大文字にした文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String uppercased()&&;
+
+		String& rsort() noexcept;
+
+		[[nodiscard]]
+		String rsorted() const&;
+
+		[[nodiscard]]
+		String rsorted()&&;
+
+		/// <summary>
+		/// 文字列を辞書順でソートします。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& sort() noexcept;
+
+		/// <summary>
+		/// 文字列を指定された比較関数でソートします。
+		/// </summary>
+		/// <param name="f">
+		/// 使用する比較関数
+		/// </param>
+		/// <returns>
+		/// *this
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32, char32>>* = nullptr>
+		String& sort_by(Fty f);
+
+		/// <summary>
+		/// 文字列を辞書順でソートした新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// ソート済みの文字列
+		/// </returns>
+		[[nodiscard]]
+		String sorted() const&;
+
+		/// <summary>
+		/// 文字列を辞書順でソートした新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// ソート済みの文字列
+		/// </returns>
+		[[nodiscard]]
+		String sorted()&&;
+
+		/// <summary>
+		/// 文字列を指定された比較関数でソートした新しい文字列を返します。
+		/// </summary>
+		/// <param name="f">
+		/// 使用する比較関数
+		/// </param>
+		/// <returns>
+		/// ソート済みの文字列
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32, char32>>* = nullptr>
+		[[nodiscard]]
+		String sorted_by(Fty f) const&;
+
+		/// <summary>
+		/// 文字列を指定された比較関数でソートした新しい文字列を返します。
+		/// </summary>
+		/// <param name="f">
+		/// 使用する比較関数
+		/// </param>
+		/// <returns>
+		/// ソート済みの文字列
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32, char32>>* = nullptr>
+		[[nodiscard]]
+		String sorted_by(Fty f)&&;
+
+		/// <summary>
+		/// 文字列の先頭から指定された文字数分取り出した新しい文字列を返します。
+		/// </summary>
+		/// <param name="n">
+		/// 取り出す文字数
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String take(size_t n) const;
+
+		/// <summary>
+		/// 文字列の先頭から、指定された条件を満たす連続した文字を取り出した新しい文字列を返します。
+		/// </summary>
+		/// <param name="f">
+		/// 条件を記述した関数
+		/// </param>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, char32>>* = nullptr>
+		[[nodiscard]]
+		String take_while(Fty f) const;
+
+		/// <summary>
+		/// 文字列をソートせずに、重複する文字を削除します。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& stable_unique();
+
+		/// <summary>
+		/// 文字列をソートせずに、重複する文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String stable_uniqued() const;
+
+		/// <summary>
+		/// 文字列をソートし、重複する文字を削除します。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& sort_and_unique();
+
+		/// <summary>
+		/// 文字列をソートし、重複する文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String sorted_and_uniqued() const&;
+
+		/// <summary>
+		/// 文字列をソートし、重複する文字を削除した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String sorted_and_uniqued()&&;
+
+		/// <summary>
+		/// 同じ文字が連続する場合、その先頭以外を除去します。
+		/// </summary>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& unique_consecutive();
+
+		/// <summary>
+		/// 同じ文字が連続する場合、その先頭以外を除去した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String uniqued_consecutive() const&;
+
+		/// <summary>
+		/// 同じ文字が連続する場合、その先頭以外を除去した新しい文字列を返します。
+		/// </summary>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String uniqued_consecutive()&&;
+
+		/// <summary>
+		/// 複数のインデックスを取り、それらの文字からなる新しい文字列を返します。
+		/// </summary>
+		/// <param name="indices">
+		/// 現在の文字列における複数のインデックス
+		/// </param>
+		/// <example><code>
+		/// String("abcde").values_at({0, 3, 4}); // => "ade"
+		/// </code></example>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String values_at(std::initializer_list<size_t> indices) const;
+
+		/// <summary>
+		/// 文字列に XML エスケープを行います。
+		/// </summary>
+		/// <remarks>
+		/// &quot;, \, &amp;, &gt;, &lt; をエスケープ文字に置換します
+		/// </remarks>
+		/// <returns>
+		/// *this
+		/// </returns>
+		String& xml_escape();
+
+		/// <summary>
+		/// XML エスケープした文字列を返します。
+		/// </summary>
+		/// <remarks>
+		/// &quot;, \, &amp;, &gt;, &lt; をエスケープ文字に置換します
+		/// </remarks>
+		/// <returns>
+		/// 新しい文字列
+		/// </returns>
+		[[nodiscard]]
+		String xml_escaped() const;
 
 		/// <summary>
 		/// 文字列が等しいかを調べます。
