@@ -30,9 +30,14 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\EngineLog.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\EngineLog.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Error.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\FloatingPoint.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\FloatingPoint.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Format.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatBool.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatBool.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatData.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatFloat.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\FormatFloat.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatInt.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatInt.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Formatter.hpp" />

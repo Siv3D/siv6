@@ -188,11 +188,11 @@
 
 // 文字列ビュー
 // String view
-# include <Siv3D/StringView.hpp> // [Siv3D ToDo]
+# include <Siv3D/StringView.hpp>
 
 // 文字列
 // String
-# include <Siv3D/String.hpp> // [Siv3D ToDo]
+# include <Siv3D/String.hpp>
 
 // Unicode
 // Unicode
@@ -206,6 +206,10 @@
 // Number
 # include <Siv3D/Number.hpp>
 
+// 浮動小数点数
+// Floating point
+# include <Siv3D/FloatingPoint.hpp>
+
 // 多倍長整数
 // Arbitrary precision integer type
 //# include <Siv3D/BigInt.hpp> // [Siv3D ToDo]
@@ -214,14 +218,21 @@
 // 100 decimal digits precision floating point type
 //# include <Siv3D/BigFloat.hpp> // [Siv3D ToDo]
 
+// フォーマット (bool 型)
+// Format (bool)
+# include <Siv3D/FormatBool.hpp>
 
+// フォーマット (整数型)
+// Format (integer)
+# include <Siv3D/FormatInt.hpp>
 
+// フォーマット (浮動小数点数型)
+// Format (floating point)
+# include <Siv3D/FormatFloat.hpp>
 
 // [Siv3D ToDo]
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/IntFormatter.hpp>
-# include <Siv3D/FormatInt.hpp>
-# include <Siv3D/FormatFloat.hpp>
 # include <Siv3D/FormatData.hpp>
 # include <Siv3D/Formatter.hpp>
 # include <Siv3D/Format.hpp>
