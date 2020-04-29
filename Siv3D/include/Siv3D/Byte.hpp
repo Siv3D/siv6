@@ -112,4 +112,4 @@ namespace std
 	};
 }
 
-# include "Byte.ipp"
+# include "detail/Byte.ipp"

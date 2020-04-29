@@ -12,8 +12,8 @@
 # pragma once
 # include <unordered_set>
 # include <functional>
-# include "Random.hpp"
-# include "Char.hpp"
+# include "../Random.hpp"
+# include "../Char.hpp"
 
 namespace s3d
 {

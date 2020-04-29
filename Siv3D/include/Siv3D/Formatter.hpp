@@ -122,4 +122,4 @@ namespace s3d
 # endif
 }
 
-# include "Formatter.ipp"
+# include "detail/Formatter.ipp"

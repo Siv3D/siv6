@@ -107,4 +107,4 @@ namespace s3d
 	inline String ToHex(Integer value, LetterCase letterCase = LetterCase::Upper);
 }
 
-# include "FormatInt.ipp"
+# include "detail/FormatInt.ipp"

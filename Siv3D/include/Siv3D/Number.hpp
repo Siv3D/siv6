@@ -106,4 +106,4 @@ namespace s3d
 	inline bool IsInfinity(Type value) noexcept;
 }
 
-# include "Number.ipp"
+# include "detail/Number.ipp"

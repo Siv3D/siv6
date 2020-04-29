@@ -12,5 +12,5 @@
 # pragma once
 # include "Vector2D.hpp"
 # include "Point.hpp"
-# include "Point.ipp"
-# include "Vector2D.ipp"
+# include "detail/Point.ipp"
+# include "detail/Vector2D.ipp"

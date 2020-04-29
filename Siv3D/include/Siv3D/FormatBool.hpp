@@ -20,4 +20,4 @@ namespace s3d
 	inline constexpr StringView ToString(bool value, LetterCase letterCase = LetterCase::Lower);
 }
 
-# include "FormatBool.ipp"
+# include "detail/FormatBool.ipp"

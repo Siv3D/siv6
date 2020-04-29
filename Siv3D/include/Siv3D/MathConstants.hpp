@@ -249,4 +249,4 @@ namespace s3d
 	}
 }
 
-# include "MathConstants.ipp"
+# include "detail/MathConstants.ipp"

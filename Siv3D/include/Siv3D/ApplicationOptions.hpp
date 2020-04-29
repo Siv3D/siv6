@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include "ApplicationOptions.ipp"
+# include "detail/ApplicationOptions.ipp"
 
 # define SIV3D_OPTION_DEBUG_HEAP_MANAGER(bool) const int dummy_s3d_enable_debug_heap_manager = s3d::detail::EnableDebugHeapManager(bool)
 

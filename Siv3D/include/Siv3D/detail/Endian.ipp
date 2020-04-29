@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Endian.hpp"
+# include "../Endian.hpp"
 
 # if SIV3D_PLATFORM(WINDOWS)
 #	include <cstdlib>

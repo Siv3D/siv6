@@ -14,7 +14,7 @@
 # include <type_traits>
 # include "Common.hpp"
 # include "PlaceHolder.hpp"
-# include "Utility.ipp"
+# include "detail/Utility.ipp"
 
 namespace s3d
 {

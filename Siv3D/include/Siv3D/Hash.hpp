@@ -39,4 +39,4 @@ namespace s3d
 	}
 }
 
-# include "Hash.ipp"
+# include "detail/Hash.ipp"

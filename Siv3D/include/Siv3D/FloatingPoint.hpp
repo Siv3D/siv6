@@ -41,4 +41,4 @@ namespace s3d
 	inline SIV3D_CONSTEXPR_BITCAST uint64 AsUint64(Float64 value) noexcept;
 }
 
-# include "FloatingPoint.ipp"
+# include "detail/FloatingPoint.ipp"

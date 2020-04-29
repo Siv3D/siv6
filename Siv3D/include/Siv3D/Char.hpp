@@ -227,4 +227,4 @@ namespace s3d
 	inline constexpr bool CaseInsensitiveEquals(char32 a, char32 b) noexcept;
 }
 
-# include "Char.ipp"
+# include "detail/Char.ipp"

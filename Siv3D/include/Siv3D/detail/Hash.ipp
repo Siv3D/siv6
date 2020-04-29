@@ -11,7 +11,6 @@
 
 # pragma once
 # include <ThirdParty/xxHash/xxh3.h>
-# include "Common.hpp"
 
 namespace s3d
 {

@@ -10,8 +10,8 @@
 //-----------------------------------------------
 
 # pragma once
-# include "FloatingPoint.hpp"
-# include "FormatInt.hpp"
+# include "../FloatingPoint.hpp"
+# include "../FormatInt.hpp"
 
 namespace s3d
 {

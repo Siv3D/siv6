@@ -402,3 +402,42 @@ namespace s3d
 	using Vec2		= Vector2D<double>;
 	using SizeF		= Vec2;
 }
+
+template <class Type>
+struct SIV3D_HIDDEN fmt::formatter<s3d::Vector2D<Type>, s3d::char32>
+{
+	std::u32string tag;
+
+	auto parse(basic_format_parse_context<s3d::char32>& ctx)
+	{
+		return s3d::detail::GetFormatTag(tag, ctx);
+	}
+
+	template <class FormatContext>
+	auto format(const s3d::Vector2D<Type>& value, FormatContext& ctx)
+	{
+		if (tag.empty())
+		{
+			return format_to(ctx.out(), U"({}, {})", value.x, value.y);
+		}
+		else
+		{
+			const std::u32string format
+				= (U"({:" + tag + U"}, {:" + tag + U"})");
+			return format_to(ctx.out(), format, value.x, value.y);
+		}
+	}
+};
+
+namespace std
+{
+	template <class Type>
+	struct hash<s3d::Vector2D<Type>>
+	{
+		[[nodiscard]]
+		size_t operator()(const s3d::Vector2D<Type>& value) const noexcept
+		{
+			return s3d::Hash::FNV1a(value);
+		}
+	};
+}

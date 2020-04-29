@@ -108,4 +108,4 @@ struct SIV3D_HIDDEN fmt::formatter<s3d::StringView, s3d::char32>
 	}
 };
 
-# include "FormatLiteral.ipp"
+# include "detail/FormatLiteral.ipp"

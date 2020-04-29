@@ -50,4 +50,4 @@ namespace s3d
 	}
 }
 
-# include "FormatData.ipp"
+# include "detail/FormatData.ipp"

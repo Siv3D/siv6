@@ -13,6 +13,7 @@
 # include "Common.hpp"
 # include "FormatData.hpp"
 # include "FormatLiteral.hpp"
+# include "Hash.hpp"
 
 namespace s3d
 {
@@ -409,3 +410,16 @@ struct SIV3D_HIDDEN fmt::formatter<s3d::Point, s3d::char32>
 		}
 	}
 };
+
+namespace std
+{
+	template <>
+	struct hash<s3d::Point>
+	{
+		[[nodiscard]]
+		size_t operator()(const s3d::Point& value) const noexcept
+		{
+			return s3d::Hash::FNV1a(value);
+		}
+	};
+}

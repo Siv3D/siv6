@@ -24,4 +24,4 @@ namespace s3d
 	inline uint64 SwapEndian(uint64 value) noexcept;
 }
 
-# include "Endian.ipp"
+# include "detail/Endian.ipp"

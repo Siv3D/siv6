@@ -10,8 +10,8 @@
 //-----------------------------------------------
 
 # pragma once
-# include "StringView.hpp"
-# include "String.hpp"
+# include "../StringView.hpp"
+# include "../String.hpp"
 
 namespace s3d
 {

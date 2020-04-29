@@ -12,7 +12,7 @@
 # pragma once
 # include "Common.hpp"
 # include "LogType.hpp"
-# include "EngineLog.ipp"
+# include "detail/EngineLog.ipp"
 
 # if SIV3D_BUILD(DEBUG)
 

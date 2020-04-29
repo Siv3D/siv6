@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include "MathConstants.hpp"
+# include "../MathConstants.hpp"
 
 namespace s3d
 {

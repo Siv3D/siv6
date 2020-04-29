@@ -2204,4 +2204,4 @@ namespace std
 	};
 }
 
-# include "String.ipp"
+# include "detail/String.ipp"

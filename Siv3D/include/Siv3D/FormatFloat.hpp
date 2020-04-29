@@ -178,4 +178,4 @@ namespace s3d
 	String ToHex(double value);
 }
 
-# include "FormatFloat.ipp"
+# include "detail/FormatFloat.ipp"
