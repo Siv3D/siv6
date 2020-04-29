@@ -21,12 +21,16 @@ namespace s3d
 		{
 			static constexpr int32 DefaultDecimalPlaces = 5;
 
-			int32 value;
+			int32 value = DefaultDecimalPlaces;
+
+			DecimalPlaces() = default;
 
 			SIV3D_NODISCARD_CXX20
-			explicit constexpr DecimalPlaces(int32 v = DefaultDecimalPlaces) noexcept
+			explicit constexpr DecimalPlaces(int32 v) noexcept
 				: value(v) {}
 		};
+
+		FormatData() = default;
 
 		String string;
 

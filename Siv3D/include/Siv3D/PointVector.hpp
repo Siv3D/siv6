@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Point.hpp"
 # include "Vector2D.hpp"
+# include "Point.hpp"
 # include "Point.ipp"
-
+# include "Vector2D.ipp"

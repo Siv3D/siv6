@@ -24,6 +24,8 @@ namespace s3d
 	{
 		using value_type = int32;
 
+		static constexpr size_t Dimension = 2;
+
 		value_type x, y;
 
 		SIV3D_NODISCARD_CXX20
@@ -33,17 +35,44 @@ namespace s3d
 		constexpr Point(const Point&) = default;
 
 		SIV3D_NODISCARD_CXX20
-		constexpr Point(value_type _x, value_type _y) noexcept
-			: x(_x)
-			, y(_y) {}
+		constexpr Point(value_type _x, value_type _y) noexcept;
 
+	# if __cpp_lib_concepts
+		template <Concept::Integral IntegerX, Concept::Integral IntegerY>
+	# else
+		template <class IntegerX, class IntegerY, std::enable_if_t<std::is_integral_v<IntegerX>&& std::is_integral_v<IntegerY>>* = nullptr>
+	# endif
+		SIV3D_NODISCARD_CXX20
+		constexpr Point(IntegerX _x, IntegerY _y) noexcept;
 
+		template <class X, class Y, std::enable_if_t<!std::is_integral_v<X> || !std::is_integral_v<Y>>* = nullptr>
+		constexpr Point(X _x, Y _y) noexcept = delete;
 
 		[[nodiscard]]
-		constexpr Point operator *(const int32 s) const noexcept
-		{
-			return{ x * s, y * s };
-		}
+		constexpr value_type elem(size_t index) const noexcept;
+
+		[[nodiscard]]
+		constexpr Point operator +() const noexcept;
+
+		[[nodiscard]]
+		constexpr Point operator -() const noexcept;
+
+		[[nodiscard]]
+		constexpr Point operator +(Point p) const noexcept;
+
+		[[nodiscard]]
+		constexpr Point operator -(Point p) const noexcept;
+
+		template <class Type>
+		[[nodiscard]]
+		constexpr Vector2D<Type> operator +(Vector2D<Type> v) const noexcept;
+
+		template <class Type>
+		[[nodiscard]]
+		constexpr Vector2D<Type> operator -(Vector2D<Type> v) const noexcept;
+
+		[[nodiscard]]
+		constexpr Point operator *(int32 s) const noexcept;
 
 		[[nodiscard]]
 		constexpr Float2 operator *(float s) const noexcept;
@@ -52,24 +81,241 @@ namespace s3d
 		constexpr Vec2 operator *(double s) const noexcept;
 
 		[[nodiscard]]
-		friend constexpr bool operator ==(const Point& lhs, const Point& rhs) noexcept
+		constexpr Point operator *(Point p) const noexcept;
+
+		template <class Type>
+		[[nodiscard]]
+		constexpr Vector2D<Type> operator *(Vector2D<Type> v) const noexcept;
+
+		[[nodiscard]]
+		friend constexpr Point operator *(int32 s, Point p) noexcept
 		{
-			return (lhs.x == rhs.x) && (lhs.y == rhs.y);
+			return{ s * p.x, s * p.y };
 		}
 
 		[[nodiscard]]
-		friend constexpr bool operator !=(const Point& lhs, const Point& rhs) noexcept
+		friend constexpr Vector2D<float> operator *(float s, Point p) noexcept
 		{
-			return (lhs.x != rhs.x) || (lhs.y != rhs.y);
+			return{ s * p.x, s * p.y };
 		}
 
 		[[nodiscard]]
-		constexpr bool isZero() const noexcept
+		friend constexpr Vector2D<double> operator *(double s, Point p) noexcept
 		{
-			return ((x == 0) && (y == 0));
+			return{ s * p.x, s * p.y };
 		}
 
+		[[nodiscard]]
+		constexpr Point operator /(int32 s) const noexcept;
 
+		[[nodiscard]]
+		constexpr Float2 operator /(float s) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vec2 operator /(double s) const noexcept;
+
+		[[nodiscard]]
+		constexpr Point operator /(Point p) const noexcept;
+
+		template <class Type>
+		[[nodiscard]]
+		constexpr Vector2D<Type> operator /(Vector2D<Type> v) const noexcept;
+
+		constexpr Point& operator +=(Point p) noexcept;
+
+		constexpr Point& operator -=(Point p) noexcept;
+
+		constexpr Point& operator *=(int32 s) noexcept;
+
+		constexpr Point& operator /=(int32 s) noexcept;
+
+		[[nodiscard]]
+		constexpr bool operator ==(const Point& other) noexcept;
+
+		[[nodiscard]]
+		constexpr bool operator !=(const Point& other) noexcept;
+
+		[[nodiscard]]
+		constexpr bool isZero() const noexcept;
+
+		constexpr Point& set(int32 _x, int32 _y) noexcept;
+
+		constexpr Point& set(const Point p) noexcept;
+
+		[[nodiscard]]
+		constexpr Point movedBy(int32 _x, int32 _y) const noexcept;
+
+		[[nodiscard]]
+		constexpr Point movedBy(Point p) const noexcept;
+
+		template <class Type>
+		[[nodiscard]]
+		constexpr Vector2D<Type> movedBy(Vector2D<Type> v) const noexcept;
+
+		constexpr Point& moveBy(int32 _x, int32 _y) noexcept;
+
+		constexpr Point& moveBy(Point p) noexcept;
+
+		[[nodiscard]]
+		double distanceFrom(double _x, double _y) const noexcept;
+
+		[[nodiscard]]
+		double distanceFrom(Point p) const noexcept;
+
+		template <class Type>
+		[[nodiscard]]
+		Type distanceFrom(Vector2D<Type> p) const noexcept;
+
+		[[nodiscard]]
+		constexpr double distanceFromSq(double _x, double _y) const noexcept;
+
+		[[nodiscard]]
+		constexpr double distanceFromSq(Point p) const noexcept;
+
+		template <class Type>
+		[[nodiscard]]
+		constexpr Type distanceFromSq(Vector2D<Type> p) const noexcept;
+
+		[[nodiscard]]
+		constexpr int32 manhattanDistanceFrom(int32 _x, int32 _y) const noexcept;
+
+		[[nodiscard]]
+		constexpr int32 manhattanDistanceFrom(Point p) const noexcept;
+
+		template <class Type = double>
+		[[nodiscard]]
+		Type length() const noexcept;
+
+		template <class Type = double>
+		[[nodiscard]]
+		constexpr Type lengthSq() const noexcept;
+
+		template <class Type = double>
+		[[nodiscard]]
+		constexpr Vector2D<Type> lerp(Point other, double f) const noexcept;
+
+		template <class Type>
+		[[nodiscard]]
+		constexpr Vector2D<Type> lerp(Vector2D<Type> other, double f) const noexcept;
+
+		//template <class Shape2DType>
+		//[[nodiscard]]
+		//bool intersects(const Shape2DType& shape) const;
+
+		//[[nodiscard]]
+		//bool leftClicked() const;
+
+		//[[nodiscard]]
+		//bool leftPressed() const;
+
+		//[[nodiscard]]
+		//bool leftReleased() const;
+
+		//[[nodiscard]]
+		//bool rightClicked() const;
+
+		//[[nodiscard]]
+		//bool rightPressed() const;
+
+		//[[nodiscard]]
+		//bool rightReleased() const;
+
+		//[[nodiscard]]
+		//bool mouseOver() const;
+
+		//const Point& paint(Image& dst, const Color& color) const;
+
+		//const Point& overwrite(Image& dst, const Color& color) const;
+
+		/// <summary>
+		/// Point{ x, x }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Point xx() const noexcept;
+
+		/// <summary>
+		/// Point{ x, y }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Point xy() const noexcept;
+
+		/// <summary>
+		/// Point{ y, x }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Point yx() const noexcept;
+
+		/// <summary>
+		/// Point{ y, y }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Point yy() const noexcept;
+
+		/// <summary>
+		/// Point{ x, 0 }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Point x0() const noexcept;
+
+		/// <summary>
+		/// Point{ y, 0 }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Point y0() const noexcept;
+
+		/// <summary>
+		/// Point{ 0, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Point Zero() noexcept;
+
+		/// <summary>
+		/// Point{ 1, 1 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Point One() noexcept;
+
+		/// <summary>
+		/// Point{ value, value }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Point All(value_type value = 1) noexcept;
+
+		/// <summary>
+		/// Point{ 1, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Point UnitX() noexcept;
+
+		/// <summary>
+		/// Point{ 0, 1 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Point UnitY() noexcept;
+
+		/// <summary>
+		/// Point{ -length, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Point Left(value_type length = 1) noexcept;
+
+		/// <summary>
+		/// Point{ length, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Point Right(value_type length = 1) noexcept;
+
+		/// <summary>
+		/// Point{ 0, -length }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Point Up(value_type length = 1) noexcept;
+
+		/// <summary>
+		/// Point{ 0, length }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Point Down(value_type length = 1) noexcept;
 
 		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Point& value)
@@ -87,11 +333,16 @@ namespace s3d
 				>> value.x >> unused
 				>> value.y >> unused;
 		}
+
+		static void _Formatter(FormatData& formatData, const Point& value);
+
+		friend void Formatter(FormatData& formatData, const Point& value)
+		{
+			_Formatter(formatData, value);
+		}
 	};
 
 	using Size = Point;
-
-	void Formatter(FormatData& formatData, const Point& value);
 }
 
 template <>

@@ -9,12 +9,12 @@
 //
 //-----------------------------------------------
 
-# include <Siv3D/Point.hpp>
+# include <Siv3D/PointVector.hpp>
 # include <Siv3D/FormatInt.hpp>
 
 namespace s3d
 {
-	void Formatter(FormatData& formatData, const Point& value)
+	void Point::_Formatter(FormatData& formatData, const Point& value)
 	{
 		const size_t bufferSize = 12 * 2 + 5;
 		char32 buf[bufferSize];

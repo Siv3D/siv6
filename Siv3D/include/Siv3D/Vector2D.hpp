@@ -14,6 +14,8 @@
 
 namespace s3d
 {
+	struct Point;
+
 	template <class Type>
 	struct Vector2D
 	{
@@ -25,37 +27,25 @@ namespace s3d
 
 		template <class X, class Y>
 		SIV3D_NODISCARD_CXX20
-		constexpr Vector2D(X _x, Y _y) noexcept
-			: x(static_cast<value_type>(_x))
-			, y(static_cast<value_type>(_y)) {}
+		constexpr Vector2D(X _x, Y _y) noexcept;
 
 		SIV3D_NODISCARD_CXX20
-		constexpr Vector2D(value_type _x, value_type _y) noexcept
-			: x(_x)
-			, y(_y) {}
+		constexpr Vector2D(value_type _x, value_type _y) noexcept;
 
 		SIV3D_NODISCARD_CXX20
-		constexpr Vector2D(const Point& v) noexcept
-			: x(static_cast<value_type>(v.x))
-			, y(static_cast<value_type>(v.y)) {}
+		constexpr Vector2D(Point p) noexcept;
 
 		template <class U>
 		SIV3D_NODISCARD_CXX20
-		constexpr Vector2D(const Vector2D<U>& v) noexcept
-			: x(static_cast<value_type>(v.x))
-			, y(static_cast<value_type>(v.y)) {}
-
+		constexpr Vector2D(const Vector2D<U>& v) noexcept;
 
 
 
 		[[nodiscard]]
-		constexpr Point asPoint() const noexcept
-		{
-			return{ static_cast<Point::value_type>(x), static_cast<Point::value_type>(y) };
-		}
+		constexpr Point asPoint() const noexcept;
 	};
 
-	using Float2 = Vector2D<float>;
-	using Vec2 = Vector2D<double>;
-	using SizeF = Vec2;
+	using Float2	= Vector2D<float>;
+	using Vec2		= Vector2D<double>;
+	using SizeF		= Vec2;
 }
