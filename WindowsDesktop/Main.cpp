@@ -8,8 +8,6 @@ SIV3D_OPTION_RUN_TEST(false);
 
 void Main()
 {
-	const uint32 a = AsUint32(0.3f);
-
 	while (System::Update())
 	{
 

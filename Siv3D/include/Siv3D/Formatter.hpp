@@ -12,13 +12,14 @@
 # pragma once
 # include <array>
 # include <vector>
-
+# define SIMDE_ENABLE_NATIVE_ALIASES
+# include <ThirdParty/simde/x86/sse.h>
 # include "Common.hpp"
-# include <xmmintrin.h>
+# include "FormatData.hpp"
+
 # if  __has_include(<compare>)
 #	include <compare>
 # endif
-# include "FormatData.hpp"
 
 namespace s3d
 {

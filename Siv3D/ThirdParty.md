@@ -12,4 +12,5 @@ Library | Version
 [GLFW](https://github.com/glfw/glfw) | 3.3.2
 [miniutf](https://github.com/dropbox/miniutf) | 
 [SFMT](https://github.com/MersenneTwister-Lab/SFMT) | 1.5.2
+[simde](https://github.com/nemequ/simde) | 
 [Xoshiro-cpp](https://github.com/Reputeless/Xoshiro-cpp) | v1.1

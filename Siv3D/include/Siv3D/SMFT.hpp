@@ -18,7 +18,8 @@
 
 # if SIV3D_INTRINSIC(SSE)
 #   define HAVE_SSE2
-#	include <emmintrin.h>
+#	define SIMDE_ENABLE_NATIVE_ALIASES
+#	include <ThirdParty/simde/x86/sse2.h>
 # endif
 
 /** Mersenne Exponent. The period of the sequence

@@ -157,6 +157,9 @@
     <Filter Include="include\ThirdParty\Xoshiro-cpp">
       <UniqueIdentifier>{1d187a7e-074c-4e85-9d25-190a09edc15d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\ThirdParty\EnumBitmask">
+      <UniqueIdentifier>{15c10949-9372-4366-b2d3-8b3dbd9ab4e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -563,6 +566,9 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatData.ipp">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\EnumBitmask\EnumBitmask.hpp">
+      <Filter>include\ThirdParty\EnumBitmask</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

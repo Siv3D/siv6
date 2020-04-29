@@ -394,6 +394,9 @@ rules.ninja
 ## Ignore dependencies folder
 /Dependencies/*/
 
+## Third party libraries
+!**/simde/*
+
 ## Ignore compiled binaries
 /Siv3D/lib/*/Siv3D_d.lib
 /Siv3D/lib/*/Siv3D.lib
