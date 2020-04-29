@@ -14,18 +14,13 @@
 namespace s3d
 {
 	template <class Type>
-	inline constexpr Vector2D<Type>::Vector2D(value_type _x, value_type _y) noexcept
-		: x(_x)
-		, y(_y) {}
-
-	template <class Type>
 	template <class X, class Y>
-	inline constexpr Vector2D<Type>::Vector2D(X _x, Y _y) noexcept
+	inline constexpr Vector2D<Type>::Vector2D(const X _x, const Y _y) noexcept
 		: x(static_cast<value_type>(_x))
 		, y(static_cast<value_type>(_y)) {}
 
 	template <class Type>
-	inline constexpr Vector2D<Type>::Vector2D(Point p) noexcept
+	inline constexpr Vector2D<Type>::Vector2D(const Point p) noexcept
 		: x(static_cast<value_type>(p.x))
 		, y(static_cast<value_type>(p.y)) {}
 

@@ -30,7 +30,9 @@ namespace s3d
 		Vector2D() = default;
 
 		SIV3D_NODISCARD_CXX20
-		constexpr Vector2D(value_type _x, value_type _y) noexcept;
+		constexpr Vector2D(value_type _x, value_type _y) noexcept
+			: x(_x)
+			, y(_y) {}
 
 		template <class X, class Y>
 		SIV3D_NODISCARD_CXX20

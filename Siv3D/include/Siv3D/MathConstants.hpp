@@ -11,7 +11,6 @@
 
 # pragma once
 # include <limits>
-# include <numbers>
 
 # ifdef __cpp_lib_concepts
 #	define SIV3D_MATH_CONSTANTS_CONCEPT template <Concept::FloatingPoint FloatingPoint>

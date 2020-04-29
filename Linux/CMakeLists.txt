@@ -55,6 +55,7 @@ add_library(
   ../Siv3D/src/Siv3D/Unicode/UnicodeUtility.cpp
   ../Siv3D/src/Siv3D/UserAction/CUserAction.cpp
   ../Siv3D/src/Siv3D/UserAction/UserActionFactory.cpp
+  ../Siv3D/src/Siv3D/Vector2D/SivVector2D.cpp
   ../Siv3D/src/Siv3D/Window/SivWindow.cpp
   ../Siv3D/src/Siv3D/Window/WindowFactory.cpp
 
