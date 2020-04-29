@@ -249,6 +249,15 @@
 		2C43B2EC2426630000D5CBBB /* SivError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivError.cpp; sourceTree = "<group>"; };
 		2C44429D24271E1700557D51 /* SivEngineLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivEngineLog.cpp; sourceTree = "<group>"; };
 		2C4442A02427AA7C00557D51 /* miniutf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miniutf.hpp; sourceTree = "<group>"; };
+		2C46837124590D51000006C0 /* FormatBool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatBool.hpp; sourceTree = "<group>"; };
+		2C46837224590D51000006C0 /* FloatingPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FloatingPoint.hpp; sourceTree = "<group>"; };
+		2C46837324590D51000006C0 /* FormatBool.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatBool.ipp; sourceTree = "<group>"; };
+		2C46837424590D51000006C0 /* FloatingPoint.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FloatingPoint.ipp; sourceTree = "<group>"; };
+		2C46837524590D51000006C0 /* FormatFloat.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatFloat.ipp; sourceTree = "<group>"; };
+		2C46837624590D79000006C0 /* FormatLiteral.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatLiteral.ipp; sourceTree = "<group>"; };
+		2C46837724590D79000006C0 /* FormatData.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatData.ipp; sourceTree = "<group>"; };
+		2C46837924590D8D000006C0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		2C46837A24590D8D000006C0 /* EnumBitmask.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnumBitmask.hpp; sourceTree = "<group>"; };
 		2C4719F22449698A00BAC3E8 /* Hash.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hash.ipp; sourceTree = "<group>"; };
 		2C4719F32449698A00BAC3E8 /* Hash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hash.hpp; sourceTree = "<group>"; };
 		2C4719F5244969A300BAC3E8 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxhash.h; sourceTree = "<group>"; };
@@ -758,6 +767,15 @@
 			path = miniutf;
 			sourceTree = "<group>";
 		};
+		2C46837824590D8D000006C0 /* EnumBitmask */ = {
+			isa = PBXGroup;
+			children = (
+				2C46837924590D8D000006C0 /* LICENSE */,
+				2C46837A24590D8D000006C0 /* EnumBitmask.hpp */,
+			);
+			path = EnumBitmask;
+			sourceTree = "<group>";
+		};
 		2C46FDBA226EE90600828870 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -912,12 +930,19 @@
 				2C6897E62436064900C36C25 /* EngineLog.hpp */,
 				2C4719FF244990FD00BAC3E8 /* EngineLog.ipp */,
 				2C6897FC2436064900C36C25 /* Error.hpp */,
+				2C46837224590D51000006C0 /* FloatingPoint.hpp */,
+				2C46837424590D51000006C0 /* FloatingPoint.ipp */,
 				2C68980E2436064900C36C25 /* Format.hpp */,
+				2C46837124590D51000006C0 /* FormatBool.hpp */,
+				2C46837324590D51000006C0 /* FormatBool.ipp */,
 				2C6897EF2436064900C36C25 /* FormatData.hpp */,
+				2C46837724590D79000006C0 /* FormatData.ipp */,
 				2C6898022436064900C36C25 /* FormatFloat.hpp */,
+				2C46837524590D51000006C0 /* FormatFloat.ipp */,
 				2C6897E32436064900C36C25 /* FormatInt.hpp */,
 				2C4719FE244990FD00BAC3E8 /* FormatInt.ipp */,
 				2C6898032436064900C36C25 /* FormatLiteral.hpp */,
+				2C46837624590D79000006C0 /* FormatLiteral.ipp */,
 				2C6897F92436064900C36C25 /* Formatter.hpp */,
 				2C471A00244990FD00BAC3E8 /* Formatter.ipp */,
 				2C6897EA2436064900C36C25 /* Fwd.hpp */,
@@ -971,6 +996,7 @@
 		2C6898102436064900C36C25 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2C46837824590D8D000006C0 /* EnumBitmask */,
 				2C6898112436064900C36C25 /* fmt */,
 				2C4A83E22457E7A4007AAE76 /* Xoshiro-cpp */,
 				2C4719F4244969A300BAC3E8 /* xxHash */,
