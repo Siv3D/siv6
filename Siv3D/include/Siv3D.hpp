@@ -230,8 +230,12 @@
 // Format (floating point)
 # include <Siv3D/FormatFloat.hpp>
 
+// フォーマット用オブジェクト
+// Formatting object
 # include <Siv3D/FormatData.hpp>
 
+// フォーマット関数
+// Formatter
 # include <Siv3D/Formatter.hpp> // [Siv3D ToDo]
 
 // 文字列フォーマット
@@ -258,13 +262,75 @@
 // Text to value conversion
 //# include <Siv3D/Parse.hpp> // [Siv3D ToDo]
 
+// 正規表現
+// Regular expression
+//# include <Siv3D/Regex.hpp> // [Siv3D ToDo]
+
+// 絵文字リスト
+// Emoji list
+//# include <Siv3D/EmojiList.hpp> // [Siv3D ToDo]
+
+//////////////////////////////////////////////////
+//
+//	時間と時刻
+//	Date and Time
+//
+//////////////////////////////////////////////////
+
+// 時間の表現
+// Duration
+//# include <Siv3D/Duration.hpp> // [Siv3D ToDo]
+
+// 曜日
+// Day of week
+//# include <Siv3D/DayOfWeek.hpp> // [Siv3D ToDo]
+
+// 日付
+// Date
+//# include <Siv3D/Date.hpp> // [Siv3D ToDo]
+
+// 日付と時刻
+// Date and time
+//# include <Siv3D/DateTime.hpp> // [Siv3D ToDo]
+
+// 時間
+// Time
+# include <Siv3D/Time.hpp> // [Siv3D ToDo]
+
+// 経過時間の計測
+// Stopwatch
+//# include <Siv3D/Stopwatch.hpp> // [Siv3D ToDo]
+
+// スピードを変更可能なストップウォッチ
+// Stopwatch with Variable Speed
+//# include <Siv3D/CustomStopwatch.hpp> // [Siv3D ToDo]
+
+// カウントダウンタイマー
+// Countdown timer
+//# include <Siv3D/Timer.hpp> // [Siv3D ToDo]
+
+// プロファイラー
+// Profiler
+//# include <Siv3D/TimeProfiler.hpp> // [Siv3D ToDo]
+
+// Clock Counter in Milliseconds
+// 処理にかかった時間の測定
+//# include <Siv3D/MillisecClock.hpp> // [Siv3D ToDo]
+
+// Clock Counter in Microseconds
+// 処理にかかった時間の測定
+//# include <Siv3D/MicrosecClock.hpp> // [Siv3D ToDo]
+
+// Clock Counter in CPU Clocks
+// 処理にかかった CPU サイクル数の測定
+//# include <Siv3D/RDTSCClock.hpp> // [Siv3D ToDo]
+
+
 
 
 # include <Siv3D/ApplicationOptions.hpp>
 
 # include <Siv3D/CPUInfo.hpp>
-
-# include <Siv3D/Time.hpp>
 
 # include <Siv3D/LogLevel.hpp>
 # include <Siv3D/LogType.hpp>
