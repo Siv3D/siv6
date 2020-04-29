@@ -201,6 +201,96 @@ namespace s3d::detail
 
 	//////////////////////////////////////////////////
 	//
+	//	Abs
+	//
+	//////////////////////////////////////////////////
+
+	struct Abs_impl
+	{
+	# if __cpp_lib_concepts
+		template <Concept::Signed Signed>
+	# else
+		template <class Signed, std::enable_if_t<std::is_signed_v<Signed>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		constexpr auto operator ()(Signed x) const noexcept
+		{
+			if (x < 0)
+			{
+				return -x;
+			}
+			else
+			{
+				return x;
+			}
+		}
+
+		[[nodiscard]]
+		constexpr auto operator ()(PlaceHolder_t) const noexcept
+		{
+			return Abs_impl{};
+		}
+	};
+
+	//////////////////////////////////////////////////
+	//
+	//	AbsDiff
+	//
+	//////////////////////////////////////////////////
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	struct AbsDiff1_impl
+	{
+		const Arithmetic a;
+
+		constexpr AbsDiff1_impl(Arithmetic _a) noexcept
+			: a(_a) {}
+
+		[[nodiscard]]
+		constexpr auto operator()(Arithmetic b) const noexcept
+		{
+			if constexpr (std::is_integral_v<Arithmetic>)
+			{
+				using U = std::make_unsigned_t<Arithmetic>;
+				return (a > b) ? (static_cast<U>(a) - static_cast<U>(b))
+					: (static_cast<U>(b) - static_cast<U>(a));
+			}
+			else
+			{
+				return Abs_impl{}(a - b);
+			}
+		}
+	};
+
+	struct AbsDiff2_impl
+	{
+	# if __cpp_lib_concepts
+		template <Concept::Scalar Arithmetic>
+	# else
+		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		constexpr auto operator()(Arithmetic a, Arithmetic b) const noexcept
+		{
+			if constexpr (std::is_integral_v<Arithmetic>)
+			{
+				using U = std::make_unsigned_t<Arithmetic>;
+				return (a > b) ? (static_cast<U>(a) - static_cast<U>(b))
+					: (static_cast<U>(b) - static_cast<U>(a));
+			}
+			else
+			{
+				return Abs_impl{}(a - b);
+			}
+		}
+	};
+
+	//////////////////////////////////////////////////
+	//
 	//	FromEnum
 	//
 	//////////////////////////////////////////////////
@@ -221,7 +311,7 @@ namespace s3d::detail
 		[[nodiscard]]
 		constexpr auto operator ()(PlaceHolder_t) const noexcept
 		{
-			return FromEnum_impl();
+			return FromEnum_impl{};
 		}
 	};
 
@@ -247,7 +337,7 @@ namespace s3d::detail
 		[[nodiscard]]
 		constexpr auto operator ()(PlaceHolder_t) const noexcept
 		{
-			return ToEnum_impl();
+			return ToEnum_impl{};
 		}
 	};
 
@@ -269,7 +359,7 @@ namespace s3d::detail
 		[[nodiscard]]
 		constexpr IsOdd_impl operator()(PlaceHolder_t) const
 		{
-			return IsOdd_impl();
+			return IsOdd_impl{};
 		}
 	};
 
@@ -291,7 +381,7 @@ namespace s3d::detail
 		[[nodiscard]]
 		constexpr IsEven_impl operator()(PlaceHolder_t) const
 		{
-			return IsEven_impl();
+			return IsEven_impl{};
 		}
 	};
 
@@ -315,7 +405,7 @@ namespace s3d::detail
 		[[nodiscard]]
 		constexpr Identity_impl operator()(PlaceHolder_t) const noexcept
 		{
-			return Identity_impl();
+			return Identity_impl{};
 		}
 	};
 }

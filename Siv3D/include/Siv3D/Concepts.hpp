@@ -34,6 +34,9 @@ namespace s3d
 		concept FloatingPoint = std::is_floating_point_v<Type>;
 
 		template <class Type>
+		concept Signed = std::is_signed_v<Type>;
+
+		template <class Type>
 		concept Scalar = std::is_scalar_v<Type>;
 
 		template <class Type>

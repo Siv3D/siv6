@@ -41,7 +41,7 @@ namespace s3d
 	[[nodiscard]]
 	inline constexpr auto Max(PlaceHolder_t, PlaceHolder_t) noexcept
 	{
-		return detail::Max2_impl();
+		return detail::Max2_impl{};
 	}
 
 	/// <summary>
@@ -124,7 +124,7 @@ namespace s3d
 	[[nodiscard]]
 	inline constexpr auto Min(PlaceHolder_t, PlaceHolder_t) noexcept
 	{
-		return detail::Min2_impl();
+		return detail::Min2_impl{};
 	}
 
 	/// <summary>
@@ -447,11 +447,64 @@ namespace s3d
 
 	//////////////////////////////////////////////////
 	//
+	//	Abs
+	//
+	//////////////////////////////////////////////////
+
+	inline constexpr auto Abs = detail::Abs_impl{};
+
+	//////////////////////////////////////////////////
+	//
+	//	AbsDiff
+	//
+	//////////////////////////////////////////////////
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	[[nodiscard]]
+	inline constexpr auto AbsDiff(Arithmetic a, PlaceHolder_t) noexcept
+	{
+		return detail::AbsDiff1_impl<Arithmetic>(a);
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	[[nodiscard]]
+	inline constexpr auto AbsDiff(PlaceHolder_t, Arithmetic b) noexcept
+	{
+		return detail::AbsDiff1_impl<Arithmetic>(b);
+	}
+
+	[[nodiscard]]
+	inline constexpr auto AbsDiff(PlaceHolder_t, PlaceHolder_t) noexcept
+	{
+		return detail::AbsDiff2_impl{};
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	[[nodiscard]]
+	inline constexpr auto AbsDiff(Arithmetic a, Arithmetic b) noexcept
+	{
+		return detail::AbsDiff2_impl{}(a, b);
+	}
+
+	//////////////////////////////////////////////////
+	//
 	//	FromEnum
 	//
 	//////////////////////////////////////////////////
 
-	inline constexpr auto FromEnum = detail::FromEnum_impl();
+	inline constexpr auto FromEnum = detail::FromEnum_impl{};
 
 	//////////////////////////////////////////////////
 	//
@@ -464,7 +517,7 @@ namespace s3d
 # else
 	template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
 # endif
-	inline constexpr auto ToEnum = detail::ToEnum_impl<Enum>();
+	inline constexpr auto ToEnum = detail::ToEnum_impl<Enum>{};
 
 	//////////////////////////////////////////////////
 	//
@@ -472,7 +525,7 @@ namespace s3d
 	//
 	//////////////////////////////////////////////////
 
-	inline constexpr auto IsOdd = detail::IsOdd_impl();
+	inline constexpr auto IsOdd = detail::IsOdd_impl{};
 
 	//////////////////////////////////////////////////
 	//
@@ -480,7 +533,7 @@ namespace s3d
 	//
 	//////////////////////////////////////////////////
 
-	inline constexpr auto IsEven = detail::IsEven_impl();
+	inline constexpr auto IsEven = detail::IsEven_impl{};
 
 	//////////////////////////////////////////////////
 	//
@@ -488,7 +541,7 @@ namespace s3d
 	//
 	//////////////////////////////////////////////////
 
-	inline constexpr auto Identity = detail::Identity_impl();
+	inline constexpr auto Identity = detail::Identity_impl{};
 
 
 	/// <summary>

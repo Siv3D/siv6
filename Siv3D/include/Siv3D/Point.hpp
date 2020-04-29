@@ -17,8 +17,8 @@
 namespace s3d
 {
 	template <class Type> struct Vector2D;
-	using Float2 = Vector2D<float>;
-	using Vec2 = Vector2D<double>;
+	using Float2	= Vector2D<float>;
+	using Vec2		= Vector2D<double>;
 
 	struct Point
 	{
@@ -130,10 +130,16 @@ namespace s3d
 		constexpr Point& operator /=(int32 s) noexcept;
 
 		[[nodiscard]]
-		constexpr bool operator ==(const Point& other) noexcept;
+		friend constexpr bool operator ==(Point lhs, Point rhs) noexcept
+		{
+			return (lhs.x == rhs.x) && (lhs.y == rhs.y);
+		}
 
 		[[nodiscard]]
-		constexpr bool operator !=(const Point& other) noexcept;
+		friend constexpr bool operator !=(Point lhs, Point rhs) noexcept
+		{
+			return (lhs.x != rhs.x) || (lhs.y != rhs.y);
+		}
 
 		[[nodiscard]]
 		constexpr bool isZero() const noexcept;

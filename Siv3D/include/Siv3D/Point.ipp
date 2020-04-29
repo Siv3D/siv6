@@ -151,16 +151,6 @@ namespace s3d
 		return *this;
 	}
 
-	inline constexpr bool Point::operator ==(const Point& other) noexcept
-	{
-		return (x == other.x) && (y == other.y);
-	}
-
-	inline constexpr bool Point::operator !=(const Point& other) noexcept
-	{
-		return (x != other.x) || (y != other.y);
-	}
-
 	inline constexpr bool Point::isZero() const noexcept
 	{
 		return ((x == 0) && (y == 0));
@@ -201,7 +191,8 @@ namespace s3d
 
 	inline constexpr Point& Point::moveBy(const Point p) noexcept
 	{
-		return *this += p;
+		x += p.x; y += p.y;
+		return *this;
 	}
 
 	inline double Point::distanceFrom(const double _x, const double _y) const noexcept
