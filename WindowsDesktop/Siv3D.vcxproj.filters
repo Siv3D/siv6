@@ -160,6 +160,9 @@
     <Filter Include="include\ThirdParty\EnumBitmask">
       <UniqueIdentifier>{15c10949-9372-4366-b2d3-8b3dbd9ab4e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Vector2D">
+      <UniqueIdentifier>{b51376a4-4546-47fa-8ae4-afcb51ea6816}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -573,6 +576,12 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Vector2D.ipp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\MathConstants.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\MathConstants.ipp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -757,6 +766,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Random\SivRandom.cpp">
       <Filter>src\Siv3D\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Vector2D\SivVector2D.cpp">
+      <Filter>src\Siv3D\Vector2D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -55,6 +55,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Logger.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LogLevel.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LogType.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\MathConstants.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\MathConstants.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Meta.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\NamedParameter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Number.hpp" />
@@ -197,6 +199,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\UnicodeUtility.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\UserAction\CUserAction.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\UserAction\UserActionFactory.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\Vector2D\SivVector2D.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Window\SivWindow.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Window\WindowFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Test\Siv3DTest.cpp" />

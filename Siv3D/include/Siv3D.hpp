@@ -326,7 +326,7 @@
 //# include <Siv3D/RDTSCClock.hpp> // [Siv3D ToDo]
 
 
-
+# include <Siv3D/MathConstants.hpp>
 
 # include <Siv3D/ApplicationOptions.hpp>
 

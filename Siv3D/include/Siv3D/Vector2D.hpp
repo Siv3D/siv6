@@ -11,6 +11,8 @@
 
 # pragma once
 # include "Common.hpp"
+# include "FormatData.hpp"
+# include "FormatLiteral.hpp"
 
 namespace s3d
 {
@@ -43,6 +45,12 @@ namespace s3d
 
 		[[nodiscard]]
 		constexpr value_type elem(size_t index) const noexcept;
+
+		[[nodiscard]]
+		value_type* getPointer() noexcept;
+
+		[[nodiscard]]
+		const value_type* getPointer() const noexcept;
 
 		[[nodiscard]]
 		constexpr Vector2D operator +() const noexcept;
@@ -92,20 +100,22 @@ namespace s3d
 			return (lhs.x != rhs.x) || (lhs.y != rhs.y);
 		}
 
-		//[[nodiscard]]
-		//constexpr bool epsilonEquals(Vector2D other, value_type epsilon) const noexcept;
+		[[nodiscard]]
+		constexpr bool epsilonEquals(Vector2D other, value_type epsilon) const noexcept;
 
-		//[[nodiscard]]
-		//constexpr bool hasSameDirection(Vector2D other) const noexcept;
+		[[nodiscard]]
+		constexpr bool hasSameDirection(Vector2D other) const noexcept;
 
-		//[[nodiscard]]
-		//constexpr bool hasOppositeDirection(Vector2D other) const noexcept;
+		[[nodiscard]]
+		constexpr bool hasOppositeDirection(Vector2D other) const noexcept;
 
 		[[nodiscard]]
 		constexpr bool isZero() const noexcept;
 
 		[[nodiscard]]
 		bool hasNaN() const noexcept;
+
+		constexpr void clear() noexcept;
 
 		constexpr Vector2D& set(value_type _x, value_type _y) noexcept;
 
@@ -133,6 +143,24 @@ namespace s3d
 		constexpr value_type cross(Vector2D v) const noexcept;
 
 		[[nodiscard]]
+		value_type length() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type lengthSq() const noexcept;
+
+		[[nodiscard]]
+		value_type invLength() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type manhattanLength() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type manhattanDistanceFrom(value_type _x, value_type _y) const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type manhattanDistanceFrom(Vector2D v) const noexcept;
+
+		[[nodiscard]]
 		value_type distanceFrom(value_type _x, value_type _y) const noexcept;
 
 		[[nodiscard]]
@@ -145,23 +173,227 @@ namespace s3d
 		constexpr value_type distanceFromSq(Vector2D v) const noexcept;
 
 		[[nodiscard]]
-		value_type length() const noexcept;
+		Vector2D setLength(value_type _length) const noexcept;
 
-		[[nodiscard]]
-		constexpr value_type lengthSq() const noexcept;
-
-		[[nodiscard]]
-		value_type lengthInv() const noexcept;
-
-		Vector2D& setLength(value_type _length) noexcept;
+		Vector2D& setLengthSelf(value_type _length) noexcept;
 
 		[[nodiscard]]
 		Vector2D limitLength(value_type maxLength) const noexcept;
 
+		Vector2D& limitLengthSelf(value_type maxLength) noexcept;
 
+		[[nodiscard]]
+		Vector2D normalized() const noexcept;
+
+		Vector2D& normalize() noexcept;
+
+		[[nodiscard]]
+		Vector2D rotated(value_type angle) const noexcept;
+
+		Vector2D& rotate(value_type angle) noexcept;
+
+		[[nodiscard]]
+		Vector2D rotatedAt(Vector2D center, value_type angle) const noexcept;
+
+		Vector2D& rotateAt(Vector2D center, value_type angle) noexcept;
+
+		[[nodiscard]]
+		value_type getAngle() const noexcept;
+
+		[[nodiscard]] 
+		value_type getAngle(Vector2D other) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D getPerpendicularCW() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D getPerpendicularCCW() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D getMidpoint(Vector2D other) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D projection(Vector2D onto) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D lerp(Vector2D other, value_type f) const noexcept;
 
 		[[nodiscard]]
 		constexpr Point asPoint() const noexcept;
+
+		//template <class Shape2DType>
+		//[[nodiscard]] bool intersects(const Shape2DType& shape) const
+		//{
+		//	return Geometry2D::Intersect(*this, shape);
+		//}
+
+		/// <summary>
+		/// Vector2D{ x, x }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Vector2D xx() const noexcept;
+
+		/// <summary>
+		/// Vector2D{ x, y }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Vector2D xy() const noexcept;
+
+		/// <summary>
+		/// Vector2D{ y, x }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Vector2D yx() const noexcept;
+
+		/// <summary>
+		/// Vector2D{ y, y }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Vector2D yy() const noexcept;
+
+		/// <summary>
+		/// Vector2D{ x, 0 }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Vector2D x0() const noexcept;
+
+		/// <summary>
+		/// Vector2D{ y, 0 }
+		/// </summary>
+		[[nodiscard]]
+		constexpr Vector2D y0() const noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D Zero() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 1, 1 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D One() noexcept;
+
+		/// <summary>
+		/// Vector2D{ value, value }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D All(value_type value = 1) noexcept;
+
+		/// <summary>
+		/// Vector2D{ 1, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D UnitX() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0, 1 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D UnitY() noexcept;
+
+		/// <summary>
+		/// Vector2D{ -length, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D Left(value_type length = 1) noexcept;
+
+		/// <summary>
+		/// Vector2D{ length, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D Right(value_type length = 1) noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0, -length }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D Up(value_type length = 1) noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0, length }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D Down(value_type length = 1) noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0.5, 0.5 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D AnchorCenter() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D AnchorTopLeft() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0.5, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D AnchorTopCenter() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 1, 0 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D AnchorTopRight() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 1, 0.5 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D AnchorRightCenter() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 1, 1 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D AnchorBottomRight() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0.5, 1 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D AnchorBottomCenter() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0, 1 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D AnchorBottomLeft() noexcept;
+
+		/// <summary>
+		/// Vector2D{ 0, 0.5 }
+		/// </summary>
+		[[nodiscard]]
+		static constexpr Vector2D AnchorLeftCenter() noexcept;
+
+		template <class CharType>
+		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Vector2D& value)
+		{
+			return output << CharType('(')
+				<< value.x << CharType(',') << CharType(' ')
+				<< value.y << CharType(')');
+		}
+
+		template <class CharType>
+		friend std::basic_istream<CharType>& operator >>(std::basic_istream<CharType>& input, Vector2D& value)
+		{
+			CharType unused;
+			return input >> unused
+				>> value.x >> unused
+				>> value.y >> unused;
+		}
+
+		static void _Formatter(FormatData& formatData, const Vector2D& value);
+
+		friend void Formatter(FormatData& formatData, const Vector2D& value)
+		{
+			_Formatter(formatData, value);
+		}
 	};
 
 	using Float2	= Vector2D<float>;

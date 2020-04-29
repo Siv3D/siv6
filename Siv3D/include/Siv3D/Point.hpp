@@ -52,6 +52,12 @@ namespace s3d
 		constexpr value_type elem(size_t index) const noexcept;
 
 		[[nodiscard]]
+		value_type* getPointer() noexcept;
+
+		[[nodiscard]]
+		const value_type* getPointer() const noexcept;
+
+		[[nodiscard]]
 		constexpr Point operator +() const noexcept;
 
 		[[nodiscard]]
@@ -144,6 +150,8 @@ namespace s3d
 		[[nodiscard]]
 		constexpr bool isZero() const noexcept;
 
+		constexpr void clear() noexcept;
+
 		constexpr Point& set(int32 _x, int32 _y) noexcept;
 
 		constexpr Point& set(const Point p) noexcept;
@@ -161,6 +169,23 @@ namespace s3d
 		constexpr Point& moveBy(int32 _x, int32 _y) noexcept;
 
 		constexpr Point& moveBy(Point p) noexcept;
+
+		template <class Type = double>
+		[[nodiscard]]
+		Type length() const noexcept;
+
+		template <class Type = double>
+		[[nodiscard]]
+		constexpr Type lengthSq() const noexcept;
+
+		[[nodiscard]]
+		constexpr int32 manhattanLength() const noexcept;
+
+		[[nodiscard]]
+		constexpr int32 manhattanDistanceFrom(int32 _x, int32 _y) const noexcept;
+
+		[[nodiscard]]
+		constexpr int32 manhattanDistanceFrom(Point p) const noexcept;
 
 		[[nodiscard]]
 		double distanceFrom(double _x, double _y) const noexcept;
@@ -182,19 +207,27 @@ namespace s3d
 		[[nodiscard]]
 		constexpr Type distanceFromSq(Vector2D<Type> p) const noexcept;
 
+		template <class Type = double>
 		[[nodiscard]]
-		constexpr int32 manhattanDistanceFrom(int32 _x, int32 _y) const noexcept;
+		Type getAngle() const noexcept;
+
+		template <class Type>
+		[[nodiscard]]
+		Type getAngle(Vector2D<Type> other) const noexcept;
 
 		[[nodiscard]]
-		constexpr int32 manhattanDistanceFrom(Point p) const noexcept;
+		constexpr Point getPerpendicularCW() const noexcept;
+
+		[[nodiscard]]
+		constexpr Point getPerpendicularCCW() const noexcept;
 
 		template <class Type = double>
 		[[nodiscard]]
-		Type length() const noexcept;
+		constexpr Vector2D<Type> getMidpoint(Point other) const noexcept;
 
-		template <class Type = double>
+		template <class Type>
 		[[nodiscard]]
-		constexpr Type lengthSq() const noexcept;
+		constexpr Vector2D<Type> getMidpoint(Vector2D<Type> other) const noexcept;
 
 		template <class Type = double>
 		[[nodiscard]]

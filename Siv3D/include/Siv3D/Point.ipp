@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include "MathConstants.hpp"
 
 namespace s3d
 {
@@ -40,6 +41,16 @@ namespace s3d
 		{
 			return 0;
 		}
+	}
+
+	inline Point::value_type* Point::getPointer() noexcept
+	{
+		return &x;
+	}
+
+	inline const Point::value_type* Point::getPointer() const noexcept
+	{
+		return &x;
 	}
 
 	inline constexpr Point Point::operator +() const noexcept
@@ -156,6 +167,11 @@ namespace s3d
 		return ((x == 0) && (y == 0));
 	}
 
+	inline constexpr void Point::clear() noexcept
+	{
+		x = 0; y = 0;
+	}
+
 	inline constexpr Point& Point::set(const int32 _x, const int32 _y) noexcept
 	{
 		x = _x; y = _y;
@@ -195,6 +211,35 @@ namespace s3d
 		return *this;
 	}
 
+	template <class Type>
+	inline Type Point::length() const noexcept
+	{
+		return static_cast<Type>(std::sqrt((x * x) + (y * y)));
+	}
+
+	template <class Type>
+	inline constexpr Type Point::lengthSq() const noexcept
+	{
+		return static_cast<Type>((x * x) + (y * y));
+	}
+
+	inline constexpr int32 Point::manhattanLength() const noexcept
+	{
+		return Abs(x) + Abs(y);
+	}
+
+	inline constexpr int32 Point::manhattanDistanceFrom(const int32 _x, const int32 _y) const noexcept
+	{
+		const auto xMinMax = std::minmax(x, _x);
+		const auto yMinMax = std::minmax(y, _y);
+		return (xMinMax.second - xMinMax.first) + (yMinMax.second - yMinMax.first);
+	}
+
+	inline constexpr int32 Point::manhattanDistanceFrom(const Point p) const noexcept
+	{
+		return manhattanDistanceFrom(p.x, p.y);
+	}
+
 	inline double Point::distanceFrom(const double _x, const double _y) const noexcept
 	{
 		return std::sqrt(distanceFromSq(_x, _y));
@@ -202,13 +247,13 @@ namespace s3d
 
 	inline double Point::distanceFrom(const Point p) const noexcept
 	{
-		return distanceFromSq(p.x, p.y);
+		return distanceFrom(p.x, p.y);
 	}
 
 	template <class Type>
 	inline Type Point::distanceFrom(const Vector2D<Type> p) const noexcept
 	{
-		return distanceFromSq(p.x, p.y);
+		return distanceFrom(p.x, p.y);
 	}
 
 	inline constexpr double Point::distanceFromSq(const double _x, const double _y) const noexcept
@@ -229,28 +274,48 @@ namespace s3d
 		return distanceFromSq(p.x, p.y);
 	}
 
-	inline constexpr int32 Point::manhattanDistanceFrom(const int32 _x, const int32 _y) const noexcept
+	template <class Type>
+	inline Type Point::getAngle() const noexcept
 	{
-		const auto xMinMax = std::minmax(x, _x);
-		const auto yMinMax = std::minmax(y, _y);
-		return (xMinMax.second - xMinMax.first) + (yMinMax.second - yMinMax.first);
-	}
+		if (isZero())
+		{
+			return Math::Constants::NaN_v<Type>;
+		}
 
-	inline constexpr int32 Point::manhattanDistanceFrom(const Point p) const noexcept
-	{
-		return manhattanDistanceFrom(p.x, p.y);
+		return std::atan2(x, -y);
 	}
 
 	template <class Type>
-	inline Type Point::length() const noexcept
+	inline Type Point::getAngle(const Vector2D<Type> other) const noexcept
 	{
-		return static_cast<Type>(std::sqrt((x * x) + (y * y)));
+		if (isZero() || other.isZero())
+		{
+			return Math::Constants::NaN_v<Type>;
+		}
+
+		return std::atan2(cross(other), dot(other));
+	}
+
+	inline constexpr Point Point::getPerpendicularCW() const noexcept
+	{
+		return{ -y, x };
+	}
+
+	inline constexpr Point Point::getPerpendicularCCW() const noexcept
+	{
+		return{ y, -x };
 	}
 
 	template <class Type>
-	inline constexpr Type Point::lengthSq() const noexcept
+	constexpr Vector2D<Type> Point::getMidpoint(const Point other) const noexcept
 	{
-		return static_cast<Type>((x * x) + (y * y));
+		return{ x + (other.x - x) * 0.5, y + (other.y - y) * 0.5 };
+	}
+
+	template <class Type>
+	constexpr Vector2D<Type> Point::getMidpoint(const Vector2D<Type> other) const noexcept
+	{
+		return{ x * 0.5 + other.x * 0.5, y * 0.5 + other.y * 0.5 };
 	}
 
 	template <class Type>
