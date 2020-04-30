@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
+		2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E1245AE62300DAD413 /* SivParseFloat.cpp */; };
+		2C3EC7E7245AE62400DAD413 /* SivParseInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E3245AE62400DAD413 /* SivParseInt.cpp */; };
+		2C3EC7E8245AE62400DAD413 /* SivParseBool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E5245AE62400DAD413 /* SivParseBool.cpp */; };
+		2C3EC7EB245AE64200DAD413 /* numbers.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C3EC7EA245AE64200DAD413 /* numbers.hpp */; };
 		2C4231C7242B0B9200A16BCA /* SivFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231C6242B0B9200A16BCA /* SivFormatter.cpp */; };
 		2C4231CB242B0BD300A16BCA /* SivSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231CA242B0BD300A16BCA /* SivSystem.cpp */; };
 		2C4231D1242B0BDE00A16BCA /* CUserAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231CD242B0BDE00A16BCA /* CUserAction.cpp */; };
@@ -144,6 +148,16 @@
 		2C1778B21CE0D5DB00BB8AD0 /* Siv3D-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Siv3D-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1778BF1CE0D5DB00BB8AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C22E2C11FD5BAF0002735AB /* Siv3D-Test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Siv3D-Test.entitlements"; sourceTree = SOURCE_ROOT; };
+		2C3EC7DA245AE5E200DAD413 /* ScopeGuard.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ScopeGuard.ipp; sourceTree = "<group>"; };
+		2C3EC7DB245AE5F200DAD413 /* ScopeGuard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ScopeGuard.hpp; sourceTree = "<group>"; };
+		2C3EC7DC245AE60700DAD413 /* ParseBool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ParseBool.hpp; sourceTree = "<group>"; };
+		2C3EC7DD245AE60700DAD413 /* ParseFloat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ParseFloat.hpp; sourceTree = "<group>"; };
+		2C3EC7DE245AE60700DAD413 /* ParseInt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ParseInt.hpp; sourceTree = "<group>"; };
+		2C3EC7DF245AE60700DAD413 /* Parse.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Parse.hpp; sourceTree = "<group>"; };
+		2C3EC7E1245AE62300DAD413 /* SivParseFloat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivParseFloat.cpp; sourceTree = "<group>"; };
+		2C3EC7E3245AE62400DAD413 /* SivParseInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivParseInt.cpp; sourceTree = "<group>"; };
+		2C3EC7E5245AE62400DAD413 /* SivParseBool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivParseBool.cpp; sourceTree = "<group>"; };
+		2C3EC7EA245AE64200DAD413 /* numbers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = numbers.hpp; sourceTree = "<group>"; };
 		2C4231C6242B0B9200A16BCA /* SivFormatter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivFormatter.cpp; sourceTree = "<group>"; };
 		2C4231CA242B0BD300A16BCA /* SivSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivSystem.cpp; sourceTree = "<group>"; };
 		2C4231CD242B0BDE00A16BCA /* CUserAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUserAction.cpp; sourceTree = "<group>"; };
@@ -396,6 +410,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C3EC7E0245AE62300DAD413 /* ParseFloat */ = {
+			isa = PBXGroup;
+			children = (
+				2C3EC7E1245AE62300DAD413 /* SivParseFloat.cpp */,
+			);
+			path = ParseFloat;
+			sourceTree = "<group>";
+		};
+		2C3EC7E2245AE62400DAD413 /* ParseInt */ = {
+			isa = PBXGroup;
+			children = (
+				2C3EC7E3245AE62400DAD413 /* SivParseInt.cpp */,
+			);
+			path = ParseInt;
+			sourceTree = "<group>";
+		};
+		2C3EC7E4245AE62400DAD413 /* ParseBool */ = {
+			isa = PBXGroup;
+			children = (
+				2C3EC7E5245AE62400DAD413 /* SivParseBool.cpp */,
+			);
+			path = ParseBool;
+			sourceTree = "<group>";
+		};
+		2C3EC7E9245AE64200DAD413 /* abseil */ = {
+			isa = PBXGroup;
+			children = (
+				2C3EC7EA245AE64200DAD413 /* numbers.hpp */,
+			);
+			path = abseil;
+			sourceTree = "<group>";
+		};
 		2C4231C5242B0B9200A16BCA /* Formatter */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +542,7 @@
 		2C43609A240E4EEC001657D2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2C3EC7E9245AE64200DAD413 /* abseil */,
 				2C43609B240E4EEC001657D2 /* Catch2 */,
 				2C481E0B24460B5700A5D88D /* cpu_features */,
 				2C439F62241DCEA9001154C2 /* double-conversion */,
@@ -560,6 +607,9 @@
 				2C4231C5242B0B9200A16BCA /* Formatter */,
 				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C43B2C52426223400D5CBBB /* Logger */,
+				2C3EC7E4245AE62400DAD413 /* ParseBool */,
+				2C3EC7E0245AE62300DAD413 /* ParseFloat */,
+				2C3EC7E2245AE62400DAD413 /* ParseInt */,
 				2C47A9A7243CA7D800FD33B4 /* Point */,
 				2C4CBE6724376B5300F8B7A6 /* Profiler */,
 				2CD7B62F2456BC2600194496 /* Random */,
@@ -861,6 +911,10 @@
 				2C47E44D245A8C33002D30CE /* None.hpp */,
 				2C47E404245A8C32002D30CE /* Number.hpp */,
 				2C47E43B245A8C33002D30CE /* Optional.hpp */,
+				2C3EC7DF245AE60700DAD413 /* Parse.hpp */,
+				2C3EC7DC245AE60700DAD413 /* ParseBool.hpp */,
+				2C3EC7DD245AE60700DAD413 /* ParseFloat.hpp */,
+				2C3EC7DE245AE60700DAD413 /* ParseInt.hpp */,
 				2C47E43E245A8C33002D30CE /* PlaceHolder.hpp */,
 				2C47E417245A8C32002D30CE /* Platform.hpp */,
 				2C47E411245A8C32002D30CE /* Point.hpp */,
@@ -871,6 +925,7 @@
 				2C47E421245A8C33002D30CE /* Random.hpp */,
 				2C47E41B245A8C32002D30CE /* Rectangle.hpp */,
 				2C47E452245A8C33002D30CE /* Scene.hpp */,
+				2C3EC7DB245AE5F200DAD413 /* ScopeGuard.hpp */,
 				2C47E43C245A8C33002D30CE /* SMFT.hpp */,
 				2C47E442245A8C33002D30CE /* String.hpp */,
 				2C47E41A245A8C32002D30CE /* StringView.hpp */,
@@ -895,28 +950,29 @@
 		2C47E422245A8C33002D30CE /* detail */ = {
 			isa = PBXGroup;
 			children = (
-				2C47E423245A8C33002D30CE /* FormatBool.ipp */,
-				2C47E424245A8C33002D30CE /* Char.ipp */,
-				2C47E425245A8C33002D30CE /* Optional_misc.ipp */,
-				2C47E426245A8C33002D30CE /* Endian.ipp */,
-				2C47E427245A8C33002D30CE /* Byte.ipp */,
-				2C47E428245A8C33002D30CE /* Optional.ipp */,
-				2C47E429245A8C33002D30CE /* FormatLiteral.ipp */,
-				2C47E42A245A8C33002D30CE /* FormatFloat.ipp */,
-				2C47E42B245A8C33002D30CE /* String.ipp */,
-				2C47E42C245A8C33002D30CE /* FormatData.ipp */,
-				2C47E42D245A8C33002D30CE /* FloatingPoint.ipp */,
-				2C47E42E245A8C33002D30CE /* Point.ipp */,
-				2C47E42F245A8C33002D30CE /* Vector2D.ipp */,
-				2C47E430245A8C33002D30CE /* Formatter.ipp */,
-				2C47E431245A8C33002D30CE /* MathConstants.ipp */,
-				2C47E432245A8C33002D30CE /* StringView.ipp */,
-				2C47E433245A8C33002D30CE /* FormatInt.ipp */,
 				2C47E434245A8C33002D30CE /* ApplicationOptions.ipp */,
-				2C47E435245A8C33002D30CE /* Hash.ipp */,
+				2C47E427245A8C33002D30CE /* Byte.ipp */,
+				2C47E424245A8C33002D30CE /* Char.ipp */,
+				2C47E426245A8C33002D30CE /* Endian.ipp */,
 				2C47E436245A8C33002D30CE /* EngineLog.ipp */,
-				2C47E437245A8C33002D30CE /* Utility.ipp */,
+				2C47E42D245A8C33002D30CE /* FloatingPoint.ipp */,
+				2C47E423245A8C33002D30CE /* FormatBool.ipp */,
+				2C47E42C245A8C33002D30CE /* FormatData.ipp */,
+				2C47E42A245A8C33002D30CE /* FormatFloat.ipp */,
+				2C47E433245A8C33002D30CE /* FormatInt.ipp */,
+				2C47E429245A8C33002D30CE /* FormatLiteral.ipp */,
+				2C47E430245A8C33002D30CE /* Formatter.ipp */,
+				2C47E435245A8C33002D30CE /* Hash.ipp */,
+				2C47E431245A8C33002D30CE /* MathConstants.ipp */,
 				2C47E438245A8C33002D30CE /* Number.ipp */,
+				2C47E425245A8C33002D30CE /* Optional_misc.ipp */,
+				2C47E428245A8C33002D30CE /* Optional.ipp */,
+				2C47E42E245A8C33002D30CE /* Point.ipp */,
+				2C3EC7DA245AE5E200DAD413 /* ScopeGuard.ipp */,
+				2C47E42B245A8C33002D30CE /* String.ipp */,
+				2C47E432245A8C33002D30CE /* StringView.ipp */,
+				2C47E437245A8C33002D30CE /* Utility.ipp */,
+				2C47E42F245A8C33002D30CE /* Vector2D.ipp */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -1141,6 +1197,7 @@
 				2C4CBE6E24376B5300F8B7A6 /* IProfiler.hpp in Headers */,
 				2C481E1224460B5700A5D88D /* bit_utils.h in Headers */,
 				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
+				2C3EC7EB245AE64200DAD413 /* numbers.hpp in Headers */,
 				2C4360DC240E4EEC001657D2 /* IConsole.hpp in Headers */,
 				2C423257242B19ED00A16BCA /* posix_thread.h in Headers */,
 				2C439F7A241DCEA9001154C2 /* fixed-dtoa.h in Headers */,
@@ -1283,7 +1340,9 @@
 				2C42324F242B155E00A16BCA /* cocoa_monitor.m in Sources */,
 				2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */,
 				2C423244242B155E00A16BCA /* context.c in Sources */,
+				2C3EC7E7245AE62400DAD413 /* SivParseInt.cpp in Sources */,
 				2C439F7B241DCEA9001154C2 /* string-to-double.cc in Sources */,
+				2C3EC7E8245AE62400DAD413 /* SivParseBool.cpp in Sources */,
 				2C4231D2242B0BDE00A16BCA /* UserActionFactory.cpp in Sources */,
 				2C43B2E924264E3100D5CBBB /* CWindow.cpp in Sources */,
 				2C4CBE6D24376B5300F8B7A6 /* ProfilerFactory.cpp in Sources */,
@@ -1309,6 +1368,7 @@
 				2C43B2DD24264E1200D5CBBB /* WindowFactory.cpp in Sources */,
 				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
 				2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */,
+				2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */,
 				2C481E1A24460BBA00A5D88D /* SivCPUInfo.cpp in Sources */,
 				2C423253242B19D100A16BCA /* egl_context.c in Sources */,
 				2C4CBE622437236000F8B7A6 /* CScene.cpp in Sources */,
