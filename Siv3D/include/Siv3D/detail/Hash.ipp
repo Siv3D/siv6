@@ -16,21 +16,39 @@ namespace s3d
 {
 	namespace Hash
 	{
-		inline uint64 FNV1a(const void* input, const size_t size) noexcept
+		inline size_t FNV1a(const void* input, const size_t size) noexcept
 		{
 			const uint8* data = static_cast<const uint8*>(input);
-			constexpr uint64 offset_basis = 14695981039346656037ULL;
-			constexpr uint64 fnv_prime = 1099511628211ULL;
+			const uint8* const end = (data + size);
 
-			uint64 result = offset_basis;
-
-			for (uint64 next = 0; next < size; ++next)
+			if constexpr (sizeof(size_t) == 8)
 			{
-				result ^= static_cast<uint64>(data[next]);
-				result *= fnv_prime;
-			}
+				constexpr size_t offset_basis	= 14695981039346656037ULL;
+				constexpr size_t fnv_prime		= 1099511628211ULL;
+				size_t result = offset_basis;
 
-			return result;
+				for (; data != end; ++data)
+				{
+					result ^= static_cast<size_t>(*data);
+					result *= fnv_prime;
+				}
+
+				return result;
+			}
+			else
+			{
+				constexpr size_t offset_basis	= 2166136261u;
+				constexpr size_t fnv_prime		= 16777619u;
+				size_t result = offset_basis;
+
+				for (; data != end; ++data)
+				{
+					result ^= static_cast<size_t>(*data);
+					result *= fnv_prime;
+				}
+
+				return result;
+			}
 		}
 
 	# if __cpp_lib_concepts
@@ -38,7 +56,7 @@ namespace s3d
 	# else
 		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
 	# endif
-		inline uint64 FNV1a(const Type& input) noexcept
+		inline size_t FNV1a(const Type& input) noexcept
 		{
 			return FNV1a(std::addressof(input), sizeof(Type));
 		}

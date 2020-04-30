@@ -16,14 +16,14 @@ namespace s3d
 {
 	namespace Hash
 	{
-		inline uint64 FNV1a(const void* input, size_t size) noexcept;
+		inline size_t FNV1a(const void* input, size_t size) noexcept;
 
 	# if __cpp_lib_concepts
 		template <Concept::TriviallyCopyable Type>
 	# else
 		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
 	# endif
-		inline uint64 FNV1a(const Type& input) noexcept;
+		inline size_t FNV1a(const Type& input) noexcept;
 
 		inline namespace v073
 		{
