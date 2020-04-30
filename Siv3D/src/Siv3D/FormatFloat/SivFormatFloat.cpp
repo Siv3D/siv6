@@ -11,7 +11,7 @@
 
 # include <Siv3D/FormatFloat.hpp>
 # include <Siv3D/String.hpp>
-# include <double-conversion/double-conversion.h>
+# include <ThirdParty/double-conversion/double-conversion.h>
 
 namespace s3d
 {

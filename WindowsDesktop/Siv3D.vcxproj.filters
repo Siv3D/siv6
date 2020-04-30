@@ -175,6 +175,9 @@
     <Filter Include="src\ThirdParty\abseil">
       <UniqueIdentifier>{a9687cb0-0884-4e32-8731-7305849e4086}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\ParseFloat">
+      <UniqueIdentifier>{d28ee6cd-292c-489c-a2a5-d7ceeeb44215}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -817,6 +820,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\ParseInt\SivParseInt.cpp">
       <Filter>src\Siv3D\ParseInt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ParseFloat\SivParseFloat.cpp">
+      <Filter>src\Siv3D\ParseFloat</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

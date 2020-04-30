@@ -82,9 +82,8 @@ namespace s3d::detail
 		36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36 };
 
 	// Parse the sign and optional hex or oct prefix in text.
-	inline bool safe_parse_sign_and_base(StringView* text /*inout*/,
-										 int* base_ptr /*inout*/,
-										 bool* negative_ptr /*output*/) {
+	inline bool safe_parse_sign_and_base(StringView* text /*inout*/, int* base_ptr /*inout*/, bool* negative_ptr /*output*/)
+	{
 		if (text->data() == nullptr) {
 			return false;
 		}
@@ -157,14 +156,16 @@ namespace s3d::detail
 	}
 
 	template <typename IntType>
-	inline bool safe_parse_positive_int(StringView text, int base,
-		IntType* value_p) {
+	inline bool safe_parse_positive_int(StringView text, int base, IntType* value_p)
+	{
 		IntType value = 0;
 		const IntType vmax = std::numeric_limits<IntType>::max();
 		assert(vmax > 0);
 		assert(base >= 0);
 		assert(vmax >= static_cast<IntType>(base));
 		const IntType vmax_over_base = LookupTables<IntType>::kVmaxOverBase[base];
+		assert(base < 2 ||
+			std::numeric_limits<IntType>::max() / base == vmax_over_base);
 		const char32* start = text.data();
 		const char32* end = start + text.size();
 		// loop over digits
@@ -191,13 +192,15 @@ namespace s3d::detail
 	}
 
 	template <typename IntType>
-	inline bool safe_parse_negative_int(StringView text, int base,
-		IntType* value_p) {
+	inline bool safe_parse_negative_int(StringView text, int base, IntType* value_p)
+	{
 		IntType value = 0;
 		const IntType vmin = std::numeric_limits<IntType>::min();
 		assert(vmin < 0);
 		assert(vmin <= 0 - base);
 		IntType vmin_over_base = LookupTables<IntType>::kVminOverBase[base];
+		assert(base < 2 ||
+			std::numeric_limits<IntType>::min() / base == vmin_over_base);
 		// 2003 c++ standard [expr.mul]
 		// "... the sign of the remainder is implementation-defined."
 		// Although (vmin/base)*base + vmin%base is always vmin.
@@ -234,8 +237,8 @@ namespace s3d::detail
 	// Input format based on POSIX.1-2008 strtol
 	// http://pubs.opengroup.org/onlinepubs/9699919799/functions/strtol.html
 	template <typename IntType>
-	inline bool safe_int_internal(StringView text, IntType* value_p,
-		int base) {
+	inline bool safe_int_internal(StringView text, IntType* value_p, int base)
+	{
 		*value_p = 0;
 		bool negative;
 		if (!safe_parse_sign_and_base(&text, &base, &negative)) {
@@ -250,8 +253,8 @@ namespace s3d::detail
 	}
 
 	template <typename IntType>
-	inline bool safe_uint_internal(StringView text, IntType* value_p,
-		int base) {
+	inline bool safe_uint_internal(StringView text, IntType* value_p, int base)
+	{
 		*value_p = 0;
 		bool negative;
 		if (!safe_parse_sign_and_base(&text, &base, &negative) || negative) {

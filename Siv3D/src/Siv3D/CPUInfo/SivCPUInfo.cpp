@@ -12,7 +12,7 @@
 # include <cstring>
 # include <Siv3D/CPUInfo.hpp>
 # include <Siv3D/Unicode.hpp>
-# include <cpu_features/cpuinfo_x86.h>
+# include <ThirdParty/cpu_features/cpuinfo_x86.h>
 
 namespace s3d
 {

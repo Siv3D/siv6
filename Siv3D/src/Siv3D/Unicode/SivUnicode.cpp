@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------
 
-# include <miniutf/miniutf.hpp>
+# include <ThirdParty/miniutf/miniutf.hpp>
 # include <Siv3D/Unicode.hpp>
 # include "UnicodeUtility.hpp"
 

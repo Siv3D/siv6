@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # include "UnicodeUtility.hpp"
-# include <miniutf/miniutf.hpp>
+# include <ThirdParty/miniutf/miniutf.hpp>
 
 namespace s3d
 {

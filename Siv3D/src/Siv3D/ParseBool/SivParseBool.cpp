@@ -47,7 +47,8 @@ namespace s3d
 			return none;
 		}
 
-		if ((end - start) == 4)
+		if (auto length = (end - start);
+			length == 4)
 		{
 			if ((start[0] == U'T' || start[0] == U't')
 				&& (start[1] == U'R' || start[1] == U'r')
@@ -57,7 +58,7 @@ namespace s3d
 				return true;
 			}
 		}
-		else if ((end - start) == 5)
+		else if (length == 5)
 		{
 			if ((start[0] == U'F' || start[0] == U'f')
 				&& (start[1] == U'A' || start[1] == U'a')
