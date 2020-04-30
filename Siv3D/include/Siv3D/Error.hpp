@@ -67,6 +67,19 @@ namespace s3d
 		}
 	};
 
+	class BadOptionalAccess final : public Error
+	{
+	public:
+
+		using Error::Error;
+
+		[[nodiscard]]
+		StringView type() const noexcept override
+		{
+			return StringView(U"Bad optional access");
+		}
+	};
+
 	class EngineError final : public Error
 	{
 	public:

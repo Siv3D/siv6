@@ -157,7 +157,7 @@
 
 // 特に指定しないことを表す無効値
 // Representation of an unspecified value
-//# include <Siv3D/Unspecified.hpp> // [Siv3D ToDo]
+# include <Siv3D/Unspecified.hpp>
 
 // イテレータによる範囲の表現
 // Range iterator

@@ -36,6 +36,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Hash.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\MathConstants.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Number.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Optional.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Optional_misc.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Point.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\String.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\StringView.ipp" />
@@ -65,6 +67,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\MathConstants.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Meta.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\NamedParameter.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\None.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Number.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Optional.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PlaceHolder.hpp" />
@@ -85,6 +88,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Types.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Uncopyable.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Unicode.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Unspecified.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\UserAction.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Utility.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Vector2D.hpp" />
