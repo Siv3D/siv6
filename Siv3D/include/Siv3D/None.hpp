@@ -11,6 +11,8 @@
 
 # pragma once
 # include <iostream>
+# include "Common.hpp"
+# include "FormatData.hpp"
 
 namespace s3d
 {
@@ -18,6 +20,7 @@ namespace s3d
 	{
 		struct init {};
 
+		SIV3D_NODISCARD_CXX20
 		explicit constexpr None_t(init) {}
 
 		template <class CharType>
@@ -25,6 +28,11 @@ namespace s3d
 		{
 			const CharType no[] = { 'n','o','n','e','\0' };
 			return output << no;
+		}
+
+		friend void Formatter(FormatData& formatData, None_t)
+		{
+			formatData.string.append(U"none"_sv);
 		}
 	};
 

@@ -16,6 +16,7 @@
 # include "Utility.hpp"
 # include "Error.hpp"
 # include "None.hpp"
+# include "FormatData.hpp"
 # include "detail/Optional_misc.ipp"
 
 namespace s3d
@@ -398,13 +399,27 @@ namespace s3d
 		{
 			if (value)
 			{
-				const CharType opt[] = { 'O','p','t','i','o','n','a','l',' ','\0' };
+				const CharType opt[] = { '(', 'O','p','t','i','o','n','a','l',')','\0' };
 				return output << opt << value.value();
 			}
 			else
 			{
 				const CharType no[] = { 'n','o','n','e','\0' };
 				return output << no;
+			}
+		}
+
+		friend void Formatter(FormatData& formatData, const Optional& value)
+		{
+			if (value)
+			{
+				formatData.string.append(U"(Optional)"_sv);
+
+				Formatter(formatData, value.value());
+			}
+			else
+			{
+				Formatter(formatData, none);
 			}
 		}
 	};
@@ -667,13 +682,27 @@ namespace s3d
 		{
 			if (value)
 			{
-				const CharType opt[] = { 'O','p','t','i','o','n','a','l',' ','\0' };
+				const CharType opt[] = { '(', 'O','p','t','i','o','n','a','l',')','\0' };
 				return output << opt << value.value();
 			}
 			else
 			{
 				const CharType no[] = { 'n','o','n','e','\0' };
 				return output << no;
+			}
+		}
+
+		friend void Formatter(FormatData& formatData, const Optional& value)
+		{
+			if (value)
+			{
+				formatData.string.append(U"(Optional)"_sv);
+
+				Formatter(formatData, value.value());
+			}
+			else
+			{
+				Formatter(formatData, none);
 			}
 		}
 	};
@@ -914,6 +943,9 @@ namespace s3d
 
 	template <class Type>
 	inline void swap(Optional<Type>& a, Optional<Type>& b) noexcept(noexcept(a.swap(b)));
+
+	template <class Type>
+	Optional(Type) -> Optional<Type>;
 }
 
 namespace std

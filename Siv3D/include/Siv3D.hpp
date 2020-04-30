@@ -151,9 +151,13 @@
 // Infinite list
 //# include <Siv3D/InfiniteList.hpp> // [Siv3D ToDo]
 
+// 無効値
+// None_t
+# include <Siv3D/None.hpp>
+
 // 無効値を持つ値
 // Optional
-# include <Siv3D/Optional.hpp> // [Siv3D ToDo]
+# include <Siv3D/Optional.hpp>
 
 // 特に指定しないことを表す無効値
 // Representation of an unspecified value
@@ -169,7 +173,7 @@
 
 // スコープ・ガード
 // Scope guard
-//# include <Siv3D/ScopeGuard.hpp> // [Siv3D ToDo]
+# include <Siv3D/ScopeGuard.hpp>
 
 // エラー
 // Error
