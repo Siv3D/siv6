@@ -393,7 +393,7 @@ namespace s3d
 		template <class Fty, class R = std::decay_t<std::invoke_result_t<Fty, value_type>>>
 		Optional<R> map(Fty f) const;
 
-		template <class CharType, class Type>
+		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Optional<Type>& value)
 		{
 			if (value)
@@ -662,7 +662,7 @@ namespace s3d
 		template <class Fty, class R = std::invoke_result_t<Fty, const Type&>>
 		Optional<R> map(Fty f) const;
 
-		template <class CharType, class Type>
+		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Optional<Type&>& value)
 		{
 			if (value)
