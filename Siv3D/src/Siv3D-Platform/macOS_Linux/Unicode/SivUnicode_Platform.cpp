@@ -21,7 +21,7 @@ namespace s3d
 			return FromUTF8(s);
 		}
 	
-		String FromWString(const std::wstring_view s)
+		String FromWstring(const std::wstring_view s)
 		{
 			return String(s.begin(), s.end());
 		}

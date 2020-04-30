@@ -21,20 +21,20 @@ namespace s3d
 	{
 		HMODULE LoadSystemLibraryNoThrow(const wchar_t* library)
 		{
-			LOG_TRACE(U"DLL::LoadSystemLibraryNoThrow(\"{}\")"_fmt(Unicode::FromWString(library)));
+			LOG_TRACE(U"DLL::LoadSystemLibraryNoThrow(\"{}\")"_fmt(Unicode::FromWstring(library)));
 
 			return ::LoadLibraryExW(library, nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
 		}
 
 		HMODULE LoadSystemLibrary(const wchar_t* library)
 		{
-			LOG_TRACE(U"DLL::LoadSystemLibrary(\"{}\")"_fmt(Unicode::FromWString(library)));
+			LOG_TRACE(U"DLL::LoadSystemLibrary(\"{}\")"_fmt(Unicode::FromWstring(library)));
 
 			const HMODULE hModule = ::LoadLibraryExW(library, nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
 
 			if (!hModule)
 			{
-				throw EngineError(U"Failed to load `{}`"_fmt(Unicode::FromWString(library)));
+				throw EngineError(U"Failed to load `{}`"_fmt(Unicode::FromWstring(library)));
 			}
 
 			return hModule;

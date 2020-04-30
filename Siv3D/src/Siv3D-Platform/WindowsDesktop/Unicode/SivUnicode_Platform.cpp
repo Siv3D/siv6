@@ -74,7 +74,7 @@ namespace s3d
 			return FromUTF16(detail::FromMultiByte(s, CP_ACP));
 		}
 
-		String FromWString(const std::wstring_view s)
+		String FromWstring(const std::wstring_view s)
 		{
 			const char16* pSrc = static_cast<const char16*>(static_cast<const void*>(s.data()));
 			return FromUTF16(std::u16string_view(pSrc, s.size()));

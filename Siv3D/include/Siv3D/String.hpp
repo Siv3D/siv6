@@ -2171,7 +2171,7 @@ namespace s3d
 
 			input >> s;
 
-			value = Unicode::FromWString(s);
+			value = Unicode::FromWstring(s);
 
 			return input;
 		}

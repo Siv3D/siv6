@@ -31,7 +31,7 @@ namespace s3d::detail
 		{
 			Monitor* monitor = reinterpret_cast<Monitor*>(data);
 
-			if (Unicode::FromWString(monitorInfo.szDevice) == monitor->adapterName)
+			if (Unicode::FromWstring(monitorInfo.szDevice) == monitor->adapterName)
 			{
 				monitor->displayRect	= monitorInfo.rcMonitor;
 				monitor->workArea		= monitorInfo.rcWork;
@@ -56,14 +56,14 @@ namespace s3d::detail
 		LOG_SCOPED_TRACE(U"CreateMonitor()");
 
 		Monitor monitor;
-		monitor.adapterString		= Unicode::FromWString(adapter.DeviceString);
-		monitor.adapterName			= Unicode::FromWString(adapter.DeviceName);
+		monitor.adapterString		= Unicode::FromWstring(adapter.DeviceString);
+		monitor.adapterName			= Unicode::FromWstring(adapter.DeviceName);
 		monitor.isPrimaryAdapter	= !!(adapter.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE);
 
 		if (display)
 		{
-			monitor.displayString	= Unicode::FromWString(display->DeviceString);
-			monitor.displayName		= Unicode::FromWString(display->DeviceName);
+			monitor.displayString	= Unicode::FromWstring(display->DeviceString);
+			monitor.displayName		= Unicode::FromWstring(display->DeviceName);
 		}
 
 		{
@@ -106,7 +106,7 @@ namespace s3d::detail
 			{
 				DISPLAY_DEVICEW display = { sizeof(display) };
 
-				LOG_VERBOSE(U"EnumDisplayDevicesW(\"{}\", {}, ...)"_fmt(Unicode::FromWString(adapter.DeviceName), displayIndex));
+				LOG_VERBOSE(U"EnumDisplayDevicesW(\"{}\", {}, ...)"_fmt(Unicode::FromWstring(adapter.DeviceName), displayIndex));
 				if (!::EnumDisplayDevicesW(adapter.DeviceName, displayIndex, &display, 0))
 				{
 					break;

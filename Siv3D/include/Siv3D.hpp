@@ -260,11 +260,11 @@
 
 // 文字列 → 浮動小数点数 変換
 // Text to float conversion
-# include <Siv3D/ParseFloat.hpp> // [Siv3D ToDo]
+# include <Siv3D/ParseFloat.hpp>
 
 // 文字列 → 値 変換
 // Text to value conversion
-//# include <Siv3D/Parse.hpp> // [Siv3D ToDo]
+# include <Siv3D/Parse.hpp> // [Siv3D ToDo]
 
 // 正規表現
 // Regular expression

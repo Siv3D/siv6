@@ -20,28 +20,6 @@ namespace s3d
 	{
 		inline static constexpr double sNaN = std::numeric_limits<double>::signaling_NaN();
 
-		static float ParseFloat(const StringView s)
-		{
-			using namespace double_conversion;
-
-			const int flags =
-				StringToDoubleConverter::ALLOW_LEADING_SPACES
-				| StringToDoubleConverter::ALLOW_TRAILING_SPACES
-				| StringToDoubleConverter::ALLOW_SPACES_AFTER_SIGN
-				| StringToDoubleConverter::ALLOW_CASE_INSENSIBILITY;
-			StringToDoubleConverter conv(flags, 0.0, sNaN, "inf", "nan");
-
-			int unused;
-			const double result = conv.Siv3D_StringToIeee(s.data(), static_cast<int>(s.length()), false, &unused);
-
-			if (std::memcmp(&result, &sNaN, sizeof(double)) == 0)
-			{
-				throw ParseError(U"ParseFloat<float>(\"{}\") failed"_fmt(s));
-			}
-
-			return static_cast<float>(result);
-		}
-
 		static double ParseDouble(const StringView s)
 		{
 			using namespace double_conversion;
@@ -58,7 +36,7 @@ namespace s3d
 
 			if (std::memcmp(&result, &sNaN, sizeof(double)) == 0)
 			{
-				throw ParseError(U"ParseFloat<double>(\"{}\") failed"_fmt(s));
+				throw ParseError(U"ParseFloat(\"{}\") failed"_fmt(s));
 			}
 
 			return result;
@@ -91,7 +69,7 @@ namespace s3d
 	template <>
 	float ParseFloat<float>(const StringView s)
 	{
-		return detail::ParseFloat(s);
+		return static_cast<float>(detail::ParseDouble(s));
 	}
 
 	template <>

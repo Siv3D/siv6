@@ -58,7 +58,7 @@ namespace s3d
 		/// 変換された文字列
 		/// </returns>
 		[[nodiscard]]
-		String FromWString(std::wstring_view s);
+		String FromWstring(std::wstring_view s);
 
 		/// <summary>
 		/// UTF-8 文字列を String に変換します。
