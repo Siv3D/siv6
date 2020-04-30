@@ -8,8 +8,6 @@ SIV3D_OPTION_RUN_TEST(false);
 
 void Main()
 {
-	std::hash<int>{}(3);
-
 	while (System::Update())
 	{
 

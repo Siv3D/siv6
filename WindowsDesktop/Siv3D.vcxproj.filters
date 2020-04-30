@@ -166,6 +166,15 @@
     <Filter Include="include\Siv3D\detail">
       <UniqueIdentifier>{9d453136-bcb8-438d-bc4d-a4116b5676a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\ParseBool">
+      <UniqueIdentifier>{5f05316f-5644-45c1-afe8-af5b9835dd0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\ParseInt">
+      <UniqueIdentifier>{9465f54b-22c0-43d9-a69b-4832c72f4be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\abseil">
+      <UniqueIdentifier>{a9687cb0-0884-4e32-8731-7305849e4086}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -603,6 +612,18 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ScopeGuard.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\ParseFloat.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\ParseInt.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\ParseBool.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\abseil\numbers.hpp">
+      <Filter>src\ThirdParty\abseil</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -790,6 +811,12 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Vector2D\SivVector2D.cpp">
       <Filter>src\Siv3D\Vector2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ParseBool\SivParseBool.cpp">
+      <Filter>src\Siv3D\ParseBool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ParseInt\SivParseInt.cpp">
+      <Filter>src\Siv3D\ParseInt</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
