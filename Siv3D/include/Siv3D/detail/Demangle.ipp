@@ -22,10 +22,10 @@ namespace s3d
 
 	inline String Demangle(const char* name)
 	{
-		Strin result;
+		String result;
 		int status = 0;
 		
-		if (const char* p = abi::__cxa_demangle(name, nullptr nullptr, &status))
+		if (char* p = abi::__cxa_demangle(name, nullptr, nullptr, &status))
 		{
 			result = Unicode::FromUTF8(p);
 

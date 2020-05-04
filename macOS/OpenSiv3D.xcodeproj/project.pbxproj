@@ -378,6 +378,8 @@
 		2C6898132436064900C36C25 /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
 		2C6898142436064900C36C25 /* format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = format.h; sourceTree = "<group>"; };
 		2C6898152436066800C36C25 /* SivWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivWindow.cpp; sourceTree = "<group>"; };
+		2C710F0D2460655C00874320 /* Demangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Demangle.hpp; sourceTree = "<group>"; };
+		2C710F0E2460657100874320 /* Demangle.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Demangle.ipp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		2CA7F73D1CA7F3B100495647 /* libSiv3D.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSiv3D.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA7F74E1CA7F43D00495647 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; usesTabs = 1; };
@@ -884,6 +886,7 @@
 				2C47E3FB245A8C32002D30CE /* Concepts.hpp */,
 				2C47E41F245A8C33002D30CE /* Console.hpp */,
 				2C47E447245A8C33002D30CE /* CPUInfo.hpp */,
+				2C710F0D2460655C00874320 /* Demangle.hpp */,
 				2C47E405245A8C32002D30CE /* DLL.hpp */,
 				2C47E439245A8C33002D30CE /* Endian.hpp */,
 				2C47E401245A8C32002D30CE /* EngineLog.hpp */,
@@ -953,6 +956,7 @@
 				2C47E434245A8C33002D30CE /* ApplicationOptions.ipp */,
 				2C47E427245A8C33002D30CE /* Byte.ipp */,
 				2C47E424245A8C33002D30CE /* Char.ipp */,
+				2C710F0E2460657100874320 /* Demangle.ipp */,
 				2C47E426245A8C33002D30CE /* Endian.ipp */,
 				2C47E436245A8C33002D30CE /* EngineLog.ipp */,
 				2C47E42D245A8C33002D30CE /* FloatingPoint.ipp */,
