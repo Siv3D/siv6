@@ -10,7 +10,7 @@ void Main()
 {
 	try
 	{
-		Parse<Point>(U"20, 30");
+		(void)Parse<Point>(U"11");
 	}
 	catch (const Error& e)
 	{

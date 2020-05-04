@@ -11,12 +11,14 @@
 
 # pragma once
 # include <sstream>
+# include <typeinfo>
 # include "Common.hpp"
 # include "Error.hpp"
 # include "Unicode.hpp"
 # include "ParseBool.hpp"
 # include "ParseInt.hpp"
 # include "ParseFloat.hpp"
+# include "Demangle.hpp"
 
 namespace s3d
 {
@@ -51,7 +53,7 @@ namespace s3d
 
 			if (!(std::wistringstream{ Unicode::ToWstring(s) } >> to))
 			{
-				throw ParseError(U"Parse(\"{}\") failed"_fmt(s));
+				throw ParseError(U"Parse<{}>(\"{}\") failed"_fmt(Demangle(typeid(Type).name()), s));
 			}
 
 			return to;
