@@ -177,9 +177,13 @@
 //////////////////////////////////////////////////
 
 # if (__cpp_lib_bit_cast >= 201806L)
-#	define SIV3D_CONSTEXPR_BITCAST constexpr
+	
+	# define SIV3D_CONSTEXPR_BITCAST constexpr
+
 # else
-#	define SIV3D_CONSTEXPR_BITCAST
+
+	# define SIV3D_CONSTEXPR_BITCAST
+
 # endif
 
 
@@ -242,3 +246,17 @@
 	# define SIV3D_NOVTABLE
 
 # endif
+
+//////////////////////////////////////////////////
+//
+//	ポインタのサイズとメモリアライメント
+//	Pointer size and minimum alignment
+//
+//////////////////////////////////////////////////
+
+namespace s3d::Platform
+{
+	constexpr size_t PointerSize	= sizeof(void*);
+	
+	constexpr size_t MinAlignment	= (PointerSize * 2);
+}
