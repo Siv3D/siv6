@@ -27,7 +27,6 @@ jobs:
         working-directory: Web/build
         run: emmake make 
       - name: Bundle output
-        working-directory: OpenSiv3D
         run: |
           mkdir Package
           cp -r Siv3D/include Package
