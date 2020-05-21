@@ -250,6 +250,10 @@
 // Formatting literal
 # include <Siv3D/FormatLiteral.hpp>
 
+// 文字列ユーティリティ
+// Formatting utilities
+# include <Siv3D/FormatUtility.hpp> // [Siv3D ToDo]
+
 // 文字列 → bool 変換
 // Text to bool conversion
 # include <Siv3D/ParseBool.hpp>
@@ -283,7 +287,7 @@
 
 // 時間の表現
 // Duration
-//# include <Siv3D/Duration.hpp> // [Siv3D ToDo]
+# include <Siv3D/Duration.hpp> // [Siv3D ToDo]
 
 // 曜日
 // Day of week
