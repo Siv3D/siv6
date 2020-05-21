@@ -71,5 +71,15 @@ namespace s3d
 	}
 
 	template <class Type, class ...Args, std::enable_if_t<std::is_constructible_v<Type, Args...>>*>
-	inline auto MakeShared(Args&&... args);
+	inline auto MakeShared(Args&&... args)
+	{
+		if constexpr (IsOverAligned_v<Type>)
+		{
+			return std::shared_ptr<Type>(AlignedNew<Type>(std::forward<Args>(args)...), AlignedDeleter<Type>());
+		}
+		else
+		{
+			return std::make_shared<Type>(std::forward<Args>(args)...);
+		}
+	}
 }

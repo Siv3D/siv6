@@ -23,6 +23,7 @@ namespace s3d
 
 			int32 value = DefaultDecimalPlaces;
 
+			SIV3D_NODISCARD_CXX20
 			DecimalPlaces() = default;
 
 			SIV3D_NODISCARD_CXX20
@@ -30,6 +31,7 @@ namespace s3d
 				: value(v) {}
 		};
 
+		SIV3D_NODISCARD_CXX20
 		FormatData() = default;
 
 		String string;

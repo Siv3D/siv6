@@ -24,8 +24,10 @@ namespace s3d
 
 	public:
 
+		SIV3D_NODISCARD_CXX20
 		Error() = default;
 
+		SIV3D_NODISCARD_CXX20
 		explicit Error(StringView what)
 			: m_what(what) {}
 

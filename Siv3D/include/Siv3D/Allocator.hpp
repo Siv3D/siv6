@@ -33,11 +33,14 @@ namespace s3d
 
 		static constexpr size_t alignment = Alignment;
 
+		SIV3D_NODISCARD_CXX20
 		constexpr Allocator() noexcept {}
 
+		SIV3D_NODISCARD_CXX20
 		constexpr Allocator(const Allocator&) noexcept = default;
 
 		template <class Other>
+		SIV3D_NODISCARD_CXX20
 		constexpr Allocator(const Allocator<Other>&) noexcept {}
 
 		[[nodiscard]]

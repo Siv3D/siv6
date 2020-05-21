@@ -37,26 +37,23 @@ namespace s3d
 	/// </returns>
 	template <class Type>
 	[[nodiscard]]
-	inline Type Parse(StringView s)
-	{
-		if constexpr (std::is_integral_v<Type>)
-		{
-			return ParseInt<Type>(s);
-		}
-		else if constexpr (std::is_floating_point_v<Type>)
-		{
-			return ParseFloat<Type>(s);
-		}
-		else
-		{
-			Type to;
+	inline Type Parse(StringView s);
 
-			if (!(std::wistringstream{ Unicode::ToWstring(s) } >> to))
-			{
-				throw ParseError(U"Parse<{}>(\"{}\") failed"_fmt(Demangle(typeid(Type).name()), s));
-			}
+	template <>
+	[[nodiscard]]
+	inline bool Parse<bool>(StringView s);
 
-			return to;
-		}
-	}
+	template <>
+	[[nodiscard]]
+	inline char Parse<char>(StringView s);
+
+	template <>
+	[[nodiscard]]
+	inline char32 Parse<char32>(StringView s);
+
+	template <>
+	[[nodiscard]]
+	inline String Parse<String>(StringView s);
 }
+
+# include "detail/Parse.ipp"

@@ -62,12 +62,16 @@ namespace s3d
 
 		public:
 
+			SIV3D_NODISCARD_CXX20
 			explicit IntFormatter(int32 value) noexcept;
 
+			SIV3D_NODISCARD_CXX20
 			explicit IntFormatter(int64 value) noexcept;
 
+			SIV3D_NODISCARD_CXX20
 			explicit IntFormatter(uint32 value) noexcept;
 
+			SIV3D_NODISCARD_CXX20
 			explicit IntFormatter(uint64 value) noexcept;
 
 			std::size_t size() const noexcept

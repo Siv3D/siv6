@@ -34,6 +34,7 @@ namespace s3d
 		/// <summary>
 		/// デフォルトコンストラクタ
 		/// </summary>
+		SIV3D_NODISCARD_CXX20
 		HardwareRNG() = default;
 
 		/// <summary>
