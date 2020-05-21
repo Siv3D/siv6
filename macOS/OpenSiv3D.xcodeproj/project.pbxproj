@@ -373,6 +373,10 @@
 		2C4CBE6A24376B5300F8B7A6 /* CProfiler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CProfiler.hpp; sourceTree = "<group>"; };
 		2C4CBE6B24376B5300F8B7A6 /* CProfiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CProfiler.cpp; sourceTree = "<group>"; };
 		2C4CBE6C24376B5300F8B7A6 /* SivProfiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivProfiler.cpp; sourceTree = "<group>"; };
+		2C57676124763C250016202D /* Allocator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Allocator.hpp; sourceTree = "<group>"; };
+		2C57676224763C440016202D /* Memory.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Memory.ipp; sourceTree = "<group>"; };
+		2C57676324763C440016202D /* Allocator.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Allocator.ipp; sourceTree = "<group>"; };
+		2C57676424763C590016202D /* Parse.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Parse.ipp; sourceTree = "<group>"; };
 		2C6897DF2436064900C36C25 /* Siv3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Siv3D.hpp; sourceTree = "<group>"; };
 		2C6898122436064900C36C25 /* ostream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ostream.h; sourceTree = "<group>"; };
 		2C6898132436064900C36C25 /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
@@ -877,6 +881,7 @@
 		2C47E3FA245A8C32002D30CE /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C57676124763C250016202D /* Allocator.hpp */,
 				2C47E3FF245A8C32002D30CE /* ApplicationOptions.hpp */,
 				2C47E40B245A8C32002D30CE /* Array.hpp */,
 				2C47E43A245A8C33002D30CE /* Byte.hpp */,
@@ -953,6 +958,7 @@
 		2C47E422245A8C33002D30CE /* detail */ = {
 			isa = PBXGroup;
 			children = (
+				2C57676324763C440016202D /* Allocator.ipp */,
 				2C47E434245A8C33002D30CE /* ApplicationOptions.ipp */,
 				2C47E427245A8C33002D30CE /* Byte.ipp */,
 				2C47E424245A8C33002D30CE /* Char.ipp */,
@@ -968,9 +974,11 @@
 				2C47E430245A8C33002D30CE /* Formatter.ipp */,
 				2C47E435245A8C33002D30CE /* Hash.ipp */,
 				2C47E431245A8C33002D30CE /* MathConstants.ipp */,
+				2C57676224763C440016202D /* Memory.ipp */,
 				2C47E438245A8C33002D30CE /* Number.ipp */,
 				2C47E425245A8C33002D30CE /* Optional_misc.ipp */,
 				2C47E428245A8C33002D30CE /* Optional.ipp */,
+				2C57676424763C590016202D /* Parse.ipp */,
 				2C47E42E245A8C33002D30CE /* Point.ipp */,
 				2C3EC7DA245AE5E200DAD413 /* ScopeGuard.ipp */,
 				2C47E42B245A8C33002D30CE /* String.ipp */,
