@@ -15,60 +15,38 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// Signed integer type with width of 8 bits
-	/// </summary>
+	/// @brief Signed integer type with width of 8 bits
 	using int8 = std::int8_t;
 
-	/// <summary>
-	/// Signed integer type with width of 16 bits
-	/// </summary>
+	/// @brief Signed integer type with width of 16 bits
 	using int16 = std::int16_t;
 
-	/// <summary>
-	/// Signed integer type with width of 32 bits
-	/// </summary>
+	/// @brief Signed integer type with width of 32 bits
 	using int32 = std::int32_t;
 
-	/// <summary>
-	/// Signed integer type with width of 64 bits
-	/// </summary>
+	/// @brief Signed integer type with width of 64 bits
 	using int64 = std::int64_t;
 
-	/// <summary>
-	/// Unsigned integer type with width of 8 bits
-	/// </summary>
+	/// @brief Unsigned integer type with width of 8 bits
 	using uint8 = std::uint8_t;
 
-	/// <summary>
-	/// Unsigned integer type with width of 16 bits
-	/// </summary>
+	/// @brief Unsigned integer type with width of 16 bits
 	using uint16 = std::uint16_t;
 
-	/// <summary>
-	/// Unsigned integer type with width of 32 bits
-	/// </summary>
+	/// @brief Unsigned integer type with width of 32 bits
 	using uint32 = std::uint32_t;
 
-	/// <summary>
-	/// Unsigned integer type with width of 64 bits
-	/// </summary>
+	/// @brief Unsigned integer type with width of 64 bits
 	using uint64 = std::uint64_t;
 
-	/// <summary>
-	/// UTF-8 character
-	/// </summary>
+	/// @brief UTF-8 character
 	using char8 = char;
 
-	/// <summary>
-	/// UTF-16 character
-	/// </summary>
+	/// @brief UTF-16 character
 	using char16 = char16_t;
 	static_assert(sizeof(char16) == 2);
 
-	/// <summary>
-	/// UTF-32 character
-	/// </summary>
+	/// @brief UTF-32 character
 	using char32 = char32_t;
 	static_assert(sizeof(char32) == 4);
 }

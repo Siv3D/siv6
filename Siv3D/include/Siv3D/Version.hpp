@@ -12,17 +12,11 @@
 # pragma once
 # include "Common.hpp"
 
-/// <summary>
-/// ライブラリのバージョン表示
-/// Version text
-/// </summary>
+/// @biref ライブラリのバージョンの文字列 | Library version string
 # define SIV3D_VERSION	U"0.6.0dev"
 
 namespace s3d
 {
-	/// <summary>
-	/// バージョン ID
-	/// Version value
-	/// </summary>
+	/// @brief ライブラリのバージョン番号 | Library version number
 	inline constexpr uint32 Siv3DVersion = 200'006'000u;
 }

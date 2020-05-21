@@ -13,10 +13,7 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// プレースホルダー型
-	/// Place holder type
-	/// </summary>
+	/// @brief プレースホルダー型 | Place holder type
 	struct PlaceHolder_t
 	{
 		struct init_t {};
@@ -26,10 +23,7 @@ namespace s3d
 
 	namespace Arg
 	{
-		/// <summary>
-		/// プレースホルダー
-		/// Place holder
-		/// </summary>
+		/// @brief プレースホルダー | Place holder
 		inline constexpr PlaceHolder_t _{ PlaceHolder_t::init_t{} };
 	}
 }
