@@ -11,6 +11,7 @@
 
 # include <array>
 # include <Siv3D/Byte.hpp>
+# include <Siv3D/ParseInt.hpp>
 
 namespace s3d
 {
@@ -52,25 +53,25 @@ namespace s3d
 		return output.write(hex.data(), 2);
 	}
 
-	//std::istream& operator >>(std::istream& input, Byte& value)
-	//{
-	//	std::string in;
+	std::istream& operator >>(std::istream& input, Byte& value)
+	{
+		std::string in;
 
-	//	input >> in;
+		input >> in;
 
-	//	value = Byte(ParseInt<uint8>(Unicode::FromUTF8(in), Arg::radix = 16));
+		value = Byte(ParseInt<uint8>(Unicode::FromUTF8(in), Arg::radix = 16));
 
-	//	return input;
-	//}
+		return input;
+	}
 
-	//std::wistream& operator >>(std::wistream& input, Byte& value)
-	//{
-	//	std::wstring in;
+	std::wistream& operator >>(std::wistream& input, Byte& value)
+	{
+		std::wstring in;
 
-	//	input >> in;
+		input >> in;
 
-	//	value = Byte(ParseInt<uint8>(Unicode::FromWString(in), Arg::radix = 16));
+		value = Byte(ParseInt<uint8>(Unicode::FromWstring(in), Arg::radix = 16));
 
-	//	return input;
-	//}
+		return input;
+	}
 }

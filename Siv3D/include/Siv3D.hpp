@@ -89,7 +89,7 @@
 
 // ファンクター
 // Functor
-//# include <Siv3D/Functor.hpp>
+//# include <Siv3D/Functor.hpp> // [Siv3D ToDo]
 
 // エンディアン
 // Endian
@@ -97,7 +97,7 @@
 
 // バイト
 // Byte
-# include <Siv3D/Byte.hpp> // [Siv3D ToDo] istream
+# include <Siv3D/Byte.hpp>
 
 // スレッド
 // Thread
@@ -264,7 +264,7 @@
 
 // 文字列 → 値 変換
 // Text to value conversion
-# include <Siv3D/Parse.hpp> // [Siv3D ToDo]
+# include <Siv3D/Parse.hpp>
 
 // 正規表現
 // Regular expression

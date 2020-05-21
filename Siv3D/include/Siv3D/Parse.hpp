@@ -54,6 +54,51 @@ namespace s3d
 	template <>
 	[[nodiscard]]
 	inline String Parse<String>(StringView s);
+
+	/// <summary>
+	/// 文字列をデータ型に変換します。
+	/// </summary>
+	/// <param name="str">
+	/// 変換する文字列
+	/// </param>
+	/// <returns>
+	/// 文字列から変換されたデータの Optional, 失敗した場合は none
+	/// </returns>
+	template <class Type>
+	[[nodiscard]]
+	inline Optional<Type> ParseOpt(StringView s);
+
+	template <>
+	[[nodiscard]]
+	inline Optional<bool> ParseOpt<bool>(StringView s);
+
+	template <>
+	[[nodiscard]]
+	inline Optional<char> ParseOpt<char>(StringView s);
+
+	template <>
+	[[nodiscard]]
+	inline Optional<char32> ParseOpt<char32>(StringView s);
+
+	template <>
+	[[nodiscard]]
+	inline Optional<String> ParseOpt<String>(StringView s);
+
+	/// <summary>
+	/// 文字列をデータ型に変換します。
+	/// </summary>
+	/// <param name="text">
+	/// 変換する文字列
+	/// </param>
+	/// <param name="defaultValue">
+	/// 変換に失敗した場合に返す値
+	/// </param>
+	/// <returns>
+	/// 文字列から変換されたデータの, 失敗した場合は defaultValue
+	/// </returns>
+	template <class Type, class U>
+	[[nodiscard]]
+	Type ParseOr(StringView s, U&& defaultValue);
 }
 
 # include "detail/Parse.ipp"

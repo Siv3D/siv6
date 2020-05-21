@@ -74,4 +74,79 @@ namespace s3d
 	{
 		return String(s).trimmed();
 	}
+
+	template <class Type>
+	inline Optional<Type> ParseOpt(const StringView s)
+	{
+		if constexpr (std::is_integral_v<Type>)
+		{
+			return ParseIntOpt<Type>(s);
+		}
+		else if constexpr (std::is_floating_point_v<Type>)
+		{
+			return ParseFloatOpt<Type>(s);
+		}
+		else
+		{
+			Type to;
+
+			if (!(std::wistringstream{ Unicode::ToWstring(s) } >> to))
+			{
+				return none;
+			}
+
+			return Optional<Type>(std::move(to));
+		}
+	}
+
+	template <>
+	inline Optional<bool> ParseOpt<bool>(const StringView s)
+	{
+		return ParseBoolOpt(s);
+	}
+
+	template <>
+	inline Optional<char> ParseOpt<char>(const StringView s)
+	{
+		const String t = String(s).trimmed();
+
+		if (t.isEmpty())
+		{
+			return none;
+		}
+
+		return static_cast<char>(t[0]);
+	}
+
+	template <>
+	inline Optional<char32> ParseOpt<char32>(const StringView s)
+	{
+		const String t = String(s).trimmed();
+
+		if (t.isEmpty())
+		{
+			return none;
+		}
+
+		return t[0];
+	}
+
+	template <>
+	inline Optional<String> ParseOpt<String>(const StringView s)
+	{
+		String t = String(s).trimmed();
+
+		if (t.isEmpty())
+		{
+			return none;
+		}
+
+		return Optional<String>(std::move(t));
+	}
+
+	template <class Type, class U>
+	inline Type ParseOr(StringView s, U&& defaultValue)
+	{
+		return ParseOpt<Type>(s).value_or(std::forward<U>(defaultValue));
+	}
 }
