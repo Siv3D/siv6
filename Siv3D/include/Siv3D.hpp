@@ -287,11 +287,11 @@
 
 // 時間の表現
 // Duration
-# include <Siv3D/Duration.hpp> // [Siv3D ToDo]
+# include <Siv3D/Duration.hpp>
 
 // 曜日
 // Day of week
-//# include <Siv3D/DayOfWeek.hpp> // [Siv3D ToDo]
+# include <Siv3D/DayOfWeek.hpp> // [Siv3D ToDo]
 
 // 日付
 // Date
