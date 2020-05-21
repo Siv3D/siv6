@@ -107,13 +107,13 @@
 // Concurrent task
 //# include <Siv3D/ConcurrentTask.hpp> // [Siv3D ToDo]
 
-// メモリアライメント
-// Memory alignment
-//# include <Siv3D/AlignedMemory.hpp> // [Siv3D ToDo]
+// メモリアロケーション
+// Memory allocation
+# include <Siv3D/Memory.hpp>
 
 // メモリアライメント対応アロケーター
 // Aligned allocator
-//# include <Siv3D/AlignedAllocator.hpp> // [Siv3D ToDo]
+# include <Siv3D/Allocator.hpp>
 
 // 動的配列（一次元）
 // Array

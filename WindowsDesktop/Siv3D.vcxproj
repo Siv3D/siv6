@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Allocator.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ApplicationOptions.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Array.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Byte.hpp" />
@@ -22,6 +23,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Console.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\CPUInfo.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Demangle.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Allocator.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ApplicationOptions.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Byte.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Char.ipp" />
@@ -37,6 +39,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Formatter.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Hash.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\MathConstants.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Memory.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Number.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Optional.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Optional_misc.ipp" />
@@ -68,6 +71,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\LogLevel.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LogType.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\MathConstants.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Memory.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Meta.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\NamedParameter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\None.hpp" />
