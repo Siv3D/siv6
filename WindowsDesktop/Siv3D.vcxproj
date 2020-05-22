@@ -31,6 +31,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Byte.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Char.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Date.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\DateTime.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Demangle.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Duration.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Endian.ipp" />
@@ -199,6 +200,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Console\ConsoleFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Console\SivConsole.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\CPUInfo\SivCPUInfo.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\DateTime\SivDateTime.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Dummy\CDummy.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Dummy\DummyFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Duration\SivDuration.cpp" />

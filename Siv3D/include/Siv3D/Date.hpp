@@ -30,12 +30,14 @@ namespace s3d
 		int32 day;
 
 		/// @brief デフォルトコンストラクタ
+		SIV3D_NODISCARD_CXX20
 		Date() noexcept = default;
 
 		/// @brief 日付を作成します。
 		/// @param _year 西暦
 		/// @param _month 月
 		/// @param _day 日
+		SIV3D_NODISCARD_CXX20
 		explicit constexpr Date(int32 _year, int32 _month = 1, int32 _day = 1) noexcept;
 
 		/// @brief 曜日を返します。
@@ -241,6 +243,9 @@ namespace s3d
 			formatData.string.append(value.format());
 		}
 	};
+
+	[[nodiscard]]
+	String FormatDate(const Date& date, StringView format);
 }
 
 # include "detail/Date.ipp"

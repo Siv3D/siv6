@@ -47,6 +47,34 @@ namespace s3d
 				+ DaysAtEndOfMonth[Date::IsLeapYear(date.year)][date.month - 1]
 				+ (date.day - 1);
 		}
+
+		inline constexpr int32 DaysToYears(const int32 days)
+		{
+			const int32 daysIn1Year			= 365;
+			const int32 daysIn4Years		= daysIn1Year * 4 + 1;
+			const int32 daysIn100Years		= daysIn4Years * 25 - 1;
+			const int32 daysIn400Years		= daysIn100Years * 4 + 1;
+			const int32 days400YearsPeriod	= Min(days % daysIn400Years, daysIn100Years * 4 - 1);
+			const int32 days100YearsPeriod	= days400YearsPeriod % daysIn100Years;
+			const int32 days4YearsPeriod	= Min(days100YearsPeriod % daysIn4Years, daysIn1Year * 4 - 1);
+
+			return (days / daysIn400Years * 400)
+				+ (days400YearsPeriod / daysIn100Years * 100)
+				+ (days100YearsPeriod / daysIn4Years * 4)
+				+ (days4YearsPeriod / daysIn1Year);
+		}
+
+		inline Date EpochDaysToDate(const int32 epochDays)
+		{
+			const int32 years			= DaysToYears(epochDays) + 1;
+			const bool isLeapYear		= Date::IsLeapYear(years);
+			const int32 daysAYearPeriod	= epochDays - YearsToDays(years - 1);
+			const auto january			= std::begin(DaysAtEndOfMonth[isLeapYear]);
+			const int32 months			= static_cast<int32>(std::distance(january, std::upper_bound(january, january + 12, daysAYearPeriod)));
+			const int32 days			= daysAYearPeriod - (DaysAtEndOfMonth[isLeapYear][(months - 1)]) + 1;
+
+			return Date(years, months, days);
+		}
 	}
 
 	inline constexpr Date::Date(const int32 _year, const int32 _month, const int32 _day) noexcept
@@ -90,9 +118,19 @@ namespace s3d
 		return FormatDate(*this, format);
 	}
 
+	inline Date Date::operator +(const Days& days) const noexcept
+	{
+		return detail::EpochDaysToDate(detail::DateToEpochDays(*this) + days.count());
+	}
+
 	inline Date Date::operator -(const Days& days) const noexcept
 	{
 		return *this + (-days);
+	}
+
+	inline Date& Date::operator +=(const Days& days) noexcept
+	{
+		return *this = detail::EpochDaysToDate(detail::DateToEpochDays(*this) + days.count());
 	}
 
 	inline Date& Date::operator -=(const Days& days) noexcept

@@ -181,6 +181,9 @@
     <Filter Include="src\Siv3D\Duration">
       <UniqueIdentifier>{3a05b02b-418e-45d1-bfbe-1a8ea59036ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\DateTime">
+      <UniqueIdentifier>{d6cf3777-01eb-4171-87e1-4ddc92ece113}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -678,6 +681,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\DateTime.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\DateTime.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -877,6 +883,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Duration\SivDuration.cpp">
       <Filter>src\Siv3D\Duration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\DateTime\SivDateTime.cpp">
+      <Filter>src\Siv3D\DateTime</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

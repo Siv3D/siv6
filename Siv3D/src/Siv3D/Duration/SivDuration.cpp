@@ -11,6 +11,8 @@
 
 # include <Siv3D/String.hpp>
 # include <Siv3D/Duration.hpp>
+# include <Siv3D/Date.hpp>
+# include <Siv3D/DateTime.hpp>
 # include <Siv3D/FormatInt.hpp>
 # include <Siv3D/FormatUtility.hpp>
 
@@ -18,7 +20,7 @@ namespace s3d
 {
 	namespace detail
 	{
-		static constexpr StringView FormatPatterns[]
+		static constexpr StringView DurationFormatPatterns[]
 		{
 			U"DD"_sv,
 			U"D"_sv,
@@ -45,8 +47,8 @@ namespace s3d
 		static String GetFormattedElement(const int64 us, const StringView format)
 		{
 			const size_t formatIndex = std::distance(
-				std::begin(FormatPatterns),
-				std::find(std::begin(FormatPatterns), std::end(FormatPatterns), format)
+				std::begin(DurationFormatPatterns),
+				std::find(std::begin(DurationFormatPatterns), std::end(DurationFormatPatterns), format)
 			);
 
 			switch (formatIndex)

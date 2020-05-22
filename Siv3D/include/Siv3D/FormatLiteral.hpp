@@ -49,7 +49,7 @@ namespace s3d
 		inline namespace FormatLiterals
 		{
 			[[nodiscard]]
-			constexpr detail::FormatHelper operator ""_fmt(const char32 * s, size_t length) noexcept;
+			constexpr detail::FormatHelper operator ""_fmt(const char32* s, size_t length) noexcept;
 		}
 	}
 }
