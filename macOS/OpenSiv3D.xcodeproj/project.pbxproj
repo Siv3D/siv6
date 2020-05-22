@@ -113,6 +113,8 @@
 		2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2EC2426630000D5CBBB /* SivError.cpp */; };
 		2C44429E24271E1700557D51 /* SivEngineLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C44429D24271E1700557D51 /* SivEngineLog.cpp */; };
 		2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4442A02427AA7C00557D51 /* miniutf.hpp */; };
+		2C45ED9A24783B020018C62B /* SivDate_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C45ED9724783B020018C62B /* SivDate_Platform.cpp */; };
+		2C45ED9B24783B020018C62B /* SivDateTime_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C45ED9924783B020018C62B /* SivDateTime_Platform.cpp */; };
 		2C4738422459BB0800824B3F /* SivVector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4738412459BB0800824B3F /* SivVector2D.cpp */; };
 		2C47A9A9243CA7D800FD33B4 /* SivPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */; };
 		2C47D4172477E84800CDF824 /* SivDuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47D4162477E84800CDF824 /* SivDuration.cpp */; };
@@ -261,6 +263,8 @@
 		2C43B2EC2426630000D5CBBB /* SivError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivError.cpp; sourceTree = "<group>"; };
 		2C44429D24271E1700557D51 /* SivEngineLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivEngineLog.cpp; sourceTree = "<group>"; };
 		2C4442A02427AA7C00557D51 /* miniutf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miniutf.hpp; sourceTree = "<group>"; };
+		2C45ED9724783B020018C62B /* SivDate_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivDate_Platform.cpp; sourceTree = "<group>"; };
+		2C45ED9924783B020018C62B /* SivDateTime_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivDateTime_Platform.cpp; sourceTree = "<group>"; };
 		2C46837924590D8D000006C0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2C46837A24590D8D000006C0 /* EnumBitmask.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnumBitmask.hpp; sourceTree = "<group>"; };
 		2C4719F5244969A300BAC3E8 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxhash.h; sourceTree = "<group>"; };
@@ -526,6 +530,8 @@
 			isa = PBXGroup;
 			children = (
 				2C435BC8243E14D1001CAAD8 /* Console */,
+				2C45ED9624783B020018C62B /* Date */,
+				2C45ED9824783B020018C62B /* DateTime */,
 				2C435BD0243E1600001CAAD8 /* Logger */,
 				2C435BCD243E15A5001CAAD8 /* Unicode */,
 			);
@@ -846,6 +852,22 @@
 				2C4442A02427AA7C00557D51 /* miniutf.hpp */,
 			);
 			path = miniutf;
+			sourceTree = "<group>";
+		};
+		2C45ED9624783B020018C62B /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				2C45ED9724783B020018C62B /* SivDate_Platform.cpp */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		2C45ED9824783B020018C62B /* DateTime */ = {
+			isa = PBXGroup;
+			children = (
+				2C45ED9924783B020018C62B /* SivDateTime_Platform.cpp */,
+			);
+			path = DateTime;
 			sourceTree = "<group>";
 		};
 		2C46837824590D8D000006C0 /* EnumBitmask */ = {
@@ -1381,6 +1403,7 @@
 				2C423245242B155E00A16BCA /* cocoa_time.c in Sources */,
 				2C6898162436066800C36C25 /* SivWindow.cpp in Sources */,
 				2C4231C7242B0B9200A16BCA /* SivFormatter.cpp in Sources */,
+				2C45ED9A24783B020018C62B /* SivDate_Platform.cpp in Sources */,
 				2C439F81241DCEA9001154C2 /* strtod.cc in Sources */,
 				2C43B2CA2426223400D5CBBB /* SivLogger.cpp in Sources */,
 				2C423258242B19ED00A16BCA /* posix_thread.c in Sources */,
@@ -1447,6 +1470,7 @@
 				2C4360CD240E4EEC001657D2 /* Siv3DTest.cpp in Sources */,
 				2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */,
 				2C4CBE7124376B5300F8B7A6 /* SivProfiler.cpp in Sources */,
+				2C45ED9B24783B020018C62B /* SivDateTime_Platform.cpp in Sources */,
 				2C4CBE592437100100F8B7A6 /* glew.c in Sources */,
 				2C47A9A9243CA7D800FD33B4 /* SivPoint.cpp in Sources */,
 				2C43B2E024264E1200D5CBBB /* SystemFactory.cpp in Sources */,

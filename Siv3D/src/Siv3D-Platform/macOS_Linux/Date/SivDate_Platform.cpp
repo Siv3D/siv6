@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -15,7 +15,7 @@
 
 namespace s3d
 {
-	Date Date::Today()
+	Date Date::Today() noexcept
 	{
 		::time_t t = ::time(nullptr);
 		::tm* lt = ::localtime(&t);
