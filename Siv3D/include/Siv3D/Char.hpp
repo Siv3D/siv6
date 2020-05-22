@@ -55,174 +55,97 @@ Dec Hx Ch                            | Dec Hx Ch    | Dec Hx Ch | Dec Hx Ch
 
 namespace s3d
 {
-	/// <summary>
-	/// ASCII 文字であるかを返します。
-	/// Checks whether `ch` is an ASCII character.
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// Character to be checked
-	/// </param>
-	/// <returns>
-	/// ASCII 文字である場合 true, それ以外の場合は false
-	/// True if ch is an ASCII character, false otherwise
-	/// </returns>
+	/// @brief ASCII 文字であるかを返します。 | Checks whether `ch` is an ASCII character.
+	/// @param ch 文字 | Character to be checked
+	/// @return ASCII 文字である場合 true, それ以外の場合は false | True if ch is an ASCII character, false otherwise
 	[[nodiscard]]
 	inline constexpr bool IsASCII(char32 ch) noexcept;
 
-	/// <summary>
-	/// 10 進数の数字であるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// 10 進数の数字である場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief 10 進数の数字であるかを返します。
+	/// @param ch 文字
+	/// @return 10 進数の数字である場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool IsDigit(char32 ch) noexcept;
 
-	/// <summary>
-	/// アルファベットの小文字であるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// アルファベットの小文字である場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief アルファベットの小文字であるかを返します。
+	/// @param ch 文字
+	/// @return アルファベットの小文字である場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool IsLower(char32 ch) noexcept;
 
-	/// <summary>
-	/// アルファベットの大文字であるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// アルファベットの大文字である場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief アルファベットの大文字であるかを返します。
+	/// @param ch 文字
+	/// @return アルファベットの大文字である場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool IsUpper(char32 ch) noexcept;
 
-	/// <summary>
-	/// アルファベットの大文字を小文字にします。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// アルファベットの大文字である場合はそれを小文字にした文字、それ以外の場合は同じ文字
-	/// </returns>
+	/// @brief アルファベットの大文字を小文字にします。
+	/// @param ch 文字
+	/// @return アルファベットの大文字である場合はそれを小文字にした文字、それ以外の場合は同じ文字
 	[[nodiscard]]
 	inline constexpr char32 ToLower(char32 ch) noexcept;
 
-	/// <summary>
-	/// アルファベットの小文字を大文字にします。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// アルファベットの小文字である場合はそれを大文字にした文字、それ以外の場合は同じ文字
-	/// </returns>
+	/// @brief アルファベットの小文字を大文字にします。
+	/// @param ch 文字
+	/// @return アルファベットの小文字である場合はそれを大文字にした文字、それ以外の場合は同じ文字
 	[[nodiscard]]
 	inline constexpr char32 ToUpper(char32 ch) noexcept;
 
-	/// <summary>
-	/// アルファベットであるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// アルファベットである場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief 文字がアルファベットであるかを返します。
+	/// @param ch 文字
+	/// @return アルファベットである場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool IsAlpha(char32 ch) noexcept;
 
-	/// <summary>
-	/// アルファベットもしくは数字であるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// アルファベットもしくは数字である場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief 文字がアルファベットもしくは数字であるかを返します。
+	/// @param ch 文字
+	/// @return アルファベットもしくは数字である場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool IsAlnum(char32 ch) noexcept;
 
-	/// <summary>
-	/// 16 進数の数字であるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// 16 進数の数字である場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief 文字が 16 進数の数字であるかを返します。
+	/// @param ch 文字
+	/// @return 16 進数の数字である場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool IsXdigit(char32 ch) noexcept;
 
-	/// <summary>
-	/// 制御文字であるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// 制御文字である場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief 文字が制御文字であるかを返します。
+	/// @param ch 文字
+	/// @return 制御文字である場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool IsControl(char32 ch) noexcept;
 
-	/// <summary>
-	/// 空白文字であるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <remarks>
-	/// ' ', '\t', '　' が該当します。
-	/// </remarks>
-	/// <returns>
-	/// 空白文字である場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief 文字が空白文字であるかを返します。
+	/// @param ch 文字
+	/// @remark ' ', '\t', '　' が該当します。
+	/// @return 空白文字である場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool IsBlank(char32 ch) noexcept;
 
-	/// <summary>
-	/// 空白類文字であるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <remarks>
-	/// ' ', '\t', '\n', '\v', '\f', '\r', '　' が該当します。
-	/// </remarks>
-	/// <returns>
-	/// 空白類文字である場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief 文字が空白類文字であるかを返します。
+	/// @param ch 文字
+	/// @remark ' ', '\t', '\n', '\v', '\f', '\r', '　' が該当します。
+	/// @return 空白類文字である場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool IsSpace(char32 ch) noexcept;
 
-	/// <summary>
-	/// 印字可能文字であるかを返します。
-	/// </summary>
-	/// <param name="ch">
-	/// 文字
-	/// </param>
-	/// <returns>
-	/// 印字可能文字である場合 true, それ以外の場合は false
-	/// </returns>
+	/// @brief 文字が印字可能文字であるかを返します。
+	/// @param ch 文字
+	/// @return 印字可能文字である場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline bool IsPrint(char32 ch);
 
+	/// @brief 大文字小文字を区別しない文字の大小比較の結果を返します。
+	/// @param a 比較する文字
+	/// @param b 比較する文字
+	/// @return 文字の大小比較の結果
 	[[nodiscard]]
 	inline constexpr int32 CaseInsensitiveCompare(char32 a, char32 b) noexcept;
 
+	/// @brief 大文字小文字を区別せず、文字が同じであるかを返します。
+	/// @param a 比較する文字
+	/// @param b 比較する文字
+	/// @return 文字が同じである場合 true, それ以外の場合は false
 	[[nodiscard]]
 	inline constexpr bool CaseInsensitiveEquals(char32 a, char32 b) noexcept;
 }

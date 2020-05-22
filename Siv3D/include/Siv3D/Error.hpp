@@ -16,6 +16,7 @@
 
 namespace s3d
 {
+	/// @brief エラーを表現する型
 	class Error
 	{
 	protected:
@@ -56,6 +57,7 @@ namespace s3d
 		}
 	};
 
+	/// @brief パースエラーを表現する型
 	class ParseError final : public Error
 	{
 	public:
@@ -69,6 +71,7 @@ namespace s3d
 		}
 	};
 
+	/// @brief 値を持たない Optional へのアクセスによるエラーを表現する型
 	class BadOptionalAccess final : public Error
 	{
 	public:
@@ -82,6 +85,7 @@ namespace s3d
 		}
 	};
 
+	/// @brief エンジン内部のエラーを表現する型
 	class EngineError final : public Error
 	{
 	public:
@@ -104,5 +108,8 @@ namespace s3d
 
 namespace s3d
 {
+	/// @brief エラーをフォーマットします。
+	/// @param formatData フォーマットデータ
+	/// @param value エラーの値
 	void Formatter(FormatData& formatData, const Error& value);
 }

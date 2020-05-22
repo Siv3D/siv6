@@ -291,7 +291,7 @@
 
 // 曜日
 // Day of week
-# include <Siv3D/DayOfWeek.hpp> // [Siv3D ToDo]
+# include <Siv3D/DayOfWeek.hpp>
 
 // 日付
 // Date

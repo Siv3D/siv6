@@ -14,5 +14,6 @@
 
 namespace s3d
 {
+	/// @brief 「特に指定しない」ことを表す無効値
 	inline constexpr None_t unspecified = none;
 }

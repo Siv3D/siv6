@@ -13,14 +13,9 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// コピー禁止 Mixin
-	/// Non-copyable mixin
-	/// </summary>
-	/// <remarks>
-	/// このクラスを private 継承して使います。
-	/// Intended to be used as a private base class.
-	/// </remarks>
+	/// @brief コピー禁止 Mixin | Non-copyable mixin
+	/// @remark このクラスを private 継承して使います。
+	/// @remark Intended to be used as a private base class.
 	class Uncopyable
 	{
 	protected:

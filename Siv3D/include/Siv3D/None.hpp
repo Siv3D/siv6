@@ -16,6 +16,7 @@
 
 namespace s3d
 {
+	/// @brief 無効値を表現する型
 	struct None_t
 	{
 		struct init {};
@@ -36,8 +37,6 @@ namespace s3d
 		}
 	};
 
-	/// <summary>
-	/// 無効値
-	/// </summary>
+	/// @brief 無効値
 	inline constexpr None_t none{ None_t::init() };
 }

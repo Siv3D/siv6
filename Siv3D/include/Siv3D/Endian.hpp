@@ -14,12 +14,21 @@
 
 namespace s3d
 {
+	/// @brief エンディアンを変換します
+	/// @param value エンディアンを変換する値
+	/// @return エンディアン変換後の値
 	[[nodiscard]]
 	inline uint16 SwapEndian(uint16 value) noexcept;
 
+	/// @brief エンディアンを変換します
+	/// @param value エンディアンを変換する値
+	/// @return エンディアン変換後の値
 	[[nodiscard]]
 	inline uint32 SwapEndian(uint32 value) noexcept;
 
+	/// @brief エンディアンを変換します
+	/// @param value エンディアンを変換する値
+	/// @return エンディアン変換後の値
 	[[nodiscard]]
 	inline uint64 SwapEndian(uint64 value) noexcept;
 }
