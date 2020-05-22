@@ -16,6 +16,9 @@
 
 namespace s3d
 {
+	struct Date;
+	struct DateTime;
+
 	/// @brief 日数 | Days
 	using Days			= std::chrono::duration<int32, std::ratio<86400>>;
 
@@ -114,6 +117,12 @@ namespace s3d
 	/// @return フォーマットされた時間
 	[[nodiscard]]
 	String FormatTime(const Duration& duration, StringView format);
+
+	[[nodiscard]]
+	String FormatDate(const Date& date, StringView format);
+
+	[[nodiscard]]
+	String FormatDateTime(const DateTime& dateTime, StringView format);
 
 	/// @brief 日数をフォーマットします。
 	/// @param formatData フォーマットデータ

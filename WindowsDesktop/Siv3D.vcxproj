@@ -22,12 +22,15 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Concepts.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Console.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\CPUInfo.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Date.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\DateTime.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\DayOfWeek.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Demangle.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Allocator.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ApplicationOptions.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Byte.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Char.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Date.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Demangle.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Duration.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Endian.ipp" />

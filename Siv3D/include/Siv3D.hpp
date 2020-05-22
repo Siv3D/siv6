@@ -295,11 +295,11 @@
 
 // 日付
 // Date
-//# include <Siv3D/Date.hpp> // [Siv3D ToDo]
+# include <Siv3D/Date.hpp> // [Siv3D ToDo]
 
 // 日付と時刻
 // Date and time
-//# include <Siv3D/DateTime.hpp> // [Siv3D ToDo]
+# include <Siv3D/DateTime.hpp> // [Siv3D ToDo]
 
 // 時間
 // Time

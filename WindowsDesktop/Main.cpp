@@ -8,6 +8,11 @@ SIV3D_OPTION_RUN_TEST(false);
 
 void Main()
 {
+	constexpr auto a = Date(2020, 1, 1);
+	constexpr auto b = Date(2020, 12, 31);
+	constexpr auto c = b - a;
+	Logger << c;
+
 	while (System::Update())
 	{
 
