@@ -30,8 +30,10 @@ add_library(
   ../Siv3D/src/Siv3D/Console/ConsoleFactory.cpp
   ../Siv3D/src/Siv3D/Console/SivConsole.cpp
   ../Siv3D/src/Siv3D/CPUInfo/SivCPUInfo.cpp
+  ../Siv3D/src/Siv3D/DateTime/SivDateTime.cpp
   ../Siv3D/src/Siv3D/Dummy/CDummy.cpp
   ../Siv3D/src/Siv3D/Dummy/DummyFactory.cpp
+  ../Siv3D/src/Siv3D/Duration/SivDuration.cpp
   ../Siv3D/src/Siv3D/EngineLog/SivEngineLog.cpp
   ../Siv3D/src/Siv3D/Error/SivError.cpp
   ../Siv3D/src/Siv3D/FormatFloat/SivFormatFloat.cpp

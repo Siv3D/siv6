@@ -115,6 +115,8 @@
 		2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4442A02427AA7C00557D51 /* miniutf.hpp */; };
 		2C4738422459BB0800824B3F /* SivVector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4738412459BB0800824B3F /* SivVector2D.cpp */; };
 		2C47A9A9243CA7D800FD33B4 /* SivPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */; };
+		2C47D4172477E84800CDF824 /* SivDuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47D4162477E84800CDF824 /* SivDuration.cpp */; };
+		2C47D41F2477E8AC00CDF824 /* SivDateTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47D41E2477E8AC00CDF824 /* SivDateTime.cpp */; };
 		2C481E1224460B5700A5D88D /* bit_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0C24460B5700A5D88D /* bit_utils.h */; };
 		2C481E1324460B5700A5D88D /* cpuinfo_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */; };
 		2C481E1424460B5700A5D88D /* cpu_features_cache_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0E24460B5700A5D88D /* cpu_features_cache_info.h */; };
@@ -265,6 +267,17 @@
 		2C4719F6244969A300BAC3E8 /* xxh3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxh3.h; sourceTree = "<group>"; };
 		2C4738412459BB0800824B3F /* SivVector2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivVector2D.cpp; sourceTree = "<group>"; };
 		2C47A9A8243CA7D800FD33B4 /* SivPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivPoint.cpp; sourceTree = "<group>"; };
+		2C47D4112477E81E00CDF824 /* FormatUtility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatUtility.hpp; sourceTree = "<group>"; };
+		2C47D4122477E81E00CDF824 /* Duration.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Duration.hpp; sourceTree = "<group>"; };
+		2C47D4132477E83400CDF824 /* Duration.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Duration.ipp; sourceTree = "<group>"; };
+		2C47D4142477E83400CDF824 /* FormatUtility.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatUtility.ipp; sourceTree = "<group>"; };
+		2C47D4162477E84800CDF824 /* SivDuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivDuration.cpp; sourceTree = "<group>"; };
+		2C47D4182477E86300CDF824 /* DayOfWeek.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DayOfWeek.hpp; sourceTree = "<group>"; };
+		2C47D4192477E87500CDF824 /* Date.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Date.hpp; sourceTree = "<group>"; };
+		2C47D41A2477E87500CDF824 /* DateTime.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DateTime.hpp; sourceTree = "<group>"; };
+		2C47D41B2477E88800CDF824 /* DateTime.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DateTime.ipp; sourceTree = "<group>"; };
+		2C47D41C2477E89B00CDF824 /* Date.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Date.ipp; sourceTree = "<group>"; };
+		2C47D41E2477E8AC00CDF824 /* SivDateTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivDateTime.cpp; sourceTree = "<group>"; };
 		2C47E3FB245A8C32002D30CE /* Concepts.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Concepts.hpp; sourceTree = "<group>"; };
 		2C47E3FC245A8C32002D30CE /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
 		2C47E3FD245A8C32002D30CE /* FormatInt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FormatInt.hpp; sourceTree = "<group>"; };
@@ -605,7 +618,9 @@
 				2C4360B8240E4EEC001657D2 /* Common */,
 				2C4360C0240E4EEC001657D2 /* Console */,
 				2C481E1824460BBA00A5D88D /* CPUInfo */,
+				2C47D41D2477E8AC00CDF824 /* DateTime */,
 				2C4360AF240E4EEC001657D2 /* Dummy */,
+				2C47D4152477E84800CDF824 /* Duration */,
 				2C44429C24271E1700557D51 /* EngineLog */,
 				2C43B2EB2426630000D5CBBB /* Error */,
 				2C439F5C241DCE8B001154C2 /* FormatFloat */,
@@ -878,6 +893,22 @@
 			path = Point;
 			sourceTree = "<group>";
 		};
+		2C47D4152477E84800CDF824 /* Duration */ = {
+			isa = PBXGroup;
+			children = (
+				2C47D4162477E84800CDF824 /* SivDuration.cpp */,
+			);
+			path = Duration;
+			sourceTree = "<group>";
+		};
+		2C47D41D2477E8AC00CDF824 /* DateTime */ = {
+			isa = PBXGroup;
+			children = (
+				2C47D41E2477E8AC00CDF824 /* SivDateTime.cpp */,
+			);
+			path = DateTime;
+			sourceTree = "<group>";
+		};
 		2C47E3FA245A8C32002D30CE /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,8 +922,12 @@
 				2C47E3FB245A8C32002D30CE /* Concepts.hpp */,
 				2C47E41F245A8C33002D30CE /* Console.hpp */,
 				2C47E447245A8C33002D30CE /* CPUInfo.hpp */,
+				2C47D4192477E87500CDF824 /* Date.hpp */,
+				2C47D41A2477E87500CDF824 /* DateTime.hpp */,
+				2C47D4182477E86300CDF824 /* DayOfWeek.hpp */,
 				2C710F0D2460655C00874320 /* Demangle.hpp */,
 				2C47E405245A8C32002D30CE /* DLL.hpp */,
+				2C47D4122477E81E00CDF824 /* Duration.hpp */,
 				2C47E439245A8C33002D30CE /* Endian.hpp */,
 				2C47E401245A8C32002D30CE /* EngineLog.hpp */,
 				2C47E41D245A8C33002D30CE /* Error.hpp */,
@@ -904,6 +939,7 @@
 				2C47E3FD245A8C32002D30CE /* FormatInt.hpp */,
 				2C47E440245A8C33002D30CE /* FormatLiteral.hpp */,
 				2C47E418245A8C32002D30CE /* Formatter.hpp */,
+				2C47D4112477E81E00CDF824 /* FormatUtility.hpp */,
 				2C47E406245A8C32002D30CE /* Fwd.hpp */,
 				2C47E407245A8C32002D30CE /* HardwareRNG.hpp */,
 				2C47E3FE245A8C32002D30CE /* Hash.hpp */,
@@ -962,7 +998,10 @@
 				2C47E434245A8C33002D30CE /* ApplicationOptions.ipp */,
 				2C47E427245A8C33002D30CE /* Byte.ipp */,
 				2C47E424245A8C33002D30CE /* Char.ipp */,
+				2C47D41C2477E89B00CDF824 /* Date.ipp */,
+				2C47D41B2477E88800CDF824 /* DateTime.ipp */,
 				2C710F0E2460657100874320 /* Demangle.ipp */,
+				2C47D4132477E83400CDF824 /* Duration.ipp */,
 				2C47E426245A8C33002D30CE /* Endian.ipp */,
 				2C47E436245A8C33002D30CE /* EngineLog.ipp */,
 				2C47E42D245A8C33002D30CE /* FloatingPoint.ipp */,
@@ -972,6 +1011,7 @@
 				2C47E433245A8C33002D30CE /* FormatInt.ipp */,
 				2C47E429245A8C33002D30CE /* FormatLiteral.ipp */,
 				2C47E430245A8C33002D30CE /* Formatter.ipp */,
+				2C47D4142477E83400CDF824 /* FormatUtility.ipp */,
 				2C47E435245A8C33002D30CE /* Hash.ipp */,
 				2C47E431245A8C33002D30CE /* MathConstants.ipp */,
 				2C57676224763C440016202D /* Memory.ipp */,
@@ -1364,8 +1404,10 @@
 				2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */,
 				2C435BCF243E15A5001CAAD8 /* SivUnicode_Platform.cpp in Sources */,
 				2C435BC6243E085D001CAAD8 /* SivByte.cpp in Sources */,
+				2C47D41F2477E8AC00CDF824 /* SivDateTime.cpp in Sources */,
 				2C423250242B155E00A16BCA /* window.c in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
+				2C47D4172477E84800CDF824 /* SivDuration.cpp in Sources */,
 				2C423246242B155E00A16BCA /* nsgl_context.m in Sources */,
 				2C4CBE652437236000F8B7A6 /* SivScene.cpp in Sources */,
 				2C4231CB242B0BD300A16BCA /* SivSystem.cpp in Sources */,
