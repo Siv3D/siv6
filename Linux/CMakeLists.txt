@@ -16,6 +16,8 @@ pkg_check_modules(LIBSIV3D REQUIRED glib-2.0 gl x11)
 add_library(
   Siv3D STATIC
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Console/CConsole.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Date/SivDate_Platform.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/DateTime/SivDateTime_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Logger/CLogger.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Unicode/SivUnicode_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3DMain.cpp

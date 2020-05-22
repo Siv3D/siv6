@@ -184,6 +184,12 @@
     <Filter Include="src\Siv3D\DateTime">
       <UniqueIdentifier>{d6cf3777-01eb-4171-87e1-4ddc92ece113}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Date">
+      <UniqueIdentifier>{54e5eb52-3385-486d-bafc-510b1fe7b1b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\DateTime">
+      <UniqueIdentifier>{b632032e-8ee6-4b94-8240-24f8710d3d1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -886,6 +892,12 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\DateTime\SivDateTime.cpp">
       <Filter>src\Siv3D\DateTime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Date\SivDate_Platform.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Date</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\DateTime\SivDateTime_Platform.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\DateTime</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -17,14 +17,6 @@ namespace s3d
 {
 	namespace detail
 	{
-		static constexpr int32 TimeToMillisecCount(const int32 hour, const int32 minute, const int32 second, const int32 milliseconds)
-		{
-			return hour * (60 * 60 * 1000)
-				+ minute * (60 * 1000)
-				+ second * (1000)
-				+ milliseconds;
-		}
-
 		static constexpr StringView MonthEnglish[12]
 		{
 			U"January"_sv,

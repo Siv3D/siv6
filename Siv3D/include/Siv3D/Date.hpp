@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <cstring>
 # include "Common.hpp"
 # include "DayOfWeek.hpp"
 # include "String.hpp"
@@ -37,6 +38,7 @@ namespace s3d
 		/// @param _year 西暦
 		/// @param _month 月
 		/// @param _day 日
+		/// @remarks 指定された日付が存在するかはチェックされません。
 		SIV3D_NODISCARD_CXX20
 		explicit constexpr Date(int32 _year, int32 _month = 1, int32 _day = 1) noexcept;
 
@@ -244,11 +246,24 @@ namespace s3d
 		}
 	};
 
+	/// @brief 日付を文字列に変換します。
+	/// yyyy	4 桁の年 (0001-)
+	/// yy		2 桁の年 (00-99)
+	/// y		年 (1-)
+	/// MMMM	英語の月 (January-December)
+	/// MMM		英語の月の略称 (Jan-Dec)
+	/// MM		2 桁の月 (01-12)
+	/// M		1-2 桁の月 (1-12)
+	/// dd		2 桁の日 (01-31)
+	/// d		1-2 桁の日 (1-31)
+	/// EEEE	英語の曜日 (Sunday-Saturday)
+	/// EEE		英語の曜日の略称 (Sun-Sat)
+	/// @param date 日付
+	/// @param format フォーマット指定
+	/// @return フォーマットされた日付
 	[[nodiscard]]
-	String FormatDate(const Date& date, StringView format);
+	String FormatDate(const Date& date, StringView format = U"yyyy/M/d"_sv);
 }
-
-# include "detail/Date.ipp"
 
 namespace std
 {
@@ -262,3 +277,5 @@ namespace std
 		}
 	};
 }
+
+# include "detail/Date.ipp"
