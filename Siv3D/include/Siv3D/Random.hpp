@@ -12,6 +12,7 @@
 # pragma once
 # include "Common.hpp"
 # include "SMFT.hpp"
+# include "Distribution.hpp"
 
 namespace s3d
 {
@@ -34,4 +35,31 @@ namespace s3d
 	/// [0, 1) の範囲の乱数
 	/// </returns>
 	double Random() noexcept;
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	inline Arithmetic Random(Arithmetic min, Arithmetic max)
+	{
+		if constexpr (std::is_integral_v<Arithmetic>)
+		{
+			return UniformIntDistribution<Arithmetic>(min, max)(GetDefaultRNG());
+		}
+		else
+		{
+			return UniformRealDistribution<Arithmetic>(min, max)(GetDefaultRNG());
+		}
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	inline Arithmetic Random(Arithmetic max)
+	{
+		return Random<Arithmetic>(0, max);
+	}
 }
