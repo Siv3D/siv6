@@ -113,6 +113,8 @@
 		2C44429E24271E1700557D51 /* SivEngineLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C44429D24271E1700557D51 /* SivEngineLog.cpp */; };
 		2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4442A02427AA7C00557D51 /* miniutf.hpp */; };
 		2C4564D52479198500DB01F0 /* SivThreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4564D42479198500DB01F0 /* SivThreading.cpp */; };
+		2C4564DD2479469F00DB01F0 /* SivInt128.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4564DC2479469F00DB01F0 /* SivInt128.cpp */; };
+		2C4564E1247946AF00DB01F0 /* int128.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C4564E0247946AF00DB01F0 /* int128.cc */; };
 		2C45ED9A24783B020018C62B /* SivDate_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C45ED9724783B020018C62B /* SivDate_Platform.cpp */; };
 		2C45ED9B24783B020018C62B /* SivDateTime_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C45ED9924783B020018C62B /* SivDateTime_Platform.cpp */; };
 		2C4738422459BB0800824B3F /* SivVector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4738412459BB0800824B3F /* SivVector2D.cpp */; };
@@ -278,6 +280,11 @@
 		2C4564D42479198500DB01F0 /* SivThreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivThreading.cpp; sourceTree = "<group>"; };
 		2C4564D62479199D00DB01F0 /* ConcurrentTask.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConcurrentTask.hpp; sourceTree = "<group>"; };
 		2C4564D7247919D900DB01F0 /* Distribution.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Distribution.hpp; sourceTree = "<group>"; };
+		2C4564D82479465700DB01F0 /* DiscreteDistribution.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DiscreteDistribution.hpp; sourceTree = "<group>"; };
+		2C4564D92479466900DB01F0 /* Int128.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Int128.hpp; sourceTree = "<group>"; };
+		2C4564DA2479468800DB01F0 /* Random.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Random.ipp; sourceTree = "<group>"; };
+		2C4564DC2479469F00DB01F0 /* SivInt128.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivInt128.cpp; sourceTree = "<group>"; };
+		2C4564E0247946AF00DB01F0 /* int128.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int128.cc; sourceTree = "<group>"; };
 		2C45ED9724783B020018C62B /* SivDate_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivDate_Platform.cpp; sourceTree = "<group>"; };
 		2C45ED9924783B020018C62B /* SivDateTime_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivDateTime_Platform.cpp; sourceTree = "<group>"; };
 		2C46837924590D8D000006C0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -574,6 +581,7 @@
 		2C43609A240E4EEC001657D2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2C4564DE247946AF00DB01F0 /* absl */,
 				2C43609B240E4EEC001657D2 /* Catch2 */,
 				2C481E0B24460B5700A5D88D /* cpu_features */,
 				2C439F62241DCEA9001154C2 /* double-conversion */,
@@ -638,6 +646,7 @@
 				2C439F5C241DCE8B001154C2 /* FormatFloat */,
 				2C439F8B241DF5CD001154C2 /* FormatInt */,
 				2C4231C5242B0B9200A16BCA /* Formatter */,
+				2C4564DB2479469F00DB01F0 /* Int128 */,
 				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C43B2C52426223400D5CBBB /* Logger */,
 				2C3EC7E4245AE62400DAD413 /* ParseBool */,
@@ -884,6 +893,30 @@
 			path = Threading;
 			sourceTree = "<group>";
 		};
+		2C4564DB2479469F00DB01F0 /* Int128 */ = {
+			isa = PBXGroup;
+			children = (
+				2C4564DC2479469F00DB01F0 /* SivInt128.cpp */,
+			);
+			path = Int128;
+			sourceTree = "<group>";
+		};
+		2C4564DE247946AF00DB01F0 /* absl */ = {
+			isa = PBXGroup;
+			children = (
+				2C4564DF247946AF00DB01F0 /* numeric */,
+			);
+			path = absl;
+			sourceTree = "<group>";
+		};
+		2C4564DF247946AF00DB01F0 /* numeric */ = {
+			isa = PBXGroup;
+			children = (
+				2C4564E0247946AF00DB01F0 /* int128.cc */,
+			);
+			path = numeric;
+			sourceTree = "<group>";
+		};
 		2C45ED9624783B020018C62B /* Date */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,6 +1012,7 @@
 				2C47D41A2477E87500CDF824 /* DateTime.hpp */,
 				2C47D4182477E86300CDF824 /* DayOfWeek.hpp */,
 				2C710F0D2460655C00874320 /* Demangle.hpp */,
+				2C4564D82479465700DB01F0 /* DiscreteDistribution.hpp */,
 				2C4564D7247919D900DB01F0 /* Distribution.hpp */,
 				2C47E405245A8C32002D30CE /* DLL.hpp */,
 				2C47D4122477E81E00CDF824 /* Duration.hpp */,
@@ -1000,6 +1034,7 @@
 				2C4564C5247918F600DB01F0 /* HashSet.hpp */,
 				2C4564C6247918F600DB01F0 /* HashTable.hpp */,
 				2C47E446245A8C33002D30CE /* Indexed.hpp */,
+				2C4564D92479466900DB01F0 /* Int128.hpp */,
 				2C47E416245A8C32002D30CE /* IntFormatter.hpp */,
 				2C47E402245A8C32002D30CE /* LetterCase.hpp */,
 				2C47E3FC245A8C32002D30CE /* Logger.hpp */,
@@ -1079,6 +1114,7 @@
 				2C47E428245A8C33002D30CE /* Optional.ipp */,
 				2C57676424763C590016202D /* Parse.ipp */,
 				2C47E42E245A8C33002D30CE /* Point.ipp */,
+				2C4564DA2479468800DB01F0 /* Random.ipp */,
 				2C3EC7DA245AE5E200DAD413 /* ScopeGuard.ipp */,
 				2C47E42B245A8C33002D30CE /* String.ipp */,
 				2C47E432245A8C33002D30CE /* StringView.ipp */,
@@ -1466,6 +1502,7 @@
 				2C435BCF243E15A5001CAAD8 /* SivUnicode_Platform.cpp in Sources */,
 				2C435BC6243E085D001CAAD8 /* SivByte.cpp in Sources */,
 				2C47D41F2477E8AC00CDF824 /* SivDateTime.cpp in Sources */,
+				2C4564DD2479469F00DB01F0 /* SivInt128.cpp in Sources */,
 				2C423250242B155E00A16BCA /* window.c in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
 				2C47D4172477E84800CDF824 /* SivDuration.cpp in Sources */,
@@ -1477,6 +1514,7 @@
 				2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
 				2C4CBE612437236000F8B7A6 /* SceneFactory.cpp in Sources */,
+				2C4564E1247946AF00DB01F0 /* int128.cc in Sources */,
 				2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */,
 				2C435BD4243E1600001CAAD8 /* CLogger.cpp in Sources */,
 				2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */,
