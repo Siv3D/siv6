@@ -19,21 +19,13 @@ namespace s3d
 	/// <summary>
 	/// 表現できる最大の数値
 	/// </summary>
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Type>
-# else 
 	template <class Type>
-# endif
 	constexpr Type Largest = std::numeric_limits<Type>::max();
 
 	/// <summary>
 	/// 表現できる最小の数値
 	/// </summary>
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Type>
-# else 
 	template <class Type>
-# endif
 	constexpr Type Smallest = std::numeric_limits<Type>::lowest();
 
 	/// <summary>

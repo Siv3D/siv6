@@ -214,6 +214,10 @@
 // Floating point
 # include <Siv3D/FloatingPoint.hpp>
 
+// 128-bit 整数型
+// 128-bit integer type
+# include <Siv3D/Int128.hpp>
+
 // 多倍長整数
 // Arbitrary precision integer type
 //# include <Siv3D/BigInt.hpp> // [Siv3D ToDo]

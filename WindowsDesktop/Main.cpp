@@ -8,6 +8,14 @@ SIV3D_OPTION_RUN_TEST(false);
 
 void Main()
 {
+	uint128 n = 123;
+	n *= 111111;
+	n *= 111111;
+	n *= 111111;
+	n *= 111111;
+	n *= 111111;
+	Console << n;
+
 	while (System::Update())
 	{
 

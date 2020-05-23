@@ -83,6 +83,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\HashSet.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\HashTable.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Indexed.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Int128.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IntFormatter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LetterCase.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Logger.hpp" />
@@ -226,6 +227,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\FormatFloat\SivFormatFloat.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\FormatInt\SivFormatInt.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Formatter\SivFormatter.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\Int128\SivInt128.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\IntFormatter\SivIntFormatter.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Logger\LoggerFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Logger\SivLogger.cpp" />
@@ -253,6 +255,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Window\SivWindow.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Window\WindowFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Test\Siv3DTest.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\absl\numeric\int128.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\cpu_features\cpuinfo_x86.c" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum-dtoa.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\bignum.cc" />

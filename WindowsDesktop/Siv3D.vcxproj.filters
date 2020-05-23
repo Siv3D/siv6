@@ -193,6 +193,15 @@
     <Filter Include="src\Siv3D\Threading">
       <UniqueIdentifier>{2f61a127-70c7-49fa-ba92-05ce8e864106}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Int128">
+      <UniqueIdentifier>{fa262011-f783-4e91-b470-d3d6f8321f18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\absl">
+      <UniqueIdentifier>{a60d8785-6e8a-487e-95ca-82b1affb792b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\absl\numeric">
+      <UniqueIdentifier>{b58ded93-7740-44d5-88dc-ca64cc60323d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -738,6 +747,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\DiscreteDistribution.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Int128.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -949,6 +961,12 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Threading\SivThreading.cpp">
       <Filter>src\Siv3D\Threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Int128\SivInt128.cpp">
+      <Filter>src\Siv3D\Int128</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\absl\numeric\int128.cc">
+      <Filter>src\ThirdParty\absl\numeric</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

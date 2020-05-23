@@ -41,6 +41,7 @@ add_library(
   ../Siv3D/src/Siv3D/FormatFloat/SivFormatFloat.cpp
   ../Siv3D/src/Siv3D/FormatInt/SivFormatInt.cpp
   ../Siv3D/src/Siv3D/Formatter/SivFormatter.cpp
+  ../Siv3D/src/Siv3D/Int128/SivInt128.cpp
   ../Siv3D/src/Siv3D/IntFormatter/SivIntFormatter.cpp
   ../Siv3D/src/Siv3D/Logger/LoggerFactory.cpp
   ../Siv3D/src/Siv3D/Logger/SivLogger.cpp
@@ -63,6 +64,8 @@ add_library(
   ../Siv3D/src/Siv3D/Vector2D/SivVector2D.cpp
   ../Siv3D/src/Siv3D/Window/SivWindow.cpp
   ../Siv3D/src/Siv3D/Window/WindowFactory.cpp
+
+  ../Siv3D/src/ThirdParty/absl/numeric/int128.cc
 
   ../Siv3D/src/ThirdParty/cpu_features/cpuinfo_x86.c
 
