@@ -12,12 +12,7 @@
 # pragma once
 # include "Common.hpp"
 # include "FormatData.hpp"
-
-//SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4127)
-//SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4244)
 # include <ThirdParty/absl/numeric/int128.h>
-//SIV3D_DISABLE_MSVC_WARNINGS_POP()
-//SIV3D_DISABLE_MSVC_WARNINGS_POP()
 
 namespace s3d
 {
@@ -25,7 +20,15 @@ namespace s3d
 
 	using uint128 = absl::uint128;
 
+	[[nodiscard]]
+	inline constexpr int128 MakeInt128(int64 high, uint64 low) noexcept;
+
+	[[nodiscard]]
+	inline constexpr uint128 MakeUint128(uint64 high, uint64 low) noexcept;
+
 	void Formatter(FormatData& formatData, int128 value);
 
 	void Formatter(FormatData& formatData, uint128 value);
 }
+
+# include "detail/Int128.ipp"
