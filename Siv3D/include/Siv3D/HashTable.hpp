@@ -18,12 +18,20 @@
 
 namespace s3d
 {
-	template <class K, class V,
-		class Hash = phmap::container_internal::hash_default_hash<K>,
-		class Eq = phmap::container_internal::hash_default_eq<K>,
-		class Alloc = phmap::container_internal::Allocator<phmap::container_internal::Pair<const K, V>>>
-	using HashTable = phmap::flat_hash_map<K, V, Hash, Eq, Alloc>;
+	template <class Key, class Value,
+		class Hash = phmap::container_internal::hash_default_hash<Key>,
+		class Eq = phmap::container_internal::hash_default_eq<Key>,
+		class Alloc = phmap::container_internal::Allocator<phmap::container_internal::Pair<const Key, Value>>>
+	using HashTable = phmap::flat_hash_map<Key, Value, Hash, Eq, Alloc>;
+
+	template <class Key, class Value>
+	inline void swap(HashTable<Key, Value>& a, HashTable<Key, Value>& b) noexcept;
+
+	template <class Key, class Value>
+	inline void Formatter(FormatData& formatData, const HashTable<Key, Value>& table);
 }
+
+# include "detail/HashTable.ipp"
 
 # if SIV3D_INTRINSIC(SSE)
 #	undef PHMAP_HAVE_SSE2

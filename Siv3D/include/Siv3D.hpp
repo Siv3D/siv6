@@ -129,11 +129,11 @@
 
 // ハッシュテーブル
 // Hash table
-# include <Siv3D/HashTable.hpp> // [Siv3D ToDo]
+# include <Siv3D/HashTable.hpp>
 
 // ハッシュセット
 // Hash set
-//# include <Siv3D/HashSet.hpp> // [Siv3D ToDo]
+# include <Siv3D/HashSet.hpp>
 
 // kd 木
 // kd-tree

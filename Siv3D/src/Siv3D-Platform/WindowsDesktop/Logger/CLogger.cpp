@@ -49,7 +49,8 @@ namespace s3d
 	{
 		const int64 timeStamp = (Time::GetMillisec() - g_applicationTime);
 		const StringView logTypeName = detail::LogTypeNames[FromEnum(type)];
-		const std::wstring output = U"{}: {}{}\n"_fmt(timeStamp, logTypeName, s).toWstr();
+		const String text = U"{}: {}"_fmt(timeStamp, logTypeName) + s + U'\n';
+		const std::wstring output = text.toWstr();
 
 		std::lock_guard lock(m_mutex);
 		{

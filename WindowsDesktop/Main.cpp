@@ -20,22 +20,35 @@ void Main()
 		{U"Seven",7},
 	};
 
-	for (auto [a, b] : table)
+	HashSet<String> set =
 	{
-		Logger << a << b;
-	}
+		U"one",U"two",U"three",U"four",U"five"
+	};
 
-	for (auto it = table.begin(); it != table.end(); ++it)
-	{
-		++it->second;
-	}
+	HashSet<String> b;
 
-	Logger << U"---";
+	//for (auto [a, b] : table)
+	//{
+	//	Logger << a << b;
+	//}
 
-	for (auto [a, b] : table)
-	{
-		Logger << a << b;
-	}
+	//for (auto it = table.begin(); it != table.end(); ++it)
+	//{
+	//	++it->second;
+	//}
+
+	//Logger << U"---";
+
+	//Format(table);
+
+	Logger << table;
+
+	Logger << set;
+
+	//for (auto [a, b] : table)
+	//{
+	//	Logger << a << b;
+	//}
 
 	while (System::Update())
 	{
