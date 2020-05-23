@@ -172,9 +172,6 @@
     <Filter Include="src\Siv3D\ParseInt">
       <UniqueIdentifier>{9465f54b-22c0-43d9-a69b-4832c72f4be4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\ThirdParty\abseil">
-      <UniqueIdentifier>{a9687cb0-0884-4e32-8731-7305849e4086}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Siv3D\ParseFloat">
       <UniqueIdentifier>{d28ee6cd-292c-489c-a2a5-d7ceeeb44215}</UniqueIdentifier>
     </Filter>
@@ -198,6 +195,9 @@
     </Filter>
     <Filter Include="include\ThirdParty\absl">
       <UniqueIdentifier>{03cbcba6-a1a2-4b17-97e8-93d888ff475a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\absl">
+      <UniqueIdentifier>{d3b72c63-c3ca-4f2a-bc74-7fa8accd3d5d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -644,9 +644,6 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\ParseBool.hpp">
       <Filter>include\Siv3D</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\src\ThirdParty\abseil\numbers.hpp">
-      <Filter>src\ThirdParty\abseil</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Parse.hpp">
       <Filter>include\Siv3D</Filter>

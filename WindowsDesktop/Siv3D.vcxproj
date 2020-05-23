@@ -167,7 +167,6 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\UserAction\CUserAction.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\UserAction\IUSerAction.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Window\IWindow.hpp" />
-    <ClInclude Include="..\Siv3D\src\ThirdParty\abseil\numbers.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Catch2\catch.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\cpu_features\bit_utils.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\cpu_features\cpuid_x86.h" />
