@@ -121,7 +121,7 @@
 
 // 動的配列（二次元）
 // 2D array
-//# include <Siv3D/Grid.hpp> // [Siv3D ToDo]
+# include <Siv3D/Grid.hpp> // [Siv3D ToDo]
 
 // ハッシュ
 // Hash

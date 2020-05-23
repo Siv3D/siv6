@@ -79,10 +79,10 @@ namespace s3d
 		Array& operator =(Array&& other) = default;
 
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>* = nullptr>
-		Array(const size_type size, Arg::generator_<Fty> generator);
+		Array(size_type size, Arg::generator_<Fty> generator);
 
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>* = nullptr>
-		Array(const size_type size, Arg::indexedGenerator_<Fty> indexedGenerator);
+		Array(size_type size, Arg::indexedGenerator_<Fty> indexedGenerator);
 
 		void swap(Array& other) noexcept;
 
@@ -130,10 +130,10 @@ namespace s3d
 
 
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>* = nullptr>
-		static Array Generate(const size_type size, Fty generator);
+		static Array Generate(size_type size, Fty generator);
 
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>* = nullptr>
-		static Array IndexedGenerate(const size_type size, Fty indexedGenerator);
+		static Array IndexedGenerate(size_type size, Fty indexedGenerator);
 	};
 }
 

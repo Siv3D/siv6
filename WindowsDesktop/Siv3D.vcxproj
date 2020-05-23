@@ -80,6 +80,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Formatter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\FormatUtility.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Fwd.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Grid.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\HardwareRNG.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Hash.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\HashSet.hpp" />
