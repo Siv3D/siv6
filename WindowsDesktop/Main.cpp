@@ -8,8 +8,15 @@ SIV3D_OPTION_RUN_TEST(false);
 
 void Main()
 {
-    while (System::Update())
-    {
+	Reseed(12345);
+	Logger << UniformIntDistribution<int32>(1, 6)(GetDefaultRNG());
+	Logger << UniformIntDistribution<int32>(1, 6)(GetDefaultRNG());
+	Logger << UniformIntDistribution<int32>(1, 6)(GetDefaultRNG());
+	Logger << UniformIntDistribution<int32>(1, 6)(GetDefaultRNG());
+	Logger << UniformIntDistribution<int32>(1, 6)(GetDefaultRNG());
 
-    }
+	while (System::Update())
+	{
+
+	}
 }

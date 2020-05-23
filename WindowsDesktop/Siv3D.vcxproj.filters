@@ -193,12 +193,6 @@
     <Filter Include="src\Siv3D\Threading">
       <UniqueIdentifier>{2f61a127-70c7-49fa-ba92-05ce8e864106}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\ThirdParty\absl">
-      <UniqueIdentifier>{03cbcba6-a1a2-4b17-97e8-93d888ff475a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\ThirdParty\absl">
-      <UniqueIdentifier>{d3b72c63-c3ca-4f2a-bc74-7fa8accd3d5d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -733,6 +727,9 @@
       <Filter>include\Siv3D</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\ConcurrentTask.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Distribution.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
   </ItemGroup>
