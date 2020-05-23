@@ -18,6 +18,9 @@
 
 # if SIV3D_INTRINSIC(SSE)
 #   define HAVE_SSE2
+#	include <emmintrin.h>
+# else
+#   define HAVE_SSE2
 #	define SIMDE_ENABLE_NATIVE_ALIASES
 #	include <ThirdParty/simde/x86/sse2.h>
 # endif
@@ -579,3 +582,10 @@ namespace s3d
 		};
 	}
 }
+
+# if SIV3D_INTRINSIC(SSE)
+#	undef HAVE_SSE2
+# else
+#	undef HAVE_SSE2
+#	undef SIMDE_ENABLE_NATIVE_ALIASES
+# endif

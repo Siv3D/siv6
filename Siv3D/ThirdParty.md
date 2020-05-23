@@ -14,4 +14,5 @@ Library | Version
 [miniutf](https://github.com/dropbox/miniutf) | 
 [SFMT](https://github.com/MersenneTwister-Lab/SFMT) | 1.5.2
 [simde](https://github.com/nemequ/simde) | 
+[The Parallel Hashmap](https://github.com/greg7mdp/parallel-hashmap) | 1.3.2
 [Xoshiro-cpp](https://github.com/Reputeless/Xoshiro-cpp) | v1.1

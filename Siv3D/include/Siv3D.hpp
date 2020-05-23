@@ -129,7 +129,7 @@
 
 // ハッシュテーブル
 // Hash table
-//# include <Siv3D/HashTable.hpp> // [Siv3D ToDo]
+# include <Siv3D/HashTable.hpp> // [Siv3D ToDo]
 
 // ハッシュセット
 // Hash set
