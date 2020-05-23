@@ -55,6 +55,7 @@ add_library(
   ../Siv3D/src/Siv3D/StringView/SivStringView.cpp
   ../Siv3D/src/Siv3D/System/SivSystem.cpp
   ../Siv3D/src/Siv3D/System/SystemFactory.cpp
+  ../Siv3D/src/Siv3D/Threading/SivThreading.cpp
   ../Siv3D/src/Siv3D/Unicode/SivUnicode.cpp
   ../Siv3D/src/Siv3D/Unicode/UnicodeUtility.cpp
   ../Siv3D/src/Siv3D/UserAction/CUserAction.cpp

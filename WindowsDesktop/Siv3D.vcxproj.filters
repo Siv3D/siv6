@@ -193,6 +193,9 @@
     <Filter Include="include\ThirdParty\parallel_hashmap">
       <UniqueIdentifier>{018bddae-7a59-4ec3-93ac-64247bb03926}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Threading">
+      <UniqueIdentifier>{2f61a127-70c7-49fa-ba92-05ce8e864106}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -726,6 +729,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HashSet.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Threading.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -934,6 +940,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\DateTime\SivDateTime_Platform.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\DateTime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Threading\SivThreading.cpp">
+      <Filter>src\Siv3D\Threading</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

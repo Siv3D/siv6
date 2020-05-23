@@ -101,7 +101,7 @@
 
 // スレッド
 // Thread
-//# include <Siv3D/Threading.hpp> // [Siv3D ToDo]
+# include <Siv3D/Threading.hpp>
 
 // 並列実行タスク
 // Concurrent task
@@ -125,7 +125,7 @@
 
 // ハッシュ
 // Hash
-# include <Siv3D/Hash.hpp> // [Siv3D ToDo]
+# include <Siv3D/Hash.hpp>
 
 // ハッシュテーブル
 // Hash table
@@ -295,11 +295,11 @@
 
 // 日付
 // Date
-# include <Siv3D/Date.hpp> // [Siv3D ToDo]
+# include <Siv3D/Date.hpp>
 
 // 日付と時刻
 // Date and time
-# include <Siv3D/DateTime.hpp> // [Siv3D ToDo]
+# include <Siv3D/DateTime.hpp>
 
 // 時間
 // Time
