@@ -11,6 +11,7 @@
 
 # pragma once
 # include "Common.hpp"
+# include "Duration.hpp"
 
 namespace s3d
 {
@@ -67,5 +68,7 @@ namespace s3d
 		/// </summary>
 		/// <param name="milliseconds">スリープする時間（ミリ秒）</param>
 		void Sleep(int32 milliseconds);
+
+		void Sleep(const Duration& duration);
 	}
 }

@@ -105,7 +105,7 @@
 
 // 並列実行タスク
 // Concurrent task
-//# include <Siv3D/ConcurrentTask.hpp> // [Siv3D ToDo]
+# include <Siv3D/ConcurrentTask.hpp> // [Siv3D ToDo]
 
 // メモリアロケーション
 // Memory allocation

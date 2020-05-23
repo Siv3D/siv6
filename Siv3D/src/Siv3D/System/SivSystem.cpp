@@ -42,5 +42,12 @@ namespace s3d
 		{
 			return SIV3D_ENGINE(UserAction)->getPreviousUserActions();
 		}
+
+		void Sleep(const Duration& duration)
+		{
+			const int32 milliSec = static_cast<int32>(duration.count() * 1000);
+			
+			Sleep(milliSec);
+		}
 	}
 }
