@@ -112,7 +112,7 @@ namespace s3d
 	}
 
 	template <class Type, class Allocator>
-	inline typename Array<Type, Allocator>& Array<Type, Allocator>::operator <<(const value_type& value)
+	inline Array<Type, Allocator>& Array<Type, Allocator>::operator <<(const value_type& value)
 	{
 		push_back(value);
 
