@@ -10,10 +10,10 @@
 //-----------------------------------------------
 
 # pragma once
-# include <Siv3D/Common.hpp>
-# include <Siv3D/Renderer/IRenderer.hpp>
 # include <GL/glew.h>
 # include <GLFW/glfw3.h>
+# include <Siv3D/Common.hpp>
+# include <Siv3D/Renderer/IRenderer.hpp>
 
 namespace s3d
 {
