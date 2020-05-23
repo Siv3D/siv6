@@ -32,6 +32,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Array.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Byte.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Char.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\ConcurrentTask.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Date.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\DateTime.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Demangle.ipp" />

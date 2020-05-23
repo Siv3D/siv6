@@ -35,18 +35,15 @@ namespace s3d
 		using base_type::wait_until;
 		using base_type::share;
 
+		SIV3D_NODISCARD_CXX20
 		ConcurrentTask() = default;
 
 		template <class Fty, class... Args, std::enable_if_t<std::is_invocable_v<Fty, Args...>>* = nullptr>
-		explicit ConcurrentTask(Fty&& f, Args&&... args)
-			: std::future<Type>(std::async(std::launch::async, std::forward<Fty>(f), std::forward<Args>(args)...)) {}
+		SIV3D_NODISCARD_CXX20
+		explicit ConcurrentTask(Fty&& f, Args&&... args);
 
 		[[nodiscard]]
-		bool isReady() const
-		{
-			return base_type::valid()
-				&& (base_type::wait_for(std::chrono::seconds(0)) == std::future_status::ready);
-		}
+		bool isReady() const;
 	};
 
 	template <class Fty, class... Args, std::enable_if_t<std::is_invocable_v<Fty, Args...>>* = nullptr>
@@ -54,10 +51,9 @@ namespace s3d
 
 	template <class Fty, class... Args, std::enable_if_t<std::is_invocable_v<Fty, Args...>>* = nullptr>
 	[[nodiscard]]
-	inline auto CreateConcurrentTask(Fty&& f, Args&&... args)
-	{
-		return ConcurrentTask<std::invoke_result_t<std::decay_t<Fty>, std::decay_t<Args>...>>(std::forward<Fty>(f), std::forward<Args>(args)...);
-	}
+	inline auto CreateConcurrentTask(Fty&& f, Args&&... args);
 }
+
+# include "detail/ConcurrentTask.ipp"
 
 # endif

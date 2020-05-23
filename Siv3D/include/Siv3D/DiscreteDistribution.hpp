@@ -36,15 +36,19 @@ namespace s3d
 
 		DiscreteDistribution() = default;
 
+		SIV3D_NODISCARD_CXX20
 		explicit DiscreteDistribution(std::initializer_list<double> ilist);
 
+		SIV3D_NODISCARD_CXX20
 		explicit DiscreteDistribution(const Array<double>& weights);
 
 		template <size_t Size>
+		SIV3D_NODISCARD_CXX20
 		explicit DiscreteDistribution(const std::array<double, Size>& weights)
 			: m_distribution(weights.begin(), weights.end()) {}
 
 		template <class Iterator>
+		SIV3D_NODISCARD_CXX20
 		explicit DiscreteDistribution(Iterator begin, Iterator end)
 			: m_distribution(begin, end) {}
 
