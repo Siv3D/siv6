@@ -41,25 +41,60 @@ namespace s3d
 # else
 	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
 # endif
-	inline Arithmetic Random(Arithmetic min, Arithmetic max)
-	{
-		if constexpr (std::is_integral_v<Arithmetic>)
-		{
-			return UniformIntDistribution<Arithmetic>(min, max)(GetDefaultRNG());
-		}
-		else
-		{
-			return UniformRealDistribution<Arithmetic>(min, max)(GetDefaultRNG());
-		}
-	}
+	inline Arithmetic Random(Arithmetic min, Arithmetic max);
 
 # if __cpp_lib_concepts
 	template <Concept::Arithmetic Arithmetic>
 # else
 	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
 # endif
-	inline Arithmetic Random(Arithmetic max)
-	{
-		return Random<Arithmetic>(0, max);
-	}
+	inline Arithmetic Random(Arithmetic max);
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	inline Arithmetic RandomOpen(Arithmetic min, Arithmetic max);
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	inline Arithmetic RandomClosed(Arithmetic min, Arithmetic max);
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	inline Arithmetic RandomOpenClosed(Arithmetic min, Arithmetic max);
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+# endif
+	inline Arithmetic RandomClosedOpen(Arithmetic min, Arithmetic max);
+
+	inline bool RandomBool(double p = 0.5) noexcept;
+
+	inline uint8 RandomUint8();
+
+	inline uint16 RandomUint16();
+
+	inline uint32 RandomUint32();
+
+	inline uint64 RandomUint64();
+
+	inline int8 RandomInt8();
+
+	inline int16 RandomInt16();
+
+	inline int32 RandomInt32();
+
+	inline int64 RandomInt64();
 }
+
+# include "detail/Random.ipp"

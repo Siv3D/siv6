@@ -12,8 +12,10 @@
 # pragma once
 # include "Common.hpp"
 
+SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4127)
 SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4244)
 # include <ThirdParty/absl/random/distributions.h>
+SIV3D_DISABLE_MSVC_WARNINGS_POP()
 SIV3D_DISABLE_MSVC_WARNINGS_POP()
 
 namespace s3d
@@ -23,4 +25,7 @@ namespace s3d
 
 	template <class RealType = double>
 	using UniformRealDistribution = absl::uniform_real_distribution<RealType>;
+
+	template <class RealType = double>
+	using NormalDistribution = absl::gaussian_distribution<RealType>;
 }

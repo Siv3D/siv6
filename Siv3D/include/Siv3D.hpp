@@ -352,8 +352,9 @@
 
 # include <Siv3D/HardwareRNG.hpp>
 # include <Siv3D/PRNG.hpp>
-# include <Siv3D/Distribution.hpp>
-# include <Siv3D/Random.hpp>
+# include <Siv3D/Distribution.hpp> // [Siv3D ToDo]
+# include <Siv3D/DiscreteDistribution.hpp> // [Siv3D ToDo]
+# include <Siv3D/Random.hpp> // [Siv3D ToDo] Random<Duration>
 
 
 # include <Siv3D/Profiler.hpp>
