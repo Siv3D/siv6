@@ -11,7 +11,6 @@
 		2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E1245AE62300DAD413 /* SivParseFloat.cpp */; };
 		2C3EC7E7245AE62400DAD413 /* SivParseInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E3245AE62400DAD413 /* SivParseInt.cpp */; };
 		2C3EC7E8245AE62400DAD413 /* SivParseBool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E5245AE62400DAD413 /* SivParseBool.cpp */; };
-		2C3EC7EB245AE64200DAD413 /* numbers.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C3EC7EA245AE64200DAD413 /* numbers.hpp */; };
 		2C4231C7242B0B9200A16BCA /* SivFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231C6242B0B9200A16BCA /* SivFormatter.cpp */; };
 		2C4231CB242B0BD300A16BCA /* SivSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231CA242B0BD300A16BCA /* SivSystem.cpp */; };
 		2C4231D1242B0BDE00A16BCA /* CUserAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231CD242B0BDE00A16BCA /* CUserAction.cpp */; };
@@ -113,6 +112,7 @@
 		2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43B2EC2426630000D5CBBB /* SivError.cpp */; };
 		2C44429E24271E1700557D51 /* SivEngineLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C44429D24271E1700557D51 /* SivEngineLog.cpp */; };
 		2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4442A02427AA7C00557D51 /* miniutf.hpp */; };
+		2C4564D52479198500DB01F0 /* SivThreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4564D42479198500DB01F0 /* SivThreading.cpp */; };
 		2C45ED9A24783B020018C62B /* SivDate_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C45ED9724783B020018C62B /* SivDate_Platform.cpp */; };
 		2C45ED9B24783B020018C62B /* SivDateTime_Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C45ED9924783B020018C62B /* SivDateTime_Platform.cpp */; };
 		2C4738422459BB0800824B3F /* SivVector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4738412459BB0800824B3F /* SivVector2D.cpp */; };
@@ -161,7 +161,6 @@
 		2C3EC7E1245AE62300DAD413 /* SivParseFloat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivParseFloat.cpp; sourceTree = "<group>"; };
 		2C3EC7E3245AE62400DAD413 /* SivParseInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivParseInt.cpp; sourceTree = "<group>"; };
 		2C3EC7E5245AE62400DAD413 /* SivParseBool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivParseBool.cpp; sourceTree = "<group>"; };
-		2C3EC7EA245AE64200DAD413 /* numbers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = numbers.hpp; sourceTree = "<group>"; };
 		2C4231C6242B0B9200A16BCA /* SivFormatter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivFormatter.cpp; sourceTree = "<group>"; };
 		2C4231CA242B0BD300A16BCA /* SivSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivSystem.cpp; sourceTree = "<group>"; };
 		2C4231CD242B0BDE00A16BCA /* CUserAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUserAction.cpp; sourceTree = "<group>"; };
@@ -263,6 +262,22 @@
 		2C43B2EC2426630000D5CBBB /* SivError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivError.cpp; sourceTree = "<group>"; };
 		2C44429D24271E1700557D51 /* SivEngineLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivEngineLog.cpp; sourceTree = "<group>"; };
 		2C4442A02427AA7C00557D51 /* miniutf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = miniutf.hpp; sourceTree = "<group>"; };
+		2C4564C5247918F600DB01F0 /* HashSet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashSet.hpp; sourceTree = "<group>"; };
+		2C4564C6247918F600DB01F0 /* HashTable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashTable.hpp; sourceTree = "<group>"; };
+		2C4564C72479190D00DB01F0 /* HashSet.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashSet.ipp; sourceTree = "<group>"; };
+		2C4564C82479190D00DB01F0 /* HashTable.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashTable.ipp; sourceTree = "<group>"; };
+		2C4564CA2479193600DB01F0 /* phmap_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = phmap_config.h; sourceTree = "<group>"; };
+		2C4564CB2479193600DB01F0 /* phmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = phmap.h; sourceTree = "<group>"; };
+		2C4564CC2479193600DB01F0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		2C4564CD2479193600DB01F0 /* phmap_bits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = phmap_bits.h; sourceTree = "<group>"; };
+		2C4564CE2479193600DB01F0 /* phmap_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = phmap_base.h; sourceTree = "<group>"; };
+		2C4564CF2479193600DB01F0 /* phmap_dump.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = phmap_dump.h; sourceTree = "<group>"; };
+		2C4564D02479193600DB01F0 /* phmap_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = phmap_utils.h; sourceTree = "<group>"; };
+		2C4564D12479193600DB01F0 /* phmap_fwd_decl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = phmap_fwd_decl.h; sourceTree = "<group>"; };
+		2C4564D22479196D00DB01F0 /* Threading.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Threading.hpp; sourceTree = "<group>"; };
+		2C4564D42479198500DB01F0 /* SivThreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivThreading.cpp; sourceTree = "<group>"; };
+		2C4564D62479199D00DB01F0 /* ConcurrentTask.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConcurrentTask.hpp; sourceTree = "<group>"; };
+		2C4564D7247919D900DB01F0 /* Distribution.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Distribution.hpp; sourceTree = "<group>"; };
 		2C45ED9724783B020018C62B /* SivDate_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivDate_Platform.cpp; sourceTree = "<group>"; };
 		2C45ED9924783B020018C62B /* SivDateTime_Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivDateTime_Platform.cpp; sourceTree = "<group>"; };
 		2C46837924590D8D000006C0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -457,14 +472,6 @@
 			path = ParseBool;
 			sourceTree = "<group>";
 		};
-		2C3EC7E9245AE64200DAD413 /* abseil */ = {
-			isa = PBXGroup;
-			children = (
-				2C3EC7EA245AE64200DAD413 /* numbers.hpp */,
-			);
-			path = abseil;
-			sourceTree = "<group>";
-		};
 		2C4231C5242B0B9200A16BCA /* Formatter */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,7 +574,6 @@
 		2C43609A240E4EEC001657D2 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				2C3EC7E9245AE64200DAD413 /* abseil */,
 				2C43609B240E4EEC001657D2 /* Catch2 */,
 				2C481E0B24460B5700A5D88D /* cpu_features */,
 				2C439F62241DCEA9001154C2 /* double-conversion */,
@@ -645,6 +651,7 @@
 				2C4360BE240E4EEC001657D2 /* String */,
 				2C439F512419FC9E001154C2 /* StringView */,
 				2C43B2DA24264E1200D5CBBB /* System */,
+				2C4564D32479198500DB01F0 /* Threading */,
 				2C4360B4240E4EEC001657D2 /* Unicode */,
 				2C4231CC242B0BDE00A16BCA /* UserAction */,
 				2C4738402459BB0800824B3F /* Vector2D */,
@@ -854,6 +861,29 @@
 			path = miniutf;
 			sourceTree = "<group>";
 		};
+		2C4564C92479193600DB01F0 /* parallel_hashmap */ = {
+			isa = PBXGroup;
+			children = (
+				2C4564CA2479193600DB01F0 /* phmap_config.h */,
+				2C4564CB2479193600DB01F0 /* phmap.h */,
+				2C4564CC2479193600DB01F0 /* LICENSE */,
+				2C4564CD2479193600DB01F0 /* phmap_bits.h */,
+				2C4564CE2479193600DB01F0 /* phmap_base.h */,
+				2C4564CF2479193600DB01F0 /* phmap_dump.h */,
+				2C4564D02479193600DB01F0 /* phmap_utils.h */,
+				2C4564D12479193600DB01F0 /* phmap_fwd_decl.h */,
+			);
+			path = parallel_hashmap;
+			sourceTree = "<group>";
+		};
+		2C4564D32479198500DB01F0 /* Threading */ = {
+			isa = PBXGroup;
+			children = (
+				2C4564D42479198500DB01F0 /* SivThreading.cpp */,
+			);
+			path = Threading;
+			sourceTree = "<group>";
+		};
 		2C45ED9624783B020018C62B /* Date */ = {
 			isa = PBXGroup;
 			children = (
@@ -942,12 +972,14 @@
 				2C47E448245A8C33002D30CE /* Common.hpp */,
 				2C47E419245A8C32002D30CE /* CommonFloat.hpp */,
 				2C47E3FB245A8C32002D30CE /* Concepts.hpp */,
+				2C4564D62479199D00DB01F0 /* ConcurrentTask.hpp */,
 				2C47E41F245A8C33002D30CE /* Console.hpp */,
 				2C47E447245A8C33002D30CE /* CPUInfo.hpp */,
 				2C47D4192477E87500CDF824 /* Date.hpp */,
 				2C47D41A2477E87500CDF824 /* DateTime.hpp */,
 				2C47D4182477E86300CDF824 /* DayOfWeek.hpp */,
 				2C710F0D2460655C00874320 /* Demangle.hpp */,
+				2C4564D7247919D900DB01F0 /* Distribution.hpp */,
 				2C47E405245A8C32002D30CE /* DLL.hpp */,
 				2C47D4122477E81E00CDF824 /* Duration.hpp */,
 				2C47E439245A8C33002D30CE /* Endian.hpp */,
@@ -965,6 +997,8 @@
 				2C47E406245A8C32002D30CE /* Fwd.hpp */,
 				2C47E407245A8C32002D30CE /* HardwareRNG.hpp */,
 				2C47E3FE245A8C32002D30CE /* Hash.hpp */,
+				2C4564C5247918F600DB01F0 /* HashSet.hpp */,
+				2C4564C6247918F600DB01F0 /* HashTable.hpp */,
 				2C47E446245A8C33002D30CE /* Indexed.hpp */,
 				2C47E416245A8C32002D30CE /* IntFormatter.hpp */,
 				2C47E402245A8C32002D30CE /* LetterCase.hpp */,
@@ -996,6 +1030,7 @@
 				2C47E442245A8C33002D30CE /* String.hpp */,
 				2C47E41A245A8C32002D30CE /* StringView.hpp */,
 				2C47E412245A8C32002D30CE /* System.hpp */,
+				2C4564D22479196D00DB01F0 /* Threading.hpp */,
 				2C47E408245A8C32002D30CE /* Time.hpp */,
 				2C47E450245A8C33002D30CE /* Types.hpp */,
 				2C47E454245A8C33002D30CE /* Uncopyable.hpp */,
@@ -1035,6 +1070,8 @@
 				2C47E430245A8C33002D30CE /* Formatter.ipp */,
 				2C47D4142477E83400CDF824 /* FormatUtility.ipp */,
 				2C47E435245A8C33002D30CE /* Hash.ipp */,
+				2C4564C72479190D00DB01F0 /* HashSet.ipp */,
+				2C4564C82479190D00DB01F0 /* HashTable.ipp */,
 				2C47E431245A8C33002D30CE /* MathConstants.ipp */,
 				2C57676224763C440016202D /* Memory.ipp */,
 				2C47E438245A8C33002D30CE /* Number.ipp */,
@@ -1161,6 +1198,7 @@
 			children = (
 				2C46837824590D8D000006C0 /* EnumBitmask */,
 				2C6898112436064900C36C25 /* fmt */,
+				2C4564C92479193600DB01F0 /* parallel_hashmap */,
 				2C4A83E22457E7A4007AAE76 /* Xoshiro-cpp */,
 				2C4719F4244969A300BAC3E8 /* xxHash */,
 			);
@@ -1271,7 +1309,6 @@
 				2C4CBE6E24376B5300F8B7A6 /* IProfiler.hpp in Headers */,
 				2C481E1224460B5700A5D88D /* bit_utils.h in Headers */,
 				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
-				2C3EC7EB245AE64200DAD413 /* numbers.hpp in Headers */,
 				2C4360DC240E4EEC001657D2 /* IConsole.hpp in Headers */,
 				2C423257242B19ED00A16BCA /* posix_thread.h in Headers */,
 				2C439F7A241DCEA9001154C2 /* fixed-dtoa.h in Headers */,
@@ -1423,6 +1460,7 @@
 				2C4CBE6D24376B5300F8B7A6 /* ProfilerFactory.cpp in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
+				2C4564D52479198500DB01F0 /* SivThreading.cpp in Sources */,
 				2C4CBE7024376B5300F8B7A6 /* CProfiler.cpp in Sources */,
 				2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */,
 				2C435BCF243E15A5001CAAD8 /* SivUnicode_Platform.cpp in Sources */,
@@ -1521,7 +1559,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../Siv3D/include;
+				HEADER_SEARCH_PATHS = (
+					../Siv3D/include,
+					../Siv3D/include/ThirdParty,
+				);
 				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = ../Siv3D/lib/macOS;
@@ -1573,7 +1614,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../Siv3D/include;
+				HEADER_SEARCH_PATHS = (
+					../Siv3D/include,
+					../Siv3D/include/ThirdParty,
+				);
 				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = ../Siv3D/lib/macOS;
