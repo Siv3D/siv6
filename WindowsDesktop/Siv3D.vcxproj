@@ -29,6 +29,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Demangle.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Allocator.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ApplicationOptions.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Array.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Byte.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Char.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Date.ipp" />
@@ -93,6 +94,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\MathConstants.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Memory.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Meta.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\MicrosecClock.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\MillisecClock.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\NamedParameter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\None.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Number.hpp" />

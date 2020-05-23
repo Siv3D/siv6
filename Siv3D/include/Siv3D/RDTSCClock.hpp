@@ -10,14 +10,3 @@
 //-----------------------------------------------
 
 # pragma once
-# include "NamedParameter.hpp"
-
-namespace s3d
-{
-	namespace Arg
-	{
-		SIV3D_NAMED_PARAMETER(radix);				// ToString
-		SIV3D_NAMED_PARAMETER(generator);			// Array
-		SIV3D_NAMED_PARAMETER(indexedGenerator);	// Array
-	}
-}
