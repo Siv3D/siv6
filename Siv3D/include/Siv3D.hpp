@@ -99,6 +99,10 @@
 // Byte
 # include <Siv3D/Byte.hpp>
 
+// Null でないポインタ
+// Non-null pointer
+# include <Siv3D/NonNull.hpp>
+
 // スレッド
 // Thread
 # include <Siv3D/Threading.hpp>
@@ -361,7 +365,7 @@
 
 // IReader インタフェース
 // IReader interface
-//# include <Siv3D/IReader.hpp>
+# include <Siv3D/IReader.hpp>
 
 // IReader インタフェース
 // IWriter interface
@@ -399,9 +403,11 @@
 // Binary Large Object (writer)
 //# include <Siv3D/MemoryWriter.hpp>
 
+# include <Siv3D/OpenMode.hpp>
+
 // 読み込み専用バイナリファイル
 // Binary file reader
-//# include <Siv3D/BinaryReader.hpp>
+# include <Siv3D/BinaryReader.hpp>
 
 // 書き込み専用バイナリファイル
 // Binary file writer

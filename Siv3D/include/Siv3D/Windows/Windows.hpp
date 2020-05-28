@@ -26,3 +26,13 @@
 # include <wrl/client.h>
 
 using Microsoft::WRL::ComPtr;
+
+namespace s3d
+{
+	class String;
+
+	namespace Platform::Windows
+	{
+		String GetLastErrorMessage();
+	}
+}

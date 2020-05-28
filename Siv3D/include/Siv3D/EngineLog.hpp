@@ -12,6 +12,9 @@
 # pragma once
 # include "Common.hpp"
 # include "LogType.hpp"
+# include "StringView.hpp"
+# include "String.hpp"
+# include "FormatLiteral.hpp"
 # include "detail/EngineLog.ipp"
 
 # if SIV3D_BUILD(DEBUG)

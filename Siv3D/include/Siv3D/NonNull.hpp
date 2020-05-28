@@ -10,17 +10,23 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Common.hpp"
-# include "String.hpp"
+# include <cassert>
 
 namespace s3d
 {
-	template <class Type>
-	[[nodiscard]]
-	inline String Pad(const Type& value, const std::pair<int32, char32>& padding);
+	template <class Pointer>
+	struct NonNull
+	{
+		Pointer pointer;
 
-	[[nodiscard]]
-	String FormatDataSize(int64 bytes);
+		NonNull() = delete;
+
+		NonNull(std::nullptr_t) = delete;
+
+		constexpr explicit NonNull(Pointer _pointer) noexcept
+			: pointer(_pointer)
+		{
+			assert(pointer != nullptr);
+		}
+	};
 }
-
-# include "detail/FormatUtility.ipp"

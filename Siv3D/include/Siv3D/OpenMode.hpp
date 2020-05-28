@@ -11,16 +11,14 @@
 
 # pragma once
 # include "Common.hpp"
-# include "String.hpp"
+# include <ThirdParty/EnumBitmask/EnumBitmask.hpp>
 
 namespace s3d
 {
-	template <class Type>
-	[[nodiscard]]
-	inline String Pad(const Type& value, const std::pair<int32, char32>& padding);
-
-	[[nodiscard]]
-	String FormatDataSize(int64 bytes);
+	enum class OpenMode : uint32
+	{
+		RandomAccess	= 1 << 0,
+		SequentialScan	= 1 << 1,
+	};
+	DEFINE_BITMASK_OPERATORS(OpenMode);
 }
-
-# include "detail/FormatUtility.ipp"

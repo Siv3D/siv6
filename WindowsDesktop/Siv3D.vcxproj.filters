@@ -202,6 +202,18 @@
     <Filter Include="src\ThirdParty\absl\numeric">
       <UniqueIdentifier>{b58ded93-7740-44d5-88dc-ca64cc60323d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\BinaryReader">
+      <UniqueIdentifier>{f45ff09f-e6b0-41c3-9462-bca6c46c36a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\BinaryReader">
+      <UniqueIdentifier>{6eb6ee3c-351e-4691-896c-7fcd63bff12a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\FormatUtility">
+      <UniqueIdentifier>{d9136d1e-01d9-497b-b20a-5806d256a345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Windows">
+      <UniqueIdentifier>{811ef1bb-f3b3-4360-a395-ec6e59b5d096}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -768,6 +780,27 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ConcurrentTask.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\IReader.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\BinaryReader.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\BinaryReader.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\BinaryReader\BinaryReaderDetail.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\BinaryReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\OpenMode.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\IReader.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\NonNull.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -985,6 +1018,18 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\ThirdParty\absl\numeric\int128.cc">
       <Filter>src\ThirdParty\absl\numeric</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\BinaryReader\SivBinaryReader.cpp">
+      <Filter>src\Siv3D\BinaryReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\BinaryReader\BinaryReaderDetail.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\BinaryReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\FormatUtility\SivFormatUtility.cpp">
+      <Filter>src\Siv3D\FormatUtility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Windows\SivWindows.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
