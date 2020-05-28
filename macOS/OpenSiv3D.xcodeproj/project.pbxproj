@@ -132,7 +132,7 @@
 		2C49E64A247FAC59005C8FFE /* SivBinaryReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C49E648247FAC59005C8FFE /* SivBinaryReader.cpp */; };
 		2C49E64E247FACE8005C8FFE /* BinaryReaderDetail.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C49E64C247FACE8005C8FFE /* BinaryReaderDetail.hpp */; };
 		2C49E64F247FACE8005C8FFE /* BinaryReaderDetail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C49E64D247FACE8005C8FFE /* BinaryReaderDetail.cpp */; };
-		2C49E652247FC731005C8FFE /* FileSystem_Platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C49E651247FC731005C8FFE /* FileSystem_Platform.mm */; };
+		2C49E652247FC731005C8FFE /* SivFileSystem_Platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C49E651247FC731005C8FFE /* SivFileSystem_Platform.mm */; };
 		2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */; };
 		2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */; };
 		2C4CBE4C24370FE300F8B7A6 /* CRenderer_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */; };
@@ -417,7 +417,7 @@
 		2C49E648247FAC59005C8FFE /* SivBinaryReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivBinaryReader.cpp; sourceTree = "<group>"; };
 		2C49E64C247FACE8005C8FFE /* BinaryReaderDetail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinaryReaderDetail.hpp; sourceTree = "<group>"; };
 		2C49E64D247FACE8005C8FFE /* BinaryReaderDetail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryReaderDetail.cpp; sourceTree = "<group>"; };
-		2C49E651247FC731005C8FFE /* FileSystem_Platform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileSystem_Platform.mm; sourceTree = "<group>"; };
+		2C49E651247FC731005C8FFE /* SivFileSystem_Platform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SivFileSystem_Platform.mm; sourceTree = "<group>"; };
 		2C49E653247FC77D005C8FFE /* FileSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FileSystem.hpp; sourceTree = "<group>"; };
 		2C4A83E32457E7A4007AAE76 /* XoshiroCpp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XoshiroCpp.hpp; sourceTree = "<group>"; };
 		2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderer.hpp; sourceTree = "<group>"; };
@@ -1215,7 +1215,7 @@
 		2C49E650247FC731005C8FFE /* FileSystem */ = {
 			isa = PBXGroup;
 			children = (
-				2C49E651247FC731005C8FFE /* FileSystem_Platform.mm */,
+				2C49E651247FC731005C8FFE /* SivFileSystem_Platform.mm */,
 			);
 			path = FileSystem;
 			sourceTree = "<group>";
@@ -1598,7 +1598,7 @@
 				2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */,
 				2C43B2DD24264E1200D5CBBB /* WindowFactory.cpp in Sources */,
 				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
-				2C49E652247FC731005C8FFE /* FileSystem_Platform.mm in Sources */,
+				2C49E652247FC731005C8FFE /* SivFileSystem_Platform.mm in Sources */,
 				2C49E64F247FACE8005C8FFE /* BinaryReaderDetail.cpp in Sources */,
 				2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */,
 				2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */,
