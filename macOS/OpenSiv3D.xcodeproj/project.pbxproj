@@ -128,6 +128,10 @@
 		2C481E1624460B5700A5D88D /* cpuid_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E1024460B5700A5D88D /* cpuid_x86.h */; };
 		2C481E1724460B5700A5D88D /* cpu_features_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E1124460B5700A5D88D /* cpu_features_macros.h */; };
 		2C481E1A24460BBA00A5D88D /* SivCPUInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C481E1924460BBA00A5D88D /* SivCPUInfo.cpp */; };
+		2C49E649247FAC59005C8FFE /* SivFormatUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C49E646247FAC58005C8FFE /* SivFormatUtility.cpp */; };
+		2C49E64A247FAC59005C8FFE /* SivBinaryReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C49E648247FAC59005C8FFE /* SivBinaryReader.cpp */; };
+		2C49E64E247FACE8005C8FFE /* BinaryReaderDetail.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C49E64C247FACE8005C8FFE /* BinaryReaderDetail.hpp */; };
+		2C49E64F247FACE8005C8FFE /* BinaryReaderDetail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C49E64D247FACE8005C8FFE /* BinaryReaderDetail.cpp */; };
 		2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */; };
 		2C4CBE4B24370FE300F8B7A6 /* RendererFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */; };
 		2C4CBE4C24370FE300F8B7A6 /* CRenderer_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE4924370FE300F8B7A6 /* CRenderer_GL4.hpp */; };
@@ -395,6 +399,23 @@
 		2C481E1024460B5700A5D88D /* cpuid_x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpuid_x86.h; sourceTree = "<group>"; };
 		2C481E1124460B5700A5D88D /* cpu_features_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_features_macros.h; sourceTree = "<group>"; };
 		2C481E1924460BBA00A5D88D /* SivCPUInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivCPUInfo.cpp; sourceTree = "<group>"; };
+		2C49E638247FAB8C005C8FFE /* Int128.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Int128.ipp; sourceTree = "<group>"; };
+		2C49E639247FABA4005C8FFE /* MicrosecClock.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MicrosecClock.hpp; sourceTree = "<group>"; };
+		2C49E63A247FABA4005C8FFE /* MillisecClock.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MillisecClock.hpp; sourceTree = "<group>"; };
+		2C49E63B247FABB4005C8FFE /* RDTSCClock.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RDTSCClock.hpp; sourceTree = "<group>"; };
+		2C49E63C247FABC6005C8FFE /* Array.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Array.ipp; sourceTree = "<group>"; };
+		2C49E63D247FABD6005C8FFE /* Grid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Grid.hpp; sourceTree = "<group>"; };
+		2C49E63E247FABEB005C8FFE /* ConcurrentTask.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConcurrentTask.ipp; sourceTree = "<group>"; };
+		2C49E63F247FAC09005C8FFE /* BinaryReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BinaryReader.hpp; sourceTree = "<group>"; };
+		2C49E640247FAC09005C8FFE /* IReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IReader.hpp; sourceTree = "<group>"; };
+		2C49E641247FAC09005C8FFE /* NonNull.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NonNull.hpp; sourceTree = "<group>"; };
+		2C49E642247FAC14005C8FFE /* OpenMode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OpenMode.hpp; sourceTree = "<group>"; };
+		2C49E643247FAC2E005C8FFE /* BinaryReader.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BinaryReader.ipp; sourceTree = "<group>"; };
+		2C49E644247FAC2E005C8FFE /* IReader.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IReader.ipp; sourceTree = "<group>"; };
+		2C49E646247FAC58005C8FFE /* SivFormatUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivFormatUtility.cpp; sourceTree = "<group>"; };
+		2C49E648247FAC59005C8FFE /* SivBinaryReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivBinaryReader.cpp; sourceTree = "<group>"; };
+		2C49E64C247FACE8005C8FFE /* BinaryReaderDetail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinaryReaderDetail.hpp; sourceTree = "<group>"; };
+		2C49E64D247FACE8005C8FFE /* BinaryReaderDetail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryReaderDetail.cpp; sourceTree = "<group>"; };
 		2C4A83E32457E7A4007AAE76 /* XoshiroCpp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XoshiroCpp.hpp; sourceTree = "<group>"; };
 		2C4CBE4424370FC600F8B7A6 /* IRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderer.hpp; sourceTree = "<group>"; };
 		2C4CBE4724370FE300F8B7A6 /* RendererFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererFactory.cpp; sourceTree = "<group>"; };
@@ -543,6 +564,7 @@
 		2C435BC7243E14D1001CAAD8 /* macOS_Linux */ = {
 			isa = PBXGroup;
 			children = (
+				2C49E64B247FACE8005C8FFE /* BinaryReader */,
 				2C435BC8243E14D1001CAAD8 /* Console */,
 				2C45ED9624783B020018C62B /* Date */,
 				2C45ED9824783B020018C62B /* DateTime */,
@@ -634,6 +656,7 @@
 		2C4360AE240E4EEC001657D2 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C49E647247FAC59005C8FFE /* BinaryReader */,
 				2C435BC4243E085D001CAAD8 /* Byte */,
 				2C4360B8240E4EEC001657D2 /* Common */,
 				2C4360C0240E4EEC001657D2 /* Console */,
@@ -646,6 +669,7 @@
 				2C439F5C241DCE8B001154C2 /* FormatFloat */,
 				2C439F8B241DF5CD001154C2 /* FormatInt */,
 				2C4231C5242B0B9200A16BCA /* Formatter */,
+				2C49E645247FAC58005C8FFE /* FormatUtility */,
 				2C4564DB2479469F00DB01F0 /* Int128 */,
 				2C439F5E241DCE8B001154C2 /* IntFormatter */,
 				2C43B2C52426223400D5CBBB /* Logger */,
@@ -1000,6 +1024,7 @@
 				2C57676124763C250016202D /* Allocator.hpp */,
 				2C47E3FF245A8C32002D30CE /* ApplicationOptions.hpp */,
 				2C47E40B245A8C32002D30CE /* Array.hpp */,
+				2C49E63F247FAC09005C8FFE /* BinaryReader.hpp */,
 				2C47E43A245A8C33002D30CE /* Byte.hpp */,
 				2C47E44E245A8C33002D30CE /* Char.hpp */,
 				2C47E448245A8C33002D30CE /* Common.hpp */,
@@ -1029,6 +1054,7 @@
 				2C47E418245A8C32002D30CE /* Formatter.hpp */,
 				2C47D4112477E81E00CDF824 /* FormatUtility.hpp */,
 				2C47E406245A8C32002D30CE /* Fwd.hpp */,
+				2C49E63D247FABD6005C8FFE /* Grid.hpp */,
 				2C47E407245A8C32002D30CE /* HardwareRNG.hpp */,
 				2C47E3FE245A8C32002D30CE /* Hash.hpp */,
 				2C4564C5247918F600DB01F0 /* HashSet.hpp */,
@@ -1036,15 +1062,20 @@
 				2C47E446245A8C33002D30CE /* Indexed.hpp */,
 				2C4564D92479466900DB01F0 /* Int128.hpp */,
 				2C47E416245A8C32002D30CE /* IntFormatter.hpp */,
+				2C49E640247FAC09005C8FFE /* IReader.hpp */,
 				2C47E402245A8C32002D30CE /* LetterCase.hpp */,
 				2C47E3FC245A8C32002D30CE /* Logger.hpp */,
 				2C47E409245A8C32002D30CE /* LogLevel.hpp */,
 				2C47E44F245A8C33002D30CE /* LogType.hpp */,
 				2C47E41C245A8C33002D30CE /* MathConstants.hpp */,
 				2C47E415245A8C32002D30CE /* Meta.hpp */,
+				2C49E639247FABA4005C8FFE /* MicrosecClock.hpp */,
+				2C49E63A247FABA4005C8FFE /* MillisecClock.hpp */,
 				2C47E40A245A8C32002D30CE /* NamedParameter.hpp */,
 				2C47E44D245A8C33002D30CE /* None.hpp */,
+				2C49E641247FAC09005C8FFE /* NonNull.hpp */,
 				2C47E404245A8C32002D30CE /* Number.hpp */,
+				2C49E642247FAC14005C8FFE /* OpenMode.hpp */,
 				2C47E43B245A8C33002D30CE /* Optional.hpp */,
 				2C3EC7DF245AE60700DAD413 /* Parse.hpp */,
 				2C3EC7DC245AE60700DAD413 /* ParseBool.hpp */,
@@ -1058,6 +1089,7 @@
 				2C47E443245A8C33002D30CE /* PRNG.hpp */,
 				2C47E453245A8C33002D30CE /* Profiler.hpp */,
 				2C47E421245A8C33002D30CE /* Random.hpp */,
+				2C49E63B247FABB4005C8FFE /* RDTSCClock.hpp */,
 				2C47E41B245A8C32002D30CE /* Rectangle.hpp */,
 				2C47E452245A8C33002D30CE /* Scene.hpp */,
 				2C3EC7DB245AE5F200DAD413 /* ScopeGuard.hpp */,
@@ -1088,8 +1120,11 @@
 			children = (
 				2C57676324763C440016202D /* Allocator.ipp */,
 				2C47E434245A8C33002D30CE /* ApplicationOptions.ipp */,
+				2C49E63C247FABC6005C8FFE /* Array.ipp */,
+				2C49E643247FAC2E005C8FFE /* BinaryReader.ipp */,
 				2C47E427245A8C33002D30CE /* Byte.ipp */,
 				2C47E424245A8C33002D30CE /* Char.ipp */,
+				2C49E63E247FABEB005C8FFE /* ConcurrentTask.ipp */,
 				2C47D41C2477E89B00CDF824 /* Date.ipp */,
 				2C47D41B2477E88800CDF824 /* DateTime.ipp */,
 				2C710F0E2460657100874320 /* Demangle.ipp */,
@@ -1107,6 +1142,8 @@
 				2C47E435245A8C33002D30CE /* Hash.ipp */,
 				2C4564C72479190D00DB01F0 /* HashSet.ipp */,
 				2C4564C82479190D00DB01F0 /* HashTable.ipp */,
+				2C49E638247FAB8C005C8FFE /* Int128.ipp */,
+				2C49E644247FAC2E005C8FFE /* IReader.ipp */,
 				2C47E431245A8C33002D30CE /* MathConstants.ipp */,
 				2C57676224763C440016202D /* Memory.ipp */,
 				2C47E438245A8C33002D30CE /* Number.ipp */,
@@ -1143,6 +1180,31 @@
 				2C481E1924460BBA00A5D88D /* SivCPUInfo.cpp */,
 			);
 			path = CPUInfo;
+			sourceTree = "<group>";
+		};
+		2C49E645247FAC58005C8FFE /* FormatUtility */ = {
+			isa = PBXGroup;
+			children = (
+				2C49E646247FAC58005C8FFE /* SivFormatUtility.cpp */,
+			);
+			path = FormatUtility;
+			sourceTree = "<group>";
+		};
+		2C49E647247FAC59005C8FFE /* BinaryReader */ = {
+			isa = PBXGroup;
+			children = (
+				2C49E648247FAC59005C8FFE /* SivBinaryReader.cpp */,
+			);
+			path = BinaryReader;
+			sourceTree = "<group>";
+		};
+		2C49E64B247FACE8005C8FFE /* BinaryReader */ = {
+			isa = PBXGroup;
+			children = (
+				2C49E64C247FACE8005C8FFE /* BinaryReaderDetail.hpp */,
+				2C49E64D247FACE8005C8FFE /* BinaryReaderDetail.cpp */,
+			);
+			path = BinaryReader;
 			sourceTree = "<group>";
 		};
 		2C4A83E22457E7A4007AAE76 /* Xoshiro-cpp */ = {
@@ -1310,6 +1372,7 @@
 				2C42321D242B155E00A16BCA /* internal.h in Headers */,
 				2C43B2DE24264E1200D5CBBB /* IWindow.hpp in Headers */,
 				2C481E1424460B5700A5D88D /* cpu_features_cache_info.h in Headers */,
+				2C49E64E247FACE8005C8FFE /* BinaryReaderDetail.hpp in Headers */,
 				2C43B2DF24264E1200D5CBBB /* ISystem.hpp in Headers */,
 				2C439F89241DCEA9001154C2 /* fast-dtoa.h in Headers */,
 				2C439F87241DCEA9001154C2 /* ieee.h in Headers */,
@@ -1505,6 +1568,7 @@
 				2C4564DD2479469F00DB01F0 /* SivInt128.cpp in Sources */,
 				2C423250242B155E00A16BCA /* window.c in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
+				2C49E64A247FAC59005C8FFE /* SivBinaryReader.cpp in Sources */,
 				2C47D4172477E84800CDF824 /* SivDuration.cpp in Sources */,
 				2C423246242B155E00A16BCA /* nsgl_context.m in Sources */,
 				2C4CBE652437236000F8B7A6 /* SivScene.cpp in Sources */,
@@ -1513,6 +1577,7 @@
 				2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */,
 				2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
+				2C49E649247FAC59005C8FFE /* SivFormatUtility.cpp in Sources */,
 				2C4CBE612437236000F8B7A6 /* SceneFactory.cpp in Sources */,
 				2C4564E1247946AF00DB01F0 /* int128.cc in Sources */,
 				2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */,
@@ -1520,6 +1585,7 @@
 				2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */,
 				2C43B2DD24264E1200D5CBBB /* WindowFactory.cpp in Sources */,
 				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
+				2C49E64F247FACE8005C8FFE /* BinaryReaderDetail.cpp in Sources */,
 				2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */,
 				2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */,
 				2C481E1A24460BBA00A5D88D /* SivCPUInfo.cpp in Sources */,

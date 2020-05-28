@@ -15,6 +15,7 @@ pkg_check_modules(LIBSIV3D REQUIRED glib-2.0 gl x11)
 
 add_library(
   Siv3D STATIC
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/BinaryReader/BinaryReaderDetail.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Console/CConsole.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Date/SivDate_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/DateTime/SivDateTime_Platform.cpp
@@ -27,6 +28,7 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/Linux/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Window/CWindow.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
+  ../Siv3D/src/Siv3D/BinaryReader/SivBinaryReader.cpp
   ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Common/Siv3DEngine.cpp
   ../Siv3D/src/Siv3D/Console/ConsoleFactory.cpp
@@ -41,6 +43,7 @@ add_library(
   ../Siv3D/src/Siv3D/FormatFloat/SivFormatFloat.cpp
   ../Siv3D/src/Siv3D/FormatInt/SivFormatInt.cpp
   ../Siv3D/src/Siv3D/Formatter/SivFormatter.cpp
+  ../Siv3D/src/Siv3D/FormatUtility/SivFormatUtility.cpp
   ../Siv3D/src/Siv3D/Int128/SivInt128.cpp
   ../Siv3D/src/Siv3D/IntFormatter/SivIntFormatter.cpp
   ../Siv3D/src/Siv3D/Logger/LoggerFactory.cpp
