@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/EngineLog.hpp>
+# include <Siv3D/FileSystem.hpp>
 # include <Siv3D/FormatUtility.hpp>
 # include "BinaryReaderDetail.hpp"
 
@@ -49,8 +50,8 @@ namespace s3d
 		m_info =
 		{
 			.isOpen		= true,
-			.size		= 0,
-			.fullPath	= FilePath(path)
+			.size		= FileSystem::FileSize(path),
+			.fullPath	= FileSystem::FullPath(path)
 		};
 
 		LOG_INFO(U"📤 BinaryReader: File `{0}` opened (size: {1})"_fmt(
