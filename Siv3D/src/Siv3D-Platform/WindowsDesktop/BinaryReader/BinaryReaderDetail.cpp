@@ -9,8 +9,8 @@
 //
 //-----------------------------------------------
 
-# include <cassert>
 # include <Siv3D/EngineLog.hpp>
+# include <Siv3D/FileSystem.hpp>
 # include <Siv3D/FormatUtility.hpp>
 # include "BinaryReaderDetail.hpp"
 
@@ -63,7 +63,7 @@ namespace s3d
 
 		close();
 
-		if (const bool isResource = false; isResource)
+		if (FileSystem::IsResourcePath(path))
 		{
 			HMODULE hModule = ::GetModuleHandleW(nullptr);
 			const std::wstring pathW = path.toWstr();
@@ -134,7 +134,7 @@ namespace s3d
 			{
 				.isOpen		= true,
 				.size		= size.QuadPart,
-				.fullPath	= FilePath(path)
+				.fullPath	= FileSystem::FullPath(path)
 			};
 
 			LOG_INFO(U"📤 BinaryReader: File `{0}` opened (size: {1})"_fmt(

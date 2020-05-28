@@ -373,7 +373,7 @@
 
 // ファイルとディレクトリ
 // Files and directories
-//# include <Siv3D/FileSystem.hpp>
+# include <Siv3D/FileSystem.hpp>
 
 // リソースファイルの管理
 // Resource files

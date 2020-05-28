@@ -214,6 +214,9 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Windows">
       <UniqueIdentifier>{811ef1bb-f3b3-4360-a395-ec6e59b5d096}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\FileSystem">
+      <UniqueIdentifier>{4b482fd3-73e0-4fed-866e-5ded57a0a961}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -801,6 +804,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\NonNull.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\FileSystem.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -1030,6 +1036,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Windows\SivWindows.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\FileSystem\SivFileSystem_Platform.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\FileSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
