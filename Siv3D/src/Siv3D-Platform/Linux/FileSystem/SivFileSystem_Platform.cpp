@@ -70,14 +70,7 @@ namespace s3d
 				return FilePath();
 			}
 
-			if (detail::IsNotFound(path))
-			{
-				return detail::NormalizePath(Unicode::Widen(fs::weakly_canonical(fs::system_complete(ToPath(path))).string()));
-			}
-			else
-			{
-				return detail::NormalizePath(Unicode::Widen(fs::canonical(ToPath(path)).string()));
-			}
+			return detail::NormalizePath(Unicode::Widen(fs::weakly_canonical(detail::ToPath(path)).string()));
 		}
 
 		int64 FileSize(const FilePathView path)
