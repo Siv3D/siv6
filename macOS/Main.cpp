@@ -8,20 +8,6 @@ SIV3D_OPTION_RUN_TEST(false);
 
 void Main()
 {
-	const auto cpu = GetCPUInfo();
-	Logger << cpu.vendor;
-	Logger << cpu.brand;
-	Logger << U"{}.{}.{}"_fmt(cpu.family, cpu.model, cpu.stepping);
-
-	try
-	{
-		const Point pos = Parse<Point>(U"123");
-	}
-	catch (const Error& e)
-	{
-		Logger << e;
-	}
-	
 	while (System::Update())
 	{
 		Logger << Scene::FrameCount();

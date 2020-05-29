@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <Siv3D/FormatLiteral.hpp>
 
 namespace s3d
 {

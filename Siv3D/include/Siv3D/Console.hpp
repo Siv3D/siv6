@@ -13,6 +13,7 @@
 # include <memory>
 # include "Common.hpp"
 # include "Formatter.hpp"
+# include "Parse.hpp"
 
 namespace s3d
 {
