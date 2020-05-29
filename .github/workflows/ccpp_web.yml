@@ -2,10 +2,10 @@ name: C/C++ CI for Web
 
 on:
   push:
-    branches: [ web ]
+    branches: [ web* ]
     tags: [ v** ]
   pull_request:
-    branches: [ web ]
+    branches: [ web* ]
 
 jobs:
   build:
