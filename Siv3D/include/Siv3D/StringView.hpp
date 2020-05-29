@@ -284,6 +284,11 @@ namespace s3d
 		{
 			return (output << value.toWstr());
 		}
+
+		friend std::basic_ostream<char32>& operator <<(std::basic_ostream<char32>& output, const StringView& value)
+		{
+			return (output << std::u32string_view(value.data(), value.size()));
+		}
 	};
 
 	inline void swap(StringView& a, StringView& b) noexcept;

@@ -10,13 +10,14 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Common.hpp"
-
-/// @biref ライブラリのバージョンの文字列 | Library version string
-# define SIV3D_VERSION	U"0.6.0 dev"
+# include <Siv3D/Common.hpp>
 
 namespace s3d
 {
-	/// @brief ライブラリのバージョン番号 | Library version number
-	inline constexpr uint32 Siv3DVersion = 200'006'000u;
+	namespace SystemLog
+	{
+		void Initial();
+
+		void Final();
+	}
 }

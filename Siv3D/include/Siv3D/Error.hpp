@@ -55,6 +55,11 @@ namespace s3d
 		{
 			return (output << L'[' << value.type() << L"] " << value.what().toWstr());
 		}
+
+		friend std::basic_ostream<char32>& operator <<(std::basic_ostream<char32>& output, const Error& value)
+		{
+			return (output << U'[' << value.type() << U"] " << value.what());
+		}
 	};
 
 	/// @brief パースエラーを表現する型

@@ -12,9 +12,9 @@ void Main()
 	{
 		Logger << Scene::FrameCount();
 
-		System::Sleep(100ms);
+		System::Sleep(16ms);
 
-		if (Scene::FrameCount() > 200)
+		if (Scene::FrameCount() > 50)
 		{
 			System::Exit();
 		}

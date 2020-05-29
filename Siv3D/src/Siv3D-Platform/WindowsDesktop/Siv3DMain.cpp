@@ -70,7 +70,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 	}
 	catch (const Error& error)
 	{
-		::OutputDebugStringW(U"{}\n"_fmt(Format(error)).toWstr().c_str());
+		::OutputDebugStringW(U"{}\n"_fmt(error).toWstr().c_str());
 		return -1;
 	}
 

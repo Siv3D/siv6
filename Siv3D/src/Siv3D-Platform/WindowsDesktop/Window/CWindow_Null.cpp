@@ -24,14 +24,14 @@ namespace s3d
 
 	CWindow_Null::~CWindow_Null()
 	{
-		LOG_SCOPED_TRACE(U"CWindow::~CWindow()");
+		LOG_SCOPED_TRACE(U"CWindow_Null::~CWindow()");
 
 		DLL::UnloadSystemLibrary(m_user32);
 	}
 
 	void CWindow_Null::init()
 	{
-		LOG_SCOPED_TRACE(U"CWindow::init()");
+		LOG_SCOPED_TRACE(U"CWindow_Null::init()");
 
 		// user32.dll
 		{
@@ -76,39 +76,39 @@ namespace s3d
 
 	void CWindow_Null::setStyle(const WindowStyle style)
 	{
-		LOG_SCOPED_TRACE(U"CWindow::setStyle(style = {})"_fmt(FromEnum(style)));
+		LOG_SCOPED_TRACE(U"CWindow_Null::setStyle(style = {})"_fmt(FromEnum(style)));
 	}
 
 	void CWindow_Null::setPos(const Point& pos)
 	{
-		LOG_SCOPED_TRACE(U"CWindow::setPos(pos = {})"_fmt(pos));
+		LOG_SCOPED_TRACE(U"CWindow_Null::setPos(pos = {})"_fmt(pos));
 	}
 
 	void CWindow_Null::maximize()
 	{
-		LOG_TRACE(U"CWindow::maximize()");
+		LOG_TRACE(U"CWindow_Null::maximize()");
 	}
 
 	void CWindow_Null::restore()
 	{
-		LOG_TRACE(U"CWindow::restore()");
+		LOG_TRACE(U"CWindow_Null::restore()");
 	}
 
 	void CWindow_Null::minimize()
 	{
-		LOG_TRACE(U"CWindow::minimize()");
+		LOG_TRACE(U"CWindow_Null::minimize()");
 	}
 
 	bool CWindow_Null::setVirtualSize(const Size& size)
 	{
-		LOG_TRACE(U"CWindow::setVirtualSize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow_Null::setVirtualSize(size = {})"_fmt(size));
 
 		return true;
 	}
 
 	bool CWindow_Null::setFrameBufferSize(const Size& size)
 	{
-		LOG_TRACE(U"CWindow::setFrameBufferSize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow_Null::setFrameBufferSize(size = {})"_fmt(size));
 
 		return true;
 	}

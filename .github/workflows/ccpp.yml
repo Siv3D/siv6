@@ -23,7 +23,7 @@ jobs:
       working-directory: Linux
     - name: build
       run: cmake --build Linux/build
-#    - name: test
-#      run: |
-#        cd Linux/build
-#        ctest --output-on-failure --verbose
+    - name: test
+      run: |
+        cd Linux/build
+        ctest --output-on-failure --verbose
