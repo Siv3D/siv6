@@ -145,6 +145,38 @@ namespace s3d
 			}
 	
 		# endif
+
+			template <class Type>
+			Type read() const
+			{
+				open();
+
+				Type t;
+
+				std::cin >> t;
+
+				return t;
+			}
+
+			template <class Type>
+			Type readLine() const
+			{
+				open();
+
+				std::string s;
+
+				std::getline(std::cin, s);
+
+				return Parse<Type>(Unicode::Widen(s));
+			}
+
+			template <class Type>
+			auto operator >>(Type& value) const
+			{
+				value = read<Type>();
+
+				return *this;
+			}
 		};
 	}
 
