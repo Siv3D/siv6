@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -9,12 +9,21 @@
 //
 //-----------------------------------------------
 
-# include "GL4/CRenderer_GL4.hpp"
+# include <Renderer/Null/CRenderer_Null.hpp>
+# include <Renderer/GL4/CRenderer_GL4.hpp>
+# include <Siv3D/Common/ApplicationOptions.hpp>
 
 namespace s3d
 {
 	ISiv3DRenderer* ISiv3DRenderer::Create()
 	{
-		return new CRenderer_GL4;
+		if (g_ApplicationOptions.headlessMode)
+		{
+			return new CRenderer_Null;
+		}
+		else
+		{
+			return new CRenderer_GL4;
+		}
 	}
 }

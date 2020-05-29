@@ -24,10 +24,12 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3DMain.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/FileSystem/SivFileSystem_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Renderer/GL4/CRenderer_GL4.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Renderer/GL4/CRenderer_Null.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Renderer/RendererFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Window/CWindow.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Window/CWindow_Null.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Window/WindowFactory.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/BinaryReader/SivBinaryReader.cpp
