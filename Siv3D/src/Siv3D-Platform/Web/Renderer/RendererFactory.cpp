@@ -9,12 +9,21 @@
 //
 //-----------------------------------------------
 
-# include "GLES3/CRenderer_GLES3.hpp"
+# include <Renderer/Null/CRenderer_Null.hpp>
+# include <Renderer/GLES3/CRenderer_GLES3.hpp>
+# include <Siv3D/Common/ApplicationOptions.hpp>
 
 namespace s3d
 {
 	ISiv3DRenderer* ISiv3DRenderer::Create()
 	{
-		return new CRenderer_GLES3;
+		if (g_ApplicationOptions.headlessMode)
+		{
+			return new CRenderer_Null;
+		}
+		else
+		{
+			return new CRenderer_GLES3;
+		}
 	}
 }
