@@ -13,6 +13,7 @@
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Version.hpp>
 # include <Siv3D/DateTime.hpp>
+# include <Siv3D/CPUInfo.hpp>
 
 namespace s3d
 {
@@ -30,6 +31,9 @@ namespace s3d
 			{
 				LOG_INFO(U"ℹ️ Siv3D Engine (" SIV3D_VERSION U") " SIV3D_PLATFORM_NAME U" [Release build]");
 			}
+			
+			const auto cpu = GetCPUInfo();
+			LOG_INFO(U"ℹ️ CPU: {} {} {}.{}.{}"_fmt(cpu.vendor, cpu.brand, cpu.family, cpu.model, cpu.stepping));
 
 			LOG_INFO(U"⌛ Preparing for setup...");
 		}

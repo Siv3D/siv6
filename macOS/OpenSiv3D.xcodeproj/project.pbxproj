@@ -153,6 +153,8 @@
 		2C60AE192480EA5B00277281 /* WindowFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE182480EA5B00277281 /* WindowFactory.cpp */; };
 		2C60AE1C2480EB6600277281 /* CWindow_Null.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C60AE1A2480EB6600277281 /* CWindow_Null.hpp */; };
 		2C60AE1D2480EB6600277281 /* CWindow_Null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE1B2480EB6600277281 /* CWindow_Null.cpp */; };
+		2C60AE202480F69F00277281 /* SystemLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE1E2480F69F00277281 /* SystemLog.cpp */; };
+		2C60AE212480F69F00277281 /* SystemLog.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C60AE1F2480F69F00277281 /* SystemLog.hpp */; };
 		2C6898162436066800C36C25 /* SivWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6898152436066800C36C25 /* SivWindow.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
@@ -448,6 +450,8 @@
 		2C60AE182480EA5B00277281 /* WindowFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowFactory.cpp; sourceTree = "<group>"; };
 		2C60AE1A2480EB6600277281 /* CWindow_Null.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CWindow_Null.hpp; sourceTree = "<group>"; };
 		2C60AE1B2480EB6600277281 /* CWindow_Null.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWindow_Null.cpp; sourceTree = "<group>"; };
+		2C60AE1E2480F69F00277281 /* SystemLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemLog.cpp; sourceTree = "<group>"; };
+		2C60AE1F2480F69F00277281 /* SystemLog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SystemLog.hpp; sourceTree = "<group>"; };
 		2C6897DF2436064900C36C25 /* Siv3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Siv3D.hpp; sourceTree = "<group>"; };
 		2C6898122436064900C36C25 /* ostream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ostream.h; sourceTree = "<group>"; };
 		2C6898132436064900C36C25 /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
@@ -854,6 +858,8 @@
 		2C43B2DA24264E1200D5CBBB /* System */ = {
 			isa = PBXGroup;
 			children = (
+				2C60AE1E2480F69F00277281 /* SystemLog.cpp */,
+				2C60AE1F2480F69F00277281 /* SystemLog.hpp */,
 				2C4231CA242B0BD300A16BCA /* SivSystem.cpp */,
 				2C43B2DB24264E1200D5CBBB /* ISystem.hpp */,
 				2C43B2DC24264E1200D5CBBB /* SystemFactory.cpp */,
@@ -1401,6 +1407,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C60AE212480F69F00277281 /* SystemLog.hpp in Headers */,
 				2C423222242B155E00A16BCA /* glfw3.h in Headers */,
 				2C42321D242B155E00A16BCA /* internal.h in Headers */,
 				2C43B2DE24264E1200D5CBBB /* IWindow.hpp in Headers */,
@@ -1568,6 +1575,7 @@
 				2C423234242B155E00A16BCA /* osmesa_context.c in Sources */,
 				2C43B2E824264E3100D5CBBB /* CSystem.cpp in Sources */,
 				2C4360DB240E4EEC001657D2 /* ConsoleFactory.cpp in Sources */,
+				2C60AE202480F69F00277281 /* SystemLog.cpp in Sources */,
 				2C439F61241DCE8B001154C2 /* SivIntFormatter.cpp in Sources */,
 				2C423239242B155E00A16BCA /* input.c in Sources */,
 				2C423236242B155E00A16BCA /* vulkan.c in Sources */,

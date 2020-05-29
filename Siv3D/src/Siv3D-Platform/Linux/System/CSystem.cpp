@@ -29,14 +29,12 @@ namespace s3d
 	CSystem::~CSystem()
 	{
 		LOG_SCOPED_TRACE(U"CSystem::~CSystem()");
-
 		SystemLog::Final();
 	}
 
 	void CSystem::init()
 	{
 		LOG_SCOPED_TRACE(U"CSystem::init()");
-
 		SystemLog::Initial();
 
 		SIV3D_ENGINE(Profiler)->init();

@@ -58,7 +58,7 @@ namespace s3d
 
 		friend std::basic_ostream<char32>& operator <<(std::basic_ostream<char32>& output, const Error& value)
 		{
-			return (output << U'[' << value.type() << U"] " << value.what());
+			return output << (U'[' + value.type() + U"] " + value.what());
 		}
 	};
 

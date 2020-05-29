@@ -2105,7 +2105,7 @@ namespace s3d
 
 		friend std::basic_ostream<char32>& operator <<(std::basic_ostream<char32>& output, const String& value)
 		{
-			return (output << value.str());
+			return output.write(value.data(), value.size());
 		}
 
 		friend std::istream& operator >>(std::istream& input, String& value)
@@ -2126,15 +2126,6 @@ namespace s3d
 			input >> s;
 
 			value = Unicode::FromWstring(s);
-
-			return input;
-		}
-
-		friend std::basic_istream<char32>& operator >>(std::basic_istream<char32>& input, String& value)
-		{
-			std::u32string s;
-
-			input >> value.str();
 
 			return input;
 		}
