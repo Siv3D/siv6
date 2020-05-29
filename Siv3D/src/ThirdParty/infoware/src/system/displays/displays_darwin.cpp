@@ -1,4 +1,4 @@
-// infoware - C++ System information Library
+﻿// infoware - C++ System information Library
 //
 // Written in 2016-2020 by nabijaczleweli <nabijaczleweli@gmail.com> and ThePhD <phdofthehouse@gmail.com>
 //
