@@ -105,6 +105,45 @@ add_library(
   ../Siv3D/src/ThirdParty/GLFW/x11_window.c
   ../Siv3D/src/ThirdParty/GLFW/xkb_unicode.c
 
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/architecture/architecture_non_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/architecture/architecture_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/endianness/all.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/frequency/frequency_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/frequency/frequency_non_windows_non_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/frequency/frequency_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/instruction_set/instruction_set.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/instruction_set/instruction_set_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/instruction_set/instruction_set_non_windows_non_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/instruction_set/instruction_set_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/quantities_cache/quantities_cache_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/quantities_cache/quantities_cache_non_windows_non_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/quantities_cache/quantities_cache_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/vendor_model_name/vendor_id.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/vendor_model_name/vendor_model_name_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/vendor_model_name/vendor_model_name_non_windows_non_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/cpu/vendor_model_name/vendor_model_name_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/detail/cpuid_non_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/detail/cpuid_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/detail/scope.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/detail/sysctl_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/detail/sysctl_non_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/detail/winstring_non_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/detail/winstring_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/amounts/amounts_non_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/amounts/amounts_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/displays/displays_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/displays/displays_default_blank.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/displays/displays_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/displays/displays_x11.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/kernel_info/kernel_info_non_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/kernel_info/kernel_info_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/memory/memory_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/memory/memory_non_windows_non_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/memory/memory_windows.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/OS_info/os_info_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/OS_info/os_info_non_windows_non_darwin.cpp
+  ../Siv3D/src/ThirdParty/infoware/src/system/OS_info/os_info_windows.cpp
+
   ../Siv3D/src/Test/Siv3DTest.cpp
   )
 

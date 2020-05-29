@@ -209,6 +209,18 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\fmt\format-inl.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\GL\glew.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\GL\wglew.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\cpu.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\cpuid.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\linkage.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\memory.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\scope.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\sysctl.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\winstring.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\gpu.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\infoware.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\pci.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\system.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\version.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\miniutf\miniutf.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +304,44 @@
     <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\strtod.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\fmt\format.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\GLEW\glew.c" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\architecture\architecture_non_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\architecture\architecture_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\endianness\all.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\frequency\frequency_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\frequency\frequency_non_windows_non_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\frequency\frequency_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\instruction_set\instruction_set.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\instruction_set\instruction_set_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\instruction_set\instruction_set_non_windows_non_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\instruction_set\instruction_set_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\quantities_cache\quantities_cache_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\quantities_cache\quantities_cache_non_windows_non_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\quantities_cache\quantities_cache_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\vendor_model_name\vendor_id.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\vendor_model_name\vendor_model_name_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\vendor_model_name\vendor_model_name_non_windows_non_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\vendor_model_name\vendor_model_name_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\cpuid_non_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\cpuid_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\scope.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\sysctl_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\sysctl_non_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\winstring_non_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\winstring_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\amounts\amounts_non_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\amounts\amounts_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\displays\displays_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\displays\displays_default_blank.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\displays\displays_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\displays\displays_x11.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\kernel_info\kernel_info_non_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\kernel_info\kernel_info_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\memory\memory_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\memory\memory_non_windows_non_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\memory\memory_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_non_windows_non_darwin.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_windows.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

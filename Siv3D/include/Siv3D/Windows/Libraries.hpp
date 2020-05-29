@@ -23,6 +23,7 @@
 # pragma comment (lib, "winmm")
 # pragma comment (lib, "shcore")
 # pragma comment (lib, "opengl32")
+# pragma comment (lib, "version")
 # pragma comment (lib, "Siv3D" SIV3D_DEBUG_LIB_POSTFIX(_d))
 
 # undef SIV3D_DEBUG_LIB_POSTFIX

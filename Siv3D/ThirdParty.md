@@ -11,6 +11,7 @@ Library | Version
 [fmt](https://github.com/fmtlib/fmt) | 6.2.0
 [GLEW](https://github.com/nigels-com/glew) | 2.2.0
 [GLFW](https://github.com/glfw/glfw) | 3.3.2
+[infoware](https://github.com/ThePhD/infoware) | v0.5.3
 [miniutf](https://github.com/dropbox/miniutf) | 
 [SFMT](https://github.com/MersenneTwister-Lab/SFMT) | 1.5.2
 [simde](https://github.com/nemequ/simde) | 

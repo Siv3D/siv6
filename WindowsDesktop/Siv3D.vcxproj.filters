@@ -220,6 +220,57 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer\Null">
       <UniqueIdentifier>{7f6fd866-32e1-43cc-bfd6-0df81de202ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ThirdParty\infoware">
+      <UniqueIdentifier>{2381a290-b24d-4ad7-b557-c0372cc74bff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\detail">
+      <UniqueIdentifier>{cc8d54d3-176a-4300-bfb2-861774dcf485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src">
+      <UniqueIdentifier>{fa7b515e-4b94-40a0-8563-d7fbd9a44807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\cpu">
+      <UniqueIdentifier>{1b6900e9-4b1b-4498-8e36-959021d7ef0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\detail">
+      <UniqueIdentifier>{a357f0d4-7d4f-46fa-9722-95ef147e2191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\system">
+      <UniqueIdentifier>{b024d1df-f924-4a75-a326-92b0e7386249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\cpu\architecture">
+      <UniqueIdentifier>{3b9088ac-3a9e-4693-a600-28b0868c1634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\cpu\endianness">
+      <UniqueIdentifier>{cf35c5d5-9472-4b72-bd1d-09823aa13920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\cpu\frequency">
+      <UniqueIdentifier>{94fe4b11-f9e2-481e-af8f-174e7d3a00fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\cpu\instruction_set">
+      <UniqueIdentifier>{586a67a3-6e5c-401c-8ea6-e5beeae69cbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\cpu\quantities_cache">
+      <UniqueIdentifier>{0d07f612-23ae-495b-a0b2-069479d3dde6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\cpu\vendor_model_name">
+      <UniqueIdentifier>{98dd6284-f75b-4062-9891-96a7b54b50e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\system\amounts">
+      <UniqueIdentifier>{219eedd3-d712-45e3-aec6-55125fe38aee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\system\displays">
+      <UniqueIdentifier>{4e20647b-8a24-4f07-bed9-b0dd019a5a0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\system\kernel_info">
+      <UniqueIdentifier>{729f5957-b881-4a43-825a-87959d35b857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\system\memory">
+      <UniqueIdentifier>{1461e8f1-2408-4f54-8043-a6f77bf3895b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\infoware\src\system\OS_info">
+      <UniqueIdentifier>{fd0c8e1d-9f87-4c9b-b25d-39dfec8ae2b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -819,6 +870,42 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\System\SystemLog.hpp">
       <Filter>src\Siv3D\System</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\cpu.hpp">
+      <Filter>src\ThirdParty\infoware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\gpu.hpp">
+      <Filter>src\ThirdParty\infoware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\infoware.hpp">
+      <Filter>src\ThirdParty\infoware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\pci.hpp">
+      <Filter>src\ThirdParty\infoware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\system.hpp">
+      <Filter>src\ThirdParty\infoware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\version.hpp">
+      <Filter>src\ThirdParty\infoware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\cpuid.hpp">
+      <Filter>src\ThirdParty\infoware\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\linkage.hpp">
+      <Filter>src\ThirdParty\infoware\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\memory.hpp">
+      <Filter>src\ThirdParty\infoware\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\scope.hpp">
+      <Filter>src\ThirdParty\infoware\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\sysctl.hpp">
+      <Filter>src\ThirdParty\infoware\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\winstring.hpp">
+      <Filter>src\ThirdParty\infoware\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -1060,6 +1147,120 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\System\SystemLog.cpp">
       <Filter>src\Siv3D\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\architecture\architecture_non_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\architecture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\architecture\architecture_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\architecture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\endianness\all.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\endianness</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\frequency\frequency_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\frequency</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\frequency\frequency_non_windows_non_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\frequency</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\frequency\frequency_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\frequency</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\instruction_set\instruction_set.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\instruction_set</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\instruction_set\instruction_set_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\instruction_set</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\instruction_set\instruction_set_non_windows_non_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\instruction_set</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\instruction_set\instruction_set_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\instruction_set</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\quantities_cache\quantities_cache_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\quantities_cache</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\quantities_cache\quantities_cache_non_windows_non_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\quantities_cache</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\quantities_cache\quantities_cache_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\quantities_cache</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\vendor_model_name\vendor_id.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\vendor_model_name</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\vendor_model_name\vendor_model_name_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\vendor_model_name</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\vendor_model_name\vendor_model_name_non_windows_non_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\vendor_model_name</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\vendor_model_name\vendor_model_name_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\cpu\vendor_model_name</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\cpuid_non_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\cpuid_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\scope.cpp">
+      <Filter>src\ThirdParty\infoware\src\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\sysctl_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\sysctl_non_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\winstring_non_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\detail\winstring_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\amounts\amounts_non_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\amounts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\amounts\amounts_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\amounts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\displays\displays_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\displays</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\displays\displays_default_blank.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\displays</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\displays\displays_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\displays</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\displays\displays_x11.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\displays</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\kernel_info\kernel_info_non_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\kernel_info</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\kernel_info\kernel_info_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\kernel_info</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\memory\memory_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\memory\memory_non_windows_non_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\memory\memory_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\OS_info</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_non_windows_non_darwin.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\OS_info</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_windows.cpp">
+      <Filter>src\ThirdParty\infoware\src\system\OS_info</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
