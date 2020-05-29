@@ -155,6 +155,44 @@
 		2C60AE1D2480EB6600277281 /* CWindow_Null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE1B2480EB6600277281 /* CWindow_Null.cpp */; };
 		2C60AE202480F69F00277281 /* SystemLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE1E2480F69F00277281 /* SystemLog.cpp */; };
 		2C60AE212480F69F00277281 /* SystemLog.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C60AE1F2480F69F00277281 /* SystemLog.hpp */; };
+		2C60AE71248158A500277281 /* frequency_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE33248158A400277281 /* frequency_darwin.cpp */; };
+		2C60AE72248158A500277281 /* frequency_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE34248158A400277281 /* frequency_windows.cpp */; };
+		2C60AE73248158A500277281 /* frequency_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE35248158A400277281 /* frequency_non_windows_non_darwin.cpp */; };
+		2C60AE74248158A500277281 /* all.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE37248158A500277281 /* all.cpp */; };
+		2C60AE75248158A500277281 /* instruction_set_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE39248158A500277281 /* instruction_set_darwin.cpp */; };
+		2C60AE76248158A500277281 /* instruction_set_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE3A248158A500277281 /* instruction_set_windows.cpp */; };
+		2C60AE77248158A500277281 /* instruction_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE3B248158A500277281 /* instruction_set.cpp */; };
+		2C60AE78248158A500277281 /* instruction_set_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE3C248158A500277281 /* instruction_set_non_windows_non_darwin.cpp */; };
+		2C60AE79248158A500277281 /* architecture_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE3E248158A500277281 /* architecture_windows.cpp */; };
+		2C60AE7A248158A500277281 /* architecture_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE3F248158A500277281 /* architecture_non_windows.cpp */; };
+		2C60AE7B248158A500277281 /* quantities_cache_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE41248158A500277281 /* quantities_cache_windows.cpp */; };
+		2C60AE7C248158A500277281 /* quantities_cache_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE42248158A500277281 /* quantities_cache_non_windows_non_darwin.cpp */; };
+		2C60AE7D248158A500277281 /* quantities_cache_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE43248158A500277281 /* quantities_cache_darwin.cpp */; };
+		2C60AE7E248158A500277281 /* vendor_model_name_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE45248158A500277281 /* vendor_model_name_darwin.cpp */; };
+		2C60AE7F248158A500277281 /* vendor_model_name_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE46248158A500277281 /* vendor_model_name_non_windows_non_darwin.cpp */; };
+		2C60AE80248158A500277281 /* vendor_model_name_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE47248158A500277281 /* vendor_model_name_windows.cpp */; };
+		2C60AE81248158A500277281 /* vendor_id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE48248158A500277281 /* vendor_id.cpp */; };
+		2C60AE82248158A500277281 /* memory_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE4B248158A500277281 /* memory_windows.cpp */; };
+		2C60AE83248158A500277281 /* memory_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE4C248158A500277281 /* memory_non_windows_non_darwin.cpp */; };
+		2C60AE84248158A500277281 /* memory_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE4D248158A500277281 /* memory_darwin.cpp */; };
+		2C60AE85248158A500277281 /* kernel_info_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE4F248158A500277281 /* kernel_info_windows.cpp */; };
+		2C60AE86248158A500277281 /* kernel_info_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE50248158A500277281 /* kernel_info_non_windows.cpp */; };
+		2C60AE87248158A500277281 /* displays_x11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE52248158A500277281 /* displays_x11.cpp */; };
+		2C60AE88248158A500277281 /* displays_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE53248158A500277281 /* displays_darwin.cpp */; };
+		2C60AE89248158A500277281 /* displays_default_blank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE54248158A500277281 /* displays_default_blank.cpp */; };
+		2C60AE8A248158A500277281 /* displays_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE55248158A500277281 /* displays_windows.cpp */; };
+		2C60AE8B248158A500277281 /* os_info_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE57248158A500277281 /* os_info_non_windows_non_darwin.cpp */; };
+		2C60AE8C248158A500277281 /* os_info_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE58248158A500277281 /* os_info_windows.cpp */; };
+		2C60AE8D248158A500277281 /* os_info_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE59248158A500277281 /* os_info_darwin.cpp */; };
+		2C60AE8E248158A500277281 /* amounts_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE5B248158A500277281 /* amounts_non_windows.cpp */; };
+		2C60AE8F248158A500277281 /* amounts_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE5C248158A500277281 /* amounts_windows.cpp */; };
+		2C60AE90248158A500277281 /* cpuid_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE5E248158A500277281 /* cpuid_non_windows.cpp */; };
+		2C60AE91248158A500277281 /* scope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE5F248158A500277281 /* scope.cpp */; };
+		2C60AE92248158A500277281 /* winstring_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE60248158A500277281 /* winstring_windows.cpp */; };
+		2C60AE93248158A500277281 /* winstring_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE61248158A500277281 /* winstring_non_windows.cpp */; };
+		2C60AE94248158A500277281 /* cpuid_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE62248158A500277281 /* cpuid_windows.cpp */; };
+		2C60AE95248158A500277281 /* sysctl_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE63248158A500277281 /* sysctl_non_darwin.cpp */; };
+		2C60AE96248158A500277281 /* sysctl_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE64248158A500277281 /* sysctl_darwin.cpp */; };
 		2C6898162436066800C36C25 /* SivWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6898152436066800C36C25 /* SivWindow.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
@@ -452,6 +490,56 @@
 		2C60AE1B2480EB6600277281 /* CWindow_Null.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWindow_Null.cpp; sourceTree = "<group>"; };
 		2C60AE1E2480F69F00277281 /* SystemLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemLog.cpp; sourceTree = "<group>"; };
 		2C60AE1F2480F69F00277281 /* SystemLog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SystemLog.hpp; sourceTree = "<group>"; };
+		2C60AE23248158A400277281 /* cpu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cpu.hpp; sourceTree = "<group>"; };
+		2C60AE24248158A400277281 /* gpu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gpu.hpp; sourceTree = "<group>"; };
+		2C60AE25248158A400277281 /* pci.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pci.hpp; sourceTree = "<group>"; };
+		2C60AE26248158A400277281 /* system.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = system.hpp; sourceTree = "<group>"; };
+		2C60AE27248158A400277281 /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = version.hpp; sourceTree = "<group>"; };
+		2C60AE29248158A400277281 /* sysctl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sysctl.hpp; sourceTree = "<group>"; };
+		2C60AE2A248158A400277281 /* cpuid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cpuid.hpp; sourceTree = "<group>"; };
+		2C60AE2B248158A400277281 /* scope.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = scope.hpp; sourceTree = "<group>"; };
+		2C60AE2C248158A400277281 /* memory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = memory.hpp; sourceTree = "<group>"; };
+		2C60AE2D248158A400277281 /* winstring.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = winstring.hpp; sourceTree = "<group>"; };
+		2C60AE2E248158A400277281 /* linkage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linkage.hpp; sourceTree = "<group>"; };
+		2C60AE2F248158A400277281 /* infoware.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = infoware.hpp; sourceTree = "<group>"; };
+		2C60AE33248158A400277281 /* frequency_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frequency_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE34248158A400277281 /* frequency_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frequency_windows.cpp; sourceTree = "<group>"; };
+		2C60AE35248158A400277281 /* frequency_non_windows_non_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frequency_non_windows_non_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE37248158A500277281 /* all.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = all.cpp; sourceTree = "<group>"; };
+		2C60AE39248158A500277281 /* instruction_set_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instruction_set_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE3A248158A500277281 /* instruction_set_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instruction_set_windows.cpp; sourceTree = "<group>"; };
+		2C60AE3B248158A500277281 /* instruction_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instruction_set.cpp; sourceTree = "<group>"; };
+		2C60AE3C248158A500277281 /* instruction_set_non_windows_non_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instruction_set_non_windows_non_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE3E248158A500277281 /* architecture_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = architecture_windows.cpp; sourceTree = "<group>"; };
+		2C60AE3F248158A500277281 /* architecture_non_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = architecture_non_windows.cpp; sourceTree = "<group>"; };
+		2C60AE41248158A500277281 /* quantities_cache_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quantities_cache_windows.cpp; sourceTree = "<group>"; };
+		2C60AE42248158A500277281 /* quantities_cache_non_windows_non_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quantities_cache_non_windows_non_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE43248158A500277281 /* quantities_cache_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quantities_cache_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE45248158A500277281 /* vendor_model_name_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vendor_model_name_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE46248158A500277281 /* vendor_model_name_non_windows_non_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vendor_model_name_non_windows_non_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE47248158A500277281 /* vendor_model_name_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vendor_model_name_windows.cpp; sourceTree = "<group>"; };
+		2C60AE48248158A500277281 /* vendor_id.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vendor_id.cpp; sourceTree = "<group>"; };
+		2C60AE4B248158A500277281 /* memory_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory_windows.cpp; sourceTree = "<group>"; };
+		2C60AE4C248158A500277281 /* memory_non_windows_non_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory_non_windows_non_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE4D248158A500277281 /* memory_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE4F248158A500277281 /* kernel_info_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kernel_info_windows.cpp; sourceTree = "<group>"; };
+		2C60AE50248158A500277281 /* kernel_info_non_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kernel_info_non_windows.cpp; sourceTree = "<group>"; };
+		2C60AE52248158A500277281 /* displays_x11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = displays_x11.cpp; sourceTree = "<group>"; };
+		2C60AE53248158A500277281 /* displays_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = displays_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE54248158A500277281 /* displays_default_blank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = displays_default_blank.cpp; sourceTree = "<group>"; };
+		2C60AE55248158A500277281 /* displays_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = displays_windows.cpp; sourceTree = "<group>"; };
+		2C60AE57248158A500277281 /* os_info_non_windows_non_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = os_info_non_windows_non_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE58248158A500277281 /* os_info_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = os_info_windows.cpp; sourceTree = "<group>"; };
+		2C60AE59248158A500277281 /* os_info_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = os_info_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE5B248158A500277281 /* amounts_non_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = amounts_non_windows.cpp; sourceTree = "<group>"; };
+		2C60AE5C248158A500277281 /* amounts_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = amounts_windows.cpp; sourceTree = "<group>"; };
+		2C60AE5E248158A500277281 /* cpuid_non_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpuid_non_windows.cpp; sourceTree = "<group>"; };
+		2C60AE5F248158A500277281 /* scope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scope.cpp; sourceTree = "<group>"; };
+		2C60AE60248158A500277281 /* winstring_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = winstring_windows.cpp; sourceTree = "<group>"; };
+		2C60AE61248158A500277281 /* winstring_non_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = winstring_non_windows.cpp; sourceTree = "<group>"; };
+		2C60AE62248158A500277281 /* cpuid_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpuid_windows.cpp; sourceTree = "<group>"; };
+		2C60AE63248158A500277281 /* sysctl_non_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sysctl_non_darwin.cpp; sourceTree = "<group>"; };
+		2C60AE64248158A500277281 /* sysctl_darwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sysctl_darwin.cpp; sourceTree = "<group>"; };
 		2C6897DF2436064900C36C25 /* Siv3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Siv3D.hpp; sourceTree = "<group>"; };
 		2C6898122436064900C36C25 /* ostream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ostream.h; sourceTree = "<group>"; };
 		2C6898132436064900C36C25 /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
@@ -626,6 +714,7 @@
 				2C4CBE4E24370FFA00F8B7A6 /* GL */,
 				2C4CBE572437100100F8B7A6 /* GLEW */,
 				2C4231D9242B155E00A16BCA /* GLFW */,
+				2C60AE22248158A400277281 /* infoware */,
 				2C44429F2427AA7C00557D51 /* miniutf */,
 			);
 			path = ThirdParty;
@@ -1320,6 +1409,191 @@
 			path = Null;
 			sourceTree = "<group>";
 		};
+		2C60AE22248158A400277281 /* infoware */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE23248158A400277281 /* cpu.hpp */,
+				2C60AE24248158A400277281 /* gpu.hpp */,
+				2C60AE25248158A400277281 /* pci.hpp */,
+				2C60AE26248158A400277281 /* system.hpp */,
+				2C60AE27248158A400277281 /* version.hpp */,
+				2C60AE28248158A400277281 /* detail */,
+				2C60AE2F248158A400277281 /* infoware.hpp */,
+				2C60AE30248158A400277281 /* src */,
+			);
+			path = infoware;
+			sourceTree = "<group>";
+		};
+		2C60AE28248158A400277281 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE29248158A400277281 /* sysctl.hpp */,
+				2C60AE2A248158A400277281 /* cpuid.hpp */,
+				2C60AE2B248158A400277281 /* scope.hpp */,
+				2C60AE2C248158A400277281 /* memory.hpp */,
+				2C60AE2D248158A400277281 /* winstring.hpp */,
+				2C60AE2E248158A400277281 /* linkage.hpp */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		2C60AE30248158A400277281 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE31248158A400277281 /* cpu */,
+				2C60AE49248158A500277281 /* system */,
+				2C60AE5D248158A500277281 /* detail */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		2C60AE31248158A400277281 /* cpu */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE32248158A400277281 /* frequency */,
+				2C60AE36248158A500277281 /* endianness */,
+				2C60AE38248158A500277281 /* instruction_set */,
+				2C60AE3D248158A500277281 /* architecture */,
+				2C60AE40248158A500277281 /* quantities_cache */,
+				2C60AE44248158A500277281 /* vendor_model_name */,
+			);
+			path = cpu;
+			sourceTree = "<group>";
+		};
+		2C60AE32248158A400277281 /* frequency */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE33248158A400277281 /* frequency_darwin.cpp */,
+				2C60AE34248158A400277281 /* frequency_windows.cpp */,
+				2C60AE35248158A400277281 /* frequency_non_windows_non_darwin.cpp */,
+			);
+			path = frequency;
+			sourceTree = "<group>";
+		};
+		2C60AE36248158A500277281 /* endianness */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE37248158A500277281 /* all.cpp */,
+			);
+			path = endianness;
+			sourceTree = "<group>";
+		};
+		2C60AE38248158A500277281 /* instruction_set */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE39248158A500277281 /* instruction_set_darwin.cpp */,
+				2C60AE3A248158A500277281 /* instruction_set_windows.cpp */,
+				2C60AE3B248158A500277281 /* instruction_set.cpp */,
+				2C60AE3C248158A500277281 /* instruction_set_non_windows_non_darwin.cpp */,
+			);
+			path = instruction_set;
+			sourceTree = "<group>";
+		};
+		2C60AE3D248158A500277281 /* architecture */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE3E248158A500277281 /* architecture_windows.cpp */,
+				2C60AE3F248158A500277281 /* architecture_non_windows.cpp */,
+			);
+			path = architecture;
+			sourceTree = "<group>";
+		};
+		2C60AE40248158A500277281 /* quantities_cache */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE41248158A500277281 /* quantities_cache_windows.cpp */,
+				2C60AE42248158A500277281 /* quantities_cache_non_windows_non_darwin.cpp */,
+				2C60AE43248158A500277281 /* quantities_cache_darwin.cpp */,
+			);
+			path = quantities_cache;
+			sourceTree = "<group>";
+		};
+		2C60AE44248158A500277281 /* vendor_model_name */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE45248158A500277281 /* vendor_model_name_darwin.cpp */,
+				2C60AE46248158A500277281 /* vendor_model_name_non_windows_non_darwin.cpp */,
+				2C60AE47248158A500277281 /* vendor_model_name_windows.cpp */,
+				2C60AE48248158A500277281 /* vendor_id.cpp */,
+			);
+			path = vendor_model_name;
+			sourceTree = "<group>";
+		};
+		2C60AE49248158A500277281 /* system */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE4A248158A500277281 /* memory */,
+				2C60AE4E248158A500277281 /* kernel_info */,
+				2C60AE51248158A500277281 /* displays */,
+				2C60AE56248158A500277281 /* OS_info */,
+				2C60AE5A248158A500277281 /* amounts */,
+			);
+			path = system;
+			sourceTree = "<group>";
+		};
+		2C60AE4A248158A500277281 /* memory */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE4B248158A500277281 /* memory_windows.cpp */,
+				2C60AE4C248158A500277281 /* memory_non_windows_non_darwin.cpp */,
+				2C60AE4D248158A500277281 /* memory_darwin.cpp */,
+			);
+			path = memory;
+			sourceTree = "<group>";
+		};
+		2C60AE4E248158A500277281 /* kernel_info */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE4F248158A500277281 /* kernel_info_windows.cpp */,
+				2C60AE50248158A500277281 /* kernel_info_non_windows.cpp */,
+			);
+			path = kernel_info;
+			sourceTree = "<group>";
+		};
+		2C60AE51248158A500277281 /* displays */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE52248158A500277281 /* displays_x11.cpp */,
+				2C60AE53248158A500277281 /* displays_darwin.cpp */,
+				2C60AE54248158A500277281 /* displays_default_blank.cpp */,
+				2C60AE55248158A500277281 /* displays_windows.cpp */,
+			);
+			path = displays;
+			sourceTree = "<group>";
+		};
+		2C60AE56248158A500277281 /* OS_info */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE57248158A500277281 /* os_info_non_windows_non_darwin.cpp */,
+				2C60AE58248158A500277281 /* os_info_windows.cpp */,
+				2C60AE59248158A500277281 /* os_info_darwin.cpp */,
+			);
+			path = OS_info;
+			sourceTree = "<group>";
+		};
+		2C60AE5A248158A500277281 /* amounts */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE5B248158A500277281 /* amounts_non_windows.cpp */,
+				2C60AE5C248158A500277281 /* amounts_windows.cpp */,
+			);
+			path = amounts;
+			sourceTree = "<group>";
+		};
+		2C60AE5D248158A500277281 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				2C60AE5E248158A500277281 /* cpuid_non_windows.cpp */,
+				2C60AE5F248158A500277281 /* scope.cpp */,
+				2C60AE60248158A500277281 /* winstring_windows.cpp */,
+				2C60AE61248158A500277281 /* winstring_non_windows.cpp */,
+				2C60AE62248158A500277281 /* cpuid_windows.cpp */,
+				2C60AE63248158A500277281 /* sysctl_non_darwin.cpp */,
+				2C60AE64248158A500277281 /* sysctl_darwin.cpp */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
 		2C6897DE2436064900C36C25 /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -1576,11 +1850,15 @@
 				2C43B2E824264E3100D5CBBB /* CSystem.cpp in Sources */,
 				2C4360DB240E4EEC001657D2 /* ConsoleFactory.cpp in Sources */,
 				2C60AE202480F69F00277281 /* SystemLog.cpp in Sources */,
+				2C60AE80248158A500277281 /* vendor_model_name_windows.cpp in Sources */,
 				2C439F61241DCE8B001154C2 /* SivIntFormatter.cpp in Sources */,
 				2C423239242B155E00A16BCA /* input.c in Sources */,
 				2C423236242B155E00A16BCA /* vulkan.c in Sources */,
 				2C423245242B155E00A16BCA /* cocoa_time.c in Sources */,
 				2C6898162436066800C36C25 /* SivWindow.cpp in Sources */,
+				2C60AE82248158A500277281 /* memory_windows.cpp in Sources */,
+				2C60AE78248158A500277281 /* instruction_set_non_windows_non_darwin.cpp in Sources */,
+				2C60AE8C248158A500277281 /* os_info_windows.cpp in Sources */,
 				2C60AE192480EA5B00277281 /* WindowFactory.cpp in Sources */,
 				2C4231C7242B0B9200A16BCA /* SivFormatter.cpp in Sources */,
 				2C45ED9A24783B020018C62B /* SivDate_Platform.cpp in Sources */,
@@ -1590,18 +1868,30 @@
 				2C4360D9240E4EEC001657D2 /* ApplicationOptions.cpp in Sources */,
 				2C4CBE4D24370FE300F8B7A6 /* CRenderer_GL4.cpp in Sources */,
 				2C42321C242B155E00A16BCA /* cocoa_init.m in Sources */,
+				2C60AE74248158A500277281 /* all.cpp in Sources */,
 				2CD7B6312456BC2600194496 /* SivRandom.cpp in Sources */,
+				2C60AE7F248158A500277281 /* vendor_model_name_non_windows_non_darwin.cpp in Sources */,
+				2C60AE7B248158A500277281 /* quantities_cache_windows.cpp in Sources */,
 				2C4360DD240E4EEC001657D2 /* SivConsole.cpp in Sources */,
 				2C42324F242B155E00A16BCA /* cocoa_monitor.m in Sources */,
+				2C60AE76248158A500277281 /* instruction_set_windows.cpp in Sources */,
 				2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */,
+				2C60AE96248158A500277281 /* sysctl_darwin.cpp in Sources */,
+				2C60AE7D248158A500277281 /* quantities_cache_darwin.cpp in Sources */,
+				2C60AE85248158A500277281 /* kernel_info_windows.cpp in Sources */,
+				2C60AE94248158A500277281 /* cpuid_windows.cpp in Sources */,
 				2C423244242B155E00A16BCA /* context.c in Sources */,
+				2C60AE71248158A500277281 /* frequency_darwin.cpp in Sources */,
 				2C3EC7E7245AE62400DAD413 /* SivParseInt.cpp in Sources */,
 				2C439F7B241DCEA9001154C2 /* string-to-double.cc in Sources */,
+				2C60AE7A248158A500277281 /* architecture_non_windows.cpp in Sources */,
 				2C3EC7E8245AE62400DAD413 /* SivParseBool.cpp in Sources */,
 				2C4231D2242B0BDE00A16BCA /* UserActionFactory.cpp in Sources */,
 				2C43B2E924264E3100D5CBBB /* CWindow.cpp in Sources */,
+				2C60AE8E248158A500277281 /* amounts_non_windows.cpp in Sources */,
 				2C4CBE6D24376B5300F8B7A6 /* ProfilerFactory.cpp in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
+				2C60AE79248158A500277281 /* architecture_windows.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
 				2C4564D52479198500DB01F0 /* SivThreading.cpp in Sources */,
 				2C4CBE7024376B5300F8B7A6 /* CProfiler.cpp in Sources */,
@@ -1611,38 +1901,53 @@
 				2C47D41F2477E8AC00CDF824 /* SivDateTime.cpp in Sources */,
 				2C4564DD2479469F00DB01F0 /* SivInt128.cpp in Sources */,
 				2C423250242B155E00A16BCA /* window.c in Sources */,
+				2C60AE95248158A500277281 /* sysctl_non_darwin.cpp in Sources */,
 				2C60AE1D2480EB6600277281 /* CWindow_Null.cpp in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
+				2C60AE93248158A500277281 /* winstring_non_windows.cpp in Sources */,
 				2C49E64A247FAC59005C8FFE /* SivBinaryReader.cpp in Sources */,
 				2C47D4172477E84800CDF824 /* SivDuration.cpp in Sources */,
 				2C423246242B155E00A16BCA /* nsgl_context.m in Sources */,
 				2C4CBE652437236000F8B7A6 /* SivScene.cpp in Sources */,
+				2C60AE87248158A500277281 /* displays_x11.cpp in Sources */,
 				2C4231CB242B0BD300A16BCA /* SivSystem.cpp in Sources */,
+				2C60AE89248158A500277281 /* displays_default_blank.cpp in Sources */,
+				2C60AE8B248158A500277281 /* os_info_non_windows_non_darwin.cpp in Sources */,
 				2C439F60241DCE8B001154C2 /* SivFormatFloat.cpp in Sources */,
 				2C4360C6240E4EEC001657D2 /* Siv3DMain.cpp in Sources */,
+				2C60AE90248158A500277281 /* cpuid_non_windows.cpp in Sources */,
 				2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
+				2C60AE77248158A500277281 /* instruction_set.cpp in Sources */,
 				2C49E649247FAC59005C8FFE /* SivFormatUtility.cpp in Sources */,
 				2C4CBE612437236000F8B7A6 /* SceneFactory.cpp in Sources */,
+				2C60AE73248158A500277281 /* frequency_non_windows_non_darwin.cpp in Sources */,
 				2C4564E1247946AF00DB01F0 /* int128.cc in Sources */,
+				2C60AE92248158A500277281 /* winstring_windows.cpp in Sources */,
+				2C60AE86248158A500277281 /* kernel_info_non_windows.cpp in Sources */,
 				2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */,
 				2C435BD4243E1600001CAAD8 /* CLogger.cpp in Sources */,
 				2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */,
 				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
 				2C49E652247FC731005C8FFE /* SivFileSystem_Platform.mm in Sources */,
 				2C49E64F247FACE8005C8FFE /* BinaryReaderDetail.cpp in Sources */,
+				2C60AE91248158A500277281 /* scope.cpp in Sources */,
 				2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */,
 				2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */,
 				2C481E1A24460BBA00A5D88D /* SivCPUInfo.cpp in Sources */,
+				2C60AE84248158A500277281 /* memory_darwin.cpp in Sources */,
+				2C60AE8F248158A500277281 /* amounts_windows.cpp in Sources */,
 				2C423253242B19D100A16BCA /* egl_context.c in Sources */,
 				2C4CBE622437236000F8B7A6 /* CScene.cpp in Sources */,
 				2C42321B242B155E00A16BCA /* monitor.c in Sources */,
 				2C439F79241DCEA9001154C2 /* bignum.cc in Sources */,
 				2C4360D3240E4EEC001657D2 /* SivUnicode.cpp in Sources */,
 				2C4360CE240E4EEC001657D2 /* DummyFactory.cpp in Sources */,
+				2C60AE7E248158A500277281 /* vendor_model_name_darwin.cpp in Sources */,
 				2C60AE172480E9BD00277281 /* CRenderer_Null.cpp in Sources */,
 				2C43B2CB2426223400D5CBBB /* LoggerFactory.cpp in Sources */,
 				2C423241242B155E00A16BCA /* cocoa_window.m in Sources */,
+				2C60AE7C248158A500277281 /* quantities_cache_non_windows_non_darwin.cpp in Sources */,
 				2C4231D8242B0F2900A16BCA /* SivSystem_Platform.cpp in Sources */,
 				2C423228242B155E00A16BCA /* init.c in Sources */,
 				2C4738422459BB0800824B3F /* SivVector2D.cpp in Sources */,
@@ -1650,16 +1955,23 @@
 				2C423248242B155E00A16BCA /* xkb_unicode.c in Sources */,
 				2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */,
 				2C439F482419D686001154C2 /* format.cc in Sources */,
+				2C60AE8D248158A500277281 /* os_info_darwin.cpp in Sources */,
 				2C435BCB243E14D1001CAAD8 /* CConsole.cpp in Sources */,
 				2C439F85241DCEA9001154C2 /* double-to-string.cc in Sources */,
 				2C4231D1242B0BDE00A16BCA /* CUserAction.cpp in Sources */,
 				2C44429E24271E1700557D51 /* SivEngineLog.cpp in Sources */,
+				2C60AE81248158A500277281 /* vendor_id.cpp in Sources */,
+				2C60AE72248158A500277281 /* frequency_windows.cpp in Sources */,
+				2C60AE88248158A500277281 /* displays_darwin.cpp in Sources */,
 				2C439F86241DCEA9001154C2 /* cached-powers.cc in Sources */,
 				2C4360CD240E4EEC001657D2 /* Siv3DTest.cpp in Sources */,
 				2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */,
 				2C4CBE7124376B5300F8B7A6 /* SivProfiler.cpp in Sources */,
 				2C45ED9B24783B020018C62B /* SivDateTime_Platform.cpp in Sources */,
 				2C4CBE592437100100F8B7A6 /* glew.c in Sources */,
+				2C60AE83248158A500277281 /* memory_non_windows_non_darwin.cpp in Sources */,
+				2C60AE8A248158A500277281 /* displays_windows.cpp in Sources */,
+				2C60AE75248158A500277281 /* instruction_set_darwin.cpp in Sources */,
 				2C47A9A9243CA7D800FD33B4 /* SivPoint.cpp in Sources */,
 				2C43B2E024264E1200D5CBBB /* SystemFactory.cpp in Sources */,
 				2C435BBE243DA633001CAAD8 /* CWindow_macOS.mm in Sources */,

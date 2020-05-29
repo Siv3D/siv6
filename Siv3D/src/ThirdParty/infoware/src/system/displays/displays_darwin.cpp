@@ -22,6 +22,30 @@
 #include <algorithm>
 #include <cstring>
 
+template <class Callback>
+class ScopeGuard final
+{
+private:
+
+	Callback m_callback;
+
+public:
+
+	ScopeGuard() = delete;
+
+	ScopeGuard(const ScopeGuard&) = delete;
+
+	ScopeGuard(Callback&& callback)
+		: m_callback(callback)
+	{
+
+	}
+
+	~ScopeGuard()
+	{
+		m_callback();
+	}
+};
 
 template <class T, class F>
 static std::vector<T> enumerate_displays(F&& cbk) {
@@ -51,13 +75,13 @@ std::vector<iware::system::display_t> iware::system::displays() {
 		const std::uint32_t dpi = 25.4 * CGDisplayScreenSize(display_id).width / width;
 
 		auto display_mode = CGDisplayCopyDisplayMode(display_id);
-		iware::detail::quickscope_wrapper display_mode_deleter{[&]() { CGDisplayModeRelease(display_mode); }};
+		ScopeGuard display_mode_deleter{[&]() { CGDisplayModeRelease(display_mode); }};
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 		// A string in the form --------RRRRRRRRGGGGGGGGBBBBBBBB
 		auto pixel_encoding_raw = CGDisplayModeCopyPixelEncoding(display_mode);
-		iware::detail::quickscope_wrapper pixel_encoding_raw_deleter{[&]() { CFRelease(pixel_encoding_raw); }};
+		ScopeGuard pixel_encoding_raw_deleter{[&]() { CFRelease(pixel_encoding_raw); }};
 #pragma GCC diagnostic pop
 
 		// Count the number of occurences of R/G/B pixels
@@ -81,7 +105,7 @@ std::vector<std::vector<iware::system::display_config_t>> iware::system::availab
 		auto modes = CGDisplayCopyAllDisplayModes(display_id, nullptr);
 		if(!modes)
 			return std::vector<iware::system::display_config_t>{};
-		iware::detail::quickscope_wrapper modes_deleter{[&]() { CFRelease(modes); }};
+		ScopeGuard modes_deleter{[&]() { CFRelease(modes); }};
 
 		const auto modes_len = CFArrayGetCount(modes);
 		std::vector<iware::system::display_config_t> ret;

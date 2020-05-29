@@ -65,13 +65,6 @@ namespace s3d
 			}
 
 			{
-				LOG_INFO(U"ℹ️ Connected HIDs: Mice({0}), Keyboards({1}), Other({2})"_fmt(
-					iware::system::mouse_amount(),
-					iware::system::keyboard_amount(),
-					iware::system::other_HID_amount()));
-			}
-
-			{
 				const auto displays = iware::system::displays();
 				LOG_INFO(U"ℹ️ Connected displays: {}"_fmt(
 					displays.size()));

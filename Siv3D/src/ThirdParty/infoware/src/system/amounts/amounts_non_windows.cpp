@@ -18,11 +18,35 @@
 #include <cstring>
 #include <wordexp.h>
 
+template <class Callback>
+class ScopeGuard final
+{
+private:
+
+	Callback m_callback;
+
+public:
+
+	ScopeGuard() = delete;
+
+	ScopeGuard(const ScopeGuard&) = delete;
+
+	ScopeGuard(Callback&& callback)
+		: m_callback(callback)
+	{
+
+	}
+
+	~ScopeGuard()
+	{
+		m_callback();
+	}
+};
 
 // http://man7.org/linux/man-pages/man3/wordexp.3.html
 static std::size_t count_expansions(const char* of) noexcept {
 	wordexp_t exp{};
-	iware::detail::quickscope_wrapper exp_deleter{[&]() { wordfree(&exp); }};
+	ScopeGuard exp_deleter{[&]() { wordfree(&exp); }};
 
 	if(wordexp(of, &exp, 0))
 		return 0;
