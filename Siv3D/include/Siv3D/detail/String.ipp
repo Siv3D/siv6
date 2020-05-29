@@ -1568,6 +1568,53 @@ namespace s3d
 		return std::move(*this);
 	}
 
+	inline String operator +(const String::value_type lhs, StringView rhs)
+	{
+		String result;
+		result.reserve(1 + rhs.size());
+		result.append(lhs);
+		result.append(rhs);
+		return result;
+	}
+
+	inline String operator +(const String::value_type* lhs, StringView rhs)
+	{
+		const size_t len = std::char_traits<String::value_type>::length(lhs);
+		String result;
+		result.reserve(len + rhs.size());
+		result.append(lhs, len);
+		result.append(rhs);
+		return result;
+	}
+
+	inline String operator +(StringView lhs, const String::value_type* rhs)
+	{
+		const size_t len = std::char_traits<String::value_type>::length(rhs);
+		String result;
+		result.reserve(lhs.size() + len);
+		result.append(lhs);
+		result.append(rhs, len);
+		return result;
+	}
+
+	inline String operator +(StringView lhs, StringView rhs)
+	{
+		String result;
+		result.reserve(lhs.size() + rhs.size());
+		result.append(lhs);
+		result.append(rhs);
+		return result;
+	}
+
+	inline String operator +(StringView lhs, const String::value_type rhs)
+	{
+		String result;
+		result.reserve(lhs.size() + 1);
+		result.append(lhs);
+		result.append(rhs);
+		return result;
+	}
+
 	inline void swap(String& a, String& b) noexcept
 	{
 		a.swap(b);

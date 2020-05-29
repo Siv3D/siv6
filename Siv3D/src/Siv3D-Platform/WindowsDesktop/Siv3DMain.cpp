@@ -16,6 +16,7 @@
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/System/ISystem.hpp>
 # include <Siv3D/Error.hpp>
+# include <Siv3D/Format.hpp>
 # include <Siv3D/EngineLog.hpp>
 
 void PerformTest();
@@ -67,8 +68,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 	{
 		SIV3D_ENGINE(System)->init();
 	}
-	catch (const Error&)
+	catch (const Error& error)
 	{
+		::OutputDebugStringW(U"{}\n"_fmt(Format(error)).toWstr().c_str());
 		return -1;
 	}
 

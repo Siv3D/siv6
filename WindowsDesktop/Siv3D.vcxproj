@@ -162,8 +162,10 @@
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Console\CConsole.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\CRenderer_GL4.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\Null\CRenderer_Null.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow_Null.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\DPIAwareness.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\Monitor.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\TouchFeedback.hpp" />
@@ -217,6 +219,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\FileSystem\SivFileSystem_Platform.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Logger\CLogger.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\CRenderer_GL4.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\Null\CRenderer_Null.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\RendererFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\System\CSystem.cpp" />
@@ -225,9 +228,11 @@
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Unicode\SivUnicode_Platform.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Windows\SivWindows.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\CWindow_Null.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\DPIAwareness.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\Monitor.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\TouchFeedback.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\WindowFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Window\WindowProc.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\BinaryReader\SivBinaryReader.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Byte\SivByte.cpp" />
@@ -272,7 +277,6 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\UserAction\UserActionFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Vector2D\SivVector2D.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Window\SivWindow.cpp" />
-    <ClCompile Include="..\Siv3D\src\Siv3D\Window\WindowFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Test\Siv3DTest.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\absl\numeric\int128.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\cpu_features\cpuinfo_x86.c" />

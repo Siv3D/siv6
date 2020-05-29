@@ -9,21 +9,12 @@
 //
 //-----------------------------------------------
 
-# include <Renderer/Null/CRenderer_Null.hpp>
-# include <Renderer/GL4/CRenderer_GL4.hpp>
-# include <Siv3D/Common/ApplicationOptions.hpp>
+# include <Window/CWindow.hpp>
 
 namespace s3d
 {
-	ISiv3DRenderer* ISiv3DRenderer::Create()
+	ISiv3DWindow* ISiv3DWindow::Create()
 	{
-		if (g_ApplicationOptions.headlessMode)
-		{
-			return new CRenderer_Null;
-		}
-		else
-		{
-			return new CRenderer_GL4;
-		}
+		return new CWindow;
 	}
 }

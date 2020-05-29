@@ -28,6 +28,7 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/Linux/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Window/CWindow.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Window/WindowFactory.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/BinaryReader/SivBinaryReader.cpp
   ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
@@ -67,7 +68,6 @@ add_library(
   ../Siv3D/src/Siv3D/UserAction/UserActionFactory.cpp
   ../Siv3D/src/Siv3D/Vector2D/SivVector2D.cpp
   ../Siv3D/src/Siv3D/Window/SivWindow.cpp
-  ../Siv3D/src/Siv3D/Window/WindowFactory.cpp
 
   ../Siv3D/src/ThirdParty/absl/numeric/int128.cc
 
