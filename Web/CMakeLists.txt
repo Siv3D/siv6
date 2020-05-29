@@ -11,28 +11,40 @@ set(CMAKE_C_FLAGS "-D_GLFW_X11")
 
 add_library(
   Siv3D STATIC
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/BinaryReader/BinaryReaderDetail.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Console/CConsole.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Date/SivDate_Platform.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/DateTime/SivDateTime_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Logger/CLogger.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Unicode/SivUnicode_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3DMain.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/FileSystem/SivFileSystem_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Renderer/GLES3/CRenderer_GLES3.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Renderer/Null/CRenderer_Null.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Renderer/RendererFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Web/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Window/CWindow.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Window/CWindow_Null.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Window/WindowFactory.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
+  ../Siv3D/src/Siv3D/BinaryReader/SivBinaryReader.cpp
   ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Common/Siv3DEngine.cpp
   ../Siv3D/src/Siv3D/Console/ConsoleFactory.cpp
   ../Siv3D/src/Siv3D/Console/SivConsole.cpp
   # ../Siv3D/src/Siv3D/CPUInfo/SivCPUInfo.cpp
+  ../Siv3D/src/Siv3D/DateTime/SivDateTime.cpp
   ../Siv3D/src/Siv3D/Dummy/CDummy.cpp
   ../Siv3D/src/Siv3D/Dummy/DummyFactory.cpp
+  ../Siv3D/src/Siv3D/Duration/SivDuration.cpp
   ../Siv3D/src/Siv3D/EngineLog/SivEngineLog.cpp
   ../Siv3D/src/Siv3D/Error/SivError.cpp
   ../Siv3D/src/Siv3D/FormatFloat/SivFormatFloat.cpp
   ../Siv3D/src/Siv3D/FormatInt/SivFormatInt.cpp
   ../Siv3D/src/Siv3D/Formatter/SivFormatter.cpp
+  ../Siv3D/src/Siv3D/FormatUtility/SivFormatUtility.cpp
+  ../Siv3D/src/Siv3D/Int128/SivInt128.cpp
   ../Siv3D/src/Siv3D/IntFormatter/SivIntFormatter.cpp
   ../Siv3D/src/Siv3D/Logger/LoggerFactory.cpp
   ../Siv3D/src/Siv3D/Logger/SivLogger.cpp
@@ -47,13 +59,16 @@ add_library(
   ../Siv3D/src/Siv3D/StringView/SivStringView.cpp
   ../Siv3D/src/Siv3D/System/SivSystem.cpp
   ../Siv3D/src/Siv3D/System/SystemFactory.cpp
+  ../Siv3D/src/Siv3D/System/SystemLog.cpp
+  ../Siv3D/src/Siv3D/Threading/SivThreading.cpp
   ../Siv3D/src/Siv3D/Unicode/SivUnicode.cpp
   ../Siv3D/src/Siv3D/Unicode/UnicodeUtility.cpp
   ../Siv3D/src/Siv3D/UserAction/CUserAction.cpp
   ../Siv3D/src/Siv3D/UserAction/UserActionFactory.cpp
   ../Siv3D/src/Siv3D/Vector2D/SivVector2D.cpp
   ../Siv3D/src/Siv3D/Window/SivWindow.cpp
-  ../Siv3D/src/Siv3D/Window/WindowFactory.cpp
+
+  ../Siv3D/src/ThirdParty/absl/numeric/int128.cc
 
   # ../Siv3D/src/ThirdParty/cpu_features/cpuinfo_x86.c
 
@@ -96,7 +111,7 @@ target_include_directories(
   ../Siv3D/include/ThirdParty
   ../Siv3D/src
   ../Siv3D/src/Siv3D-Platform/macOS_Linux
-  ../Siv3D/src/Siv3D-Platform/Linux
+  ../Siv3D/src/Siv3D-Platform/Web
   ../Siv3D/src/ThirdParty
   ${LIBSIV3D_INCLUDE_DIRS}
   )
