@@ -25,7 +25,11 @@ jobs:
         run: emcmake cmake -DCMAKE_BUILD_TYPE=Release ..
       - name: Build project
         working-directory: Web/build
-        run: emmake make 
+        run: cmake --build . --parallel 4
+      - name: Test project
+        working-directory: Web/build
+        run: |
+          node Siv3DTest.js
       - name: Bundle output
         run: |
           mkdir Package
