@@ -12,10 +12,14 @@
 # pragma once
 # include "detail/ApplicationOptions.ipp"
 
+/// @brief デバッグヒープマネージャ (Windows のみ)
 # define SIV3D_OPTION_DEBUG_HEAP_MANAGER(bool) const int dummy_s3d_enable_debug_heap_manager = s3d::detail::EnableDebugHeapManager(bool)
 
+/// @brief 非グラフィックスモード
 # define SIV3D_OPTION_HEADLESS_MODE(bool) const int dummy_s3d_enable_headless_mode = s3d::detail::EnableHeadlessMode(bool)
 
+/// @brief std::cerr の出力
 # define SIV3D_OPTION_OUTPUT_STDERR(bool) const int dummy_s3d_enable_stderr = s3d::detail::EnableStdErr(bool)
 
+/// @brief テストの実行
 # define SIV3D_OPTION_RUN_TEST(bool) const int dummy_s3d_enable_test = s3d::detail::EnableTest(bool)

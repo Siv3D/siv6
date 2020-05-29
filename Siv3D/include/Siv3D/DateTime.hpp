@@ -167,24 +167,31 @@ namespace s3d
 		[[nodiscard]]
 		size_t hash() const noexcept;
 
-		/// @brief 昨日の日付（ローカルタイム）を返します。
-		/// @return 昨日の日付（ローカルタイム）
+		/// @brief 昨日の日付と時刻（ローカルタイム）を返します。
+		/// @remarks 時刻は午前 0 時 0 分にセットされます
+		/// @return 昨日の午前 0 時 0 分の日付と時刻（ローカルタイム）
 		[[nodiscard]]
 		static DateTime Yesterday() noexcept;
 
-		/// @brief 現在の日付（ローカルタイム）を返します。
-		/// @return 現在の日付（ローカルタイム）
+		/// @brief 今日の日付と時刻（ローカルタイム）を返します。
+		/// @remarks 時刻は午前 0 時 0 分にセットされます
+		/// @return 今日の午前 0 時 0 分の日付と時刻（ローカルタイム）
 		[[nodiscard]]
 		static DateTime Today() noexcept;
 
-		/// @brief 明日の日付（ローカルタイム）を返します。
-		/// @return 明日の日付（ローカルタイム）
+		/// @brief 明日の日付と時刻（ローカルタイム）を返します。
+		/// @remarks 時刻は午前 0 時 0 分にセットされます
+		/// @return 明日の午前 0 時 0 分の日付と時刻（ローカルタイム）
 		[[nodiscard]]
 		static DateTime Tomorrow() noexcept;
 
+		/// @brief 現在の日付と時刻（ローカルタイム）を返します。
+		/// @return 現在の日付と時刻（ローカルタイム）
 		[[nodiscard]]
 		static DateTime Now() noexcept;
-
+		
+		/// @brief 現在の日付と時刻（協定世界時刻（UTC））を返します。
+		/// @return 現在の日付と時刻（協定世界時刻（UTC））
 		[[nodiscard]]
 		static DateTime NowUTC() noexcept;
 

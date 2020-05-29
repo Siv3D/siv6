@@ -77,6 +77,7 @@ namespace s3d
         int ss : 1;
 	};
 
+    /// @brief CPU 情報
     struct CPUInfo
     {
         X86Features features;

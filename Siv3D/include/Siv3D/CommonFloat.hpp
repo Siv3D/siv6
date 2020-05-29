@@ -14,9 +14,9 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// 異なる数値型どうしの計算結果として使う浮動小数点数型
-	/// </summary>
+	/// @brief 異なる数値型どうしの計算結果として使う浮動小数点数型
+	/// @tparam T 数値型
+	/// @tparam U 数値型
 # if __cpp_lib_concepts
 	template <Concept::Arithmetic T, Concept::Arithmetic U>
 # else
@@ -27,9 +27,9 @@ namespace s3d
 		using type = std::conditional_t<!std::is_floating_point_v<T> && !std::is_floating_point_v<U>, double, std::common_type_t<T, U>>;
 	};
 
-	/// <summary>
-	/// 異なる数値型どうしの計算結果として使う浮動小数点数型
-	/// </summary>
+	/// @brief 異なる数値型どうしの計算結果として使う浮動小数点数型
+	/// @tparam T 数値型
+	/// @tparam U 数値型
 # if __cpp_lib_concepts
 	template <Concept::Arithmetic T, Concept::Arithmetic U>
 # else

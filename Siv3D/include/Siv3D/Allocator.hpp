@@ -15,9 +15,9 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// メモリアライメント対応アロケータ
-	/// </summary>
+	/// @brief メモリアライメント対応アロケータ
+	/// @tparam Type アロケーションするオブジェクトの型
+	/// @tparam Alignment アライメント（バイト）
 	template <class Type, size_t Alignment = alignof(Type)>
 	class Allocator
 	{
@@ -56,9 +56,8 @@ namespace s3d
 	[[nodiscard]]
 	inline constexpr bool operator ==(const Allocator<T1>&, const Allocator<T2>&) noexcept;
 
-	/// <summary>
-	/// メモリアライメントを考慮したデフォルトのアロケータ
-	/// </summary>
+	/// @brief メモリアライメントを考慮したデフォルトのアロケータ
+	/// @tparam Type アロケーションするオブジェクトの型
 	template <class Type>
 	struct DefaultAllocator
 	{

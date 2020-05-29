@@ -62,7 +62,7 @@ namespace s3d
 
 	int64 BinaryReader::read(void* const buffer, const int64 size)
 	{
-		if ((buffer == nullptr) || size <= 0)
+		if ((buffer == nullptr) || (size <= 0))
 		{
 			return 0;
 		}
@@ -72,7 +72,7 @@ namespace s3d
 
 	int64 BinaryReader::read(void* const buffer, const int64 pos, const int64 size)
 	{
-		if ((buffer == nullptr) || size <= 0 || (not InRange<int64>(pos, 0, pImpl->size())))
+		if ((buffer == nullptr) || (size <= 0) || (not InRange<int64>(pos, 0, pImpl->size())))
 		{
 			return 0;
 		}
@@ -82,7 +82,7 @@ namespace s3d
 
 	int64 BinaryReader::lookahead(void* const buffer, const int64 size) const
 	{
-		if ((buffer == nullptr) || size <= 0)
+		if ((buffer == nullptr) || (size <= 0))
 		{
 			return 0;
 		}
@@ -92,7 +92,7 @@ namespace s3d
 
 	int64 BinaryReader::lookahead(void* const buffer, const int64 pos, const int64 size) const
 	{
-		if ((buffer == nullptr) || size <= 0 || (not InRange<int64>(pos, 0, pImpl->size())))
+		if ((buffer == nullptr) || (size <= 0) || (not InRange<int64>(pos, 0, pImpl->size())))
 		{
 			return 0;
 		}

@@ -18,9 +18,7 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// 読み込み用バイナリファイル
-	/// </summary>
+	/// @brief 読み込み用バイナリファイル
 	class BinaryReader : public IReader
 	{
 	private:

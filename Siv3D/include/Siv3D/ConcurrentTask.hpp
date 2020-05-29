@@ -18,6 +18,8 @@
 
 namespace s3d
 {
+	/// @brief 非同期処理クラス
+	/// @tparam Type 処理の戻り値の型
 	template <class Type>
 	class ConcurrentTask : protected std::future<Type>
 	{

@@ -16,6 +16,9 @@
 
 namespace s3d
 {
+	/// @brief 動的配列
+	/// @tparam Type 要素の型
+	/// @tparam Allocator アロケータ
 	template <class Type, class Allocator = std::allocator<Type>>
 	class Array : protected std::vector<Type, Allocator>
 	{
