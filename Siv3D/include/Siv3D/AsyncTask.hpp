@@ -21,7 +21,7 @@ namespace s3d
 	/// @brief 非同期処理クラス
 	/// @tparam Type 処理の戻り値の型
 	template <class Type>
-	class ConcurrentTask : protected std::future<Type>
+	class AsyncTask : protected std::future<Type>
 	{
 	private:
 
@@ -38,24 +38,24 @@ namespace s3d
 		using base_type::share;
 
 		SIV3D_NODISCARD_CXX20
-		ConcurrentTask() = default;
+		AsyncTask() = default;
 
 		template <class Fty, class... Args, std::enable_if_t<std::is_invocable_v<Fty, Args...>>* = nullptr>
 		SIV3D_NODISCARD_CXX20
-		explicit ConcurrentTask(Fty&& f, Args&&... args);
+		explicit AsyncTask(Fty&& f, Args&&... args);
 
 		[[nodiscard]]
 		bool isReady() const;
 	};
 
 	template <class Fty, class... Args, std::enable_if_t<std::is_invocable_v<Fty, Args...>>* = nullptr>
-	ConcurrentTask(Fty, Args...)->ConcurrentTask<std::invoke_result_t<std::decay_t<Fty>, std::decay_t<Args>...>>;
+	AsyncTask(Fty, Args...)->AsyncTask<std::invoke_result_t<std::decay_t<Fty>, std::decay_t<Args>...>>;
 
 	template <class Fty, class... Args, std::enable_if_t<std::is_invocable_v<Fty, Args...>>* = nullptr>
 	[[nodiscard]]
-	inline auto CreateConcurrentTask(Fty&& f, Args&&... args);
+	inline auto CreateAsyncTask(Fty&& f, Args&&... args);
 }
 
-# include "detail/ConcurrentTask.ipp"
+# include "detail/AsyncTask.ipp"
 
 # endif

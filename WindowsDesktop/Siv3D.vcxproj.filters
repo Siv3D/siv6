@@ -804,9 +804,6 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Threading.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\ConcurrentTask.hpp">
-      <Filter>include\Siv3D</Filter>
-    </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Distribution.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
@@ -833,9 +830,6 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Grid.hpp">
       <Filter>include\Siv3D</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\detail\ConcurrentTask.ipp">
-      <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\IReader.hpp">
       <Filter>include\Siv3D</Filter>
@@ -905,6 +899,12 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\detail\winstring.hpp">
       <Filter>src\ThirdParty\infoware\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\AsyncTask.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\AsyncTask.ipp">
+      <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

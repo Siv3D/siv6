@@ -79,10 +79,6 @@
 // Meta
 # include <Siv3D/Meta.hpp>
 
-// 浮動小数点数型の共通型
-// Common Float
-# include <Siv3D/CommonFloat.hpp>
-
 // ユーティリティー
 // Utilities
 # include <Siv3D/Utility.hpp>
@@ -99,49 +95,9 @@
 // Byte
 # include <Siv3D/Byte.hpp>
 
-// Null でないポインタ
-// Non-null pointer
-# include <Siv3D/NonNull.hpp>
-
-// スレッド
-// Thread
-# include <Siv3D/Threading.hpp>
-
-// 並列実行タスク
-// Concurrent task
-# include <Siv3D/ConcurrentTask.hpp> // [Siv3D ToDo]
-
-// メモリアロケーション
-// Memory allocation
-# include <Siv3D/Memory.hpp>
-
-// メモリアライメント対応アロケーター
-// Aligned allocator
-# include <Siv3D/Allocator.hpp>
-
-// 動的配列（一次元）
-// Array
-# include <Siv3D/Array.hpp> // [Siv3D ToDo]
-
-// 動的配列（二次元）
-// 2D array
-# include <Siv3D/Grid.hpp> // [Siv3D ToDo]
-
 // ハッシュ
 // Hash
 # include <Siv3D/Hash.hpp>
-
-// ハッシュテーブル
-// Hash table
-# include <Siv3D/HashTable.hpp>
-
-// ハッシュセット
-// Hash set
-# include <Siv3D/HashSet.hpp>
-
-// kd 木
-// kd-tree
-//# include <Siv3D/KDTree.hpp> // [Siv3D ToDo]
 
 // 範囲
 // Range
@@ -154,18 +110,6 @@
 // 無限リスト
 // Infinite list
 //# include <Siv3D/InfiniteList.hpp> // [Siv3D ToDo]
-
-// 無効値
-// None_t
-# include <Siv3D/None.hpp>
-
-// 無効値を持つ値
-// Optional
-# include <Siv3D/Optional.hpp>
-
-// 特に指定しないことを表す無効値
-// Representation of an unspecified value
-# include <Siv3D/Unspecified.hpp>
 
 // イテレータによる範囲の表現
 // Range iterator
@@ -189,8 +133,88 @@
 
 //////////////////////////////////////////////////
 //
-//	文字列と数値
-//	String and Number
+//	メモリ
+//	Memory
+//
+//////////////////////////////////////////////////
+
+// Null でないポインタ
+// Non-null pointer
+# include <Siv3D/NonNull.hpp>
+
+// メモリアロケーション
+// Memory allocation
+# include <Siv3D/Memory.hpp>
+
+// メモリアライメント対応アロケーター
+// Aligned allocator
+# include <Siv3D/Allocator.hpp>
+
+//////////////////////////////////////////////////
+//
+//	Optional クラス
+//	Optional
+//
+//////////////////////////////////////////////////
+
+// 無効値
+// None_t
+# include <Siv3D/None.hpp>
+
+// 無効値を持つ値
+// Optional
+# include <Siv3D/Optional.hpp>
+
+// 特に指定しないことを表す無効値
+// Representation of an unspecified value
+# include <Siv3D/Unspecified.hpp>
+
+//////////////////////////////////////////////////
+//
+//	データ構造
+//	Data Structures
+//
+//////////////////////////////////////////////////
+
+// 動的配列（一次元）
+// Array
+# include <Siv3D/Array.hpp> // [Siv3D ToDo]
+
+// 動的配列（二次元）
+// 2D array
+# include <Siv3D/Grid.hpp> // [Siv3D ToDo]
+
+// ハッシュテーブル
+// Hash table
+# include <Siv3D/HashTable.hpp>
+
+// ハッシュセット
+// Hash set
+# include <Siv3D/HashSet.hpp>
+
+// kd 木
+// kd-tree
+//# include <Siv3D/KDTree.hpp> // [Siv3D ToDo]
+
+//////////////////////////////////////////////////
+//
+//	並列・並行処理
+//	Parallel and Concurrent
+//
+//////////////////////////////////////////////////
+
+// スレッド
+// Thread
+# include <Siv3D/Threading.hpp>
+
+// 非同期タスク
+// Asynchronous task
+# include <Siv3D/AsyncTask.hpp> // [Siv3D ToDo]
+
+//////////////////////////////////////////////////
+//
+//	文字と文字列
+//	Characters and String
 //
 //////////////////////////////////////////////////
 
@@ -214,25 +238,20 @@
 // Letter case
 # include <Siv3D/LetterCase.hpp>
 
-// 数値
-// Number
-# include <Siv3D/Number.hpp>
+// 正規表現
+// Regular expression
+//# include <Siv3D/Regex.hpp> // [Siv3D ToDo]
 
-// 浮動小数点数
-// Floating point
-# include <Siv3D/FloatingPoint.hpp>
+// 絵文字リスト
+// Emoji list
+//# include <Siv3D/EmojiList.hpp> // [Siv3D ToDo]
 
-// 128-bit 整数型
-// 128-bit integer type
-# include <Siv3D/Int128.hpp>
-
-// 多倍長整数
-// Arbitrary precision integer type
-//# include <Siv3D/BigInt.hpp> // [Siv3D ToDo]
-
-// 多倍長浮動小数点数
-// 100 decimal digits precision floating point type
-//# include <Siv3D/BigFloat.hpp> // [Siv3D ToDo]
+//////////////////////////////////////////////////
+//
+//	文字列フォーマット
+//	Formatting
+//
+//////////////////////////////////////////////////
 
 // フォーマット (bool 型)
 // Format (bool)
@@ -266,6 +285,13 @@
 // Formatting utilities
 # include <Siv3D/FormatUtility.hpp> // [Siv3D ToDo]
 
+//////////////////////////////////////////////////
+//
+//	文字列パーサ
+//	Parser
+//
+//////////////////////////////////////////////////
+
 // 文字列 → bool 変換
 // Text to bool conversion
 # include <Siv3D/ParseBool.hpp>
@@ -282,13 +308,36 @@
 // Text to value conversion
 # include <Siv3D/Parse.hpp>
 
-// 正規表現
-// Regular expression
-//# include <Siv3D/Regex.hpp> // [Siv3D ToDo]
+//////////////////////////////////////////////////
+//
+//	数値
+//	Number
+//
+//////////////////////////////////////////////////
 
-// 絵文字リスト
-// Emoji list
-//# include <Siv3D/EmojiList.hpp> // [Siv3D ToDo]
+// 数値
+// Number
+# include <Siv3D/Number.hpp>
+
+// 浮動小数点数
+// Floating point
+# include <Siv3D/FloatingPoint.hpp>
+
+// 128-bit 整数型
+// 128-bit integer type
+# include <Siv3D/Int128.hpp>
+
+// 多倍長整数
+// Arbitrary precision integer type
+//# include <Siv3D/BigInt.hpp> // [Siv3D ToDo]
+
+// 多倍長浮動小数点数
+// 100 decimal digits precision floating point type
+//# include <Siv3D/BigFloat.hpp> // [Siv3D ToDo]
+
+// 浮動小数点数型の共通型
+// Common Float
+# include <Siv3D/CommonFloat.hpp>
 
 //////////////////////////////////////////////////
 //
@@ -546,7 +595,6 @@
 // ランダムなサンプリング
 // Random Sampling
 //# include <Siv3D/Sample.hpp>
-
 
 //////////////////////////////////////////////////
 //
