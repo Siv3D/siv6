@@ -8,21 +8,5 @@ SIV3D_OPTION_RUN_TEST(false);			// テストの実行
 
 void Main()
 {
-	//int32 a, b;
 
-	//Console >> a >> b;
-
-	//Console << (a + b);
-
-	//while (System::Update())
-	//{
-	//	Logger << Scene::FrameCount();
-
-	//	System::Sleep(16ms);
-
-	//	if (Scene::FrameCount() > 50)
-	//	{
-	//		System::Exit();
-	//	}
-	//}
 }

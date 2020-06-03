@@ -97,7 +97,7 @@ namespace s3d
 			String operator ()(const Args&...) const
 			{
 				// Format できない値が Format() に渡されたときに発生するエラーです
-				static_assert(0, "Format(): Unformattable parameter value detected");
+				static_assert(0, "Format(): Unformattable type detected");
 				return String();
 			}
 
