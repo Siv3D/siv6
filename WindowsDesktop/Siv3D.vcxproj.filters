@@ -271,6 +271,9 @@
     <Filter Include="src\ThirdParty\infoware\src\system\OS_info">
       <UniqueIdentifier>{fd0c8e1d-9f87-4c9b-b25d-39dfec8ae2b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ThirdParty\Oniguruma">
+      <UniqueIdentifier>{d6e553c3-19bc-4f5f-b7de-4e9dcc31141d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -906,6 +909,27 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\AsyncTask.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\config.h">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\oniggnu.h">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\oniguruma.h">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\regenc.h">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\regint.h">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\regparse.h">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\st.h">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -1261,6 +1285,150 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_windows.cpp">
       <Filter>src\ThirdParty\infoware\src\system\OS_info</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode_fold1_key.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode_fold2_key.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode_fold3_key.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode_unfold_key.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf8.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf16_be.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf16_le.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf32_be.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf32_le.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\ascii.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\big5.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\cp1251.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\euc_jp.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\euc_jp_prop.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\euc_kr.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\euc_tw.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\gb18030.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_1.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_2.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_3.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_4.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_5.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_6.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_7.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_8.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_9.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_10.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_11.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_13.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_14.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_15.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_16.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\koi8.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\koi8_r.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\onig_init.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regcomp.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regenc.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regerror.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regexec.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\reggnu.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regparse.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regsyntax.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regtrav.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regversion.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\sjis.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\sjis_prop.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\st.c">
+      <Filter>src\ThirdParty\Oniguruma</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

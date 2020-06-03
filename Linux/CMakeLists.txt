@@ -144,6 +144,55 @@ add_library(
   ../Siv3D/src/ThirdParty/infoware/src/system/OS_info/os_info_non_windows_non_darwin.cpp
   ../Siv3D/src/ThirdParty/infoware/src/system/OS_info/os_info_windows.cpp
 
+  ../Siv3D/src/ThirdParty/Oniguruma/ascii.c
+  ../Siv3D/src/ThirdParty/Oniguruma/big5.c
+  ../Siv3D/src/ThirdParty/Oniguruma/cp1251.c
+  ../Siv3D/src/ThirdParty/Oniguruma/euc_jp.c
+  ../Siv3D/src/ThirdParty/Oniguruma/euc_jp_prop.c
+  ../Siv3D/src/ThirdParty/Oniguruma/euc_kr.c
+  ../Siv3D/src/ThirdParty/Oniguruma/euc_tw.c
+  ../Siv3D/src/ThirdParty/Oniguruma/gb18030.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_1.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_10.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_11.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_13.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_14.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_15.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_16.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_2.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_3.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_4.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_5.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_6.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_7.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_8.c
+  ../Siv3D/src/ThirdParty/Oniguruma/iso8859_9.c
+  ../Siv3D/src/ThirdParty/Oniguruma/koi8.c
+  ../Siv3D/src/ThirdParty/Oniguruma/koi8_r.c
+  ../Siv3D/src/ThirdParty/Oniguruma/onig_init.c
+  ../Siv3D/src/ThirdParty/Oniguruma/regcomp.c
+  ../Siv3D/src/ThirdParty/Oniguruma/regenc.c
+  ../Siv3D/src/ThirdParty/Oniguruma/regerror.c
+  ../Siv3D/src/ThirdParty/Oniguruma/regexec.c
+  ../Siv3D/src/ThirdParty/Oniguruma/reggnu.c
+  ../Siv3D/src/ThirdParty/Oniguruma/regparse.c
+  ../Siv3D/src/ThirdParty/Oniguruma/regsyntax.c
+  ../Siv3D/src/ThirdParty/Oniguruma/regtrav.c
+  ../Siv3D/src/ThirdParty/Oniguruma/regversion.c
+  ../Siv3D/src/ThirdParty/Oniguruma/sjis.c
+  ../Siv3D/src/ThirdParty/Oniguruma/sjis_prop.c
+  ../Siv3D/src/ThirdParty/Oniguruma/st.c
+  ../Siv3D/src/ThirdParty/Oniguruma/unicode.c
+  ../Siv3D/src/ThirdParty/Oniguruma/unicode_fold1_key.c
+  ../Siv3D/src/ThirdParty/Oniguruma/unicode_fold2_key.c
+  ../Siv3D/src/ThirdParty/Oniguruma/unicode_fold3_key.c
+  ../Siv3D/src/ThirdParty/Oniguruma/unicode_unfold_key.c
+  ../Siv3D/src/ThirdParty/Oniguruma/utf16_be.c
+  ../Siv3D/src/ThirdParty/Oniguruma/utf16_le.c
+  ../Siv3D/src/ThirdParty/Oniguruma/utf32_be.c
+  ../Siv3D/src/ThirdParty/Oniguruma/utf32_le.c
+  ../Siv3D/src/ThirdParty/Oniguruma/utf8.c
+
   ../Siv3D/src/Test/Siv3DTest.cpp
   )
 
