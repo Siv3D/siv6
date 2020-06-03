@@ -184,6 +184,7 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\Scene\IScene.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\System\ISystem.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\System\SystemLog.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\System\SystemMisc.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Unicode\UnicodeUtility.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\UserAction\CUserAction.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\UserAction\IUSerAction.hpp" />
@@ -291,6 +292,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\System\SivSystem.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\System\SystemFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\System\SystemLog.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\System\SystemMisc.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Threading\SivThreading.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\SivUnicode.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Unicode\UnicodeUtility.cpp" />
@@ -452,7 +454,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <DebugInformationFormat />
@@ -478,7 +480,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
