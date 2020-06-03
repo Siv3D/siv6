@@ -249,6 +249,8 @@
 		2C834DC1248805D4006208B8 /* iso8859_14.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D86248805D4006208B8 /* iso8859_14.c */; };
 		2C834DC2248805D4006208B8 /* utf16_be.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D87248805D4006208B8 /* utf16_be.c */; };
 		2C834DC3248805D4006208B8 /* iso8859_4.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D88248805D4006208B8 /* iso8859_4.c */; };
+		2C834DC724880AA0006208B8 /* SystemMisc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C834DC524880AA0006208B8 /* SystemMisc.hpp */; };
+		2C834DC824880AA0006208B8 /* SystemMisc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C834DC624880AA0006208B8 /* SystemMisc.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 		2CD7B6312456BC2600194496 /* SivRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7B6302456BC2600194496 /* SivRandom.cpp */; };
@@ -657,6 +659,8 @@
 		2C834D86248805D4006208B8 /* iso8859_14.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_14.c; sourceTree = "<group>"; };
 		2C834D87248805D4006208B8 /* utf16_be.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf16_be.c; sourceTree = "<group>"; };
 		2C834D88248805D4006208B8 /* iso8859_4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_4.c; sourceTree = "<group>"; };
+		2C834DC524880AA0006208B8 /* SystemMisc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SystemMisc.hpp; sourceTree = "<group>"; };
+		2C834DC624880AA0006208B8 /* SystemMisc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMisc.cpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		2CA7F73D1CA7F3B100495647 /* libSiv3D.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSiv3D.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA7F74E1CA7F43D00495647 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; usesTabs = 1; };
@@ -1058,11 +1062,13 @@
 		2C43B2DA24264E1200D5CBBB /* System */ = {
 			isa = PBXGroup;
 			children = (
+				2C43B2DB24264E1200D5CBBB /* ISystem.hpp */,
+				2C4231CA242B0BD300A16BCA /* SivSystem.cpp */,
+				2C43B2DC24264E1200D5CBBB /* SystemFactory.cpp */,
 				2C60AE1E2480F69F00277281 /* SystemLog.cpp */,
 				2C60AE1F2480F69F00277281 /* SystemLog.hpp */,
-				2C4231CA242B0BD300A16BCA /* SivSystem.cpp */,
-				2C43B2DB24264E1200D5CBBB /* ISystem.hpp */,
-				2C43B2DC24264E1200D5CBBB /* SystemFactory.cpp */,
+				2C834DC624880AA0006208B8 /* SystemMisc.cpp */,
+				2C834DC524880AA0006208B8 /* SystemMisc.hpp */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -1871,6 +1877,7 @@
 				2C43B2C92426223400D5CBBB /* ILogger.hpp in Headers */,
 				2C42324D242B155E00A16BCA /* osmesa_context.h in Headers */,
 				2C4360D5240E4EEC001657D2 /* Siv3DEngine.hpp in Headers */,
+				2C834DC724880AA0006208B8 /* SystemMisc.hpp in Headers */,
 				2C43B2E724264E3100D5CBBB /* CSystem.hpp in Headers */,
 				2C4360C4240E4EEC001657D2 /* catch.hpp in Headers */,
 				2C834DB1248805D4006208B8 /* oniguruma.h in Headers */,
@@ -2174,6 +2181,7 @@
 				2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */,
 				2C439F482419D686001154C2 /* format.cc in Sources */,
 				2C834DA0248805D4006208B8 /* regcomp.c in Sources */,
+				2C834DC824880AA0006208B8 /* SystemMisc.cpp in Sources */,
 				2C834DA2248805D4006208B8 /* koi8_r.c in Sources */,
 				2C60AE8D248158A500277281 /* os_info_darwin.cpp in Sources */,
 				2C834DC3248805D4006208B8 /* iso8859_4.c in Sources */,
