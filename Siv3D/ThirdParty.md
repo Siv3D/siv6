@@ -13,6 +13,7 @@ Library | Version
 [GLFW](https://github.com/glfw/glfw) | 3.3.2
 [infoware](https://github.com/ThePhD/infoware) | v0.5.3
 [miniutf](https://github.com/dropbox/miniutf) | 
+[Oniguruma](https://github.com/kkos/oniguruma) | v6.9.5_rev1
 [SFMT](https://github.com/MersenneTwister-Lab/SFMT) | 1.5.2
 [simde](https://github.com/nemequ/simde) | 
 [The Parallel Hashmap](https://github.com/greg7mdp/parallel-hashmap) | 1.3.2

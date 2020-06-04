@@ -54,6 +54,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HashTable.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Int128.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IReader.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\MatchResults.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\MathConstants.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Memory.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Number.ipp" />
@@ -62,6 +63,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Parse.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Point.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Random.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\RegExp.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ScopeGuard.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\String.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\StringView.ipp" />
@@ -98,6 +100,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Logger.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LogLevel.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LogType.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\MatchResults.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\MathConstants.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Memory.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Meta.hpp" />
@@ -122,6 +125,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Profiler.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Random.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Rectangle.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\RegExp.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Scene.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ScopeGuard.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\SMFT.hpp" />
@@ -179,6 +183,7 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\Logger\ILogger.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\CProfiler.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\IProfiler.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\RegExp\RegExpDetail.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Renderer\IRenderer.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Scene\CScene.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Scene\IScene.hpp" />
@@ -284,6 +289,8 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Profiler\ProfilerFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Profiler\SivProfiler.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Random\SivRandom.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\RegExp\RegExpDetail.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\RegExp\SivRegExp.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Scene\CScene.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Scene\SceneFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Scene\SivScene.cpp" />

@@ -47,7 +47,7 @@ namespace s3d
 	{
 		inline namespace FormatLiterals
 		{
-			constexpr detail::FormatHelper operator ""_fmt(const char32* s, const size_t length) noexcept
+			inline constexpr detail::FormatHelper operator ""_fmt(const char32* s, const size_t length) noexcept
 			{
 				return detail::FormatHelper{ s, length };
 			}

@@ -238,9 +238,13 @@
 // Letter case
 # include <Siv3D/LetterCase.hpp>
 
+// 正規表現のマッチ結果
+// Regular expression matching
+# include <Siv3D/MatchResults.hpp> // [Siv3D ToDo]
+
 // 正規表現
 // Regular expression
-//# include <Siv3D/Regex.hpp> // [Siv3D ToDo]
+# include <Siv3D/RegExp.hpp> // [Siv3D ToDo]
 
 // 絵文字リスト
 // Emoji list

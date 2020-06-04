@@ -274,6 +274,9 @@
     <Filter Include="src\ThirdParty\Oniguruma">
       <UniqueIdentifier>{d6e553c3-19bc-4f5f-b7de-4e9dcc31141d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\RegExp">
+      <UniqueIdentifier>{b197ee58-3462-44a4-ae95-659ee2cfdea4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -933,6 +936,21 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\System\SystemMisc.hpp">
       <Filter>src\Siv3D\System</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\RegExp.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\RegExp\RegExpDetail.hpp">
+      <Filter>src\Siv3D\RegExp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\MatchResults.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\RegExp.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\MatchResults.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -1435,6 +1453,12 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\System\SystemMisc.cpp">
       <Filter>src\Siv3D\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\RegExp\SivRegExp.cpp">
+      <Filter>src\Siv3D\RegExp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\RegExp\RegExpDetail.cpp">
+      <Filter>src\Siv3D\RegExp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
