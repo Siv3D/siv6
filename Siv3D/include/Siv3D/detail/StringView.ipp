@@ -90,7 +90,7 @@ namespace s3d
 	{
 		if (index >= m_view.size())
 		{
-			throw std::out_of_range("StringView::at() index out of range");
+			throw std::out_of_range("StringView::at(): index out of range");
 		}
 
 		return m_view[index];
@@ -98,7 +98,7 @@ namespace s3d
 
 	inline constexpr StringView::const_reference StringView::front() const noexcept
 	{
-		assert(not empty() && "cannot call StringView::front() on empty StringView");
+		assert(not empty() && "cannot call StringView::front(): on empty StringView");
 
 		return m_view[0];
 	}
@@ -179,7 +179,7 @@ namespace s3d
 	{
 		if (pos > m_view.size())
 		{
-			throw std::out_of_range("StringView::substr()");
+			throw std::out_of_range("StringView::substr(): index out of range");
 		}
 
 		return StringView(m_view.data() + pos, Min(n, m_view.size() - pos));

@@ -691,7 +691,7 @@ namespace s3d
 	{
 		if (offset > size())
 		{
-			throw std::out_of_range("String::substrView() index out of range");
+			throw std::out_of_range("String::substrView(): index out of range");
 		}
 
 		return StringView(data() + offset, Min(count, size() - offset));
@@ -1068,7 +1068,7 @@ namespace s3d
 	{
 		if (m_string.size() <= index)
 		{
-			throw std::out_of_range("String::remove_at() index out of range");
+			throw std::out_of_range("String::remove_at(): index out of range");
 		}
 
 		m_string.erase(m_string.begin() + index);
@@ -1080,7 +1080,7 @@ namespace s3d
 	{
 		if (m_string.size() <= index)
 		{
-			throw std::out_of_range("String::removed_at() index out of range");
+			throw std::out_of_range("String::removed_at(): index out of range");
 		}
 
 		String new_string;

@@ -11,7 +11,11 @@
 
 # pragma once
 # include <vector>
+# include <future>
 # include "Common.hpp"
+# include "String.hpp"
+# include "Meta.hpp"
+# include "Threading.hpp"
 # include "PredefinedNamedParameter.hpp"
 
 namespace s3d
@@ -139,6 +143,10 @@ namespace s3d
 		/// @brief 配列の先頭から要素を削除します。
 		void pop_front();
 
+		void popFrontN(size_t n);
+
+		void popBackN(size_t n);
+
 		/// @brief 要素にアクセスします。
 		/// @param index 要素へのインデックス
 		/// @return 要素への参照
@@ -183,14 +191,334 @@ namespace s3d
 		/// @return *this
 		Array& operator <<(value_type&& value);
 
+		template <class Fty = decltype(Identity), std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		bool all(Fty f = Identity) const;
+
+		template <class Fty = decltype(Identity), std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		bool any(Fty f = Identity) const;
+
+		Array& append(const Array& other_array);
+
+		[[nodiscard]]
+		value_type& choice();
+
+		[[nodiscard]]
+		const value_type& choice() const;
+
+	# if __cpp_lib_concepts
+		template <Concept::UniformRandomBitGenerator URBG>
+	# else
+		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		value_type& choice(URBG&& rbg);
+
+	# if __cpp_lib_concepts
+		template <Concept::UniformRandomBitGenerator URBG>
+	# else
+		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		const value_type& choice(URBG&& rbg) const;
 
 
+	# if __cpp_lib_concepts
+		template <Concept::Integral Size_t>
+	# else
+		template <class Size_t, std::enable_if_t<std::is_integral_v<Size_t>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		Array choice(Size_t n) const;
 
+	# if __cpp_lib_concepts
+		template <Concept::Integral Size_t, Concept::UniformRandomBitGenerator URBG>
+	# else
+		template <class Size_t, class URBG, std::enable_if_t<std::is_integral_v<Size_t>>* = nullptr,
+			std::enable_if_t<std::is_invocable_v<URBG&>&& std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		Array choice(Size_t n, URBG&& rbg) const;
 
+		[[nodiscard]]
+		Array<Array<value_type>> chunk(size_t n) const;
 
+		[[nodiscard]]
+		size_t count(const value_type& value) const;
 
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		size_t count_if(Fty f) const;
 
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type&>>* = nullptr>
+		Array& each(Fty f);
 
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
+		const Array& each(Fty f) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, size_t, Type&>>* = nullptr>
+		Array& each_index(Fty f);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, size_t, Type>>* = nullptr>
+		const Array& each_index(Fty f) const;
+
+		[[nodiscard]]
+		const value_type& fetch(size_t index, const value_type& defaultValue) const;
+
+		Array& fill(const value_type& value);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		Array filter(Fty f) const;
+
+		[[nodiscard]]
+		Array<Array<value_type>> in_groups(size_t group) const;
+
+		[[nodiscard]]
+		bool includes(const value_type& value) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		bool includes_if(Fty f) const;
+
+		template <class T = Type, std::enable_if_t<Meta::HasLessThan_v<T>>* = nullptr>
+		[[nodiscard]]
+		bool isSorted() const;
+
+		[[nodiscard]]
+		String join(StringView sep = U", "_sv, StringView begin = U"{"_sv, StringView end = U"}"_sv) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
+		auto map(Fty f) const;
+
+		template <class Fty = decltype(Identity), std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		bool none(Fty f = Identity) const;
+
+		template <class Fty, class R = std::decay_t<std::invoke_result_t<Fty, Type, Type>>>
+		auto reduce(Fty f, R init) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type, Type>>* = nullptr>
+		auto reduce1(Fty f) const;
+
+		Array& remove(const value_type& value);
+
+		[[nodiscard]]
+		Array removed(const value_type& value) const&;
+
+		[[nodiscard]]
+		Array removed(const value_type& value)&&;
+
+		Array& remove_at(size_t index);
+
+		[[nodiscard]]
+		Array removed_at(size_t index) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		Array& remove_if(Fty f);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		Array removed_if(Fty f) const&;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		Array removed_if(Fty f)&&;
+
+		Array& replace(const value_type& oldValue, const value_type& newValue);
+
+		[[nodiscard]]
+		Array replaced(const value_type& oldValue, const value_type& newValue) const&;
+
+		[[nodiscard]]
+		Array replaced(const value_type& oldValue, const value_type& newValue)&&;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		Array& replace_if(Fty f, const value_type& newValue);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		Array replaced_if(Fty f, const value_type& newValue) const&;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		Array replaced_if(Fty f, const value_type& newValue)&&;
+
+		Array& reverse();
+
+		[[nodiscard]]
+		Array reversed() const&;
+
+		[[nodiscard]]
+		Array reversed()&&;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type&>>* = nullptr>
+		Array& reverse_each(Fty f);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
+		const Array& reverse_each(Fty f) const;
+
+		Array& rotate(std::ptrdiff_t count = 1);
+
+		[[nodiscard]]
+		Array rotated(std::ptrdiff_t count = 1) const&;
+
+		[[nodiscard]]
+		Array rotated(std::ptrdiff_t count = 1)&&;
+
+		template <class T = Type, std::enable_if_t<Meta::HasGreaterThan_v<T>>* = nullptr>
+		Array& rsort();
+
+		template <class T = Type, std::enable_if_t<Meta::HasGreaterThan_v<T>>* = nullptr>
+		[[nodiscard]]
+		Array rsorted() const&;
+
+		template <class T = Type, std::enable_if_t<Meta::HasGreaterThan_v<T>>* = nullptr>
+		[[nodiscard]]
+		Array rsorted()&&;
+
+		Array& shuffle();
+
+	# if __cpp_lib_concepts
+		template <Concept::UniformRandomBitGenerator URBG>
+	# else
+		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# endif
+		Array& shuffle(URBG&& rbg);
+
+		[[nodiscard]]
+		Array shuffled() const&;
+
+		[[nodiscard]]
+		Array shuffled()&&;
+
+	# if __cpp_lib_concepts
+		template <Concept::UniformRandomBitGenerator URBG>
+	# else
+		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		Array shuffled(URBG&& rbg) const&;
+
+	# if __cpp_lib_concepts
+		template <Concept::UniformRandomBitGenerator URBG>
+	# else
+		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# endif
+		[[nodiscard]]
+		Array shuffled(URBG&& rbg)&&;
+
+		[[nodiscard]]
+		Array slice(size_t index) const;
+
+		[[nodiscard]]
+		Array slice(size_t index, size_t length) const;
+
+		template <class T = Type, std::enable_if_t<Meta::HasLessThan_v<T>>* = nullptr>
+		Array& sort();
+
+		template <class T = Type, std::enable_if_t<Meta::HasLessThan_v<T>>* = nullptr>
+		Array& stable_sort();
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type, Type>>* = nullptr>
+		Array& sort_by(Fty f);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type, Type>>* = nullptr>
+		Array& stable_sort_by(Fty f);
+
+		template <class T = Type, std::enable_if_t<Meta::HasLessThan_v<T>>* = nullptr>
+		[[nodiscard]]
+		Array sorted() const&;
+
+		template <class T = Type, std::enable_if_t<Meta::HasLessThan_v<T>>* = nullptr>
+		[[nodiscard]]
+		Array stable_sorted() const&;
+
+		template <class T = Type, std::enable_if_t<Meta::HasLessThan_v<T>>* = nullptr>
+		[[nodiscard]]
+		Array sorted()&&;
+
+		template <class T = Type, std::enable_if_t<Meta::HasLessThan_v<T>>* = nullptr>
+		[[nodiscard]]
+		Array stable_sorted()&&;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type, Type>>* = nullptr>
+		[[nodiscard]]
+		Array sorted_by(Fty f) const&;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type, Type>>* = nullptr>
+		[[nodiscard]]
+		Array stable_sorted_by(Fty f) const&;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type, Type>>* = nullptr>
+		[[nodiscard]]
+		Array sorted_by(Fty f)&&;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type, Type>>* = nullptr>
+		[[nodiscard]]
+		Array stable_sorted_by(Fty f)&&;
+
+		template <class T = Type, std::enable_if_t<Meta::HasPlus_v<T>&& Meta::HasPlusAssign_v<T>>* = nullptr>
+		auto sum() const;
+
+		template <class T = Type, std::enable_if_t<Meta::HasPlus_v<T> && !Meta::HasPlusAssign_v<T>>* = nullptr>
+		auto sum() const;
+
+		template <class T = Type, std::enable_if_t<!Meta::HasPlus_v<T>>* = nullptr>
+		void sum() const = delete;
+
+		template <class T = Type, std::enable_if_t<std::is_floating_point_v<T>>* = nullptr>
+		[[nodiscard]]
+		auto sumF() const;
+
+		template <class T = Type, std::enable_if_t<!std::is_floating_point_v<T>>* = nullptr>
+		[[nodiscard]]
+		auto sumF() const = delete;
+
+		[[nodiscard]]
+		Array take(size_t n) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		Array take_while(Fty f) const;
+
+		Array& stable_unique();
+
+		[[nodiscard]]
+		Array stable_uniqued() const;
+
+		Array& sort_and_unique();
+
+		[[nodiscard]]
+		Array sorted_and_uniqued() const&;
+
+		[[nodiscard]]
+		Array sorted_and_uniqued()&&;
+
+		Array& unique_consecutive();
+
+		[[nodiscard]]
+		Array uniqued_consecutive() const&;
+
+		[[nodiscard]]
+		Array uniqued_consecutive()&&;
+
+		[[nodiscard]]
+		Array values_at(std::initializer_list<size_t> indices) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
+		[[nodiscard]]
+		size_t parallel_count_if(Fty f, size_t numThreads = Threading::GetConcurrency()) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type&>>* = nullptr>
+		Array& parallel_each(Fty f, size_t numThreads = Threading::GetConcurrency());
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
+		const Array& parallel_each(Fty f, size_t numThreads = Threading::GetConcurrency()) const;
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
+		auto parallel_map(Fty f, size_t numThreads = Threading::GetConcurrency()) const;
 
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>* = nullptr>
 		static Array Generate(size_type size, Fty generator);
@@ -198,6 +526,54 @@ namespace s3d
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>* = nullptr>
 		static Array IndexedGenerate(size_type size, Fty indexedGenerator);
 	};
+
+	template <class Type, class Allocator>
+	[[nodiscard]]
+	inline bool operator ==(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return ((a.size() == b.size()) && std::equal(a.begin(), a.end(), b.begin()));
+	}
+
+	template <class Type, class Allocator>
+	[[nodiscard]]
+	inline bool operator !=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return ((a.size() != b.size()) || !std::equal(a.begin(), a.end(), b.begin()));
+	}
+
+	template <class Type, class Allocator>
+	[[nodiscard]]
+	inline bool operator <(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return std::lexicographical_compare(a.begin(), a.end(), b.begin(), b.end());
+	}
+
+	template <class Type, class Allocator>
+	[[nodiscard]]
+	inline bool operator >(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return (b < a);
+	}
+
+	template <class Type, class Allocator>
+	[[nodiscard]]
+	inline bool operator <=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return !(b < a);
+	}
+
+	template <class Type, class Allocator>
+	[[nodiscard]]
+	inline bool operator >=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return !(a < b);
+	}
+
+	// deduction guide
+	template <class Type>
+	Array(std::initializer_list<Type>)->Array<Type>;
 }
+
+//# include "BoolArray.hpp"
 
 # include "detail/Array.ipp"

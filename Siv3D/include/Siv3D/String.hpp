@@ -16,10 +16,11 @@
 # include "StringView.hpp"
 # include "Unicode.hpp"
 # include "Utility.hpp"
-# include "Array.hpp"
 
 namespace s3d
 {
+	template <class Type, class Allocator> class Array;
+
 	class String
 	{
 	public:
