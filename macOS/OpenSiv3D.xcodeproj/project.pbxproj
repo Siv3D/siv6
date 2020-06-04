@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
+		2C188AB72488E7750087F356 /* RegExpDetail.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C188AB42488E7750087F356 /* RegExpDetail.hpp */; };
+		2C188AB82488E7750087F356 /* RegExpDetail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C188AB52488E7750087F356 /* RegExpDetail.cpp */; };
+		2C188AB92488E7750087F356 /* SivRegExp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C188AB62488E7750087F356 /* SivRegExp.cpp */; };
 		2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E1245AE62300DAD413 /* SivParseFloat.cpp */; };
 		2C3EC7E7245AE62400DAD413 /* SivParseInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E3245AE62400DAD413 /* SivParseInt.cpp */; };
 		2C3EC7E8245AE62400DAD413 /* SivParseBool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E5245AE62400DAD413 /* SivParseBool.cpp */; };
@@ -194,6 +197,63 @@
 		2C60AE95248158A500277281 /* sysctl_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE63248158A500277281 /* sysctl_non_darwin.cpp */; };
 		2C60AE96248158A500277281 /* sysctl_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE64248158A500277281 /* sysctl_darwin.cpp */; };
 		2C6898162436066800C36C25 /* SivWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6898152436066800C36C25 /* SivWindow.cpp */; };
+		2C834D8A248805D4006208B8 /* unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D4F248805D4006208B8 /* unicode.c */; };
+		2C834D8B248805D4006208B8 /* big5.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D50248805D4006208B8 /* big5.c */; };
+		2C834D8C248805D4006208B8 /* st.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D51248805D4006208B8 /* st.h */; };
+		2C834D8D248805D4006208B8 /* ascii.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D52248805D4006208B8 /* ascii.c */; };
+		2C834D8E248805D4006208B8 /* unicode_fold2_key.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D53248805D4006208B8 /* unicode_fold2_key.c */; };
+		2C834D8F248805D4006208B8 /* utf32_le.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D54248805D4006208B8 /* utf32_le.c */; };
+		2C834D90248805D4006208B8 /* iso8859_1.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D55248805D4006208B8 /* iso8859_1.c */; };
+		2C834D91248805D4006208B8 /* regparse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D56248805D4006208B8 /* regparse.h */; };
+		2C834D92248805D4006208B8 /* iso8859_11.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D57248805D4006208B8 /* iso8859_11.c */; };
+		2C834D93248805D4006208B8 /* euc_jp.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D58248805D4006208B8 /* euc_jp.c */; };
+		2C834D94248805D4006208B8 /* iso8859_15.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D59248805D4006208B8 /* iso8859_15.c */; };
+		2C834D95248805D4006208B8 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D5A248805D4006208B8 /* config.h */; };
+		2C834D96248805D4006208B8 /* iso8859_5.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D5B248805D4006208B8 /* iso8859_5.c */; };
+		2C834D97248805D4006208B8 /* unicode_fold3_key.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D5C248805D4006208B8 /* unicode_fold3_key.c */; };
+		2C834D98248805D4006208B8 /* unicode_fold1_key.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D5D248805D4006208B8 /* unicode_fold1_key.c */; };
+		2C834D9A248805D4006208B8 /* regexec.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D5F248805D4006208B8 /* regexec.c */; };
+		2C834D9B248805D4006208B8 /* regint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D60248805D4006208B8 /* regint.h */; };
+		2C834D9C248805D4006208B8 /* regenc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D61248805D4006208B8 /* regenc.h */; };
+		2C834D9D248805D4006208B8 /* iso8859_2.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D62248805D4006208B8 /* iso8859_2.c */; };
+		2C834D9E248805D4006208B8 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D63248805D4006208B8 /* utf8.c */; };
+		2C834D9F248805D4006208B8 /* iso8859_8.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D64248805D4006208B8 /* iso8859_8.c */; };
+		2C834DA0248805D4006208B8 /* regcomp.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D65248805D4006208B8 /* regcomp.c */; };
+		2C834DA2248805D4006208B8 /* koi8_r.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D67248805D4006208B8 /* koi8_r.c */; };
+		2C834DA3248805D4006208B8 /* regtrav.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D68248805D4006208B8 /* regtrav.c */; };
+		2C834DA4248805D4006208B8 /* utf32_be.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D69248805D4006208B8 /* utf32_be.c */; };
+		2C834DA5248805D4006208B8 /* regsyntax.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6A248805D4006208B8 /* regsyntax.c */; };
+		2C834DA6248805D4006208B8 /* iso8859_6.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6B248805D4006208B8 /* iso8859_6.c */; };
+		2C834DA7248805D4006208B8 /* euc_jp_prop.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6C248805D4006208B8 /* euc_jp_prop.c */; };
+		2C834DA8248805D4006208B8 /* regversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6D248805D4006208B8 /* regversion.c */; };
+		2C834DAA248805D4006208B8 /* iso8859_16.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6F248805D4006208B8 /* iso8859_16.c */; };
+		2C834DAB248805D4006208B8 /* st.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D70248805D4006208B8 /* st.c */; };
+		2C834DAC248805D4006208B8 /* oniggnu.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D71248805D4006208B8 /* oniggnu.h */; };
+		2C834DAD248805D4006208B8 /* koi8.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D72248805D4006208B8 /* koi8.c */; };
+		2C834DAE248805D4006208B8 /* euc_kr.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D73248805D4006208B8 /* euc_kr.c */; };
+		2C834DAF248805D4006208B8 /* utf16_le.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D74248805D4006208B8 /* utf16_le.c */; };
+		2C834DB0248805D4006208B8 /* iso8859_13.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D75248805D4006208B8 /* iso8859_13.c */; };
+		2C834DB1248805D4006208B8 /* oniguruma.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D76248805D4006208B8 /* oniguruma.h */; };
+		2C834DB2248805D4006208B8 /* iso8859_9.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D77248805D4006208B8 /* iso8859_9.c */; };
+		2C834DB3248805D4006208B8 /* iso8859_3.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D78248805D4006208B8 /* iso8859_3.c */; };
+		2C834DB4248805D4006208B8 /* iso8859_7.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D79248805D4006208B8 /* iso8859_7.c */; };
+		2C834DB5248805D4006208B8 /* regparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7A248805D4006208B8 /* regparse.c */; };
+		2C834DB6248805D4006208B8 /* onig_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7B248805D4006208B8 /* onig_init.c */; };
+		2C834DB7248805D4006208B8 /* euc_tw.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7C248805D4006208B8 /* euc_tw.c */; };
+		2C834DB8248805D4006208B8 /* cp1251.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7D248805D4006208B8 /* cp1251.c */; };
+		2C834DB9248805D4006208B8 /* sjis.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7E248805D4006208B8 /* sjis.c */; };
+		2C834DBA248805D4006208B8 /* regenc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7F248805D4006208B8 /* regenc.c */; };
+		2C834DBB248805D4006208B8 /* sjis_prop.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D80248805D4006208B8 /* sjis_prop.c */; };
+		2C834DBC248805D4006208B8 /* gb18030.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D81248805D4006208B8 /* gb18030.c */; };
+		2C834DBD248805D4006208B8 /* regerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D82248805D4006208B8 /* regerror.c */; };
+		2C834DBE248805D4006208B8 /* unicode_unfold_key.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D83248805D4006208B8 /* unicode_unfold_key.c */; };
+		2C834DBF248805D4006208B8 /* iso8859_10.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D84248805D4006208B8 /* iso8859_10.c */; };
+		2C834DC0248805D4006208B8 /* reggnu.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D85248805D4006208B8 /* reggnu.c */; };
+		2C834DC1248805D4006208B8 /* iso8859_14.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D86248805D4006208B8 /* iso8859_14.c */; };
+		2C834DC2248805D4006208B8 /* utf16_be.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D87248805D4006208B8 /* utf16_be.c */; };
+		2C834DC3248805D4006208B8 /* iso8859_4.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D88248805D4006208B8 /* iso8859_4.c */; };
+		2C834DC724880AA0006208B8 /* SystemMisc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C834DC524880AA0006208B8 /* SystemMisc.hpp */; };
+		2C834DC824880AA0006208B8 /* SystemMisc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C834DC624880AA0006208B8 /* SystemMisc.cpp */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 		2CD7B6312456BC2600194496 /* SivRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7B6302456BC2600194496 /* SivRandom.cpp */; };
@@ -202,6 +262,13 @@
 /* Begin PBXFileReference section */
 		2C1778B21CE0D5DB00BB8AD0 /* Siv3D-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Siv3D-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1778BF1CE0D5DB00BB8AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C188AAF2488E73B0087F356 /* RegExp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RegExp.hpp; sourceTree = "<group>"; };
+		2C188AB02488E73C0087F356 /* MatchResults.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MatchResults.hpp; sourceTree = "<group>"; };
+		2C188AB12488E7550087F356 /* MatchResults.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MatchResults.ipp; sourceTree = "<group>"; };
+		2C188AB22488E7550087F356 /* RegExp.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RegExp.ipp; sourceTree = "<group>"; };
+		2C188AB42488E7750087F356 /* RegExpDetail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RegExpDetail.hpp; sourceTree = "<group>"; };
+		2C188AB52488E7750087F356 /* RegExpDetail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegExpDetail.cpp; sourceTree = "<group>"; };
+		2C188AB62488E7750087F356 /* SivRegExp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivRegExp.cpp; sourceTree = "<group>"; };
 		2C22E2C11FD5BAF0002735AB /* Siv3D-Test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Siv3D-Test.entitlements"; sourceTree = SOURCE_ROOT; };
 		2C3EC7DA245AE5E200DAD413 /* ScopeGuard.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ScopeGuard.ipp; sourceTree = "<group>"; };
 		2C3EC7DB245AE5F200DAD413 /* ScopeGuard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ScopeGuard.hpp; sourceTree = "<group>"; };
@@ -547,6 +614,63 @@
 		2C6898152436066800C36C25 /* SivWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivWindow.cpp; sourceTree = "<group>"; };
 		2C710F0D2460655C00874320 /* Demangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Demangle.hpp; sourceTree = "<group>"; };
 		2C710F0E2460657100874320 /* Demangle.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Demangle.ipp; sourceTree = "<group>"; };
+		2C834D4F248805D4006208B8 /* unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unicode.c; sourceTree = "<group>"; };
+		2C834D50248805D4006208B8 /* big5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = big5.c; sourceTree = "<group>"; };
+		2C834D51248805D4006208B8 /* st.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = st.h; sourceTree = "<group>"; };
+		2C834D52248805D4006208B8 /* ascii.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ascii.c; sourceTree = "<group>"; };
+		2C834D53248805D4006208B8 /* unicode_fold2_key.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unicode_fold2_key.c; sourceTree = "<group>"; };
+		2C834D54248805D4006208B8 /* utf32_le.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf32_le.c; sourceTree = "<group>"; };
+		2C834D55248805D4006208B8 /* iso8859_1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_1.c; sourceTree = "<group>"; };
+		2C834D56248805D4006208B8 /* regparse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regparse.h; sourceTree = "<group>"; };
+		2C834D57248805D4006208B8 /* iso8859_11.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_11.c; sourceTree = "<group>"; };
+		2C834D58248805D4006208B8 /* euc_jp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = euc_jp.c; sourceTree = "<group>"; };
+		2C834D59248805D4006208B8 /* iso8859_15.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_15.c; sourceTree = "<group>"; };
+		2C834D5A248805D4006208B8 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		2C834D5B248805D4006208B8 /* iso8859_5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_5.c; sourceTree = "<group>"; };
+		2C834D5C248805D4006208B8 /* unicode_fold3_key.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unicode_fold3_key.c; sourceTree = "<group>"; };
+		2C834D5D248805D4006208B8 /* unicode_fold1_key.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unicode_fold1_key.c; sourceTree = "<group>"; };
+		2C834D5F248805D4006208B8 /* regexec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = regexec.c; sourceTree = "<group>"; };
+		2C834D60248805D4006208B8 /* regint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regint.h; sourceTree = "<group>"; };
+		2C834D61248805D4006208B8 /* regenc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regenc.h; sourceTree = "<group>"; };
+		2C834D62248805D4006208B8 /* iso8859_2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_2.c; sourceTree = "<group>"; };
+		2C834D63248805D4006208B8 /* utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf8.c; sourceTree = "<group>"; };
+		2C834D64248805D4006208B8 /* iso8859_8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_8.c; sourceTree = "<group>"; };
+		2C834D65248805D4006208B8 /* regcomp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = regcomp.c; sourceTree = "<group>"; };
+		2C834D67248805D4006208B8 /* koi8_r.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = koi8_r.c; sourceTree = "<group>"; };
+		2C834D68248805D4006208B8 /* regtrav.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = regtrav.c; sourceTree = "<group>"; };
+		2C834D69248805D4006208B8 /* utf32_be.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf32_be.c; sourceTree = "<group>"; };
+		2C834D6A248805D4006208B8 /* regsyntax.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = regsyntax.c; sourceTree = "<group>"; };
+		2C834D6B248805D4006208B8 /* iso8859_6.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_6.c; sourceTree = "<group>"; };
+		2C834D6C248805D4006208B8 /* euc_jp_prop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = euc_jp_prop.c; sourceTree = "<group>"; };
+		2C834D6D248805D4006208B8 /* regversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = regversion.c; sourceTree = "<group>"; };
+		2C834D6F248805D4006208B8 /* iso8859_16.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_16.c; sourceTree = "<group>"; };
+		2C834D70248805D4006208B8 /* st.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = st.c; sourceTree = "<group>"; };
+		2C834D71248805D4006208B8 /* oniggnu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oniggnu.h; sourceTree = "<group>"; };
+		2C834D72248805D4006208B8 /* koi8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = koi8.c; sourceTree = "<group>"; };
+		2C834D73248805D4006208B8 /* euc_kr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = euc_kr.c; sourceTree = "<group>"; };
+		2C834D74248805D4006208B8 /* utf16_le.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf16_le.c; sourceTree = "<group>"; };
+		2C834D75248805D4006208B8 /* iso8859_13.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_13.c; sourceTree = "<group>"; };
+		2C834D76248805D4006208B8 /* oniguruma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oniguruma.h; sourceTree = "<group>"; };
+		2C834D77248805D4006208B8 /* iso8859_9.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_9.c; sourceTree = "<group>"; };
+		2C834D78248805D4006208B8 /* iso8859_3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_3.c; sourceTree = "<group>"; };
+		2C834D79248805D4006208B8 /* iso8859_7.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_7.c; sourceTree = "<group>"; };
+		2C834D7A248805D4006208B8 /* regparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = regparse.c; sourceTree = "<group>"; };
+		2C834D7B248805D4006208B8 /* onig_init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = onig_init.c; sourceTree = "<group>"; };
+		2C834D7C248805D4006208B8 /* euc_tw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = euc_tw.c; sourceTree = "<group>"; };
+		2C834D7D248805D4006208B8 /* cp1251.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cp1251.c; sourceTree = "<group>"; };
+		2C834D7E248805D4006208B8 /* sjis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sjis.c; sourceTree = "<group>"; };
+		2C834D7F248805D4006208B8 /* regenc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = regenc.c; sourceTree = "<group>"; };
+		2C834D80248805D4006208B8 /* sjis_prop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sjis_prop.c; sourceTree = "<group>"; };
+		2C834D81248805D4006208B8 /* gb18030.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gb18030.c; sourceTree = "<group>"; };
+		2C834D82248805D4006208B8 /* regerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = regerror.c; sourceTree = "<group>"; };
+		2C834D83248805D4006208B8 /* unicode_unfold_key.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unicode_unfold_key.c; sourceTree = "<group>"; };
+		2C834D84248805D4006208B8 /* iso8859_10.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_10.c; sourceTree = "<group>"; };
+		2C834D85248805D4006208B8 /* reggnu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = reggnu.c; sourceTree = "<group>"; };
+		2C834D86248805D4006208B8 /* iso8859_14.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_14.c; sourceTree = "<group>"; };
+		2C834D87248805D4006208B8 /* utf16_be.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf16_be.c; sourceTree = "<group>"; };
+		2C834D88248805D4006208B8 /* iso8859_4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_4.c; sourceTree = "<group>"; };
+		2C834DC524880AA0006208B8 /* SystemMisc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SystemMisc.hpp; sourceTree = "<group>"; };
+		2C834DC624880AA0006208B8 /* SystemMisc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMisc.cpp; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		2CA7F73D1CA7F3B100495647 /* libSiv3D.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSiv3D.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA7F74E1CA7F43D00495647 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; usesTabs = 1; };
@@ -577,6 +701,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C188AB32488E7750087F356 /* RegExp */ = {
+			isa = PBXGroup;
+			children = (
+				2C188AB42488E7750087F356 /* RegExpDetail.hpp */,
+				2C188AB52488E7750087F356 /* RegExpDetail.cpp */,
+				2C188AB62488E7750087F356 /* SivRegExp.cpp */,
+			);
+			path = RegExp;
 			sourceTree = "<group>";
 		};
 		2C3EC7E0245AE62300DAD413 /* ParseFloat */ = {
@@ -716,6 +850,7 @@
 				2C4231D9242B155E00A16BCA /* GLFW */,
 				2C60AE22248158A400277281 /* infoware */,
 				2C44429F2427AA7C00557D51 /* miniutf */,
+				2C834D4E248805D4006208B8 /* Oniguruma */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -784,6 +919,7 @@
 				2C47A9A7243CA7D800FD33B4 /* Point */,
 				2C4CBE6724376B5300F8B7A6 /* Profiler */,
 				2CD7B62F2456BC2600194496 /* Random */,
+				2C188AB32488E7750087F356 /* RegExp */,
 				2C4CBE4324370FC600F8B7A6 /* Renderer */,
 				2C4CBE5B2437236000F8B7A6 /* Scene */,
 				2C4360BE240E4EEC001657D2 /* String */,
@@ -947,11 +1083,13 @@
 		2C43B2DA24264E1200D5CBBB /* System */ = {
 			isa = PBXGroup;
 			children = (
+				2C43B2DB24264E1200D5CBBB /* ISystem.hpp */,
+				2C4231CA242B0BD300A16BCA /* SivSystem.cpp */,
+				2C43B2DC24264E1200D5CBBB /* SystemFactory.cpp */,
 				2C60AE1E2480F69F00277281 /* SystemLog.cpp */,
 				2C60AE1F2480F69F00277281 /* SystemLog.hpp */,
-				2C4231CA242B0BD300A16BCA /* SivSystem.cpp */,
-				2C43B2DB24264E1200D5CBBB /* ISystem.hpp */,
-				2C43B2DC24264E1200D5CBBB /* SystemFactory.cpp */,
+				2C834DC624880AA0006208B8 /* SystemMisc.cpp */,
+				2C834DC524880AA0006208B8 /* SystemMisc.hpp */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -1177,6 +1315,7 @@
 				2C47E3FC245A8C32002D30CE /* Logger.hpp */,
 				2C47E409245A8C32002D30CE /* LogLevel.hpp */,
 				2C47E44F245A8C33002D30CE /* LogType.hpp */,
+				2C188AB02488E73C0087F356 /* MatchResults.hpp */,
 				2C47E41C245A8C33002D30CE /* MathConstants.hpp */,
 				2C47E415245A8C32002D30CE /* Meta.hpp */,
 				2C49E639247FABA4005C8FFE /* MicrosecClock.hpp */,
@@ -1201,6 +1340,7 @@
 				2C47E421245A8C33002D30CE /* Random.hpp */,
 				2C49E63B247FABB4005C8FFE /* RDTSCClock.hpp */,
 				2C47E41B245A8C32002D30CE /* Rectangle.hpp */,
+				2C188AAF2488E73B0087F356 /* RegExp.hpp */,
 				2C47E452245A8C33002D30CE /* Scene.hpp */,
 				2C3EC7DB245AE5F200DAD413 /* ScopeGuard.hpp */,
 				2C47E43C245A8C33002D30CE /* SMFT.hpp */,
@@ -1254,6 +1394,7 @@
 				2C4564C82479190D00DB01F0 /* HashTable.ipp */,
 				2C49E638247FAB8C005C8FFE /* Int128.ipp */,
 				2C49E644247FAC2E005C8FFE /* IReader.ipp */,
+				2C188AB12488E7550087F356 /* MatchResults.ipp */,
 				2C47E431245A8C33002D30CE /* MathConstants.ipp */,
 				2C57676224763C440016202D /* Memory.ipp */,
 				2C47E438245A8C33002D30CE /* Number.ipp */,
@@ -1262,6 +1403,7 @@
 				2C57676424763C590016202D /* Parse.ipp */,
 				2C47E42E245A8C33002D30CE /* Point.ipp */,
 				2C4564DA2479468800DB01F0 /* Random.ipp */,
+				2C188AB22488E7550087F356 /* RegExp.ipp */,
 				2C3EC7DA245AE5E200DAD413 /* ScopeGuard.ipp */,
 				2C47E42B245A8C33002D30CE /* String.ipp */,
 				2C47E432245A8C33002D30CE /* StringView.ipp */,
@@ -1626,6 +1768,68 @@
 			path = fmt;
 			sourceTree = "<group>";
 		};
+		2C834D4E248805D4006208B8 /* Oniguruma */ = {
+			isa = PBXGroup;
+			children = (
+				2C834D52248805D4006208B8 /* ascii.c */,
+				2C834D50248805D4006208B8 /* big5.c */,
+				2C834D7D248805D4006208B8 /* cp1251.c */,
+				2C834D6C248805D4006208B8 /* euc_jp_prop.c */,
+				2C834D58248805D4006208B8 /* euc_jp.c */,
+				2C834D73248805D4006208B8 /* euc_kr.c */,
+				2C834D7C248805D4006208B8 /* euc_tw.c */,
+				2C834D81248805D4006208B8 /* gb18030.c */,
+				2C834D55248805D4006208B8 /* iso8859_1.c */,
+				2C834D62248805D4006208B8 /* iso8859_2.c */,
+				2C834D78248805D4006208B8 /* iso8859_3.c */,
+				2C834D88248805D4006208B8 /* iso8859_4.c */,
+				2C834D5B248805D4006208B8 /* iso8859_5.c */,
+				2C834D6B248805D4006208B8 /* iso8859_6.c */,
+				2C834D79248805D4006208B8 /* iso8859_7.c */,
+				2C834D64248805D4006208B8 /* iso8859_8.c */,
+				2C834D77248805D4006208B8 /* iso8859_9.c */,
+				2C834D84248805D4006208B8 /* iso8859_10.c */,
+				2C834D57248805D4006208B8 /* iso8859_11.c */,
+				2C834D75248805D4006208B8 /* iso8859_13.c */,
+				2C834D86248805D4006208B8 /* iso8859_14.c */,
+				2C834D59248805D4006208B8 /* iso8859_15.c */,
+				2C834D6F248805D4006208B8 /* iso8859_16.c */,
+				2C834D67248805D4006208B8 /* koi8_r.c */,
+				2C834D72248805D4006208B8 /* koi8.c */,
+				2C834D7B248805D4006208B8 /* onig_init.c */,
+				2C834D65248805D4006208B8 /* regcomp.c */,
+				2C834D7F248805D4006208B8 /* regenc.c */,
+				2C834D82248805D4006208B8 /* regerror.c */,
+				2C834D5F248805D4006208B8 /* regexec.c */,
+				2C834D85248805D4006208B8 /* reggnu.c */,
+				2C834D7A248805D4006208B8 /* regparse.c */,
+				2C834D6A248805D4006208B8 /* regsyntax.c */,
+				2C834D68248805D4006208B8 /* regtrav.c */,
+				2C834D6D248805D4006208B8 /* regversion.c */,
+				2C834D80248805D4006208B8 /* sjis_prop.c */,
+				2C834D7E248805D4006208B8 /* sjis.c */,
+				2C834D70248805D4006208B8 /* st.c */,
+				2C834D5D248805D4006208B8 /* unicode_fold1_key.c */,
+				2C834D53248805D4006208B8 /* unicode_fold2_key.c */,
+				2C834D5C248805D4006208B8 /* unicode_fold3_key.c */,
+				2C834D83248805D4006208B8 /* unicode_unfold_key.c */,
+				2C834D4F248805D4006208B8 /* unicode.c */,
+				2C834D63248805D4006208B8 /* utf8.c */,
+				2C834D87248805D4006208B8 /* utf16_be.c */,
+				2C834D74248805D4006208B8 /* utf16_le.c */,
+				2C834D69248805D4006208B8 /* utf32_be.c */,
+				2C834D54248805D4006208B8 /* utf32_le.c */,
+				2C834D5A248805D4006208B8 /* config.h */,
+				2C834D71248805D4006208B8 /* oniggnu.h */,
+				2C834D76248805D4006208B8 /* oniguruma.h */,
+				2C834D61248805D4006208B8 /* regenc.h */,
+				2C834D60248805D4006208B8 /* regint.h */,
+				2C834D56248805D4006208B8 /* regparse.h */,
+				2C834D51248805D4006208B8 /* st.h */,
+			);
+			path = Oniguruma;
+			sourceTree = "<group>";
+		};
 		2CA7F7321CA7F34200495647 = {
 			isa = PBXGroup;
 			children = (
@@ -1694,22 +1898,28 @@
 				2C42323B242B155E00A16BCA /* mappings.h in Headers */,
 				2C4360D7240E4EEC001657D2 /* Siv3DComponent.hpp in Headers */,
 				2C439F82241DCEA9001154C2 /* cached-powers.h in Headers */,
+				2C834D9B248805D4006208B8 /* regint.h in Headers */,
 				2C43B2C92426223400D5CBBB /* ILogger.hpp in Headers */,
 				2C42324D242B155E00A16BCA /* osmesa_context.h in Headers */,
 				2C4360D5240E4EEC001657D2 /* Siv3DEngine.hpp in Headers */,
+				2C834DC724880AA0006208B8 /* SystemMisc.hpp in Headers */,
 				2C43B2E724264E3100D5CBBB /* CSystem.hpp in Headers */,
 				2C4360C4240E4EEC001657D2 /* catch.hpp in Headers */,
+				2C834DB1248805D4006208B8 /* oniguruma.h in Headers */,
 				2C4360D6240E4EEC001657D2 /* ApplicationOptions.hpp in Headers */,
 				2C481E1724460B5700A5D88D /* cpu_features_macros.h in Headers */,
 				2C423220242B155E00A16BCA /* cocoa_platform.h in Headers */,
+				2C834DAC248805D4006208B8 /* oniggnu.h in Headers */,
 				2C43B2EA24264E3100D5CBBB /* CWindow.hpp in Headers */,
 				2C439F472419D686001154C2 /* format-inl.h in Headers */,
 				2C4CBE642437236000F8B7A6 /* CScene.hpp in Headers */,
+				2C188AB72488E7750087F356 /* RegExpDetail.hpp in Headers */,
 				2C435BD3243E1600001CAAD8 /* CLogger.hpp in Headers */,
 				2C439F7E241DCEA9001154C2 /* double-to-string.h in Headers */,
 				2C423254242B19D100A16BCA /* egl_context.h in Headers */,
 				2C439F83241DCEA9001154C2 /* double-conversion.h in Headers */,
 				2C439F78241DCEA9001154C2 /* utils.h in Headers */,
+				2C834D91248805D4006208B8 /* regparse.h in Headers */,
 				2C4360D4240E4EEC001657D2 /* UnicodeUtility.hpp in Headers */,
 				2C4CBE6F24376B5300F8B7A6 /* CProfiler.hpp in Headers */,
 				2C481E1324460B5700A5D88D /* cpuinfo_x86.h in Headers */,
@@ -1723,6 +1933,7 @@
 				2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */,
 				2C4CBE6E24376B5300F8B7A6 /* IProfiler.hpp in Headers */,
 				2C481E1224460B5700A5D88D /* bit_utils.h in Headers */,
+				2C834D8C248805D4006208B8 /* st.h in Headers */,
 				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
 				2C4360DC240E4EEC001657D2 /* IConsole.hpp in Headers */,
 				2C423257242B19ED00A16BCA /* posix_thread.h in Headers */,
@@ -1730,6 +1941,7 @@
 				2C4231D6242B0C6700A16BCA /* IUserAction.hpp in Headers */,
 				2C439F80241DCEA9001154C2 /* diy-fp.h in Headers */,
 				2C4CBE4C24370FE300F8B7A6 /* CRenderer_GL4.hpp in Headers */,
+				2C834D95248805D4006208B8 /* config.h in Headers */,
 				2C439F7F241DCEA9001154C2 /* strtod.h in Headers */,
 				2C4360D0240E4EEC001657D2 /* IDummy.hpp in Headers */,
 				2C42322C242B155E00A16BCA /* nsgl_context.h in Headers */,
@@ -1739,6 +1951,7 @@
 				2C42323D242B155E00A16BCA /* cocoa_joystick.h in Headers */,
 				2C4CBE632437236000F8B7A6 /* IScene.hpp in Headers */,
 				2C481E1624460B5700A5D88D /* cpuid_x86.h in Headers */,
+				2C834D9C248805D4006208B8 /* regenc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1848,33 +2061,50 @@
 			files = (
 				2C423234242B155E00A16BCA /* osmesa_context.c in Sources */,
 				2C43B2E824264E3100D5CBBB /* CSystem.cpp in Sources */,
+				2C834DA7248805D4006208B8 /* euc_jp_prop.c in Sources */,
 				2C4360DB240E4EEC001657D2 /* ConsoleFactory.cpp in Sources */,
 				2C60AE202480F69F00277281 /* SystemLog.cpp in Sources */,
 				2C60AE80248158A500277281 /* vendor_model_name_windows.cpp in Sources */,
 				2C439F61241DCE8B001154C2 /* SivIntFormatter.cpp in Sources */,
 				2C423239242B155E00A16BCA /* input.c in Sources */,
 				2C423236242B155E00A16BCA /* vulkan.c in Sources */,
+				2C834D93248805D4006208B8 /* euc_jp.c in Sources */,
 				2C423245242B155E00A16BCA /* cocoa_time.c in Sources */,
+				2C834DBC248805D4006208B8 /* gb18030.c in Sources */,
 				2C6898162436066800C36C25 /* SivWindow.cpp in Sources */,
 				2C60AE82248158A500277281 /* memory_windows.cpp in Sources */,
 				2C60AE78248158A500277281 /* instruction_set_non_windows_non_darwin.cpp in Sources */,
 				2C60AE8C248158A500277281 /* os_info_windows.cpp in Sources */,
 				2C60AE192480EA5B00277281 /* WindowFactory.cpp in Sources */,
 				2C4231C7242B0B9200A16BCA /* SivFormatter.cpp in Sources */,
+				2C834D98248805D4006208B8 /* unicode_fold1_key.c in Sources */,
+				2C834DBD248805D4006208B8 /* regerror.c in Sources */,
+				2C834D96248805D4006208B8 /* iso8859_5.c in Sources */,
 				2C45ED9A24783B020018C62B /* SivDate_Platform.cpp in Sources */,
+				2C834DAB248805D4006208B8 /* st.c in Sources */,
+				2C834DA4248805D4006208B8 /* utf32_be.c in Sources */,
 				2C439F81241DCEA9001154C2 /* strtod.cc in Sources */,
+				2C834DB8248805D4006208B8 /* cp1251.c in Sources */,
+				2C834DAA248805D4006208B8 /* iso8859_16.c in Sources */,
 				2C43B2CA2426223400D5CBBB /* SivLogger.cpp in Sources */,
 				2C423258242B19ED00A16BCA /* posix_thread.c in Sources */,
 				2C4360D9240E4EEC001657D2 /* ApplicationOptions.cpp in Sources */,
 				2C4CBE4D24370FE300F8B7A6 /* CRenderer_GL4.cpp in Sources */,
+				2C834D8D248805D4006208B8 /* ascii.c in Sources */,
+				2C834D8B248805D4006208B8 /* big5.c in Sources */,
 				2C42321C242B155E00A16BCA /* cocoa_init.m in Sources */,
+				2C834DBB248805D4006208B8 /* sjis_prop.c in Sources */,
 				2C60AE74248158A500277281 /* all.cpp in Sources */,
 				2CD7B6312456BC2600194496 /* SivRandom.cpp in Sources */,
+				2C834DBF248805D4006208B8 /* iso8859_10.c in Sources */,
 				2C60AE7F248158A500277281 /* vendor_model_name_non_windows_non_darwin.cpp in Sources */,
 				2C60AE7B248158A500277281 /* quantities_cache_windows.cpp in Sources */,
 				2C4360DD240E4EEC001657D2 /* SivConsole.cpp in Sources */,
 				2C42324F242B155E00A16BCA /* cocoa_monitor.m in Sources */,
 				2C60AE76248158A500277281 /* instruction_set_windows.cpp in Sources */,
+				2C834DB3248805D4006208B8 /* iso8859_3.c in Sources */,
+				2C834DB0248805D4006208B8 /* iso8859_13.c in Sources */,
+				2C834D8A248805D4006208B8 /* unicode.c in Sources */,
 				2C439F532419FC9E001154C2 /* SivStringView.cpp in Sources */,
 				2C60AE96248158A500277281 /* sysctl_darwin.cpp in Sources */,
 				2C60AE7D248158A500277281 /* quantities_cache_darwin.cpp in Sources */,
@@ -1890,6 +2120,7 @@
 				2C43B2E924264E3100D5CBBB /* CWindow.cpp in Sources */,
 				2C60AE8E248158A500277281 /* amounts_non_windows.cpp in Sources */,
 				2C4CBE6D24376B5300F8B7A6 /* ProfilerFactory.cpp in Sources */,
+				2C834DA8248805D4006208B8 /* regversion.c in Sources */,
 				2C4360D2240E4EEC001657D2 /* UnicodeUtility.cpp in Sources */,
 				2C60AE79248158A500277281 /* architecture_windows.cpp in Sources */,
 				2C4360DA240E4EEC001657D2 /* SivString.cpp in Sources */,
@@ -1904,13 +2135,16 @@
 				2C60AE95248158A500277281 /* sysctl_non_darwin.cpp in Sources */,
 				2C60AE1D2480EB6600277281 /* CWindow_Null.cpp in Sources */,
 				2C439F8D241DF5CD001154C2 /* SivFormatInt.cpp in Sources */,
+				2C834D9E248805D4006208B8 /* utf8.c in Sources */,
 				2C60AE93248158A500277281 /* winstring_non_windows.cpp in Sources */,
 				2C49E64A247FAC59005C8FFE /* SivBinaryReader.cpp in Sources */,
 				2C47D4172477E84800CDF824 /* SivDuration.cpp in Sources */,
 				2C423246242B155E00A16BCA /* nsgl_context.m in Sources */,
+				2C188AB82488E7750087F356 /* RegExpDetail.cpp in Sources */,
 				2C4CBE652437236000F8B7A6 /* SivScene.cpp in Sources */,
 				2C60AE87248158A500277281 /* displays_x11.cpp in Sources */,
 				2C4231CB242B0BD300A16BCA /* SivSystem.cpp in Sources */,
+				2C834DC0248805D4006208B8 /* reggnu.c in Sources */,
 				2C60AE89248158A500277281 /* displays_default_blank.cpp in Sources */,
 				2C60AE8B248158A500277281 /* os_info_non_windows_non_darwin.cpp in Sources */,
 				2C439F60241DCE8B001154C2 /* SivFormatFloat.cpp in Sources */,
@@ -1919,33 +2153,52 @@
 				2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
 				2C60AE77248158A500277281 /* instruction_set.cpp in Sources */,
+				2C834DB6248805D4006208B8 /* onig_init.c in Sources */,
 				2C49E649247FAC59005C8FFE /* SivFormatUtility.cpp in Sources */,
+				2C834DA6248805D4006208B8 /* iso8859_6.c in Sources */,
 				2C4CBE612437236000F8B7A6 /* SceneFactory.cpp in Sources */,
+				2C834D94248805D4006208B8 /* iso8859_15.c in Sources */,
 				2C60AE73248158A500277281 /* frequency_non_windows_non_darwin.cpp in Sources */,
 				2C4564E1247946AF00DB01F0 /* int128.cc in Sources */,
 				2C60AE92248158A500277281 /* winstring_windows.cpp in Sources */,
+				2C834D9D248805D4006208B8 /* iso8859_2.c in Sources */,
+				2C834DAF248805D4006208B8 /* utf16_le.c in Sources */,
 				2C60AE86248158A500277281 /* kernel_info_non_windows.cpp in Sources */,
 				2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */,
 				2C435BD4243E1600001CAAD8 /* CLogger.cpp in Sources */,
+				2C834DAD248805D4006208B8 /* koi8.c in Sources */,
 				2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */,
+				2C834DB5248805D4006208B8 /* regparse.c in Sources */,
 				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
 				2C49E652247FC731005C8FFE /* SivFileSystem_Platform.mm in Sources */,
 				2C49E64F247FACE8005C8FFE /* BinaryReaderDetail.cpp in Sources */,
 				2C60AE91248158A500277281 /* scope.cpp in Sources */,
+				2C834D90248805D4006208B8 /* iso8859_1.c in Sources */,
 				2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */,
 				2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */,
+				2C834D8F248805D4006208B8 /* utf32_le.c in Sources */,
 				2C481E1A24460BBA00A5D88D /* SivCPUInfo.cpp in Sources */,
 				2C60AE84248158A500277281 /* memory_darwin.cpp in Sources */,
 				2C60AE8F248158A500277281 /* amounts_windows.cpp in Sources */,
 				2C423253242B19D100A16BCA /* egl_context.c in Sources */,
 				2C4CBE622437236000F8B7A6 /* CScene.cpp in Sources */,
 				2C42321B242B155E00A16BCA /* monitor.c in Sources */,
+				2C834DAE248805D4006208B8 /* euc_kr.c in Sources */,
+				2C834D97248805D4006208B8 /* unicode_fold3_key.c in Sources */,
 				2C439F79241DCEA9001154C2 /* bignum.cc in Sources */,
+				2C834DBE248805D4006208B8 /* unicode_unfold_key.c in Sources */,
 				2C4360D3240E4EEC001657D2 /* SivUnicode.cpp in Sources */,
 				2C4360CE240E4EEC001657D2 /* DummyFactory.cpp in Sources */,
 				2C60AE7E248158A500277281 /* vendor_model_name_darwin.cpp in Sources */,
+				2C834D8E248805D4006208B8 /* unicode_fold2_key.c in Sources */,
+				2C834DBA248805D4006208B8 /* regenc.c in Sources */,
 				2C60AE172480E9BD00277281 /* CRenderer_Null.cpp in Sources */,
 				2C43B2CB2426223400D5CBBB /* LoggerFactory.cpp in Sources */,
+				2C188AB92488E7750087F356 /* SivRegExp.cpp in Sources */,
+				2C834DB7248805D4006208B8 /* euc_tw.c in Sources */,
+				2C834DB9248805D4006208B8 /* sjis.c in Sources */,
+				2C834DC1248805D4006208B8 /* iso8859_14.c in Sources */,
+				2C834D9F248805D4006208B8 /* iso8859_8.c in Sources */,
 				2C423241242B155E00A16BCA /* cocoa_window.m in Sources */,
 				2C60AE7C248158A500277281 /* quantities_cache_non_windows_non_darwin.cpp in Sources */,
 				2C4231D8242B0F2900A16BCA /* SivSystem_Platform.cpp in Sources */,
@@ -1955,23 +2208,34 @@
 				2C423248242B155E00A16BCA /* xkb_unicode.c in Sources */,
 				2C43B2ED2426630000D5CBBB /* SivError.cpp in Sources */,
 				2C439F482419D686001154C2 /* format.cc in Sources */,
+				2C834DA0248805D4006208B8 /* regcomp.c in Sources */,
+				2C834DC824880AA0006208B8 /* SystemMisc.cpp in Sources */,
+				2C834DA2248805D4006208B8 /* koi8_r.c in Sources */,
 				2C60AE8D248158A500277281 /* os_info_darwin.cpp in Sources */,
+				2C834DC3248805D4006208B8 /* iso8859_4.c in Sources */,
 				2C435BCB243E14D1001CAAD8 /* CConsole.cpp in Sources */,
+				2C834DB4248805D4006208B8 /* iso8859_7.c in Sources */,
 				2C439F85241DCEA9001154C2 /* double-to-string.cc in Sources */,
 				2C4231D1242B0BDE00A16BCA /* CUserAction.cpp in Sources */,
 				2C44429E24271E1700557D51 /* SivEngineLog.cpp in Sources */,
 				2C60AE81248158A500277281 /* vendor_id.cpp in Sources */,
+				2C834DB2248805D4006208B8 /* iso8859_9.c in Sources */,
 				2C60AE72248158A500277281 /* frequency_windows.cpp in Sources */,
 				2C60AE88248158A500277281 /* displays_darwin.cpp in Sources */,
 				2C439F86241DCEA9001154C2 /* cached-powers.cc in Sources */,
 				2C4360CD240E4EEC001657D2 /* Siv3DTest.cpp in Sources */,
 				2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */,
+				2C834D9A248805D4006208B8 /* regexec.c in Sources */,
 				2C4CBE7124376B5300F8B7A6 /* SivProfiler.cpp in Sources */,
+				2C834D92248805D4006208B8 /* iso8859_11.c in Sources */,
 				2C45ED9B24783B020018C62B /* SivDateTime_Platform.cpp in Sources */,
 				2C4CBE592437100100F8B7A6 /* glew.c in Sources */,
 				2C60AE83248158A500277281 /* memory_non_windows_non_darwin.cpp in Sources */,
+				2C834DA5248805D4006208B8 /* regsyntax.c in Sources */,
 				2C60AE8A248158A500277281 /* displays_windows.cpp in Sources */,
+				2C834DA3248805D4006208B8 /* regtrav.c in Sources */,
 				2C60AE75248158A500277281 /* instruction_set_darwin.cpp in Sources */,
+				2C834DC2248805D4006208B8 /* utf16_be.c in Sources */,
 				2C47A9A9243CA7D800FD33B4 /* SivPoint.cpp in Sources */,
 				2C43B2E024264E1200D5CBBB /* SystemFactory.cpp in Sources */,
 				2C435BBE243DA633001CAAD8 /* CWindow_macOS.mm in Sources */,

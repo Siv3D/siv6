@@ -19,6 +19,7 @@
 # include <Siv3D/String.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/System/SystemLog.hpp>
+# include <Siv3D/System/SystemMisc.hpp>
 # include "CSystem.hpp"
 
 namespace s3d
@@ -32,6 +33,7 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CSystem::~CSystem()");
 
+		SystemMisc::Destroy();
 		SystemLog::Final();
 	}
 
@@ -40,6 +42,7 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CSystem::init()");
 
 		SystemLog::Initial();
+		SystemMisc::Init();
 
 		SIV3D_ENGINE(Profiler)->init();
 		SIV3D_ENGINE(Window)->init();
