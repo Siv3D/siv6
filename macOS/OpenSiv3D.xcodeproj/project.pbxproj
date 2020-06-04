@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
+		2C188AB72488E7750087F356 /* RegExpDetail.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C188AB42488E7750087F356 /* RegExpDetail.hpp */; };
+		2C188AB82488E7750087F356 /* RegExpDetail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C188AB52488E7750087F356 /* RegExpDetail.cpp */; };
+		2C188AB92488E7750087F356 /* SivRegExp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C188AB62488E7750087F356 /* SivRegExp.cpp */; };
 		2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E1245AE62300DAD413 /* SivParseFloat.cpp */; };
 		2C3EC7E7245AE62400DAD413 /* SivParseInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E3245AE62400DAD413 /* SivParseInt.cpp */; };
 		2C3EC7E8245AE62400DAD413 /* SivParseBool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EC7E5245AE62400DAD413 /* SivParseBool.cpp */; };
@@ -259,6 +262,13 @@
 /* Begin PBXFileReference section */
 		2C1778B21CE0D5DB00BB8AD0 /* Siv3D-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Siv3D-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1778BF1CE0D5DB00BB8AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C188AAF2488E73B0087F356 /* RegExp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RegExp.hpp; sourceTree = "<group>"; };
+		2C188AB02488E73C0087F356 /* MatchResults.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MatchResults.hpp; sourceTree = "<group>"; };
+		2C188AB12488E7550087F356 /* MatchResults.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MatchResults.ipp; sourceTree = "<group>"; };
+		2C188AB22488E7550087F356 /* RegExp.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RegExp.ipp; sourceTree = "<group>"; };
+		2C188AB42488E7750087F356 /* RegExpDetail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RegExpDetail.hpp; sourceTree = "<group>"; };
+		2C188AB52488E7750087F356 /* RegExpDetail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegExpDetail.cpp; sourceTree = "<group>"; };
+		2C188AB62488E7750087F356 /* SivRegExp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivRegExp.cpp; sourceTree = "<group>"; };
 		2C22E2C11FD5BAF0002735AB /* Siv3D-Test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Siv3D-Test.entitlements"; sourceTree = SOURCE_ROOT; };
 		2C3EC7DA245AE5E200DAD413 /* ScopeGuard.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ScopeGuard.ipp; sourceTree = "<group>"; };
 		2C3EC7DB245AE5F200DAD413 /* ScopeGuard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ScopeGuard.hpp; sourceTree = "<group>"; };
@@ -693,6 +703,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C188AB32488E7750087F356 /* RegExp */ = {
+			isa = PBXGroup;
+			children = (
+				2C188AB42488E7750087F356 /* RegExpDetail.hpp */,
+				2C188AB52488E7750087F356 /* RegExpDetail.cpp */,
+				2C188AB62488E7750087F356 /* SivRegExp.cpp */,
+			);
+			path = RegExp;
+			sourceTree = "<group>";
+		};
 		2C3EC7E0245AE62300DAD413 /* ParseFloat */ = {
 			isa = PBXGroup;
 			children = (
@@ -899,6 +919,7 @@
 				2C47A9A7243CA7D800FD33B4 /* Point */,
 				2C4CBE6724376B5300F8B7A6 /* Profiler */,
 				2CD7B62F2456BC2600194496 /* Random */,
+				2C188AB32488E7750087F356 /* RegExp */,
 				2C4CBE4324370FC600F8B7A6 /* Renderer */,
 				2C4CBE5B2437236000F8B7A6 /* Scene */,
 				2C4360BE240E4EEC001657D2 /* String */,
@@ -1294,6 +1315,7 @@
 				2C47E3FC245A8C32002D30CE /* Logger.hpp */,
 				2C47E409245A8C32002D30CE /* LogLevel.hpp */,
 				2C47E44F245A8C33002D30CE /* LogType.hpp */,
+				2C188AB02488E73C0087F356 /* MatchResults.hpp */,
 				2C47E41C245A8C33002D30CE /* MathConstants.hpp */,
 				2C47E415245A8C32002D30CE /* Meta.hpp */,
 				2C49E639247FABA4005C8FFE /* MicrosecClock.hpp */,
@@ -1318,6 +1340,7 @@
 				2C47E421245A8C33002D30CE /* Random.hpp */,
 				2C49E63B247FABB4005C8FFE /* RDTSCClock.hpp */,
 				2C47E41B245A8C32002D30CE /* Rectangle.hpp */,
+				2C188AAF2488E73B0087F356 /* RegExp.hpp */,
 				2C47E452245A8C33002D30CE /* Scene.hpp */,
 				2C3EC7DB245AE5F200DAD413 /* ScopeGuard.hpp */,
 				2C47E43C245A8C33002D30CE /* SMFT.hpp */,
@@ -1371,6 +1394,7 @@
 				2C4564C82479190D00DB01F0 /* HashTable.ipp */,
 				2C49E638247FAB8C005C8FFE /* Int128.ipp */,
 				2C49E644247FAC2E005C8FFE /* IReader.ipp */,
+				2C188AB12488E7550087F356 /* MatchResults.ipp */,
 				2C47E431245A8C33002D30CE /* MathConstants.ipp */,
 				2C57676224763C440016202D /* Memory.ipp */,
 				2C47E438245A8C33002D30CE /* Number.ipp */,
@@ -1379,6 +1403,7 @@
 				2C57676424763C590016202D /* Parse.ipp */,
 				2C47E42E245A8C33002D30CE /* Point.ipp */,
 				2C4564DA2479468800DB01F0 /* Random.ipp */,
+				2C188AB22488E7550087F356 /* RegExp.ipp */,
 				2C3EC7DA245AE5E200DAD413 /* ScopeGuard.ipp */,
 				2C47E42B245A8C33002D30CE /* String.ipp */,
 				2C47E432245A8C33002D30CE /* StringView.ipp */,
@@ -1888,6 +1913,7 @@
 				2C43B2EA24264E3100D5CBBB /* CWindow.hpp in Headers */,
 				2C439F472419D686001154C2 /* format-inl.h in Headers */,
 				2C4CBE642437236000F8B7A6 /* CScene.hpp in Headers */,
+				2C188AB72488E7750087F356 /* RegExpDetail.hpp in Headers */,
 				2C435BD3243E1600001CAAD8 /* CLogger.hpp in Headers */,
 				2C439F7E241DCEA9001154C2 /* double-to-string.h in Headers */,
 				2C423254242B19D100A16BCA /* egl_context.h in Headers */,
@@ -2114,6 +2140,7 @@
 				2C49E64A247FAC59005C8FFE /* SivBinaryReader.cpp in Sources */,
 				2C47D4172477E84800CDF824 /* SivDuration.cpp in Sources */,
 				2C423246242B155E00A16BCA /* nsgl_context.m in Sources */,
+				2C188AB82488E7750087F356 /* RegExpDetail.cpp in Sources */,
 				2C4CBE652437236000F8B7A6 /* SivScene.cpp in Sources */,
 				2C60AE87248158A500277281 /* displays_x11.cpp in Sources */,
 				2C4231CB242B0BD300A16BCA /* SivSystem.cpp in Sources */,
@@ -2167,6 +2194,7 @@
 				2C834DBA248805D4006208B8 /* regenc.c in Sources */,
 				2C60AE172480E9BD00277281 /* CRenderer_Null.cpp in Sources */,
 				2C43B2CB2426223400D5CBBB /* LoggerFactory.cpp in Sources */,
+				2C188AB92488E7750087F356 /* SivRegExp.cpp in Sources */,
 				2C834DB7248805D4006208B8 /* euc_tw.c in Sources */,
 				2C834DB9248805D4006208B8 /* sjis.c in Sources */,
 				2C834DC1248805D4006208B8 /* iso8859_14.c in Sources */,
