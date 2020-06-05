@@ -61,6 +61,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Optional.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Optional_misc.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Parse.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Platform.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Point.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Random.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\RegExp.ipp" />

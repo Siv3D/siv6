@@ -262,7 +262,7 @@ namespace s3d::Platform
 	constexpr size_t PointerSize	= sizeof(void*);
 	
 	/// @brief 最小のメモリアラインメント | The minimum alignment of the memory
-	constexpr size_t MinAlignment	= (PointerSize * 2);
+	constexpr size_t MinAlignment	= __STDCPP_DEFAULT_NEW_ALIGNMENT__;
 }
 
 //////////////////////////////////////////////////
@@ -274,60 +274,17 @@ namespace s3d::Platform
 
 namespace s3d::detail
 {
-# if SIV3D_PLATFORM(WINDOWS)
-
 	/// @brief アライメントを指定してメモリを確保します。
 	/// @param size 確保するメモリのサイズ
 	/// @return 確保したメモリ
 	template <size_t Alignment>
 	[[nodiscard]]
-	inline void* AlignedMalloc(size_t size) noexcept
-	{
-		return ::_aligned_malloc(size, Alignment);
-	}
+	inline void* AlignedMalloc(size_t size) noexcept;
 
 	/// @brief アライメントを指定して確保したメモリを解放します。
 	/// @param p 解放するメモリのポインタ
 	/// @return なし
-	inline void AlignedFree(void* const p) noexcept
-	{
-		::_aligned_free(p);
-	}
-
-# elif SIV3D_PLATFORM(MACOS) || SIV3D_PLATFORM(LINUX) || SIV3D_PLATFORM(WEB)
-
-	/// @brief アライメントを指定してメモリを確保します。
-	/// @param size 確保するメモリのサイズ
-	/// @return 確保したメモリ
-	template <size_t Alignment>
-	[[nodiscard]]
-	inline void* AlignedMalloc(size_t size) noexcept
-	{
-		if (Alignment > Platform::MinAlignment)
-		{
-			void* p = nullptr;
-			::posix_memalign(&p, Alignment, size);
-			return p;
-		}
-		else
-		{
-			return std::malloc(size);
-		}
-	}
-
-	/// @brief アライメントを指定して確保したメモリを解放します。
-	/// @param p 解放するメモリのポインタ
-	/// @return なし
-	inline void AlignedFree(void* const p) noexcept
-	{
-		std::free(p);
-	}
-
-# else
-
-	# error Unimplemented
-
-# endif
+	inline void AlignedFree(void* const p) noexcept;
 }
 
-
+# include "detail/Platform.ipp"

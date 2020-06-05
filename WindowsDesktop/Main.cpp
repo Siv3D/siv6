@@ -6,16 +6,20 @@ SIV3D_OPTION_HEADLESS_MODE(false);		// 非グラフィックスモード
 SIV3D_OPTION_OUTPUT_STDERR(true);		// std::cerr の出力
 SIV3D_OPTION_RUN_TEST(false);			// テストの実行
 
+template <class T0, class... Ts>
+auto MakeArray(T0&& first, Ts&&... args)
+{
+	using Type = std::decay_t<T0>;
+	return Array<Type>{ std::forward<T0>(first), std::forward<Ts>(args)... };
+}
+
 void Main()
 {
-	const auto matches = U"(\\d+)-(\\d+)-(\\d+)"_re.match(U"2020-06-04");
-	Console << U"{}年{}月{}日"_fmt(matches[1], matches[2], matches[3]);
+	Array v = MakeArray(10, 20, 30, 5);
+	v = MakeArray(20);
+	v = MakeArray();
 
-	const String text = U"<html><body text=\"#000000\"><p>Hello!</p></body></html>";
-	for (const auto& match : UR"(<(".*?"|'.*?'|[^'"])*?>)"_re.findAll(text))
-	{
-		Console << match[0];
-	}
+	Console << Format(v);
 
 	while (System::Update())
 	{

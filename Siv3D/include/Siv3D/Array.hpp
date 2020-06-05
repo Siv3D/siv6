@@ -16,6 +16,7 @@
 # include "String.hpp"
 # include "Meta.hpp"
 # include "Threading.hpp"
+# include "FormatData.hpp"
 # include "PredefinedNamedParameter.hpp"
 
 namespace s3d
@@ -459,10 +460,7 @@ namespace s3d
 		[[nodiscard]]
 		Array stable_sorted_by(Fty f)&&;
 
-		template <class T = Type, std::enable_if_t<Meta::HasPlus_v<T>&& Meta::HasPlusAssign_v<T>>* = nullptr>
-		auto sum() const;
-
-		template <class T = Type, std::enable_if_t<Meta::HasPlus_v<T> && !Meta::HasPlusAssign_v<T>>* = nullptr>
+		template <class T = Type, std::enable_if_t<Meta::HasPlus_v<T>>* = nullptr>
 		auto sum() const;
 
 		template <class T = Type, std::enable_if_t<!Meta::HasPlus_v<T>>* = nullptr>
@@ -520,6 +518,27 @@ namespace s3d
 		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
 		auto parallel_map(Fty f, size_t numThreads = Threading::GetConcurrency()) const;
 
+		friend std::ostream& operator <<(std::ostream& output, const Array& value)
+		{
+			return (output << Format(value).narrow());
+		}
+
+		friend std::wostream& operator <<(std::wostream& output, const Array& value)
+		{
+			return (output << Format(value).toWstr());
+		}
+
+		friend std::basic_ostream<char32>& operator <<(std::basic_ostream<char32>& output, const Array& value)
+		{
+			const String s = Format(value);
+			return output.write(s.data(), s.size());
+		}
+
+		friend void Formatter(FormatData& formatData, const Array& value)
+		{
+			Formatter(formatData, value.begin(), value.end());
+		}
+
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>* = nullptr>
 		static Array Generate(size_type size, Fty generator);
 
@@ -529,49 +548,37 @@ namespace s3d
 
 	template <class Type, class Allocator>
 	[[nodiscard]]
-	inline bool operator ==(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
-	{
-		return ((a.size() == b.size()) && std::equal(a.begin(), a.end(), b.begin()));
-	}
+	inline bool operator ==(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b);
 
 	template <class Type, class Allocator>
 	[[nodiscard]]
-	inline bool operator !=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
-	{
-		return ((a.size() != b.size()) || !std::equal(a.begin(), a.end(), b.begin()));
-	}
+	inline bool operator !=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b);
 
 	template <class Type, class Allocator>
 	[[nodiscard]]
-	inline bool operator <(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
-	{
-		return std::lexicographical_compare(a.begin(), a.end(), b.begin(), b.end());
-	}
+	inline bool operator <(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b);
 
 	template <class Type, class Allocator>
 	[[nodiscard]]
-	inline bool operator >(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
-	{
-		return (b < a);
-	}
+	inline bool operator >(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b);
 
 	template <class Type, class Allocator>
 	[[nodiscard]]
-	inline bool operator <=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
-	{
-		return !(b < a);
-	}
+	inline bool operator <=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b);
 
 	template <class Type, class Allocator>
 	[[nodiscard]]
-	inline bool operator >=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
-	{
-		return !(a < b);
-	}
+	inline bool operator >=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b);
+
+	template <class Type, class Allocator>
+	inline void swap(Array<Type, Allocator>& a, Array<Type, Allocator>& b) noexcept;
 
 	// deduction guide
 	template <class Type>
 	Array(std::initializer_list<Type>)->Array<Type>;
+
+	template <class T0, class... Ts>
+	inline auto MakeArray(T0&& first, Ts&&... args);
 }
 
 //# include "BoolArray.hpp"

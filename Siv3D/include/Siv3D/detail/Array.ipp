@@ -882,7 +882,7 @@ namespace s3d
 			return Array();
 		}
 
-		return Array(begin() + index, begin() + std::min(index + length, size()));
+		return Array(begin() + index, begin() + Min(index + length, size()));
 	}
 
 	template <class Type, class Allocator>
@@ -986,28 +986,24 @@ namespace s3d
 	}
 
 	template <class Type, class Allocator>
-	template <class T, std::enable_if_t<Meta::HasPlus_v<T>&& Meta::HasPlusAssign_v<T>>*>
+	template <class T, std::enable_if_t<Meta::HasPlus_v<T>>*>
 	inline auto Array<Type, Allocator>::sum() const
 	{
 		decltype(std::declval<T>() + std::declval<T>()) result{};
 
-		for (const auto& v : *this)
+		if constexpr (Meta::HasPlusAssign_v<Type>)
 		{
-			result += v;
+			for (const auto& v : *this)
+			{
+				result += v;
+			}
 		}
-
-		return result;
-	}
-
-	template <class Type, class Allocator>
-	template <class T, std::enable_if_t<Meta::HasPlus_v<T> && !Meta::HasPlusAssign_v<T>>*>
-	inline auto Array<Type, Allocator>::sum() const
-	{
-		decltype(std::declval<T>() + std::declval<T>()) result{};
-
-		for (const auto& v : *this)
+		else
 		{
-			result = result + v;
+			for (const auto& v : *this)
+			{
+				result = result + v;
+			}
 		}
 
 		return result;
@@ -1320,5 +1316,54 @@ namespace s3d
 		}
 
 		return new_array;
+	}
+
+	template <class Type, class Allocator>
+	inline bool operator ==(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return ((a.size() == b.size()) && std::equal(a.begin(), a.end(), b.begin()));
+	}
+
+	template <class Type, class Allocator>
+	inline bool operator !=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return ((a.size() != b.size()) || !std::equal(a.begin(), a.end(), b.begin()));
+	}
+
+	template <class Type, class Allocator>
+	inline bool operator <(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return std::lexicographical_compare(a.begin(), a.end(), b.begin(), b.end());
+	}
+
+	template <class Type, class Allocator>
+	inline bool operator >(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return (b < a);
+	}
+
+	template <class Type, class Allocator>
+	inline bool operator <=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return !(b < a);
+	}
+
+	template <class Type, class Allocator>
+	inline bool operator >=(const Array<Type, Allocator>& a, const Array<Type, Allocator>& b)
+	{
+		return !(a < b);
+	}
+
+	template <class Type, class Allocator>
+	inline void swap(Array<Type, Allocator>& a, Array<Type, Allocator>& b) noexcept
+	{
+		a.swap(b);
+	}
+
+	template <class T0, class... Ts>
+	inline auto MakeArray(T0&& first, Ts&&... args)
+	{
+		using Type = std::decay_t<T0>;
+		return Array<Type>{ std::forward<T0>(first), std::forward<Ts>(args)... };
 	}
 }
