@@ -8,10 +8,6 @@ SIV3D_OPTION_RUN_TEST(false);			// テストの実行
 
 void Main()
 {
-	Array<int> v(430);
-
-	Console << Format(v);
-
 	while (System::Update())
 	{
 

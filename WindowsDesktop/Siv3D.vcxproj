@@ -50,6 +50,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\FormatLiteral.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Formatter.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\FormatUtility.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Grid.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Hash.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HashSet.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HashTable.ipp" />
@@ -67,6 +68,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Random.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\RegExp.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ScopeGuard.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Step.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Step2D.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\String.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\StringView.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Utility.ipp" />
@@ -131,6 +134,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Scene.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ScopeGuard.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\SMFT.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Step.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Step2D.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\String.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\StringView.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\System.hpp" />

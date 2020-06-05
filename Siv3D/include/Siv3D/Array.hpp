@@ -11,7 +11,9 @@
 
 # pragma once
 # include <vector>
-# include <future>
+# ifndef SIV3D_NO_CONCURRENT_API
+	# include <future>
+# endif
 # include "Common.hpp"
 # include "String.hpp"
 # include "Meta.hpp"
@@ -506,6 +508,8 @@ namespace s3d
 		[[nodiscard]]
 		Array values_at(std::initializer_list<size_t> indices) const;
 
+	# ifndef SIV3D_NO_CONCURRENT_API
+
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
 		[[nodiscard]]
 		size_t parallel_count_if(Fty f, size_t numThreads = Threading::GetConcurrency()) const;
@@ -518,6 +522,8 @@ namespace s3d
 
 		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
 		auto parallel_map(Fty f, size_t numThreads = Threading::GetConcurrency()) const;
+
+	# endif
 
 		friend std::ostream& operator <<(std::ostream& output, const Array& value)
 		{

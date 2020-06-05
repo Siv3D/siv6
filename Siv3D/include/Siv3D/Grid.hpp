@@ -49,3 +49,5 @@ namespace s3d
 
 	};
 }
+
+# include "detail/Grid.ipp"

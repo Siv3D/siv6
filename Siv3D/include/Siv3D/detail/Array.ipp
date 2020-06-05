@@ -1135,6 +1135,8 @@ namespace s3d
 		return new_array;
 	}
 
+# ifndef SIV3D_NO_CONCURRENT_API
+
 	template <class Type, class Allocator>
 	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>*>
 	inline size_t Array<Type, Allocator>::parallel_count_if(Fty f, size_t numThreads) const
@@ -1287,6 +1289,8 @@ namespace s3d
 
 		return new_array;
 	}
+
+# endif
 
 	template <class Type, class Allocator>
 	template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>*>

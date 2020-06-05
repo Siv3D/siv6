@@ -58,4 +58,4 @@ namespace s3d
 
 # include "detail/AsyncTask.ipp"
 
-# endif
+# endif // SIV3D_NO_CONCURRENT_API

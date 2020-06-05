@@ -101,11 +101,11 @@
 
 // 範囲
 // Range
-//# include <Siv3D/Step.hpp> // [Siv3D ToDo]
+# include <Siv3D/Step.hpp> // [Siv3D ToDo]
 
 // 2D 範囲
 // 2D range
-//# include <Siv3D/Step2D.hpp> // [Siv3D ToDo]
+# include <Siv3D/Step2D.hpp> // [Siv3D ToDo]
 
 // 無限リスト
 // Infinite list
@@ -178,7 +178,7 @@
 
 // 動的配列（一次元）
 // Array
-# include <Siv3D/Array.hpp> // [Siv3D ToDo]
+# include <Siv3D/Array.hpp>
 
 // 動的配列（二次元）
 // 2D array
@@ -209,7 +209,7 @@
 
 // 非同期タスク
 // Asynchronous task
-# include <Siv3D/AsyncTask.hpp> // [Siv3D ToDo]
+# include <Siv3D/AsyncTask.hpp>
 
 //////////////////////////////////////////////////
 //
@@ -240,11 +240,11 @@
 
 // 正規表現のマッチ結果
 // Regular expression matching
-# include <Siv3D/MatchResults.hpp> // [Siv3D ToDo]
+# include <Siv3D/MatchResults.hpp>
 
 // 正規表現
 // Regular expression
-# include <Siv3D/RegExp.hpp> // [Siv3D ToDo]
+# include <Siv3D/RegExp.hpp>
 
 // 絵文字リスト
 // Emoji list
