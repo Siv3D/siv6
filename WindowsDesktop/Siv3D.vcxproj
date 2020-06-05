@@ -32,6 +32,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ApplicationOptions.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Array.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\BinaryReader.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\BoolArray.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Byte.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Char.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\AsyncTask.ipp" />

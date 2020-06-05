@@ -17,6 +17,7 @@
 # include "Meta.hpp"
 # include "Threading.hpp"
 # include "FormatData.hpp"
+# include "Format.hpp"
 # include "PredefinedNamedParameter.hpp"
 
 namespace s3d
@@ -87,16 +88,6 @@ namespace s3d
 		/// @param other ムーブする配列
 		Array(Array&& other) = default;
 
-		/// @brief コピー代入演算子
-		/// @param other コピーする配列
-		/// @return *this
-		Array& operator =(const Array& other) = default;
-
-		/// @brief ムーブ代入演算子
-		/// @param other ムーブする配列
-		/// @return *this
-		Array& operator =(Array&& other) = default;
-
 		/// @brief ジェネレータ関数を使った配列の作成
 		/// @tparam Fty ジェネレータ関数の型
 		/// @param size 作成する配列の要素数
@@ -110,6 +101,16 @@ namespace s3d
 		/// @param indexedGenerator インデックス指定ジェネレータ関数
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>* = nullptr>
 		Array(size_type size, Arg::indexedGenerator_<Fty> indexedGenerator);
+
+		/// @brief コピー代入演算子
+		/// @param other コピーする配列
+		/// @return *this
+		Array& operator =(const Array& other) = default;
+
+		/// @brief ムーブ代入演算子
+		/// @param other ムーブする配列
+		/// @return *this
+		Array& operator =(Array&& other) = default;
 
 		/// @brief 他の配列と要素を入れ替えます。
 		/// @param other 入れ替える配列
@@ -581,6 +582,5 @@ namespace s3d
 	inline auto MakeArray(T0&& first, Ts&&... args);
 }
 
-//# include "BoolArray.hpp"
-
 # include "detail/Array.ipp"
+# include "detail/BoolArray.ipp"
