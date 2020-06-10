@@ -277,6 +277,9 @@
     <Filter Include="src\Siv3D\RegExp">
       <UniqueIdentifier>{b197ee58-3462-44a4-ae95-659ee2cfdea4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ThirdParty\levenshtein-sse">
+      <UniqueIdentifier>{a3fac140-3ed0-49e1-966d-d6611a850765}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -971,6 +974,12 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Step.ipp">
       <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\levenshtein-sse\levenshtein-sse.hpp">
+      <Filter>src\ThirdParty\levenshtein-sse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\SIMD.hpp">
+      <Filter>include\Siv3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ Library | Version
 [GLEW](https://github.com/nigels-com/glew) | 2.2.0
 [GLFW](https://github.com/glfw/glfw) | 3.3.2
 [infoware](https://github.com/ThePhD/infoware) | v0.5.3
+[levenshtein-sse](https://github.com/addaleax/levenshtein-sse) | 
 [miniutf](https://github.com/dropbox/miniutf) | 
 [Oniguruma](https://github.com/kkos/oniguruma) | v6.9.5_rev1
 [SFMT](https://github.com/MersenneTwister-Lab/SFMT) | 1.5.2

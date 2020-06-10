@@ -133,6 +133,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\RegExp.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Scene.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ScopeGuard.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\SIMD.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\SMFT.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Step.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Step2D.hpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\pci.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\system.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\version.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\levenshtein-sse\levenshtein-sse.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\miniutf\miniutf.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\config.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\oniggnu.h" />

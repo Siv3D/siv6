@@ -906,6 +906,9 @@ namespace s3d
 		[[nodiscard]]
 		String layout(size_t width) const;
 
+		[[nodiscard]]
+		size_t levenshteinDistanceFrom(StringView other) const noexcept;
+
 		/// <summary>
 		/// 英字をすべて小文字にします。
 		/// </summary>

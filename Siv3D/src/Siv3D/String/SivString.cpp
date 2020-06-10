@@ -12,6 +12,7 @@
 # include <Siv3D/String.hpp>
 # include <Siv3D/Char.hpp>
 # include <Siv3D/Array.hpp>
+# include <ThirdParty/levenshtein-sse/levenshtein-sse.hpp>
 
 namespace s3d
 {
@@ -140,6 +141,11 @@ namespace s3d
 		}
 
 		return result;
+	}
+
+	size_t String::levenshteinDistanceFrom(const StringView other) const noexcept
+	{
+		return levenshteinSSE::levenshtein(begin(), end(), other.begin(), other.end());
 	}
 
 	String& String::lowercase() noexcept

@@ -15,15 +15,9 @@
 # include "Common.hpp"
 # include "Number.hpp"
 # include "HardwareRNG.hpp"
+# include "SIMD.hpp"
 
-# if SIV3D_INTRINSIC(SSE)
-#   define HAVE_SSE2
-#	include <emmintrin.h>
-# else
-#   define HAVE_SSE2
-#	define SIMDE_ENABLE_NATIVE_ALIASES
-#	include <ThirdParty/simde/x86/sse2.h>
-# endif
+# define HAVE_SSE2
 
 /** Mersenne Exponent. The period of the sequence
  *  is a multiple of 2^MEXP-1. */

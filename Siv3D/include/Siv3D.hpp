@@ -131,6 +131,10 @@
 // Demangle
 # include <Siv3D/Demangle.hpp>
 
+// SIMD
+// SIMD
+# include <Siv3D/SIMD.hpp>
+
 //////////////////////////////////////////////////
 //
 //	メモリ
