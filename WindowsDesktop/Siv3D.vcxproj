@@ -54,6 +54,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Hash.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HashSet.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HashTable.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Indexed.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Int128.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IReader.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\KahanSummation.ipp" />
