@@ -131,6 +131,10 @@
 // Demangle
 # include <Siv3D/Demangle.hpp>
 
+// Kahan の加算アルゴリズム
+// Kahan summation algorithm
+# include <Siv3D/KahanSummation.hpp>
+
 // SIMD
 // SIMD
 # include <Siv3D/SIMD.hpp>

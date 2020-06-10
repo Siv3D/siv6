@@ -56,6 +56,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HashTable.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Int128.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IReader.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\KahanSummation.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\MatchResults.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\MathConstants.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Memory.ipp" />
@@ -101,6 +102,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Int128.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IntFormatter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IReader.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\KahanSummation.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LetterCase.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Logger.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LogLevel.hpp" />

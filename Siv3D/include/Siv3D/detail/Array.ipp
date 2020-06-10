@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include "../KahanSummation.hpp"
 
 namespace s3d
 {
@@ -1013,18 +1014,14 @@ namespace s3d
 	template <class T, std::enable_if_t<std::is_floating_point_v<T>>*>
 	inline auto Array<Type, Allocator>::sumF() const
 	{
-		T s = 0.0;
-		T err = 0.0;
+		KahanSummation<T> sum;
 
 		for (const auto& v : *this)
 		{
-			const T y = v - err;
-			const T t = s + y;
-			err = (t - s) - y;
-			s = t;
+			sum += v;
 		}
 
-		return static_cast<T>(s);
+		return sum.value();
 	}
 
 	template <class Type, class Allocator>
