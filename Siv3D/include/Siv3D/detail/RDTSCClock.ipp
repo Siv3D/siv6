@@ -11,5 +11,7 @@
 
 # pragma once
 
+namespace s3d
+{
 
-# include "detail/RDTSCClock.ipp"
+}

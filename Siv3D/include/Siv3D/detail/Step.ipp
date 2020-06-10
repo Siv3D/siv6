@@ -372,7 +372,7 @@ namespace s3d
 			template <class Type = value_type>
 			Type sum() const
 			{
-				return reduce(Plus<Type>(), Type{});
+				return reduce(std::plus<Type>{}, Type{});
 			}
 
 			Array<value_type> take(size_t n) const
@@ -911,7 +911,7 @@ namespace s3d
 	{
 		using result_type = decltype(std::declval<T>() + std::declval<S>());
 
-		if constexpr (std::is_scalar_v<result_type> || IsBigInt_v<result_type>)
+		if constexpr (std::is_scalar_v<result_type>)
 		{
 			const auto n = count();
 			const auto a = startValue();
@@ -920,7 +920,7 @@ namespace s3d
 		}
 		else
 		{
-			return reduce(Plus<result_type>(), result_type{});
+			return reduce(std::plus<result_type>{}, result_type{});
 		}
 	}
 

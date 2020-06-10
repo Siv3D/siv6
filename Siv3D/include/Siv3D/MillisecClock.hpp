@@ -31,15 +31,14 @@ namespace s3d
 		/// @brief 経過時間（ミリ秒）を返します。
 		/// @return 経過時間（ミリ秒）
 		[[nodiscard]]
-		uint64 ms() const noexcept
-		{
-			return (Time::GetMillisec() - m_start);
-		}
+		uint64 ms() const noexcept;
 
 		/// @brief ログに経過時間を出力します。
-		void log() const { Logger(Milliseconds(ms())); }
+		void log() const;
 
 		/// @brief 経過時間をデバッグ表示します。
-		//void print() const { Print(Milliseconds(ms())); }
+		//void print() const;
 	};
 }
+
+# include "detail/MillisecClock.ipp"

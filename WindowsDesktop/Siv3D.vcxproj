@@ -60,6 +60,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\MatchResults.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\MathConstants.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Memory.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\MicrosecClock.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\MillisecClock.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Number.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Optional.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Optional_misc.ipp" />
@@ -67,6 +69,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Platform.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Point.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Random.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\RDTSCClock.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\RegExp.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ScopeGuard.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Statistics.ipp" />
@@ -133,6 +136,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\PRNG.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Profiler.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Random.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\RDTSCClock.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Rectangle.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\RegExp.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Scene.hpp" />
