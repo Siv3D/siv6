@@ -90,6 +90,9 @@ namespace s3d
 		/// @param other ムーブする配列
 		Array(Array&& other) = default;
 
+		template <class ArrayIsh, std::enable_if_t<Meta::HasAsArray<ArrayIsh>::value>* = nullptr>
+		explicit Array(ArrayIsh&& a);
+
 		/// @brief ジェネレータ関数を使った配列の作成
 		/// @tparam Fty ジェネレータ関数の型
 		/// @param size 作成する配列の要素数
@@ -583,6 +586,9 @@ namespace s3d
 	// deduction guide
 	template <class Type>
 	Array(std::initializer_list<Type>)->Array<Type>;
+
+	template <class ArrayIsh, std::enable_if_t<Meta::HasAsArray<ArrayIsh>::value>* = nullptr>
+	Array(const ArrayIsh& a)->Array<typename decltype(std::declval<ArrayIsh>().asArray())::value_type>;
 
 	template <class T0, class... Ts>
 	inline auto MakeArray(T0&& first, Ts&&... args);

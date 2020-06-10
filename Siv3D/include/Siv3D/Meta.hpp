@@ -327,5 +327,20 @@ namespace s3d
 		template <class Type, class Type2 = Type> constexpr bool HasRightShiftAssign_v = HasRightShiftAssign<Type, Type2>::value;
 		template <class Type, class Type2 = Type> constexpr bool HasLogicalAnd_v = HasLogicalAnd<Type, Type2>::value;
 		template <class Type, class Type2 = Type> constexpr bool HasLogicalOr_v = HasLogicalOr<Type, Type2>::value;
+
+		template <class ArrayIsh>
+		struct HasAsArray
+		{
+		private:
+			template <class U>
+			static auto test(int) -> decltype(std::declval<U>().asArray(), std::true_type());
+
+			template <class U>
+			static auto test(...) -> decltype(std::false_type());
+
+		public:
+			using type = decltype(test<ArrayIsh>(0));
+			static constexpr bool value = type::value;
+		};
 	}
 }

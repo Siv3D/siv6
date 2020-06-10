@@ -15,6 +15,13 @@
 namespace s3d
 {
 	template <class Type, class Allocator>
+	template <class ArrayIsh, std::enable_if_t<Meta::HasAsArray<ArrayIsh>::value>*>
+	inline Array<Type, Allocator>::Array(ArrayIsh&& a)
+	{
+		*this = std::forward<ArrayIsh>(a).asArray();
+	}
+
+	template <class Type, class Allocator>
 	template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>*>
 	inline Array<Type, Allocator>::Array(const size_type size, Arg::generator_<Fty> generator)
 		: Array(Generate<Fty>(size, *generator)) {}
