@@ -13,19 +13,22 @@
 
 namespace s3d
 {
-	uint64 MillisecClock::ms() const noexcept
+	inline uint64 MillisecClock::ms() const noexcept
 	{
 		return (Time::GetMillisec() - m_start);
 	}
 
-	/// @brief ログに経過時間を出力します。
-	void MillisecClock::log() const
+	inline void MillisecClock::log() const
 	{
 		Logger(Milliseconds(ms()));
 	}
 
-	/// @brief 経過時間をデバッグ表示します。
-	//void MillisecClock::print() const
+	inline void MillisecClock::console() const
+	{
+		Console(Milliseconds(ms()));
+	}
+
+	//inline void MillisecClock::print() const
 	//{
 	//	Print(Milliseconds(ms()));
 	//}

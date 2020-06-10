@@ -12,8 +12,9 @@
 # pragma once
 # include "Common.hpp"
 # include "Time.hpp"
-# include "Logger.hpp"
 # include "Duration.hpp"
+# include "Logger.hpp"
+# include "Console.hpp"
 //# include "Print.hpp"
 
 namespace s3d
@@ -35,6 +36,9 @@ namespace s3d
 
 		/// @brief ログに経過時間を出力します。
 		void log() const;
+
+		/// @brief コンソールに経過時間を出力します。
+		void console() const;
 
 		/// @brief 経過時間をデバッグ表示します。
 		//void print() const;
