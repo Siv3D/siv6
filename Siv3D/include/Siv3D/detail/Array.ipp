@@ -747,7 +747,7 @@ namespace s3d
 	}
 
 	template <class Type, class Allocator>
-	inline Array<Type, Allocator>& Array<Type, Allocator>::rotate(const std::ptrdiff_t count)
+	inline Array<Type, Allocator>& Array<Type, Allocator>::rotate(std::ptrdiff_t count)
 	{
 		if (empty())
 		{
@@ -1179,7 +1179,7 @@ namespace s3d
 
 	template <class Type, class Allocator>
 	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type&>>*>
-	inline Array<Type, Allocator>& Array<Type, Allocator>::parallel_each(Fty f, const size_t numThreads)
+	inline Array<Type, Allocator>& Array<Type, Allocator>::parallel_each(Fty f, size_t numThreads)
 	{
 		if (isEmpty())
 		{
