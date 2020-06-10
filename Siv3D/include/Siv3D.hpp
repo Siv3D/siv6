@@ -621,7 +621,7 @@
 
 // 数学関数
 // Math Functions
-//# include <Siv3D/Math.hpp>
+# include <Siv3D/Math.hpp> // [Siv3D ToDo]
 
 // 線形補間
 // Interpolation
@@ -674,6 +674,10 @@
 // 数式パーサ
 // Math Parser
 //# include <Siv3D/MathParser.hpp>
+
+// 統計
+// Statistics
+# include <Siv3D/Statistics.hpp>
 
 //////////////////////////////////////////////////
 //
