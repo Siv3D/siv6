@@ -101,7 +101,7 @@
 
 // 範囲
 // Range
-# include <Siv3D/Step.hpp> // [Siv3D ToDo]
+# include <Siv3D/Step.hpp>
 
 // 2D 範囲
 // 2D range

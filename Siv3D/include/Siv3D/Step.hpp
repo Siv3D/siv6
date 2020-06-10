@@ -152,17 +152,44 @@ namespace s3d
 		// parallel_map
 
 	# endif
+
+		/// @brief 
+		/// @tparam CharType 
+		/// @param output 
+		/// @param value 
+		/// @return 
+		template <class CharType>
+		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Step& value)
+		{
+			return output << value.join();
+		}
+
+		/// @brief 
+		/// @param formatData 
+		/// @param value 
+		friend void Formatter(FormatData& formatData, const Step& value)
+		{
+			formatData.string.append(value.join());
+		}
 	};
 
 	template <class T, class N, class S = int32, std::enable_if_t<std::is_integral_v<N>>* = nullptr>
 	[[nodiscard]]
 	inline constexpr auto step(T a, N n, S s = 1);
 
+# if __cpp_lib_concepts
+	template <Concept::Integral N>
+# else
 	template <class N, std::enable_if_t<std::is_integral_v<N>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr auto step(N n);
 
+# if __cpp_lib_concepts
+	template <Concept::Integral N>
+# else
 	template <class N, std::enable_if_t<std::is_integral_v<N>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr auto step_backward(N n);
 
@@ -179,7 +206,11 @@ namespace s3d
 	//               Iota [beg, end)
 	//
 
+# if __cpp_lib_concepts
+	template <Concept::Integral N>
+# else
 	template <class N, std::enable_if_t<std::is_integral_v<N>>* = nullptr>
+# endif
 	[[nodiscard]]
 	inline constexpr auto Iota(N end);
 
