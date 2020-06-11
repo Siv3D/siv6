@@ -19,47 +19,62 @@ namespace s3d
 	{
 		Point Pos()
 		{
-			return SIV3D_ENGINE(Cursor)->getState().current;
+			return SIV3D_ENGINE(Cursor)->getState().point.current;
 		}
 
 		Point PreviousPos()
 		{
-			return SIV3D_ENGINE(Cursor)->getState().previous;
+			return SIV3D_ENGINE(Cursor)->getState().point.previous;
 		}
 
 		Point Delta()
 		{
-			return SIV3D_ENGINE(Cursor)->getState().delta;
+			return SIV3D_ENGINE(Cursor)->getState().point.delta;
 		}
 
 		Vec2 PosF()
 		{
-			return SIV3D_ENGINE(Cursor)->getState().currentF;
+			return SIV3D_ENGINE(Cursor)->getState().vec2.current;
 		}
 
 		Vec2 PreviousPosF()
 		{
-			return SIV3D_ENGINE(Cursor)->getState().previousF;
+			return SIV3D_ENGINE(Cursor)->getState().vec2.previous;
 		}
 
 		Vec2 DeltaF()
 		{
-			return SIV3D_ENGINE(Cursor)->getState().deltaF;
+			return SIV3D_ENGINE(Cursor)->getState().vec2.delta;
 		}
 
 		Point PosRaw()
 		{
-			return SIV3D_ENGINE(Cursor)->getState().currentRaw;
+			return SIV3D_ENGINE(Cursor)->getState().raw.current;
 		}
 
 		Point PreviousPosRaw()
 		{
-			return SIV3D_ENGINE(Cursor)->getState().previousRaw;
+			return SIV3D_ENGINE(Cursor)->getState().raw.previous;
 		}
 
 		Point DeltaRaw()
 		{
-			return SIV3D_ENGINE(Cursor)->getState().deltaRaw;
+			return SIV3D_ENGINE(Cursor)->getState().raw.delta;
+		}
+
+		Point ScreenPos()
+		{
+			return SIV3D_ENGINE(Cursor)->getState().screen.current;
+		}
+
+		Point ScreenPreviousPos()
+		{
+			return SIV3D_ENGINE(Cursor)->getState().screen.previous;
+		}
+
+		Point ScreenDelta()
+		{
+			return SIV3D_ENGINE(Cursor)->getState().screen.delta;
 		}
 	}
 }

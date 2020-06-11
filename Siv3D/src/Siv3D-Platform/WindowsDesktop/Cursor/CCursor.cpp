@@ -98,8 +98,14 @@ namespace s3d
 
 			lastClientPos = m_clientPosBuffer.back().second;
 		}
-		const double scaling = SIV3D_ENGINE(Window)->getState().scaling;
-		m_state.update(lastClientPos, lastClientPos / scaling);
+
+		{
+			POINT screenPos;
+			::GetCursorPos(&screenPos);
+
+			const double scaling = SIV3D_ENGINE(Window)->getState().scaling;
+			m_state.update(lastClientPos, lastClientPos / scaling, Point(screenPos.x, screenPos.y));
+		}
 
 		return true;
 	}

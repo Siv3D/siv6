@@ -17,37 +17,38 @@ namespace s3d
 {
 	struct CursorState
 	{
-		Point previousRaw = { 0,0 };
-		Point currentRaw = { 0,0 };
-		Point deltaRaw = { 0,0 };
-
-		Vec2 previousF = { 0,0 };
-		Vec2 currentF = { 0,0 };
-		Vec2 deltaF = { 0,0 };
-
-		Point previous = { 0,0 };
-		Point current = { 0,0 };
-		Point delta = { 0,0 };
-
-		constexpr void update(const Point& raw, const Vec2& scaled) noexcept
+		template <class VectrorType>
+		struct Internal
 		{
-			{
-				previousRaw	= currentRaw;
-				currentRaw	= raw;
-				deltaRaw	= (currentRaw - previousRaw);
-			}
+			VectrorType previous = { 0,0 };
+			VectrorType current = { 0,0 };
+			VectrorType delta = { 0,0 };
 
+			constexpr void update(const VectrorType& newPos) noexcept
 			{
-				previousF	= currentF;
-				currentF	= scaled;
-				deltaF		= (currentF - previousF);
+				previous	= current;
+				current		= newPos;
+				delta		= (current - previous);
 			}
+		};
 
-			{
-				previous	= previousF.asPoint();
-				current		= currentF.asPoint();
-				delta		= deltaF.asPoint();
-			}
+		Internal<Point> raw;
+		
+		Internal<Vec2>	vec2;
+		
+		Internal<Point> point;
+
+		Internal<Point> screen;
+
+		constexpr void update(const Point& _raw, const Vec2& _vec2, const Point& _screen) noexcept
+		{
+			raw.update(_raw);
+			
+			vec2.update(_vec2);
+			
+			point.update(_vec2.asPoint());
+
+			screen.update(_screen);
 		}
 	};
 }
