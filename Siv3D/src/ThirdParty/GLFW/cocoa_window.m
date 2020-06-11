@@ -26,6 +26,17 @@
 // It is fine to use C99 in this file because it will not be built with VS
 //========================================================================
 
+//-----------------------------------------------
+//
+//	[Siv3D]
+//
+//	Copyright (c) 2008-2020 Ryo Suzuki
+//	Copyright (c) 2016-2020 OpenSiv3D Project
+//
+//	Licensed under the MIT License.
+//
+//-----------------------------------------------
+
 #include "internal.h"
 
 #include <float.h>
@@ -1457,6 +1468,11 @@ void _glfwPlatformPostEmptyEvent(void)
     } // autoreleasepool
 }
 
+//-----------------------------------------------
+//
+//	[Siv3D]
+//
+/*
 void _glfwPlatformGetCursorPos(_GLFWwindow* window, double* xpos, double* ypos)
 {
     @autoreleasepool {
@@ -1472,6 +1488,27 @@ void _glfwPlatformGetCursorPos(_GLFWwindow* window, double* xpos, double* ypos)
 
     } // autoreleasepool
 }
+*/
+void _glfwPlatformGetCursorPos(_GLFWwindow* window, double* xpos, double* ypos)
+{
+    @autoreleasepool {
+
+    const NSRect contentRect = [window->ns.view frame];
+	const NSRect contebtRectRetina = [window->ns.view convertRectToBacking:contentRect];
+		
+    // NOTE: The returned location uses base 0,1 not 0,0
+    const NSPoint pos = [window->ns.object mouseLocationOutsideOfEventStream];
+	const NSPoint posRetina = [window->ns.object convertPointToBacking:pos];
+
+    if (xpos)
+        *xpos = posRetina.x;
+    if (ypos)
+        *ypos = contebtRectRetina.size.height - posRetina.y;
+
+    } // autoreleasepool
+}
+//
+//-----------------------------------------------
 
 void _glfwPlatformSetCursorPos(_GLFWwindow* window, double x, double y)
 {

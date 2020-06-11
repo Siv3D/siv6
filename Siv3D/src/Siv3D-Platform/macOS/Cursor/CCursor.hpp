@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -12,16 +12,22 @@
 # pragma once
 # include <Siv3D/Array.hpp>
 # include <Siv3D/Cursor/ICursor.hpp>
+# include <GL/glew.h>
+# include <GLFW/glfw3.h>
 
 namespace s3d
 {
 	class CCursor final : public ISiv3DCursor
 	{
 	private:
-
+		
+		GLFWwindow* m_window = nullptr;
+		
 		CursorState m_state;
 
 	public:
+		
+		void* m_event = nullptr;
 
 		CCursor();
 
