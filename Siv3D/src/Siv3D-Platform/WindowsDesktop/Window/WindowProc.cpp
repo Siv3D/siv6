@@ -15,6 +15,7 @@
 # include <Siv3D/UserAction.hpp>
 # include <Siv3D/UserAction/IUSerAction.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Cursor/CCursor.hpp>
 # include "WindowProc.hpp"
 # include "CWindow.hpp"
 
@@ -171,6 +172,16 @@ namespace s3d
 				LOG_TRACE(U"WM_EXITSIZEMOVE");
 				dynamic_cast<CWindow*>(SIV3D_ENGINE(Window))->onExitSizeMove();
 
+				break;
+			}
+		case WM_INPUT:
+		case WM_MOUSEMOVE:
+			{
+				if (auto p = dynamic_cast<CCursor*>(SIV3D_ENGINE(Cursor)))
+				{
+					p->handleMessage(message, wParam, lParam);
+				}
+				
 				break;
 			}
 		}

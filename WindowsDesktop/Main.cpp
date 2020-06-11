@@ -10,6 +10,10 @@ void Main()
 {
 	while (System::Update())
 	{
+		Window::SetTitle(Cursor::Pos());
 
+		//Logger << Cursor::Pos();
+		//System::Sleep(16);
+		//if (Scene::FrameCount() > 240)break;
 	}
 }

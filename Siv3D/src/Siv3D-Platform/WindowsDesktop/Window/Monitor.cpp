@@ -20,6 +20,11 @@
 
 namespace s3d::detail
 {
+	static Rect ToRect(RECT rect)
+	{
+		return{ rect.left, rect.top, (rect.right - rect.left), (rect.bottom - rect.top) };
+	}
+
 	BOOL CALLBACK MonitorCallback(HMONITOR handle, HDC, RECT*, LPARAM data)
 	{
 		LOG_SCOPED_TRACE(U"MonitorCallback()");
@@ -33,8 +38,8 @@ namespace s3d::detail
 
 			if (Unicode::FromWstring(monitorInfo.szDevice) == monitor->adapterName)
 			{
-				monitor->displayRect	= monitorInfo.rcMonitor;
-				monitor->workArea		= monitorInfo.rcWork;
+				monitor->displayRect	= detail::ToRect(monitorInfo.rcMonitor);
+				monitor->workArea		= detail::ToRect(monitorInfo.rcWork);
 				monitor->handle			= handle;
 
 				uint32 dpiX = 0, dpiY = 0;
@@ -138,12 +143,8 @@ namespace s3d::detail
 			LOG_TRACE(U"- displayName: {}"_fmt(monitor.displayName));
 			LOG_TRACE(U"- displayString: {}"_fmt(monitor.displayString));
 			LOG_TRACE(U"- size: {}mm x {}mm"_fmt(monitor.widthMillimeter, monitor.heightMillimeter));
-			LOG_TRACE(U"- disprayRect: ({}, {} - {}, {})"_fmt(
-				monitor.displayRect.left, monitor.displayRect.top,
-				monitor.displayRect.right, monitor.displayRect.bottom));
-			LOG_TRACE(U"- workArea: ({}, {} - {}, {})"_fmt(
-				monitor.workArea.left, monitor.workArea.top,
-				monitor.workArea.right, monitor.workArea.bottom));
+			LOG_TRACE(U"- disprayRect: {}"_fmt(monitor.displayRect));
+			LOG_TRACE(U"- workArea: {}"_fmt(monitor.workArea));
 			LOG_TRACE(U"- displayDPI: {}"_fmt(monitor.displayDPI));
 			LOG_TRACE(U"- handle: {}"_fmt((void*)monitor.handle));
 		}

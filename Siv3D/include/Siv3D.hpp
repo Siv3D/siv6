@@ -838,6 +838,7 @@
 
 # include <Siv3D/Console.hpp>
 
+# include <Siv3D/Cursor.hpp>
 
 
 

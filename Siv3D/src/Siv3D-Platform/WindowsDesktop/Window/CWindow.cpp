@@ -135,9 +135,9 @@ namespace s3d
 			m_state.scaling = detail::GetScaling(m_dpi);
 
 			m_state.frameBufferSize = (m_state.virtualSize * scale).asPoint();
-			const int32 offsetX = Max<int32>(((monitor.workArea.right - monitor.workArea.left) - m_state.frameBufferSize.x) / 2, 0);
-			const int32 offsetY = Max<int32>(((monitor.workArea.bottom - monitor.workArea.top) - m_state.frameBufferSize.y) / 2, 0);
-			const Point pos(monitor.displayRect.left + offsetX, monitor.displayRect.top + offsetY);
+			const int32 offsetX = Max<int32>((monitor.workArea.w - m_state.frameBufferSize.x) / 2, 0);
+			const int32 offsetY = Max<int32>((monitor.workArea.h - m_state.frameBufferSize.y) / 2, 0);
+			const Point pos = monitor.displayRect.pos + Point(offsetX, offsetY);
 			const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
 			const Rect windowRect = adjustWindowRect(pos, m_state.frameBufferSize, windowStyleFlags);
 

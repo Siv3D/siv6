@@ -13,6 +13,7 @@
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/String.hpp>
 # include <Siv3D/Array.hpp>
+# include <Siv3D/Rectangle.hpp>
 
 namespace s3d
 {
@@ -25,8 +26,8 @@ namespace s3d
 		int32 widthMillimeter = 0;
 		int32 heightMillimeter = 0;
 		HMONITOR handle = nullptr;
-		RECT displayRect = {};
-		RECT workArea = {};
+		Rect displayRect = Rect(0);
+		Rect workArea = Rect(0);
 		uint32 displayDPI = 96;
 		bool isPrimaryAdapter = false;
 		

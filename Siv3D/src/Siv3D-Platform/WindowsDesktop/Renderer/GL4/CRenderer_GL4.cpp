@@ -19,6 +19,8 @@
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
+# include <Siv3D/Cursor.hpp>
+
 namespace s3d
 {
 	CRenderer_GL4::CRenderer_GL4()
@@ -62,6 +64,7 @@ namespace s3d
 			.iLayerType		= PFD_MAIN_PLANE,
 		};
 
+		LOG_TRACE(U"GetDC()");
 		m_hDC = ::GetDC(m_hWnd);
 
 		if (!m_hDC)
@@ -69,6 +72,7 @@ namespace s3d
 			throw EngineError(U"GetDC() failed");
 		}
 
+		LOG_TRACE(U"ChoosePixelFormat()");
 		const int32 pixelFormat = ::ChoosePixelFormat(m_hDC, &pixelFormatDesc);
 
 		if (pixelFormat == 0)
@@ -76,19 +80,23 @@ namespace s3d
 			throw EngineError(U"ChoosePixelFormat() failed");
 		}
 
+		LOG_TRACE(U"SetPixelFormat()");
 		if (!::SetPixelFormat(m_hDC, pixelFormat, &pixelFormatDesc))
 		{
 			throw EngineError(U"SetPixelFormat() failed");
 		}
 
+		LOG_TRACE(U"wglCreateContext()");
 		m_glContext = ::wglCreateContext(m_hDC);
 
 		{
+			LOG_TRACE(U"wglMakeCurrent()");
 			if (!::wglMakeCurrent(m_hDC, m_glContext))
 			{
 				throw EngineError(U"wglMakeCurrent() failed");
 			}
 
+			LOG_TRACE(U"glewInit()");
 			if (GLenum err = ::glewInit();
 				err != GLEW_OK)
 			{
@@ -144,7 +152,11 @@ namespace s3d
 		static int32 i = 0; ++i;
 
 		::glColor3f(1.0f, 0.5f, 0.0f);
-		::glRectf(-0.5f + std::sin(i * 0.05f) * 0.5f, -0.5f, 0.5f, 0.5f);
+
+		const float x = -1.0f + (Cursor::PosRaw().x / 1200.0f * 2.0f);
+		const float y = 1.0f - (Cursor::PosRaw().y / 900.0f * 2.0f);
+
+		::glRectf(x, y, x + 0.5f, y - 0.5f);
 
 		::glFlush();
 	}

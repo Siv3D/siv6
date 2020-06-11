@@ -280,6 +280,12 @@
     <Filter Include="src\ThirdParty\levenshtein-sse">
       <UniqueIdentifier>{a3fac140-3ed0-49e1-966d-d6611a850765}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Cursor">
+      <UniqueIdentifier>{e72a1b28-c363-4fce-91c4-41388abe3045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Cursor">
+      <UniqueIdentifier>{929a1210-d1d3-40f1-828a-f83bdab9f4c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1011,6 +1017,21 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Indexed.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Cursor\ICursor.hpp">
+      <Filter>src\Siv3D\Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Cursor\CCursor.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Cursor.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Cursor\CursorState.hpp">
+      <Filter>src\Siv3D\Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Cursor\CCursor_Null.hpp">
+      <Filter>src\Siv3D\Cursor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -1519,6 +1540,18 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\RegExp\RegExpDetail.cpp">
       <Filter>src\Siv3D\RegExp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Cursor\CursorFactory.cpp">
+      <Filter>src\Siv3D\Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Cursor\CCursor.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Cursor\SivCursor.cpp">
+      <Filter>src\Siv3D\Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Cursor\CCursor_Null.cpp">
+      <Filter>src\Siv3D\Cursor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
