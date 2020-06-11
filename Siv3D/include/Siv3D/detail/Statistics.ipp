@@ -459,7 +459,7 @@ namespace s3d
 			while (first != last)
 			{
 				const double value = static_cast<double>(*first);
-				const double t = (*first - mean);
+				const double t = (value - mean);
 				sum += (t * t * t);
 
 				++first;

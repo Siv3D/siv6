@@ -40,7 +40,7 @@ namespace s3d
 		/// @brief lookahead をサポートしているかを返します。
 		/// @return true
 		[[nodiscard]]
-		bool supportsLookahead() const noexcept;
+		bool supportsLookahead() const noexcept override;
 
 		/// @brief ファイルを開きます。
 		/// @param path ファイルパス
