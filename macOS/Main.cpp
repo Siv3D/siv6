@@ -13,8 +13,8 @@ void Main()
 		const auto state = Window::GetState();
 		const double uiScaling = double(state.frameBufferSize.x) / state.virtualSize.x;
 		
-		Window::SetTitle(U"Raw:{} PosF:{:.1f} Pos:{} WS:{} UIS:{}"_fmt(
-			Cursor::PosRaw(), Cursor::PosF(), Cursor::Pos(),
+		Window::SetTitle(U"S:{} R:{} PF:{:.1f} P:{} WS:{} UIS:{}"_fmt(
+			Cursor::ScreenPos(), Cursor::PosRaw(), Cursor::PosF(), Cursor::Pos(),
 			Window::GetState().scaling, uiScaling));
 	}
 }

@@ -25,8 +25,11 @@ namespace s3d
 		Point CursorScreenPos_macOS()
 		{
 			const int32 screenHeight = [[NSScreen mainScreen] frame].size.height;
+			const float scaleFactor = [[NSScreen mainScreen] backingScaleFactor];
+			const float scaledHeight = (screenHeight * scaleFactor);
 			const NSPoint screenPos = [NSEvent mouseLocation];
-			return Point(static_cast<int32>(screenPos.x), static_cast<int32>(screenHeight - screenPos.y));
+			
+			return Vec2(screenPos.x * scaleFactor, scaledHeight - (screenPos.y * scaleFactor)).asPoint();
 		}
 	}
 
@@ -58,7 +61,9 @@ namespace s3d
 		const Vec2 virtualSize = SIV3D_ENGINE(Window)->getState().virtualSize;
 		const double uiScaling = frameBufferSize.x / virtualSize.x;
 		
-		m_state.update(clientPos.asPoint(), clientPos / uiScaling);
+		const Point screenPos = detail::CursorScreenPos_macOS();
+		
+		m_state.update(clientPos.asPoint(), clientPos / uiScaling, screenPos);
 		
 		
 		return true;
