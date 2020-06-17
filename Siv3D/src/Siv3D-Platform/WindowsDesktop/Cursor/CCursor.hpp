@@ -13,6 +13,7 @@
 # include <memory>
 # include <mutex>
 # include <Siv3D/Array.hpp>
+# include <Siv3D/HashTable.hpp>
 # include <Siv3D/Cursor/ICursor.hpp>
 # include <Siv3D/Windows/Windows.hpp>
 
@@ -29,6 +30,9 @@ namespace s3d
 
 		CursorState m_state;
 
+		HICON m_currentCursor = ::LoadCursorW(nullptr, IDC_ARROW);
+		HashTable<String, HICON> m_customIcons;
+
 	public:
 
 		CCursor();
@@ -40,8 +44,14 @@ namespace s3d
 		bool update() override;
 		
 		const CursorState& getState() const noexcept override;
+	
+		bool registerCursor(StringView name, const Image& image, const Point& hotSpot) override;
+
+		void requestStyle(StringView name) override;
 
 		void handleMessage(UINT message, WPARAM wParam, LPARAM lParam);
+
+		void onSetCursor();
 	};
 }
 

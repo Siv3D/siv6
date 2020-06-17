@@ -32,5 +32,9 @@ namespace s3d
 		bool update() override;
 		
 		const CursorState& getState() const noexcept override;
+
+		bool registerCursor(StringView name, const Image& image, const Point& hotSpot) override;
+
+		void requestStyle(StringView name) override;
 	};
 }

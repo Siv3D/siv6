@@ -76,5 +76,15 @@ namespace s3d
 		{
 			return SIV3D_ENGINE(Cursor)->getState().screen.delta;
 		}
+
+		bool Register(const StringView name, const Image& image, const Point& hotSpot)
+		{
+			return SIV3D_ENGINE(Cursor)->registerCursor(name, image, hotSpot);
+		}
+
+		void RequestStyle(const StringView name)
+		{
+			SIV3D_ENGINE(Cursor)->requestStyle(name);
+		}
 	}
 }

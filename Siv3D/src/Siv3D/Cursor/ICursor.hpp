@@ -16,6 +16,8 @@
 
 namespace s3d
 {
+	class Image;
+
 	class SIV3D_NOVTABLE ISiv3DCursor
 	{
 	public:
@@ -29,5 +31,9 @@ namespace s3d
 		virtual bool update() = 0;
 
 		virtual const CursorState& getState() const noexcept = 0;
+
+		virtual bool registerCursor(StringView name, const Image& image, const Point& hotSpot) = 0;
+
+		virtual void requestStyle(StringView name) = 0;
 	};
 }

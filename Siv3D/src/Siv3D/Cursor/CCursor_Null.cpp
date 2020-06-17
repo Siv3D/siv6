@@ -39,4 +39,14 @@ namespace s3d
 	{
 		return m_state;
 	}
+
+	bool CCursor_Null::registerCursor(StringView, const Image&, const Point&)
+	{
+		return true;
+	}
+
+	void CCursor_Null::requestStyle(StringView)
+	{
+
+	}
 }

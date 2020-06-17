@@ -184,6 +184,15 @@ namespace s3d
 				
 				break;
 			}
+		case WM_SETCURSOR:
+			{
+				if (auto p = dynamic_cast<CCursor*>(SIV3D_ENGINE(Cursor)))
+				{
+					p->onSetCursor();
+				}
+
+				return 1;
+			}
 		}
 
 		return ::DefWindowProcW(hWnd, message, wParam, lParam);

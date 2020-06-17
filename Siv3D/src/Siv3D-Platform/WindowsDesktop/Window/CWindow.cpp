@@ -39,7 +39,7 @@ namespace s3d
 				.lpfnWndProc	= WindowProc,
 				.hInstance		= hInstance,
 				.hIcon			= ::LoadIconW(hInstance, MAKEINTRESOURCEW(100)),
-				.hCursor		= ::LoadCursorW(nullptr, IDC_ARROW),
+				.hCursor		= nullptr,
 				.hbrBackground	= static_cast<HBRUSH>(::GetStockObject(DKGRAY_BRUSH)),
 				.lpszClassName	= className
 			};

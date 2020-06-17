@@ -15,6 +15,8 @@
 
 namespace s3d
 {
+	class Image;
+
 	namespace Cursor
 	{
 		/// @brief 現在のフレームにおける、マウスカーソルのクライアント座標（ピクセル）を返します。
@@ -83,5 +85,12 @@ namespace s3d
 		/// @return 直前のフレームから現在のフレームまでのスクリーン上でのマウスカーソルの移動量 (ピクセル)
 		[[nodiscard]]
 		Point ScreenDelta();
+
+
+
+
+		bool Register(StringView name, const Image& image, const Point& hotSpot = Point(0, 0));
+
+		void RequestStyle(StringView name);
 	}
 }

@@ -15,6 +15,9 @@
 # include "NamedParameter.hpp"
 # include "PredefinedNamedParameter.hpp"
 # include "ImageFormat.hpp"
+# include "PointVector.hpp"
+# include "Color.hpp"
+# include "IReader.hpp"
 
 namespace s3d
 {
