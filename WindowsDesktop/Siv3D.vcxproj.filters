@@ -289,6 +289,9 @@
     <Filter Include="include\ThirdParty\SMFT">
       <UniqueIdentifier>{db0f724d-4516-4ae0-9177-e3738c3328b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Color">
+      <UniqueIdentifier>{903fc562-ce82-4944-872c-c63712f13d16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1074,6 +1077,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Utility.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -1594,6 +1600,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Cursor\CCursor_Null.cpp">
       <Filter>src\Siv3D\Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Color\SivColor.cpp">
+      <Filter>src\Siv3D\Color</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

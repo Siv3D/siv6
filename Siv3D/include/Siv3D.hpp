@@ -828,6 +828,8 @@
 
 # include <Siv3D/ApplicationOptions.hpp>
 
+
+# include <Siv3D/ImageFormat.hpp>
 # include <Siv3D/Image.hpp>
 
 # include <Siv3D/Scene.hpp>

@@ -18,10 +18,33 @@ namespace s3d
 {
 	namespace detail
 	{
-		void AppendInt(char32** const p, const long value)
+		void AppendUint32(char32** const p, const uint32 value)
+		{
+			uint32 val = value;
+
+			char32 buffer[12];
+			char32* pos = &buffer[11];
+			*pos = U'\0';
+
+			do
+			{
+				*(--pos) = U'0' + static_cast<char32>(val % 10);
+
+				val = val / 10;
+
+			} while (val != 0);
+
+			const size_t length = &buffer[11] - pos;
+
+			std::memcpy(*p, pos, length * sizeof(char32));
+
+			*p += length;
+		}
+
+		void AppendInt32(char32** const p, const int32 value)
 		{
 			bool negative;
-			unsigned long val;
+			uint32 val;
 
 			if (value < 0)
 			{

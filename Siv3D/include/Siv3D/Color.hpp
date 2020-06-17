@@ -14,6 +14,8 @@
 #	include <bit>
 # endif
 # include "Common.hpp"
+# include "FormatData.hpp"
+# include "FormatLiteral.hpp"
 
 namespace s3d
 {
@@ -143,5 +145,72 @@ namespace s3d
 
 		[[nodiscard]]
 		static constexpr uint8 ToUint8(double x) noexcept;
+
+		template <class CharType>
+		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Color& value)
+		{
+			return output << CharType('(')
+				<< value.r << CharType(',') << CharType(' ')
+				<< value.g << CharType(',') << CharType(' ')
+				<< value.b << CharType(',') << CharType(' ')
+				<< value.a << CharType(')');
+		}
+
+		template <class CharType>
+		friend std::basic_istream<CharType>& operator >>(std::basic_istream<CharType>& input, Color& value)
+		{
+			CharType unused;
+			return input >> unused
+				>> value.r >> unused
+				>> value.g >> unused
+				>> value.b >> unused
+				>> value.a >> unused;
+		}
+
+		static void _Formatter(FormatData& formatData, const Color& value);
+
+		friend void Formatter(FormatData& formatData, const Color& value)
+		{
+			_Formatter(formatData, value);
+		}
+	};
+}
+
+template <>
+struct SIV3D_HIDDEN fmt::formatter<s3d::Color, s3d::char32>
+{
+	std::u32string tag;
+
+	auto parse(basic_format_parse_context<s3d::char32>& ctx)
+	{
+		return s3d::detail::GetFormatTag(tag, ctx);
+	}
+
+	template <class FormatContext>
+	auto format(const s3d::Color& value, FormatContext& ctx)
+	{
+		if (tag.empty())
+		{
+			return format_to(ctx.out(), U"({}, {}, {}, {})", value.r, value.g, value.b, value.a);
+		}
+		else
+		{
+			const std::u32string format
+				= (U"({:" + tag + U"}, {:" + tag + U"}, {:" + tag + U"}, {:" + tag + U"})");
+			return format_to(ctx.out(), format, value.r, value.g, value.b, value.a);
+		}
+	}
+};
+
+namespace std
+{
+	template <>
+	struct hash<s3d::Color>
+	{
+		[[nodiscard]]
+		size_t operator()(const s3d::Color& value) const noexcept
+		{
+			return s3d::Hash::FNV1a(value);
+		}
 	};
 }

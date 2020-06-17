@@ -15,7 +15,13 @@ namespace s3d
 {
 	namespace detail
 	{
-		void AppendInt(char32** p, const long value);
+		inline constexpr size_t Uint32Width = (std::numeric_limits<uint32>::digits10 + 1);
+
+		inline constexpr size_t Int32Width = (std::numeric_limits<int32>::digits10 + 2);
+
+		void AppendUint32(char32** p, uint32 value);
+
+		void AppendInt32(char32** p, int32 value);
 	}
 
 # ifdef __cpp_lib_concepts
