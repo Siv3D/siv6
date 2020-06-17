@@ -12,7 +12,12 @@
 # include <Siv3D/String.hpp>
 # include <Siv3D/Char.hpp>
 # include <Siv3D/Array.hpp>
+
+SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4100)
+SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4267)
 # include <ThirdParty/levenshtein-sse/levenshtein-sse.hpp>
+SIV3D_DISABLE_MSVC_WARNINGS_POP()
+SIV3D_DISABLE_MSVC_WARNINGS_POP()
 
 namespace s3d
 {

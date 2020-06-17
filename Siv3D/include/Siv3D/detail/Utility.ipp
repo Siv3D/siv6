@@ -11,7 +11,7 @@
 
 # pragma once
 
-namespace s3d::detail
+namespace s3d
 {
 	//////////////////////////////////////////////////
 	//
@@ -20,44 +20,47 @@ namespace s3d::detail
 	//////////////////////////////////////////////////
 
 	template <class Type>
-	struct Max1_impl
+	inline constexpr auto Max(const Type& a, PlaceHolder_t) noexcept
 	{
-		const Type& a;
+		return detail::Max1_impl<Type>(a);
+	}
 
-		constexpr Max1_impl(const Type& _a) noexcept
-			: a(_a) {}
-
-		[[nodiscard]]
-		constexpr const Type& operator()(const Type& b) const noexcept(noexcept(a < b))
-		{
-			return (a < b) ? b : a;
-		}
-	};
-
-	struct Max2_impl
+	template <class Type>
+	inline constexpr auto Max(PlaceHolder_t, const Type& b) noexcept
 	{
-	# if __cpp_lib_concepts
-		template <Concept::Scalar Type>
-	# else
-		template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
-	# endif
-		[[nodiscard]]
-		constexpr Type operator()(Type a, Type b) const noexcept
-		{
-			return (a < b) ? b : a;
-		}
+		return detail::Max1_impl<Type>(b);
+	}
 
-	# if __cpp_lib_concepts
-		template <class Type>
-	# else
-		template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
-	# endif
-		[[nodiscard]]
-		constexpr const Type& operator()(const Type& a, const Type& b) const noexcept(noexcept(a < b))
-		{
-			return (a < b) ? b : a;
-		}
-	};
+	inline constexpr auto Max(PlaceHolder_t, PlaceHolder_t) noexcept
+	{
+		return detail::Max2_impl{};
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
+	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr Type Max(const Type a, const Type b) noexcept
+	{
+		return (a < b) ? b : a;
+	}
+
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr const Type& Max(const Type& a, const Type& b) noexcept(noexcept(a < b))
+	{
+		return (a < b) ? b : a;
+	}
+	
+	template <class Type>
+	inline constexpr Type Max(std::initializer_list<Type> ilist)
+	{
+		return *std::max_element(ilist.begin(), ilist.end());
+	}
 
 	//////////////////////////////////////////////////
 	//
@@ -66,44 +69,47 @@ namespace s3d::detail
 	//////////////////////////////////////////////////
 
 	template <class Type>
-	struct Min1_impl
+	inline constexpr auto Min(const Type& a, PlaceHolder_t) noexcept
 	{
-		const Type& a;
+		return detail::Min1_impl<Type>(a);
+	}
 
-		constexpr Min1_impl(const Type& _a) noexcept
-			: a(_a) {}
-
-		[[nodiscard]]
-		constexpr const Type& operator()(const Type& b) const noexcept(noexcept(b < a))
-		{
-			return (b < a) ? b : a;
-		}
-	};
-
-	struct Min2_impl
+	template <class Type>
+	inline constexpr auto Min(PlaceHolder_t, const Type& b) noexcept
 	{
-	# if __cpp_lib_concepts
-		template <Concept::Scalar Type>
-	# else
-		template <class Type, std::enable_if_t<std::is_scalar_v<Type>>* = nullptr>
-	# endif
-		[[nodiscard]]
-		constexpr Type operator()(Type a, Type b) const noexcept
-		{
-			return (b < a) ? b : a;
-		}
+		return detail::Min1_impl<Type>(b);
+	}
 
-	# if __cpp_lib_concepts
-		template <class Type>
-	# else
-		template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>* = nullptr>
-	# endif
-		[[nodiscard]]
-		constexpr const Type& operator()(const Type& a, const Type& b) const noexcept(noexcept(b < a))
-		{
-			return (b < a) ? b : a;
-		}
-	};
+	inline constexpr auto Min(PlaceHolder_t, PlaceHolder_t) noexcept
+	{
+		return detail::Min2_impl{};
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
+	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr Type Min(const Type a, const Type b) noexcept
+	{
+		return (b < a) ? b : a;
+	}
+
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr const Type& Min(const Type& a, const Type& b) noexcept(noexcept(b < a))
+	{
+		return (b < a) ? b : a;
+	}
+
+	template <class Type>
+	inline constexpr Type Min(std::initializer_list<Type> ilist)
+	{
+		return *std::min_element(ilist.begin(), ilist.end());
+	}
 
 	//////////////////////////////////////////////////
 	//
@@ -112,36 +118,50 @@ namespace s3d::detail
 	//////////////////////////////////////////////////
 
 	template <class Type>
-	class Clamp_impl
+	constexpr auto Clamp(PlaceHolder_t, const Type& min, const Type& max) noexcept
 	{
-	private:
+		return detail::Clamp_impl<Type>(min, max);
+	}
 
-		const Type& min;
-
-		const Type& max;
-
-	public:
-
-		constexpr Clamp_impl(const Type& _min, const Type& _max) noexcept
-			: min(_min)
-			, max(_max) {}
-
-		[[nodiscard]]
-		constexpr const Type& operator()(const Type& v) const noexcept(noexcept(max < v) && noexcept(v < min))
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
+	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr Type Clamp(const Type v, const Type min, const Type max) noexcept
+	{
+		if (max < v)
 		{
-			if (max < v)
-			{
-				return max;
-			}
-
-			if (v < min)
-			{
-				return min;
-			}
-
-			return v;
+			return max;
 		}
-	};
+
+		if (v < min)
+		{
+			return min;
+		}
+
+		return v;
+	}
+
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr const Type& Clamp(const Type& v, const Type& min, const Type& max) noexcept(noexcept(max < v) && noexcept(v < min))
+	{
+		if (max < v)
+		{
+			return max;
+		}
+
+		if (v < min)
+		{
+			return min;
+		}
+
+		return v;
+	}
 
 	//////////////////////////////////////////////////
 	//
@@ -150,26 +170,30 @@ namespace s3d::detail
 	//////////////////////////////////////////////////
 
 	template <class Type>
-	class InRange_impl
+	inline constexpr auto InRange(PlaceHolder_t, const Type& min, const Type& max) noexcept
 	{
-	private:
+		return detail::InRange_impl<Type>(min, max);
+	}
 
-		const Type& min;
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
+	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr bool InRange(const Type v, const Type min, const Type max) noexcept
+	{
+		return (min <= v) && (v <= max);
+	}
 
-		const Type& max;
-
-	public:
-
-		constexpr InRange_impl(const Type& _min, const Type& _max) noexcept
-			: min(_min)
-			, max(_max) {}
-
-		[[nodiscard]]
-		constexpr bool operator()(const Type& v) const noexcept(noexcept(min <= v))
-		{
-			return (min <= v) && (v <= max);
-		}
-	};
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr bool InRange(const Type& v, const Type& min, const Type& max) noexcept(noexcept(v < min))
+	{
+		return (min <= v) && (v <= max);
+	}
 
 	//////////////////////////////////////////////////
 	//
@@ -178,59 +202,30 @@ namespace s3d::detail
 	//////////////////////////////////////////////////
 
 	template <class Type>
-	class InOpenRange_impl
+	inline constexpr auto InOpenRange(PlaceHolder_t, const Type& min, const Type& max) noexcept
 	{
-	private:
+		return detail::InOpenRange_impl<Type>(min, max);
+	}
 
-		const Type& min;
-
-		const Type& max;
-
-	public:
-
-		constexpr InOpenRange_impl(const Type& _min, const Type& _max) noexcept
-			: min(_min)
-			, max(_max) {}
-
-		[[nodiscard]]
-		constexpr bool operator()(const Type& v) const noexcept(noexcept(min < v))
-		{
-			return (min < v) && (v < max);
-		}
-	};
-
-	//////////////////////////////////////////////////
-	//
-	//	Abs
-	//
-	//////////////////////////////////////////////////
-
-	struct Abs_impl
+# if __cpp_lib_concepts
+	template <Concept::Scalar Type>
+# else
+	template <class Type, std::enable_if_t<std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr bool InOpenRange(const Type v, const Type min, const Type max) noexcept
 	{
-	# if __cpp_lib_concepts
-		template <Concept::Signed Signed>
-	# else
-		template <class Signed, std::enable_if_t<std::is_signed_v<Signed>>* = nullptr>
-	# endif
-		[[nodiscard]]
-		constexpr auto operator ()(Signed x) const noexcept
-		{
-			if (x < 0)
-			{
-				return -x;
-			}
-			else
-			{
-				return x;
-			}
-		}
+		return (min < v) && (v < max);
+	}
 
-		[[nodiscard]]
-		constexpr auto operator ()(PlaceHolder_t) const noexcept
-		{
-			return Abs_impl{};
-		}
-	};
+# if __cpp_lib_concepts
+	template <class Type>
+# else
+	template <class Type, std::enable_if_t<not std::is_scalar_v<Type>>*>
+# endif
+	inline constexpr bool InOpenRange(const Type& v, const Type& min, const Type& max) noexcept(noexcept(v < min))
+	{
+		return (min < v) && (v < max);
+	}
 
 	//////////////////////////////////////////////////
 	//
@@ -241,171 +236,65 @@ namespace s3d::detail
 # if __cpp_lib_concepts
 	template <Concept::Arithmetic Arithmetic>
 # else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
 # endif
-	struct AbsDiff1_impl
+	inline constexpr auto AbsDiff(const Arithmetic a, PlaceHolder_t) noexcept
 	{
-		const Arithmetic a;
-
-		constexpr AbsDiff1_impl(Arithmetic _a) noexcept
-			: a(_a) {}
-
-		[[nodiscard]]
-		constexpr auto operator()(Arithmetic b) const noexcept
-		{
-			if constexpr (std::is_integral_v<Arithmetic>)
-			{
-				using U = std::make_unsigned_t<Arithmetic>;
-				return (a > b) ? (static_cast<U>(a) - static_cast<U>(b))
-					: (static_cast<U>(b) - static_cast<U>(a));
-			}
-			else
-			{
-				return Abs_impl{}(a - b);
-			}
-		}
-	};
-
-	struct AbsDiff2_impl
-	{
-	# if __cpp_lib_concepts
-		template <Concept::Scalar Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
-		[[nodiscard]]
-		constexpr auto operator()(Arithmetic a, Arithmetic b) const noexcept
-		{
-			if constexpr (std::is_integral_v<Arithmetic>)
-			{
-				using U = std::make_unsigned_t<Arithmetic>;
-				return (a > b) ? (static_cast<U>(a) - static_cast<U>(b))
-					: (static_cast<U>(b) - static_cast<U>(a));
-			}
-			else
-			{
-				return Abs_impl{}(a - b);
-			}
-		}
-	};
-
-	//////////////////////////////////////////////////
-	//
-	//	FromEnum
-	//
-	//////////////////////////////////////////////////
-
-	struct FromEnum_impl
-	{
-	# if __cpp_lib_concepts
-		template <Concept::Enum Enum>
-	# else
-		template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
-	# endif
-		[[nodiscard]]
-		constexpr auto operator ()(Enum x) const noexcept
-		{
-			return static_cast<std::underlying_type_t<Enum>>(x);
-		}
-
-		[[nodiscard]]
-		constexpr auto operator ()(PlaceHolder_t) const noexcept
-		{
-			return FromEnum_impl{};
-		}
-	};
-
-	//////////////////////////////////////////////////
-	//
-	//	ToEnum
-	//
-	//////////////////////////////////////////////////
+		return detail::AbsDiff1_impl<Arithmetic>(a);
+	}
 
 # if __cpp_lib_concepts
-	template <Concept::Enum Enum>
+	template <Concept::Arithmetic Arithmetic>
 # else
-	template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
 # endif
-	struct ToEnum_impl
+	inline constexpr auto AbsDiff(PlaceHolder_t, const Arithmetic b) noexcept
 	{
-		[[nodiscard]]
-		constexpr auto operator ()(std::underlying_type_t<Enum> x) const noexcept
-		{
-			return Enum{ x };
-		}
+		return detail::AbsDiff1_impl<Arithmetic>(b);
+	}
 
-		[[nodiscard]]
-		constexpr auto operator ()(PlaceHolder_t) const noexcept
-		{
-			return ToEnum_impl{};
-		}
-	};
-
-	//////////////////////////////////////////////////
-	//
-	//	IsOdd
-	//
-	//////////////////////////////////////////////////
-
-	struct IsOdd_impl
+	inline constexpr auto AbsDiff(PlaceHolder_t, PlaceHolder_t) noexcept
 	{
-		template <class Type>
-		[[nodiscard]]
-		constexpr bool operator()(const Type& x) const
-		{
-			return (x % 2) != 0;
-		}
+		return detail::AbsDiff2_impl{};
+	}
 
-		[[nodiscard]]
-		constexpr IsOdd_impl operator()(PlaceHolder_t) const
-		{
-			return IsOdd_impl{};
-		}
-	};
-
-	//////////////////////////////////////////////////
-	//
-	//	IsEven
-	//
-	//////////////////////////////////////////////////
-
-	struct IsEven_impl
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
+# endif
+	inline constexpr auto AbsDiff(const Arithmetic a, const Arithmetic b) noexcept
 	{
-		template <class Type>
-		[[nodiscard]]
-		constexpr bool operator()(const Type& x) const
-		{
-			return (x % 2) == 0;
-		}
-
-		[[nodiscard]]
-		constexpr IsEven_impl operator()(PlaceHolder_t) const
-		{
-			return IsEven_impl{};
-		}
-	};
+		return detail::AbsDiff2_impl{}(a, b);
+	}
 
 	//////////////////////////////////////////////////
 	//
-	//	Identity
+	//	Utility
 	//
 	//////////////////////////////////////////////////
 
-	struct Identity_impl
+	template <class Container, class Pred>
+	inline void Erase_if(Container& c, Pred pred)
 	{
-		using is_transparent = void;
+		c.erase(std::remove_if(std::begin(c), std::end(c), pred), std::end(c));
+	}
 
-		template <class Type>
-		[[nodiscard]]
-		constexpr Type&& operator()(Type&& x) const noexcept
+	template <class Container, class Pred>
+	inline void EraseNodes_if(Container& c, Pred pred)
+	{
+		auto first = c.begin();
+		const auto last = c.end();
+		while (first != last)
 		{
-			return std::forward<Type>(x);
+			if (pred(*first))
+			{
+				first = c.erase(first);
+			}
+			else
+			{
+				++first;
+			}
 		}
-
-		[[nodiscard]]
-		constexpr Identity_impl operator()(PlaceHolder_t) const noexcept
-		{
-			return Identity_impl{};
-		}
-	};
+	}
 }

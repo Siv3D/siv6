@@ -21,9 +21,8 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// Optional
-	/// </summary>
+	/// @brief Optional
+	/// @tparam Type Optional が持つ値の型
 	template <class Type>
 	class Optional : private OptionalBase<Type>
 	{
@@ -50,118 +49,72 @@ namespace s3d
 
 	public:
 
+		/// @brief Optional が持つ値の型
 		using value_type = Type;
 
-		/// <summary>
-		/// デフォルトコンストラクタ
-		/// </summary>
+		/// @brief デフォルトコンストラクタ
 		SIV3D_NODISCARD_CXX20
 		constexpr Optional() noexcept;
-		
-		/// <summary>
-		/// コンストラクタ
-		/// </summary>
-		/// <param>
-		/// 無効値
-		/// </param>
+
+		/// @brief none で初期化するコンストラクタ
 		SIV3D_NODISCARD_CXX20
 		constexpr Optional(None_t) noexcept;
 
-		/// <summary>
-		/// コピーコンストラクタ
-		/// </summary>
-		/// <param name="rhs">
-		/// 他の Optional オブジェクト
-		/// </param>
+		/// @brief コピーコンストラクタ
+		/// @param rhs 他の Optional オブジェクト
 		SIV3D_NODISCARD_CXX20
 		Optional(const Optional& rhs);
 
-		/// <summary>
-		/// ムーブコンストラクタ
-		/// </summary>
-		/// <param name="rhs">
-		/// 他の Optional オブジェクト
-		/// </param>
+		/// @brief ムーブコンストラクタ
+		/// @param rhs 他の Optional オブジェクト
 		SIV3D_NODISCARD_CXX20
 		Optional(Optional&& rhs) noexcept(std::is_nothrow_move_constructible_v<Type>);
 
-		/// <summary>
-		/// コピーコンストラクタ
-		/// </summary>
-		/// <param name="rhs">
-		/// 他の Optional オブジェクト
-		/// </param>
+		/// @brief Optional 値を初期化します。
+		/// @param v 初期値
 		SIV3D_NODISCARD_CXX20
 		constexpr Optional(const value_type& v);
 
-		/// <summary>
-		/// ムーブコンストラクタ
-		/// </summary>
-		/// <param name="rhs">
-		/// 他の Optional オブジェクト
-		/// </param>
+		/// @brief Optional 値を初期化します。
+		/// @param v 初期値
 		SIV3D_NODISCARD_CXX20
 		constexpr Optional(value_type&& v);
 
-		/// <summary>
-		/// コンストラクタ
-		/// </summary>
-		/// <param name="args">
-		/// 値のコンストラクタ引数
-		/// </param>
+		/// @brief 値のコンストラクタ引数を使って Optional 値を作成します。
+		/// @tparam ...Args コンストラクタ引数の型
+		/// @param ...args コンストラクタ引数
 		template <class... Args>
 		SIV3D_NODISCARD_CXX20
 		explicit constexpr Optional(InPlace_t, Args&&... args);
 
-		/// <summary>
-		/// コンストラクタ
-		/// </summary>
-		/// <param name="args">
-		/// 値のコンストラクタ引数
-		/// </param>
+		/// @brief 値のコンストラクタ引数を使って Optional 値を作成します。
+		/// @tparam U コンストラクタ引数の型
+		/// @tparam ...Args コンストラクタ引数の型
+		/// @param il コンストラクタ引数
+		/// @param ...args コンストラクタ引数
 		template <class U, class... Args, std::enable_if_t<std::is_constructible_v<Type, std::initializer_list<U>>>* = nullptr>
 		SIV3D_NODISCARD_CXX20
 		explicit constexpr Optional(InPlace_t, std::initializer_list<U> il, Args&&... args);
 
-		/// <summary>
-		/// 代入演算子
-		/// </summary>
-		/// <returns>
-		/// *this
-		/// </returns>
+		/// @brief none を代入して無効値にします。
+		/// @param none
+		/// @return *this
 		Optional& operator =(None_t) noexcept;
 
-		/// <summary>
-		/// 代入演算子
-		/// </summary>
-		/// <param name="rhs">
-		/// 他の Optional オブジェクト
-		/// </param>
-		/// <returns>
-		/// *this
-		/// </returns>
+		/// @brief Optional 値をコピー代入します。
+		/// @param rhs Optional 値
+		/// @return *this
 		Optional& operator =(const Optional& rhs);
 
-		/// <summary>
-		/// ムーブ代入演算子
-		/// </summary>
-		/// <param name="rhs">
-		/// 他の Optional オブジェクト
-		/// </param>
-		/// <returns>
-		/// *this
-		/// </returns>
+		/// @brief Optional 値をムーブ代入します。
+		/// @param rhs Optional 値
+		/// @return *this
 		Optional& operator =(Optional&& rhs) noexcept(std::is_nothrow_move_assignable_v<Type>&& std::is_nothrow_move_constructible_v<Type>);
 
-		/// <summary>
-		/// ムーブ代入演算子
-		/// </summary>
-		/// <param name="v">
-		/// 他のオブジェクト
-		/// </param>
-		/// <returns>
-		/// *this
-		/// </returns>
+		/// @brief 値をムーブ代入します。
+		/// @tparam U 値の型
+		/// @param v 値
+		/// @return *this
 		template <class U, std::enable_if_t<std::is_same_v<std::decay_t<U>, Type>>* = nullptr>
 		Optional& operator = (U&& v);
 

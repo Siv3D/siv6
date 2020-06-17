@@ -81,12 +81,14 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\RDTSCClock.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\RegExp.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ScopeGuard.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\SMFT.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Statistics.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Step.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Step2D.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\String.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\StringView.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Utility.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Utility_detail.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Vector2D.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\DiscreteDistribution.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Distribution.hpp" />
@@ -188,6 +190,7 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\parallel_hashmap\phmap_dump.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\parallel_hashmap\phmap_fwd_decl.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\parallel_hashmap\phmap_utils.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\SMFT\SMFT.hpp" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\Xoshiro-cpp\XoshiroCpp.hpp" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxh3.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxhash.h" />
