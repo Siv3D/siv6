@@ -87,10 +87,6 @@ namespace s3d
 		*this = Generate0_1(size, generator.value());
 	}
 
-
-
-
-
 	inline Image& Image::operator =(Image&& image) noexcept
 	{
 		m_data		= std::move(image.m_data);
@@ -101,6 +97,203 @@ namespace s3d
 
 		return *this;
 	}
+
+	inline int32 Image::width() const noexcept
+	{
+		return m_width;
+	}
+
+	inline int32 Image::height() const noexcept
+	{
+		return m_height;
+	}
+
+	inline Size Image::size() const noexcept
+	{
+		return{ m_width, m_height };
+	}
+
+	inline uint32 Image::stride() const noexcept
+	{
+		return m_width * sizeof(Color);
+	}
+
+	inline uint32 Image::num_pixels() const noexcept
+	{
+		return m_width * m_height;
+	}
+
+	inline uint32 Image::size_bytes() const noexcept
+	{
+		return stride() * m_height;
+	}
+
+	inline bool Image::isEmpty() const noexcept
+	{
+		return m_data.empty();
+	}
+
+	inline Image::operator bool() const noexcept
+	{
+		return not m_data.empty();
+	}
+
+	inline void Image::shrink_to_fit()
+	{
+		m_data.shrink_to_fit();
+	}
+
+	inline void Image::clear() noexcept
+	{
+		m_data.clear();
+
+		m_width = m_height = 0;
+	}
+
+	inline void Image::release()
+	{
+		clear();
+
+		shrink_to_fit();
+	}
+
+	inline void Image::swap(Image& image) noexcept
+	{
+		m_data.swap(image.m_data);
+
+		std::swap(m_width, image.m_width);
+
+		std::swap(m_height, image.m_height);
+	}
+
+	inline Image Image::cloned() const
+	{
+		return *this;
+	}
+
+	inline Color* Image::operator[](const size_t y)
+	{
+		return m_data.data() + (m_width * y);
+	}
+
+	inline Color& Image::operator[](const Point pos)
+	{
+		return *(m_data.data() + (static_cast<size_t>(m_width) * pos.y + pos.x));
+	}
+
+	inline const Color* Image::operator[](const size_t y) const
+	{
+		return m_data.data() + (m_width * y);
+	}
+
+	inline const Color& Image::operator[](const Point pos) const
+	{
+		return *(m_data.data() + (static_cast<size_t>(m_width) * pos.y + pos.x));
+	}
+
+	inline Color* Image::data()
+	{
+		return m_data.data();
+	}
+
+	inline const Color* Image::data() const
+	{
+		return m_data.data();
+	}
+
+	inline uint8* Image::dataAsUint8()
+	{
+		return static_cast<uint8*>(static_cast<void*>(m_data.data()));
+	}
+	
+	inline const uint8* Image::dataAsUint8() const
+	{
+		return static_cast<const uint8*>(static_cast<const void*>(&m_data[0]));
+	}
+
+	inline Array<Color> Image::asArray() const&
+	{
+		return m_data;
+	}
+
+	inline Array<Color> Image::asArray()&&
+	{
+		return std::move(m_data);
+	}
+
+	inline Image::iterator Image::begin() noexcept
+	{
+		return m_data.begin();
+	}
+
+	inline Image::const_iterator Image::begin() const noexcept
+	{
+		return m_data.begin();
+	}
+
+	inline Image::const_iterator Image::cbegin() const noexcept
+	{
+		return m_data.cbegin();
+	}
+
+	inline Image::iterator Image::end() noexcept
+	{
+		return m_data.end();
+	}
+
+	inline Image::const_iterator Image::end() const noexcept
+	{
+		return m_data.end();
+	}
+
+	inline Image::const_iterator Image::cend() const noexcept
+	{
+		return m_data.cend();
+	}
+
+	inline Image::reverse_iterator Image::rbegin() noexcept
+	{
+		return m_data.rbegin();
+	}
+
+	inline Image::const_reverse_iterator Image::rbegin() const noexcept
+	{
+		return m_data.rbegin();
+	}
+
+	inline Image::const_reverse_iterator Image::crbegin() const noexcept
+	{
+		return m_data.crbegin();
+	}
+
+	inline Image::reverse_iterator Image::rend() noexcept
+	{
+		return m_data.rend();
+	}
+
+	inline Image::const_reverse_iterator Image::rend() const noexcept
+	{
+		return m_data.rend();
+	}
+
+	inline Image::const_reverse_iterator Image::crend() const noexcept
+	{
+		return m_data.crend();
+	}
+
+	inline void Image::fill(const Color color) noexcept
+	{
+		Color* pDst = m_data.data();
+		Color* const pDstEnd = pDst + m_data.size();
+
+		while (pDst != pDstEnd)
+		{
+			*pDst++ = color;
+		}
+	}
+
+
+
 
 
 	template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty>

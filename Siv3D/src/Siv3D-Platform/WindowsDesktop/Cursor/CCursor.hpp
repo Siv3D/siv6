@@ -31,7 +31,7 @@ namespace s3d
 		CursorState m_state;
 
 		HICON m_currentCursor = ::LoadCursorW(nullptr, IDC_ARROW);
-		HashTable<String, HICON> m_customIcons;
+		HashTable<String, HICON> m_customCursors;
 
 	public:
 

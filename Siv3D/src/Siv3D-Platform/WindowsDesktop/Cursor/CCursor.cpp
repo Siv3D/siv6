@@ -59,12 +59,12 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CCursor::~CCursor()");
 
-		for (auto& customIcon : m_customIcons)
+		for (auto& customCursor : m_customCursors)
 		{
-			if (customIcon.second)
+			if (customCursor.second)
 			{
-				::DestroyIcon(customIcon.second);
-				customIcon.second = nullptr;
+				::DestroyIcon(customCursor.second);
+				customCursor.second = nullptr;
 			}
 		}
 	}
@@ -130,7 +130,7 @@ namespace s3d
 	{
 		const String iconName(name);
 
-		if (m_customIcons.contains(iconName))
+		if (m_customCursors.contains(iconName))
 		{
 			return false;
 		}
@@ -196,7 +196,7 @@ namespace s3d
 
 		if (HICON hIcon = ::CreateIconIndirect(&ii))
 		{
-			m_customIcons.emplace(iconName, hIcon);
+			m_customCursors.emplace(iconName, hIcon);
 			return true;
 		}
 		else
@@ -207,8 +207,8 @@ namespace s3d
 
 	void CCursor::requestStyle(const StringView name)
 	{
-		if (auto it = m_customIcons.find(String(name));
-			it != m_customIcons.end())
+		if (auto it = m_customCursors.find(String(name));
+			it != m_customCursors.end())
 		{
 			m_currentCursor = it->second;
 		}
