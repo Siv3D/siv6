@@ -208,6 +208,9 @@ namespace s3d
 		[[nodiscard]]
 		constexpr Type distanceFromSq(Vector2D<Type> p) const noexcept;
 
+		[[nodiscard]]
+		constexpr int32 area() const noexcept;
+
 		template <class Type = double>
 		[[nodiscard]]
 		Type getAngle() const noexcept;

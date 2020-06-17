@@ -274,6 +274,11 @@ namespace s3d
 		return distanceFromSq(p.x, p.y);
 	}
 
+	constexpr int32 Point::area() const noexcept
+	{
+		return (x * y);
+	}
+
 	template <class Type>
 	inline Type Point::getAngle() const noexcept
 	{

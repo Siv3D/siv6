@@ -64,9 +64,9 @@ namespace s3d
 
 		Array() = default;
 
-		Array(const Array& other) = default;
+		Array(const Array&) = default;
 
-		Array(Array&& other) = default;
+		Array(Array&&) = default;
 
 		Array(const size_type count, const value_type& value)
 			: base_type(count, value) {}
@@ -89,9 +89,9 @@ namespace s3d
 		Array(size_type size, Arg::indexedGenerator_<Fty> indexedGenerator)
 			: Array(IndexedGenerate<Fty>(size, *indexedGenerator)) {}
 
-		Array& operator =(const Array& other) = default;
+		Array& operator =(const Array&) = default;
 
-		Array& operator =(Array&& other) = default;
+		Array& operator =(Array&&) = default;
 
 		template<class... Args>
 		iterator emplace(const_iterator pos, Args&&... args)
@@ -115,13 +115,13 @@ namespace s3d
 		[[nodiscard]]
 		bool isEmpty() const noexcept
 		{
-			return empty();
+			return base_type::empty();
 		}
 
 		[[nodiscard]]
 		explicit operator bool() const noexcept
 		{
-			return !empty();
+			return not base_type::empty();
 		}
 
 		void release()

@@ -40,13 +40,13 @@ namespace s3d
 	template <class Type, class Allocator>
 	inline bool Array<Type, Allocator>::isEmpty() const noexcept
 	{
-		return empty();
+		return base_type::empty();
 	}
 
 	template <class Type, class Allocator>
 	inline Array<Type, Allocator>::operator bool() const noexcept
 	{
-		return !empty();
+		return not base_type::empty();
 	}
 
 	template <class Type, class Allocator>

@@ -6,10 +6,11 @@ SIV3D_OPTION_HEADLESS_MODE(false);		// 非グラフィックスモード
 SIV3D_OPTION_OUTPUT_STDERR(true);		// std::cerr の出力
 SIV3D_OPTION_RUN_TEST(false);			// テストの実行
 
+
 void Main()
 {
 	while (System::Update())
 	{
-		Window::SetTitle(Cursor::ScreenPos());
+
 	}
 }

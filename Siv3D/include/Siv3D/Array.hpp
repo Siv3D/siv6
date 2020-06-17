@@ -84,11 +84,11 @@ namespace s3d
 
 		/// @brief コピーコンストラクタ
 		/// @param other コピーする配列
-		Array(const Array& other) = default;
+		Array(const Array&) = default;
 
 		/// @brief ムーブコンストラクタ
 		/// @param other ムーブする配列
-		Array(Array&& other) = default;
+		Array(Array&&) = default;
 
 		template <class ArrayIsh, std::enable_if_t<Meta::HasAsArray<ArrayIsh>::value>* = nullptr>
 		explicit Array(ArrayIsh&& a);
@@ -110,12 +110,12 @@ namespace s3d
 		/// @brief コピー代入演算子
 		/// @param other コピーする配列
 		/// @return *this
-		Array& operator =(const Array& other) = default;
+		Array& operator =(const Array&) = default;
 
 		/// @brief ムーブ代入演算子
 		/// @param other ムーブする配列
 		/// @return *this
-		Array& operator =(Array&& other) = default;
+		Array& operator =(Array&&) = default;
 
 		/// @brief 他の配列と要素を入れ替えます。
 		/// @param other 入れ替える配列
