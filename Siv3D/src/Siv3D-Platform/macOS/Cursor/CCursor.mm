@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/Common.hpp>
+# include <Siv3D/Image.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
@@ -41,6 +42,15 @@ namespace s3d
 	CCursor::~CCursor()
 	{
 		LOG_SCOPED_TRACE(U"CCursor::~CCursor()");
+		
+		for (auto& customCursor : m_customCursors)
+		{
+			if (customCursor.second)
+			{
+				::glfwDestroyCursor(customCursor.second);
+				customCursor.second = nullptr;
+			}
+		}
 	}
 
 	void CCursor::init()
@@ -72,5 +82,40 @@ namespace s3d
 	const CursorState& CCursor::getState() const noexcept
 	{
 		return m_state;
+	}
+
+	bool CCursor::registerCursor(const StringView name, const Image& image, const Point& hotSpot)
+	{
+		const String iconName(name);
+
+		if (m_customCursors.contains(iconName))
+		{
+			return false;
+		}
+		
+		Array pixels = image.asArray();
+		GLFWimage cursorImage;
+		cursorImage.width	= image.width();
+		cursorImage.height	= image.height();
+		cursorImage.pixels	= (uint8*)pixels.data();
+		 
+		if (GLFWcursor* cursor = ::glfwCreateCursor(&cursorImage, hotSpot.x, hotSpot.y))
+		{
+			m_customCursors.emplace(iconName, cursor);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	void CCursor::requestStyle(const StringView name)
+	{
+		if (auto it = m_customCursors.find(String(name));
+			it != m_customCursors.end())
+		{
+			::glfwSetCursor(m_window, it->second);
+		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -16,7 +16,7 @@
 # include "PredefinedNamedParameter.hpp"
 # include "ImageFormat.hpp"
 # include "PointVector.hpp"
-# include "Color.hpp"
+# include "ColorHSV.hpp"
 # include "IReader.hpp"
 
 namespace s3d
