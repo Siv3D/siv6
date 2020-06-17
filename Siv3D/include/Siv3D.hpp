@@ -686,13 +686,9 @@
 //
 //////////////////////////////////////////////////
 
-// RGB カラー
-// RGB color
-//# include <Siv3D/Color.hpp>
-
-// HSV カラー
-// HSV color
-//# include <Siv3D/HSV.hpp>
+// 色
+// Colors
+# include <Siv3D/ColorHSV.hpp> // [Siv3D ToDo]
 
 //////////////////////////////////////////////////
 //
@@ -703,7 +699,7 @@
 
 // ベクトル
 // Vectors
-# include <Siv3D/PointVector.hpp>
+# include <Siv3D/PointVector.hpp> // [Siv3D ToDo]
 
 // 円座標
 //# include <Siv3D/Circular.hpp>
@@ -832,7 +828,7 @@
 
 # include <Siv3D/ApplicationOptions.hpp>
 
-
+# include <Siv3D/Image.hpp>
 
 # include <Siv3D/Scene.hpp>
 

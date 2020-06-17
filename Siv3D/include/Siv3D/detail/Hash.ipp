@@ -10,7 +10,9 @@
 //-----------------------------------------------
 
 # pragma once
+SIV3D_DISABLE_MSVC_WARNINGS_PUSH(26819)
 # include <ThirdParty/xxHash/xxh3.h>
+SIV3D_DISABLE_MSVC_WARNINGS_POP()
 
 namespace s3d
 {

@@ -18,6 +18,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\BinaryReader.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Byte.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Char.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Color.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\ColorF.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\ColorHSV.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Common.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\CommonFloat.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Concepts.hpp" />
@@ -37,6 +40,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Byte.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Char.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\AsyncTask.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Color.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\ColorF.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Date.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\DateTime.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Demangle.ipp" />
@@ -55,6 +60,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Hash.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HashSet.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HashTable.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\HSV.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Image.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Indexed.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Int128.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IReader.ipp" />
@@ -104,6 +111,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Hash.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\HashSet.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\HashTable.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\HSV.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Image.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Indexed.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Int128.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IntFormatter.hpp" />
@@ -126,6 +135,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Number.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\OpenMode.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Optional.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Palette.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Parse.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ParseBool.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ParseFloat.hpp" />

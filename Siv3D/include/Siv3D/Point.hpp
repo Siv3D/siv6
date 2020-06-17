@@ -33,7 +33,7 @@ namespace s3d
 		Point() = default;
 
 		SIV3D_NODISCARD_CXX20
-		constexpr Point(const Point&) = default;
+		Point(const Point&) = default;
 
 		SIV3D_NODISCARD_CXX20
 		constexpr Point(value_type _x, value_type _y) noexcept;
