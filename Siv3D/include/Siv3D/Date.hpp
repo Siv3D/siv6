@@ -88,7 +88,7 @@ namespace s3d
 		/// @param format フォーマット指定
 		/// @return フォーマットされた日付
 		[[nodiscard]]
-		String format(StringView format = U"yyyy/M/d"_sv) const;
+		String format(StringView format = U"yyyy-MM-dd"_sv) const;
 
 		/// @brief 指定した日数だけ進めた日付を返します。
 		/// @param days 日数
@@ -262,7 +262,7 @@ namespace s3d
 	/// @param format フォーマット指定
 	/// @return フォーマットされた日付
 	[[nodiscard]]
-	String FormatDate(const Date& date, StringView format = U"yyyy/M/d"_sv);
+	String FormatDate(const Date& date, StringView format = U"yyyy-MM-dd"_sv);
 }
 
 namespace std
