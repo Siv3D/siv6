@@ -4,7 +4,7 @@
 Library | Version
 --- | ---
 [Abseil](https://github.com/abseil/abseil-cpp) | 20200225.2
-[Catch2](https://github.com/catchorg/Catch2) | v2.11.1
+[Catch2](https://github.com/catchorg/Catch2) | v2.12.2
 [cpu_features](https://github.com/google/cpu_features) | v0.4.1
 [double-conversion](https://github.com/google/double-conversion) | v3.1.5
 [EnumBitmask](https://github.com/Reputeless/EnumBitmask) | v1.0
@@ -15,6 +15,7 @@ Library | Version
 [levenshtein-sse](https://github.com/addaleax/levenshtein-sse) | 
 [miniutf](https://github.com/dropbox/miniutf) | 
 [Oniguruma](https://github.com/kkos/oniguruma) | v6.9.5_rev1
+[scope-guard](https://github.com/offa/scope-guard) | v0.3.4
 [SFMT](https://github.com/MersenneTwister-Lab/SFMT) | 1.5.2
 [simde](https://github.com/nemequ/simde) | 
 [The Parallel Hashmap](https://github.com/greg7mdp/parallel-hashmap) | 1.3.2

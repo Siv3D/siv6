@@ -59,14 +59,7 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CCursor::~CCursor()");
 
-		for (auto& customCursor : m_customCursors)
-		{
-			if (customCursor.second)
-			{
-				::DestroyIcon(customCursor.second);
-				customCursor.second = nullptr;
-			}
-		}
+		m_customCursors.clear();
 	}
 
 	void CCursor::init()
@@ -194,7 +187,7 @@ namespace s3d
 
 		if (HICON hIcon = ::CreateIconIndirect(&ii))
 		{
-			m_customCursors.emplace(name, hIcon);
+			m_customCursors.emplace(name, unique_resource{ hIcon, CursorDeleter });
 			return true;
 		}
 		else
@@ -208,7 +201,7 @@ namespace s3d
 		if (auto it = m_customCursors.find(name);
 			it != m_customCursors.end())
 		{
-			m_currentCursor = it->second;
+			m_currentCursor = it->second.get();
 		}
 	}
 

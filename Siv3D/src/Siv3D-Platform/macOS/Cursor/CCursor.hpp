@@ -12,6 +12,7 @@
 # pragma once
 # include <Siv3D/Array.hpp>
 # include <Siv3D/HashTable.hpp>
+# include <Siv3D/UniqueResource.hpp>
 # include <Siv3D/Cursor/ICursor.hpp>
 # include <GL/glew.h>
 # include <GLFW/glfw3.h>
@@ -26,7 +27,12 @@ namespace s3d
 		
 		CursorState m_state;
 
-		HashTable<String, GLFWcursor*> m_customCursors;
+		static void CursorDeleter(GLFWcursor* h)
+		{
+			::glfwDestroyCursor(h);
+		}
+
+		HashTable<String, unique_resource<GLFWcursor*, decltype(&CursorDeleter)>> m_customCursors;
 		
 	public:
 		

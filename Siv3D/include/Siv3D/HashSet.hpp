@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include "Common.hpp"
 # if SIV3D_INTRINSIC(SSE)
 #	define PHMAP_HAVE_SSE2 1
 #	define PHMAP_HAVE_SSSE3 1

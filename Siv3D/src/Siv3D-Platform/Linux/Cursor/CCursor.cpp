@@ -31,14 +31,7 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CCursor::init()");
 
-		for (auto& customCursor : m_customCursors)
-		{
-			if (customCursor.second)
-			{
-				::glfwDestroyCursor(customCursor.second);
-				customCursor.second = nullptr;
-			}
-		}		
+		m_customCursors.clear();
 	}
 
 	bool CCursor::update()
@@ -66,7 +59,7 @@ namespace s3d
 		 
 		if (GLFWcursor* cursor = ::glfwCreateCursor(&cursorImage, hotSpot.x, hotSpot.y))
 		{
-			m_customCursors.emplace(name, cursor);
+			m_customCursors.emplace(name, unique_resource{ cursor, CursorDeleter });
 			return true;
 		}
 		else
@@ -80,7 +73,7 @@ namespace s3d
 		if (auto it = m_customCursors.find(name);
 			it != m_customCursors.end())
 		{
-			::glfwSetCursor(m_window, it->second);
+			::glfwSetCursor(m_window, it->second.get());
 		}
 	}
 }

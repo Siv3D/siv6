@@ -292,6 +292,12 @@
     <Filter Include="src\Siv3D\Color">
       <UniqueIdentifier>{903fc562-ce82-4944-872c-c63712f13d16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\ThirdParty\scope-guard">
+      <UniqueIdentifier>{3ef0d44a-2708-4873-9ff1-5bfcf4aefd3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ThirdParty\scope-guard\detail">
+      <UniqueIdentifier>{f3762b24-1a4a-40ea-a099-90e16723f081}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1081,6 +1087,30 @@
       <Filter>include\Siv3D</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\HeterogeneousLookupHelper.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\detail\scope_guard_base.h">
+      <Filter>include\ThirdParty\scope-guard\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\detail\wrapper.h">
+      <Filter>include\ThirdParty\scope-guard\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\scope.h">
+      <Filter>include\ThirdParty\scope-guard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\scope_exit.h">
+      <Filter>include\ThirdParty\scope-guard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\scope_fail.h">
+      <Filter>include\ThirdParty\scope-guard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\scope_success.h">
+      <Filter>include\ThirdParty\scope-guard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\unique_resource.h">
+      <Filter>include\ThirdParty\scope-guard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\UniqueResource.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
   </ItemGroup>

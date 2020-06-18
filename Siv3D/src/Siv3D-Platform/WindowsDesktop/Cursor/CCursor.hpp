@@ -14,6 +14,7 @@
 # include <mutex>
 # include <Siv3D/Array.hpp>
 # include <Siv3D/HashTable.hpp>
+# include <Siv3D/UniqueResource.hpp>
 # include <Siv3D/Cursor/ICursor.hpp>
 # include <Siv3D/Windows/Windows.hpp>
 
@@ -30,8 +31,13 @@ namespace s3d
 
 		CursorState m_state;
 
+		static void CursorDeleter(HICON h)
+		{
+			::DestroyIcon(h);
+		}
+
 		HICON m_currentCursor = ::LoadCursorW(nullptr, IDC_ARROW);
-		HashTable<String, HICON> m_customCursors;
+		HashTable<String, unique_resource<HICON, decltype(&CursorDeleter)>> m_customCursors;
 
 	public:
 

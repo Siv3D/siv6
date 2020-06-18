@@ -170,6 +170,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Types.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Uncopyable.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Unicode.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\UniqueResource.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Unspecified.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\UserAction.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Utility.hpp" />
@@ -192,6 +193,13 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\parallel_hashmap\phmap_dump.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\parallel_hashmap\phmap_fwd_decl.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\parallel_hashmap\phmap_utils.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\detail\scope_guard_base.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\detail\wrapper.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\scope.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\scope_exit.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\scope_fail.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\scope_success.h" />
+    <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\unique_resource.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\SMFT\SMFT.hpp" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\Xoshiro-cpp\XoshiroCpp.hpp" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxh3.h" />
