@@ -128,9 +128,7 @@ namespace s3d
 
 	bool CCursor::registerCursor(const StringView name, const Image& image, const Point& hotSpot)
 	{
-		const String iconName(name);
-
-		if (m_customCursors.contains(iconName))
+		if (m_customCursors.contains(name))
 		{
 			return false;
 		}
@@ -187,16 +185,16 @@ namespace s3d
 
 		ICONINFO ii =
 		{
-			.fIcon = FALSE, // Cursor
-			.xHotspot = Max<DWORD>(0, hotSpot.x),
-			.yHotspot = Max<DWORD>(0, hotSpot.y),
-			.hbmMask = hMask,
-			.hbmColor = hBitmap,
+			.fIcon		= FALSE, // Cursor
+			.xHotspot	= Max<DWORD>(0, hotSpot.x),
+			.yHotspot	= Max<DWORD>(0, hotSpot.y),
+			.hbmMask	= hMask,
+			.hbmColor	= hBitmap,
 		};
 
 		if (HICON hIcon = ::CreateIconIndirect(&ii))
 		{
-			m_customCursors.emplace(iconName, hIcon);
+			m_customCursors.emplace(name, hIcon);
 			return true;
 		}
 		else
@@ -207,7 +205,7 @@ namespace s3d
 
 	void CCursor::requestStyle(const StringView name)
 	{
-		if (auto it = m_customCursors.find(String(name));
+		if (auto it = m_customCursors.find(name);
 			it != m_customCursors.end())
 		{
 			m_currentCursor = it->second;

@@ -53,9 +53,7 @@ namespace s3d
 
 	bool CCursor::registerCursor(const StringView name, const Image& image, const Point& hotSpot)
 	{
-		const String iconName(name);
-
-		if (m_customCursors.contains(iconName))
+		if (m_customCursors.contains(name))
 		{
 			return false;
 		}
@@ -68,7 +66,7 @@ namespace s3d
 		 
 		if (GLFWcursor* cursor = ::glfwCreateCursor(&cursorImage, hotSpot.x, hotSpot.y))
 		{
-			m_customCursors.emplace(iconName, cursor);
+			m_customCursors.emplace(name, cursor);
 			return true;
 		}
 		else
@@ -79,7 +77,7 @@ namespace s3d
 
 	void CCursor::requestStyle(const StringView name)
 	{
-		if (auto it = m_customCursors.find(String(name));
+		if (auto it = m_customCursors.find(name);
 			it != m_customCursors.end())
 		{
 			::glfwSetCursor(m_window, it->second);
