@@ -15,12 +15,13 @@
 #	define PHMAP_HAVE_SSSE3 1
 # endif
 # include <ThirdParty/parallel_hashmap/phmap.h>
+# include "HeterogeneousLookupHelper.hpp"
 
 namespace s3d
 {
 	template <class Type,
-		class Hash	= phmap::container_internal::hash_default_hash<Type>,
-		class Eq	= phmap::container_internal::hash_default_eq<Type>,
+		class Hash	= std::conditional_t<std::is_same_v<Type, String>, StringHash, phmap::container_internal::hash_default_hash<Type>>,
+		class Eq	= std::conditional_t<std::is_same_v<Type, String>, StringCompare, phmap::container_internal::hash_default_eq<Type>>,
 		class Alloc	= phmap::container_internal::Allocator<Type>>
 	using HashSet = phmap::flat_hash_set<Type, Hash, Eq, Alloc>;
 
@@ -37,4 +38,3 @@ namespace s3d
 #	undef PHMAP_HAVE_SSE2
 #	undef PHMAP_HAVE_SSSE3
 # endif
-

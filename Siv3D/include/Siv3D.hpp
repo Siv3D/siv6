@@ -192,6 +192,10 @@
 // 2D array
 # include <Siv3D/Grid.hpp> // [Siv3D ToDo]
 
+// 文字列ルックアップヘルパー
+// Heterogeneous lookup helper
+# include <Siv3D/HeterogeneousLookupHelper.hpp>
+
 // ハッシュテーブル
 // Hash table
 # include <Siv3D/HashTable.hpp>
