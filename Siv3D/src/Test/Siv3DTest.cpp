@@ -144,8 +144,8 @@ TEST_CASE("HashTable")
 
 		CHECK(table[U"AAAAAAAA"_s] + table[U"BBBBBBBB"_s] + table[U"CCCCCCCC"_s] + table[U"ZZZZZZZZ"_s] == (U'A' + U'B' + U'C' + U'Z'));
 		CHECK(table[U"AAAAAAAA"] + table[U"BBBBBBBB"] + table[U"CCCCCCCC"] + table[U"ZZZZZZZZ"] == (U'A' + U'B' + U'C' + U'Z'));
-		CHECK(table.contains(U"ABC"_s) + table.contains(U"BBBBBBBB"_s) + table.contains(U"ABC"_s) + table.contains(U"ZZZZZZZZ"_s) == 2);
-		CHECK(table.contains(U"ABC") + table.contains(U"BBBBBBBB") + table.contains(U"ABC") + table.contains(U"ZZZZZZZZ") == 2);
+		//CHECK(table.contains(U"ABC"_s) + table.contains(U"BBBBBBBB"_s) + table.contains(U"ABC"_s) + table.contains(U"ZZZZZZZZ"_s) == 2);
+		//CHECK(table.contains(U"ABC") + table.contains(U"BBBBBBBB") + table.contains(U"ABC") + table.contains(U"ZZZZZZZZ") == 2);
 
 		//BENCHMARK("table[U\"...\"_s]")
 		//{
