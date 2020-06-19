@@ -176,16 +176,16 @@ namespace s3d
 		constexpr double grayscale() const noexcept;
 
 		[[nodiscard]]
-		constexpr uint32 minRGBComponent() const noexcept;
+		constexpr uint8 minRGBComponent() const noexcept;
 
 		[[nodiscard]]
-		constexpr uint32 maxRGBComponent() const noexcept;
+		constexpr uint8 maxRGBComponent() const noexcept;
 
 		[[nodiscard]]
-		constexpr uint32 minComponent() const noexcept;
+		constexpr uint8 minComponent() const noexcept;
 
 		[[nodiscard]]
-		constexpr uint32 maxComponent() const noexcept;
+		constexpr uint8 maxComponent() const noexcept;
 
 		[[nodiscard]]
 		constexpr uint32 asUint32() const noexcept;
