@@ -61,6 +61,7 @@ add_library(
   ../Siv3D/src/Siv3D/Profiler/CProfiler.cpp
   ../Siv3D/src/Siv3D/Profiler/ProfilerFactory.cpp
   ../Siv3D/src/Siv3D/Profiler/SivProfiler.cpp
+  ../Siv3D/src/Siv3D/Rectangle/SivRectangle.cpp
   ../Siv3D/src/Siv3D/RegExp/RegExpDetail.cpp
   ../Siv3D/src/Siv3D/RegExp/SivRegExp.cpp
   ../Siv3D/src/Siv3D/Scene/CScene.cpp

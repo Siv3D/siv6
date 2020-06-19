@@ -11,10 +11,10 @@
 
 # include "ApplicationOptions.hpp"
 
-ApplicationOptions g_ApplicationOptions;
-
 namespace s3d
 {
+	ApplicationOptions g_ApplicationOptions;
+
 	namespace detail
 	{
 		int EnableDebugHeapManager(const bool enabled) noexcept
@@ -35,6 +35,12 @@ namespace s3d
 		int EnableTest(const bool enabled) noexcept
 		{
 			return g_ApplicationOptions.runTest = enabled;
+		}
+
+		int SetRenderer(const RendererType renderer) noexcept
+		{
+			g_ApplicationOptions.renderer = renderer;
+			return static_cast<int>(renderer);
 		}
 	}
 }

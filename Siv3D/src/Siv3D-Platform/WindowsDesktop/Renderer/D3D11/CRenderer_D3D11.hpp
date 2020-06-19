@@ -11,28 +11,19 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
-# include <Siv3D/PointVector.hpp>
-# include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
-# include "WGLContext.hpp"
 
 namespace s3d
 {
-	class CRenderer_GL4 final : public ISiv3DRenderer
+	class CRenderer_D3D11 final : public ISiv3DRenderer
 	{
 	private:
 
-		HWND m_hWnd = nullptr;
-
-		WGLContext m_wglContext;
-
-		Size m_frmaeBufferSize = Size(0, 0);
-
 	public:
 
-		CRenderer_GL4();
+		CRenderer_D3D11();
 
-		~CRenderer_GL4() override;
+		~CRenderer_D3D11() override;
 
 		void init() override;
 

@@ -19,5 +19,6 @@ namespace s3d
 		int EnableHeadlessMode(bool) noexcept;
 		int EnableStdErr(bool) noexcept;
 		int EnableTest(bool) noexcept;
+		int SetRenderer(RendererType) noexcept;
 	}
 }

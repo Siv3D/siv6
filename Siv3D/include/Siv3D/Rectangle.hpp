@@ -12,6 +12,7 @@
 # pragma once
 # include "Common.hpp"
 # include "PointVector.hpp"
+# include "ColorHSV.hpp"
 
 namespace s3d
 {
@@ -242,6 +243,11 @@ namespace s3d
 				>> value.w >> unused
 				>> value.h >> unused;
 		}
+
+
+
+
+		const Rectangle& draw(const ColorF& color = Palette::White) const;
 	};
 
 	/// <summary>

@@ -10,13 +10,18 @@
 //-----------------------------------------------
 
 # pragma once
+# include <Siv3D/ApplicationOptions.hpp>
 
-struct ApplicationOptions
+namespace s3d
 {
-	bool debugHeapManager = false;
-	bool headlessMode = false;
-	bool stdErr = false;
-	bool runTest = false;
-};
+	struct ApplicationOptions
+	{
+		bool debugHeapManager	= false;
+		bool headlessMode		= false;
+		bool stdErr				= false;
+		bool runTest			= false;
+		RendererType renderer	= RendererType::PlatformDefault;
+	};
 
-extern ApplicationOptions g_ApplicationOptions;
+	extern ApplicationOptions g_ApplicationOptions;
+}

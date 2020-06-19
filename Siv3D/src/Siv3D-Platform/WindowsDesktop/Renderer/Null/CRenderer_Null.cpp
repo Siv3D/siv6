@@ -51,4 +51,9 @@ namespace s3d
 	{
 		return true;
 	}
+
+	void CRenderer_Null::test_renderRectangle(const RectF&, const ColorF&)
+	{
+
+	}
 }

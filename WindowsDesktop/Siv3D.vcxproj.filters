@@ -304,6 +304,12 @@
     <Filter Include="src\Siv3D\Vector4D">
       <UniqueIdentifier>{9463aaa6-08f5-4352-8e6a-e08baf3b3b90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Rectangle">
+      <UniqueIdentifier>{3ad771b7-c2b5-4292-9b3a-c4214967275b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer\D3D11">
+      <UniqueIdentifier>{09a395f1-95c6-4d1f-aebe-49fe3f1f3cc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1131,6 +1137,12 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Vector3D.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\WGLContext.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\GL4</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\D3D11\CRenderer_D3D11.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\D3D11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -1660,6 +1672,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Vector4D\SivVector4D.cpp">
       <Filter>src\Siv3D\Vector4D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\GL4\WGLContext.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\GL4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Rectangle\SivRectangle.cpp">
+      <Filter>src\Siv3D\Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\D3D11\CRenderer_D3D11.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\D3D11</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

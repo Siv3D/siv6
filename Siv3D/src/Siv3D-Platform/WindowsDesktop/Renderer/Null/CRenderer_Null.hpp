@@ -34,5 +34,7 @@ namespace s3d
 		void flush() override;
 
 		bool present() override;
+
+		void test_renderRectangle(const RectF& rect, const ColorF& color) override;
 	};
 }

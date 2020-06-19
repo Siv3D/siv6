@@ -11,6 +11,7 @@
 
 # include <Renderer/Null/CRenderer_Null.hpp>
 # include <Renderer/GL4/CRenderer_GL4.hpp>
+# include <Renderer/D3D11/CRenderer_D3D11.hpp>
 # include <Siv3D/Common/ApplicationOptions.hpp>
 
 namespace s3d
@@ -20,6 +21,12 @@ namespace s3d
 		if (g_ApplicationOptions.headlessMode)
 		{
 			return new CRenderer_Null;
+		}
+		
+		if (g_ApplicationOptions.renderer == RendererType::PlatformDefault
+			|| g_ApplicationOptions.renderer == RendererType::Direct3D11)
+		{
+			return new CRenderer_D3D11;
 		}
 		else
 		{

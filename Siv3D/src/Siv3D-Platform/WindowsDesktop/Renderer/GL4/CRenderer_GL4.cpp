@@ -11,15 +11,15 @@
 
 # include "CRenderer_GL4.hpp"
 # include <GL/glew.h>
+# include <GL/wglew.h>
 # include <GL/GL.h>
 # include <Siv3D/Error.hpp>
 # include <Siv3D/Unicode.hpp>
+# include <Siv3D/WindowState.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
-
-# include <Siv3D/Cursor.hpp>
 
 namespace s3d
 {
@@ -32,18 +32,7 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_GL4::~CRenderer_GL4()");
 
-		if (m_glContext)
-		{
-			::wglMakeCurrent(nullptr, nullptr);
-			::wglDeleteContext(m_glContext);
-			m_glContext = nullptr;
-		}
-		
-		if (m_hDC)
-		{
-			::ReleaseDC(m_hWnd, m_hDC);
-			m_hDC = nullptr;
-		}
+		m_wglContext.destroy();
 	}
 
 	void CRenderer_GL4::init()
@@ -52,85 +41,14 @@ namespace s3d
 
 		m_hWnd = static_cast<HWND>(SIV3D_ENGINE(Window)->getHandle());
 
-		constexpr PIXELFORMATDESCRIPTOR pixelFormatDesc =
-		{
-			.nSize			= sizeof(PIXELFORMATDESCRIPTOR),
-			.nVersion		= 1,
-			.dwFlags		= (PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER),
-			.iPixelType		= PFD_TYPE_RGBA,
-			.cColorBits		= 32,
-			.cDepthBits		= 0,
-			.cStencilBits	= 0,
-			.iLayerType		= PFD_MAIN_PLANE,
-		};
-
-		LOG_TRACE(U"GetDC()");
-		m_hDC = ::GetDC(m_hWnd);
-
-		if (!m_hDC)
-		{
-			throw EngineError(U"GetDC() failed");
-		}
-
-		LOG_TRACE(U"ChoosePixelFormat()");
-		const int32 pixelFormat = ::ChoosePixelFormat(m_hDC, &pixelFormatDesc);
-
-		if (pixelFormat == 0)
-		{
-			throw EngineError(U"ChoosePixelFormat() failed");
-		}
-
-		LOG_TRACE(U"SetPixelFormat()");
-		if (!::SetPixelFormat(m_hDC, pixelFormat, &pixelFormatDesc))
-		{
-			throw EngineError(U"SetPixelFormat() failed");
-		}
-
-		LOG_TRACE(U"wglCreateContext()");
-		m_glContext = ::wglCreateContext(m_hDC);
-
-		{
-			LOG_TRACE(U"wglMakeCurrent()");
-			if (!::wglMakeCurrent(m_hDC, m_glContext))
-			{
-				throw EngineError(U"wglMakeCurrent() failed");
-			}
-
-			LOG_TRACE(U"glewInit()");
-			if (GLenum err = ::glewInit();
-				err != GLEW_OK)
-			{
-				throw EngineError(U"glewInit() failed");
-			}
-
-			const String renderer = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_RENDERER)));
-			const String vendor = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VENDOR)));
-			const String version = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VERSION)));
-			const String glslVersion = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_SHADING_LANGUAGE_VERSION)));
-
-			GLint major = 0, minor = 0;
-			::glGetIntegerv(GL_MAJOR_VERSION, &major);
-			::glGetIntegerv(GL_MINOR_VERSION, &minor);
-
-			LOG_INFO(U"renderer: {}"_fmt(renderer));
-			LOG_INFO(U"vendor: {}"_fmt(vendor));
-			LOG_INFO(U"version: {}"_fmt(version));
-			LOG_INFO(U"glslVersion: {}"_fmt(glslVersion));
-			LOG_INFO(U"GL_MAJOR_VERSION: {}"_fmt(major));
-			LOG_INFO(U"GL_MINOR_VERSION: {}"_fmt(minor));
-
-			::wglMakeCurrent(nullptr, nullptr);
-		}
+		m_wglContext.init(m_hWnd);
 	}
 
 	void CRenderer_GL4::onMainThreadStart()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_GL4::onMainThreadStart()");
 
-		if (!::wglMakeCurrent(m_hDC, m_glContext))
-		{
-			throw EngineError(U"wglMakeCurrent() failed");
-		}
+		m_wglContext.makeCurrent();
 
 		clear();
 	}
@@ -140,31 +58,51 @@ namespace s3d
 		::glClearColor(0.8f, 0.9f, 1.0f, 1.0f);
 		::glClear(GL_COLOR_BUFFER_BIT);
 
-		//GLint dims[4] = { 0 };
-		//::glGetIntegerv(GL_VIEWPORT, dims);
-		//GLint fbWidth = dims[2];
-		//GLint fbHeight = dims[3];
-		//LOG_TEST(U"{}x{}"_fmt(fbWidth, fbHeight));
+		const auto& windowState = SIV3D_ENGINE(Window)->getState();
+		const Size newFrmaeBufferSize = windowState.frameBufferSize;
+
+		if (m_frmaeBufferSize != newFrmaeBufferSize)
+		{
+			LOG_VERBOSE(U"CRenderer_GL4::clear(): Frame buffer size: {}"_fmt(newFrmaeBufferSize));
+			m_frmaeBufferSize = newFrmaeBufferSize;
+			::glViewport(0, 0, m_frmaeBufferSize.x, m_frmaeBufferSize.y);
+
+			if (windowState.sizeMove)
+			{
+				::Sleep(100);
+			}
+		}
 	}
 
 	void CRenderer_GL4::flush()
 	{
-		static int32 i = 0; ++i;
-
-		::glColor3f(1.0f, 0.5f, 0.0f);
-
-		const float x = -1.0f + (Cursor::PosRaw().x / 1200.0f * 2.0f);
-		const float y = 1.0f - (Cursor::PosRaw().y / 900.0f * 2.0f);
-
-		::glRectf(x, y, x + 0.5f, y - 0.5f);
-
 		::glFlush();
 	}
 
 	bool CRenderer_GL4::present()
 	{
-		::SwapBuffers(m_hDC);
+		//wglSwapIntervalEXT(0);
+
+		m_wglContext.swapBuffers();
 
 		return true;
+	}
+
+	void CRenderer_GL4::test_renderRectangle(const RectF& rect, const ColorF& color)
+	{
+		::glColor4f(static_cast<float>(color.r),
+					static_cast<float>(color.g),
+					static_cast<float>(color.b),
+					static_cast<float>(color.a));
+
+		const double left = rect.x / (m_frmaeBufferSize.x * 0.5) - 1.0;
+		const double right = (rect.x + rect.w) / (m_frmaeBufferSize.x * 0.5) - 1.0;
+		const double top = -(rect.y / (m_frmaeBufferSize.y * 0.5)) + 1.0;
+		const double bottom = -((rect.y + rect.h) / (m_frmaeBufferSize.y * 0.5)) + 1.0;
+
+		::glRectf(static_cast<float>(left),
+				static_cast<float>(top),
+				static_cast<float>(right),
+				static_cast<float>(bottom));
 	}
 }

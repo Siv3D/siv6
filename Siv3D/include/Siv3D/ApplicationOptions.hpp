@@ -10,6 +10,17 @@
 //-----------------------------------------------
 
 # pragma once
+
+namespace s3d
+{
+	enum class RendererType
+	{
+		PlatformDefault = 0,
+		OpenGL = 1,
+		Direct3D11 = 2,
+	};
+}
+
 # include "detail/ApplicationOptions.ipp"
 
 /// @brief デバッグヒープマネージャ (Windows のみ)
@@ -23,3 +34,6 @@
 
 /// @brief テストの実行
 # define SIV3D_OPTION_RUN_TEST(bool) const int dummy_s3d_enable_test = s3d::detail::EnableTest(bool)
+
+/// @brief レンダラー
+# define SIV3D_OPTION_RENDERER(RendererType) const int dummy_s3d_renderer = s3d::detail::SetRenderer(RendererType)

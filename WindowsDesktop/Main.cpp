@@ -1,15 +1,17 @@
 ﻿
 # include <Siv3D.hpp> // OpenSiv3D v0.6
 
-SIV3D_OPTION_DEBUG_HEAP_MANAGER(true);	// デバッグヒープマネージャ (Windows のみ)
-SIV3D_OPTION_HEADLESS_MODE(false);		// 非グラフィックスモード
-SIV3D_OPTION_OUTPUT_STDERR(true);		// std::cerr の出力
-SIV3D_OPTION_RUN_TEST(true);			// テストの実行
+// OpenGL モードに
+SIV3D_OPTION_RENDERER(RendererType::OpenGL);
 
 void Main()
 {
 	while (System::Update())
 	{
-
+		for (auto i : step(20))
+		{
+			Rect(20 + i * 20, 20, 20, 400)
+				.draw(HSV(i * 10, 0.5, 0.9));
+		}
 	}
 }

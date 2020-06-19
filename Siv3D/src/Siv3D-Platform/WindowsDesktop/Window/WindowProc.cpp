@@ -186,12 +186,19 @@ namespace s3d
 			}
 		case WM_SETCURSOR:
 			{
-				if (auto p = dynamic_cast<CCursor*>(SIV3D_ENGINE(Cursor)))
+				if (const uint32 hitTest = (lParam & 0xFFFF);
+					(hitTest == HTCLIENT))
 				{
-					p->onSetCursor();
+
+					if (auto p = dynamic_cast<CCursor*>(SIV3D_ENGINE(Cursor)))
+					{
+						p->onSetCursor();
+					}
+
+					return 1;
 				}
 
-				return 1;
+				break;
 			}
 		}
 
