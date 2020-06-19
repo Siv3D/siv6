@@ -60,10 +60,10 @@ namespace s3d
 		constexpr Color(const ColorF& color, uint32 _a) noexcept;
 
 		SIV3D_NODISCARD_CXX20
-		Color(const HSV& hsv) noexcept;
+		Color(const HSV& hsva) noexcept;
 
 		SIV3D_NODISCARD_CXX20
-		Color(const HSV& hsv, double _a) noexcept;
+		Color(const HSV& hsv, uint32 _a) noexcept;
 
 		SIV3D_NODISCARD_CXX20
 		explicit constexpr Color(StringView code) noexcept;
@@ -72,7 +72,7 @@ namespace s3d
 
 		constexpr Color& operator =(const ColorF& color) noexcept;
 
-		Color& operator =(const HSV& hsv) noexcept;
+		Color& operator =(const HSV& hsva) noexcept;
 
 		[[nodiscard]]
 		constexpr Color operator ~() const noexcept;
@@ -167,11 +167,25 @@ namespace s3d
 
 		constexpr Color& set(Color color) noexcept;
 
+		constexpr Color withAlpha(uint32 _a) const noexcept;
+
 		[[nodiscard]]
 		constexpr uint8 grayscale0_255() const noexcept;
 
 		[[nodiscard]]
 		constexpr double grayscale() const noexcept;
+
+		[[nodiscard]]
+		constexpr uint32 minRGBComponent() const noexcept;
+
+		[[nodiscard]]
+		constexpr uint32 maxRGBComponent() const noexcept;
+
+		[[nodiscard]]
+		constexpr uint32 minComponent() const noexcept;
+
+		[[nodiscard]]
+		constexpr uint32 maxComponent() const noexcept;
 
 		[[nodiscard]]
 		constexpr uint32 asUint32() const noexcept;
@@ -217,11 +231,38 @@ namespace s3d
 		friend std::basic_istream<CharType>& operator >>(std::basic_istream<CharType>& input, Color& value)
 		{
 			CharType unused;
-			return input >> unused
-				>> value.r >> unused
-				>> value.g >> unused
-				>> value.b >> unused
-				>> value.a >> unused;
+			input >> unused;
+
+			if (unused == CharType('#'))
+			{
+				String code;
+				input >> code;
+				value = Color(U'#' + code);
+			}
+			else
+			{
+				uint32 cols[4];
+				input
+					>> cols[0] >> unused
+					>> cols[1] >> unused
+					>> cols[2] >> unused;
+
+				if (unused == CharType(','))
+				{
+					input >> cols[3] >> unused;
+				}
+				else
+				{
+					cols[3] = 255;
+				}
+
+				value.r = cols[0];
+				value.g = cols[1];
+				value.b = cols[2];
+				value.a = cols[3];
+			}
+
+			return input;
 		}
 
 		friend void Formatter(FormatData& formatData, const Color& value)
@@ -231,6 +272,15 @@ namespace s3d
 
 		static void _Formatter(FormatData& formatData, const Color& value);
 	};
+
+	[[nodiscard]]
+	inline constexpr Color Alpha(uint32 alpha) noexcept;
+
+	[[nodiscard]]
+	inline constexpr Color ToColor(float rgb) noexcept;
+
+	[[nodiscard]]
+	inline constexpr Color ToColor(double rgb) noexcept;
 }
 
 template <>

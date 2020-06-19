@@ -167,6 +167,16 @@ namespace s3d
 		return ((x == 0) && (y == 0));
 	}
 
+	constexpr Point::value_type Point::minComponent() const noexcept
+	{
+		return Min(x, y);
+	}
+
+	constexpr Point::value_type Point::maxComponent() const noexcept
+	{
+		return Max(x, y);
+	}
+
 	inline constexpr void Point::clear() noexcept
 	{
 		x = 0; y = 0;

@@ -117,6 +117,12 @@ namespace s3d
 		[[nodiscard]]
 		bool hasNaN() const noexcept;
 
+		[[nodiscard]]
+		constexpr value_type minComponent() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type maxComponent() const noexcept;
+
 		constexpr void clear() noexcept;
 
 		constexpr Vector2D& set(value_type _x, value_type _y) noexcept;
@@ -229,6 +235,7 @@ namespace s3d
 		//	return Geometry2D::Intersect(*this, shape);
 		//}
 
+		[[nodiscard]]
 		size_t hash() const noexcept;
 
 		/// <summary>

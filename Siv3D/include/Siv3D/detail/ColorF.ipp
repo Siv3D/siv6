@@ -55,6 +55,16 @@ namespace s3d
 		, b(rgb.b / 255.0)
 		, a(_a) {}
 
+	inline ColorF::ColorF(const HSV& hsva) noexcept
+	{
+		*this = hsva.toColorF();
+	}
+
+	inline ColorF::ColorF(const HSV& hsv, const double _a) noexcept
+	{
+		*this = hsv.toColorF(_a);
+	}
+
 	inline constexpr ColorF::ColorF(const StringView code) noexcept
 		: ColorF(Color(code)) {}
 
@@ -65,6 +75,11 @@ namespace s3d
 		b = color.b / 255.0;
 		a = color.a / 255.0;
 		return *this;
+	}
+
+	inline ColorF& ColorF::operator =(const HSV& hsva) noexcept
+	{
+		return *this = hsva.toColorF();
 	}
 
 	inline constexpr ColorF ColorF::operator +(const ColorF& rgb) const noexcept
@@ -183,9 +198,34 @@ namespace s3d
 		return *this = color;
 	}
 
+	inline constexpr ColorF ColorF::withAlpha(const double _a) const noexcept
+	{
+		return{ r, g, b, _a };
+	}
+
 	inline constexpr double ColorF::grayscale() const noexcept
 	{
 		return (0.299 * r) + (0.587 * g) + (0.114 * b);
+	}
+
+	inline constexpr double ColorF::minRGBComponent() const noexcept
+	{
+		return Min({ r, g, b });
+	}
+
+	inline constexpr double ColorF::maxRGBComponent() const noexcept
+	{
+		return Max({ r, g, b });
+	}
+
+	inline constexpr double ColorF::minComponent() const noexcept
+	{
+		return Min({ r, g, b ,a });
+	}
+
+	inline constexpr double ColorF::maxComponent() const noexcept
+	{
+		return Max({ r, g, b ,a });
 	}
 
 	inline constexpr ColorF ColorF::lerp(const ColorF& other, double f) const noexcept
@@ -294,5 +334,15 @@ namespace s3d
 	inline constexpr ColorF ColorF::One() noexcept
 	{
 		return{ 1.0, 1.0, 1.0, 1.0 };
+	}
+
+	inline constexpr ColorF AlphaF(const double alpha) noexcept
+	{
+		return ColorF(1.0, alpha);
+	}
+
+	inline constexpr ColorF Transparency(const double transparency) noexcept
+	{
+		return ColorF(1.0, (1.0 - transparency));
 	}
 }

@@ -151,6 +151,12 @@ namespace s3d
 		[[nodiscard]]
 		constexpr bool isZero() const noexcept;
 
+		[[nodiscard]]
+		constexpr value_type minComponent() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type maxComponent() const noexcept;
+
 		constexpr void clear() noexcept;
 
 		constexpr Point& set(int32 _x, int32 _y) noexcept;

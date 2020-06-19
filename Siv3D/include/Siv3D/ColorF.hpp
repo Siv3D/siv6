@@ -59,7 +59,7 @@ namespace s3d
 		constexpr ColorF(Color rgb, double _a) noexcept;
 
 		SIV3D_NODISCARD_CXX20
-		ColorF(const HSV& hsv) noexcept;
+		ColorF(const HSV& hsva) noexcept;
 
 		SIV3D_NODISCARD_CXX20
 		ColorF(const HSV& hsv, double _a) noexcept;
@@ -71,7 +71,7 @@ namespace s3d
 
 		constexpr ColorF& operator =(Color color) noexcept;
 
-		ColorF& operator =(const HSV& hsv) noexcept;
+		ColorF& operator =(const HSV& hsva) noexcept;
 
 		[[nodiscard]]
 		constexpr ColorF operator +(const ColorF& rgb) const noexcept;
@@ -135,8 +135,22 @@ namespace s3d
 
 		constexpr ColorF& set(const ColorF& ColorF) noexcept;
 
+		constexpr ColorF withAlpha(double _a) const noexcept;
+
 		[[nodiscard]]
 		constexpr double grayscale() const noexcept;
+
+		[[nodiscard]]
+		constexpr double minRGBComponent() const noexcept;
+
+		[[nodiscard]]
+		constexpr double maxRGBComponent() const noexcept;
+
+		[[nodiscard]]
+		constexpr double minComponent() const noexcept;
+
+		[[nodiscard]]
+		constexpr double maxComponent() const noexcept;
 
 		[[nodiscard]]
 		constexpr ColorF lerp(const ColorF& other, double f) const noexcept;
@@ -203,11 +217,31 @@ namespace s3d
 		friend std::basic_istream<CharType>& operator >>(std::basic_istream<CharType>& input, ColorF& value)
 		{
 			CharType unused;
-			return input >> unused
-				>> value.r >> unused
-				>> value.g >> unused
-				>> value.b >> unused
-				>> value.a >> unused;
+			input >> unused;
+
+			if (unused == CharType('#'))
+			{
+				String code;
+				input >> code;
+				value = ColorF(U'#' + code);
+			}
+			else
+			{
+				input >> value.r >> unused
+					>> value.g >> unused
+					>> value.b >> unused;
+
+				if (unused == CharType(','))
+				{
+					input >> value.a >> unused;
+				}
+				else
+				{
+					value.a = 1.0;
+				}
+			}
+
+			return input;
 		}
 
 		[[nodiscard]]
@@ -218,11 +252,15 @@ namespace s3d
 
 		friend void Formatter(FormatData& formatData, const ColorF& value)
 		{
-			_Formatter(formatData, value);
+			Formatter(formatData, value.toVec4());
 		}
-
-		static void _Formatter(FormatData& formatData, const ColorF& value);
 	};
+
+	[[nodiscard]]
+	inline constexpr ColorF AlphaF(double alpha) noexcept;
+
+	[[nodiscard]]
+	inline constexpr ColorF Transparency(double transparency) noexcept;
 }
 
 template <>

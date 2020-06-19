@@ -51,6 +51,16 @@ namespace s3d
 		, b(Color::ToUint8(color.b))
 		, a(_a) {}
 
+	inline Color::Color(const HSV& hsv) noexcept
+	{
+		*this = hsv.toColor();
+	}
+
+	inline Color::Color(const HSV& hsv, const uint32 _a) noexcept
+	{
+		*this = hsv.toColor(_a);
+	}
+
 	inline constexpr Color::Color(const StringView code) noexcept
 		: r(0)
 		, g(0)
@@ -76,6 +86,11 @@ namespace s3d
 	inline constexpr Color& Color::operator =(const ColorF& color) noexcept
 	{
 		return *this = color.toColor();
+	}
+
+	inline Color& Color::operator =(const HSV& hsva) noexcept
+	{
+		return *this = hsva.toColor();
 	}
 
 	inline constexpr Color Color::operator ~() const noexcept
@@ -149,6 +164,11 @@ namespace s3d
 		return *this = color;
 	}
 
+	inline constexpr Color Color::withAlpha(const uint32 _a) const noexcept
+	{
+		return{ r, g, b, _a };
+	}
+
 	inline constexpr uint8 Color::grayscale0_255() const noexcept
 	{
 		return static_cast<uint8>(0.299 * r + 0.587 * g + 0.114 * b);
@@ -157,6 +177,26 @@ namespace s3d
 	inline constexpr double Color::grayscale() const noexcept
 	{
 		return (0.299 / 255.0 * r) + (0.587 / 255.0 * g) + (0.114 / 255.0 * b);
+	}
+
+	inline constexpr uint32 Color::minRGBComponent() const noexcept
+	{
+		return Min({ r, g, b });
+	}
+
+	inline constexpr uint32 Color::maxRGBComponent() const noexcept
+	{
+		return Max({ r, g, b });
+	}
+
+	inline constexpr uint32 Color::minComponent() const noexcept
+	{
+		return Min({ r, g, b ,a });
+	}
+
+	inline constexpr uint32 Color::maxComponent() const noexcept
+	{
+		return Max({ r, g, b ,a });
 	}
 
 	inline constexpr uint32 Color::asUint32() const noexcept
@@ -268,5 +308,20 @@ namespace s3d
 				(abgr >>  8) & 0xFF,
 				(abgr >> 16) & 0xFF,
 				(abgr >> 24) & 0xFF };
+	}
+
+	inline constexpr Color Alpha(const uint32 alpha) noexcept
+	{
+		return Color(255, alpha);
+	}
+
+	inline constexpr Color ToColor(const float rgb) noexcept
+	{
+		return Color(Color::ToUint8(rgb));
+	}
+
+	inline constexpr Color ToColor(const double rgb) noexcept
+	{
+		return Color(Color::ToUint8(rgb));
 	}
 }

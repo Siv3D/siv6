@@ -182,6 +182,18 @@ namespace s3d
 	}
 
 	template <class Type>
+	constexpr typename Vector2D<Type>::value_type Vector2D<Type>::minComponent() const noexcept
+	{
+		return Min(x, y);
+	}
+
+	template <class Type>
+	constexpr typename Vector2D<Type>::value_type Vector2D<Type>::maxComponent() const noexcept
+	{
+		return Max(x, y);
+	}
+
+	template <class Type>
 	inline constexpr void Vector2D<Type>::clear() noexcept
 	{
 		x = 0; y = 0;

@@ -298,8 +298,11 @@
     <Filter Include="include\ThirdParty\scope-guard\detail">
       <UniqueIdentifier>{f3762b24-1a4a-40ea-a099-90e16723f081}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Siv3D\ColorF">
-      <UniqueIdentifier>{d2fc466b-a474-4705-be00-fdedb5c18d46}</UniqueIdentifier>
+    <Filter Include="src\Siv3D\Vector3D">
+      <UniqueIdentifier>{8b2c805a-8849-406e-83b9-be9832a313c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Vector4D">
+      <UniqueIdentifier>{9463aaa6-08f5-4352-8e6a-e08baf3b3b90}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1646,8 +1649,11 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Color\SivColor.cpp">
       <Filter>src\Siv3D\Color</Filter>
     </ClCompile>
-    <ClCompile Include="..\Siv3D\src\Siv3D\ColorF\SivColorF.cpp">
-      <Filter>src\Siv3D\ColorF</Filter>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Vector3D\SivVector3D.cpp">
+      <Filter>src\Siv3D\Vector3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Vector4D\SivVector4D.cpp">
+      <Filter>src\Siv3D\Vector4D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

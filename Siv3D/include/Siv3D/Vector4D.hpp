@@ -42,7 +42,19 @@ namespace s3d
 			, z(static_cast<value_type>(_z))
 			, w(static_cast<value_type>(_w)) {}
 
-		size_t hash() const noexcept;
+		template <class U>
+		SIV3D_NODISCARD_CXX20
+		constexpr Vector4D(const Vector4D<U>& v) noexcept
+			: x(static_cast<value_type>(v.x))
+			, y(static_cast<value_type>(v.y))
+			, z(static_cast<value_type>(v.z))
+			, w(static_cast<value_type>(v.w)) {}
+
+		[[nodiscard]]
+		size_t hash() const noexcept
+		{
+			return Hash::FNV1a(*this);
+		}
 
 		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Vector4D& value)
