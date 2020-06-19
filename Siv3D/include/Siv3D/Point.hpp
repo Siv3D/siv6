@@ -270,6 +270,9 @@ namespace s3d
 
 		//const Point& overwrite(Image& dst, const Color& color) const;
 
+		[[nodiscard]]
+		size_t hash() const noexcept;
+
 		/// <summary>
 		/// Point{ x, x }
 		/// </summary>
@@ -377,12 +380,12 @@ namespace s3d
 				>> value.y >> unused;
 		}
 
-		static void _Formatter(FormatData& formatData, const Point& value);
-
 		friend void Formatter(FormatData& formatData, const Point& value)
 		{
 			_Formatter(formatData, value);
 		}
+
+		static void _Formatter(FormatData& formatData, const Point& value);
 	};
 
 	using Size = Point;
@@ -422,7 +425,7 @@ namespace std
 		[[nodiscard]]
 		size_t operator()(const s3d::Point& value) const noexcept
 		{
-			return s3d::Hash::FNV1a(value);
+			return value.hash();
 		}
 	};
 }

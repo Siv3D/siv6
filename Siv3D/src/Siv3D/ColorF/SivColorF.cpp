@@ -9,23 +9,13 @@
 //
 //-----------------------------------------------
 
-# pragma once
-# include "Common.hpp"
+# include <Siv3D/ColorF.hpp>
+# include <Siv3D/FormatFloat.hpp>
 
 namespace s3d
 {
-	struct HSV
+	void ColorF::_Formatter(FormatData& formatData, const ColorF& value)
 	{
-		/// @brief 色相 |Hue [0.0, 360.0)
-		double h;
-
-		/// @brief 彩度 | Saturation [0.0, 1.0]
-		double s;
-
-		/// @brief 明度 | Value [0.0, 1.0]
-		double v;
-
-		/// @brief アルファ | Alpha [0.0, 1.0]
-		double a = 1.0;
-	};
+		Formatter(formatData, value.toVec4());
+	}
 }

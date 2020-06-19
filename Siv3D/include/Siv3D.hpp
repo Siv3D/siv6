@@ -123,6 +123,10 @@
 // Scope guard
 # include <Siv3D/ScopeGuard.hpp>
 
+// ユニーク・リソース
+// Unique resource
+# include <Siv3D/UniqueResource.hpp>
+
 // エラー
 // Error
 # include <Siv3D/Error.hpp>

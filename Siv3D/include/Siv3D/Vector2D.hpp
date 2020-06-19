@@ -229,6 +229,8 @@ namespace s3d
 		//	return Geometry2D::Intersect(*this, shape);
 		//}
 
+		size_t hash() const noexcept;
+
 		/// <summary>
 		/// Vector2D{ x, x }
 		/// </summary>
@@ -390,12 +392,12 @@ namespace s3d
 				>> value.y >> unused;
 		}
 
-		static void _Formatter(FormatData& formatData, const Vector2D& value);
-
 		friend void Formatter(FormatData& formatData, const Vector2D& value)
 		{
 			_Formatter(formatData, value);
 		}
+
+		static void _Formatter(FormatData& formatData, const Vector2D& value);
 	};
 
 	using Float2	= Vector2D<float>;
@@ -437,7 +439,7 @@ namespace std
 		[[nodiscard]]
 		size_t operator()(const s3d::Vector2D<Type>& value) const noexcept
 		{
-			return s3d::Hash::FNV1a(value);
+			return value.hash();
 		}
 	};
 }

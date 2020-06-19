@@ -335,6 +335,11 @@ namespace s3d
 		return { x + (other.x - x) * f, y + (other.y - y) * f };
 	}
 
+	inline size_t Point::hash() const noexcept
+	{
+		return Hash::FNV1a(*this);
+	}
+
 	inline constexpr Point Point::xx() const noexcept
 	{
 		return{ x, x };

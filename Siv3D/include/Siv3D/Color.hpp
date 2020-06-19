@@ -57,10 +57,16 @@ namespace s3d
 		constexpr Color(const ColorF& color) noexcept;
 
 		SIV3D_NODISCARD_CXX20
+		constexpr Color(const ColorF& color, uint32 _a) noexcept;
+
+		SIV3D_NODISCARD_CXX20
 		Color(const HSV& hsv) noexcept;
 
 		SIV3D_NODISCARD_CXX20
-		explicit Color(StringView code) noexcept;
+		Color(const HSV& hsv, double _a) noexcept;
+
+		SIV3D_NODISCARD_CXX20
+		explicit constexpr Color(StringView code) noexcept;
 
 		constexpr Color& operator =(const Color&) noexcept = default;
 
@@ -135,16 +141,67 @@ namespace s3d
 			# if __cpp_lib_bit_cast
 				return (std::bit_cast<uint32>(lhs) != std::bit_cast<uint32>(rhs));
 			# else
-			return (lhs.r != rhs.r)
-				|| (lhs.g != rhs.g)
-				|| (lhs.b != rhs.b)
-				|| (lhs.a != rhs.a);
+				return (lhs.r != rhs.r)
+					|| (lhs.g != rhs.g)
+					|| (lhs.b != rhs.b)
+					|| (lhs.a != rhs.a);
 			# endif
 		# endif
 		}
 
+		constexpr Color& setR(uint32 _r) noexcept;
+
+		constexpr Color& setG(uint32 _g) noexcept;
+
+		constexpr Color& setB(uint32 _b) noexcept;
+
+		constexpr Color& setA(uint32 _a) noexcept;
+
+		constexpr Color& setRGB(uint32 rgb) noexcept;
+
+		constexpr Color& setRGB(uint32 _r, uint32 _g, uint32 _b) noexcept;
+
+		constexpr Color& set(uint32 rgb, uint32 _a = 255) noexcept;
+
+		constexpr Color& set(uint32 _r, uint32 _g, uint32 _b, uint32 _a = 255) noexcept;
+
+		constexpr Color& set(Color color) noexcept;
+
+		[[nodiscard]]
+		constexpr uint8 grayscale0_255() const noexcept;
+
+		[[nodiscard]]
+		constexpr double grayscale() const noexcept;
+
+		[[nodiscard]]
+		constexpr uint32 asUint32() const noexcept;
+
+		[[nodiscard]]
+		constexpr Color lerp(Color other, double f) const noexcept;
+
+		[[nodiscard]]
+		Color gamma(double gamma) const noexcept;
+
+		[[nodiscard]]
+		String toHex() const;
+
+		[[nodiscard]]
+		size_t hash() const noexcept;
+
+		[[nodiscard]]
+		static constexpr Color Zero() noexcept;
+
+		[[nodiscard]]
+		static constexpr uint8 ToUint8(float x) noexcept;
+
 		[[nodiscard]]
 		static constexpr uint8 ToUint8(double x) noexcept;
+
+		[[nodiscard]]
+		static constexpr Color FromRGBA(uint32 rgba) noexcept;
+
+		[[nodiscard]]
+		static constexpr Color FromABGR(uint32 abgr) noexcept;
 
 		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Color& value)
@@ -167,12 +224,12 @@ namespace s3d
 				>> value.a >> unused;
 		}
 
-		static void _Formatter(FormatData& formatData, const Color& value);
-
 		friend void Formatter(FormatData& formatData, const Color& value)
 		{
 			_Formatter(formatData, value);
 		}
+
+		static void _Formatter(FormatData& formatData, const Color& value);
 	};
 }
 
@@ -210,7 +267,7 @@ namespace std
 		[[nodiscard]]
 		size_t operator()(const s3d::Color& value) const noexcept
 		{
-			return s3d::Hash::FNV1a(value);
+			return value.hash();
 		}
 	};
 }

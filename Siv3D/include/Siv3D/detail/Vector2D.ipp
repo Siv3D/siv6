@@ -456,6 +456,12 @@ namespace s3d
 	}
 
 	template <class Type>
+	inline size_t Vector2D<Type>::hash() const noexcept
+	{
+		return Hash::FNV1a(*this);
+	}
+
+	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::xx() const noexcept
 	{
 		return{ x, x };
