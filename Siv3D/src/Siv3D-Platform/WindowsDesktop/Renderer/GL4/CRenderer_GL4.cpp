@@ -16,6 +16,7 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/Unicode.hpp>
 # include <Siv3D/WindowState.hpp>
+# include <Siv3D/WindowState.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Window/IWindow.hpp>
@@ -59,13 +60,13 @@ namespace s3d
 		::glClear(GL_COLOR_BUFFER_BIT);
 
 		const auto& windowState = SIV3D_ENGINE(Window)->getState();
-		const Size newFrmaeBufferSize = windowState.frameBufferSize;
+		const Size newFrameBufferSize = windowState.frameBufferSize;
 
-		if (m_frmaeBufferSize != newFrmaeBufferSize)
+		if (m_frameBufferSize != newFrameBufferSize)
 		{
-			LOG_VERBOSE(U"CRenderer_GL4::clear(): Frame buffer size: {}"_fmt(newFrmaeBufferSize));
-			m_frmaeBufferSize = newFrmaeBufferSize;
-			::glViewport(0, 0, m_frmaeBufferSize.x, m_frmaeBufferSize.y);
+			LOG_VERBOSE(U"CRenderer_GL4::clear(): Frame buffer size: {}"_fmt(newFrameBufferSize));
+			m_frameBufferSize = newFrameBufferSize;
+			::glViewport(0, 0, m_frameBufferSize.x, m_frameBufferSize.y);
 
 			if (windowState.sizeMove)
 			{
@@ -95,10 +96,10 @@ namespace s3d
 					static_cast<float>(color.b),
 					static_cast<float>(color.a));
 
-		const double left = rect.x / (m_frmaeBufferSize.x * 0.5) - 1.0;
-		const double right = (rect.x + rect.w) / (m_frmaeBufferSize.x * 0.5) - 1.0;
-		const double top = -(rect.y / (m_frmaeBufferSize.y * 0.5)) + 1.0;
-		const double bottom = -((rect.y + rect.h) / (m_frmaeBufferSize.y * 0.5)) + 1.0;
+		const double left = rect.x / (m_frameBufferSize.x * 0.5) - 1.0;
+		const double right = (rect.x + rect.w) / (m_frameBufferSize.x * 0.5) - 1.0;
+		const double top = -(rect.y / (m_frameBufferSize.y * 0.5)) + 1.0;
+		const double bottom = -((rect.y + rect.h) / (m_frameBufferSize.y * 0.5)) + 1.0;
 
 		::glRectf(static_cast<float>(left),
 				static_cast<float>(top),

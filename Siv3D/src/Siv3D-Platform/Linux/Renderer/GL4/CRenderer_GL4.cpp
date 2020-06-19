@@ -96,6 +96,21 @@ namespace s3d
 	{
 		::glClearColor(0.8f, 0.9f, 1.0f, 1.0f);
 		::glClear(GL_COLOR_BUFFER_BIT);
+
+		const auto& windowState = SIV3D_ENGINE(Window)->getState();
+		const Size newFrameBufferSize = windowState.frameBufferSize;
+
+		if (m_frameBufferSize != newFrameBufferSize)
+		{
+			LOG_VERBOSE(U"CRenderer_GL4::clear(): Frame buffer size: {}"_fmt(newFrameBufferSize));
+			m_frameBufferSize = newFrameBufferSize;
+			::glViewport(0, 0, m_frameBufferSize.x, m_frameBufferSize.y);
+
+			if (windowState.sizeMove)
+			{
+				// sleep
+			}
+		}		
 	}
 
 	void CRenderer_GL4::flush()
@@ -150,5 +165,10 @@ namespace s3d
 		}
 		
 		return true;
+	}
+
+	void CRenderer_GL4::test_renderRectangle(const RectF&, const ColorF&)
+	{
+
 	}
 }

@@ -10,9 +10,9 @@
 //-----------------------------------------------
 
 # pragma once
+# include <Siv3D/Common.hpp>
 # include <GL/glew.h>
 # include <GLFW/glfw3.h>
-# include <Siv3D/Common.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
 
 namespace s3d
@@ -22,6 +22,8 @@ namespace s3d
 	private:
 		
 		GLFWwindow* m_window = nullptr;
+		
+		Size m_frameBufferSize = Size(0, 0);
 
 	public:
 
@@ -38,5 +40,7 @@ namespace s3d
 		void flush() override;
 
 		bool present() override;
+		
+		void test_renderRectangle(const RectF& rect, const ColorF& color) override;
 	};
 }

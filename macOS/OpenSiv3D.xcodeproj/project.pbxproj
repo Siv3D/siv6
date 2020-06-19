@@ -74,7 +74,6 @@
 		2C4360D3240E4EEC001657D2 /* SivUnicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360B6240E4EEC001657D2 /* SivUnicode.cpp */; };
 		2C4360D4240E4EEC001657D2 /* UnicodeUtility.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4360B7240E4EEC001657D2 /* UnicodeUtility.hpp */; };
 		2C4360D5240E4EEC001657D2 /* Siv3DEngine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4360B9240E4EEC001657D2 /* Siv3DEngine.hpp */; };
-		2C4360D6240E4EEC001657D2 /* ApplicationOptions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4360BA240E4EEC001657D2 /* ApplicationOptions.hpp */; };
 		2C4360D7240E4EEC001657D2 /* Siv3DComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4360BB240E4EEC001657D2 /* Siv3DComponent.hpp */; };
 		2C4360D8240E4EEC001657D2 /* Siv3DEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360BC240E4EEC001657D2 /* Siv3DEngine.cpp */; };
 		2C4360D9240E4EEC001657D2 /* ApplicationOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4360BD240E4EEC001657D2 /* ApplicationOptions.cpp */; };
@@ -268,6 +267,7 @@
 		2CD7B6312456BC2600194496 /* SivRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7B6302456BC2600194496 /* SivRandom.cpp */; };
 		2CE18694249CC7E200ADD14A /* SivVector3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CE18691249CC7E200ADD14A /* SivVector3D.cpp */; };
 		2CE18695249CC7E200ADD14A /* SivVector4D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CE18693249CC7E200ADD14A /* SivVector4D.cpp */; };
+		2CE1869A249CFA1D00ADD14A /* SivRectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CE18699249CFA1C00ADD14A /* SivRectangle.cpp */; };
 		2CF9FD142490F3AE00EC8308 /* levenshtein-sse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */; };
 /* End PBXBuildFile section */
 
@@ -744,6 +744,7 @@
 		2CE18693249CC7E200ADD14A /* SivVector4D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivVector4D.cpp; sourceTree = "<group>"; };
 		2CE18696249CC81800ADD14A /* Vector3D.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector3D.ipp; sourceTree = "<group>"; };
 		2CE18697249CC81800ADD14A /* Vector4D.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector4D.ipp; sourceTree = "<group>"; };
+		2CE18699249CFA1C00ADD14A /* SivRectangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivRectangle.cpp; sourceTree = "<group>"; };
 		2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "levenshtein-sse.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1015,6 +1016,7 @@
 				2C47A9A7243CA7D800FD33B4 /* Point */,
 				2C4CBE6724376B5300F8B7A6 /* Profiler */,
 				2CD7B62F2456BC2600194496 /* Random */,
+				2CE18698249CFA1C00ADD14A /* Rectangle */,
 				2C188AB32488E7750087F356 /* RegExp */,
 				2C4CBE4324370FC600F8B7A6 /* Renderer */,
 				2C4CBE5B2437236000F8B7A6 /* Scene */,
@@ -2070,6 +2072,14 @@
 			path = Vector4D;
 			sourceTree = "<group>";
 		};
+		2CE18698249CFA1C00ADD14A /* Rectangle */ = {
+			isa = PBXGroup;
+			children = (
+				2CE18699249CFA1C00ADD14A /* SivRectangle.cpp */,
+			);
+			path = Rectangle;
+			sourceTree = "<group>";
+		};
 		2CF9FD122490F3AE00EC8308 /* levenshtein-sse */ = {
 			isa = PBXGroup;
 			children = (
@@ -2106,7 +2116,6 @@
 				2C43B2E724264E3100D5CBBB /* CSystem.hpp in Headers */,
 				2C4360C4240E4EEC001657D2 /* catch.hpp in Headers */,
 				2C834DB1248805D4006208B8 /* oniguruma.h in Headers */,
-				2C4360D6240E4EEC001657D2 /* ApplicationOptions.hpp in Headers */,
 				2C481E1724460B5700A5D88D /* cpu_features_macros.h in Headers */,
 				2C423220242B155E00A16BCA /* cocoa_platform.h in Headers */,
 				2C834DAC248805D4006208B8 /* oniggnu.h in Headers */,
@@ -2268,6 +2277,7 @@
 				2C43B2E824264E3100D5CBBB /* CSystem.cpp in Sources */,
 				2C834DA7248805D4006208B8 /* euc_jp_prop.c in Sources */,
 				2C4360DB240E4EEC001657D2 /* ConsoleFactory.cpp in Sources */,
+				2CE1869A249CFA1D00ADD14A /* SivRectangle.cpp in Sources */,
 				2C60AE202480F69F00277281 /* SystemLog.cpp in Sources */,
 				2C60AE80248158A500277281 /* vendor_model_name_windows.cpp in Sources */,
 				2C439F61241DCE8B001154C2 /* SivIntFormatter.cpp in Sources */,

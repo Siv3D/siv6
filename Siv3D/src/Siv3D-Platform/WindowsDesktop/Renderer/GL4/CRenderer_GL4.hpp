@@ -26,7 +26,7 @@ namespace s3d
 
 		WGLContext m_wglContext;
 
-		Size m_frmaeBufferSize = Size(0, 0);
+		Size m_frameBufferSize = Size(0, 0);
 
 	public:
 
