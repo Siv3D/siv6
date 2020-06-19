@@ -139,13 +139,15 @@ namespace s3d
 		[[nodiscard]]
 		friend constexpr bool operator ==(Point lhs, Point rhs) noexcept
 		{
-			return (lhs.x == rhs.x) && (lhs.y == rhs.y);
+			return (lhs.x == rhs.x)
+				&& (lhs.y == rhs.y);
 		}
 
 		[[nodiscard]]
 		friend constexpr bool operator !=(Point lhs, Point rhs) noexcept
 		{
-			return (lhs.x != rhs.x) || (lhs.y != rhs.y);
+			return (lhs.x != rhs.x)
+				|| (lhs.y != rhs.y);
 		}
 
 		[[nodiscard]]

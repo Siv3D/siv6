@@ -25,30 +25,119 @@ namespace s3d
 
 		value_type x, y, z, w;
 
+		SIV3D_NODISCARD_CXX20
 		Vector4D() = default;
 
 		SIV3D_NODISCARD_CXX20
-		constexpr Vector4D(value_type _x, value_type _y, value_type _z, value_type _w) noexcept
-			: x(_x)
-			, y(_y) 
-			, z(_z)
-			, w(_w) {}
+		Vector4D(const Vector4D&) = default;
+
+		SIV3D_NODISCARD_CXX20
+		constexpr Vector4D(value_type _x, value_type _y, value_type _z, value_type _w) noexcept;
 
 		template <class X, class Y, class Z, class W>
 		SIV3D_NODISCARD_CXX20
-		constexpr Vector4D(X _x, Y _y, Z _z, W _w) noexcept
-			: x(static_cast<value_type>(_x))
-			, y(static_cast<value_type>(_y))
-			, z(static_cast<value_type>(_z))
-			, w(static_cast<value_type>(_w)) {}
+		constexpr Vector4D(X _x, Y _y, Z _z, W _w) noexcept;
 
 		template <class U>
 		SIV3D_NODISCARD_CXX20
-		constexpr Vector4D(const Vector4D<U>& v) noexcept
-			: x(static_cast<value_type>(v.x))
-			, y(static_cast<value_type>(v.y))
-			, z(static_cast<value_type>(v.z))
-			, w(static_cast<value_type>(v.w)) {}
+		constexpr Vector4D(const Vector4D<U>& v) noexcept;
+
+		template <class X, class Y>
+		SIV3D_NODISCARD_CXX20
+		constexpr Vector4D(X _x, Y _y, const Vector2D<value_type>& zw) noexcept;
+
+		template <class X, class W>
+		SIV3D_NODISCARD_CXX20
+		constexpr Vector4D(X _x, const Vector2D<value_type>& yz, W _w) noexcept;
+
+		template <class Z, class W>
+		SIV3D_NODISCARD_CXX20
+		constexpr Vector4D(const Vector2D<value_type>& xy, Z _z, W _w) noexcept;
+
+		SIV3D_NODISCARD_CXX20
+		constexpr Vector4D(const Vector2D<value_type>& xy, const Vector2D<value_type>& zw) noexcept;
+
+		template <class X>
+		SIV3D_NODISCARD_CXX20
+		constexpr Vector4D(X _x, const Vector3D<value_type>& yzw) noexcept;
+
+		template <class Z>
+		SIV3D_NODISCARD_CXX20
+		constexpr Vector4D(const Vector3D<value_type>& xyz, Z _z) noexcept;
+
+		[[nodiscard]]
+		constexpr value_type elem(size_t index) const noexcept;
+
+		[[nodiscard]]
+		value_type* getPointer() noexcept;
+
+		[[nodiscard]]
+		const value_type* getPointer() const noexcept;
+
+		//[[nodiscard]]
+		//constexpr Vector4D operator +() const noexcept;
+
+		//[[nodiscard]]
+		//constexpr Vector4D operator -() const noexcept;
+
+		//[[nodiscard]]
+		//constexpr Vector4D operator +(Vector4D v) const noexcept;
+
+		//[[nodiscard]]
+		//constexpr Vector4D operator -(Vector4D v) const noexcept;
+
+		//[[nodiscard]]
+		//constexpr Vector4D operator *(value_type s) const noexcept;
+
+		//[[nodiscard]]
+		//constexpr Vector4D operator *(Vector4D v) const noexcept;
+
+		//[[nodiscard]]
+		//constexpr Vector4D operator /(value_type s) const noexcept;
+
+		//[[nodiscard]]
+		//constexpr Vector4D operator /(Vector4D v) const noexcept;
+
+		//constexpr Vector4D& operator +=(Vector4D v) noexcept;
+
+		//constexpr Vector4D& operator -=(Vector4D v) noexcept;
+
+		//constexpr Vector4D& operator *=(value_type s) noexcept;
+
+		//constexpr Vector4D& operator *=(Vector4D v) noexcept;
+
+		//constexpr Vector4D& operator /=(value_type s) noexcept;
+
+		//constexpr Vector4D& operator /=(Vector4D v) noexcept;
+
+		template <class U, std::enable_if_t<std::is_scalar_v<U>>* = nullptr>
+		[[nodiscard]]
+		friend constexpr Vector4D operator *(U s, const Vector4D& v) noexcept
+		{
+			return (v * static_cast<Type>(s));
+		}
+
+		[[nodiscard]]
+		friend constexpr bool operator ==(const Vector4D& lhs, const Vector4D& rhs) noexcept
+		{
+			return (lhs.x == rhs.x)
+				&& (lhs.y == rhs.y)
+				&& (lhs.z == rhs.z)
+				&& (lhs.w == rhs.w);
+		}
+
+		[[nodiscard]]
+		friend constexpr bool operator !=(const Vector4D& lhs, const Vector4D& rhs) noexcept
+		{
+			return (lhs.x != rhs.x)
+				|| (lhs.y != rhs.y)
+				|| (lhs.z != rhs.z)
+				|| (lhs.w != rhs.w);
+		}
+
+
+
+
 
 		[[nodiscard]]
 		size_t hash() const noexcept

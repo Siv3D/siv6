@@ -27,7 +27,11 @@ namespace s3d
 
 		value_type x, y;
 
+		SIV3D_NODISCARD_CXX20
 		Vector2D() = default;
+
+		SIV3D_NODISCARD_CXX20
+		Vector2D(const Vector2D&) = default;
 
 		SIV3D_NODISCARD_CXX20
 		constexpr Vector2D(value_type _x, value_type _y) noexcept
@@ -90,16 +94,25 @@ namespace s3d
 
 		constexpr Vector2D& operator /=(Vector2D v) noexcept;
 
+		template <class U, std::enable_if_t<std::is_scalar_v<U>>* = nullptr>
+		[[nodiscard]]
+		friend constexpr Vector2D operator *(U s, Vector2D v) noexcept
+		{
+			return (v * static_cast<Type>(s));
+		}
+
 		[[nodiscard]]
 		friend constexpr bool operator ==(Vector2D lhs, Vector2D rhs) noexcept
 		{
-			return (lhs.x == rhs.x) && (lhs.y == rhs.y);
+			return (lhs.x == rhs.x)
+				&& (lhs.y == rhs.y);
 		}
 
 		[[nodiscard]]
 		friend constexpr bool operator !=(Vector2D lhs, Vector2D rhs) noexcept
 		{
-			return (lhs.x != rhs.x) || (lhs.y != rhs.y);
+			return (lhs.x != rhs.x)
+				|| (lhs.y != rhs.y);
 		}
 
 		[[nodiscard]]
