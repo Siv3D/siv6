@@ -266,6 +266,8 @@
 		2C9D107B249A3D8B0096DA03 /* SivColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D107A249A3D8B0096DA03 /* SivColor.cpp */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 		2CD7B6312456BC2600194496 /* SivRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7B6302456BC2600194496 /* SivRandom.cpp */; };
+		2CE18694249CC7E200ADD14A /* SivVector3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CE18691249CC7E200ADD14A /* SivVector3D.cpp */; };
+		2CE18695249CC7E200ADD14A /* SivVector4D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CE18693249CC7E200ADD14A /* SivVector4D.cpp */; };
 		2CF9FD142490F3AE00EC8308 /* levenshtein-sse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */; };
 /* End PBXBuildFile section */
 
@@ -727,6 +729,21 @@
 		2CA7F73D1CA7F3B100495647 /* libSiv3D.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSiv3D.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA7F74E1CA7F43D00495647 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		2CD7B6302456BC2600194496 /* SivRandom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivRandom.cpp; sourceTree = "<group>"; };
+		2CE18683249CC78500ADD14A /* HeterogeneousLookupHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HeterogeneousLookupHelper.hpp; sourceTree = "<group>"; };
+		2CE18684249CC79400ADD14A /* UniqueResource.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UniqueResource.hpp; sourceTree = "<group>"; };
+		2CE18686249CC7A900ADD14A /* scope_fail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scope_fail.h; sourceTree = "<group>"; };
+		2CE18687249CC7A900ADD14A /* unique_resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = unique_resource.h; sourceTree = "<group>"; };
+		2CE18688249CC7A900ADD14A /* scope_exit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scope_exit.h; sourceTree = "<group>"; };
+		2CE1868A249CC7A900ADD14A /* wrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrapper.h; sourceTree = "<group>"; };
+		2CE1868B249CC7A900ADD14A /* scope_guard_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scope_guard_base.h; sourceTree = "<group>"; };
+		2CE1868C249CC7A900ADD14A /* scope_success.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scope_success.h; sourceTree = "<group>"; };
+		2CE1868D249CC7A900ADD14A /* scope.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scope.h; sourceTree = "<group>"; };
+		2CE1868E249CC7C700ADD14A /* Vector3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector3D.hpp; sourceTree = "<group>"; };
+		2CE1868F249CC7C700ADD14A /* Vector4D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector4D.hpp; sourceTree = "<group>"; };
+		2CE18691249CC7E200ADD14A /* SivVector3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivVector3D.cpp; sourceTree = "<group>"; };
+		2CE18693249CC7E200ADD14A /* SivVector4D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivVector4D.cpp; sourceTree = "<group>"; };
+		2CE18696249CC81800ADD14A /* Vector3D.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector3D.ipp; sourceTree = "<group>"; };
+		2CE18697249CC81800ADD14A /* Vector4D.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector4D.ipp; sourceTree = "<group>"; };
 		2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "levenshtein-sse.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1008,6 +1025,8 @@
 				2C4360B4240E4EEC001657D2 /* Unicode */,
 				2C4231CC242B0BDE00A16BCA /* UserAction */,
 				2C4738402459BB0800824B3F /* Vector2D */,
+				2CE18690249CC7E200ADD14A /* Vector3D */,
+				2CE18692249CC7E200ADD14A /* Vector4D */,
 				2C43B2D724264E1200D5CBBB /* Window */,
 			);
 			path = Siv3D;
@@ -1683,6 +1702,7 @@
 				2C46837824590D8D000006C0 /* EnumBitmask */,
 				2C6898112436064900C36C25 /* fmt */,
 				2C4564C92479193600DB01F0 /* parallel_hashmap */,
+				2CE18685249CC7A900ADD14A /* scope-guard */,
 				2C9D1077249A3D680096DA03 /* SMFT */,
 				2C4A83E22457E7A4007AAE76 /* Xoshiro-cpp */,
 				2C4719F4244969A300BAC3E8 /* xxHash */,
@@ -1808,6 +1828,7 @@
 				2C9D0FD0249A3D380096DA03 /* Hash.hpp */,
 				2C9D0FD4249A3D380096DA03 /* HashSet.hpp */,
 				2C9D0FFA249A3D380096DA03 /* HashTable.hpp */,
+				2CE18683249CC78500ADD14A /* HeterogeneousLookupHelper.hpp */,
 				2C9D0FFD249A3D380096DA03 /* HSV.hpp */,
 				2C9D106B249A3D380096DA03 /* Image.hpp */,
 				2C9D0FD9249A3D380096DA03 /* ImageFormat.hpp */,
@@ -1864,10 +1885,13 @@
 				2C9D1066249A3D380096DA03 /* Types.hpp */,
 				2C9D1071249A3D380096DA03 /* Uncopyable.hpp */,
 				2C9D0FDA249A3D380096DA03 /* Unicode.hpp */,
+				2CE18684249CC79400ADD14A /* UniqueResource.hpp */,
 				2C9D0FE5249A3D380096DA03 /* Unspecified.hpp */,
 				2C9D0FF0249A3D380096DA03 /* UserAction.hpp */,
 				2C9D0FD6249A3D380096DA03 /* Utility.hpp */,
 				2C9D0FF5249A3D380096DA03 /* Vector2D.hpp */,
+				2CE1868E249CC7C700ADD14A /* Vector3D.hpp */,
+				2CE1868F249CC7C700ADD14A /* Vector4D.hpp */,
 				2C9D1006249A3D380096DA03 /* Version.hpp */,
 				2C9D1003249A3D380096DA03 /* Window.hpp */,
 				2C9D1055249A3D380096DA03 /* WindowState.hpp */,
@@ -1938,6 +1962,8 @@
 				2C9D1011249A3D380096DA03 /* Utility_detail.ipp */,
 				2C9D1043249A3D380096DA03 /* Utility.ipp */,
 				2C9D1031249A3D380096DA03 /* Vector2D.ipp */,
+				2CE18696249CC81800ADD14A /* Vector3D.ipp */,
+				2CE18697249CC81800ADD14A /* Vector4D.ipp */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -2004,6 +2030,44 @@
 				2CD7B6302456BC2600194496 /* SivRandom.cpp */,
 			);
 			path = Random;
+			sourceTree = "<group>";
+		};
+		2CE18685249CC7A900ADD14A /* scope-guard */ = {
+			isa = PBXGroup;
+			children = (
+				2CE18686249CC7A900ADD14A /* scope_fail.h */,
+				2CE18687249CC7A900ADD14A /* unique_resource.h */,
+				2CE18688249CC7A900ADD14A /* scope_exit.h */,
+				2CE18689249CC7A900ADD14A /* detail */,
+				2CE1868C249CC7A900ADD14A /* scope_success.h */,
+				2CE1868D249CC7A900ADD14A /* scope.h */,
+			);
+			path = "scope-guard";
+			sourceTree = "<group>";
+		};
+		2CE18689249CC7A900ADD14A /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				2CE1868A249CC7A900ADD14A /* wrapper.h */,
+				2CE1868B249CC7A900ADD14A /* scope_guard_base.h */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		2CE18690249CC7E200ADD14A /* Vector3D */ = {
+			isa = PBXGroup;
+			children = (
+				2CE18691249CC7E200ADD14A /* SivVector3D.cpp */,
+			);
+			path = Vector3D;
+			sourceTree = "<group>";
+		};
+		2CE18692249CC7E200ADD14A /* Vector4D */ = {
+			isa = PBXGroup;
+			children = (
+				2CE18693249CC7E200ADD14A /* SivVector4D.cpp */,
+			);
+			path = Vector4D;
 			sourceTree = "<group>";
 		};
 		2CF9FD122490F3AE00EC8308 /* levenshtein-sse */ = {
@@ -2319,6 +2383,7 @@
 				2C834D90248805D4006208B8 /* iso8859_1.c in Sources */,
 				2C43B2D42426434200D5CBBB /* SivTime.cpp in Sources */,
 				2C3EC7E6245AE62400DAD413 /* SivParseFloat.cpp in Sources */,
+				2CE18695249CC7E200ADD14A /* SivVector4D.cpp in Sources */,
 				2C834D8F248805D4006208B8 /* utf32_le.c in Sources */,
 				2C481E1A24460BBA00A5D88D /* SivCPUInfo.cpp in Sources */,
 				2C60AE84248158A500277281 /* memory_darwin.cpp in Sources */,
@@ -2370,6 +2435,7 @@
 				2C4360CD240E4EEC001657D2 /* Siv3DTest.cpp in Sources */,
 				2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */,
 				2C834D9A248805D4006208B8 /* regexec.c in Sources */,
+				2CE18694249CC7E200ADD14A /* SivVector3D.cpp in Sources */,
 				2C4CBE7124376B5300F8B7A6 /* SivProfiler.cpp in Sources */,
 				2C834D92248805D4006208B8 /* iso8859_11.c in Sources */,
 				2C45ED9B24783B020018C62B /* SivDateTime_Platform.cpp in Sources */,
