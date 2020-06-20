@@ -1,10 +1,8 @@
 
 # include <Siv3D.hpp>
 
-SIV3D_OPTION_DEBUG_HEAP_MANAGER(true);
-SIV3D_OPTION_HEADLESS_MODE(false);
-SIV3D_OPTION_OUTPUT_STDERR(true);
-SIV3D_OPTION_RUN_TEST(false);
+SIV3D_SET_OPTION(StdErr,	true)
+SIV3D_SET_OPTION(Renderer,	RendererType::Headless) // 非グラフィックモード
 
 void Main()
 {
