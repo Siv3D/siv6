@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C0F89EB249E391C008B9220 /* SivApplicationOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F89EA249E391C008B9220 /* SivApplicationOptions.cpp */; };
+		2C0F89EF249E3E8A008B9220 /* Siv3DTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */; };
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
 		2C188AB72488E7750087F356 /* RegExpDetail.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C188AB42488E7750087F356 /* RegExpDetail.hpp */; };
 		2C188AB82488E7750087F356 /* RegExpDetail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C188AB52488E7750087F356 /* RegExpDetail.cpp */; };
@@ -272,6 +273,7 @@
 /* Begin PBXFileReference section */
 		2C0F89EA249E391C008B9220 /* SivApplicationOptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivApplicationOptions.cpp; sourceTree = "<group>"; };
 		2C0F89ED249E3945008B9220 /* catch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
+		2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Siv3DTest.cpp; path = ../Test/Siv3DTest.cpp; sourceTree = "<group>"; };
 		2C1778B21CE0D5DB00BB8AD0 /* Siv3D-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Siv3D-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1778BF1CE0D5DB00BB8AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C188AB42488E7750087F356 /* RegExpDetail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RegExpDetail.hpp; sourceTree = "<group>"; };
@@ -2002,8 +2004,9 @@
 		2CA7F74D1CA7F43D00495647 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				2C22E2C11FD5BAF0002735AB /* Siv3D-Test.entitlements */,
 				2CA7F74E1CA7F43D00495647 /* Main.cpp */,
+				2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */,
+				2C22E2C11FD5BAF0002735AB /* Siv3D-Test.entitlements */,
 			);
 			name = macOS;
 			sourceTree = "<group>";
@@ -2257,6 +2260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */,
+				2C0F89EF249E3E8A008B9220 /* Siv3DTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
