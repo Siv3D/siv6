@@ -11,11 +11,11 @@
 
 # include <Siv3D/Common.hpp>
 # include "WGLContext.hpp"
+# include <Siv3D/Error.hpp>
+# include <Siv3D/EngineLog.hpp>
 # include <GL/glew.h>
 # include <GL/wglew.h>
 # include <GL/GL.h>
-# include <Siv3D/Error.hpp>
-# include <Siv3D/EngineLog.hpp>
 
 namespace s3d
 {

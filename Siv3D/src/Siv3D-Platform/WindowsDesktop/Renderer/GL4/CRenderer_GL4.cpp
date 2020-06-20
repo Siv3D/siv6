@@ -10,9 +10,6 @@
 //-----------------------------------------------
 
 # include "CRenderer_GL4.hpp"
-# include <GL/glew.h>
-# include <GL/wglew.h>
-# include <GL/GL.h>
 # include <Siv3D/Error.hpp>
 # include <Siv3D/Unicode.hpp>
 # include <Siv3D/WindowState.hpp>
@@ -20,7 +17,11 @@
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
+# include <GL/glew.h>
+# include <GL/wglew.h>
+# include <GL/GL.h>
 
 namespace s3d
 {
@@ -50,6 +51,8 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer_GL4::onMainThreadStart()");
 
 		m_wglContext.makeCurrent();
+
+		SIV3D_ENGINE(Renderer2D)->init();
 
 		clear();
 	}

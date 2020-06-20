@@ -310,6 +310,21 @@
     <Filter Include="include\ThirdParty\Catch2">
       <UniqueIdentifier>{fba81b7e-7f69-4ad8-8cfd-bb22d2548bdd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Renderer2D">
+      <UniqueIdentifier>{c8bc14ba-c804-4bb8-bf1e-a3d6950f554d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer2D">
+      <UniqueIdentifier>{4904629f-5341-4d66-b2c8-375324b068b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer2D\D3D11">
+      <UniqueIdentifier>{d076be25-8c9d-406a-b394-1e2fe1b351c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer2D\GL4">
+      <UniqueIdentifier>{810e55f1-34ed-4e1b-bec5-054e500cdc61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer2D\Null">
+      <UniqueIdentifier>{eddaf747-3a8d-4780-8330-cf6871608da5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1137,6 +1152,18 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\Catch2\catch.hpp">
       <Filter>include\ThirdParty\Catch2</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Renderer2D\IRenderer2D.hpp">
+      <Filter>src\Siv3D\Renderer2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer2D\Null\CRenderer2D_Null.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer2D\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer2D\GL4\CRenderer2D_GL4.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer2D\GL4</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer2D\D3D11\CRenderer2D_D3D11.hpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer2D\D3D11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
@@ -1672,6 +1699,18 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\ApplicationOptions\SivApplicationOptions.cpp">
       <Filter>src\Siv3D\ApplicationOptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer2D\Renderer2DFactory.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer2D\Null\CRenderer2D_Null.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer2D\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer2D\GL4\CRenderer2D_GL4.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer2D\GL4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer2D\D3D11\CRenderer2D_D3D11.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer2D\D3D11</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -25,6 +25,7 @@ namespace s3d
 	class ISiv3DConsole;
 	class ISiv3DCursor;
 	class ISiv3DRenderer;
+	class ISiv3DRenderer2D;
 
 	class Siv3DEngine
 	{
@@ -42,7 +43,8 @@ namespace s3d
 			Siv3DComponent<ISiv3DScene>,
 			Siv3DComponent<ISiv3DConsole>,
 			Siv3DComponent<ISiv3DCursor>,
-			Siv3DComponent<ISiv3DRenderer>> m_components;
+			Siv3DComponent<ISiv3DRenderer>,
+			Siv3DComponent<ISiv3DRenderer2D>> m_components;
 
 	public:
 
