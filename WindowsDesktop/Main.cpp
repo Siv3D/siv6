@@ -5,8 +5,12 @@ SIV3D_SET(EngineOption::DebugHeap,	true)
 SIV3D_SET(EngineOption::StdErr,		true)
 SIV3D_SET(EngineOption::Renderer,	RendererType::OpenGL)
 
+void Siv3DTest();
+
 void Main()
 {
+	Siv3DTest();
+
 	while (System::Update())
 	{
 		for (auto i : step(20))

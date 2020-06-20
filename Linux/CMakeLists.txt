@@ -203,7 +203,6 @@ add_library(
   ../Siv3D/src/ThirdParty/Oniguruma/utf32_be.c
   ../Siv3D/src/ThirdParty/Oniguruma/utf32_le.c
   ../Siv3D/src/ThirdParty/Oniguruma/utf8.c
-
   )
 
 target_include_directories(
@@ -223,6 +222,7 @@ enable_testing()
 add_executable(
   Siv3DTest
   ../Linux/Main.cpp
+  ../Test/Siv3DTest.cpp
   )
 
 target_link_libraries(Siv3DTest PRIVATE

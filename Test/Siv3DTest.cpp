@@ -12,14 +12,14 @@
 # define CATCH_CONFIG_RUNNER
 # define CATCH_CONFIG_FAST_COMPILE
 # define CATCH_CONFIG_ENABLE_BENCHMARKING
-# include <Catch2/catch.hpp>
+# include <ThirdParty/Catch2/catch.hpp>
 
 # include <Siv3D.hpp>
 # include <unordered_map>
 using namespace s3d;
 using namespace std::literals;
 
-void PerformTest()
+void Siv3DTest()
 {
 	Console.open();
 
