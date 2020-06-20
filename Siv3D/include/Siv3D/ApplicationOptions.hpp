@@ -60,4 +60,4 @@ namespace s3d
 
 # define SIV3D_COMBINE_(X,Y) X##Y
 # define SIV3D_COMBINE(X,Y) SIV3D_COMBINE_(X,Y)
-# define SIV3D_SET_OPTION(option,value) const int SIV3D_COMBINE(siv3d_engine_otpion_,__LINE__) = s3d::detail::SetEngineOption(##s3d::EngineOption::##option, value);
+# define SIV3D_SET(option,value) const int SIV3D_COMBINE(siv3d_engine_otpion_,__LINE__) = s3d::detail::SetEngineOption(option, value);

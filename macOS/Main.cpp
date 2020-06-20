@@ -1,8 +1,8 @@
 
 # include <Siv3D.hpp>
 
-SIV3D_SET_OPTION(StdErr,	true)
-SIV3D_SET_OPTION(Renderer,	RendererType::Headless) // 非グラフィックモード
+SIV3D_SET(EngineOption::StdErr,		true)
+SIV3D_SET(EngineOption::Renderer,	RendererType::OpenGL)
 
 void Main()
 {

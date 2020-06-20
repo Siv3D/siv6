@@ -1,9 +1,9 @@
 ﻿
 # include <Siv3D.hpp> // OpenSiv3D v0.6
 
-SIV3D_SET_OPTION(DebugHeap,	true)
-SIV3D_SET_OPTION(StdErr,	true)
-SIV3D_SET_OPTION(Renderer,	RendererType::OpenGL)
+SIV3D_SET(EngineOption::DebugHeap,	true)
+SIV3D_SET(EngineOption::StdErr,		true)
+SIV3D_SET(EngineOption::Renderer,	RendererType::OpenGL)
 
 void Main()
 {
