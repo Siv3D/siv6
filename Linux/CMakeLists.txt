@@ -32,10 +32,10 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/Linux/Window/CWindow.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Window/CWindow_Null.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Window/WindowFactory.cpp
+  ../Siv3D/src/Siv3D/ApplicationOptions/SivApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/BinaryReader/SivBinaryReader.cpp
   ../Siv3D/src/Siv3D/Color/SivColor.cpp
-  ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Common/Siv3DEngine.cpp
   ../Siv3D/src/Siv3D/Console/ConsoleFactory.cpp
   ../Siv3D/src/Siv3D/Console/SivConsole.cpp
@@ -204,7 +204,6 @@ add_library(
   ../Siv3D/src/ThirdParty/Oniguruma/utf32_le.c
   ../Siv3D/src/ThirdParty/Oniguruma/utf8.c
 
-  ../Siv3D/src/Test/Siv3DTest.cpp
   )
 
 target_include_directories(

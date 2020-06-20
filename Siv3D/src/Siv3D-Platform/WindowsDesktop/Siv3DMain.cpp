@@ -12,14 +12,13 @@
 # include <crtdbg.h>
 # include <future>
 # include <Siv3D/Windows/Windows.hpp>
-# include <Siv3D/Common/ApplicationOptions.hpp>
+# include <Siv3D/ApplicationOptions.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/System/ISystem.hpp>
 # include <Siv3D/Error.hpp>
 # include <Siv3D/Format.hpp>
 # include <Siv3D/EngineLog.hpp>
 
-void PerformTest();
 void Main();
 
 namespace s3d
@@ -58,7 +57,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 {
 	using namespace s3d;
 
-	if (g_ApplicationOptions.debugHeapManager)
+	if (g_applicationOptions.debugHeap)
 	{
 		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	}
@@ -75,11 +74,6 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 		return -1;
 	}
 
-	if (g_ApplicationOptions.runTest)
-	{
-		PerformTest();
-	}
-	
 	const std::future<void> f = std::async(std::launch::async, MainThread);
 
 	while (!f._Is_ready())

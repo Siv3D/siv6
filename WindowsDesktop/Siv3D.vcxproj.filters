@@ -49,9 +49,6 @@
     <Filter Include="src\ThirdParty\Catch2">
       <UniqueIdentifier>{3c800ae8-60b1-41b1-bb6e-4fa9bcdf0ae7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Test">
-      <UniqueIdentifier>{94202a6e-b1a8-4de5-8185-a290074fb6a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\ThirdParty">
       <UniqueIdentifier>{5df90db8-212a-43c6-96ff-3cd793e1328c}</UniqueIdentifier>
     </Filter>
@@ -310,6 +307,9 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Renderer\D3D11">
       <UniqueIdentifier>{09a395f1-95c6-4d1f-aebe-49fe3f1f3cc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\ApplicationOptions">
+      <UniqueIdentifier>{81604d52-ad00-4e0b-89ab-7f9e1c25f0e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -323,9 +323,6 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Windows\Resource.hpp">
       <Filter>include\Siv3D\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\src\Siv3D\Common\ApplicationOptions.hpp">
-      <Filter>src\Siv3D\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.hpp">
       <Filter>src\Siv3D\Common</Filter>
@@ -517,9 +514,6 @@
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Vector2D.ipp">
-      <Filter>include\Siv3D\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\detail\ApplicationOptions.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Byte.ipp">
@@ -1148,9 +1142,6 @@
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3DMain.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop</Filter>
     </ClCompile>
-    <ClCompile Include="..\Siv3D\src\Siv3D\Common\ApplicationOptions.cpp">
-      <Filter>src\Siv3D\Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
       <Filter>src\Siv3D\Common</Filter>
     </ClCompile>
@@ -1180,9 +1171,6 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\String\SivString.cpp">
       <Filter>src\Siv3D\String</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Siv3D\src\Test\Siv3DTest.cpp">
-      <Filter>src\Test</Filter>
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\ThirdParty\fmt\format.cc">
       <Filter>src\ThirdParty\fmt</Filter>
@@ -1681,6 +1669,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Renderer\D3D11\CRenderer_D3D11.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Renderer\D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ApplicationOptions\SivApplicationOptions.cpp">
+      <Filter>src\Siv3D\ApplicationOptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

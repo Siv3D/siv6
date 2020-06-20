@@ -13,27 +13,51 @@
 
 namespace s3d
 {
+	enum class EngineOption
+	{
+		/// @brief デバッグヒープマネージャ (Windows のみ)
+		DebugHeap,
+
+		/// @brief std::cerr の出力
+		StdErr,
+
+		/// @brief レンダラー
+		Renderer,
+	};
+
 	enum class RendererType
 	{
-		PlatformDefault = 0,
-		OpenGL = 1,
-		Direct3D11 = 2,
+		/// @brief デフォルト
+		PlatformDefault	= 0,
+
+		/// @brief 非グラフィックスモード
+		Headless		= 1,
+
+		/// @brief OpenGL
+		OpenGL			= 2,
+
+		/// @brief Direc3D 11
+		Direct3D11		= 3,
 	};
+
+	struct ApplicationOptions
+	{
+		bool debugHeap	= false;
+		
+		bool stdErr		= false;
+		
+		RendererType renderer	= RendererType::PlatformDefault;
+	};
+
+	namespace detail
+	{
+		int SetEngineOption(EngineOption, int) noexcept;
+		int SetEngineOption(EngineOption, RendererType) noexcept;
+	}
+
+	extern ApplicationOptions g_applicationOptions;
 }
 
-# include "detail/ApplicationOptions.ipp"
-
-/// @brief デバッグヒープマネージャ (Windows のみ)
-# define SIV3D_OPTION_DEBUG_HEAP_MANAGER(bool) const int dummy_s3d_enable_debug_heap_manager = s3d::detail::EnableDebugHeapManager(bool)
-
-/// @brief 非グラフィックスモード
-# define SIV3D_OPTION_HEADLESS_MODE(bool) const int dummy_s3d_enable_headless_mode = s3d::detail::EnableHeadlessMode(bool)
-
-/// @brief std::cerr の出力
-# define SIV3D_OPTION_OUTPUT_STDERR(bool) const int dummy_s3d_enable_stderr = s3d::detail::EnableStdErr(bool)
-
-/// @brief テストの実行
-# define SIV3D_OPTION_RUN_TEST(bool) const int dummy_s3d_enable_test = s3d::detail::EnableTest(bool)
-
-/// @brief レンダラー
-# define SIV3D_OPTION_RENDERER(RendererType) const int dummy_s3d_renderer = s3d::detail::SetRenderer(RendererType)
+# define SIV3D_COMBINE_(X,Y) X##Y
+# define SIV3D_COMBINE(X,Y) SIV3D_COMBINE_(X,Y)
+# define SIV3D_SET_OPTION(option,value) const int SIV3D_COMBINE(siv3d_engine_otpion_,__LINE__) = s3d::detail::SetEngineOption(##s3d::EngineOption::##option, value);

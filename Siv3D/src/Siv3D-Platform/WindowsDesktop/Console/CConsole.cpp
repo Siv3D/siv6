@@ -11,8 +11,8 @@
 
 # include <Siv3D/Common.hpp>
 # include <Siv3D/EngineLog.hpp>
+# include <Siv3D/ApplicationOptions.hpp>
 # include <Siv3D/Windows/Windows.hpp>
-# include <Siv3D/Common/ApplicationOptions.hpp>
 # include "CConsole.hpp"
 
 namespace s3d
@@ -41,7 +41,7 @@ namespace s3d
 		::AllocConsole();
 		::freopen_s(&m_fpOut, "CONOUT$", "w", stdout);
 		::freopen_s(&m_fpIn, "CONIN$", "r", stdin);
-		if (g_ApplicationOptions.stdErr)
+		if (g_applicationOptions.stdErr)
 		{
 			::freopen_s(&m_fpErr, "CONOUT$", "w", stderr);
 		}

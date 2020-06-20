@@ -9,15 +9,15 @@
 //
 //-----------------------------------------------
 
+# include <Siv3D/ApplicationOptions.hpp>
 # include <Cursor/CCursor.hpp>
 # include <Siv3D/Cursor/CCursor_Null.hpp>
-# include <Siv3D/Common/ApplicationOptions.hpp>
 
 namespace s3d
 {
 	ISiv3DCursor* ISiv3DCursor::Create()
 	{
-		if (g_ApplicationOptions.headlessMode)
+		if (g_applicationOptions.renderer == RendererType::Headless)
 		{
 			return new CCursor_Null;
 		}

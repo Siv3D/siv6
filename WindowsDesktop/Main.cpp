@@ -1,8 +1,9 @@
 ﻿
 # include <Siv3D.hpp> // OpenSiv3D v0.6
 
-// OpenGL モードに
-SIV3D_OPTION_RENDERER(RendererType::OpenGL);
+SIV3D_SET_OPTION(DebugHeap,	true)
+SIV3D_SET_OPTION(StdErr,	true)
+SIV3D_SET_OPTION(Renderer,	RendererType::OpenGL)
 
 void Main()
 {
