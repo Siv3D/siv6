@@ -14,3 +14,8 @@
 # include <ThirdParty/GL/glew.h>
 # include <ThirdParty/GL/wglew.h>
 # include <GL/GL.h>
+
+namespace s3d
+{
+	void CheckOpenGLError();
+}

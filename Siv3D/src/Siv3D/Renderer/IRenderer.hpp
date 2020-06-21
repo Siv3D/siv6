@@ -11,8 +11,6 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
-# include <Siv3D/Rectangle.hpp>
-# include <Siv3D/ColorHSV.hpp>
 
 namespace s3d
 {
@@ -31,7 +29,5 @@ namespace s3d
 		virtual void flush() = 0;
 
 		virtual bool present() = 0;
-
-		virtual void test_renderRectangle(const RectF& rect, const ColorF& color) = 0;
 	};
 }

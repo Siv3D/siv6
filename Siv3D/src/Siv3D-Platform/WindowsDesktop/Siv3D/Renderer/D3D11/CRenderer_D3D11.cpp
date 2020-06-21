@@ -46,9 +46,4 @@ namespace s3d
 	{
 		return true;
 	}
-
-	void CRenderer_D3D11::test_renderRectangle(const RectF&, const ColorF&)
-	{
-
-	}
 }

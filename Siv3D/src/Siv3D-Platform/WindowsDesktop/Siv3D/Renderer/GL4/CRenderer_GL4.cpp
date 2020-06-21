@@ -80,22 +80,4 @@ namespace s3d
 
 		return true;
 	}
-
-	void CRenderer_GL4::test_renderRectangle(const RectF& rect, const ColorF& color)
-	{
-		//::glColor4f(static_cast<float>(color.r),
-		//			static_cast<float>(color.g),
-		//			static_cast<float>(color.b),
-		//			static_cast<float>(color.a));
-
-		//const double left = rect.x / (m_frameBufferSize.x * 0.5) - 1.0;
-		//const double right = (rect.x + rect.w) / (m_frameBufferSize.x * 0.5) - 1.0;
-		//const double top = -(rect.y / (m_frameBufferSize.y * 0.5)) + 1.0;
-		//const double bottom = -((rect.y + rect.h) / (m_frameBufferSize.y * 0.5)) + 1.0;
-
-		//::glRectf(static_cast<float>(left),
-		//		static_cast<float>(top),
-		//		static_cast<float>(right),
-		//		static_cast<float>(bottom));
-	}
 }
