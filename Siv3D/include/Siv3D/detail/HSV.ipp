@@ -74,10 +74,14 @@ namespace s3d
 		, a(_a) {}
 
 	inline HSV::HSV(const Color color) noexcept
-		: HSV(detail::RGBAToHSV(color.r / 255.0, color.g / 255.0, color.b / 255.0, color.a / 255.0)) {}
+	{
+		*this = detail::RGBAToHSV(color.r / 255.0, color.g / 255.0, color.b / 255.0, color.a / 255.0);
+	}
 
 	inline HSV::HSV(const ColorF& color) noexcept
-		: HSV(detail::RGBAToHSV(color.r, color.g, color.b, color.a)) {}
+	{
+		*this = detail::RGBAToHSV(color.r, color.g, color.b, color.a);
+	}
 
 	inline constexpr HSV HSV::operator +(const HSV& hsv) const noexcept
 	{

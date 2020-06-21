@@ -24,6 +24,8 @@ namespace s3d
 
 		virtual void init() = 0;
 
+		virtual void destroy() = 0;
+
 		virtual void update() = 0;
 
 		virtual void setWindowTitle(const String& title) = 0;

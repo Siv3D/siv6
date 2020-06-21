@@ -50,10 +50,19 @@ namespace s3d
 {
 	inline void CheckGLError()
 	{
+		size_t limitter = 0;
+
 		GLenum err;
+
 		while ((err = glGetError()) != GL_NO_ERROR)
 		{
-			LOG_TEST(U"Error: 0x{:x}"_fmt(err));
+			LOG_ERROR(U"OpenGL Error: 0x{:x}"_fmt(err));
+
+			if (++limitter > 30)
+			{
+				LOG_ERROR(U"OpenGL error report interrupted.");
+				break;
+			}
 		}
 	}
 
@@ -65,41 +74,43 @@ namespace s3d
 	CRenderer2D_GL4::~CRenderer2D_GL4()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer2D_GL4::~CRenderer2D_GL4()");
+
+		CheckGLError();
 	}
 
 	void CRenderer2D_GL4::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer2D_GL4::init()");
 
-		//glGenBuffers(1, &vertex_buffer);
-		//glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-		//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		glGenBuffers(1, &vertex_buffer);
+		glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		//vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-		//glShaderSource(vertex_shader, 1, &vertex_shader_text, NULL);
-		//glCompileShader(vertex_shader);
+		vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(vertex_shader, 1, &vertex_shader_text, NULL);
+		glCompileShader(vertex_shader);
 
-		//fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-		//glShaderSource(fragment_shader, 1, &fragment_shader_text, NULL);
-		//glCompileShader(fragment_shader);
+		fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(fragment_shader, 1, &fragment_shader_text, NULL);
+		glCompileShader(fragment_shader);
 
-		//program = glCreateProgram();
-		//glAttachShader(program, vertex_shader);
-		//glAttachShader(program, fragment_shader);
-		//glLinkProgram(program);
+		program = glCreateProgram();
+		glAttachShader(program, vertex_shader);
+		glAttachShader(program, fragment_shader);
+		glLinkProgram(program);
 
-		//mvp_location = glGetUniformLocation(program, "MVP");
-		//vpos_location = glGetAttribLocation(program, "vPos");
-		//vcol_location = glGetAttribLocation(program, "vCol");
+		mvp_location = glGetUniformLocation(program, "MVP");
+		vpos_location = glGetAttribLocation(program, "vPos");
+		vcol_location = glGetAttribLocation(program, "vCol");
 
-		//glEnableVertexAttribArray(vpos_location);
-		//glVertexAttribPointer(vpos_location, 2, GL_FLOAT, GL_FALSE,
-		//	sizeof(vertices[0]), (void*)0);
-		//glEnableVertexAttribArray(vcol_location);
-		//glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE,
-		//	sizeof(vertices[0]), (void*)(sizeof(float) * 2));
+		glEnableVertexAttribArray(vpos_location);
+		glVertexAttribPointer(vpos_location, 2, GL_FLOAT, GL_FALSE,
+			sizeof(vertices[0]), (void*)0);
+		glEnableVertexAttribArray(vcol_location);
+		glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE,
+			sizeof(vertices[0]), (void*)(sizeof(float) * 2));
 
-		//CheckGLError();
+		CheckGLError();
 	}
 
 	void CRenderer2D_GL4::test_renderRectangle(const RectF&, const ColorF&)

@@ -55,6 +55,8 @@ namespace s3d
 
 		void init() override;
 
+		void destroy() override;
+
 		void update() override;
 
 		void setWindowTitle(const String& title) override;

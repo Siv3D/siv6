@@ -28,11 +28,6 @@ namespace s3d
 	void CRenderer_D3D11::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_D3D11::init()");
-	}
-
-	void CRenderer_D3D11::onMainThreadStart()
-	{
-		LOG_SCOPED_TRACE(U"CRenderer_D3D11::onMainThreadStart()");
 
 		clear();
 	}

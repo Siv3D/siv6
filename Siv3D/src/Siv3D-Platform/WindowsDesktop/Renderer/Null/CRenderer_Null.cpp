@@ -28,11 +28,6 @@ namespace s3d
 	void CRenderer_Null::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_Null::init()");
-	}
-
-	void CRenderer_Null::onMainThreadStart()
-	{
-		LOG_SCOPED_TRACE(U"CRenderer_Null::onMainThreadStart()");
 
 		clear();
 	}

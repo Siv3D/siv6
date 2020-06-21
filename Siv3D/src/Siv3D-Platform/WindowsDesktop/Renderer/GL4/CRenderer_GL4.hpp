@@ -36,8 +36,6 @@ namespace s3d
 
 		void init() override;
 
-		void onMainThreadStart() override;
-
 		void clear() override;
 
 		void flush() override;

@@ -26,8 +26,6 @@ namespace s3d
 
 		virtual void init() = 0;
 
-		virtual void onMainThreadStart() = 0;
-
 		virtual void clear() = 0;
 
 		virtual void flush() = 0;

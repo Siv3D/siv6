@@ -44,13 +44,6 @@ namespace s3d
 		m_hWnd = static_cast<HWND>(SIV3D_ENGINE(Window)->getHandle());
 
 		m_wglContext.init(m_hWnd);
-	}
-
-	void CRenderer_GL4::onMainThreadStart()
-	{
-		LOG_SCOPED_TRACE(U"CRenderer_GL4::onMainThreadStart()");
-
-		m_wglContext.makeCurrent();
 
 		SIV3D_ENGINE(Renderer2D)->init();
 

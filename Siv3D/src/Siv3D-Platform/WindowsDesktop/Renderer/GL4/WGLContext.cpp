@@ -65,34 +65,30 @@ namespace s3d
 		LOG_TRACE(U"wglCreateContext()");
 		m_glContext = ::wglCreateContext(m_hDC);
 
+		makeCurrent();
+
+		LOG_TRACE(U"glewInit()");
+		if (GLenum err = ::glewInit();
+			err != GLEW_OK)
 		{
-			makeCurrent();
-
-			LOG_TRACE(U"glewInit()");
-			if (GLenum err = ::glewInit();
-				err != GLEW_OK)
-			{
-				throw EngineError(U"glewInit() failed");
-			}
-
-			const String renderer = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_RENDERER)));
-			const String vendor = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VENDOR)));
-			const String version = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VERSION)));
-			const String glslVersion = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_SHADING_LANGUAGE_VERSION)));
-
-			GLint major = 0, minor = 0;
-			::glGetIntegerv(GL_MAJOR_VERSION, &major);
-			::glGetIntegerv(GL_MINOR_VERSION, &minor);
-
-			LOG_INFO(U"renderer: {}"_fmt(renderer));
-			LOG_INFO(U"vendor: {}"_fmt(vendor));
-			LOG_INFO(U"version: {}"_fmt(version));
-			LOG_INFO(U"glslVersion: {}"_fmt(glslVersion));
-			LOG_INFO(U"GL_MAJOR_VERSION: {}"_fmt(major));
-			LOG_INFO(U"GL_MINOR_VERSION: {}"_fmt(minor));
-
-			::wglMakeCurrent(nullptr, nullptr);
+			throw EngineError(U"glewInit() failed");
 		}
+
+		const String renderer = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_RENDERER)));
+		const String vendor = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VENDOR)));
+		const String version = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VERSION)));
+		const String glslVersion = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_SHADING_LANGUAGE_VERSION)));
+
+		GLint major = 0, minor = 0;
+		::glGetIntegerv(GL_MAJOR_VERSION, &major);
+		::glGetIntegerv(GL_MINOR_VERSION, &minor);
+
+		LOG_INFO(U"renderer: {}"_fmt(renderer));
+		LOG_INFO(U"vendor: {}"_fmt(vendor));
+		LOG_INFO(U"version: {}"_fmt(version));
+		LOG_INFO(U"glslVersion: {}"_fmt(glslVersion));
+		LOG_INFO(U"GL_MAJOR_VERSION: {}"_fmt(major));
+		LOG_INFO(U"GL_MINOR_VERSION: {}"_fmt(minor));
 	}
 
 	void WGLContext::destroy()

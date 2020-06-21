@@ -46,21 +46,14 @@ namespace s3d
 		SystemMisc::Init();
 
 		SIV3D_ENGINE(Profiler)->init();
-		SIV3D_ENGINE(Window)->init();
+	}
+
+	void CSystem::init2()
+	{
+		LOG_SCOPED_TRACE(U"CSystem::init2()");
+
 		SIV3D_ENGINE(Cursor)->init();
 		SIV3D_ENGINE(Renderer)->init();
-	}
-
-	void CSystem::onMainThreadStart()
-	{
-		LOG_SCOPED_TRACE(U"CSystem::onMainThreadStart()");
-
-		SIV3D_ENGINE(Renderer)->onMainThreadStart();
-	}
-
-	void CSystem::onMainThreadTerminate()
-	{
-		LOG_SCOPED_TRACE(U"CSystem::onMainThreadTerminate()");
 	}
 
 	bool CSystem::update()

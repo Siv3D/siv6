@@ -26,6 +26,8 @@
 
 namespace s3d
 {
+	extern std::atomic<bool> g_callWindowDestroy;
+
 	namespace detail
 	{
 		static void RegisterWindowClass(HINSTANCE hInstance, const wchar_t* className)
@@ -87,14 +89,20 @@ namespace s3d
 
 		if (m_hWnd)
 		{
-			LOG_VERBOSE(U"DestroyWindow()");
-			::DestroyWindow(m_hWnd);
+			// DestroyWindow() must be called from the main thread.
+
+			g_callWindowDestroy = true;
+
+			for (int32 i = 0; i < 100; ++i)
+			{
+				if (g_callWindowDestroy == false)
+				{
+					break;
+				}
+
+				::Sleep(2);
+			}
 		}
-
-		LOG_VERBOSE(U"UnregisterClassW()");
-		::UnregisterClassW(m_windowClassName.c_str(), m_hInstance);
-
-		DLL::UnloadSystemLibrary(m_user32);
 	}
 
 	void CWindow::init()
@@ -165,6 +173,24 @@ namespace s3d
 
 		LOG_VERBOSE(U"ShowWindow()");
 		::ShowWindow(m_hWnd, SW_SHOW);
+	}
+
+	void CWindow::destroy()
+	{
+		LOG_SCOPED_TRACE(U"CWindow::destroy()");
+
+		if (m_hWnd)
+		{
+			LOG_VERBOSE(U"DestroyWindow()");
+			const BOOL b = ::DestroyWindow(m_hWnd);
+			LOG_VERBOSE(U"DestroyWindow() -> {}"_fmt(!!b));
+		}
+
+		LOG_VERBOSE(U"UnregisterClassW()");
+		const BOOL b = ::UnregisterClassW(m_windowClassName.c_str(), m_hInstance);
+		LOG_VERBOSE(U"UnregisterClassW() -> {}"_fmt(!!b));
+
+		DLL::UnloadSystemLibrary(m_user32);
 	}
 
 	void CWindow::update()

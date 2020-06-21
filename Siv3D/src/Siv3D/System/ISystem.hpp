@@ -24,10 +24,6 @@ namespace s3d
 
 		virtual void init() = 0;
 
-		virtual void onMainThreadStart() = 0;
-
-		virtual void onMainThreadTerminate() = 0;
-
 		virtual bool update() = 0;
 	};
 }

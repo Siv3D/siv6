@@ -49,6 +49,11 @@ namespace s3d
 		LOG_VERBOSE(U"ShowWindow()");
 	}
 
+	void CWindow_Null::destroy()
+	{
+
+	}
+
 	void CWindow_Null::update()
 	{
 
