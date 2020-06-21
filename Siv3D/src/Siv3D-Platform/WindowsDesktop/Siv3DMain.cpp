@@ -18,7 +18,7 @@
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <System/CSystem.hpp>
-# include <Siv3D/Window/IWindow.hpp>
+# include <Window/CWindow.hpp>
 
 void Main();
 
@@ -181,7 +181,11 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 		{
 			if (g_callWindowDestroy)
 			{
-				SIV3D_ENGINE(Window)->destroy();
+				if (auto pCWindow = dynamic_cast<CWindow*>(SIV3D_ENGINE(Window)))
+				{
+					pCWindow->destroy();
+				}
+				
 				g_callWindowDestroy = false;
 			}
 
@@ -197,7 +201,11 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 
 		if (g_callWindowDestroy)
 		{
-			SIV3D_ENGINE(Window)->destroy();
+			if (auto pCWindow = dynamic_cast<CWindow*>(SIV3D_ENGINE(Window)))
+			{
+				pCWindow->destroy();
+			}
+
 			g_callWindowDestroy = false;
 		}
 

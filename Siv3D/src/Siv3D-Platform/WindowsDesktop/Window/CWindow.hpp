@@ -55,7 +55,7 @@ namespace s3d
 
 		void init() override;
 
-		void destroy() override;
+		void destroy();
 
 		void update() override;
 

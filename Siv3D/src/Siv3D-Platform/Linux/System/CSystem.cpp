@@ -49,18 +49,6 @@ namespace s3d
 		SIV3D_ENGINE(Renderer)->init();
 	}
 
-	void CSystem::onMainThreadStart()
-	{
-		LOG_SCOPED_TRACE(U"CSystem::onMainThreadStart()");
-
-		SIV3D_ENGINE(Renderer)->onMainThreadStart();
-	}
-
-	void CSystem::onMainThreadTerminate()
-	{
-		LOG_SCOPED_TRACE(U"CSystem::onMainThreadTerminate()");
-	}
-
 	bool CSystem::update()
 	{
 		if (SIV3D_ENGINE(UserAction)->terminationTriggered())
