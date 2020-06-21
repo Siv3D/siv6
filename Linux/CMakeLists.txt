@@ -221,8 +221,9 @@ target_include_directories(
   ../Siv3D/include
   ../Siv3D/include/ThirdParty
   ../Siv3D/src
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux
   ../Siv3D/src/Siv3D-Platform/Linux
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux
+  ../Siv3D/src/Siv3D-Platform/OpenGL4
   ../Siv3D/src/ThirdParty
   ${LIBSIV3D_INCLUDE_DIRS}
   )
