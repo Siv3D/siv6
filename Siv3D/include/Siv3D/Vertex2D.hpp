@@ -17,7 +17,7 @@ namespace s3d
 {
 	struct Vertex2D
 	{
-		using IndexType = uint32;
+		using IndexType = uint16;
 
 		/// @brief 位置
 		Float2 pos;

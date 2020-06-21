@@ -723,7 +723,7 @@
 
 // 3x2 行列
 // 3x2 matrix
-//# include <Siv3D/Mat3x2.hpp>
+# include <Siv3D/Mat3x2.hpp>
 
 // 線分
 // Line Segment

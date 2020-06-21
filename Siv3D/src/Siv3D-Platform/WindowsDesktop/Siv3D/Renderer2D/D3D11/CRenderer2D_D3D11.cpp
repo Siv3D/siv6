@@ -30,6 +30,11 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer2D_D3D11::init()");
 	}
 
+	void CRenderer2D_D3D11::flush()
+	{
+
+	}
+
 	void CRenderer2D_D3D11::test_renderRectangle(const RectF&, const ColorF&)
 	{
 

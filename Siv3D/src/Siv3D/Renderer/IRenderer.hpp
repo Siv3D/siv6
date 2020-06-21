@@ -11,6 +11,7 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
+# include <Siv3D/PointVector.hpp>
 
 namespace s3d
 {
@@ -29,5 +30,9 @@ namespace s3d
 		virtual void flush() = 0;
 
 		virtual bool present() = 0;
+
+		virtual Size getFrameBufferSize() const = 0;
+
+		virtual Size getSceneSize() const = 0;
 	};
 }

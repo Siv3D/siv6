@@ -12,11 +12,14 @@
 # include "CRenderer2D_GL4.hpp"
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
-
+# include <Siv3D/ScopeGuard.hpp>
 # include <Siv3D/Array.hpp>
 # include <Siv3D/BinaryReader.hpp>
 # include <Siv3D/PointVector.hpp>
 # include <Siv3D/Vertex2D.hpp>
+# include <Siv3D/Mat3x2.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Siv3D/Renderer/IRenderer.hpp>
 
 namespace s3d
 {
@@ -29,22 +32,10 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CRenderer2D_GL4::~CRenderer2D_GL4()");
 
-		if (m_indexBuffer)
+		if (m_uniformBuffer)
 		{
-			::glDeleteBuffers(1, &m_indexBuffer);
-			m_indexBuffer = 0;
-		}
-
-		if (m_vertexBuffer)
-		{
-			::glDeleteBuffers(1, &m_vertexBuffer);
-			m_vertexBuffer = 0;
-		}
-
-		if (m_vao)
-		{
-			::glDeleteVertexArrays(1, &m_vao);
-			m_vao = 0;
+			::glDeleteBuffers(1, &m_uniformBuffer);
+			m_uniformBuffer = 0;
 		}
 
 		if (m_pipeline)
@@ -147,66 +138,97 @@ namespace s3d
 
 		::glGenProgramPipelines(1, &m_pipeline);
 
-		::glGenBuffers(1, &m_vertexBuffer);
-		::glGenBuffers(1, &m_indexBuffer);
+		::glGenBuffers(1, &m_uniformBuffer);
 
-		::glGenVertexArrays(1, &m_vao);
-
-		::glBindVertexArray(m_vao);
+		// Batch 管理を初期化
+		if (!m_batches.init())
 		{
-			::glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
-			::glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex2D) * VertexBufferSize, nullptr, GL_DYNAMIC_DRAW);
-
-			::glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 32, (GLubyte*)0);
-			::glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 32, (GLubyte*)8);
-			::glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 32, (GLubyte*)16);
-
-			::glEnableVertexAttribArray(0);
-			::glEnableVertexAttribArray(1);
-			::glEnableVertexAttribArray(2);
-
-			::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBuffer);
-			::glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(IndexType) * IndexBufferSize, nullptr, GL_DYNAMIC_DRAW);
-		}
-		::glBindVertexArray(0);
-
-		::glBindVertexArray(m_vao);
-		::glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
-		{
-			const Vertex2D vertices[3] =
-			{
-				{ Float2(-0.6f, -0.4f),  Float2(0.0f, 0.0f),  Float4(1.0f, 0.0f, 0.0f, 1.0f) },
-				{ Float2(0.6f, -0.4f),  Float2(0.0f, 0.0f),  Float4(0.0f, 1.0f, 0.0f, 1.0f) },
-				{ Float2(0.0f,  0.6f),  Float2(0.0f, 0.0f),  Float4(0.0f, 0.0f, 1.0f, 1.0f) }
-			};
-
-			void* pDst = ::glMapBufferRange(GL_ARRAY_BUFFER, sizeof(Vertex2D) * 0, sizeof(Vertex2D) * 3,
-				GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
-			std::memcpy(pDst, vertices, sizeof(Vertex2D) * 3);
-			::glUnmapBuffer(GL_ARRAY_BUFFER);
-		}
-
-		{
-			const uint16 indices[3] = { 0, 1, 2 };
-			void* pDst = ::glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, sizeof(IndexType) * 0, sizeof(IndexType) * 3,
-				GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
-			std::memcpy(pDst, indices, sizeof(IndexType) * 3);
-			::glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
+			throw EngineError(U"Vertex2DBatch_GL4::init() failed");
 		}
 
 		CheckOpenGLError();
 	}
 
-	void CRenderer2D_GL4::test_renderRectangle(const RectF&, const ColorF&)
+	void CRenderer2D_GL4::flush()
 	{
+		ScopeGuard cleanUp = [this]()
+		{
+			m_batches.reset();
+			m_draw_indexCount = 0;
+		};
+
 		::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, m_vsProgram);
 		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, m_psProgram);
 
 		::glUseProgram(0);
 		::glBindProgramPipeline(m_pipeline);
 
-		::glDrawElementsBaseVertex(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, (IndexType*)(nullptr) + 0, 0);
+		const Size currentRenderTargetSize = SIV3D_ENGINE(Renderer)->getSceneSize();
+
+		Mat3x2 transform = Mat3x2::Identity();
+		Mat3x2 screenMat = Mat3x2::Screen(currentRenderTargetSize);
+		const Mat3x2 matrix = transform * screenMat;
+		
+		Float4 cb[3];
+		//cb[0] = Float4(matrix._11, -matrix._12, matrix._31, -matrix._32);
+		//cb[1] = Float4(matrix._21, -matrix._22, 0.0f, 1.0f);
+		cb[0] = Float4(matrix._11, -matrix._12, matrix._31, matrix._32);
+		cb[1] = Float4(matrix._21, matrix._22, 0.0f, 1.0f);
+		cb[2] = Float4(1, 1, 1, 1);
+
+		{
+			::glBindBuffer(GL_UNIFORM_BUFFER, m_uniformBuffer);
+			::glBufferData(GL_UNIFORM_BUFFER, sizeof(Float4) * 3, cb, GL_STATIC_DRAW);
+			::glBindBuffer(GL_UNIFORM_BUFFER, 0);
+		}
+
+		{
+			const uint32 vsUniformBlockBinding = 0;
+			::glBindBufferBase(GL_UNIFORM_BUFFER, vsUniformBlockBinding, m_uniformBuffer);
+		}
+
+		auto batchInfo = m_batches.updateBuffers(0);
+
+		const uint32 indexCount = m_draw_indexCount;
+		const uint32 startIndexLocation = batchInfo.startIndexLocation;
+		const uint32 baseVertexLocation = batchInfo.baseVertexLocation;
+		::glDrawElementsBaseVertex(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, (const Vertex2D::IndexType*)0 + startIndexLocation, baseVertexLocation);
+		batchInfo.startIndexLocation += indexCount;
+
+		::glBindVertexArray(0);
 
 		CheckOpenGLError();
+	}
+
+	void CRenderer2D_GL4::test_renderRectangle(const RectF& rect, const ColorF& _color)
+	{
+		constexpr Vertex2D::IndexType vertexSize = 4, indexSize = 6;
+		auto [pVertex, pIndex, indexOffset] = m_batches.requestBuffer(vertexSize, indexSize, m_command);
+
+		if (!pVertex)
+		{
+			return;
+		}
+
+		const Float4 color = _color.toFloat4();
+
+		const float left = float(rect.x);
+		const float right = float(rect.x + rect.w);
+		const float top = float(rect.y);
+		const float bottom = float(rect.y + rect.h);
+
+		pVertex[0].set(left, top, color);
+		pVertex[1].set(right, top, color);
+		pVertex[2].set(left, bottom, color);
+		pVertex[3].set(right, bottom, color);
+
+		static constexpr Vertex2D::IndexType RectIndexTable[6] = { 0, 1, 2, 2, 1, 3 };
+
+		for (Vertex2D::IndexType i = 0; i < indexSize; ++i)
+		{
+			*pIndex++ = (indexOffset + RectIndexTable[i]);
+		}
+
+		m_draw_indexCount += 6;
 	}
 }

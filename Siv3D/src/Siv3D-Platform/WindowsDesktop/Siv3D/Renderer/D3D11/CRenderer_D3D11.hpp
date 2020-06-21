@@ -32,5 +32,9 @@ namespace s3d
 		void flush() override;
 
 		bool present() override;
+
+		Size getFrameBufferSize() const override;
+
+		Size getSceneSize() const override;
 	};
 }

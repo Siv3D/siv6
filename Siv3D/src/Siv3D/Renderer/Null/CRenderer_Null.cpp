@@ -1,4 +1,4 @@
-//-----------------------------------------------
+﻿//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -28,7 +28,7 @@ namespace s3d
 	void CRenderer_Null::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_Null::init()");
-		
+
 		clear();
 	}
 
@@ -45,5 +45,15 @@ namespace s3d
 	bool CRenderer_Null::present()
 	{
 		return true;
+	}
+
+	Size CRenderer_Null::getFrameBufferSize() const
+	{
+		return Size(0, 0);
+	}
+
+	Size CRenderer_Null::getSceneSize() const
+	{
+		return Size(0, 0);
 	}
 }

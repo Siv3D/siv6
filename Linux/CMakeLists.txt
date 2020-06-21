@@ -15,27 +15,31 @@ pkg_check_modules(LIBSIV3D REQUIRED glib-2.0 gl x11)
 
 add_library(
   Siv3D STATIC
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/BinaryReader/BinaryReaderDetail.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Console/CConsole.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Date/SivDate_Platform.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/DateTime/SivDateTime_Platform.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Logger/CLogger.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Unicode/SivUnicode_Platform.cpp
+
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Siv3DMain.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Common/OpenGL.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Cursor/CCursor.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/FileSystem/SivFileSystem_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer/GL4/CRenderer_GL4.cpp
-  ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer/Null/CRenderer_Null.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer/RendererFactory.cpp
-  ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer2D/GL4/CRenderer2D_GL4.cpp
-  ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer2D/Null/CRenderer2D_Null.cpp
+  
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer2D/Renderer2DFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Window/CWindow.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Window/CWindow_Null.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Window/WindowFactory.cpp
+
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/BinaryReader/BinaryReaderDetail.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Console/CConsole.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Date/SivDate_Platform.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/DateTime/SivDateTime_Platform.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Logger/CLogger.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Unicode/SivUnicode_Platform.cpp
+
+  ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/Renderer2D/GL4/CRenderer2D_GL4.cpp
+  ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/Renderer2D/GL4/Vertex2DBatch_GL4.cpp
+
   ../Siv3D/src/Siv3D/ApplicationOptions/SivApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/BinaryReader/SivBinaryReader.cpp
@@ -68,6 +72,8 @@ add_library(
   ../Siv3D/src/Siv3D/Rectangle/SivRectangle.cpp
   ../Siv3D/src/Siv3D/RegExp/RegExpDetail.cpp
   ../Siv3D/src/Siv3D/RegExp/SivRegExp.cpp
+  ../Siv3D/src/Siv3D/Renderer/Null/CRenderer_Null.cpp
+  ../Siv3D/src/Siv3D/Renderer2D/Null/CRenderer2D_Null.cpp
   ../Siv3D/src/Siv3D/Scene/CScene.cpp
   ../Siv3D/src/Siv3D/Scene/SceneFactory.cpp
   ../Siv3D/src/Siv3D/Scene/SivScene.cpp

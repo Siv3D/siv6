@@ -25,6 +25,8 @@ namespace s3d
 		
 		Size m_frameBufferSize = Size(0, 0);
 
+		Size m_sceneSize = Size(800, 600);
+
 	public:
 
 		CRenderer_GL4();
@@ -38,5 +40,9 @@ namespace s3d
 		void flush() override;
 
 		bool present() override;
+
+		Size getFrameBufferSize() const override;
+
+		Size getSceneSize() const override;	
 	};
 }

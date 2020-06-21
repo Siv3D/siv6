@@ -46,4 +46,14 @@ namespace s3d
 	{
 		return true;
 	}
+
+	Size CRenderer_D3D11::getFrameBufferSize() const
+	{
+		return(Size(0, 0));
+	}
+
+	Size CRenderer_D3D11::getSceneSize() const
+	{
+		return(Size(0, 0));
+	}
 }

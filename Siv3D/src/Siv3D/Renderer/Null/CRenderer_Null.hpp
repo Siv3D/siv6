@@ -11,22 +11,30 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
-# include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Renderer/IRenderer.hpp>
 
 namespace s3d
 {
-	class CRenderer2D_Null final : public ISiv3DRenderer2D
+	class CRenderer_Null final : public ISiv3DRenderer
 	{
 	private:
 
 	public:
 
-		CRenderer2D_Null();
+		CRenderer_Null();
 
-		~CRenderer2D_Null() override;
+		~CRenderer_Null() override;
 
 		void init() override;
 
-		void test_renderRectangle(const RectF& rect, const ColorF& color) override;
+		void clear() override;
+
+		void flush() override;
+
+		bool present() override;
+
+		Size getFrameBufferSize() const override;
+
+		Size getSceneSize() const override;
 	};
 }

@@ -1,5 +1,11 @@
 #version 410
 
+layout(std140) uniform VSConstants2D
+{
+	vec4 g_transform[2];
+	vec4 g_colorMul;
+};
+
 //
 // VSInput
 //
@@ -17,11 +23,19 @@ out gl_PerVertex
 	vec4 gl_Position;
 };
 
+vec4 StandardTransform(const vec2 pos)
+{
+	vec4 result;
+	result.xy = g_transform[0].zw + pos.x * g_transform[0].xy + pos.y * g_transform[1].xy;
+	result.zw = g_transform[1].zw;
+	return result;
+}
+
 void main()
 {
-	gl_Position = vec4(VertexPosition, 0.0, 1.0);
+	gl_Position = StandardTransform(VertexPosition);
 
-	Color = VertexColor;
+	Color = (VertexColor * g_colorMul);
 	
 	UV = VertexUV;
 }

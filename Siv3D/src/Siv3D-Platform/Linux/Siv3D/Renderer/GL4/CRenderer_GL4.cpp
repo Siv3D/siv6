@@ -16,6 +16,7 @@
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
@@ -111,7 +112,7 @@ namespace s3d
 
 	void CRenderer_GL4::flush()
 	{
-
+		SIV3D_ENGINE(Renderer2D)->flush();
 	}
 
 	bool CRenderer_GL4::present()
@@ -162,4 +163,14 @@ namespace s3d
 		
 		return true;
 	}
+
+	Size CRenderer_GL4::getFrameBufferSize() const
+	{
+		return m_frameBufferSize;
+	}
+
+	Size CRenderer_GL4::getSceneSize() const
+	{
+		return m_sceneSize;
+	}	
 }
