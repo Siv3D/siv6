@@ -9,9 +9,7 @@
 //
 //-----------------------------------------------
 
-# include <GLFW/glfw3.h>
-# define GLFW_EXPOSE_NATIVE_COCOA
-# include <GLFW/glfw3native.h>
+# include <Siv3D/Common/OpenGL.hpp>
 # include <Siv3D/WindowState.hpp>
 
 namespace s3d

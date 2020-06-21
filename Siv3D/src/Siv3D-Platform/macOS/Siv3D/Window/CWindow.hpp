@@ -14,7 +14,7 @@
 # include <Siv3D/String.hpp>
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/Window/IWindow.hpp>
-# include <GLFW/glfw3.h>
+# include <Siv3D/Common/OpenGL.hpp>
 
 namespace s3d
 {

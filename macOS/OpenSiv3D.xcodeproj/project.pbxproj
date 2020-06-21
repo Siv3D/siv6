@@ -41,6 +41,7 @@
 		2C0CEDA6249F2E2D003647A7 /* CWindow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C0CED85249F2E2D003647A7 /* CWindow.hpp */; };
 		2C0CEDA7249F2E2D003647A7 /* Siv3DMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0CED86249F2E2D003647A7 /* Siv3DMain.cpp */; };
 		2C0CEDAA249F2E9A003647A7 /* IRenderer2D.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C0CEDA9249F2E9A003647A7 /* IRenderer2D.hpp */; };
+		2C0CEDAD249F30D3003647A7 /* OpenGL.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C0CEDAC249F30D3003647A7 /* OpenGL.hpp */; };
 		2C0F89EB249E391C008B9220 /* SivApplicationOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F89EA249E391C008B9220 /* SivApplicationOptions.cpp */; };
 		2C0F89EF249E3E8A008B9220 /* Siv3DTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */; };
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
@@ -311,6 +312,7 @@
 		2C0CED85249F2E2D003647A7 /* CWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CWindow.hpp; sourceTree = "<group>"; };
 		2C0CED86249F2E2D003647A7 /* Siv3DMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DMain.cpp; sourceTree = "<group>"; };
 		2C0CEDA9249F2E9A003647A7 /* IRenderer2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IRenderer2D.hpp; sourceTree = "<group>"; };
+		2C0CEDAC249F30D3003647A7 /* OpenGL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGL.hpp; sourceTree = "<group>"; };
 		2C0F89EA249E391C008B9220 /* SivApplicationOptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivApplicationOptions.cpp; sourceTree = "<group>"; };
 		2C0F89ED249E3945008B9220 /* catch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Siv3DTest.cpp; path = ../Test/Siv3DTest.cpp; sourceTree = "<group>"; };
@@ -859,14 +861,15 @@
 		2C0CED63249F2E2D003647A7 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
-				2C0CED64249F2E2D003647A7 /* Renderer */,
+				2C0CED86249F2E2D003647A7 /* Siv3DMain.cpp */,
+				2C0CEDAB249F30D3003647A7 /* Common */,
 				2C0CED6C249F2E2D003647A7 /* Cursor */,
 				2C0CED6F249F2E2D003647A7 /* FileSystem */,
+				2C0CED64249F2E2D003647A7 /* Renderer */,
 				2C0CED71249F2E2D003647A7 /* Renderer2D */,
-				2C0CED79249F2E2D003647A7 /* Time */,
 				2C0CED7B249F2E2D003647A7 /* System */,
+				2C0CED79249F2E2D003647A7 /* Time */,
 				2C0CED7F249F2E2D003647A7 /* Window */,
-				2C0CED86249F2E2D003647A7 /* Siv3DMain.cpp */,
 			);
 			path = Siv3D;
 			sourceTree = "<group>";
@@ -981,6 +984,14 @@
 				2C0CEDA9249F2E9A003647A7 /* IRenderer2D.hpp */,
 			);
 			path = Renderer2D;
+			sourceTree = "<group>";
+		};
+		2C0CEDAB249F30D3003647A7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2C0CEDAC249F30D3003647A7 /* OpenGL.hpp */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		2C0F89E9249E391C008B9220 /* ApplicationOptions */ = {
@@ -2209,6 +2220,7 @@
 				2C834D8C248805D4006208B8 /* st.h in Headers */,
 				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
 				2C1B3A51249239FC00F6AB41 /* ICursor.hpp in Headers */,
+				2C0CEDAD249F30D3003647A7 /* OpenGL.hpp in Headers */,
 				2C4360DC240E4EEC001657D2 /* IConsole.hpp in Headers */,
 				2C423257242B19ED00A16BCA /* posix_thread.h in Headers */,
 				2C439F7A241DCEA9001154C2 /* fixed-dtoa.h in Headers */,

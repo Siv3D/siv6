@@ -14,8 +14,7 @@
 # include <Siv3D/HashTable.hpp>
 # include <Siv3D/UniqueResource.hpp>
 # include <Siv3D/Cursor/ICursor.hpp>
-# include <GL/glew.h>
-# include <GLFW/glfw3.h>
+# include <Siv3D/Common/OpenGL.hpp>
 
 namespace s3d
 {
