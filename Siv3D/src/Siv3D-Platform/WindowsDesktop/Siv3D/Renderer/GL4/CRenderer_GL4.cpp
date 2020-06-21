@@ -47,6 +47,7 @@ namespace s3d
 
 	void CRenderer_GL4::clear()
 	{
+		::glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		::glClearColor(0.8f, 0.9f, 1.0f, 1.0f);
 		::glClear(GL_COLOR_BUFFER_BIT);
 
@@ -68,7 +69,7 @@ namespace s3d
 
 	void CRenderer_GL4::flush()
 	{
-		::glFlush();
+
 	}
 
 	bool CRenderer_GL4::present()
@@ -82,19 +83,19 @@ namespace s3d
 
 	void CRenderer_GL4::test_renderRectangle(const RectF& rect, const ColorF& color)
 	{
-		::glColor4f(static_cast<float>(color.r),
-					static_cast<float>(color.g),
-					static_cast<float>(color.b),
-					static_cast<float>(color.a));
+		//::glColor4f(static_cast<float>(color.r),
+		//			static_cast<float>(color.g),
+		//			static_cast<float>(color.b),
+		//			static_cast<float>(color.a));
 
-		const double left = rect.x / (m_frameBufferSize.x * 0.5) - 1.0;
-		const double right = (rect.x + rect.w) / (m_frameBufferSize.x * 0.5) - 1.0;
-		const double top = -(rect.y / (m_frameBufferSize.y * 0.5)) + 1.0;
-		const double bottom = -((rect.y + rect.h) / (m_frameBufferSize.y * 0.5)) + 1.0;
+		//const double left = rect.x / (m_frameBufferSize.x * 0.5) - 1.0;
+		//const double right = (rect.x + rect.w) / (m_frameBufferSize.x * 0.5) - 1.0;
+		//const double top = -(rect.y / (m_frameBufferSize.y * 0.5)) + 1.0;
+		//const double bottom = -((rect.y + rect.h) / (m_frameBufferSize.y * 0.5)) + 1.0;
 
-		::glRectf(static_cast<float>(left),
-				static_cast<float>(top),
-				static_cast<float>(right),
-				static_cast<float>(bottom));
+		//::glRectf(static_cast<float>(left),
+		//		static_cast<float>(top),
+		//		static_cast<float>(right),
+		//		static_cast<float>(bottom));
 	}
 }

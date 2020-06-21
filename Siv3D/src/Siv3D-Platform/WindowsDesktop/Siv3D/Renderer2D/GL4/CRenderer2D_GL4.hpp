@@ -20,8 +20,17 @@ namespace s3d
 	{
 	private:
 
-		GLuint vertex_buffer = 0, vertex_shader = 0, fragment_shader = 0, program = 0;
-		GLint mvp_location = 0, vpos_location = 0, vcol_location = 0;
+		GLuint m_vsProgram = 0;
+		GLuint m_psProgram = 0;
+		GLuint m_pipeline = 0;
+
+		GLuint m_vao = 0;
+		GLuint m_vertexBuffer = 0;
+		GLuint m_indexBuffer = 0;
+
+		using IndexType = uint16;
+		static constexpr uint32 VertexBufferSize = 1023;
+		static constexpr uint32 IndexBufferSize = (VertexBufferSize + 1) * 4;
 
 	public:
 

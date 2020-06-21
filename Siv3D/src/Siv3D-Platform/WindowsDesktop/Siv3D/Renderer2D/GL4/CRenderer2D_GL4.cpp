@@ -13,41 +13,19 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
 
+# include <Siv3D/Array.hpp>
 # include <Siv3D/BinaryReader.hpp>
-
-static const struct
-{
-	float x, y;
-	float r, g, b;
-} vertices[3] =
-{
-	{ -0.6f, -0.4f, 1.f, 0.f, 0.f },
-	{  0.6f, -0.4f, 0.f, 1.f, 0.f },
-	{   0.f,  0.6f, 0.f, 0.f, 1.f }
-};
-
-static const char* vertex_shader_text =
-"#version 110\n"
-"uniform mat4 MVP;\n"
-"attribute vec3 vCol;\n"
-"attribute vec2 vPos;\n"
-"varying vec3 color;\n"
-"void main()\n"
-"{\n"
-"    gl_Position = MVP * vec4(vPos, 0.0, 1.0);\n"
-"    color = vCol;\n"
-"}\n";
-
-static const char* fragment_shader_text =
-"#version 110\n"
-"varying vec3 color;\n"
-"void main()\n"
-"{\n"
-"    gl_FragColor = vec4(color, 1.0);\n"
-"}\n";
+# include <Siv3D/PointVector.hpp>
 
 namespace s3d
 {
+	struct Vertex2D
+	{
+		Float2 pos;
+		Float2 uv;
+		Float4 color;
+	};
+
 	inline void CheckGLError()
 	{
 		size_t limitter = 0;
@@ -75,6 +53,42 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CRenderer2D_GL4::~CRenderer2D_GL4()");
 
+		if (m_indexBuffer)
+		{
+			::glDeleteBuffers(1, &m_indexBuffer);
+			m_indexBuffer = 0;
+		}
+
+		if (m_vertexBuffer)
+		{
+			::glDeleteBuffers(1, &m_vertexBuffer);
+			m_vertexBuffer = 0;
+		}
+
+		if (m_vao)
+		{
+			::glDeleteVertexArrays(1, &m_vao);
+			m_vao = 0;
+		}
+
+		if (m_pipeline)
+		{
+			::glDeleteProgramPipelines(1, &m_pipeline);
+			m_pipeline = 0;
+		}
+
+		if (m_psProgram)
+		{
+			::glDeleteProgram(m_psProgram);
+			m_psProgram = 0;
+		}
+
+		if (m_vsProgram)
+		{
+			::glDeleteProgram(m_vsProgram);
+			m_vsProgram = 0;
+		}
+
 		CheckGLError();
 	}
 
@@ -82,56 +96,145 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CRenderer2D_GL4::init()");
 
-		glGenBuffers(1, &vertex_buffer);
-		glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		{
+			BinaryReader shader(U"engine/shader/glsl/test.vert");
 
-		vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource(vertex_shader, 1, &vertex_shader_text, NULL);
-		glCompileShader(vertex_shader);
+			if (!shader)
+			{
+				throw EngineError();
+			}
 
-		fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fragment_shader, 1, &fragment_shader_text, NULL);
-		glCompileShader(fragment_shader);
+			Array<char> source(shader.size());
+			shader.read(source.data(), shader.size());
+			source.push_back('\0');
+			const char* pSource = source.data();
+			m_vsProgram = ::glCreateShaderProgramv(GL_VERTEX_SHADER, 1, &pSource);
 
-		program = glCreateProgram();
-		glAttachShader(program, vertex_shader);
-		glAttachShader(program, fragment_shader);
-		glLinkProgram(program);
+			GLint status = GL_FALSE;
+			::glGetProgramiv(m_vsProgram, GL_LINK_STATUS, &status);
 
-		mvp_location = glGetUniformLocation(program, "MVP");
-		vpos_location = glGetAttribLocation(program, "vPos");
-		vcol_location = glGetAttribLocation(program, "vCol");
+			GLint logLen = 0;
+			::glGetProgramiv(m_vsProgram, GL_INFO_LOG_LENGTH, &logLen);
 
-		glEnableVertexAttribArray(vpos_location);
-		glVertexAttribPointer(vpos_location, 2, GL_FLOAT, GL_FALSE,
-			sizeof(vertices[0]), (void*)0);
-		glEnableVertexAttribArray(vcol_location);
-		glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE,
-			sizeof(vertices[0]), (void*)(sizeof(float) * 2));
+			if (logLen > 4)
+			{
+				std::string log(logLen + 1, '\0');
+				::glGetProgramInfoLog(m_vsProgram, logLen, &logLen, &log[0]);
+				LOG_FAIL(U"❌ Vertex shader compilation failed: {0}"_fmt(Unicode::Widen(log)));
+				throw EngineError();
+			}
+
+			if (status == GL_FALSE) // もしリンクに失敗していたら
+			{
+				::glDeleteProgram(m_vsProgram);
+				m_vsProgram = 0;
+				throw EngineError();
+			}
+		}
+
+		{
+			BinaryReader shader(U"engine/shader/glsl/test.frag");
+
+			if (!shader)
+			{
+				throw EngineError();
+			}
+
+			Array<char> source(shader.size());
+			shader.read(source.data(), shader.size());
+			source.push_back('\0');
+			const char* pSource = source.data();
+			m_psProgram = ::glCreateShaderProgramv(GL_FRAGMENT_SHADER, 1, &pSource);
+
+			GLint status = GL_FALSE;
+			::glGetProgramiv(m_psProgram, GL_LINK_STATUS, &status);
+
+			GLint logLen = 0;
+			::glGetProgramiv(m_psProgram, GL_INFO_LOG_LENGTH, &logLen);
+
+			// ログメッセージ
+			if (logLen > 4)
+			{
+				std::string log(logLen + 1, '\0');
+				::glGetProgramInfoLog(m_psProgram, logLen, &logLen, &log[0]);
+				LOG_FAIL(U"❌ Pixel shader compilation failed: {0}"_fmt(Unicode::Widen(log)));
+				throw EngineError();
+			}
+
+			if (status == GL_FALSE) // もしリンクに失敗していたら
+			{
+				::glDeleteProgram(m_psProgram);
+				m_psProgram = 0;
+				throw EngineError();
+			}
+		}
 
 		CheckGLError();
+
+		::glGenProgramPipelines(1, &m_pipeline);
+
+		CheckGLError();
+
+		::glGenBuffers(1, &m_vertexBuffer);
+		::glGenBuffers(1, &m_indexBuffer);
+
+		::glGenVertexArrays(1, &m_vao);
+
+		::glBindVertexArray(m_vao);
+		{
+			::glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
+			::glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex2D) * VertexBufferSize, nullptr, GL_DYNAMIC_DRAW);
+
+			::glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 32, (GLubyte*)0);
+			::glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 32, (GLubyte*)8);
+			::glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 32, (GLubyte*)16);
+
+			::glEnableVertexAttribArray(0);
+			::glEnableVertexAttribArray(1);
+			::glEnableVertexAttribArray(2);
+
+			::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBuffer);
+			::glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(IndexType) * IndexBufferSize, nullptr, GL_DYNAMIC_DRAW);
+		}
+		::glBindVertexArray(0);
+
+		CheckGLError();
+
+		::glBindVertexArray(m_vao);
+		::glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
+		{
+			const Vertex2D vertices[3] =
+			{
+				{ Float2(-0.6f, -0.4f),  Float2(0.0f, 0.0f),  Float4(1.0f, 0.0f, 0.0f, 1.0f) },
+				{ Float2(0.6f, -0.4f),  Float2(0.0f, 0.0f),  Float4(0.0f, 1.0f, 0.0f, 1.0f) },
+				{ Float2(0.0f,  0.6f),  Float2(0.0f, 0.0f),  Float4(0.0f, 0.0f, 1.0f, 1.0f) }
+			};
+
+			void* pDst = ::glMapBufferRange(GL_ARRAY_BUFFER, sizeof(Vertex2D) * 0, sizeof(Vertex2D) * 3,
+				GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
+			std::memcpy(pDst, vertices, sizeof(Vertex2D) * 3);
+			::glUnmapBuffer(GL_ARRAY_BUFFER);
+		}
+
+		{
+			const uint16 indices[3] = { 0, 1, 2 };
+			void* pDst = ::glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, sizeof(IndexType) * 0, sizeof(IndexType) * 3,
+				GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
+			std::memcpy(pDst, indices, sizeof(IndexType) * 3);
+			::glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
+		}
 	}
 
 	void CRenderer2D_GL4::test_renderRectangle(const RectF&, const ColorF&)
 	{
-		//float ratio;
-		//int width, height;
-		//mat4x4 m, p, mvp;
+		::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, m_vsProgram);
+		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, m_psProgram);
 
-		//glfwGetFramebufferSize(window, &width, &height);
-		//ratio = width / (float)height;
+		::glUseProgram(0);
+		::glBindProgramPipeline(m_pipeline);
 
-		//glViewport(0, 0, width, height);
-		//glClear(GL_COLOR_BUFFER_BIT);
+		::glDrawElementsBaseVertex(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, (IndexType*)(nullptr) + 0, 0);
 
-		//mat4x4_identity(m);
-		//mat4x4_rotate_Z(m, m, (float)glfwGetTime());
-		//mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-		//mat4x4_mul(mvp, p, m);
-
-		//glUseProgram(program);
-		//glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*)mvp);
-		//glDrawArrays(GL_TRIANGLES, 0, 3);
+		CheckGLError();
 	}
 }
