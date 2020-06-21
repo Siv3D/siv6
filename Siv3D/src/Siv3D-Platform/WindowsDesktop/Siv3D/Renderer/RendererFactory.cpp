@@ -10,26 +10,26 @@
 //-----------------------------------------------
 
 # include <Siv3D/ApplicationOptions.hpp>
-# include <Renderer2D/Null/CRenderer2D_Null.hpp>
-# include <Renderer2D/GL4/CRenderer2D_GL4.hpp>
-# include <Renderer2D/D3D11/CRenderer2D_D3D11.hpp>
+# include <Siv3D/Renderer/Null/CRenderer_Null.hpp>
+# include <Siv3D/Renderer/GL4/CRenderer_GL4.hpp>
+# include <Siv3D/Renderer/D3D11/CRenderer_D3D11.hpp>
 
 namespace s3d
 {
-	ISiv3DRenderer2D* ISiv3DRenderer2D::Create()
+	ISiv3DRenderer* ISiv3DRenderer::Create()
 	{
 		if (g_applicationOptions.renderer == RendererType::Headless)
 		{
-			return new CRenderer2D_Null;
+			return new CRenderer_Null;
 		}
 		else if (g_applicationOptions.renderer == RendererType::PlatformDefault
 			|| g_applicationOptions.renderer == RendererType::Direct3D11)
 		{
-			return new CRenderer2D_D3D11;
+			return new CRenderer_D3D11;
 		}
 		else
 		{
-			return new CRenderer2D_GL4;
+			return new CRenderer_GL4;
 		}
 	}
 }

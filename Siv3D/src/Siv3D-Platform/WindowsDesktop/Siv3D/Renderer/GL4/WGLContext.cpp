@@ -12,7 +12,7 @@
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
-# include <Common/OpenGL.hpp>
+# include <Siv3D/Common/OpenGL.hpp>
 # include "WGLContext.hpp"
 
 namespace s3d

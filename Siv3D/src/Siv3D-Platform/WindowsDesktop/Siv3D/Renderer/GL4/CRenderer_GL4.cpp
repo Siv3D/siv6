@@ -18,7 +18,7 @@
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
-# include <Common/OpenGL.hpp>
+# include <Siv3D/Common/OpenGL.hpp>
 
 namespace s3d
 {

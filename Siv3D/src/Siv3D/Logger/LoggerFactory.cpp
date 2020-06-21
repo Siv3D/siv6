@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------
 
-# include <Logger/CLogger.hpp>
+# include <Siv3D/Logger/CLogger.hpp>
 
 namespace s3d
 {

@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------
 
-# include <System/CSystem.hpp>
+# include <Siv3D/System/CSystem.hpp>
 
 namespace s3d
 {

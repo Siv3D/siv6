@@ -17,8 +17,8 @@
 # include <Siv3D/ApplicationOptions.hpp>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
-# include <System/CSystem.hpp>
-# include <Window/CWindow.hpp>
+# include <Siv3D/System/CSystem.hpp>
+# include <Siv3D/Window/CWindow.hpp>
 
 void Main();
 

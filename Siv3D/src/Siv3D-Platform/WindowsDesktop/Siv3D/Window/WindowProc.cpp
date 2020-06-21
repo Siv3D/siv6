@@ -15,7 +15,7 @@
 # include <Siv3D/UserAction.hpp>
 # include <Siv3D/UserAction/IUSerAction.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
-# include <Cursor/CCursor.hpp>
+# include <Siv3D/Cursor/CCursor.hpp>
 # include "WindowProc.hpp"
 # include "CWindow.hpp"
 

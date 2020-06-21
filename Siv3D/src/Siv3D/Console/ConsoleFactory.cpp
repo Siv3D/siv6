@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------
 
-# include <Console/CConsole.hpp>
+# include <Siv3D/Console/CConsole.hpp>
 
 namespace s3d
 {

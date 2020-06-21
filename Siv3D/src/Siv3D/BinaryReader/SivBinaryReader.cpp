@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/BinaryReader.hpp>
-# include <BinaryReader/BinaryReaderDetail.hpp>
+# include <Siv3D/BinaryReader/BinaryReaderDetail.hpp>
 
 namespace s3d
 {

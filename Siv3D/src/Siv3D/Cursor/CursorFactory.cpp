@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/ApplicationOptions.hpp>
-# include <Cursor/CCursor.hpp>
+# include <Siv3D/Cursor/CCursor.hpp>
 # include <Siv3D/Cursor/CCursor_Null.hpp>
 
 namespace s3d
