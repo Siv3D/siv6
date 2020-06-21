@@ -10,8 +10,8 @@
 //-----------------------------------------------
 
 # include <Siv3D/ApplicationOptions.hpp>
-# include <Renderer/Null/CRenderer_Null.hpp>
-# include <Renderer/GL4/CRenderer_GL4.hpp>
+# include <Siv3D/Renderer/Null/CRenderer_Null.hpp>
+# include <Siv3D/Renderer/GL4/CRenderer_GL4.hpp>
 
 namespace s3d
 {
