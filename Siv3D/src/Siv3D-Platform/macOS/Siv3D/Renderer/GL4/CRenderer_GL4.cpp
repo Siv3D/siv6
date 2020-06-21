@@ -162,9 +162,4 @@ namespace s3d
 		
 		return true;
 	}
-
-	void CRenderer_GL4::test_renderRectangle(const RectF& rect, const ColorF& color)
-	{
-
-	}
 }

@@ -16,34 +16,10 @@
 # include <Siv3D/Array.hpp>
 # include <Siv3D/BinaryReader.hpp>
 # include <Siv3D/PointVector.hpp>
+# include <Siv3D/Vertex2D.hpp>
 
 namespace s3d
 {
-	struct Vertex2D
-	{
-		Float2 pos;
-		Float2 uv;
-		Float4 color;
-	};
-
-	inline void CheckGLError()
-	{
-		size_t limitter = 0;
-
-		GLenum err;
-
-		while ((err = glGetError()) != GL_NO_ERROR)
-		{
-			LOG_ERROR(U"OpenGL Error: 0x{:x}"_fmt(err));
-
-			if (++limitter > 30)
-			{
-				LOG_ERROR(U"OpenGL error report interrupted.");
-				break;
-			}
-		}
-	}
-
 	CRenderer2D_GL4::CRenderer2D_GL4()
 	{
 	
@@ -53,7 +29,7 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CRenderer2D_GL4::~CRenderer2D_GL4()");
 
-		CheckGLError();
+		CheckOpenGLError();
 	}
 
 	void CRenderer2D_GL4::init()
@@ -133,11 +109,7 @@ namespace s3d
 			}
 		}
 
-		CheckGLError();
-		
 		::glGenProgramPipelines(1, &m_pipeline);
-
-		CheckGLError();
 
 		::glGenBuffers(1, &m_vertexBuffer);
 		::glGenBuffers(1, &m_indexBuffer);
@@ -161,8 +133,6 @@ namespace s3d
 			::glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(IndexType) * IndexBufferSize, nullptr, GL_DYNAMIC_DRAW);
 		}
 		::glBindVertexArray(0);
-
-		CheckGLError();
 
 		::glBindVertexArray(m_vao);
 		::glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
@@ -188,7 +158,7 @@ namespace s3d
 			::glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
 		}
 
-		CheckGLError();
+		CheckOpenGLError();
 	}
 
 	void CRenderer2D_GL4::test_renderRectangle(const RectF&, const ColorF&)
@@ -201,6 +171,6 @@ namespace s3d
 
 		::glDrawElementsBaseVertex(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, (IndexType*)(nullptr) + 0, 0);
 
-		CheckGLError();
+		CheckOpenGLError();
 	}
 }

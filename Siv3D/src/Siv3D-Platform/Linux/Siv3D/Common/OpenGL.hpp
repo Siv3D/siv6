@@ -12,3 +12,8 @@
 # pragma once
 # include <ThirdParty/GL/glew.h>
 # include <ThirdParty/GLFW/glfw3.h>
+
+namespace s3d
+{
+	void CheckOpenGLError();
+}

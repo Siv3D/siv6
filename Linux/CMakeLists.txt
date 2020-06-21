@@ -22,6 +22,7 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Logger/CLogger.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Unicode/SivUnicode_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Siv3DMain.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Common/OpenGL.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Cursor/CCursor.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/FileSystem/SivFileSystem_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer/GL4/CRenderer_GL4.cpp
