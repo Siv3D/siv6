@@ -188,9 +188,7 @@
 		2CF21D20249FAA8F00C864C9 /* OpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21D0B249FAA8F00C864C9 /* OpenGL.cpp */; };
 		2CF21D21249FAA8F00C864C9 /* WindowFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21D0D249FAA8F00C864C9 /* WindowFactory.cpp */; };
 		2CF21D22249FAA8F00C864C9 /* CWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21D0E249FAA8F00C864C9 /* CWindow.cpp */; };
-		2CF21D23249FAA8F00C864C9 /* CWindow_Null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21D0F249FAA8F00C864C9 /* CWindow_Null.cpp */; };
 		2CF21D24249FAA8F00C864C9 /* CWindow_macOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21D10249FAA8F00C864C9 /* CWindow_macOS.mm */; };
-		2CF21D25249FAA8F00C864C9 /* CWindow_Null.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF21D11249FAA8F00C864C9 /* CWindow_Null.hpp */; };
 		2CF21D26249FAA8F00C864C9 /* CWindow.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF21D12249FAA8F00C864C9 /* CWindow.hpp */; };
 		2CF21D27249FAA8F00C864C9 /* Siv3DMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21D13249FAA8F00C864C9 /* Siv3DMain.cpp */; };
 		2CF21D30249FAA9700C864C9 /* Vertex2DBatch_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF21D2C249FAA9700C864C9 /* Vertex2DBatch_GL4.hpp */; };
@@ -278,6 +276,8 @@
 		2CF21DFF249FAB3600C864C9 /* IConsole.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF21DAD249FAB3600C864C9 /* IConsole.hpp */; };
 		2CF21E00249FAB3600C864C9 /* SivConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21DAE249FAB3600C864C9 /* SivConsole.cpp */; };
 		2CF21E01249FAB3600C864C9 /* SivInt128.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21DB0249FAB3600C864C9 /* SivInt128.cpp */; };
+		2CF21E05249FAF9E00C864C9 /* CWindow_Null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21E03249FAF9E00C864C9 /* CWindow_Null.cpp */; };
+		2CF21E06249FAF9E00C864C9 /* CWindow_Null.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF21E04249FAF9E00C864C9 /* CWindow_Null.hpp */; };
 		2CF9FD142490F3AE00EC8308 /* levenshtein-sse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */; };
 /* End PBXBuildFile section */
 
@@ -675,9 +675,7 @@
 		2CF21D0B249FAA8F00C864C9 /* OpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGL.cpp; sourceTree = "<group>"; };
 		2CF21D0D249FAA8F00C864C9 /* WindowFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowFactory.cpp; sourceTree = "<group>"; };
 		2CF21D0E249FAA8F00C864C9 /* CWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWindow.cpp; sourceTree = "<group>"; };
-		2CF21D0F249FAA8F00C864C9 /* CWindow_Null.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWindow_Null.cpp; sourceTree = "<group>"; };
 		2CF21D10249FAA8F00C864C9 /* CWindow_macOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CWindow_macOS.mm; sourceTree = "<group>"; };
-		2CF21D11249FAA8F00C864C9 /* CWindow_Null.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CWindow_Null.hpp; sourceTree = "<group>"; };
 		2CF21D12249FAA8F00C864C9 /* CWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CWindow.hpp; sourceTree = "<group>"; };
 		2CF21D13249FAA8F00C864C9 /* Siv3DMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DMain.cpp; sourceTree = "<group>"; };
 		2CF21D2C249FAA9700C864C9 /* Vertex2DBatch_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex2DBatch_GL4.hpp; sourceTree = "<group>"; };
@@ -765,6 +763,8 @@
 		2CF21DAD249FAB3600C864C9 /* IConsole.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IConsole.hpp; sourceTree = "<group>"; };
 		2CF21DAE249FAB3600C864C9 /* SivConsole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivConsole.cpp; sourceTree = "<group>"; };
 		2CF21DB0249FAB3600C864C9 /* SivInt128.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivInt128.cpp; sourceTree = "<group>"; };
+		2CF21E03249FAF9E00C864C9 /* CWindow_Null.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWindow_Null.cpp; sourceTree = "<group>"; };
+		2CF21E04249FAF9E00C864C9 /* CWindow_Null.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CWindow_Null.hpp; sourceTree = "<group>"; };
 		2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "levenshtein-sse.hpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1715,9 +1715,7 @@
 			children = (
 				2CF21D0D249FAA8F00C864C9 /* WindowFactory.cpp */,
 				2CF21D0E249FAA8F00C864C9 /* CWindow.cpp */,
-				2CF21D0F249FAA8F00C864C9 /* CWindow_Null.cpp */,
 				2CF21D10249FAA8F00C864C9 /* CWindow_macOS.mm */,
-				2CF21D11249FAA8F00C864C9 /* CWindow_Null.hpp */,
 				2CF21D12249FAA8F00C864C9 /* CWindow.hpp */,
 			);
 			path = Window;
@@ -2054,6 +2052,7 @@
 		2CF21D86249FAB3600C864C9 /* Window */ = {
 			isa = PBXGroup;
 			children = (
+				2CF21E02249FAF9E00C864C9 /* Null */,
 				2CF21D87249FAB3600C864C9 /* IWindow.hpp */,
 				2CF21D88249FAB3600C864C9 /* SivWindow.cpp */,
 			);
@@ -2190,6 +2189,15 @@
 			path = Int128;
 			sourceTree = "<group>";
 		};
+		2CF21E02249FAF9E00C864C9 /* Null */ = {
+			isa = PBXGroup;
+			children = (
+				2CF21E03249FAF9E00C864C9 /* CWindow_Null.cpp */,
+				2CF21E04249FAF9E00C864C9 /* CWindow_Null.hpp */,
+			);
+			path = Null;
+			sourceTree = "<group>";
+		};
 		2CF9FD122490F3AE00EC8308 /* levenshtein-sse */ = {
 			isa = PBXGroup;
 			children = (
@@ -2223,6 +2231,7 @@
 				2CF21DB4249FAB3600C864C9 /* IRenderer.hpp in Headers */,
 				2C42324D242B155E00A16BCA /* osmesa_context.h in Headers */,
 				2CF21DDA249FAB3600C864C9 /* ISystem.hpp in Headers */,
+				2CF21E06249FAF9E00C864C9 /* CWindow_Null.hpp in Headers */,
 				2CF21DDE249FAB3600C864C9 /* Siv3DEngine.hpp in Headers */,
 				2CF21D26249FAA8F00C864C9 /* CWindow.hpp in Headers */,
 				2C834DB1248805D4006208B8 /* oniguruma.h in Headers */,
@@ -2252,7 +2261,6 @@
 				2C4CBE5624370FFA00F8B7A6 /* glew.h in Headers */,
 				2C439F7C241DCEA9001154C2 /* bignum-dtoa.h in Headers */,
 				2CF21DD3249FAB3600C864C9 /* CRenderer2D_Null.hpp in Headers */,
-				2CF21D25249FAA8F00C864C9 /* CWindow_Null.hpp in Headers */,
 				2C481E1224460B5700A5D88D /* bit_utils.h in Headers */,
 				2C834D8C248805D4006208B8 /* st.h in Headers */,
 				2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */,
@@ -2518,7 +2526,6 @@
 				2C423253242B19D100A16BCA /* egl_context.c in Sources */,
 				2C42321B242B155E00A16BCA /* monitor.c in Sources */,
 				2C834DAE248805D4006208B8 /* euc_kr.c in Sources */,
-				2CF21D23249FAA8F00C864C9 /* CWindow_Null.cpp in Sources */,
 				2C834D97248805D4006208B8 /* unicode_fold3_key.c in Sources */,
 				2C439F79241DCEA9001154C2 /* bignum.cc in Sources */,
 				2C834DBE248805D4006208B8 /* unicode_unfold_key.c in Sources */,
@@ -2572,6 +2579,7 @@
 				2C834D92248805D4006208B8 /* iso8859_11.c in Sources */,
 				2CF21DD5249FAB3600C864C9 /* SivRectangle.cpp in Sources */,
 				2CF21E01249FAB3600C864C9 /* SivInt128.cpp in Sources */,
+				2CF21E05249FAF9E00C864C9 /* CWindow_Null.cpp in Sources */,
 				2C4CBE592437100100F8B7A6 /* glew.c in Sources */,
 				2C60AE83248158A500277281 /* memory_non_windows_non_darwin.cpp in Sources */,
 				2C834DA5248805D4006208B8 /* regsyntax.c in Sources */,
