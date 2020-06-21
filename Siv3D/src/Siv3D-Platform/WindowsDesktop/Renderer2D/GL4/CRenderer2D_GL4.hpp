@@ -12,9 +12,7 @@
 # pragma once
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
-# include <GL/glew.h>
-# include <GL/wglew.h>
-# include <GL/GL.h>
+# include <Common/OpenGL.hpp>
 
 namespace s3d
 {
