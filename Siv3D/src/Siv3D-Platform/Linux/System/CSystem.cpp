@@ -16,6 +16,7 @@
 # include <Siv3D/Scene/IScene.hpp>
 # include <Siv3D/Cursor/ICursor.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
+# include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/UserAction/IUserAction.hpp>
 # include <Siv3D/System/SystemLog.hpp>
 # include <Siv3D/System/SystemMisc.hpp>
@@ -47,6 +48,7 @@ namespace s3d
 		SIV3D_ENGINE(Window)->init();
 		SIV3D_ENGINE(Cursor)->init();
 		SIV3D_ENGINE(Renderer)->init();
+		SIV3D_ENGINE(Renderer2D)->init();
 	}
 
 	bool CSystem::update()

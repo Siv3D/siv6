@@ -33,11 +33,7 @@ int main(int, char*[])
 		return -1;
 	}
 
-	SIV3D_ENGINE(System)->onMainThreadStart();
-	
 	Main();
-
-	SIV3D_ENGINE(System)->onMainThreadTerminate();
 	
 	return 0;
 }

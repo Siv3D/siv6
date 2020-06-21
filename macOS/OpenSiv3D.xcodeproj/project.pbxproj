@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0CED4C249F22C1003647A7 /* Renderer2DFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0CED45249F22C1003647A7 /* Renderer2DFactory.cpp */; };
+		2C0CED4D249F22C1003647A7 /* CRenderer2D_Null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0CED47249F22C1003647A7 /* CRenderer2D_Null.cpp */; };
+		2C0CED4E249F22C1003647A7 /* CRenderer2D_Null.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C0CED48249F22C1003647A7 /* CRenderer2D_Null.hpp */; };
+		2C0CED4F249F22C1003647A7 /* CRenderer2D_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C0CED4A249F22C1003647A7 /* CRenderer2D_GL4.hpp */; };
+		2C0CED50249F22C1003647A7 /* CRenderer2D_GL4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0CED4B249F22C1003647A7 /* CRenderer2D_GL4.cpp */; };
 		2C0F89EB249E391C008B9220 /* SivApplicationOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F89EA249E391C008B9220 /* SivApplicationOptions.cpp */; };
 		2C0F89EF249E3E8A008B9220 /* Siv3DTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */; };
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
@@ -271,6 +276,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C0CED45249F22C1003647A7 /* Renderer2DFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer2DFactory.cpp; sourceTree = "<group>"; };
+		2C0CED47249F22C1003647A7 /* CRenderer2D_Null.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderer2D_Null.cpp; sourceTree = "<group>"; };
+		2C0CED48249F22C1003647A7 /* CRenderer2D_Null.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer2D_Null.hpp; sourceTree = "<group>"; };
+		2C0CED4A249F22C1003647A7 /* CRenderer2D_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer2D_GL4.hpp; sourceTree = "<group>"; };
+		2C0CED4B249F22C1003647A7 /* CRenderer2D_GL4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderer2D_GL4.cpp; sourceTree = "<group>"; };
 		2C0F89EA249E391C008B9220 /* SivApplicationOptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivApplicationOptions.cpp; sourceTree = "<group>"; };
 		2C0F89ED249E3945008B9220 /* catch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Siv3DTest.cpp; path = ../Test/Siv3DTest.cpp; sourceTree = "<group>"; };
@@ -764,6 +774,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0CED44249F22C1003647A7 /* Renderer2D */ = {
+			isa = PBXGroup;
+			children = (
+				2C0CED45249F22C1003647A7 /* Renderer2DFactory.cpp */,
+				2C0CED46249F22C1003647A7 /* Null */,
+				2C0CED49249F22C1003647A7 /* GL4 */,
+			);
+			path = Renderer2D;
+			sourceTree = "<group>";
+		};
+		2C0CED46249F22C1003647A7 /* Null */ = {
+			isa = PBXGroup;
+			children = (
+				2C0CED47249F22C1003647A7 /* CRenderer2D_Null.cpp */,
+				2C0CED48249F22C1003647A7 /* CRenderer2D_Null.hpp */,
+			);
+			path = Null;
+			sourceTree = "<group>";
+		};
+		2C0CED49249F22C1003647A7 /* GL4 */ = {
+			isa = PBXGroup;
+			children = (
+				2C0CED4A249F22C1003647A7 /* CRenderer2D_GL4.hpp */,
+				2C0CED4B249F22C1003647A7 /* CRenderer2D_GL4.cpp */,
+			);
+			path = GL4;
+			sourceTree = "<group>";
+		};
 		2C0F89E9249E391C008B9220 /* ApplicationOptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -973,10 +1011,11 @@
 		2C43609E240E4EEC001657D2 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				2C4360A1240E4EEC001657D2 /* Siv3DMain.cpp */,
 				2C1B3A5724923A0900F6AB41 /* Cursor */,
 				2C49E650247FC731005C8FFE /* FileSystem */,
 				2C4CBE4624370FE300F8B7A6 /* Renderer */,
-				2C4360A1240E4EEC001657D2 /* Siv3DMain.cpp */,
+				2C0CED44249F22C1003647A7 /* Renderer2D */,
 				2C43B2E124264E3100D5CBBB /* System */,
 				2C43B2D22426434200D5CBBB /* Time */,
 				2C43B2E424264E3100D5CBBB /* Window */,
@@ -2118,6 +2157,7 @@
 				2C439F472419D686001154C2 /* format-inl.h in Headers */,
 				2C4CBE642437236000F8B7A6 /* CScene.hpp in Headers */,
 				2C188AB72488E7750087F356 /* RegExpDetail.hpp in Headers */,
+				2C0CED4E249F22C1003647A7 /* CRenderer2D_Null.hpp in Headers */,
 				2C435BD3243E1600001CAAD8 /* CLogger.hpp in Headers */,
 				2C439F7E241DCEA9001154C2 /* double-to-string.h in Headers */,
 				2C423254242B19D100A16BCA /* egl_context.h in Headers */,
@@ -2136,6 +2176,7 @@
 				2C4360CF240E4EEC001657D2 /* CDummy.hpp in Headers */,
 				2C60AE162480E9BD00277281 /* CRenderer_Null.hpp in Headers */,
 				2C4CBE4524370FC600F8B7A6 /* IRenderer.hpp in Headers */,
+				2C0CED4F249F22C1003647A7 /* CRenderer2D_GL4.hpp in Headers */,
 				2C4CBE6E24376B5300F8B7A6 /* IProfiler.hpp in Headers */,
 				2C481E1224460B5700A5D88D /* bit_utils.h in Headers */,
 				2C834D8C248805D4006208B8 /* st.h in Headers */,
@@ -2269,6 +2310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C423234242B155E00A16BCA /* osmesa_context.c in Sources */,
+				2C0CED4D249F22C1003647A7 /* CRenderer2D_Null.cpp in Sources */,
 				2C43B2E824264E3100D5CBBB /* CSystem.cpp in Sources */,
 				2C834DA7248805D4006208B8 /* euc_jp_prop.c in Sources */,
 				2C4360DB240E4EEC001657D2 /* ConsoleFactory.cpp in Sources */,
@@ -2363,6 +2405,7 @@
 				2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */,
 				2C4360D1240E4EEC001657D2 /* CDummy.cpp in Sources */,
 				2C60AE77248158A500277281 /* instruction_set.cpp in Sources */,
+				2C0CED4C249F22C1003647A7 /* Renderer2DFactory.cpp in Sources */,
 				2C834DB6248805D4006208B8 /* onig_init.c in Sources */,
 				2C49E649247FAC59005C8FFE /* SivFormatUtility.cpp in Sources */,
 				2C834DA6248805D4006208B8 /* iso8859_6.c in Sources */,
@@ -2404,6 +2447,7 @@
 				2C4360CE240E4EEC001657D2 /* DummyFactory.cpp in Sources */,
 				2C60AE7E248158A500277281 /* vendor_model_name_darwin.cpp in Sources */,
 				2C834D8E248805D4006208B8 /* unicode_fold2_key.c in Sources */,
+				2C0CED50249F22C1003647A7 /* CRenderer2D_GL4.cpp in Sources */,
 				2C834DBA248805D4006208B8 /* regenc.c in Sources */,
 				2C60AE172480E9BD00277281 /* CRenderer_Null.cpp in Sources */,
 				2C43B2CB2426223400D5CBBB /* LoggerFactory.cpp in Sources */,

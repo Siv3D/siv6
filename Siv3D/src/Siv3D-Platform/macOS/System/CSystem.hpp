@@ -25,11 +25,7 @@ namespace s3d
 		~CSystem() override;
 
 		void init() override;
-		
-		void onMainThreadStart() override;
 
-		void onMainThreadTerminate() override;
-		
 		bool update() override;
 	};
 }
