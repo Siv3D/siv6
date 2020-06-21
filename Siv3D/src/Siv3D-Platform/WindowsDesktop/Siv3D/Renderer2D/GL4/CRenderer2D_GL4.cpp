@@ -223,6 +223,8 @@ namespace s3d
 			std::memcpy(pDst, indices, sizeof(IndexType) * 3);
 			::glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
 		}
+
+		CheckGLError();
 	}
 
 	void CRenderer2D_GL4::test_renderRectangle(const RectF&, const ColorF&)
