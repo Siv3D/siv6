@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/ApplicationOptions.hpp>
-# include <Siv3D/Window/CWindow_Null.hpp>
+# include <Siv3D/Window/Null/CWindow_Null.hpp>
 # include <Siv3D/Window/CWindow.hpp>
 
 namespace s3d

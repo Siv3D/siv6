@@ -337,6 +337,9 @@
     <Filter Include="src\Siv3D\Renderer\Null">
       <UniqueIdentifier>{ad96d9d4-315e-4233-8526-a76697b35821}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Window\Null">
+      <UniqueIdentifier>{0a190101-272f-44cc-8b66-8955dc526038}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1125,9 +1128,6 @@
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Window\CWindow.hpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Window</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Window\CWindow_Null.hpp">
-      <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Window</Filter>
-    </ClInclude>
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Window\DPIAwareness.hpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Window</Filter>
     </ClInclude>
@@ -1190,6 +1190,9 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\src\Siv3D\Renderer\Null\CRenderer_Null.hpp">
       <Filter>src\Siv3D\Renderer\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Window\Null\CWindow_Null.hpp">
+      <Filter>src\Siv3D\Window\Null</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1652,9 +1655,6 @@
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Windows\SivWindows.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Window\CWindow_Null.cpp">
-      <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Window</Filter>
-    </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Window\DPIAwareness.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Window</Filter>
     </ClCompile>
@@ -1744,6 +1744,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Renderer\Null\CRenderer_Null.cpp">
       <Filter>src\Siv3D\Renderer\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Window\Null\CWindow_Null.cpp">
+      <Filter>src\Siv3D\Window\Null</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
