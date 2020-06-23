@@ -289,15 +289,18 @@ struct SIV3D_HIDDEN fmt::formatter<s3d::ColorF, s3d::char32>
 	}
 };
 
-namespace std
+//////////////////////////////////////////////////
+//
+//	Hash
+//
+//////////////////////////////////////////////////
+
+template <>
+struct std::hash<s3d::ColorF>
 {
-	template <>
-	struct hash<s3d::ColorF>
+	[[nodiscard]]
+	size_t operator()(const s3d::ColorF& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::ColorF& value) const noexcept
-		{
-			return value.hash();
-		}
-	};
-}
+		return value.hash();
+	}
+};

@@ -265,17 +265,20 @@ namespace s3d
 	String FormatDate(const Date& date, StringView format = U"yyyy-MM-dd"_sv);
 }
 
-namespace std
+//////////////////////////////////////////////////
+//
+//	Hash
+//
+//////////////////////////////////////////////////
+
+template <>
+struct std::hash<s3d::Date>
 {
-	template <>
-	struct hash<s3d::Date>
+	[[nodiscard]]
+	size_t operator()(const s3d::Date& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::Date& value) const noexcept
-		{
-			return value.hash();
-		}
-	};
-}
+		return value.hash();
+	}
+};
 
 # include "detail/Date.ipp"

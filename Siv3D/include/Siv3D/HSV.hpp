@@ -176,15 +176,18 @@ struct SIV3D_HIDDEN fmt::formatter<s3d::HSV, s3d::char32>
 	}
 };
 
-namespace std
+//////////////////////////////////////////////////
+//
+//	Hash
+//
+//////////////////////////////////////////////////
+
+template <>
+struct std::hash<s3d::HSV>
 {
-	template <>
-	struct hash<s3d::HSV>
+	[[nodiscard]]
+	size_t operator()(const s3d::HSV& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::HSV& value) const noexcept
-		{
-			return value.hash();
-		}
-	};
-}
+		return value.hash();
+	}
+};

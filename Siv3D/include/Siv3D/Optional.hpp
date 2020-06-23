@@ -901,41 +901,44 @@ namespace s3d
 	Optional(Type) -> Optional<Type>;
 }
 
-namespace std
-{
-	template <class Type>
-	struct hash<s3d::Optional<Type>>
-	{
-		[[nodiscard]]
-		size_t operator()(const s3d::Optional<Type>& value) const noexcept
-		{
-			if (value)
-			{
-				std::hash<Type>{}(*value);
-			}
-			else
-			{
-				return 0;
-			}
-		}
-	};
+//////////////////////////////////////////////////
+//
+//	Hash
+//
+//////////////////////////////////////////////////
 
-	template <class Type>
-	struct hash<s3d::Optional<Type&>>
+template <class Type>
+struct std::hash<s3d::Optional<Type>>
+{
+	[[nodiscard]]
+	size_t operator()(const s3d::Optional<Type>& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::Optional<Type>& value) const noexcept
+		if (value)
 		{
-			if (value)
-			{
-				std::hash<Type>{}(*value);
-			}
-			else
-			{
-				return 0;
-			}
+			std::hash<Type>{}(*value);
 		}
-	};
-}
+		else
+		{
+			return 0;
+		}
+	}
+};
+
+template <class Type>
+struct std::hash<s3d::Optional<Type&>>
+{
+	[[nodiscard]]
+	size_t operator()(const s3d::Optional<Type>& value) const noexcept
+	{
+		if (value)
+		{
+			std::hash<Type>{}(*value);
+		}
+		else
+		{
+			return 0;
+		}
+	}
+};
 
 # include "detail/Optional.ipp"

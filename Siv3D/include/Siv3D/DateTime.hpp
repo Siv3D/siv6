@@ -243,17 +243,20 @@ namespace s3d
 	String FormatDateTime(const DateTime& dateTime, StringView format = U"yyyy-MM-dd HH:mm:ss"_sv);
 }
 
-namespace std
+//////////////////////////////////////////////////
+//
+//	Hash
+//
+//////////////////////////////////////////////////
+
+template <>
+struct std::hash<s3d::DateTime>
 {
-	template <>
-	struct hash<s3d::DateTime>
+	[[nodiscard]]
+	size_t operator()(const s3d::DateTime& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::DateTime& value) const noexcept
-		{
-			return value.hash();
-		}
-	};
-}
+		return value.hash();
+	}
+};
 
 # include "detail/DateTime.ipp"

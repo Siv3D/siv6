@@ -97,17 +97,14 @@ namespace s3d
 //
 //////////////////////////////////////////////////
 
-namespace std
+template <>
+struct std::hash<s3d::Byte>
 {
-	template <>
-	struct hash<s3d::Byte>
+	[[nodiscard]]
+	size_t operator()(const s3d::Byte& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::Byte& value) const noexcept
-		{
-			return hash<s3d::uint8>()(static_cast<s3d::uint8>(value));
-		}
-	};
-}
+		return hash<s3d::uint8>()(static_cast<s3d::uint8>(value));
+	}
+};
 
 # include "detail/Byte.ipp"

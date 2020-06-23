@@ -425,15 +425,18 @@ struct SIV3D_HIDDEN fmt::formatter<s3d::Point, s3d::char32>
 	}
 };
 
-namespace std
+//////////////////////////////////////////////////
+//
+//	Hash
+//
+//////////////////////////////////////////////////
+
+template <>
+struct std::hash<s3d::Point>
 {
-	template <>
-	struct hash<s3d::Point>
+	[[nodiscard]]
+	size_t operator()(const s3d::Point& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::Point& value) const noexcept
-		{
-			return value.hash();
-		}
-	};
-}
+		return value.hash();
+	}
+};
