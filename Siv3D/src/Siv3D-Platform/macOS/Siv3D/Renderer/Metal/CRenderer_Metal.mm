@@ -105,6 +105,11 @@ namespace s3d
 		return Size(0, 0);
 	}
 
+	id<MTLDevice> CRenderer_Metal::getDevice() const
+	{
+		return m_device;
+	}
+
 	id<MTLCommandQueue> CRenderer_Metal::getCommandQueue() const
 	{
 		return m_commandQueue;
