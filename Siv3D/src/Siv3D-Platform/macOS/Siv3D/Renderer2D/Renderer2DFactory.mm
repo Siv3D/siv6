@@ -12,7 +12,7 @@
 # include <Siv3D/ApplicationOptions.hpp>
 # include <Siv3D/Renderer2D/Null/CRenderer2D_Null.hpp>
 # include <Siv3D/Renderer2D/GL4/CRenderer2D_GL4.hpp>
-//# include <Siv3D/Renderer2D/Metal/CRenderer2D_Metal.hpp>
+# include <Siv3D/Renderer2D/Metal/CRenderer2D_Metal.hpp>
 
 namespace s3d
 {
@@ -23,10 +23,10 @@ namespace s3d
 		{
 			return new CRenderer2D_GL4;
 		}
-		//else if (g_applicationOptions.renderer == RendererType::Metal)
-		//{
-		//	return new CRenderer2D_Metal;
-		//}
+		else if (g_applicationOptions.renderer == RendererType::Metal)
+		{
+			return new CRenderer2D_Metal;
+		}
 		else
 		{
 			return new CRenderer2D_Null;

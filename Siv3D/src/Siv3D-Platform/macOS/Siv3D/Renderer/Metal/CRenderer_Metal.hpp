@@ -51,5 +51,9 @@ namespace s3d
 		Size getFrameBufferSize() const override;
 
 		Size getSceneSize() const override;
+		
+		id<MTLCommandQueue> getCommandQueue() const;
+		
+		CAMetalLayer* getSwapchain() const;
 	};
 }

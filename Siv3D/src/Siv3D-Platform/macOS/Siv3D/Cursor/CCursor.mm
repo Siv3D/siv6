@@ -23,14 +23,16 @@ namespace s3d
 {
 	namespace detail
 	{
-		Point CursorScreenPos_macOS()
+		static Point CursorScreenPos_macOS()
 		{
-			const int32 screenHeight = [[NSScreen mainScreen] frame].size.height;
-			const float scaleFactor = [[NSScreen mainScreen] backingScaleFactor];
-			const float scaledHeight = (screenHeight * scaleFactor);
-			const NSPoint screenPos = [NSEvent mouseLocation];
-			
-			return Vec2(screenPos.x * scaleFactor, scaledHeight - (screenPos.y * scaleFactor)).asPoint();
+			@autoreleasepool {
+				NSScreen* mainScreen = [NSScreen mainScreen];
+				const int32 screenHeight = [mainScreen frame].size.height;
+				const float scaleFactor = [mainScreen backingScaleFactor];
+				const float scaledHeight = (screenHeight * scaleFactor);
+				const NSPoint screenPos = [NSEvent mouseLocation];
+				return Vec2(screenPos.x * scaleFactor, scaledHeight - (screenPos.y * scaleFactor)).asPoint();
+			}
 		}
 	}
 

@@ -13,6 +13,7 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/WindowState.hpp>
+# include <Siv3D/System.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
@@ -77,26 +78,6 @@ namespace s3d
 				// sleep
 			}
 		}
-		
-		MTLClearColor color = MTLClearColorMake(0.8, 0.9, 1.0, 1);
-		
-		@autoreleasepool {
-			id<CAMetalDrawable> drawable = [m_swapchain nextDrawable];
-			assert(drawable);
-			
-            MTLRenderPassDescriptor* pass = [MTLRenderPassDescriptor renderPassDescriptor];
-            pass.colorAttachments[0].clearColor = color;
-            pass.colorAttachments[0].loadAction  = MTLLoadActionClear;
-            pass.colorAttachments[0].storeAction = MTLStoreActionStore;
-            pass.colorAttachments[0].texture = drawable.texture;
-			
-            id<MTLCommandBuffer> buffer = [m_commandQueue commandBuffer];
-            id<MTLRenderCommandEncoder> encoder = [buffer renderCommandEncoderWithDescriptor:pass];
-
-            [encoder endEncoding];
-            [buffer presentDrawable:drawable];
-            [buffer commit];
-		}
 	}
 
 	void CRenderer_Metal::flush()
@@ -106,6 +87,11 @@ namespace s3d
 
 	bool CRenderer_Metal::present()
 	{
+		if (!([::glfwGetCocoaWindow(m_window) occlusionState] &NSWindowOcclusionStateVisible))
+		{
+			System::Sleep(16);
+		}
+		
 		return true;
 	}
 
@@ -117,5 +103,15 @@ namespace s3d
 	Size CRenderer_Metal::getSceneSize() const
 	{
 		return Size(0, 0);
+	}
+
+	id<MTLCommandQueue> CRenderer_Metal::getCommandQueue() const
+	{
+		return m_commandQueue;
+	}
+
+	CAMetalLayer* CRenderer_Metal::getSwapchain() const
+	{
+		return m_swapchain;
 	}
 }
