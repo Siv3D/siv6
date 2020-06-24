@@ -15,7 +15,7 @@
 
 namespace s3d
 {
-	struct Vertex2D
+	struct alignas(16) Vertex2D
 	{
 		using IndexType = uint16;
 
