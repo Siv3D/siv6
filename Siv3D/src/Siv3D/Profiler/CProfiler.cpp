@@ -16,6 +16,7 @@
 # include <Siv3D/Time.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Renderer/IRenderer.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include "CProfiler.hpp"
 
@@ -63,7 +64,7 @@ namespace s3d
 		const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
 		const Size sceneSize(800, 600);// = Scene::Size();
 		return U"{} | {} FPS | F {}x{} | S {}x{}"_fmt(
-			U"OpenGL",
+			SIV3D_ENGINE(Renderer)->getName(),
 			m_currentFPS,
 			frameBufferSize.x, frameBufferSize.y,
 			sceneSize.x, sceneSize.y);

@@ -56,6 +56,12 @@ namespace s3d
 		clear();
 	}
 
+	StringView CRenderer_Metal::getName() const
+	{
+		static constexpr StringView name(U"Metal");
+		return name;
+	}	
+
 	void CRenderer_Metal::clear()
 	{
 		const auto& windowState = SIV3D_ENGINE(Window)->getState();

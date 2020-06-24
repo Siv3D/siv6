@@ -46,6 +46,12 @@ namespace s3d
 		clear();
 	}
 
+	StringView CRenderer_GL4::getName() const
+	{
+		static constexpr StringView name(U"OpenGL");
+		return name;
+	}
+
 	void CRenderer_GL4::clear()
 	{
 		::glBindFramebuffer(GL_FRAMEBUFFER, 0);

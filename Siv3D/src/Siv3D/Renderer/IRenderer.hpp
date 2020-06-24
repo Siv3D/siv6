@@ -25,6 +25,8 @@ namespace s3d
 
 		virtual void init() = 0;
 
+		virtual StringView getName() const = 0;
+
 		virtual void clear() = 0;
 
 		virtual void flush() = 0;

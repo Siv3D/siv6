@@ -40,6 +40,8 @@ namespace s3d
 
 		void init() override;
 
+		StringView getName() const override;
+
 		void clear() override;
 
 		void flush() override;

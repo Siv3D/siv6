@@ -32,6 +32,12 @@ namespace s3d
 		clear();
 	}
 
+	StringView CRenderer_Null::getName() const
+	{
+		static constexpr StringView name(U"Null");
+		return name;
+	}
+
 	void CRenderer_Null::clear()
 	{
 

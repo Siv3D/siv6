@@ -89,6 +89,12 @@ namespace s3d
 		clear();
 	}
 
+	StringView CRenderer_GL4::getName() const
+	{
+		static constexpr StringView name(U"OpenGL");
+		return name;
+	}	
+
 	void CRenderer_GL4::clear()
 	{
 		::glClearColor(0.8f, 0.9f, 1.0f, 1.0f);

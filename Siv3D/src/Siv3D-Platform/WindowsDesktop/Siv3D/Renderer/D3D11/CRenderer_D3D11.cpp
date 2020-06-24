@@ -32,6 +32,12 @@ namespace s3d
 		clear();
 	}
 
+	StringView CRenderer_D3D11::getName() const
+	{
+		static constexpr StringView name(U"D3D11");
+		return name;
+	}
+
 	void CRenderer_D3D11::clear()
 	{
 
