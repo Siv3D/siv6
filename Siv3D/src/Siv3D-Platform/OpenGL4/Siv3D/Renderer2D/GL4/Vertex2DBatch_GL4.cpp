@@ -96,9 +96,9 @@ namespace s3d
 	{
 		// VB
 		if (const uint32 vertexArrayWritePosTarget = m_vertexArrayWritePos + vertexSize;
-			m_vertexArray.size() < vertexArrayWritePosTarget)
+			m_vertexArray.size() < vertexArrayWritePosTarget) [[unlikely]]
 		{
-			if (MaxVertexArraySize < vertexArrayWritePosTarget)
+			if (MaxVertexArraySize < vertexArrayWritePosTarget) [[unlikely]]
 			{
 				return{ nullptr, 0, 0 };
 			}
@@ -110,9 +110,9 @@ namespace s3d
 
 		// IB
 		if (const uint32 indexArrayWritePosTarget = m_indexArrayWritePos + indexSize;
-			m_indexArray.size() < indexArrayWritePosTarget)
+			m_indexArray.size() < indexArrayWritePosTarget) [[unlikely]]
 		{
-			if (MaxIndexArraySize < indexArrayWritePosTarget)
+			if (MaxIndexArraySize < indexArrayWritePosTarget) [[unlikely]]
 			{
 				return{ nullptr, 0, 0 };
 			}
@@ -130,18 +130,14 @@ namespace s3d
 		}
 
 		auto& lastbatch = m_batches.back();
-		const std::tuple<Vertex2D*, IndexType*, IndexType> result{
-			m_vertexArray.data() + m_vertexArrayWritePos
-			, m_indexArray.data() + m_indexArrayWritePos
-			, lastbatch.vertexPos };
+		Vertex2D* const pVertex = (m_vertexArray.data() + m_vertexArrayWritePos);
+		IndexType* const pIndex = (m_indexArray.data() + m_indexArrayWritePos);
+		const auto vertexPos = lastbatch.vertexPos;
 
-		m_vertexArrayWritePos += vertexSize;
-		m_indexArrayWritePos += indexSize;
+		advanceArrayWritePos(vertexSize, indexSize);
+		lastbatch.advance(vertexSize, indexSize);
 
-		lastbatch.vertexPos += vertexSize;
-		lastbatch.indexPos += indexSize;
-
-		return result;
+		return{ pVertex, pIndex, vertexPos };
 	}
 
 	size_t Vertex2DBatch_GL4::num_batches() const noexcept
@@ -223,5 +219,11 @@ namespace s3d
 		}
 
 		return batchInfo;
+	}
+
+	void Vertex2DBatch_GL4::advanceArrayWritePos(const uint16 vertexSize, const uint32 indexSize) noexcept
+	{
+		m_vertexArrayWritePos	+= vertexSize;
+		m_indexArrayWritePos	+= indexSize;
 	}
 }

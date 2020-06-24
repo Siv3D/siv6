@@ -37,6 +37,12 @@ namespace s3d
 			uint16 vertexPos = 0;
 
 			uint32 indexPos = 0;
+
+			void advance(uint16 vertexSize, uint32 indexSize) noexcept
+			{
+				vertexPos += vertexSize;
+				indexPos += indexSize;
+			}
 		};
 
 		using IndexType = Vertex2D::IndexType;
@@ -65,6 +71,8 @@ namespace s3d
 
 		static constexpr uint32 VertexBufferSize		= 65535;// 65535;
 		static constexpr uint32 IndexBufferSize			= ((VertexBufferSize + 1) * 4); // 524,288
+
+		void advanceArrayWritePos(uint16 vertexSize, uint32 indexSize) noexcept;
 
 	public:
 
