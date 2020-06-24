@@ -14,6 +14,7 @@
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Utility.hpp>
 # include <Siv3D/UserAction.hpp>
+# include <Siv3D/ApplicationOptions.hpp>
 # include <Siv3D/Profiler/IProfiler.hpp>
 # include <Siv3D/UserAction/IUserAction.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
@@ -46,9 +47,9 @@ namespace s3d
 			throw EngineError(U"glfwInit() failed");
 		}
 		
-		const bool useMetal = false;
+		const bool useMetal =  (g_applicationOptions.renderer == RendererType::Metal);
 
-		if constexpr (useMetal)
+		if (useMetal)
 		{
 			// Metal
 			::glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);

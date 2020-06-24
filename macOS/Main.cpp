@@ -2,7 +2,7 @@
 # include <Siv3D.hpp>
 
 SIV3D_SET(EngineOption::StdErr,		true)
-SIV3D_SET(EngineOption::Renderer,	RendererType::OpenGL)
+SIV3D_SET(EngineOption::Renderer,	RendererType::Metal)
 
 void Siv3DTest();
 

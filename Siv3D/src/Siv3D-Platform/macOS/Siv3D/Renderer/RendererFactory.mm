@@ -12,18 +12,24 @@
 # include <Siv3D/ApplicationOptions.hpp>
 # include <Siv3D/Renderer/Null/CRenderer_Null.hpp>
 # include <Siv3D/Renderer/GL4/CRenderer_GL4.hpp>
+# include <Siv3D/Renderer/Metal/CRenderer_Metal.hpp>
 
 namespace s3d
 {
 	ISiv3DRenderer* ISiv3DRenderer::Create()
 	{
-		if (g_applicationOptions.renderer == RendererType::Headless)
+		if (g_applicationOptions.renderer == RendererType::OpenGL
+			|| g_applicationOptions.renderer == RendererType::PlatformDefault)
 		{
-			return new CRenderer_Null;
+			return new CRenderer_GL4;
+		}
+		else if (g_applicationOptions.renderer == RendererType::Metal)
+		{
+			return new CRenderer_Metal;
 		}
 		else
 		{
-			return new CRenderer_GL4;
+			return new CRenderer_Null;
 		}
 	}
 }

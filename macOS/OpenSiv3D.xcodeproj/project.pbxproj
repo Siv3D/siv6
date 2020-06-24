@@ -18,6 +18,8 @@
 		2C0CED8F249F2E2D003647A7 /* CConsole.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C0CED61249F2E2D003647A7 /* CConsole.hpp */; };
 		2C0CEDAF249F4E5B003647A7 /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CEDAE249F4E5B003647A7 /* engine */; };
 		2C0F89EF249E3E8A008B9220 /* Siv3DTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */; };
+		2C12089D24A30260008CAD99 /* CRenderer_Metal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */; };
+		2C1208A024A304E7008CAD99 /* CRenderer_Metal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */; };
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
 		2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DB242B155E00A16BCA /* cocoa_joystick.m */; };
 		2C42321B242B155E00A16BCA /* monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DD242B155E00A16BCA /* monitor.c */; };
@@ -173,7 +175,7 @@
 		2C834DC3248805D4006208B8 /* iso8859_4.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D88248805D4006208B8 /* iso8859_4.c */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
-		2CF21D14249FAA8F00C864C9 /* RendererFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21CF8249FAA8F00C864C9 /* RendererFactory.cpp */; };
+		2CF21D14249FAA8F00C864C9 /* RendererFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21CF8249FAA8F00C864C9 /* RendererFactory.mm */; };
 		2CF21D15249FAA8F00C864C9 /* CRenderer_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF21CFA249FAA8F00C864C9 /* CRenderer_GL4.hpp */; };
 		2CF21D16249FAA8F00C864C9 /* CRenderer_GL4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21CFB249FAA8F00C864C9 /* CRenderer_GL4.cpp */; };
 		2CF21D17249FAA8F00C864C9 /* CCursor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF21CFD249FAA8F00C864C9 /* CCursor.hpp */; };
@@ -294,6 +296,8 @@
 		2C0CEDAE249F4E5B003647A7 /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = App/engine; sourceTree = "<group>"; };
 		2C0F89ED249E3945008B9220 /* catch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Siv3DTest.cpp; path = ../Test/Siv3DTest.cpp; sourceTree = "<group>"; };
+		2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_Metal.hpp; sourceTree = "<group>"; };
+		2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CRenderer_Metal.mm; sourceTree = "<group>"; };
 		2C1778B21CE0D5DB00BB8AD0 /* Siv3D-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Siv3D-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1778BF1CE0D5DB00BB8AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C22E2C11FD5BAF0002735AB /* Siv3D-Test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Siv3D-Test.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -660,7 +664,7 @@
 		2CE18696249CC81800ADD14A /* Vector3D.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector3D.ipp; sourceTree = "<group>"; };
 		2CE18697249CC81800ADD14A /* Vector4D.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector4D.ipp; sourceTree = "<group>"; };
 		2CF21CF3249FAA6D00C864C9 /* Mat3x2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mat3x2.hpp; sourceTree = "<group>"; };
-		2CF21CF8249FAA8F00C864C9 /* RendererFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererFactory.cpp; sourceTree = "<group>"; };
+		2CF21CF8249FAA8F00C864C9 /* RendererFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RendererFactory.mm; sourceTree = "<group>"; };
 		2CF21CFA249FAA8F00C864C9 /* CRenderer_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_GL4.hpp; sourceTree = "<group>"; };
 		2CF21CFB249FAA8F00C864C9 /* CRenderer_GL4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderer_GL4.cpp; sourceTree = "<group>"; };
 		2CF21CFD249FAA8F00C864C9 /* CCursor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CCursor.hpp; sourceTree = "<group>"; };
@@ -865,6 +869,15 @@
 				2C0F89ED249E3945008B9220 /* catch.hpp */,
 			);
 			path = Catch2;
+			sourceTree = "<group>";
+		};
+		2C12089A24A30260008CAD99 /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */,
+				2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */,
+			);
+			path = Metal;
 			sourceTree = "<group>";
 		};
 		2C15857F1F21FD87002687D2 /* Frameworks */ = {
@@ -1643,7 +1656,8 @@
 		2CF21CF7249FAA8F00C864C9 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
-				2CF21CF8249FAA8F00C864C9 /* RendererFactory.cpp */,
+				2C12089A24A30260008CAD99 /* Metal */,
+				2CF21CF8249FAA8F00C864C9 /* RendererFactory.mm */,
 				2CF21CF9249FAA8F00C864C9 /* GL4 */,
 			);
 			path = Renderer;
@@ -2286,6 +2300,7 @@
 				2CF21DC9249FAB3600C864C9 /* CCursor_Null.hpp in Headers */,
 				2C42323D242B155E00A16BCA /* cocoa_joystick.h in Headers */,
 				2C481E1624460B5700A5D88D /* cpuid_x86.h in Headers */,
+				2C12089D24A30260008CAD99 /* CRenderer_Metal.hpp in Headers */,
 				2CF21DBC249FAB3600C864C9 /* RegExpDetail.hpp in Headers */,
 				2C834D9C248805D4006208B8 /* regenc.h in Headers */,
 			);
@@ -2412,7 +2427,7 @@
 				2CF21DCE249FAB3600C864C9 /* SivPoint.cpp in Sources */,
 				2C834DBC248805D4006208B8 /* gb18030.c in Sources */,
 				2C60AE82248158A500277281 /* memory_windows.cpp in Sources */,
-				2CF21D14249FAA8F00C864C9 /* RendererFactory.cpp in Sources */,
+				2CF21D14249FAA8F00C864C9 /* RendererFactory.mm in Sources */,
 				2C60AE78248158A500277281 /* instruction_set_non_windows_non_darwin.cpp in Sources */,
 				2C60AE8C248158A500277281 /* os_info_windows.cpp in Sources */,
 				2CF21D27249FAA8F00C864C9 /* Siv3DMain.cpp in Sources */,
@@ -2532,6 +2547,7 @@
 				2C60AE7E248158A500277281 /* vendor_model_name_darwin.cpp in Sources */,
 				2C834D8E248805D4006208B8 /* unicode_fold2_key.c in Sources */,
 				2C834DBA248805D4006208B8 /* regenc.c in Sources */,
+				2C1208A024A304E7008CAD99 /* CRenderer_Metal.mm in Sources */,
 				2C834DB7248805D4006208B8 /* euc_tw.c in Sources */,
 				2C834DB9248805D4006208B8 /* sjis.c in Sources */,
 				2C834DC1248805D4006208B8 /* iso8859_14.c in Sources */,
