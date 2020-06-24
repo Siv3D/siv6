@@ -38,6 +38,9 @@ namespace s3d
 
 		/// @brief Direc3D 11
 		Direct3D11		= 3,
+
+		/// @brief Metal
+		Metal			= 4,
 	};
 
 	struct ApplicationOptions
