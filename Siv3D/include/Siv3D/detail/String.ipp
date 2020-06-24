@@ -1631,3 +1631,9 @@ namespace s3d
 		}
 	}
 }
+
+template <>
+inline void std::swap(s3d::String& a, s3d::String& b) noexcept
+{
+	a.swap(b);
+}

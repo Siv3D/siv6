@@ -159,11 +159,10 @@ namespace s3d
 
 	inline void Image::swap(Image& image) noexcept
 	{
-		m_data.swap(image.m_data);
-
-		std::swap(m_width, image.m_width);
-
-		std::swap(m_height, image.m_height);
+		using std::swap;
+		swap(m_data, image.m_data);
+		swap(m_width, image.m_width);
+		swap(m_height, image.m_height);
 	}
 
 	inline Image Image::cloned() const
@@ -366,4 +365,15 @@ namespace s3d
 
 		return newImage;
 	}
+
+	inline void swap(Image& a, Image& b) noexcept
+	{
+		a.swap(b);
+	}
+}
+
+template <>
+void std::swap(s3d::Image& a, s3d::Image& b) noexcept
+{
+	a.swap(b);
 }

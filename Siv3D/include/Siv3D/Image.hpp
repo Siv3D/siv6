@@ -411,6 +411,11 @@ namespace s3d
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty, Vec2> || std::is_invocable_r_v<Color, Fty, double, double>)>* = nullptr>
 		static Image Generate0_1(Size size, Fty generator);
 	};
+
+	inline void swap(Image& a, Image& b) noexcept;
 }
+
+template <>
+inline void std::swap(s3d::Image& a, s3d::Image& b) noexcept;
 
 # include "detail/Image.ipp"

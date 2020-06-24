@@ -2164,17 +2164,17 @@ namespace s3d
 	using FilePath = String;
 }
 
-namespace std
+template <>
+inline void std::swap(s3d::String& a, s3d::String& b) noexcept;
+
+template <>
+struct std::hash<s3d::String>
 {
-	template <>
-	struct hash<s3d::String>
+	[[nodiscard]]
+	size_t operator()(const s3d::String& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::String& value) const noexcept
-		{
-			return value.hash();
-		}
-	};
-}
+		return value.hash();
+	}
+};
 
 # include "detail/String.ipp"

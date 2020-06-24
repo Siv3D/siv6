@@ -343,3 +343,9 @@ namespace s3d
 		}
 	}
 }
+
+template <>
+inline void std::swap(s3d::StringView& a, s3d::StringView& b) noexcept
+{
+	a.swap(b);
+}

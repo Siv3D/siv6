@@ -915,7 +915,7 @@ struct std::hash<s3d::Optional<Type>>
 	{
 		if (value)
 		{
-			std::hash<Type>{}(*value);
+			return std::hash<Type>{}(*value);
 		}
 		else
 		{
@@ -932,7 +932,7 @@ struct std::hash<s3d::Optional<Type&>>
 	{
 		if (value)
 		{
-			std::hash<Type>{}(*value);
+			return std::hash<Type>{}(*value);
 		}
 		else
 		{

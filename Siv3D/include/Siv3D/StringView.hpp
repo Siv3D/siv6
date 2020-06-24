@@ -305,17 +305,17 @@ namespace s3d
 	using FilePathView = StringView;
 }
 
-namespace std
+template <>
+inline void std::swap(s3d::StringView& a, s3d::StringView& b) noexcept;
+
+template <>
+struct std::hash<s3d::StringView>
 {
-	template <>
-	struct hash<s3d::StringView>
+	[[nodiscard]]
+	size_t operator()(const s3d::StringView& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::StringView& value) const noexcept
-		{
-			return s3d::Hash::FNV1a(value.data(), value.size_bytes());
-		}
-	};
-}
+		return s3d::Hash::FNV1a(value.data(), value.size_bytes());
+	}
+};
 
 # include "detail/StringView.ipp"

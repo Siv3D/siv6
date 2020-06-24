@@ -204,15 +204,12 @@ struct SIV3D_HIDDEN fmt::formatter<s3d::Vector4D<Type>, s3d::char32>
 	}
 };
 
-namespace std
+template <class Type>
+struct std::hash<s3d::Vector4D<Type>>
 {
-	template <class Type>
-	struct hash<s3d::Vector4D<Type>>
+	[[nodiscard]]
+	size_t operator()(const s3d::Vector4D<Type>& value) const noexcept
 	{
-		[[nodiscard]]
-		size_t operator()(const s3d::Vector4D<Type>& value) const noexcept
-		{
-			return value.hash();
-		}
-	};
-}
+		return value.hash();
+	}
+};
