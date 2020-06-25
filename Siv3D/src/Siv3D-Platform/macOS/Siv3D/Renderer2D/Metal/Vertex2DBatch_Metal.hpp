@@ -17,32 +17,47 @@
 
 namespace s3d
 {
+	class Renderer2DCommand_Metal{};
+
 	class Vertex2DBatch_Metal
 	{
 	private:
+		
+		using IndexType = Vertex2D::IndexType;
 
 		static constexpr size_t MaxInflightBuffers = 3;
 
-		static constexpr size_t MaxVertices = 16384;
-
-		Array<Vertex2D> m_vertices;
-		
 		dispatch_semaphore_t m_frameBoundarySemaphore = dispatch_semaphore_create(MaxInflightBuffers);
-		
-		size_t m_currentVertexBufferIndex = 0;
+		size_t m_currentBufferIndex = 0;
+		bool m_isActive = false;
 
-		std::array<id<MTLBuffer>, 3> m_vertexBuffers;
+		std::array<id<MTLBuffer>, MaxInflightBuffers> m_vertexBuffers;
+		size_t m_currentVertexBufferWritePos = 0;
+		
+		std::array<id<MTLBuffer>, MaxInflightBuffers> m_indexBuffers;
+		size_t m_currentIndexBufferWritePos = 0;
+		
+		static constexpr uint32 VertexBufferSize		= 65535;// 65535;
+		static constexpr uint32 IndexBufferSize			= ((VertexBufferSize + 1) * 4); // 524,288
 		
 	public:
 		
 		void init(id<MTLDevice> device);
 		
-		size_t update();
+		void begin();
 		
-		id<MTLBuffer> getCurrentBuffer() const;
+		void end();
 		
+		[[nodiscard]]
+		id<MTLBuffer> getCurrentVertexBuffer() const;
+		
+		[[nodiscard]]
+		id<MTLBuffer> getCurrentIndexBuffer() const;
+		
+		[[nodiscard]]
 		dispatch_semaphore_t getSemaphore() const;
-		
-		Vertex2D* request(size_t size);
+
+		[[nodiscard]]
+		std::tuple<Vertex2D*, IndexType*, IndexType> requestBuffer(uint16 vertexSize, uint32 indexSize, Renderer2DCommand_Metal& command);
 	};
 }

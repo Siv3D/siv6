@@ -9,12 +9,12 @@ struct VSConstants2D
 
 struct Vertex2D
 {
-	float2 pos;
-	float2 tex;
-	float4 color;
+	float2 pos [[attribute(0)]];
+	float2 tex [[attribute(1)]];
+	float4 color [[attribute(2)]];
 };
 
-struct RasterizerData
+struct PSInput
 {
 	float4 clipSpacePosition [[position]];
 	float2 textureCoordinate;
@@ -31,20 +31,19 @@ float4 StandardTransform(float2 pos, constant float4(&transform)[2])
 	return result;
 }
 
-vertex RasterizerData v_simple(
-    constant Vertex2D* in [[buffer(0)]],
-    constant VSConstants2D& cb [[buffer(1)]],
-    uint vid [[vertex_id]])
+vertex PSInput VS_Sprite(
+    Vertex2D in [[stage_in]],
+    constant VSConstants2D& cb [[buffer(1)]])
 {
-	RasterizerData out;
-	out.clipSpacePosition = StandardTransform(in[vid].pos, cb.transform);
-	out.textureCoordinate = in[vid].tex;
-	out.color = (in[vid].color * cb.colorMul);
+	PSInput out;
+	out.clipSpacePosition = StandardTransform(in.pos, cb.transform);
+	out.textureCoordinate = in.tex;
+	out.color = (in.color * cb.colorMul);
 	return out;
 }
 
-fragment float4 f_simple(
-    RasterizerData in [[stage_in]])
+fragment float4 PS_Shape(
+    PSInput in [[stage_in]])
 {
     return in.color;
 }

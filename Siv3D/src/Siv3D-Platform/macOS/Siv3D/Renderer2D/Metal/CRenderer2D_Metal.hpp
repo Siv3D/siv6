@@ -34,6 +34,10 @@ namespace s3d
 		id<MTLRenderPipelineState> m_rps;
 		
 		Vertex2DBatch_Metal m_batches;
+		
+		Renderer2DCommand_Metal m_command;
+		
+		uint32 m_draw_indexCount = 0;
 
 	public:
 
@@ -46,5 +50,7 @@ namespace s3d
 		void flush() override;
 
 		void test_renderRectangle(const RectF& rect, const ColorF& color) override;
+		
+		void begin();
 	};
 }

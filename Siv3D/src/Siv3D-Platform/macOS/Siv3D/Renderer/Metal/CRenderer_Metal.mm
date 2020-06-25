@@ -15,7 +15,7 @@
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/System.hpp>
 # include <Siv3D/Window/IWindow.hpp>
-# include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Renderer2D/Metal/CRenderer2D_Metal.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # import <QuartzCore/CAMetalLayer.h>
 
@@ -53,7 +53,7 @@ namespace s3d
 		NSWindow* nswin = ::glfwGetCocoaWindow(m_window);
 		nswin.contentView.layer			= m_swapchain;
 		nswin.contentView.wantsLayer	= YES;
-		
+
 		clear();
 	}
 
@@ -78,6 +78,8 @@ namespace s3d
 				// sleep
 			}
 		}
+		
+		dynamic_cast<CRenderer2D_Metal*>(SIV3D_ENGINE(Renderer2D))->begin();
 	}
 
 	void CRenderer_Metal::flush()

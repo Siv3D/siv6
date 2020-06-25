@@ -13,7 +13,7 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
-
+# include <Siv3D/ScopeGuard.hpp>
 # include <Siv3D/Array.hpp>
 # include <Siv3D/Vertex2D.hpp>
 # include <Siv3D/Mat3x2.hpp>
@@ -46,13 +46,26 @@ namespace s3d
 		m_swapchain = m_pRenderer->getSwapchain();
 	
 		id<MTLLibrary> defaultLibrary = [m_device newDefaultLibrary];
-		id<MTLFunction> vertexFunction = [defaultLibrary newFunctionWithName:@"v_simple"];
-		id<MTLFunction> fragmentFunction = [defaultLibrary newFunctionWithName:@"f_simple"];
+		id<MTLFunction> vertexFunction = [defaultLibrary newFunctionWithName:@"VS_Sprite"];
+		id<MTLFunction> fragmentFunction = [defaultLibrary newFunctionWithName:@"PS_Shape"];
+		
+		MTLVertexDescriptor* vertexDescriptor = [MTLVertexDescriptor new];
+		vertexDescriptor.attributes[0].format = MTLVertexFormatFloat2;
+		vertexDescriptor.attributes[0].offset = 0;
+		vertexDescriptor.attributes[0].bufferIndex = 0;
+		vertexDescriptor.attributes[1].format = MTLVertexFormatFloat2;
+		vertexDescriptor.attributes[1].offset = 8;
+		vertexDescriptor.attributes[1].bufferIndex = 0;
+		vertexDescriptor.attributes[2].format = MTLVertexFormatFloat4;
+		vertexDescriptor.attributes[2].offset = 16;
+		vertexDescriptor.attributes[2].bufferIndex = 0;
+		vertexDescriptor.layouts[0].stride = 32;
 		 
 		MTLRenderPipelineDescriptor* rpd = [MTLRenderPipelineDescriptor new];
 		rpd.vertexFunction = vertexFunction;
 		rpd.fragmentFunction = fragmentFunction;
 		rpd.colorAttachments[0].pixelFormat = m_swapchain.pixelFormat;
+		rpd.vertexDescriptor = vertexDescriptor;
 		m_rps = [m_device newRenderPipelineStateWithDescriptor:rpd error:NULL];
 		assert(m_rps);
 		
@@ -61,7 +74,12 @@ namespace s3d
 
 	void CRenderer2D_Metal::flush()
 	{
-		const size_t num_vertices = m_batches.update();
+		ScopeGuard cleanUp = [this]()
+		{
+			m_draw_indexCount = 0;
+		};
+		
+		m_batches.end();
 		const Size currentRenderTargetSize = Size(800, 600);// SIV3D_ENGINE(Renderer)->getSceneSize();
 
 		Mat3x2 transform = Mat3x2::Identity();
@@ -89,15 +107,19 @@ namespace s3d
 
 			[encoder setRenderPipelineState:m_rps];
 
-			[encoder setVertexBuffer:m_batches.getCurrentBuffer()
+			[encoder setVertexBuffer:m_batches.getCurrentVertexBuffer()
 							  offset:0
 							 atIndex:0];
 			
 			[encoder setVertexBytes:&cb
 							 length:sizeof(VSConstants2D)
 							atIndex:1];
-			
-			[encoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:num_vertices];
+
+			[encoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle
+								indexCount:m_draw_indexCount
+								 indexType:MTLIndexTypeUInt16
+							   indexBuffer:m_batches.getCurrentIndexBuffer()
+						 indexBufferOffset:0];
 			
 			[encoder endEncoding];
 			[buffer presentDrawable:drawable];
@@ -114,24 +136,38 @@ namespace s3d
 
 	void CRenderer2D_Metal::test_renderRectangle(const RectF& rect, const ColorF& _color)
 	{
-		Vertex2D* vtx = m_batches.request(6);
-		
-		if (!vtx)
+		constexpr Vertex2D::IndexType vertexSize = 4, indexSize = 6;
+		auto [pVertex, pIndex, indexOffset] = m_batches.requestBuffer(vertexSize, indexSize, m_command);
+
+		if (!pVertex)
 		{
 			return;
 		}
-		
+
 		const Float4 color = _color.toFloat4();
+
 		const float left = float(rect.x);
 		const float right = float(rect.x + rect.w);
 		const float top = float(rect.y);
 		const float bottom = float(rect.y + rect.h);
 
-		vtx[0].set(left, top, color);
-		vtx[1].set(right, top, color);
-		vtx[2].set(left, bottom, color);
-		vtx[3].set(left, bottom, color);
-		vtx[4].set(right, top, color);
-		vtx[5].set(right, bottom, color);
+		pVertex[0].set(left, top, color);
+		pVertex[1].set(right, top, color);
+		pVertex[2].set(left, bottom, color);
+		pVertex[3].set(right, bottom, color);
+
+		static constexpr Vertex2D::IndexType RectIndexTable[6] = { 0, 1, 2, 2, 1, 3 };
+
+		for (Vertex2D::IndexType i = 0; i < indexSize; ++i)
+		{
+			*pIndex++ = (indexOffset + RectIndexTable[i]);
+		}
+		
+		m_draw_indexCount += indexSize;
+	}
+
+	void CRenderer2D_Metal::begin()
+	{
+		m_batches.begin();
 	}
 }
