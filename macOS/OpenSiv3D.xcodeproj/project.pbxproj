@@ -284,7 +284,7 @@
 		2CFF9F6324A46481000B5A17 /* osmesa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CFF9F6124A46481000B5A17 /* osmesa_context.h */; };
 		2CFF9F6424A46481000B5A17 /* osmesa_context.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6224A46481000B5A17 /* osmesa_context.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2CFF9F6624A47016000B5A17 /* Levenshtein.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6524A47016000B5A17 /* Levenshtein.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
-		2CFF9F6924A473E9000B5A17 /* test.metal in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6824A473E9000B5A17 /* test.metal */; };
+		2CFF9F6924A473E9000B5A17 /* sprite.metal in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6824A473E9000B5A17 /* sprite.metal */; };
 		2CFF9F6C24A47730000B5A17 /* Vertex2DBatch_Metal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6A24A47730000B5A17 /* Vertex2DBatch_Metal.mm */; };
 		2CFF9F6D24A47730000B5A17 /* Vertex2DBatch_Metal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CFF9F6B24A47730000B5A17 /* Vertex2DBatch_Metal.hpp */; };
 /* End PBXBuildFile section */
@@ -779,7 +779,7 @@
 		2CFF9F6124A46481000B5A17 /* osmesa_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osmesa_context.h; sourceTree = "<group>"; };
 		2CFF9F6224A46481000B5A17 /* osmesa_context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osmesa_context.c; sourceTree = "<group>"; };
 		2CFF9F6524A47016000B5A17 /* Levenshtein.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Levenshtein.cpp; sourceTree = "<group>"; };
-		2CFF9F6824A473E9000B5A17 /* test.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = test.metal; sourceTree = "<group>"; };
+		2CFF9F6824A473E9000B5A17 /* sprite.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = sprite.metal; sourceTree = "<group>"; };
 		2CFF9F6A24A47730000B5A17 /* Vertex2DBatch_Metal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Vertex2DBatch_Metal.mm; sourceTree = "<group>"; };
 		2CFF9F6B24A47730000B5A17 /* Vertex2DBatch_Metal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex2DBatch_Metal.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2249,7 +2249,7 @@
 		2CFF9F6724A473E9000B5A17 /* metal */ = {
 			isa = PBXGroup;
 			children = (
-				2CFF9F6824A473E9000B5A17 /* test.metal */,
+				2CFF9F6824A473E9000B5A17 /* sprite.metal */,
 			);
 			name = metal;
 			path = App/engine/shader/metal;
@@ -2442,7 +2442,7 @@
 			files = (
 				2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */,
 				2C0F89EF249E3E8A008B9220 /* Siv3DTest.cpp in Sources */,
-				2CFF9F6924A473E9000B5A17 /* test.metal in Sources */,
+				2CFF9F6924A473E9000B5A17 /* sprite.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

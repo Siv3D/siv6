@@ -1,5 +1,6 @@
 
 # include <metal_stdlib>
+using namespace metal;
 
 struct VSConstants2D
 {
@@ -17,13 +18,12 @@ struct Vertex2D
 struct PSInput
 {
 	float4 clipSpacePosition [[position]];
-	float2 textureCoordinate;
+	float2 tex;
 	float4 color;
 };
 
-using namespace metal;
-
-float4 StandardTransform(float2 pos, constant float4(&transform)[2])
+float4 StandardTransform(float2 pos,
+						 constant float4(&transform)[2])
 {
 	float4 result;
 	result.xy = transform[0].zw + pos.x * transform[0].xy + pos.y * transform[1].xy;
@@ -31,19 +31,19 @@ float4 StandardTransform(float2 pos, constant float4(&transform)[2])
 	return result;
 }
 
-vertex PSInput VS_Sprite(
-    Vertex2D in [[stage_in]],
-    constant VSConstants2D& cb [[buffer(1)]])
+vertex
+PSInput VS_Sprite(Vertex2D in [[stage_in]],
+				  constant VSConstants2D& cb [[buffer(1)]])
 {
 	PSInput out;
 	out.clipSpacePosition = StandardTransform(in.pos, cb.transform);
-	out.textureCoordinate = in.tex;
+	out.tex = in.tex;
 	out.color = (in.color * cb.colorMul);
 	return out;
 }
 
-fragment float4 PS_Shape(
-    PSInput in [[stage_in]])
+fragment
+float4 PS_Shape(PSInput in [[stage_in]])
 {
     return in.color;
 }
