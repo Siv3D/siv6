@@ -13,12 +13,6 @@
 # include <Siv3D/Char.hpp>
 # include <Siv3D/Array.hpp>
 
-SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4100)
-SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4267)
-# include <ThirdParty/levenshtein-sse/levenshtein-sse.hpp>
-SIV3D_DISABLE_MSVC_WARNINGS_POP()
-SIV3D_DISABLE_MSVC_WARNINGS_POP()
-
 namespace s3d
 {
 	int32 String::case_insensitive_compare(const StringView s) const noexcept
@@ -146,11 +140,6 @@ namespace s3d
 		}
 
 		return result;
-	}
-
-	size_t String::levenshteinDistanceFrom(const StringView other) const noexcept
-	{
-		return levenshteinSSE::levenshtein(begin(), end(), other.begin(), other.end());
 	}
 
 	String& String::lowercase() noexcept

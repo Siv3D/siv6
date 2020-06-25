@@ -1748,5 +1748,8 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Window\Null\CWindow_Null.cpp">
       <Filter>src\Siv3D\Window\Null</Filter>
     </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\String\Levenshtein.cpp">
+      <Filter>src\Siv3D\String</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
