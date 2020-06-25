@@ -284,6 +284,9 @@
 		2CFF9F6324A46481000B5A17 /* osmesa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CFF9F6124A46481000B5A17 /* osmesa_context.h */; };
 		2CFF9F6424A46481000B5A17 /* osmesa_context.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6224A46481000B5A17 /* osmesa_context.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2CFF9F6624A47016000B5A17 /* Levenshtein.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6524A47016000B5A17 /* Levenshtein.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
+		2CFF9F6924A473E9000B5A17 /* test.metal in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6824A473E9000B5A17 /* test.metal */; };
+		2CFF9F6C24A47730000B5A17 /* Vertex2DBatch_Metal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6A24A47730000B5A17 /* Vertex2DBatch_Metal.mm */; };
+		2CFF9F6D24A47730000B5A17 /* Vertex2DBatch_Metal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CFF9F6B24A47730000B5A17 /* Vertex2DBatch_Metal.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -776,6 +779,9 @@
 		2CFF9F6124A46481000B5A17 /* osmesa_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osmesa_context.h; sourceTree = "<group>"; };
 		2CFF9F6224A46481000B5A17 /* osmesa_context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osmesa_context.c; sourceTree = "<group>"; };
 		2CFF9F6524A47016000B5A17 /* Levenshtein.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Levenshtein.cpp; sourceTree = "<group>"; };
+		2CFF9F6824A473E9000B5A17 /* test.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = test.metal; sourceTree = "<group>"; };
+		2CFF9F6A24A47730000B5A17 /* Vertex2DBatch_Metal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Vertex2DBatch_Metal.mm; sourceTree = "<group>"; };
+		2CFF9F6B24A47730000B5A17 /* Vertex2DBatch_Metal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex2DBatch_Metal.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1595,6 +1601,7 @@
 		2CA7F74D1CA7F43D00495647 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				2CFF9F6724A473E9000B5A17 /* metal */,
 				2C0CEDAE249F4E5B003647A7 /* engine */,
 				2CA7F74E1CA7F43D00495647 /* Main.cpp */,
 				2C0F89EE249E3E8A008B9220 /* Siv3DTest.cpp */,
@@ -1616,6 +1623,8 @@
 		2CDE6E8724A35C7B0048594F /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				2CFF9F6B24A47730000B5A17 /* Vertex2DBatch_Metal.hpp */,
+				2CFF9F6A24A47730000B5A17 /* Vertex2DBatch_Metal.mm */,
 				2CDE6E8C24A35EAC0048594F /* CRenderer2D_Metal.mm */,
 				2CDE6E8924A35C7B0048594F /* CRenderer2D_Metal.hpp */,
 			);
@@ -2237,6 +2246,15 @@
 			path = "levenshtein-sse";
 			sourceTree = "<group>";
 		};
+		2CFF9F6724A473E9000B5A17 /* metal */ = {
+			isa = PBXGroup;
+			children = (
+				2CFF9F6824A473E9000B5A17 /* test.metal */,
+			);
+			name = metal;
+			path = App/engine/shader/metal;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2267,6 +2285,7 @@
 				2CDE6E8B24A35C7B0048594F /* CRenderer2D_Metal.hpp in Headers */,
 				2CF21D26249FAA8F00C864C9 /* CWindow.hpp in Headers */,
 				2C834DB1248805D4006208B8 /* oniguruma.h in Headers */,
+				2CFF9F6D24A47730000B5A17 /* Vertex2DBatch_Metal.hpp in Headers */,
 				2C481E1724460B5700A5D88D /* cpu_features_macros.h in Headers */,
 				2CF21D30249FAA9700C864C9 /* Vertex2DBatch_GL4.hpp in Headers */,
 				2CF21DDB249FAB3600C864C9 /* SystemMisc.hpp in Headers */,
@@ -2423,6 +2442,7 @@
 			files = (
 				2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */,
 				2C0F89EF249E3E8A008B9220 /* Siv3DTest.cpp in Sources */,
+				2CFF9F6924A473E9000B5A17 /* test.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2540,6 +2560,7 @@
 				2CF21DEA249FAB3600C864C9 /* SivByte.cpp in Sources */,
 				2CF21DD6249FAB3600C864C9 /* SivFormatInt.cpp in Sources */,
 				2C834DAD248805D4006208B8 /* koi8.c in Sources */,
+				2CFF9F6C24A47730000B5A17 /* Vertex2DBatch_Metal.mm in Sources */,
 				2CF21DF4249FAB3600C864C9 /* SceneFactory.cpp in Sources */,
 				2CF21DC6249FAB3600C864C9 /* SivCursor.cpp in Sources */,
 				2CF21DF0249FAB3600C864C9 /* SivProfiler.cpp in Sources */,
