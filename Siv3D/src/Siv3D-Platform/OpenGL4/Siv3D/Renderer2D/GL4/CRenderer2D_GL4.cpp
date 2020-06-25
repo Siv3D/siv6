@@ -192,7 +192,9 @@ namespace s3d
 		const uint32 indexCount = m_draw_indexCount;
 		const uint32 startIndexLocation = batchInfo.startIndexLocation;
 		const uint32 baseVertexLocation = batchInfo.baseVertexLocation;
-		::glDrawElementsBaseVertex(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, (const Vertex2D::IndexType*)0 + startIndexLocation, baseVertexLocation);
+		const Vertex2D::IndexType* pBase = 0;
+		
+		::glDrawElementsBaseVertex(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, (pBase + startIndexLocation), baseVertexLocation);
 		batchInfo.startIndexLocation += indexCount;
 
 		::glBindVertexArray(0);

@@ -27,20 +27,20 @@ namespace s3d
 			case EngineOption::StdErr:
 				g_applicationOptions.stdErr		= static_cast<bool>(value);
 				break;
+			default:
+				break;
 			}
 
 			return 0;
 		}
 
-		int SetEngineOption(const  EngineOption option, const RendererType value) noexcept
+		int SetEngineOption(const EngineOption option, const RendererType value) noexcept
 		{
-			switch (option)
+			if (option == EngineOption::Renderer)
 			{
-			case EngineOption::Renderer:
 				g_applicationOptions.renderer = value;
-				break;
 			}
-
+			
 			return 0;
 		}
 	}

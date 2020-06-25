@@ -21,19 +21,6 @@
 
 namespace s3d
 {
-	namespace detail
-	{
-		static void GLDebugMessageARB(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const GLvoid* userParam)
-		{
-			// [Siv3D ToDo] Linux でのデバッグ用
-		}
-		
-		static void GLDebugMessageAMD(GLuint id, GLuint category, GLenum severity, GLsizei length, const GLchar *message, GLvoid* userParam)
-		{
-			// [Siv3D ToDo] Linux でのデバッグ用
-		}
-	}
-
 	CRenderer_GL4::CRenderer_GL4()
 	{
 	
@@ -58,18 +45,7 @@ namespace s3d
 		{
 			throw EngineError(U"glefInit() failed");
 		}
-		
-		if (SIV3D_BUILD(DEBUG) && GLEW_ARB_debug_output)
-		{
-			::glDebugMessageCallbackARB(detail::GLDebugMessageARB, nullptr);
-			LOG_INFO(U"ℹ️ GLEW_ARB_debug_output available");
-		}
-		else if (SIV3D_BUILD(DEBUG) && GLEW_AMD_debug_output)
-		{
-			::glDebugMessageCallbackAMD(detail::GLDebugMessageAMD, nullptr);
-			LOG_INFO(U"ℹ️ GLEW_AMD_debug_output available");
-		}
-		
+
 		const String renderer = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_RENDERER)));
 		const String vendor = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VENDOR)));
 		const String version = Unicode::Widen(reinterpret_cast<const char*>(::glGetString(GL_VERSION)));

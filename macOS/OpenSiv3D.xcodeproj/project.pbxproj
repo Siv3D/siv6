@@ -21,9 +21,9 @@
 		2C12089D24A30260008CAD99 /* CRenderer_Metal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */; };
 		2C1208A024A304E7008CAD99 /* CRenderer_Metal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */; };
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
-		2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DB242B155E00A16BCA /* cocoa_joystick.m */; };
+		2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DB242B155E00A16BCA /* cocoa_joystick.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C42321B242B155E00A16BCA /* monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DD242B155E00A16BCA /* monitor.c */; };
-		2C42321C242B155E00A16BCA /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DE242B155E00A16BCA /* cocoa_init.m */; };
+		2C42321C242B155E00A16BCA /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DE242B155E00A16BCA /* cocoa_init.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C42321D242B155E00A16BCA /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4231E0242B155E00A16BCA /* internal.h */; };
 		2C423220242B155E00A16BCA /* cocoa_platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4231E4242B155E00A16BCA /* cocoa_platform.h */; };
 		2C423222242B155E00A16BCA /* glfw3.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4231E6242B155E00A16BCA /* glfw3.h */; };
@@ -31,18 +31,16 @@
 		2C423228242B155E00A16BCA /* init.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231EC242B155E00A16BCA /* init.c */; };
 		2C42322A242B155E00A16BCA /* glfw3native.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4231EE242B155E00A16BCA /* glfw3native.h */; };
 		2C42322C242B155E00A16BCA /* nsgl_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4231F0242B155E00A16BCA /* nsgl_context.h */; };
-		2C423234242B155E00A16BCA /* osmesa_context.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231F9242B155E00A16BCA /* osmesa_context.c */; };
 		2C423236242B155E00A16BCA /* vulkan.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231FB242B155E00A16BCA /* vulkan.c */; };
-		2C423239242B155E00A16BCA /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231FE242B155E00A16BCA /* input.c */; };
+		2C423239242B155E00A16BCA /* input.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231FE242B155E00A16BCA /* input.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C42323B242B155E00A16BCA /* mappings.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423201242B155E00A16BCA /* mappings.h */; };
 		2C42323D242B155E00A16BCA /* cocoa_joystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423203242B155E00A16BCA /* cocoa_joystick.h */; };
-		2C423241242B155E00A16BCA /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C423207242B155E00A16BCA /* cocoa_window.m */; };
+		2C423241242B155E00A16BCA /* cocoa_window.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C423207242B155E00A16BCA /* cocoa_window.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C423244242B155E00A16BCA /* context.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C42320A242B155E00A16BCA /* context.c */; };
 		2C423245242B155E00A16BCA /* cocoa_time.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C42320C242B155E00A16BCA /* cocoa_time.c */; };
-		2C423246242B155E00A16BCA /* nsgl_context.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C42320D242B155E00A16BCA /* nsgl_context.m */; };
+		2C423246242B155E00A16BCA /* nsgl_context.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C42320D242B155E00A16BCA /* nsgl_context.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C423248242B155E00A16BCA /* xkb_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C42320F242B155E00A16BCA /* xkb_unicode.c */; };
-		2C42324D242B155E00A16BCA /* osmesa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423214242B155E00A16BCA /* osmesa_context.h */; };
-		2C42324F242B155E00A16BCA /* cocoa_monitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C423216242B155E00A16BCA /* cocoa_monitor.m */; };
+		2C42324F242B155E00A16BCA /* cocoa_monitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C423216242B155E00A16BCA /* cocoa_monitor.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C423250242B155E00A16BCA /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C423217242B155E00A16BCA /* window.c */; };
 		2C423253242B19D100A16BCA /* egl_context.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C423251242B19D100A16BCA /* egl_context.c */; };
 		2C423254242B19D100A16BCA /* egl_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423252242B19D100A16BCA /* egl_context.h */; };
@@ -75,11 +73,11 @@
 		2C481E1224460B5700A5D88D /* bit_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0C24460B5700A5D88D /* bit_utils.h */; };
 		2C481E1324460B5700A5D88D /* cpuinfo_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */; };
 		2C481E1424460B5700A5D88D /* cpu_features_cache_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0E24460B5700A5D88D /* cpu_features_cache_info.h */; };
-		2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C481E0F24460B5700A5D88D /* cpuinfo_x86.c */; };
+		2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C481E0F24460B5700A5D88D /* cpuinfo_x86.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C481E1624460B5700A5D88D /* cpuid_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E1024460B5700A5D88D /* cpuid_x86.h */; };
 		2C481E1724460B5700A5D88D /* cpu_features_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E1124460B5700A5D88D /* cpu_features_macros.h */; };
 		2C4CBE5624370FFA00F8B7A6 /* glew.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4CBE5224370FFA00F8B7A6 /* glew.h */; };
-		2C4CBE592437100100F8B7A6 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE582437100100F8B7A6 /* glew.c */; };
+		2C4CBE592437100100F8B7A6 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CBE582437100100F8B7A6 /* glew.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C60AE71248158A500277281 /* frequency_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE33248158A400277281 /* frequency_darwin.cpp */; };
 		2C60AE72248158A500277281 /* frequency_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE34248158A400277281 /* frequency_windows.cpp */; };
 		2C60AE73248158A500277281 /* frequency_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE35248158A400277281 /* frequency_non_windows_non_darwin.cpp */; };
@@ -92,7 +90,7 @@
 		2C60AE7A248158A500277281 /* architecture_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE3F248158A500277281 /* architecture_non_windows.cpp */; };
 		2C60AE7B248158A500277281 /* quantities_cache_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE41248158A500277281 /* quantities_cache_windows.cpp */; };
 		2C60AE7C248158A500277281 /* quantities_cache_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE42248158A500277281 /* quantities_cache_non_windows_non_darwin.cpp */; };
-		2C60AE7D248158A500277281 /* quantities_cache_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE43248158A500277281 /* quantities_cache_darwin.cpp */; };
+		2C60AE7D248158A500277281 /* quantities_cache_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE43248158A500277281 /* quantities_cache_darwin.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C60AE7E248158A500277281 /* vendor_model_name_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE45248158A500277281 /* vendor_model_name_darwin.cpp */; };
 		2C60AE7F248158A500277281 /* vendor_model_name_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE46248158A500277281 /* vendor_model_name_non_windows_non_darwin.cpp */; };
 		2C60AE80248158A500277281 /* vendor_model_name_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE47248158A500277281 /* vendor_model_name_windows.cpp */; };
@@ -101,14 +99,14 @@
 		2C60AE83248158A500277281 /* memory_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE4C248158A500277281 /* memory_non_windows_non_darwin.cpp */; };
 		2C60AE84248158A500277281 /* memory_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE4D248158A500277281 /* memory_darwin.cpp */; };
 		2C60AE85248158A500277281 /* kernel_info_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE4F248158A500277281 /* kernel_info_windows.cpp */; };
-		2C60AE86248158A500277281 /* kernel_info_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE50248158A500277281 /* kernel_info_non_windows.cpp */; };
+		2C60AE86248158A500277281 /* kernel_info_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE50248158A500277281 /* kernel_info_non_windows.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C60AE87248158A500277281 /* displays_x11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE52248158A500277281 /* displays_x11.cpp */; };
-		2C60AE88248158A500277281 /* displays_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE53248158A500277281 /* displays_darwin.cpp */; };
+		2C60AE88248158A500277281 /* displays_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE53248158A500277281 /* displays_darwin.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C60AE89248158A500277281 /* displays_default_blank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE54248158A500277281 /* displays_default_blank.cpp */; };
 		2C60AE8A248158A500277281 /* displays_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE55248158A500277281 /* displays_windows.cpp */; };
 		2C60AE8B248158A500277281 /* os_info_non_windows_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE57248158A500277281 /* os_info_non_windows_non_darwin.cpp */; };
 		2C60AE8C248158A500277281 /* os_info_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE58248158A500277281 /* os_info_windows.cpp */; };
-		2C60AE8D248158A500277281 /* os_info_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE59248158A500277281 /* os_info_darwin.cpp */; };
+		2C60AE8D248158A500277281 /* os_info_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE59248158A500277281 /* os_info_darwin.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C60AE8E248158A500277281 /* amounts_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE5B248158A500277281 /* amounts_non_windows.cpp */; };
 		2C60AE8F248158A500277281 /* amounts_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE5C248158A500277281 /* amounts_windows.cpp */; };
 		2C60AE90248158A500277281 /* cpuid_non_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE5E248158A500277281 /* cpuid_non_windows.cpp */; };
@@ -118,7 +116,7 @@
 		2C60AE94248158A500277281 /* cpuid_windows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE62248158A500277281 /* cpuid_windows.cpp */; };
 		2C60AE95248158A500277281 /* sysctl_non_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE63248158A500277281 /* sysctl_non_darwin.cpp */; };
 		2C60AE96248158A500277281 /* sysctl_darwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C60AE64248158A500277281 /* sysctl_darwin.cpp */; };
-		2C834D8A248805D4006208B8 /* unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D4F248805D4006208B8 /* unicode.c */; };
+		2C834D8A248805D4006208B8 /* unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D4F248805D4006208B8 /* unicode.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C834D8B248805D4006208B8 /* big5.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D50248805D4006208B8 /* big5.c */; };
 		2C834D8C248805D4006208B8 /* st.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D51248805D4006208B8 /* st.h */; };
 		2C834D8D248805D4006208B8 /* ascii.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D52248805D4006208B8 /* ascii.c */; };
@@ -127,28 +125,28 @@
 		2C834D90248805D4006208B8 /* iso8859_1.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D55248805D4006208B8 /* iso8859_1.c */; };
 		2C834D91248805D4006208B8 /* regparse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D56248805D4006208B8 /* regparse.h */; };
 		2C834D92248805D4006208B8 /* iso8859_11.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D57248805D4006208B8 /* iso8859_11.c */; };
-		2C834D93248805D4006208B8 /* euc_jp.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D58248805D4006208B8 /* euc_jp.c */; };
+		2C834D93248805D4006208B8 /* euc_jp.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D58248805D4006208B8 /* euc_jp.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C834D94248805D4006208B8 /* iso8859_15.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D59248805D4006208B8 /* iso8859_15.c */; };
 		2C834D95248805D4006208B8 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D5A248805D4006208B8 /* config.h */; };
 		2C834D96248805D4006208B8 /* iso8859_5.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D5B248805D4006208B8 /* iso8859_5.c */; };
 		2C834D97248805D4006208B8 /* unicode_fold3_key.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D5C248805D4006208B8 /* unicode_fold3_key.c */; };
 		2C834D98248805D4006208B8 /* unicode_fold1_key.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D5D248805D4006208B8 /* unicode_fold1_key.c */; };
-		2C834D9A248805D4006208B8 /* regexec.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D5F248805D4006208B8 /* regexec.c */; };
+		2C834D9A248805D4006208B8 /* regexec.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D5F248805D4006208B8 /* regexec.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C834D9B248805D4006208B8 /* regint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D60248805D4006208B8 /* regint.h */; };
 		2C834D9C248805D4006208B8 /* regenc.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D61248805D4006208B8 /* regenc.h */; };
 		2C834D9D248805D4006208B8 /* iso8859_2.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D62248805D4006208B8 /* iso8859_2.c */; };
 		2C834D9E248805D4006208B8 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D63248805D4006208B8 /* utf8.c */; };
 		2C834D9F248805D4006208B8 /* iso8859_8.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D64248805D4006208B8 /* iso8859_8.c */; };
-		2C834DA0248805D4006208B8 /* regcomp.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D65248805D4006208B8 /* regcomp.c */; };
+		2C834DA0248805D4006208B8 /* regcomp.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D65248805D4006208B8 /* regcomp.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C834DA2248805D4006208B8 /* koi8_r.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D67248805D4006208B8 /* koi8_r.c */; };
 		2C834DA3248805D4006208B8 /* regtrav.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D68248805D4006208B8 /* regtrav.c */; };
 		2C834DA4248805D4006208B8 /* utf32_be.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D69248805D4006208B8 /* utf32_be.c */; };
 		2C834DA5248805D4006208B8 /* regsyntax.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6A248805D4006208B8 /* regsyntax.c */; };
 		2C834DA6248805D4006208B8 /* iso8859_6.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6B248805D4006208B8 /* iso8859_6.c */; };
-		2C834DA7248805D4006208B8 /* euc_jp_prop.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6C248805D4006208B8 /* euc_jp_prop.c */; };
+		2C834DA7248805D4006208B8 /* euc_jp_prop.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6C248805D4006208B8 /* euc_jp_prop.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C834DA8248805D4006208B8 /* regversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6D248805D4006208B8 /* regversion.c */; };
 		2C834DAA248805D4006208B8 /* iso8859_16.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D6F248805D4006208B8 /* iso8859_16.c */; };
-		2C834DAB248805D4006208B8 /* st.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D70248805D4006208B8 /* st.c */; };
+		2C834DAB248805D4006208B8 /* st.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D70248805D4006208B8 /* st.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C834DAC248805D4006208B8 /* oniggnu.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C834D71248805D4006208B8 /* oniggnu.h */; };
 		2C834DAD248805D4006208B8 /* koi8.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D72248805D4006208B8 /* koi8.c */; };
 		2C834DAE248805D4006208B8 /* euc_kr.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D73248805D4006208B8 /* euc_kr.c */; };
@@ -158,13 +156,13 @@
 		2C834DB2248805D4006208B8 /* iso8859_9.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D77248805D4006208B8 /* iso8859_9.c */; };
 		2C834DB3248805D4006208B8 /* iso8859_3.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D78248805D4006208B8 /* iso8859_3.c */; };
 		2C834DB4248805D4006208B8 /* iso8859_7.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D79248805D4006208B8 /* iso8859_7.c */; };
-		2C834DB5248805D4006208B8 /* regparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7A248805D4006208B8 /* regparse.c */; };
+		2C834DB5248805D4006208B8 /* regparse.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7A248805D4006208B8 /* regparse.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C834DB6248805D4006208B8 /* onig_init.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7B248805D4006208B8 /* onig_init.c */; };
 		2C834DB7248805D4006208B8 /* euc_tw.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7C248805D4006208B8 /* euc_tw.c */; };
 		2C834DB8248805D4006208B8 /* cp1251.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7D248805D4006208B8 /* cp1251.c */; };
-		2C834DB9248805D4006208B8 /* sjis.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7E248805D4006208B8 /* sjis.c */; };
+		2C834DB9248805D4006208B8 /* sjis.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7E248805D4006208B8 /* sjis.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C834DBA248805D4006208B8 /* regenc.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D7F248805D4006208B8 /* regenc.c */; };
-		2C834DBB248805D4006208B8 /* sjis_prop.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D80248805D4006208B8 /* sjis_prop.c */; };
+		2C834DBB248805D4006208B8 /* sjis_prop.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D80248805D4006208B8 /* sjis_prop.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C834DBC248805D4006208B8 /* gb18030.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D81248805D4006208B8 /* gb18030.c */; };
 		2C834DBD248805D4006208B8 /* regerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D82248805D4006208B8 /* regerror.c */; };
 		2C834DBE248805D4006208B8 /* unicode_unfold_key.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D83248805D4006208B8 /* unicode_unfold_key.c */; };
@@ -283,6 +281,8 @@
 		2CF21E05249FAF9E00C864C9 /* CWindow_Null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21E03249FAF9E00C864C9 /* CWindow_Null.cpp */; };
 		2CF21E06249FAF9E00C864C9 /* CWindow_Null.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF21E04249FAF9E00C864C9 /* CWindow_Null.hpp */; };
 		2CF9FD142490F3AE00EC8308 /* levenshtein-sse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */; };
+		2CFF9F6324A46481000B5A17 /* osmesa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CFF9F6124A46481000B5A17 /* osmesa_context.h */; };
+		2CFF9F6424A46481000B5A17 /* osmesa_context.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6224A46481000B5A17 /* osmesa_context.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -313,7 +313,6 @@
 		2C4231EC242B155E00A16BCA /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = init.c; sourceTree = "<group>"; };
 		2C4231EE242B155E00A16BCA /* glfw3native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
 		2C4231F0242B155E00A16BCA /* nsgl_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nsgl_context.h; sourceTree = "<group>"; };
-		2C4231F9242B155E00A16BCA /* osmesa_context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osmesa_context.c; sourceTree = "<group>"; };
 		2C4231FB242B155E00A16BCA /* vulkan.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vulkan.c; sourceTree = "<group>"; };
 		2C4231FE242B155E00A16BCA /* input.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = input.c; sourceTree = "<group>"; };
 		2C423201242B155E00A16BCA /* mappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mappings.h; sourceTree = "<group>"; };
@@ -323,7 +322,6 @@
 		2C42320C242B155E00A16BCA /* cocoa_time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cocoa_time.c; sourceTree = "<group>"; };
 		2C42320D242B155E00A16BCA /* nsgl_context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nsgl_context.m; sourceTree = "<group>"; };
 		2C42320F242B155E00A16BCA /* xkb_unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xkb_unicode.c; sourceTree = "<group>"; };
-		2C423214242B155E00A16BCA /* osmesa_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osmesa_context.h; sourceTree = "<group>"; };
 		2C423216242B155E00A16BCA /* cocoa_monitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_monitor.m; sourceTree = "<group>"; };
 		2C423217242B155E00A16BCA /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
 		2C423251242B19D100A16BCA /* egl_context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = egl_context.c; sourceTree = "<group>"; };
@@ -774,6 +772,8 @@
 		2CF21E03249FAF9E00C864C9 /* CWindow_Null.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWindow_Null.cpp; sourceTree = "<group>"; };
 		2CF21E04249FAF9E00C864C9 /* CWindow_Null.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CWindow_Null.hpp; sourceTree = "<group>"; };
 		2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "levenshtein-sse.hpp"; sourceTree = "<group>"; };
+		2CFF9F6124A46481000B5A17 /* osmesa_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osmesa_context.h; sourceTree = "<group>"; };
+		2CFF9F6224A46481000B5A17 /* osmesa_context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osmesa_context.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -913,8 +913,8 @@
 				2C4231DD242B155E00A16BCA /* monitor.c */,
 				2C4231F0242B155E00A16BCA /* nsgl_context.h */,
 				2C42320D242B155E00A16BCA /* nsgl_context.m */,
-				2C4231F9242B155E00A16BCA /* osmesa_context.c */,
-				2C423214242B155E00A16BCA /* osmesa_context.h */,
+				2CFF9F6224A46481000B5A17 /* osmesa_context.c */,
+				2CFF9F6124A46481000B5A17 /* osmesa_context.h */,
 				2C423256242B19ED00A16BCA /* posix_thread.c */,
 				2C423255242B19ED00A16BCA /* posix_thread.h */,
 				2C4231FB242B155E00A16BCA /* vulkan.c */,
@@ -2241,6 +2241,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CFF9F6324A46481000B5A17 /* osmesa_context.h in Headers */,
 				2CF21DF6249FAB3600C864C9 /* IScene.hpp in Headers */,
 				2C423222242B155E00A16BCA /* glfw3.h in Headers */,
 				2C0CED8C249F2E2D003647A7 /* BinaryReaderDetail.hpp in Headers */,
@@ -2257,7 +2258,6 @@
 				2CF21DBF249FAB3600C864C9 /* ILogger.hpp in Headers */,
 				2C834D9B248805D4006208B8 /* regint.h in Headers */,
 				2CF21DB4249FAB3600C864C9 /* IRenderer.hpp in Headers */,
-				2C42324D242B155E00A16BCA /* osmesa_context.h in Headers */,
 				2CF21DDA249FAB3600C864C9 /* ISystem.hpp in Headers */,
 				2CF21E06249FAF9E00C864C9 /* CWindow_Null.hpp in Headers */,
 				2CF21DDE249FAB3600C864C9 /* Siv3DEngine.hpp in Headers */,
@@ -2428,7 +2428,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CF21DFE249FAB3600C864C9 /* ConsoleFactory.cpp in Sources */,
-				2C423234242B155E00A16BCA /* osmesa_context.c in Sources */,
 				2C834DA7248805D4006208B8 /* euc_jp_prop.c in Sources */,
 				2C60AE80248158A500277281 /* vendor_model_name_windows.cpp in Sources */,
 				2C423239242B155E00A16BCA /* input.c in Sources */,
@@ -2437,6 +2436,7 @@
 				2CF21DCC249FAB3600C864C9 /* SivFormatUtility.cpp in Sources */,
 				2C423236242B155E00A16BCA /* vulkan.c in Sources */,
 				2CF21DD1249FAB3600C864C9 /* SivParseFloat.cpp in Sources */,
+				2CFF9F6424A46481000B5A17 /* osmesa_context.c in Sources */,
 				2C834D93248805D4006208B8 /* euc_jp.c in Sources */,
 				2C423245242B155E00A16BCA /* cocoa_time.c in Sources */,
 				2CF21DCE249FAB3600C864C9 /* SivPoint.cpp in Sources */,
