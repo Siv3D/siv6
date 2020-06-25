@@ -47,7 +47,7 @@ namespace s3d
 			throw EngineError(U"glfwInit() failed");
 		}
 		
-		const bool useMetal =  (g_applicationOptions.renderer == RendererType::Metal);
+		const bool useMetal =  (g_applicationOptions.renderer == EngineOption::Renderer::Metal);
 
 		if (useMetal)
 		{
