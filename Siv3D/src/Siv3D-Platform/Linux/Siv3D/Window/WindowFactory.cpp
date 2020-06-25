@@ -17,7 +17,7 @@ namespace s3d
 {
 	ISiv3DWindow* ISiv3DWindow::Create()
 	{
-		if (g_applicationOptions.renderer == RendererType::Headless)
+		if (g_applicationOptions.renderer == EngineOption::Renderer::Headless)
 		{
 			return new CWindow_Null;
 		}

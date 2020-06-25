@@ -18,12 +18,12 @@ namespace s3d
 {
 	ISiv3DRenderer2D* ISiv3DRenderer2D::Create()
 	{
-		if (g_applicationOptions.renderer == RendererType::Headless)
+		if (g_applicationOptions.renderer == EngineOption::Renderer::Headless)
 		{
 			return new CRenderer2D_Null;
 		}
-		else if (g_applicationOptions.renderer == RendererType::PlatformDefault
-			|| g_applicationOptions.renderer == RendererType::Direct3D11)
+		else if ((g_applicationOptions.renderer == EngineOption::Renderer::PlatformDefault)
+			|| (g_applicationOptions.renderer == EngineOption::Renderer::Direct3D11))
 		{
 			return new CRenderer2D_D3D11;
 		}

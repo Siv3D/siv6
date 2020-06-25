@@ -13,49 +13,58 @@
 
 namespace s3d
 {
-	enum class EngineOption
+	struct EngineOption
 	{
 		/// @brief デバッグヒープマネージャ (Windows のみ)
-		DebugHeap,
+		enum class DebugHeap
+		{
+			No,
+
+			Yes,
+		};
 
 		/// @brief std::cerr の出力
-		StdErr,
+		enum class StdErr
+		{
+			No,
+
+			Yes,
+		};
 
 		/// @brief レンダラー
-		Renderer,
-	};
+		enum class Renderer
+		{
+			/// @brief デフォルト
+			PlatformDefault = 0,
 
-	enum class RendererType
-	{
-		/// @brief デフォルト
-		PlatformDefault	= 0,
+			/// @brief 非グラフィックスモード
+			Headless = 1,
 
-		/// @brief 非グラフィックスモード
-		Headless		= 1,
+			/// @brief OpenGL
+			OpenGL = 2,
 
-		/// @brief OpenGL
-		OpenGL			= 2,
+			/// @brief Direc3D 11
+			Direct3D11 = 3,
 
-		/// @brief Direc3D 11
-		Direct3D11		= 3,
-
-		/// @brief Metal
-		Metal			= 4,
+			/// @brief Metal
+			Metal = 4,
+		};
 	};
 
 	struct ApplicationOptions
 	{
-		bool debugHeap	= false;
+		EngineOption::DebugHeap debugHeap	= EngineOption::DebugHeap::No;
 		
-		bool stdErr		= false;
+		EngineOption::StdErr stdErr			= EngineOption::StdErr::No;
 		
-		RendererType renderer	= RendererType::PlatformDefault;
+		EngineOption::Renderer renderer		= EngineOption::Renderer::PlatformDefault;
 	};
 
 	namespace detail
 	{
-		int SetEngineOption(EngineOption, int) noexcept;
-		int SetEngineOption(EngineOption, RendererType) noexcept;
+		int SetEngineOption(EngineOption::DebugHeap) noexcept;
+		int SetEngineOption(EngineOption::StdErr) noexcept;
+		int SetEngineOption(EngineOption::Renderer) noexcept;
 	}
 
 	extern ApplicationOptions g_applicationOptions;
@@ -63,4 +72,4 @@ namespace s3d
 
 # define SIV3D_COMBINE_(X,Y) X##Y
 # define SIV3D_COMBINE(X,Y) SIV3D_COMBINE_(X,Y)
-# define SIV3D_SET(option,value) const int SIV3D_COMBINE(siv3d_engine_otpion_,__LINE__) = s3d::detail::SetEngineOption(option, value);
+# define SIV3D_SET(value) const int SIV3D_COMBINE(siv3d_engine_otpion_,__LINE__) = s3d::detail::SetEngineOption(value);

@@ -18,12 +18,12 @@ namespace s3d
 {
 	ISiv3DRenderer* ISiv3DRenderer::Create()
 	{
-		if (g_applicationOptions.renderer == RendererType::OpenGL
-			|| g_applicationOptions.renderer == RendererType::PlatformDefault)
+		if ((g_applicationOptions.renderer == EngineOption::Renderer::OpenGL)
+			|| (g_applicationOptions.renderer == EngineOption::Renderer::PlatformDefault))
 		{
 			return new CRenderer_GL4;
 		}
-		else if (g_applicationOptions.renderer == RendererType::Metal)
+		else if (g_applicationOptions.renderer == EngineOption::Renderer::Metal)
 		{
 			return new CRenderer_Metal;
 		}

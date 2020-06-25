@@ -17,30 +17,21 @@ namespace s3d
 
 	namespace detail
 	{
-		int SetEngineOption(const EngineOption option, const int value) noexcept
+		int SetEngineOption(const EngineOption::DebugHeap value) noexcept
 		{
-			switch (option)
-			{
-			case EngineOption::DebugHeap:
-				g_applicationOptions.debugHeap	= static_cast<bool>(value);
-				break;
-			case EngineOption::StdErr:
-				g_applicationOptions.stdErr		= static_cast<bool>(value);
-				break;
-			default:
-				break;
-			}
-
+			g_applicationOptions.debugHeap = value;
 			return 0;
 		}
 
-		int SetEngineOption(const EngineOption option, const RendererType value) noexcept
+		int SetEngineOption(const EngineOption::StdErr value) noexcept
 		{
-			if (option == EngineOption::Renderer)
-			{
-				g_applicationOptions.renderer = value;
-			}
-			
+			g_applicationOptions.stdErr = value;
+			return 0;
+		}
+
+		int SetEngineOption(const EngineOption::Renderer value) noexcept
+		{
+			g_applicationOptions.renderer = value;
 			return 0;
 		}
 	}

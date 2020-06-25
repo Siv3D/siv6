@@ -1,6 +1,6 @@
 
 # include <Siv3D.hpp>
-SIV3D_SET(EngineOption::Renderer,	RendererType::Metal)
+SIV3D_SET(EngineOption::Renderer::Metal)
 
 void Main()
 {

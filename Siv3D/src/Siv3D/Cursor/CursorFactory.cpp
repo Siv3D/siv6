@@ -17,7 +17,7 @@ namespace s3d
 {
 	ISiv3DCursor* ISiv3DCursor::Create()
 	{
-		if (g_applicationOptions.renderer == RendererType::Headless)
+		if (g_applicationOptions.renderer == EngineOption::Renderer::Headless)
 		{
 			return new CCursor_Null;
 		}

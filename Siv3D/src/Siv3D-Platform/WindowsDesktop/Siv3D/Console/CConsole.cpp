@@ -41,7 +41,7 @@ namespace s3d
 		::AllocConsole();
 		::freopen_s(&m_fpOut, "CONOUT$", "w", stdout);
 		::freopen_s(&m_fpIn, "CONIN$", "r", stdin);
-		if (g_applicationOptions.stdErr)
+		if (g_applicationOptions.stdErr == EngineOption::StdErr::Yes)
 		{
 			::freopen_s(&m_fpErr, "CONOUT$", "w", stderr);
 		}

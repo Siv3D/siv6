@@ -17,7 +17,7 @@ namespace s3d
 {
 	ISiv3DRenderer* ISiv3DRenderer::Create()
 	{
-		if (g_applicationOptions.renderer == RendererType::Headless)
+		if (g_applicationOptions.renderer == EngineOption::Renderer::Headless)
 		{
 			return new CRenderer_Null;
 		}

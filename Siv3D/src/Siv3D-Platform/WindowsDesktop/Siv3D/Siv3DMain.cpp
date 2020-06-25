@@ -140,7 +140,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 {
 	using namespace s3d;
 
-	if (g_applicationOptions.debugHeap)
+	if (g_applicationOptions.debugHeap == EngineOption::DebugHeap::Yes)
 	{
 		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	}
