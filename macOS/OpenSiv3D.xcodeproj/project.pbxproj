@@ -283,6 +283,7 @@
 		2CF9FD142490F3AE00EC8308 /* levenshtein-sse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */; };
 		2CFF9F6324A46481000B5A17 /* osmesa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CFF9F6124A46481000B5A17 /* osmesa_context.h */; };
 		2CFF9F6424A46481000B5A17 /* osmesa_context.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6224A46481000B5A17 /* osmesa_context.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		2CFF9F6624A47016000B5A17 /* Levenshtein.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6524A47016000B5A17 /* Levenshtein.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -774,6 +775,7 @@
 		2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "levenshtein-sse.hpp"; sourceTree = "<group>"; };
 		2CFF9F6124A46481000B5A17 /* osmesa_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osmesa_context.h; sourceTree = "<group>"; };
 		2CFF9F6224A46481000B5A17 /* osmesa_context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osmesa_context.c; sourceTree = "<group>"; };
+		2CFF9F6524A47016000B5A17 /* Levenshtein.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Levenshtein.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2126,6 +2128,7 @@
 		2CF21D95249FAB3600C864C9 /* String */ = {
 			isa = PBXGroup;
 			children = (
+				2CFF9F6524A47016000B5A17 /* Levenshtein.cpp */,
 				2CF21D96249FAB3600C864C9 /* SivString.cpp */,
 			);
 			path = String;
@@ -2451,6 +2454,7 @@
 				2C834DBD248805D4006208B8 /* regerror.c in Sources */,
 				2CF21DF3249FAB3600C864C9 /* SivBinaryReader.cpp in Sources */,
 				2CF21DFB249FAB3600C864C9 /* SivDuration.cpp in Sources */,
+				2CFF9F6624A47016000B5A17 /* Levenshtein.cpp in Sources */,
 				2C834D96248805D4006208B8 /* iso8859_5.c in Sources */,
 				2C834DAB248805D4006208B8 /* st.c in Sources */,
 				2CF21D16249FAA8F00C864C9 /* CRenderer_GL4.cpp in Sources */,
