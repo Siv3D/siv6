@@ -8,6 +8,8 @@ void Siv3DTest();
 
 void Main()
 {
+	Siv3DTest();
+
 	while (System::Update())
 	{
 		for (auto i : step(20))

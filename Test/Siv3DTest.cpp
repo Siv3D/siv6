@@ -249,3 +249,17 @@ TEST_CASE("HashTable")
 		//};
 	}
 }
+
+
+TEST_CASE("FileSystem")
+{
+	WARN("WARN test");
+	WARN(U"FileSystem::InitialDirectory(): `{}`"_fmt(FileSystem::InitialDirectory()));
+	WARN(U"FileSystem::ModulePath(): `{}`"_fmt(FileSystem::ModulePath()));
+	WARN(U"FileSystem::CurrentDirectory(): `{}`"_fmt(FileSystem::CurrentDirectory()));
+
+	INFO("INFO test");
+	INFO(U"FileSystem::InitialDirectory(): `{}`"_fmt(FileSystem::InitialDirectory()));
+	INFO(U"FileSystem::ModulePath(): `{}`"_fmt(FileSystem::ModulePath()));
+	INFO(U"FileSystem::CurrentDirectory(): `{}`"_fmt(FileSystem::CurrentDirectory()));
+}

@@ -71,6 +71,24 @@ namespace s3d
 				return 0;
 			}
 		}
+
+		namespace init
+		{
+			const static FilePath g_initialDirectory = FileSystem::CurrentDirectory();
+
+			const static FilePath g_modulePath = []()
+			{
+				wchar_t result[1024];
+				const DWORD length = ::GetModuleFileNameW(nullptr, result, _countof(result));
+
+				if ((length == 0) || (length >= _countof(result)))
+				{
+					return FilePath{};
+				}
+
+				return NormalizePath(Unicode::FromWstring(std::wstring_view(result, length)));
+			}();
+		}
 	}
 
 	namespace FileSystem
@@ -135,7 +153,7 @@ namespace s3d
 		{
 			if (not path) [[unlikely]]
 			{
-				return FilePath();
+				return FilePath{};
 			}
 
 			if (IsResourcePath(path)) [[unlikely]]
@@ -150,7 +168,7 @@ namespace s3d
 
 			if (length == 0) [[unlikely]]
 			{
-				return FilePath();
+				return FilePath{};
 			}
 			else if (length > std::size(result)) [[unlikely]]
 			{
@@ -159,7 +177,7 @@ namespace s3d
 
 				if ((length2 == 0) || (length2 > length))
 				{
-					return FilePath();
+					return FilePath{};
 				}
 
 				const bool isDirectory = (pFilePart == nullptr);
@@ -233,6 +251,54 @@ namespace s3d
 			}
 
 			return ((static_cast<uint64>(fad.nFileSizeHigh) << 32) + fad.nFileSizeLow);
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		const FilePath& InitialDirectory() noexcept
+		{
+			return detail::init::g_initialDirectory;
+		}
+
+		const FilePath& ModulePath() noexcept
+		{
+			return detail::init::g_modulePath;
+		}
+
+		FilePath CurrentDirectory()
+		{
+			wchar_t result[1024];
+			const DWORD length = ::GetCurrentDirectoryW(_countof(result), result);
+
+			if (length == 0)
+			{
+				return FilePath{};
+			}
+			else if (length > std::size(result))
+			{
+				std::wstring result2(length - 1, L'\0');
+				const DWORD length2 = ::GetCurrentDirectoryW(length, result2.data());
+
+				if ((length2 == 0) || (length2 > length))
+				{
+					return FilePath{};
+				}
+
+				return detail::NormalizePath(Unicode::FromWstring(result2), true);
+			}
+
+			return detail::NormalizePath(Unicode::FromWstring(std::wstring_view(result, length)), true);
 		}
 	}
 }

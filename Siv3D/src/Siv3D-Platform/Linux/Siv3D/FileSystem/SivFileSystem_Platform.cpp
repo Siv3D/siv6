@@ -82,6 +82,18 @@ namespace s3d
 
 			return path;
 		}
+
+		namespace init
+		{
+			const static FilePath g_initialPath = NormalizePath(Unicode::Widen(fs::current_path().string()));
+
+			static FilePath g_modulePath;
+
+			void SetModulePath(FilePath&& path)
+			{
+				g_modulePath = std::move(path);
+			}
+		}
 	}
 
 	namespace FileSystem
@@ -133,7 +145,7 @@ namespace s3d
 		{
 			if (not path) [[unlikely]]
 			{
-				return FilePath();
+				return FilePath{};
 			}
 
 			return detail::NormalizePath(Unicode::Widen(fs::weakly_canonical(detail::ToPath(path)).string()));
@@ -168,6 +180,28 @@ namespace s3d
 			}
 			
 			return s.st_size;
+		}
+
+
+
+
+
+
+
+
+		const FilePath& InitialDirectory() noexcept
+		{
+			return detail::init::g_initialPath;
+		}
+
+		const FilePath& ModulePath() noexcept
+		{
+			return detail::init::g_modulePath;
+		}
+
+		FilePath CurrentDirectory()
+		{
+			return detail::NormalizePath(Unicode::Widen(fs::current_path().string()));
 		}
 	}
 }
