@@ -21,27 +21,25 @@ namespace s3d
 
 	namespace detail
 	{
-		static fs::path ToPath(const FilePathView path)
+		[[nodiscard]]
+		inline static fs::path ToPath(const FilePathView path)
 		{
 			return fs::path(Unicode::ToWstring(path));
 		}
 
-		static fs::file_status ToStatus(const FilePathView path)
+		[[nodiscard]]
+		inline static fs::file_status GetStatus(const FilePathView path)
 		{
 			return fs::status(detail::ToPath(path));
 		}
 
-		inline bool IsDirectory(const fs::file_status& status) noexcept
-		{
-			return (status.type() == fs::file_type::directory);
-		}
-
+		[[nodiscard]]
 		static FilePath NormalizePath(FilePath path, const bool skipDirectoryCheck = false)
 		{
 			path.replace(U'\\', U'/');
 
 			if (!path.ends_with(U'/')
-				&& (skipDirectoryCheck || IsDirectory(detail::ToStatus(path))))
+				&& (skipDirectoryCheck || (GetStatus(path).type() == fs::file_type::directory)))
 			{
 				path.push_back(U'/');
 			}
@@ -49,6 +47,15 @@ namespace s3d
 			return path;
 		}
 
+		[[nodiscard]]
+		static bool ResourceExists(const FilePathView path)
+		{
+			const std::wstring pathW = Unicode::ToWstring(path);
+
+			return (::FindResourceW(::GetModuleHandleW(nullptr), &pathW[1], L"FILE") != nullptr);
+		}
+
+		[[nodiscard]]
 		static int64 ResourceSize(const FilePathView path)
 		{
 			HMODULE module = ::GetModuleHandleW(nullptr);
@@ -71,6 +78,57 @@ namespace s3d
 		bool IsResourcePath(const FilePathView path) noexcept
 		{
 			return path.starts_with(U'/');
+		}
+
+		bool Exists(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return detail::ResourceExists(path);
+			}
+
+			return (detail::GetStatus(path).type() != fs::file_type::not_found);
+		}
+
+		bool IsDirectory(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return false;
+			}
+
+			return (detail::GetStatus(path).type() == fs::file_type::directory);
+		}
+
+		bool IsFile(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return detail::ResourceExists(path);
+			}
+
+			return (detail::GetStatus(path).type() == fs::file_type::regular);
+		}
+
+		bool IsResource(const FilePathView path)
+		{
+			return IsResourcePath(path)
+				&& detail::ResourceExists(path);
 		}
 
 		FilePath FullPath(const FilePathView path)
@@ -110,6 +168,43 @@ namespace s3d
 
 			const bool isDirectory = (pFilePart == nullptr);
 			return detail::NormalizePath(Unicode::FromWstring(std::wstring_view(result, length)), isDirectory);
+		}
+
+		Platform::NativeFilePath NativePath(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return Platform::NativeFilePath{};
+			}
+
+			if (IsResourcePath(path)) [[unlikely]]
+			{
+				return Platform::NativeFilePath{};
+			}
+
+			const std::wstring wpath = path.toWstr();
+			wchar_t result[1024];
+			wchar_t* pFilePart = nullptr;
+			const DWORD length = ::GetFullPathNameW(wpath.c_str(), _countof(result), result, &pFilePart);
+
+			if (length == 0) [[unlikely]]
+			{
+				return Platform::NativeFilePath{};
+			}
+			else if (length > std::size(result)) [[unlikely]]
+			{
+				std::wstring result2(length - 1, L'\0');
+				const DWORD length2 = ::GetFullPathNameW(wpath.c_str(), length, result2.data(), &pFilePart);
+
+				if ((length2 == 0) || (length2 > length))
+				{
+					return Platform::NativeFilePath{};
+				}
+
+				return result2;
+			}
+
+			return std::wstring(result, length);
 		}
 
 		int64 FileSize(const FilePathView path)

@@ -12,6 +12,7 @@
 # pragma once
 # include <cstdlib>
 # include <cstddef>
+# include <string>
 
 //////////////////////////////////////////////////
 //
@@ -249,6 +250,7 @@
 
 # endif
 
+
 //////////////////////////////////////////////////
 //
 //	ポインタのサイズとメモリアライメント
@@ -264,6 +266,7 @@ namespace s3d::Platform
 	/// @brief 最小のメモリアラインメント | The minimum alignment of the memory
 	constexpr size_t MinAlignment	= __STDCPP_DEFAULT_NEW_ALIGNMENT__;
 }
+
 
 //////////////////////////////////////////////////
 //
@@ -286,5 +289,48 @@ namespace s3d::detail
 	/// @return なし
 	inline void AlignedFree(void* const p) noexcept;
 }
+
+
+//////////////////////////////////////////////////
+//
+// ファイルパスのネイティブ文字列型
+// Native file path type
+//
+//////////////////////////////////////////////////
+
+namespace s3d::Platform
+{
+# if SIV3D_PLATFORM(WINDOWS)
+
+	using NativeFilePath = std::wstring;
+
+# else
+
+	using NativeFilePath = std::string;
+
+# endif
+}
+
+
+//////////////////////////////////////////////////
+//
+// 実行ファイル埋め込みリソース
+// Embedded Resource
+//
+//////////////////////////////////////////////////
+
+namespace s3d::Platform
+{
+# if SIV3D_PLATFORM(WINDOWS)
+
+	inline constexpr bool HasEmbeddedResource = true;
+
+# else
+
+	inline constexpr bool HasEmbeddedResource = false;
+
+# endif
+}
+
 
 # include "detail/Platform.ipp"

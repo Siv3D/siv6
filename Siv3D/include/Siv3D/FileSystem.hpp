@@ -11,6 +11,10 @@
 
 # pragma once
 # include "Common.hpp"
+# include "String.hpp"
+# include "Optional.hpp"
+# include "DateTime.hpp"
+# include "Array.hpp"
 
 namespace s3d
 {
@@ -22,6 +26,30 @@ namespace s3d
 		[[nodiscard]]
 		bool IsResourcePath(FilePathView path) noexcept;
 
+		/// @brief 
+		/// @param path 
+		/// @return 
+		[[nodiscard]]
+		bool Exists(FilePathView path);
+
+		/// @brief 
+		/// @param path 
+		/// @return 
+		[[nodiscard]]
+		bool IsDirectory(FilePathView path);
+		
+		/// @brief 
+		/// @param path 
+		/// @return 
+		[[nodiscard]]
+		bool IsFile(FilePathView path);
+
+		/// @brief 
+		/// @param path 
+		/// @return 
+		[[nodiscard]]
+		bool IsResource(FilePathView path);
+
 		/// @brief 絶対パスを返します。
 		/// @param path パス
 		/// @remarks 実際に存在するファイルやディレクトリのパスである必要はありません
@@ -29,11 +57,73 @@ namespace s3d
 		[[nodiscard]]
 		FilePath FullPath(FilePathView path);
 
+		/// @brief 
+		/// @param path 
+		/// @return 
+		[[nodiscard]]
+		Platform::NativeFilePath NativePath(FilePathView path);
+
+		/// @brief 
+		/// @param path 
+		/// @return 
+		[[nodiscard]]
+		String Extension(FilePathView path);
+
+		/// @brief 
+		/// @param path 
+		/// @return 
+		[[nodiscard]]
+		String FileName(FilePathView path);
+
+		/// @brief 
+		/// @param path 
+		/// @return 
+		[[nodiscard]]
+		String BaseName(FilePathView path);
+
+		[[nodiscard]]
+		FilePath ParentPath(FilePathView path, size_t level = 0);
+
+		[[nodiscard]]
+		FilePath ParentPath(FilePathView path, size_t level, FilePathView baseFullPath);
+
+		[[nodiscard]]
+		FilePath VolumePath(FilePathView path);
+
+		[[nodiscard]]
+		bool IsEmptyDirectory(FilePathView path);
+
+		[[nodiscard]]
+		int64 Size(FilePathView path);
+
 		/// @brief ファイルのサイズを返します。
 		/// @param path ファイルパス
 		/// @remarks ファイルが存在しなかったり、空である場合は 0 を返します。
 		/// @return ファイルのサイズ
 		[[nodiscard]]
 		int64 FileSize(FilePathView path);
+
+		[[nodiscard]]
+		Optional<DateTime> CreationTime(FilePathView path);
+
+		[[nodiscard]]
+		Optional<DateTime> WriteTime(FilePathView path);
+
+		[[nodiscard]]
+		Optional<DateTime> AccessTime(FilePathView path);
+
+		[[nodiscard]]
+		Array<FilePath> DirectoryContents(const FilePath& path, bool recursive = true);
+
+		[[nodiscard]]
+		const FilePath& InitialDirectory() noexcept;
+
+		[[nodiscard]]
+		const FilePath& ModulePath() noexcept;
+
+		[[nodiscard]]
+		FilePath CurrentDirectory();
+
+		bool ChangeCurrentDirectory(FilePathView path);
 	}
 }

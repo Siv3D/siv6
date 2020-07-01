@@ -340,6 +340,9 @@
     <Filter Include="src\Siv3D\Window\Null">
       <UniqueIdentifier>{0a190101-272f-44cc-8b66-8955dc526038}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\FileSystem">
+      <UniqueIdentifier>{ad9fff12-e565-4f4f-b5ac-a449d6b90f48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1762,6 +1765,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\String\Levenshtein.cpp">
       <Filter>src\Siv3D\String</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\FileSystem\SivFileSystem.cpp">
+      <Filter>src\Siv3D\FileSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
