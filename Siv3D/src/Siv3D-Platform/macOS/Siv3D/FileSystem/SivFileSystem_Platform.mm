@@ -12,6 +12,7 @@
 # include <sys/stat.h>
 # include <Siv3D/String.hpp>
 # include <Siv3D/FileSystem.hpp>
+# include <mach-o/dyld.h>
 # import  <Foundation/Foundation.h>
 
 namespace s3d
@@ -76,47 +77,118 @@ namespace s3d
 		[[nodiscard]]
 		static std::string MacOS_FullPath(const char* _path, bool isRelative)
 		{
-			NSString* path = [NSString stringWithUTF8String:_path];
-			
-			if (isRelative)
+			@autoreleasepool
 			{
-				NSURL* bundle = [[NSBundle mainBundle] bundleURL];
-				NSURL* file = [NSURL fileURLWithPath:path relativeToURL:bundle];
-				NSURL* absolutePath = [file absoluteURL];
-				NSString* str = [absolutePath path];
-				return std::string([str UTF8String], [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
-			}
-			else
-			{
-				NSURL* file = [NSURL fileURLWithPath:path];
-				NSURL* absolutePath = [file absoluteURL];
-				NSString* str = [absolutePath path];
-				return std::string([str UTF8String], [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+				NSString* path = [NSString stringWithUTF8String:_path];
+				
+				if (isRelative)
+				{
+					NSURL* bundle = [[NSBundle mainBundle] bundleURL];
+					NSURL* file = [NSURL fileURLWithPath:path relativeToURL:bundle];
+					NSURL* absolutePath = [file absoluteURL];
+					NSString* str = [absolutePath path];
+					return std::string([str UTF8String], [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+				}
+				else
+				{
+					NSURL* file = [NSURL fileURLWithPath:path];
+					NSURL* absolutePath = [file absoluteURL];
+					NSString* str = [absolutePath path];
+					return std::string([str UTF8String], [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+				}
 			}
 		}
 	
 		[[nodiscard]]
 		static std::string MacOS_CurrentPath()
 		{
-			NSDictionary* env = [[NSProcessInfo processInfo] environment];
-			
-			if (NSString* current = env[@"PWD"])
+			@autoreleasepool
 			{
-				return [current UTF8String];
-			}
-			else if (NSString* current = [[NSFileManager defaultManager] currentDirectoryPath]) // requires permission
-			{
-				return [current UTF8String];
-			}
+				NSDictionary* env = [[NSProcessInfo processInfo] environment];
+				
+				if (NSString* current = env[@"PWD"])
+				{
+					return [current UTF8String];
+				}
+				else if (NSString* current = [[NSFileManager defaultManager] currentDirectoryPath]) // requires permission
+				{
+					return [current UTF8String];
+				}
 			
-			return "";
+				return "";
+			}
 		}
 	
 		namespace init
 		{
-			static FilePath g_initialPath;
+			FilePath ParentPath(FilePath path, size_t n)
+			{
+				if (path.count(U'/') <= n)
+				{
+					return FilePath(U"NN");
+				}
+
+				while (path)
+				{
+					if (path.back() == U'/')
+					{
+						if (n == 0)
+						{
+							break;
+						}
+						
+						--n;
+					}
+					
+					path.pop_back();
+				}
+				
+				return path;
+			}
 		
-			static FilePath g_modulePath;
+			static FilePath g_initialPath = []()
+			{
+				char path_str[4096];
+				uint32_t bufferSize = sizeof(path_str);
+
+				if (_NSGetExecutablePath(path_str, &bufferSize) != 0)
+				{
+					return FilePath{};
+				}
+
+				const String path = Unicode::Widen(path_str);
+
+				FilePath modulePath = ParentPath(path, 2);
+
+				if (modulePath.ends_with(U'/'))
+				{
+					modulePath.pop_back();
+				}
+
+				return ParentPath(path, 3);
+			}();
+		
+			static FilePath g_modulePath = []()
+			{
+				char path_str[4096];
+				uint32_t bufferSize = sizeof(path_str);
+
+				if (_NSGetExecutablePath(path_str, &bufferSize) != 0)
+				{
+					return FilePath{};
+				}
+
+				const String path = Unicode::Widen(path_str);
+
+				FilePath modulePath = ParentPath(path, 2);
+
+				if (modulePath.ends_with(U'/'))
+				{
+					modulePath.pop_back();
+				}
+
+				return modulePath;
+			}();
 			
 			//static bool g_isSandBoxed;
 			
@@ -237,7 +309,11 @@ namespace s3d
 			return detail::MacOS_FullPath(src.toUTF8().c_str(), isRelative);
 		}
 	
-	
+		FilePath VolumePath(const FilePathView)
+		{
+			// [Siv3D ToDo]
+			return U"/";
+		}
 	
 	
 
