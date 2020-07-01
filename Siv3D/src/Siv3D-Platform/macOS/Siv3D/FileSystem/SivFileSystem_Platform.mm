@@ -23,6 +23,26 @@ namespace s3d
 			return (::stat(FilePath(path).replaced(U'\\', U'/').narrow().c_str(), &s) == 0);
 		}
 	
+		[[nodiscard]]
+		static bool Exists(const FilePathView path)
+		{
+			struct stat s;
+			return GetStat(path, s);
+		}
+	
+		[[nodiscard]]
+		static bool IsRegular(const FilePathView path)
+		{
+			struct stat s;
+			if (!GetStat(path, s))
+			{
+				return false;
+			}
+
+			return S_ISREG(s.st_mode);
+		}
+	
+		[[nodiscard]]
 		static bool IsDirectory(const FilePathView path)
 		{
 			struct stat s;
@@ -33,7 +53,27 @@ namespace s3d
 			
 			return S_ISDIR(s.st_mode);
 		}
+
+		[[nodiscard]]
+		static FilePath NormalizePath(FilePath path, const bool skipDirectoryCheck = false)
+		{
+			for (auto& ch : path)
+			{
+				if (ch == U'\\')
+				{
+					ch = U'/';
+				}
+			}
+			
+			if (!path.ends_with(U'/') && (skipDirectoryCheck || IsDirectory(path)))
+			{
+				path.push_back(U'/');
+			}
+			
+			return path;
+		}
 	
+		[[nodiscard]]
 		static std::string MacOS_FullPath(const char* _path, bool isRelative)
 		{
 			NSString* path = [NSString stringWithUTF8String:_path];
@@ -54,18 +94,89 @@ namespace s3d
 				return std::string([str UTF8String], [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
 			}
 		}
+	
+		[[nodiscard]]
+		static std::string MacOS_CurrentPath()
+		{
+			NSDictionary* env = [[NSProcessInfo processInfo] environment];
+			
+			if (NSString* current = env[@"PWD"])
+			{
+				return [current UTF8String];
+			}
+			else if (NSString* current = [[NSFileManager defaultManager] currentDirectoryPath]) // requires permission
+			{
+				return [current UTF8String];
+			}
+			
+			return "";
+		}
+	
+		namespace init
+		{
+			static FilePath g_initialPath;
+		
+			static FilePath g_modulePath;
+			
+			//static bool g_isSandBoxed;
+			
+			void SetInitialPath(FilePath& path)
+			{
+				g_initialPath = std::move(path);
+			}
+		
+			void SetModulePath(FilePath&& path)
+			{
+				g_modulePath = std::move(path);
+				
+				//g_isSandBoxed = FileSystem::SpecialFolderPath(SpecialFolder::Caches).includes(U"/Library/Containers/");
+			}
+		}
 	}
 
 	namespace FileSystem
 	{
+		bool IsResourcePath(const FilePathView path) noexcept
+		{
+			const FilePath resourceDirectory = FileSystem::ModulePath() + U"/Contents/Resources/";
+
+			return FullPath(path).starts_with(resourceDirectory);
+		}
+	
+		bool Exists(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return false;
+			}
+
+			return detail::Exists(path);
+		}
+
 		bool IsDirectory(const FilePathView path)
 		{
 			if (not path) [[unlikely]]
 			{
 				return false;
 			}
-			
+
 			return detail::IsDirectory(path);
+		}
+
+		bool IsFile(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return false;
+			}
+
+			return detail::IsRegular(path);
+		}
+
+		bool IsResource(const FilePathView path)
+		{
+			return IsResourcePath(path)
+				&& detail::Exists(path);
 		}
 
 		FilePath FullPath(const FilePathView path)
@@ -102,6 +213,33 @@ namespace s3d
 			
 			return result;
 		}
+	
+		Platform::NativeFilePath NativePath(const FilePathView path)
+		{
+			if (path.isEmpty())
+			{
+				return Platform::NativeFilePath();
+			}
+			
+			FilePath src;
+			bool isRelative = false;
+			
+			if (path.starts_with(U"/Users/"))
+			{
+				src = path;
+			}
+			else
+			{
+				src = U"../" + path;
+				isRelative = true;
+			}
+			
+			return detail::MacOS_FullPath(src.toUTF8().c_str(), isRelative);
+		}
+	
+	
+	
+	
 
 		int64 FileSize(const FilePathView path)
 		{
@@ -122,6 +260,24 @@ namespace s3d
 			}
 			
 			return s.st_size;
+		}
+	
+	
+	
+	
+		const FilePath& InitialDirectory() noexcept
+		{
+			return detail::init::g_initialPath;
+		}
+
+		const FilePath& ModulePath() noexcept
+		{
+			return detail::init::g_modulePath;
+		}
+
+		FilePath CurrentDirectory()
+		{
+			return detail::NormalizePath(Unicode::Widen(detail::MacOS_CurrentPath()));
 		}
 	}
 }
