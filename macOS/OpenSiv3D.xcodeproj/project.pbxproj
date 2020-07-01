@@ -280,6 +280,7 @@
 		2CF21E01249FAB3600C864C9 /* SivInt128.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21DB0249FAB3600C864C9 /* SivInt128.cpp */; };
 		2CF21E05249FAF9E00C864C9 /* CWindow_Null.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF21E03249FAF9E00C864C9 /* CWindow_Null.cpp */; };
 		2CF21E06249FAF9E00C864C9 /* CWindow_Null.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF21E04249FAF9E00C864C9 /* CWindow_Null.hpp */; };
+		2CF5975024AC854E003E8F74 /* SivFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5974F24AC854E003E8F74 /* SivFileSystem.cpp */; };
 		2CF9FD142490F3AE00EC8308 /* levenshtein-sse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */; };
 		2CFF9F6324A46481000B5A17 /* osmesa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CFF9F6124A46481000B5A17 /* osmesa_context.h */; };
 		2CFF9F6424A46481000B5A17 /* osmesa_context.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF9F6224A46481000B5A17 /* osmesa_context.c */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -775,6 +776,9 @@
 		2CF21DB0249FAB3600C864C9 /* SivInt128.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivInt128.cpp; sourceTree = "<group>"; };
 		2CF21E03249FAF9E00C864C9 /* CWindow_Null.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWindow_Null.cpp; sourceTree = "<group>"; };
 		2CF21E04249FAF9E00C864C9 /* CWindow_Null.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CWindow_Null.hpp; sourceTree = "<group>"; };
+		2CF5974C24AC84FF003E8F74 /* FastMath.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FastMath.ipp; sourceTree = "<group>"; };
+		2CF5974D24AC8514003E8F74 /* FastMath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FastMath.hpp; sourceTree = "<group>"; };
+		2CF5974F24AC854E003E8F74 /* SivFileSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivFileSystem.cpp; sourceTree = "<group>"; };
 		2CF9FD132490F3AE00EC8308 /* levenshtein-sse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "levenshtein-sse.hpp"; sourceTree = "<group>"; };
 		2CFF9F6124A46481000B5A17 /* osmesa_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = osmesa_context.h; sourceTree = "<group>"; };
 		2CFF9F6224A46481000B5A17 /* osmesa_context.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = osmesa_context.c; sourceTree = "<group>"; };
@@ -1413,6 +1417,7 @@
 				2C9D1047249A3D380096DA03 /* Endian.hpp */,
 				2C9D0FD7249A3D380096DA03 /* EngineLog.hpp */,
 				2C9D1002249A3D380096DA03 /* Error.hpp */,
+				2CF5974D24AC8514003E8F74 /* FastMath.hpp */,
 				2C9D0FE6249A3D380096DA03 /* FileSystem.hpp */,
 				2C9D0FE9249A3D380096DA03 /* FloatingPoint.hpp */,
 				2C9D106C249A3D380096DA03 /* Format.hpp */,
@@ -1521,6 +1526,7 @@
 				2C9D1013249A3D380096DA03 /* Duration.ipp */,
 				2C9D101E249A3D380096DA03 /* Endian.ipp */,
 				2C9D1042249A3D380096DA03 /* EngineLog.ipp */,
+				2CF5974C24AC84FF003E8F74 /* FastMath.ipp */,
 				2C9D102C249A3D380096DA03 /* FloatingPoint.ipp */,
 				2C9D100E249A3D380096DA03 /* FormatBool.ipp */,
 				2C9D102B249A3D380096DA03 /* FormatData.ipp */,
@@ -1811,6 +1817,7 @@
 				2CF21DA5249FAB3600C864C9 /* Duration */,
 				2CF21D5E249FAB3600C864C9 /* EngineLog */,
 				2CF21DA7249FAB3600C864C9 /* Error */,
+				2CF5974E24AC854E003E8F74 /* FileSystem */,
 				2CF21D89249FAB3600C864C9 /* FormatFloat */,
 				2CF21D6F249FAB3600C864C9 /* FormatInt */,
 				2CF21D82249FAB3600C864C9 /* Formatter */,
@@ -2238,6 +2245,14 @@
 			path = Null;
 			sourceTree = "<group>";
 		};
+		2CF5974E24AC854E003E8F74 /* FileSystem */ = {
+			isa = PBXGroup;
+			children = (
+				2CF5974F24AC854E003E8F74 /* SivFileSystem.cpp */,
+			);
+			path = FileSystem;
+			sourceTree = "<group>";
+		};
 		2CF9FD122490F3AE00EC8308 /* levenshtein-sse */ = {
 			isa = PBXGroup;
 			children = (
@@ -2617,6 +2632,7 @@
 				2C60AE8D248158A500277281 /* os_info_darwin.cpp in Sources */,
 				2C834DC3248805D4006208B8 /* iso8859_4.c in Sources */,
 				2C834DB4248805D4006208B8 /* iso8859_7.c in Sources */,
+				2CF5975024AC854E003E8F74 /* SivFileSystem.cpp in Sources */,
 				2CF21DD8249FAB3600C864C9 /* SystemMisc.cpp in Sources */,
 				2C439F85241DCEA9001154C2 /* double-to-string.cc in Sources */,
 				2CF21DE8249FAB3600C864C9 /* SivWindow.cpp in Sources */,
