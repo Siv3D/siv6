@@ -442,7 +442,7 @@
 
 // ファイルとディレクトリ
 // Files and directories
-# include <Siv3D/FileSystem.hpp>
+# include <Siv3D/FileSystem.hpp> // [Siv3D ToDo]
 
 // リソースファイルの管理
 // Resource files
@@ -631,6 +631,10 @@
 // Math Functions
 # include <Siv3D/Math.hpp> // [Siv3D ToDo]
 
+// 精度を落とした高速な数学関数
+// Fast Math Functions
+# include <Siv3D/FastMath.hpp>
+
 // 線形補間
 // Interpolation
 //# include <Siv3D/Interpolation.hpp>
@@ -696,7 +700,7 @@
 
 // 色
 // Colors
-# include <Siv3D/ColorHSV.hpp> // [Siv3D ToDo]
+# include <Siv3D/ColorHSV.hpp>
 
 //////////////////////////////////////////////////
 //

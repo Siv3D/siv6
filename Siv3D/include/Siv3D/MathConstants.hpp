@@ -90,142 +90,95 @@ namespace s3d
 			SIV3D_MATH_CONSTANTS_CONCEPT
 			inline constexpr FloatingPoint Inf_v		= std::numeric_limits<FloatingPoint>::infinity();
 
-			/// <summary>
-			/// (float) π
-			/// </summary>
+			/// @brief (float) π
 			inline constexpr float PiF			= Pi_v<float>;
 
-			/// <summary>
-			/// (float) π/4
-			/// </summary>
+			/// @brief (float) π/4
 			inline constexpr float QuarterPiF	= QuarterPi_v<float>;
 
-			/// <summary>
-			/// (float) π/3
-			/// </summary>
+			/// @brief (float) π/3
 			inline constexpr float OneThirdPiF	= OneThirdPi_v<float>;
 
-			/// <summary>
-			/// (float) π/2
-			/// </summary>
+			/// @brief (float) π/2
 			inline constexpr float HalfPiF		= HalfPi_v<float>;
 
-			/// <summary>
-			/// (float) 2 * π
-			/// </summary>
+			/// @brief (float) 2π
 			inline constexpr float TwoPiF		= TwoPi_v<float>;
 
+			/// @brief (float) 1/(2π)
+			inline constexpr float InvTwoPiF	= InvTwoPi_v<float>;
 
-			/// <summary>
-			/// 自然対数の底
-			/// Euler's number
-			/// </summary>
+			/// @brief (float) 1/π
+			inline constexpr float InvPiF		= InvPi_v<float>;
+
+			/// @brief (float) 1/√π
+			inline constexpr float InvSqrtPiF	= InvSqrtPi_v<float>;
+
+
+			/// @brief 自然対数の底 | Euler's number
 			inline constexpr double E			= E_v<double>;
 
-			/// <summary>
-			/// 2 を底とする e の対数
-			/// </summary>
+			/// @brief 2 を底とする e の対数
 			inline constexpr double Log2E		= Log2E_v<double>;
-			
-			/// <summary>
-			/// 10 を底とする e の対数
-			/// </summary>
+
+			/// @brief 10 を底とする e の対数
 			inline constexpr double Log10E		= Log10E_v<double>;
 
-			/// <summary>
-			/// π
-			/// </summary>
+			/// @brief π
 			inline constexpr double Pi			= Pi_v<double>;
 
-			/// <summary>
-			/// π/4
-			/// </summary>
+			/// @brief π/4
 			inline constexpr double QuarterPi	= QuarterPi_v<double>;
 
-			/// <summary>
-			/// π/3
-			/// </summary>
+			/// @brief π/3
 			inline constexpr double OneThirdPi	= OneThirdPi_v<double>;
 
-			/// <summary>
-			/// π/2
-			/// </summary>
+			/// @brief π/2
 			inline constexpr double HalfPi		= HalfPi_v<double>;
 
-			/// <summary>
-			/// 2 * π
-			/// </summary>
+			/// @brief 2π
 			inline constexpr double TwoPi		= TwoPi_v<double>;
 
-			/// <summary>
-			/// 1 / (2π)
-			/// </summary>
+			/// @brief 1/(2π)
 			inline constexpr double InvTwoPi	= InvTwoPi_v<double>;
 
-			/// <summary>
-			/// 1 / π
-			/// </summary>
+			/// @brief 1/π
 			inline constexpr double InvPi		= InvPi_v<double>;
-	
-			/// <summary>
-			/// 1 / √π
-			/// </summary>
+
+			/// @brief 1/√π
 			inline constexpr double InvSqrtPi	= InvSqrtPi_v<double>;
 
-			/// <summary>
-			/// 2 の自然対数
-			/// </summary>
+			/// @brief 2 の自然対数
 			inline constexpr double Ln2			= Ln2_v<double>;
 
-			/// <summary>
-			/// 10 の自然対数
-			/// </summary>
+			/// @brief 10 の自然対数
 			inline constexpr double Ln10		= Ln10_v<double>;
 
-			/// <summary>
-			/// √2
-			/// </summary>			
+			/// @brief √2
 			inline constexpr double Sqrt2		= Sqrt2_v<double>;
 
-			/// <summary>
-			/// √3
-			/// </summary>		
+			/// @brief √3
 			inline constexpr double Sqrt3		= Sqrt3_v<double>;
 
-			/// <summary>
-			/// 1 / √2
-			/// </summary>		
+			/// @brief 1/√2
 			inline constexpr double InvSqrt2	= InvSqrt2_v<double>;
 
-			/// <summary>
-			/// 1 / √3
-			/// </summary>		
+			/// @brief 1/√3
 			inline constexpr double InvSqrt3	= InvSqrt3_v<double>;
 
-			/// <summary>
-			/// オイラーの定数
-			/// </summary>				
+			/// @brief オイラーの定数
 			inline constexpr double EGamma		= EGamma_v<double>;
 
-			/// <summary>
-			/// 黄金数 (φ)
-			/// Golden Ratio
-			/// </summary>
+			/// @brief 黄金数 (φ) | Golden ratio
 			inline constexpr double Phi			= Phi_v<double>;
 
-			/// <summary> 
-			/// Quiet NaN
-			/// </summary>
+			/// @brief Quiet NaN
 			inline constexpr double QNaN		= QNaN_v<double>;
 
-			/// <summary>
-			/// Signaling NaN
-			/// </summary>
+			/// @brief Signaling NaN
 			inline constexpr double NaN			= NaN_v<double>;
 
-			/// <summary>
-			/// +Inf
-			/// </summary>
+			/// @brief +Inf
 			inline constexpr double Inf			= Inf_v<double>;
 		}
 	}
