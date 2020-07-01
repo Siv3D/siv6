@@ -25,17 +25,19 @@ namespace s3d
 	CCursor::~CCursor()
 	{
 		LOG_SCOPED_TRACE(U"CCursor::~CCursor()");
+
+		m_customCursors.clear();
 	}
 
 	void CCursor::init()
 	{
 		LOG_SCOPED_TRACE(U"CCursor::init()");
-
-		m_customCursors.clear();
 	}
 
 	bool CCursor::update()
 	{
+		// [Siv3D ToDo][Siv3D Linux]
+
 		return true;
 	}
 

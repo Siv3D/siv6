@@ -16,7 +16,6 @@
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include "CCursor.hpp"
-
 # import  <Cocoa/Cocoa.h>
 
 namespace s3d
@@ -33,6 +32,13 @@ namespace s3d
 				const NSPoint screenPos = [NSEvent mouseLocation];
 				return Vec2(screenPos.x * scaleFactor, scaledHeight - (screenPos.y * scaleFactor)).asPoint();
 			}
+		}
+	
+		static Vec2 GetClientCursorPos(GLFWwindow* window)
+		{
+			double clientX, clientY;
+			::glfwGetCursorPos(window, &clientX, &clientY);
+			return{ clientX, clientY };
 		}
 	}
 
@@ -57,19 +63,14 @@ namespace s3d
 
 	bool CCursor::update()
 	{
-		//const Point screenPos = detail::CursorScreenPos_macOS();
-		double clientX, clientY;
-		::glfwGetCursorPos(m_window, &clientX, &clientY);
-		const Vec2 clientPos(clientX, clientY);
+		const Vec2 clientPos = detail::GetClientCursorPos(m_window);
+		const Point screenPos = detail::CursorScreenPos_macOS();
 		
 		const Vec2 frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
 		const Vec2 virtualSize = SIV3D_ENGINE(Window)->getState().virtualSize;
-		const double uiScaling = frameBufferSize.x / virtualSize.x;
-		
-		const Point screenPos = detail::CursorScreenPos_macOS();
+		const double uiScaling = (frameBufferSize.x / virtualSize.x);
 		
 		m_state.update(clientPos.asPoint(), clientPos / uiScaling, screenPos);
-		
 		
 		return true;
 	}
