@@ -23,10 +23,187 @@ namespace s3d
 		, _21(0.0f), _22(static_cast<value_type>(s))
 		, _31(0.0f), _32(0.0f) {}
 
-	inline constexpr Mat3x2::Mat3x2(const float _11, const float _12, const float _21, const float _22, const float _31, const float _32) noexcept
-		: _11(_11), _12(_12)
-		, _21(_21), _22(_22)
-		, _31(_31), _32(_32) {}
+	inline constexpr Mat3x2::Mat3x2(const float m11, const float m12, const float m21, const float m22, const float m31, const float m32) noexcept
+		: _11(m11), _12(m12)
+		, _21(m21), _22(m22)
+		, _31(m31), _32(m32) {}
+
+	inline constexpr Mat3x2 Mat3x2::Screen(const Float2 size) noexcept
+	{
+		return{ (2.0f / size.x), 0.0f,
+				0.0f, (-2.0f / size.y),
+				-1.0f, 1.0f };
+	}
+
+	inline constexpr Mat3x2 Mat3x2::translated(const Float2 v) const noexcept
+	{
+		Mat3x2 mat = *this;
+		mat._31 += v.x;
+		mat._32 += v.y;
+		return mat;
+	}
+
+	template <class X, class Y>
+	inline constexpr Mat3x2 Mat3x2::translated(const X x, const Y y) const noexcept
+	{
+		Mat3x2 mat = *this;
+		mat._31 += x;
+		mat._32 += y;
+		return mat;
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
+# endif
+	inline constexpr Mat3x2 Mat3x2::scaled(const Arithmetic s, const Float2 center) const noexcept
+	{
+		const float b_11 = static_cast<value_type>(s);
+		const float b_22 = static_cast<value_type>(s);
+		const float b_31 = (1.0f - static_cast<value_type>(s)) * center.x;
+		const float b_32 = (1.0f - static_cast<value_type>(s)) * center.y;
+
+		return{ (_11 * b_11), (_12 * b_22),
+				(_21 * b_11), (_22 * b_22),
+				(_31 * b_11 + b_31), (_32 * b_22 + b_32) };
+	}
+
+	inline constexpr Mat3x2 Mat3x2::scaled(const Float2 scale, const Float2 center) const noexcept
+	{
+		const float b_11 = static_cast<value_type>(scale.x);
+		const float b_22 = static_cast<value_type>(scale.y);
+		const float b_31 = (1.0f - static_cast<value_type>(scale.x)) * center.x;
+		const float b_32 = (1.0f - static_cast<value_type>(scale.y)) * center.y;
+
+		return{ (_11 * b_11), (_12 * b_22),
+				(_21 * b_11), (_22 * b_22),
+				(_31 * b_11 + b_31), (_32 * b_22 + b_32) };
+	}
+
+	template <class X, class Y>
+	inline constexpr Mat3x2 Mat3x2::scaled(const X sx, const Y sy, const Float2 center) const noexcept
+	{
+		const float b_11 = static_cast<value_type>(sx);
+		const float b_22 = static_cast<value_type>(sy);
+		const float b_31 = (1.0f - static_cast<value_type>(sx)) * center.x;
+		const float b_32 = (1.0f - static_cast<value_type>(sy)) * center.y;
+
+		return{ (_11 * b_11), (_12 * b_22),
+				(_21 * b_11), (_22 * b_22),
+				(_31 * b_11 + b_31), (_32 * b_22 + b_32) };
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
+# endif
+	inline Mat3x2 Mat3x2::rotated(const Arithmetic angle, const Float2 center) const noexcept
+	{
+		Mat3x2 result;
+		result.setProduct(*this, Rotate(angle, center));
+		return result;
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
+# endif
+	inline constexpr Mat3x2 Mat3x2::shearedX(const Arithmetic sx) const noexcept
+	{
+		const float b_21 = -static_cast<value_type>(sx);
+
+		return{ (_11 + _12 * b_21), _12,
+				(_21 + _22 * b_21), _22,
+				(_31 + _32 * b_21), _32 };
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::Arithmetic Arithmetic>
+# else
+	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
+# endif
+	inline constexpr Mat3x2 Mat3x2::shearedY(const Arithmetic sy) const noexcept
+	{
+		const float b_12 = static_cast<value_type>(sy);
+
+		return{ _11, (_11 * b_12 + _12),
+				_21, (_21 * b_12 + _22),
+				_31, (_31 * b_12 + _32) };
+	}
+
+	inline constexpr float Mat3x2::determinant() const noexcept
+	{
+		return (_11 * _22) - (_12 * _21);
+	}
+
+	inline Mat3x2 Mat3x2::inversed() const noexcept
+	{
+		const float det = determinant();
+		assert(det != 0.0f);
+		
+		const float detInv = (1.0f / det);
+
+		Mat3x2 result;
+		result._11 = (_22 * detInv);
+		result._12 = -(_12 * detInv);
+		result._21 = -(_21 * detInv);
+		result._22 = (_11 * detInv);
+		result._31 = (_21 * _32 - _22 * _31) * detInv;
+		result._32 = (_12 * _31 - _11 * _32) * detInv;
+		return result;
+	}
+
+	inline constexpr void Mat3x2::setProduct(const Mat3x2& a, const Mat3x2& b) noexcept
+	{
+		_11 = (a._11 * b._11) + (a._12 * b._21);
+		_12 = (a._11 * b._12) + (a._12 * b._22);
+		_21 = (a._21 * b._11) + (a._22 * b._21);
+		_22 = (a._21 * b._12) + (a._22 * b._22);
+		_31 = (a._31 * b._11) + (a._32 * b._21) + b._31;
+		_32 = (a._31 * b._12) + (a._32 * b._22) + b._32;
+	}
+
+	inline constexpr Mat3x2 Mat3x2::operator *(const Mat3x2& other) const noexcept
+	{
+		return{ (_11 * other._11 + _12 * other._21), (_11 * other._12 + _12 * other._22),
+				(_21 * other._11 + _22 * other._21), (_21 * other._12 + _22 * other._22),
+				(_31 * other._11 + _32 * other._21 + other._31), (_31 * other._12 + _32 * other._22 + other._32) };
+	}
+
+	inline constexpr Float2 Mat3x2::transformPoint(const Point pos) const noexcept
+	{
+		return
+		{
+			(pos.x * _11 + pos.y * _21 + _31),
+			(pos.x * _12 + pos.y * _22 + _32)
+		};
+	}
+
+	inline constexpr Float2 Mat3x2::transformPoint(const Float2 pos) const noexcept
+	{
+		return
+		{
+			(pos.x * _11 + pos.y * _21 + _31),
+			(pos.x * _12 + pos.y * _22 + _32)
+		};
+	}
+
+	inline constexpr Vec2 Mat3x2::transformPoint(const Vec2 pos) const noexcept
+	{
+		return
+		{
+			(pos.x * _11 + pos.y * _21 + _31),
+			(pos.x * _12 + pos.y * _22 + _32)
+		};
+	}
+
+	inline size_t Mat3x2::hash() const noexcept
+	{
+		return Hash::FNV1a(*this);
+	}
 
 	inline constexpr Mat3x2 Mat3x2::Identity() noexcept
 	{
@@ -66,7 +243,8 @@ namespace s3d
 	{
 		return{ static_cast<value_type>(s), 0.0f,
 				0.0f, static_cast<value_type>(s),
-				(center.x - s * center.x), (center.y - s * center.y) };
+				(1.0f - static_cast<value_type>(s)) * center.x,
+				(1.0f - static_cast<value_type>(s)) * center.y };
 	}
 
 	template <class X, class Y>
@@ -74,7 +252,8 @@ namespace s3d
 	{
 		return{ static_cast<value_type>(sx), 0.0f,
 				0.0f, static_cast<value_type>(sy),
-				(center.x - sx * center.x), (center.y - sy * center.y) };
+				(1.0f - static_cast<value_type>(sx)) * center.x,
+				(1.0f - static_cast<value_type>(sy)) * center.y };
 	}
 
 # if __cpp_lib_concepts
@@ -123,44 +302,14 @@ namespace s3d
 				-1.0f, 1.0f };
 	}
 
-	inline constexpr Mat3x2 Mat3x2::Screen(const Float2 size) noexcept
+	inline void Mat3x2::_Formatter(FormatData& formatData, const Mat3x2& value)
 	{
-		return{ (2.0f / size.x), 0.0f,
-				0.0f, (-2.0f / size.y),
-				-1.0f, 1.0f };
-	}
-
-
-
-
-
-
-
-
-	inline constexpr Float2 Mat3x2::transform(const Point pos) const noexcept
-	{
-		return
-		{
-			(pos.x * _11 + pos.y * _21 + _31),
-			(pos.x * _12 + pos.y * _22 + _32)
-		};
-	}
-
-	inline constexpr Float2 Mat3x2::transform(const Float2 pos) const noexcept
-	{
-		return
-		{
-			(pos.x * _11 + pos.y * _21 + _31),
-			(pos.x * _12 + pos.y * _22 + _32)
-		};
-	}
-
-	inline constexpr Vec2 Mat3x2::transform(const Vec2 pos) const noexcept
-	{
-		return
-		{
-			(pos.x * _11 + pos.y * _21 + _31),
-			(pos.x * _12 + pos.y * _22 + _32)
-		};
+		formatData.string.push_back(U'(');
+		Formatter(formatData, Float2(value._11, value._12));
+		formatData.string.push_back(U',');
+		Formatter(formatData, Float2(value._21, value._22));
+		formatData.string.push_back(U',');
+		Formatter(formatData, Float2(value._31, value._32));
+		formatData.string.push_back(U')');
 	}
 }

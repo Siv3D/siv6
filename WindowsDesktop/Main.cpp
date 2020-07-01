@@ -17,5 +17,7 @@ void Main()
 			Rect(20 + i * 20, 20, 20, 400)
 				.draw(HSV(i * 10, 0.5, 0.9));
 		}
+
+		Rect(Cursor::Pos(), 50).draw(ColorF(0.25));
 	}
 }
