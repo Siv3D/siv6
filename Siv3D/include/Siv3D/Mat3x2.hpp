@@ -210,7 +210,7 @@ namespace s3d
 
 		friend void Formatter(FormatData& formatData, const Mat3x2& value)
 		{
-			Formatter(formatData, value);
+			_Formatter(formatData, value);
 		}
 
 		static void _Formatter(FormatData& formatData, const Mat3x2& value);
