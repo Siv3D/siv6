@@ -16,11 +16,18 @@
 
 void Main();
 
-int main(int, char*[])
+namespace s3d::detail::init
 {
-	std::cout << "OpenSiv3D for Linux\n";
-	
+	void InitModulePath(const char* arg);
+}
+
+int main(int, char* argv[])
+{
 	using namespace s3d;
+	std::cout << "OpenSiv3D for Linux\n";
+
+	detail::init::InitModulePath(argv[0]);
+
 	Siv3DEngine engine;
 	
 	try
@@ -34,6 +41,4 @@ int main(int, char*[])
 	}
 
 	Main();
-	
-	return 0;
 }

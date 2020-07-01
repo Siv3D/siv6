@@ -253,9 +253,50 @@ namespace s3d
 			return ((static_cast<uint64>(fad.nFileSizeHigh) << 32) + fad.nFileSizeLow);
 		}
 
+		FilePath VolumePath(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return 0;
+			}
 
+			if (IsResourcePath(path))
+			{
+				return FilePath{};
+			}
 
+			const std::wstring wpath = Unicode::ToWstring(path);
+			wchar_t result[MAX_PATH];
 
+			if (::GetVolumePathNameW(wpath.c_str(), result, _countof(result)) == 0)
+			{
+				return FilePath();
+			}
+
+			return Unicode::FromWstring(result).replace(U'\\', U'/');
+		}
+
+		bool IsEmptyDirectory(const FilePathView path)
+		{
+			if (path.isEmpty())
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return false;
+			}
+
+			const auto fpath = detail::ToPath(path);
+
+			if (detail::GetStatus(path).type() != fs::file_type::directory)
+			{
+				return false;
+			}
+
+			return (fs::directory_iterator(fpath) == fs::directory_iterator());
+		}
 
 
 

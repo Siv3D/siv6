@@ -19,7 +19,7 @@ namespace s3d
 		{
 			if (not path) [[unlikely]]
 			{
-				return String();
+				return String{};
 			}
 
 			if constexpr (Platform::HasEmbeddedResource)
@@ -34,14 +34,14 @@ namespace s3d
 
 			if (dotPos == String::npos)
 			{
-				return String();
+				return String{};
 			}
 
 			const size_t sepPos = path.lastIndexOfAny(U"/\\");
 
 			if ((sepPos != String::npos) && (dotPos < sepPos))
 			{
-				return String();
+				return String{};
 			}
 
 			return String(path.substr(dotPos + 1)).lowercase();
@@ -51,14 +51,14 @@ namespace s3d
 		{
 			if (not path) [[unlikely]]
 			{
-				return String();
+				return String{};
 			}
 
 			if constexpr (Platform::HasEmbeddedResource)
 			{
 				if (IsResourcePath(path))
 				{
-					return String();
+					return String{};
 				}
 			}
 
@@ -107,6 +107,52 @@ namespace s3d
 			}
 
 			return String(fileName.begin(), fileName.begin() + dotPos);
+		}
+
+		FilePath ParentPath(const FilePathView path, const size_t level)
+		{
+			FilePath unused;
+			return ParentPath(path, level, unused);
+		}
+
+		FilePath ParentPath(const FilePathView path, size_t level, FilePath& baseFullPath)
+		{
+			if (not path) [[unlikely]]
+			{
+				return FilePath{};
+			}
+
+			if constexpr (Platform::HasEmbeddedResource)
+			{
+				if (IsResourcePath(path))
+				{
+					return FilePath{};
+				}
+			}
+
+			FilePath result = FullPath(path);
+
+			baseFullPath = result;
+
+			if (result.ends_with(U'/'))
+			{
+				result.pop_back();
+			}
+
+			while (!result.isEmpty())
+			{
+				do
+				{
+					result.pop_back();
+				} while (!result.isEmpty() && !result.ends_with(U'/'));
+
+				if (level-- == 0)
+				{
+					break;
+				}
+			}
+
+			return result;
 		}
 	}
 }

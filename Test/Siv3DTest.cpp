@@ -253,13 +253,21 @@ TEST_CASE("HashTable")
 
 TEST_CASE("FileSystem")
 {
-	WARN("WARN test");
-	WARN(U"FileSystem::InitialDirectory(): `{}`"_fmt(FileSystem::InitialDirectory()));
-	WARN(U"FileSystem::ModulePath(): `{}`"_fmt(FileSystem::ModulePath()));
-	WARN(U"FileSystem::CurrentDirectory(): `{}`"_fmt(FileSystem::CurrentDirectory()));
-
-	INFO("INFO test");
-	INFO(U"FileSystem::InitialDirectory(): `{}`"_fmt(FileSystem::InitialDirectory()));
-	INFO(U"FileSystem::ModulePath(): `{}`"_fmt(FileSystem::ModulePath()));
-	INFO(U"FileSystem::CurrentDirectory(): `{}`"_fmt(FileSystem::CurrentDirectory()));
+	Console << U"FileSystem:";
+	Console << (U"Volume\t: {}"_fmt(FileSystem::VolumePath(U"./")));
+	Console << (U"Initial\t: {}"_fmt(FileSystem::InitialDirectory()));
+	Console << (U"Module\t: {}"_fmt(FileSystem::ModulePath()));
+	Console << (U"Current\t: {}"_fmt(FileSystem::CurrentDirectory()));
+	Console << (U"Full\t: {}"_fmt(FileSystem::FullPath(U"./")));
+	{
+		const auto path = FileSystem::NativePath(U"./");
+	# if SIV3D_PLATFORM(WINDOWS)
+		Console << (U"Native\t: {}"_fmt(Unicode::FromWstring(path)));
+	# else
+		Console << (U"Native path\t: {}"_fmt(Unicode::Widen(path)));
+	# endif
+	}
+	Console << (U"Parent\t: {}"_fmt(FileSystem::ParentPath(U"./")));
+	Console << (U"Parent\t: {}"_fmt(FileSystem::ParentPath(U"./", 1)));
+	Console << (U"Parent\t: {}"_fmt(FileSystem::ParentPath(U"./", 2)));
 }

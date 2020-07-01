@@ -89,9 +89,18 @@ namespace s3d
 
 			static FilePath g_modulePath;
 
-			void SetModulePath(FilePath&& path)
+			void InitModulePath(const char* arg)
 			{
-				g_modulePath = std::move(path);
+				const FilePath path = Unicode::Widen(arg);
+				
+				FilePath modulePath = FileSystem::ParentPath(path);
+				
+				if (modulePath.ends_with(U'/'))
+				{
+					modulePath.pop_back();
+				}
+
+				g_modulePath = std::move(modulePath);
 			}
 		}
 	}
@@ -182,9 +191,33 @@ namespace s3d
 			return s.st_size;
 		}
 
+		FilePath VolumePath(const FilePathView path)
+		{
+			return U"/";
+		}
 
+		bool IsEmptyDirectory(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return false;
+			}
 
+			struct stat s;
+			if (!detail::GetStat(path, s))
+			{
+				return false;
+			}
 
+			if (S_ISDIR(s.st_mode))
+			{
+				return (fs::directory_iterator(fs::path(path.toWstr())) == fs::directory_iterator());
+			}
+			else
+			{
+				return false;
+			}
+		}
 
 
 

@@ -85,7 +85,7 @@ namespace s3d
 		FilePath ParentPath(FilePathView path, size_t level = 0);
 
 		[[nodiscard]]
-		FilePath ParentPath(FilePathView path, size_t level, FilePathView baseFullPath);
+		FilePath ParentPath(FilePathView path, size_t level, FilePath& baseFullPath);
 
 		[[nodiscard]]
 		FilePath VolumePath(FilePathView path);
