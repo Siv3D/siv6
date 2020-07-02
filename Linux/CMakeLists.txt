@@ -1,20 +1,43 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.12)
+project(OpenSiv3D_Linux CXX C)
+find_package(PkgConfig)
+find_package(Boost 1.71.0 REQUIRED)
+pkg_check_modules(SIV3D_THIRD_PARTY REQUIRED glib-2.0 gl x11)
 
-project(Siv6 CXX)
-enable_language(C)
+message(STATUS "[info] Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
+
+set(CMAKE_C_EXTENSIONS OFF)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -fPIC -msse4.1 -D_GLFW_X11")
+set(CMAKE_C_FLAGS_DEBUG "-g3 -O0 -pg -DDEBUG")
+set(CMAKE_C_FLAGS_RELEASE "-O2 -DNDEBUG -march=x86-64")
+set(CMAKE_C_FLAGS_RELWITHDEBINFO "-g3 -Og -pg")
+set(CMAKE_C_FLAGS_MINSIZEREL "-Os -DNDEBUG -march=x86-64")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a -Wall -Wextra -fPIC -msse4.1 -D_GLFW_X11")
+set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0 -pg -DDEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG -march=x86-64")
+set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g3 -Og -pg")
+set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG -march=x86-64")
 
-set(CMAKE_CXX_FLAGS "-msse4.1 -D_GLFW_X11")
-set(CMAKE_C_FLAGS "-msse4.1 -D_GLFW_X11")
+if (NOT CMAKE_CONFIGURATION_TYPES AND 
+    NOT CMAKE_NO_BUILD_TYPE AND
+    NOT CMAKE_BUILD_TYPE AND
+    CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    message(STATUS "[!] Setting build type to 'Release' as none was specified.")
+    set(CMAKE_BUILD_TYPE Release)
+endif()
 
-find_package(PkgConfig)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+  add_compile_options ("-fcolor-diagnostics")
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+  add_compile_options ("-fdiagnostics-color=always")
+endif()
 
-pkg_check_modules(LIBSIV3D REQUIRED glib-2.0 gl x11)
 
-add_library(
-  Siv3D STATIC
+add_library(Siv3D STATIC
 
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Siv3DMain.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Common/OpenGL.cpp
@@ -217,9 +240,7 @@ add_library(
   ../Siv3D/src/ThirdParty/Oniguruma/utf8.c
   )
 
-target_include_directories(
-  Siv3D
-  PUBLIC
+target_include_directories(Siv3D PUBLIC
   ../Siv3D/include
   ../Siv3D/include/ThirdParty
   ../Siv3D/src
@@ -227,28 +248,5 @@ target_include_directories(
   ../Siv3D/src/Siv3D-Platform/macOS_Linux
   ../Siv3D/src/Siv3D-Platform/OpenGL4
   ../Siv3D/src/ThirdParty
-  ${LIBSIV3D_INCLUDE_DIRS}
+  ${SIV3D_THIRD_PARTY_INCLUDE_DIRS}
   )
-
-enable_testing()
-
-add_executable(
-  Siv3DTest
-  ../Linux/Main.cpp
-  ../Test/Siv3DTest.cpp
-  )
-
-target_link_libraries(Siv3DTest PRIVATE
-  Siv3D
-  pthread
-  ${LIBSIV3D_LIBRARIES}
-  ${CMAKE_DL_LIBS}
-  )
-
-target_include_directories(
-  Siv3DTest
-  PRIVATE ../Siv3D/src/ThirdParty)
-
-add_test(
-  NAME Siv3DTest
-  COMMAND Siv3DTest)
