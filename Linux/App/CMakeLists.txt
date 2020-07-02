@@ -37,6 +37,11 @@ add_executable(Siv3DTest
   Main.cpp
   ../../Test/Siv3DTest.cpp
   )
+target_include_directories(
+  "/usr/include"
+  "../../Siv3D/include"
+  "../../Siv3D/include/ThirdParty"
+  )
 target_link_libraries(Siv3DTest PRIVATE
   ${PROJECT_SOURCE_DIR}/../build/libSiv3D.a
   -lpthread
