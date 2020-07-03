@@ -91,16 +91,7 @@ namespace s3d
 
 			void InitModulePath(const char* arg)
 			{
-				const FilePath path = Unicode::Widen(arg);
-				
-				FilePath modulePath = FileSystem::ParentPath(path);
-				
-				if (modulePath.ends_with(U'/'))
-				{
-					modulePath.pop_back();
-				}
-
-				g_modulePath = std::move(modulePath);
+				g_modulePath = Unicode::Widen(arg);
 			}
 		}
 	}
