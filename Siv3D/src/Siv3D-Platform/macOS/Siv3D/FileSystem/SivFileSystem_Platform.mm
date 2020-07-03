@@ -10,9 +10,10 @@
 //-----------------------------------------------
 
 # include <sys/stat.h>
+# include <mach-o/dyld.h>
 # include <Siv3D/String.hpp>
 # include <Siv3D/FileSystem.hpp>
-# include <mach-o/dyld.h>
+# include <boost/filesystem.hpp>
 # import  <Foundation/Foundation.h>
 
 namespace s3d
@@ -72,6 +73,20 @@ namespace s3d
 			}
 			
 			return path;
+		}
+	
+		[[nodiscard]]
+		static DateTime ToDateTime(const ::timespec& tv)
+		{
+			::tm lt;
+			::localtime_r(&tv.tv_sec, &lt);
+			return{ (1900 + lt.tm_year),
+					(1 + lt.tm_mon),
+					(lt.tm_mday),
+					lt.tm_hour,
+					lt.tm_min,
+					lt.tm_sec,
+					static_cast<int32>(tv.tv_nsec / (1'000'000))};
 		}
 	
 		[[nodiscard]]
@@ -288,7 +303,7 @@ namespace s3d
 	
 		Platform::NativeFilePath NativePath(const FilePathView path)
 		{
-			if (path.isEmpty())
+			if (not path) SIV3D_UNLIKELY
 			{
 				return Platform::NativeFilePath();
 			}
@@ -315,7 +330,79 @@ namespace s3d
 			return U"/";
 		}
 	
+		bool IsEmptyDirectory(const FilePathView path)
+		{
+			namespace fs = boost::filesystem;
+			
+			if (not path) SIV3D_UNLIKELY
+			{
+				return false;
+			}
+			
+			const FilePath src(path);
+			struct stat s;
+			if (!detail::GetStat(src, s))
+			{
+				return false;
+			}
+			
+			if (S_ISREG(s.st_mode))
+			{
+				return false;
+			}
+			else if (S_ISDIR(s.st_mode))
+			{
+				return fs::directory_iterator(fs::path(src.toWstr())) == fs::directory_iterator();
+			}
+			else
+			{
+				// [Siv3D ToDo]
+				return false;
+			}
+		}
 	
+		int64 Size(const FilePathView path)
+		{
+			namespace fs = boost::filesystem;
+			
+			if (not path) SIV3D_UNLIKELY
+			{
+				return 0;
+			}
+			
+			struct stat s;
+			if (!detail::GetStat(FilePath(path), s))
+			{
+				return 0;
+			}
+			
+			if (S_ISREG(s.st_mode))
+			{
+				return s.st_size;
+			}
+			else if (S_ISDIR(s.st_mode))
+			{
+				int64 result = 0;
+				
+				for (const auto& v : fs::recursive_directory_iterator(path.narrow()))
+				{
+					struct stat s;
+					
+					if (::stat(v.path().c_str(), &s) != 0 || S_ISDIR(s.st_mode))
+					{
+						continue;
+					}
+					
+					result += s.st_size;
+				}
+				
+				return result;
+			}
+			else
+			{
+				return 0;
+			}
+		}
 
 		int64 FileSize(const FilePathView path)
 		{
@@ -338,8 +425,38 @@ namespace s3d
 			return s.st_size;
 		}
 	
-	
-	
+		Optional<DateTime> CreationTime(const FilePathView path)
+		{
+			struct stat s;
+			if (!detail::GetStat(path, s))
+			{
+				return none;
+			}
+			
+			return detail::ToDateTime(s.st_birthtimespec);
+		}
+
+		Optional<DateTime> WriteTime(const FilePathView path)
+		{
+			struct stat s;
+			if (!detail::GetStat(path, s))
+			{
+				return none;
+			}
+			
+			return detail::ToDateTime(s.st_mtimespec);
+		}
+		
+		Optional<DateTime> AccessTime(const FilePathView path)
+		{
+			struct stat s;
+			if (!detail::GetStat(path, s))
+			{
+				return none;
+			}
+			
+			return detail::ToDateTime(s.st_atimespec);
+		}
 	
 		const FilePath& InitialDirectory() noexcept
 		{

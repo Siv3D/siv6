@@ -24,7 +24,8 @@ namespace s3d
 	{
 		static Point CursorScreenPos_macOS()
 		{
-			@autoreleasepool {
+			@autoreleasepool
+			{
 				NSScreen* mainScreen = [NSScreen mainScreen];
 				const int32 screenHeight = [mainScreen frame].size.height;
 				const float scaleFactor = [mainScreen backingScaleFactor];

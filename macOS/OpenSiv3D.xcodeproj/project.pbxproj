@@ -70,6 +70,7 @@
 		2C439F8A241DCEA9001154C2 /* bignum-dtoa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F76241DCEA9001154C2 /* bignum-dtoa.cc */; };
 		2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4442A02427AA7C00557D51 /* miniutf.hpp */; };
 		2C4564E1247946AF00DB01F0 /* int128.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C4564E0247946AF00DB01F0 /* int128.cc */; };
+		2C47E59924AF3C7B0060E8A7 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47E59824AF3C7B0060E8A7 /* libboost_filesystem.a */; };
 		2C481E1224460B5700A5D88D /* bit_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0C24460B5700A5D88D /* bit_utils.h */; };
 		2C481E1324460B5700A5D88D /* cpuinfo_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */; };
 		2C481E1424460B5700A5D88D /* cpu_features_cache_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0E24460B5700A5D88D /* cpu_features_cache_info.h */; };
@@ -369,6 +370,7 @@
 		2C46837A24590D8D000006C0 /* EnumBitmask.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnumBitmask.hpp; sourceTree = "<group>"; };
 		2C4719F5244969A300BAC3E8 /* xxhash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxhash.h; sourceTree = "<group>"; };
 		2C4719F6244969A300BAC3E8 /* xxh3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxh3.h; sourceTree = "<group>"; };
+		2C47E59824AF3C7B0060E8A7 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../Siv3D/lib/macOS/boost/libboost_filesystem.a; sourceTree = "<group>"; };
 		2C481E0C24460B5700A5D88D /* bit_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_utils.h; sourceTree = "<group>"; };
 		2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpuinfo_x86.h; sourceTree = "<group>"; };
 		2C481E0E24460B5700A5D88D /* cpu_features_cache_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_features_cache_info.h; sourceTree = "<group>"; };
@@ -794,6 +796,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */,
+				2C47E59924AF3C7B0060E8A7 /* libboost_filesystem.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,6 +902,7 @@
 		2C15857F1F21FD87002687D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C47E59824AF3C7B0060E8A7 /* libboost_filesystem.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2714,7 +2718,10 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = ../Siv3D/lib/macOS;
+				LIBRARY_SEARCH_PATHS = (
+					../Siv3D/lib/macOS,
+					../Siv3D/lib/macOS/boost,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2769,7 +2776,10 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = ../Siv3D/lib/macOS;
+				LIBRARY_SEARCH_PATHS = (
+					../Siv3D/lib/macOS,
+					../Siv3D/lib/macOS/boost,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
@@ -2902,11 +2912,12 @@
 				HEADER_SEARCH_PATHS = (
 					../Siv3D/include,
 					../Siv3D/include/ThirdParty,
-					../Siv3D/src/,
+					../Siv3D/src,
 					"../Siv3D/src/Siv3D-Platform/macOS",
 					"../Siv3D/src/Siv3D-Platform/macOS_Linux",
 					"../Siv3D/src/Siv3D-Platform/OpenGL4",
 					../Siv3D/src/ThirdParty,
+					../Dependencies/boost_1_73_0,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -2964,11 +2975,12 @@
 				HEADER_SEARCH_PATHS = (
 					../Siv3D/include,
 					../Siv3D/include/ThirdParty,
-					../Siv3D/src/,
+					../Siv3D/src,
 					"../Siv3D/src/Siv3D-Platform/macOS",
 					"../Siv3D/src/Siv3D-Platform/macOS_Linux",
 					"../Siv3D/src/Siv3D-Platform/OpenGL4",
 					../Siv3D/src/ThirdParty,
+					../Dependencies/boost_1_73_0,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
