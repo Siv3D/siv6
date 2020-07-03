@@ -24,7 +24,7 @@ namespace s3d
 		[[nodiscard]]
 		inline static fs::path ToPath(const FilePathView path)
 		{
-			return fs::path(Unicode::ToWstring(path));
+			return fs::path(path.toWstr());
 		}
 
 		[[nodiscard]]
@@ -50,7 +50,7 @@ namespace s3d
 		[[nodiscard]]
 		static bool ResourceExists(const FilePathView path)
 		{
-			const std::wstring pathW = Unicode::ToWstring(path);
+			const std::wstring pathW = path.toWstr();
 
 			return (::FindResourceW(::GetModuleHandleW(nullptr), &pathW[1], L"FILE") != nullptr);
 		}
@@ -59,7 +59,7 @@ namespace s3d
 		static int64 ResourceSize(const FilePathView path)
 		{
 			HMODULE module = ::GetModuleHandleW(nullptr);
-			std::wstring resourceName = Unicode::ToWstring(path);
+			std::wstring resourceName = path.toWstr();
 			resourceName.front() = L'#';
 
 			if (HRSRC hrs = ::FindResourceW(module, resourceName.c_str(), L"FILE"))
@@ -70,6 +70,54 @@ namespace s3d
 			{
 				return 0;
 			}
+		}
+
+		[[nodiscard]]
+		static int64 DirectorySizeRecursive(FilePath directory)
+		{
+			directory = NormalizePath(directory, true);
+
+			WIN32_FIND_DATAW data;
+			HANDLE sh = ::FindFirstFileW((directory + U'*').toWstr().c_str(), &data);
+
+			if (sh == INVALID_HANDLE_VALUE)
+			{
+				return 0;
+			}
+
+			int64 result = 0;
+
+			do
+			{
+				if (!(data.cFileName[0] == L'.' && data.cFileName[1] == L'\0')
+					&& !(data.cFileName[0] == L'.' && data.cFileName[1] == L'.' && data.cFileName[2] == L'\0'))
+				{
+					if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+					{
+						result += DirectorySizeRecursive((directory + Unicode::FromWstring(data.cFileName)) + U'/');
+					}
+					else
+					{
+						result += (static_cast<uint64>(data.nFileSizeHigh) << 32) + data.nFileSizeLow;
+					}
+				}
+
+			} while (::FindNextFileW(sh, &data));
+
+			::FindClose(sh);
+
+			return result;
+		}
+
+		[[nodiscard]]
+		static DateTime FiletimeToTime(FILETIME& in)
+		{
+			SYSTEMTIME systemtime;
+			::FileTimeToLocalFileTime(&in, &in);
+			::FileTimeToSystemTime(&in, &systemtime);
+
+			return{ systemtime.wYear, systemtime.wMonth, systemtime.wDay,
+				systemtime.wHour, systemtime.wMinute, systemtime.wSecond, systemtime.wMilliseconds };
 		}
 
 		namespace init
@@ -225,6 +273,87 @@ namespace s3d
 			return std::wstring(result, length);
 		}
 
+		FilePath VolumePath(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return 0;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return FilePath{};
+			}
+
+			const std::wstring wpath = path.toWstr();
+			wchar_t result[MAX_PATH];
+
+			if (::GetVolumePathNameW(wpath.c_str(), result, _countof(result)) == 0)
+			{
+				return FilePath();
+			}
+
+			return Unicode::FromWstring(result).replace(U'\\', U'/');
+		}
+
+		bool IsEmptyDirectory(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return 0;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return false;
+			}
+
+			const auto fpath = detail::ToPath(path);
+
+			if (detail::GetStatus(path).type() != fs::file_type::directory)
+			{
+				return false;
+			}
+
+			return (fs::directory_iterator(fpath) == fs::directory_iterator());
+		}
+
+		int64 Size(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return 0;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return detail::ResourceSize(path);
+			}
+
+			const auto fpath = detail::ToPath(path);
+			const auto type = fs::status(fpath).type();
+
+			if (type == fs::file_type::regular)
+			{
+				WIN32_FILE_ATTRIBUTE_DATA fad;
+
+				if (::GetFileAttributesExW(path.toWstr().c_str(), ::GetFileExInfoStandard, &fad) == 0)
+				{
+					return 0;
+				}
+
+				return ((static_cast<uint64>(fad.nFileSizeHigh) << 32) + fad.nFileSizeLow);
+			}
+			else if (type == fs::file_type::directory)
+			{
+				return detail::DirectorySizeRecursive(FullPath(path));
+			}
+			else
+			{
+				return 0;
+			}
+		}
+
 		int64 FileSize(const FilePathView path)
 		{
 			if (not path) [[unlikely]]
@@ -253,55 +382,71 @@ namespace s3d
 			return ((static_cast<uint64>(fad.nFileSizeHigh) << 32) + fad.nFileSizeLow);
 		}
 
-		FilePath VolumePath(const FilePathView path)
+		Optional<DateTime> CreationTime(const FilePathView path)
 		{
 			if (not path) [[unlikely]]
 			{
-				return 0;
+				return none;
 			}
 
 			if (IsResourcePath(path))
 			{
-				return FilePath{};
+				return CreationTime(ModulePath());
 			}
 
-			const std::wstring wpath = Unicode::ToWstring(path);
-			wchar_t result[MAX_PATH];
+			WIN32_FILE_ATTRIBUTE_DATA fad;
 
-			if (::GetVolumePathNameW(wpath.c_str(), result, _countof(result)) == 0)
+			if (::GetFileAttributesExW(path.toWstr().c_str(), ::GetFileExInfoStandard, &fad) == 0)
 			{
-				return FilePath();
+				return none;
 			}
 
-			return Unicode::FromWstring(result).replace(U'\\', U'/');
+			return detail::FiletimeToTime(fad.ftCreationTime);
 		}
 
-		bool IsEmptyDirectory(const FilePathView path)
+		Optional<DateTime> WriteTime(const FilePathView path)
 		{
-			if (path.isEmpty())
+			if (not path) [[unlikely]]
 			{
-				return false;
+				return none;
 			}
 
 			if (IsResourcePath(path))
 			{
-				return false;
+				return WriteTime(ModulePath());
 			}
 
-			const auto fpath = detail::ToPath(path);
+			WIN32_FILE_ATTRIBUTE_DATA fad;
 
-			if (detail::GetStatus(path).type() != fs::file_type::directory)
+			if (::GetFileAttributesExW(path.toWstr().c_str(), ::GetFileExInfoStandard, &fad) == 0)
 			{
-				return false;
+				return none;
 			}
 
-			return (fs::directory_iterator(fpath) == fs::directory_iterator());
+			return detail::FiletimeToTime(fad.ftLastWriteTime);
 		}
 
+		Optional<DateTime> AccessTime(const FilePathView path)
+		{
+			if (not path) [[unlikely]]
+			{
+				return none;
+			}
 
+			if (IsResourcePath(path))
+			{
+				return AccessTime(ModulePath());
+			}
 
+			WIN32_FILE_ATTRIBUTE_DATA fad;
 
+			if (::GetFileAttributesExW(path.toWstr().c_str(), ::GetFileExInfoStandard, &fad) == 0)
+			{
+				return none;
+			}
 
+			return detail::FiletimeToTime(fad.ftLastAccessTime);
+		}
 
 
 
