@@ -130,7 +130,6 @@ namespace s3d
 		bool lookahead(Type& to);
 
 		/// @brief オープンしているファイルのパスを返します。
-		/// @remarks です。
 		/// @return オープンしているファイルのパス。ファイルがオープンしていない場合は空の文字列
 		[[nodiscard]]
 		const FilePath& path() const noexcept;

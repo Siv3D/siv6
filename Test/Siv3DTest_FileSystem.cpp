@@ -14,7 +14,6 @@
 # include <ThirdParty/Catch2/catch.hpp>
 
 # include <Siv3D.hpp>
-# include <unordered_map>
 using namespace s3d;
 using namespace std::literals;
 

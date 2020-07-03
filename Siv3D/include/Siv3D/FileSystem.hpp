@@ -18,6 +18,19 @@
 
 namespace s3d
 {
+	namespace Platform
+	{
+	# if SIV3D_PLATFORM(WINDOWS)
+
+		using NativeFilePath = std::wstring;
+
+	# else
+
+		using NativeFilePath = std::string;
+
+	# endif
+	}
+
 	namespace FileSystem
 	{
 		/// @brief ファイルパスがリソースのパスであるかを返します。

@@ -12,7 +12,6 @@
 # pragma once
 # include <cstdlib>
 # include <cstddef>
-# include <string>
 
 //////////////////////////////////////////////////
 //
@@ -312,27 +311,6 @@ namespace s3d::detail
 	/// @param p 解放するメモリのポインタ
 	/// @return なし
 	inline void AlignedFree(void* const p) noexcept;
-}
-
-
-//////////////////////////////////////////////////
-//
-// ファイルパスのネイティブ文字列型
-// Native file path type
-//
-//////////////////////////////////////////////////
-
-namespace s3d::Platform
-{
-# if SIV3D_PLATFORM(WINDOWS)
-
-	using NativeFilePath = std::wstring;
-
-# else
-
-	using NativeFilePath = std::string;
-
-# endif
 }
 
 

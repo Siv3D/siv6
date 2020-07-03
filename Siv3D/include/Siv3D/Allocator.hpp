@@ -34,7 +34,7 @@ namespace s3d
 		static constexpr size_t alignment = Alignment;
 
 		SIV3D_NODISCARD_CXX20
-		constexpr Allocator() noexcept {}
+		constexpr Allocator() noexcept = default;
 
 		SIV3D_NODISCARD_CXX20
 		constexpr Allocator(const Allocator&) noexcept = default;
