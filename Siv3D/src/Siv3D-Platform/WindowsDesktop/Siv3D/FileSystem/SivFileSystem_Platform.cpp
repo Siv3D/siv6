@@ -109,6 +109,41 @@ namespace s3d
 			return result;
 		}
 
+		static void DirectoryContentsRecursive(FilePath directory, Array<FilePath>& paths, const bool recursive)
+		{
+			directory = NormalizePath(directory, true);
+
+			WIN32_FIND_DATAW data;
+			HANDLE sh = ::FindFirstFileW((directory + U'*').toWstr().c_str(), &data);
+
+			if (sh == INVALID_HANDLE_VALUE)
+			{
+				return;
+			}
+
+			do
+			{
+				if (!(data.cFileName[0] == L'.' && data.cFileName[1] == L'\0')
+					&& !(data.cFileName[0] == L'.' && data.cFileName[1] == L'.' && data.cFileName[2] == L'\0'))
+				{
+					paths.push_back(directory + Unicode::FromWstring(data.cFileName));
+
+					if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+					{
+						paths.back().push_back(U'/');
+
+						if (recursive)
+						{
+							DirectoryContentsRecursive(paths.back(), paths, true);
+						}
+					}
+				}
+
+			} while (::FindNextFileW(sh, &data));
+
+			::FindClose(sh);
+		}
+
 		[[nodiscard]]
 		static DateTime FiletimeToTime(FILETIME& in)
 		{
@@ -448,9 +483,29 @@ namespace s3d
 			return detail::FiletimeToTime(fad.ftLastAccessTime);
 		}
 
+		Array<FilePath> DirectoryContents(const FilePathView path, const bool recursive)
+		{
+			Array<FilePath> paths;
 
+			if (not path) [[unlikely]]
+			{
+				return paths;
+			}
 
+			if (IsResourcePath(path))
+			{
+				return paths;
+			}
 
+			if (detail::GetStatus(path).type() != fs::file_type::directory)
+			{
+				return paths;
+			}
+
+			detail::DirectoryContentsRecursive(FullPath(path), paths, recursive);
+
+			return paths;
+		}
 
 		const FilePath& InitialDirectory() noexcept
 		{

@@ -161,27 +161,6 @@ namespace s3d
 			return fs::weakly_canonical(detail::ToPath(path)).string();
 		}
 
-		int64 FileSize(const FilePathView path)
-		{
-			if (not path) SIV3D_UNLIKELY
-			{
-				return 0;
-			}
-			
-			struct stat s;
-			if (!detail::GetStat(path, s))
-			{
-				return 0;
-			}
-			
-			if (!S_ISREG(s.st_mode))
-			{
-				return 0;
-			}
-			
-			return s.st_size;
-		}
-
 		FilePath VolumePath(const FilePathView path)
 		{
 			return U"/";
@@ -210,8 +189,132 @@ namespace s3d
 			}
 		}
 
+		int64 Size(const FilePathView path)
+		{
+			if (not path) SIV3D_UNLIKELY
+			{
+				return 0;
+			}
+			
+			struct stat s;
+			if (!detail::GetStat(FilePath(path), s))
+			{
+				return 0;
+			}
+			
+			if (S_ISREG(s.st_mode))
+			{
+				return s.st_size;
+			}
+			else if (S_ISDIR(s.st_mode))
+			{
+				int64 result = 0;
+				
+				for (const auto& v : fs::recursive_directory_iterator(path.narrow()))
+				{
+					struct stat s;
+					
+					if (::stat(v.path().c_str(), &s) != 0 || S_ISDIR(s.st_mode))
+					{
+						continue;
+					}
+					
+					result += s.st_size;
+				}
+				
+				return result;
+			}
+			else
+			{
+				return 0;
+			}
+		}
 
+		int64 FileSize(const FilePathView path)
+		{
+			if (not path) SIV3D_UNLIKELY
+			{
+				return 0;
+			}
+			
+			struct stat s;
+			if (!detail::GetStat(path, s))
+			{
+				return 0;
+			}
+			
+			if (!S_ISREG(s.st_mode))
+			{
+				return 0;
+			}
+			
+			return s.st_size;
+		}
 
+		Optional<DateTime> CreationTime(const FilePathView path)
+		{
+			struct stat s;
+			if (!detail::GetStat(path, s))
+			{
+				return none;
+			}
+			
+			return detail::ToDateTime(s.st_birthtimespec);
+		}
+
+		Optional<DateTime> WriteTime(const FilePathView path)
+		{
+			struct stat s;
+			if (!detail::GetStat(path, s))
+			{
+				return none;
+			}
+			
+			return detail::ToDateTime(s.st_mtimespec);
+		}
+		
+		Optional<DateTime> AccessTime(const FilePathView path)
+		{
+			struct stat s;
+			if (!detail::GetStat(path, s))
+			{
+				return none;
+			}
+			
+			return detail::ToDateTime(s.st_atimespec);
+		}
+
+		Array<FilePath> DirectoryContents(const FilePathView path, const bool recursive)
+		{
+			Array<FilePath> paths;
+
+			if (not path) SIV3D_UNLIKELY
+			{
+				return paths;
+			}
+
+			if (detail::GetStatus(path).type() != fs::file_type::directory)
+			{
+				return paths;
+			}
+
+			if (recursive)
+			{
+				for (const auto& v : fs::recursive_directory_iterator(path.narrow()))
+				{
+					paths.push_back(Unicode::Widen(v.path().string()));
+				}
+			}
+			else
+			{
+				for (const auto& v : fs::directory_iterator(path.narrow()))
+				{
+					paths.push_back(Unicode::Widen(v.path().string()));
+				}
+			}
+
+			return paths;
+		}
 
 		const FilePath& InitialDirectory() noexcept
 		{

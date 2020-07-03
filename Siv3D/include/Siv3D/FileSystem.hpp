@@ -113,7 +113,7 @@ namespace s3d
 		Optional<DateTime> AccessTime(FilePathView path);
 
 		[[nodiscard]]
-		Array<FilePath> DirectoryContents(const FilePath& path, bool recursive = true);
+		Array<FilePath> DirectoryContents(FilePathView path, bool recursive = true);
 
 		[[nodiscard]]
 		const FilePath& InitialDirectory() noexcept;
