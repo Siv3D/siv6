@@ -182,7 +182,7 @@
 
 #if defined(__cplusplus)
 
-	# if (__has_cpp_attribute(likely) && __has_cpp_attribute(unlikely))
+	# if (__has_cpp_attribute(likely) && __has_cpp_attribute(unlikely) && !(defined(__GNUC__) && (9 <= __GNUC__) && (__GNUC__ < 10)))
 
 		# define SIV3D_LIKELY [[likely]]
 		# define SIV3D_UNLIKELY [[unlikely]]
