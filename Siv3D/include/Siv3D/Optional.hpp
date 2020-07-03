@@ -350,15 +350,23 @@ namespace s3d
 		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Optional<Type>& value)
 		{
-			if (value)
+			if (std::is_same_v<CharType, char32>)
 			{
-				const CharType opt[] = { '(', 'O','p','t','i','o','n','a','l',')','\0' };
-				return output << opt << value.value();
+				const String s = Format(value);
+				return output.write(s.data(), s.size());
 			}
 			else
 			{
-				const CharType no[] = { 'n','o','n','e','\0' };
-				return output << no;
+				if (value)
+				{
+					const CharType opt[] = { '(', 'O','p','t','i','o','n','a','l',')','\0' };
+					return output << opt << value.value();
+				}
+				else
+				{
+					const CharType no[] = { 'n','o','n','e','\0' };
+					return output << no;
+				}
 			}
 		}
 
@@ -633,15 +641,23 @@ namespace s3d
 		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Optional<Type&>& value)
 		{
-			if (value)
+			if (std::is_same_v<CharType, char32>)
 			{
-				const CharType opt[] = { '(', 'O','p','t','i','o','n','a','l',')','\0' };
-				return output << opt << value.value();
+				const String s = Format(value);
+				return output.write(s.data(), s.size());
 			}
 			else
 			{
-				const CharType no[] = { 'n','o','n','e','\0' };
-				return output << no;
+				if (value)
+				{
+					const CharType opt[] = { '(', 'O','p','t','i','o','n','a','l',')','\0' };
+					return output << opt << value.value();
+				}
+				else
+				{
+					const CharType no[] = { 'n','o','n','e','\0' };
+					return output << no;
+				}
 			}
 		}
 

@@ -273,7 +273,7 @@ namespace s3d
 				return none;
 			}
 			
-			return detail::ToDateTime(s.st_birthtimespec);
+			return detail::ToDateTime(s.st_ctim);
 		}
 
 		Optional<DateTime> WriteTime(const FilePathView path)
@@ -284,7 +284,7 @@ namespace s3d
 				return none;
 			}
 			
-			return detail::ToDateTime(s.st_mtimespec);
+			return detail::ToDateTime(s.st_mtim);
 		}
 		
 		Optional<DateTime> AccessTime(const FilePathView path)
@@ -295,7 +295,7 @@ namespace s3d
 				return none;
 			}
 			
-			return detail::ToDateTime(s.st_atimespec);
+			return detail::ToDateTime(s.st_atim);
 		}
 
 		Array<FilePath> DirectoryContents(const FilePathView path, const bool recursive)
