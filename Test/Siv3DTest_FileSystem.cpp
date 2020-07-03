@@ -40,8 +40,15 @@ TEST_CASE("FileSystem")
 
 	const FilePath modulePath = FileSystem::ModulePath();
 	REQUIRE(FileSystem::Exists(modulePath) == true);
+	
+# if SIV3D_PLATFORM(MACOS)
+	REQUIRE(FileSystem::IsFile(modulePath) == false);
+	REQUIRE(FileSystem::IsDirectory(modulePath) == true);
+# else
 	REQUIRE(FileSystem::IsFile(modulePath) == true);
 	REQUIRE(FileSystem::IsDirectory(modulePath) == false);
+# endif
+	
 	REQUIRE(FileSystem::IsResource(modulePath) == false);
 
 	Console << (U"Size\t: {}"_fmt(FileSystem::Size(modulePath)));

@@ -370,8 +370,10 @@ namespace s3d
 				return 0;
 			}
 			
+			const FilePath fullPath = FullPath(path);
+			
 			struct stat s;
-			if (!detail::GetStat(FilePath(path), s))
+			if (!detail::GetStat(fullPath, s))
 			{
 				return 0;
 			}
@@ -384,15 +386,21 @@ namespace s3d
 			{
 				int64 result = 0;
 				
-				for (const auto& v : fs::recursive_directory_iterator(path.narrow()))
+				std::cout << "###" << fullPath << "\n";
+				
+				for (const auto& v : fs::recursive_directory_iterator(fullPath.narrow()))
 				{
 					struct stat s;
 					
+					std::cout << v.path() << " ";
+					
 					if (::stat(v.path().c_str(), &s) != 0 || S_ISDIR(s.st_mode))
 					{
+						std::cout << "SKIPPED\n";
 						continue;
 					}
 					
+					std::cout << s.st_size << '\n';
 					result += s.st_size;
 				}
 				
@@ -456,6 +464,35 @@ namespace s3d
 			}
 			
 			return detail::ToDateTime(s.st_atimespec);
+		}
+	
+		Array<FilePath> DirectoryContents(const FilePathView path, const bool recursive)
+		{
+			namespace fs = boost::filesystem;
+			
+			Array<FilePath> paths;
+			
+			if (path.isEmpty() || !IsDirectory(path))
+			{
+				return paths;
+			}
+			
+			if (recursive)
+			{
+				for (const auto& v : fs::recursive_directory_iterator(path.narrow()))
+				{
+					paths.push_back(FullPath(Unicode::Widen(v.path().string())));
+				}
+			}
+			else
+			{
+				for (const auto& v : fs::directory_iterator(path.narrow()))
+				{
+					paths.push_back(FullPath(Unicode::Widen(v.path().string())));
+				}
+			}
+			
+			return paths;
 		}
 	
 		const FilePath& InitialDirectory() noexcept
