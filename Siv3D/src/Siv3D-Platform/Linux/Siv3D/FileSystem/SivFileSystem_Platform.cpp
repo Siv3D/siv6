@@ -83,6 +83,20 @@ namespace s3d
 			return path;
 		}
 
+		[[nodiscard]]
+		static DateTime ToDateTime(const ::timespec& tv)
+		{
+			::tm lt;
+			::localtime_r(&tv.tv_sec, &lt);
+			return{ (1900 + lt.tm_year),
+					(1 + lt.tm_mon),
+					(lt.tm_mday),
+					lt.tm_hour,
+					lt.tm_min,
+					lt.tm_sec,
+					static_cast<int32>(tv.tv_nsec / (1'000'000))};
+		}		
+
 		namespace init
 		{
 			const static FilePath g_initialPath = NormalizePath(Unicode::Widen(fs::current_path().string()));
