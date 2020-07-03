@@ -27,10 +27,11 @@
 //
 //----------------------------------------------------------------------------------------
 
-# pragma once
-# ifndef SIV3D_INCLUDED
-#	define SIV3D_INCLUDED
-# endif
+# pragma once 
+// ^^^ include guard
+
+# define SIV3D_INCLUDED
+// ^^^ This macro is NOT an include guard
 
 //////////////////////////////////////////////////
 //
