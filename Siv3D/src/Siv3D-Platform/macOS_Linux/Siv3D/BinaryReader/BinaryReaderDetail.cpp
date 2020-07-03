@@ -35,7 +35,7 @@ namespace s3d
 
 		FILE* file = std::fopen(path.narrow().c_str(), "r");
 		
-		if (not file) [[unlikely]]
+		if (not file) SIV3D_UNLIKELY
 		{
 			LOG_FAIL(U"❌ BinaryReader: Failed to open the file `{0}`"_fmt(
 				path));
@@ -62,7 +62,7 @@ namespace s3d
 
 	void BinaryReader::BinaryReaderDetail::close()
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return;
 		}
@@ -88,7 +88,7 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::setPos(const int64 pos)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}
@@ -100,7 +100,7 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::getPos()
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}
@@ -110,7 +110,7 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> buffer, const int64 size)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}
@@ -120,7 +120,7 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> buffer, const int64 pos, const int64 size)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}
@@ -132,7 +132,7 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> buffer, const int64 size)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}
@@ -148,7 +148,7 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> buffer, const int64 pos, const int64 size)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}

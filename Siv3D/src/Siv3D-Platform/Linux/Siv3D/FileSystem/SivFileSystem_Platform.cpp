@@ -107,7 +107,7 @@ namespace s3d
 
 		bool Exists(const FilePathView path)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return false;
 			}
@@ -117,7 +117,7 @@ namespace s3d
 
 		bool IsDirectory(const FilePathView path)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return false;
 			}
@@ -127,7 +127,7 @@ namespace s3d
 
 		bool IsFile(const FilePathView path)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return false;
 			}
@@ -143,7 +143,7 @@ namespace s3d
 
 		FilePath FullPath(const FilePathView path)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return FilePath{};
 			}
@@ -153,7 +153,7 @@ namespace s3d
 
 		Platform::NativeFilePath NativePath(const FilePathView path)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return Platform::NativeFilePath{};
 			}
@@ -163,7 +163,7 @@ namespace s3d
 
 		int64 FileSize(const FilePathView path)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return 0;
 			}
@@ -189,7 +189,7 @@ namespace s3d
 
 		bool IsEmptyDirectory(const FilePathView path)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return false;
 			}

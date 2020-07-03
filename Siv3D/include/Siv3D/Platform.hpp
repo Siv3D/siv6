@@ -175,6 +175,30 @@
 
 //////////////////////////////////////////////////
 //
+//	[[likely]], [[unlikely]] アトリビュート
+//	[[likely]] and [[unlikely]] attributes
+//
+//////////////////////////////////////////////////
+
+#if defined(__cplusplus)
+
+	# if (__has_cpp_attribute(likely) && __has_cpp_attribute(unlikely))
+
+		# define SIV3D_LIKELY [[likely]]
+		# define SIV3D_UNLIKELY [[unlikely]]
+
+	# else
+
+		# define SIV3D_LIKELY
+		# define SIV3D_UNLIKELY
+
+	# endif
+
+# endif
+
+
+//////////////////////////////////////////////////
+//
 //	constexpr std::bit_cast
 //
 //////////////////////////////////////////////////

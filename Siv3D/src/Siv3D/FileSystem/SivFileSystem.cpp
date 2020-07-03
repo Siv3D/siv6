@@ -17,7 +17,7 @@ namespace s3d
 	{
 		String Extension(const FilePathView path)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return String{};
 			}
@@ -49,7 +49,7 @@ namespace s3d
 
 		String FileName(const FilePathView path)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return String{};
 			}
@@ -117,7 +117,7 @@ namespace s3d
 
 		FilePath ParentPath(const FilePathView path, size_t level, FilePath& baseFullPath)
 		{
-			if (not path) [[unlikely]]
+			if (not path) SIV3D_UNLIKELY
 			{
 				return FilePath{};
 			}

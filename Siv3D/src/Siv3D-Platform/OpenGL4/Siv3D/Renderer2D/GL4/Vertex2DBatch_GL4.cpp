@@ -96,9 +96,9 @@ namespace s3d
 	{
 		// VB
 		if (const uint32 vertexArrayWritePosTarget = m_vertexArrayWritePos + vertexSize;
-			m_vertexArray.size() < vertexArrayWritePosTarget) [[unlikely]]
+			m_vertexArray.size() < vertexArrayWritePosTarget) SIV3D_UNLIKELY
 		{
-			if (MaxVertexArraySize < vertexArrayWritePosTarget) [[unlikely]]
+			if (MaxVertexArraySize < vertexArrayWritePosTarget) SIV3D_UNLIKELY
 			{
 				return{ nullptr, 0, 0 };
 			}
@@ -110,9 +110,9 @@ namespace s3d
 
 		// IB
 		if (const uint32 indexArrayWritePosTarget = m_indexArrayWritePos + indexSize;
-			m_indexArray.size() < indexArrayWritePosTarget) [[unlikely]]
+			m_indexArray.size() < indexArrayWritePosTarget) SIV3D_UNLIKELY
 		{
-			if (MaxIndexArraySize < indexArrayWritePosTarget) [[unlikely]]
+			if (MaxIndexArraySize < indexArrayWritePosTarget) SIV3D_UNLIKELY
 			{
 				return{ nullptr, 0, 0 };
 			}
