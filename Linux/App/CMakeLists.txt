@@ -46,7 +46,7 @@ target_link_libraries(Siv3DTest PRIVATE
   ${PROJECT_SOURCE_DIR}/../build/libSiv3D.a
   -lpthread
   -ldl
-  -lOpenGL
+  -lGL
   -lX11
   -lglib-2.0
   -lgobject-2.0
