@@ -30,29 +30,41 @@ namespace s3d
 			::mach_timebase_info(&base);
 			return (base.numer == base.denom) ? ::mach_absolute_time : SteadyFull;
 		}
+
+		static uint64 GetTimeNS() noexcept
+		{
+			const static auto SteadyClock = detail::InitSteadyClock();
+			return SteadyClock();
+		}
+
+		const static uint64 g_BaseTimeNS = GetTimeNS();
+
+		static uint64 GetApplicationTimeNS() noexcept
+		{
+			return (GetTimeNS() - g_BaseTimeNS);
+		}
 	}
 
 	namespace Time
 	{
 		uint64 GetSec() noexcept
 		{
-			return GetNanosec() / 1'000'000'000;
+			return (detail::GetApplicationTimeNS() /  1'000'000'000);
 		}
 		
 		uint64 GetMillisec() noexcept
 		{
-			return GetNanosec() / 1'000'000;
+			return (detail::GetApplicationTimeNS() /  1'000'000);
 		}
 		
 		uint64 GetMicrosec() noexcept
 		{
-			return GetNanosec() / 1'000;
+			return (detail::GetApplicationTimeNS() / 1'000);
 		}
 		
 		uint64 GetNanosec() noexcept
 		{
-			const static auto SteadyClock = detail::InitSteadyClock();
-			return SteadyClock();
+			return detail::GetApplicationTimeNS();
 		}
 	}
 }

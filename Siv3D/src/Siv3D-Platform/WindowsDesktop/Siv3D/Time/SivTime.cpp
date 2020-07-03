@@ -16,18 +16,23 @@ namespace s3d
 {
 	namespace detail
 	{
-		inline double QueryPerformanceFrequency() noexcept
-		{
+		const static int64 g_QPC_Freq = [](){
 			::LARGE_INTEGER frequency;
 			::QueryPerformanceFrequency(&frequency);
-			return static_cast<double>(frequency.QuadPart);
-		}
+			return frequency.QuadPart;
+		}();
 
-		inline int64 GetPerformanceCount() noexcept
-		{
+		const static int64 g_QPC_Base = []() {
 			::LARGE_INTEGER counter;
 			::QueryPerformanceCounter(&counter);
 			return counter.QuadPart;
+		}();
+
+		inline int64 GetCount() noexcept
+		{
+			::LARGE_INTEGER counter;
+			::QueryPerformanceCounter(&counter);
+			return (counter.QuadPart - g_QPC_Base);
 		}
 	}
 
@@ -35,26 +40,26 @@ namespace s3d
 	{
 		uint64 GetSec() noexcept
 		{
-			static const double QPF_Sec = (1 / detail::QueryPerformanceFrequency());
-			return static_cast<uint64>(detail::GetPerformanceCount() * QPF_Sec);
+			static const double QPF_Sec = (1.0 / detail::g_QPC_Freq);
+			return static_cast<uint64>(detail::GetCount() * QPF_Sec);
 		}
 
 		uint64 GetMillisec() noexcept
 		{
-			static const double QPF_Millisec = (1'000 / detail::QueryPerformanceFrequency());
-			return static_cast<uint64>(detail::GetPerformanceCount() * QPF_Millisec);
+			static const double QPF_Millisec = (1'000.0 / detail::g_QPC_Freq);
+			return static_cast<uint64>(detail::GetCount() * QPF_Millisec);
 		}
 
 		uint64 GetMicrosec() noexcept
 		{
-			static const double QPF_Microsec = (1'000'000 / detail::QueryPerformanceFrequency());
-			return static_cast<uint64>(detail::GetPerformanceCount() * QPF_Microsec);
+			static const double QPF_Microsec = (1'000'000.0 / detail::g_QPC_Freq);
+			return static_cast<uint64>(detail::GetCount() * QPF_Microsec);
 		}
 
 		uint64 GetNanosec() noexcept
 		{
-			static const double QPF_Nanosec = (1'000'000'000 / detail::QueryPerformanceFrequency());
-			return static_cast<uint64>(detail::GetPerformanceCount() * QPF_Nanosec);
+			static const double QPF_Nanosec = (1'000'000'000.0 / detail::g_QPC_Freq);
+			return static_cast<uint64>(detail::GetCount() * QPF_Nanosec);
 		}
 	}
 }

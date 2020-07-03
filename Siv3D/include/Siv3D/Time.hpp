@@ -22,39 +22,23 @@ namespace s3d
 	/// </remarks>
 	namespace Time
 	{
-		/// <summary>
-		/// コンピューターが起動してからの経過時間を秒で返します。
-		/// </summary>
-		/// <returns>
-		/// コンピューターが起動してからの経過時間（秒）
-		/// </returns>
+		/// @brief アプリケーションが起動してからの経過時間を秒で返します。
+		/// @return アプリケーションが起動してからの経過時間（秒）
 		[[nodiscard]]
 		uint64 GetSec() noexcept;
 
-		/// <summary>
-		/// コンピューターが起動してからの経過時間をミリ秒で返します。
-		/// </summary>
-		/// <returns>
-		/// コンピューターが起動してからの経過時間（ミリ秒）
-		/// </returns>
+		/// @brief アプリケーションが起動してからの経過時間をミリ秒で返します。
+		/// @return アプリケーションが起動してからの経過時間（ミリ秒）
 		[[nodiscard]]
 		uint64 GetMillisec() noexcept;
 
-		/// <summary>
-		/// コンピューターが起動してからの経過時間をマイクロ秒で返します。
-		/// </summary>
-		/// <returns>
-		/// コンピューターが起動してからの経過時間（マイクロ秒）
-		/// </returns>
+		/// @brief アプリケーションが起動してからの経過時間をマイクロ秒で返します。
+		/// @return アプリケーションが起動してからの経過時間（マイクロ秒）
 		[[nodiscard]]
 		uint64 GetMicrosec() noexcept;
 
-		/// <summary>
-		/// コンピューターが起動してからの経過時間をナノ秒で返します。
-		/// </summary>
-		/// <returns>
-		/// コンピューターが起動してからの経過時間（ナノ秒）
-		/// </returns>
+		/// @brief アプリケーションが起動してからの経過時間をナノ秒で返します。
+		/// @return アプリケーションが起動してからの経過時間（ナノ秒）
 		[[nodiscard]]
 		uint64 GetNanosec() noexcept;
 	}

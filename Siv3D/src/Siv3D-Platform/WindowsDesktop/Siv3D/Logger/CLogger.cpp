@@ -33,8 +33,6 @@ namespace s3d
 		};
 	}
 
-	const int64 g_applicationTime = Time::GetMillisec();
-
 	CLogger::CLogger()
 	{
 
@@ -47,7 +45,7 @@ namespace s3d
 
 	void CLogger::write(const LogType type, const StringView s)
 	{
-		const int64 timeStamp = (Time::GetMillisec() - g_applicationTime);
+		const int64 timeStamp = Time::GetMillisec();
 		const StringView logTypeName = detail::LogTypeNames[FromEnum(type)];
 		const String text = U"{}: {}"_fmt(timeStamp, logTypeName) + s + U'\n';
 		const std::wstring output = text.toWstr();
