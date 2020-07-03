@@ -316,14 +316,14 @@ namespace s3d
 			{
 				for (const auto& v : fs::recursive_directory_iterator(path.narrow()))
 				{
-					paths.push_back(Unicode::Widen(v.path().string()));
+					paths.push_back(detail::NormalizePath(Unicode::Widen(fs::weakly_canonical(v.path()).string())));
 				}
 			}
 			else
 			{
 				for (const auto& v : fs::directory_iterator(path.narrow()))
 				{
-					paths.push_back(Unicode::Widen(v.path().string()));
+					paths.push_back(detail::NormalizePath(Unicode::Widen(fs::weakly_canonical(v.path()).string())));
 				}
 			}
 
