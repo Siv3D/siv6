@@ -8,7 +8,7 @@ Library | Version
 [cpu_features](https://github.com/google/cpu_features) | v0.4.1
 [double-conversion](https://github.com/google/double-conversion) | v3.1.5
 [EnumBitmask](https://github.com/Reputeless/EnumBitmask) | v1.0
-[fmt](https://github.com/fmtlib/fmt) | 6.2.0
+[fmt](https://github.com/fmtlib/fmt) | 7.0.1
 [GLEW](https://github.com/nigels-com/glew) | 2.2.0
 [GLFW](https://github.com/glfw/glfw) | 3.3.2
 [infoware](https://github.com/ThePhD/infoware) | v0.5.3
