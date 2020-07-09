@@ -10,8 +10,10 @@
 //-----------------------------------------------
 
 # pragma once
+# define GLFW_EXPOSE_NATIVE_X11
 # include <ThirdParty/GL/glew.h>
 # include <ThirdParty/GLFW/glfw3.h>
+# include <ThirdParty/GLFW/glfw3native.h>
 
 namespace s3d
 {

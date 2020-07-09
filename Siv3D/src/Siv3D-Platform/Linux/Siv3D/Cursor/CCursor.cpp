@@ -11,12 +11,37 @@
 
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Image.hpp>
+# include <Siv3D/WindowState.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include "CCursor.hpp"
 
 namespace s3d
 {
+	namespace detail
+	{
+		static Point CursorScreenPos_Linux(GLFWwindow* window)
+		{
+			::Window root, win;
+			int wx, wy, rx, ry;
+			unsigned int mask;
+
+			::Display* display = ::glfwGetX11Display();
+			::Window windowHandle = ::glfwGetX11Window(window);
+			::XQueryPointer(display, windowHandle, &root, &win, &rx, &ry, &wx, &wy, &mask);
+
+			return{ rx, ry };
+		}
+	
+		static Vec2 GetClientCursorPos(GLFWwindow* window)
+		{
+			double clientX, clientY;
+			::glfwGetCursorPos(window, &clientX, &clientY);
+			return{ clientX, clientY };
+		}
+	}
+
 	CCursor::CCursor()
 	{
 
@@ -32,11 +57,20 @@ namespace s3d
 	void CCursor::init()
 	{
 		LOG_SCOPED_TRACE(U"CCursor::init()");
+
+		m_window = static_cast<GLFWwindow*>(SIV3D_ENGINE(Window)->getHandle());
 	}
 
 	bool CCursor::update()
 	{
-		// [Siv3D ToDo][Siv3D Linux]
+		const Vec2 clientPos = detail::GetClientCursorPos(m_window);
+		const Point screenPos = detail::CursorScreenPos_Linux(m_window);
+		
+		const Vec2 frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
+		const Vec2 virtualSize = SIV3D_ENGINE(Window)->getState().virtualSize;
+		const double uiScaling = (frameBufferSize.x / virtualSize.x);
+		
+		m_state.update(clientPos.asPoint(), clientPos / uiScaling, screenPos);
 
 		return true;
 	}
