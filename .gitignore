@@ -390,6 +390,10 @@ build.ninja
 rules.ninja
 
 
+#
+gmon.out
+
+
 # Siv3D
 ## Ignore dependencies folder
 /Dependencies/*/
