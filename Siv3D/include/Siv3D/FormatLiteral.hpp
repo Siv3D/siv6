@@ -10,8 +10,16 @@
 //-----------------------------------------------
 
 # pragma once
+
+# if defined(__clang__)
+#	pragma clang diagnostic push
+#	pragma clang diagnostic ignored "-Wsign-compare"
+# endif
 # include <ThirdParty/fmt/format.h>
 # include <ThirdParty/fmt/ostream.h>
+# if defined(__clang__)
+#	pragma clang diagnostic pop
+# endif
 # include "String.hpp"
 
 namespace s3d
