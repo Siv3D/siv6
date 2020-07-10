@@ -277,11 +277,11 @@ namespace s3d
 
 		void pop_front();
 
-		void popFrontN(size_t n);
+		void pop_front_N(size_t n);
 
 		void pop_back() noexcept;
 
-		void popBackN(size_t n) noexcept;
+		void pop_back_N(size_t n) noexcept;
 
 		[[nodiscard]]
 		value_type& front() noexcept;

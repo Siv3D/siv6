@@ -15,6 +15,12 @@
 
 namespace s3d
 {
+	template <class Type, class Allocator>
+	class Grid;
+
+	template <class Type, class Allocator>
+	inline void Formatter(FormatData& formatData, const Grid<Type, Allocator>& value);
+
 	/// <summary>
 	/// 可変長二次元配列
 	/// </summary>
@@ -47,7 +53,265 @@ namespace s3d
 
 	public:
 
+		Grid() = default;
+
+		Grid(const Grid&) = default;
+
+		Grid(Grid&&) = default;
+
+		Grid(size_type w, size_type h);
+
+		Grid(size_type w, size_type h, const value_type& val);
+
+		explicit Grid(Size size);
+
+		Grid(Size size, const value_type& val);
+
+		Grid(size_type w, size_type h, const Array<value_type>& data);
+
+		Grid(size_type w, size_type h, Array<value_type>&& data);
+
+		Grid(const std::initializer_list<std::initializer_list<value_type>>& set);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>* = nullptr>
+		Grid(size_type w, size_type h, Arg::generator_<Fty> generator);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>* = nullptr>
+		Grid(Size size, Arg::generator_<Fty> generator);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>* = nullptr>
+		Grid(size_type w, size_type h, Arg::indexedGenerator_<Fty> indexedGenerator);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>* = nullptr>
+		Grid(Size size, Arg::indexedGenerator_<Fty> indexedGenerator);
+
+		Grid& operator =(const Grid&) = default;
+
+		/// @brief ムーブ代入演算子
+		/// @param other ムーブする配列
+		/// @return *this
+		Grid& operator =(Grid&&) = default;
+
+		/// @brief 他の配列と要素を入れ替えます。
+		/// @param other 入れ替える配列
+		void swap(Grid& other) noexcept;
+
+		[[nodiscard]]
+		allocator_type get_allocator() const noexcept;
+
+		void assign(size_type w, size_type h, const value_type& value);
+
+		void assign(Size size, const value_type& value);
+
+		void assign(const std::initializer_list<std::initializer_list<value_type>>& set);
+
+		value_type& at(size_type y, size_type x)&;
+
+		const value_type& at(size_type y, size_type x) const&;
+
+		value_type at(size_type y, size_type x)&&;
+
+		value_type& at(Point pos)&;
+
+		const value_type& at(Point pos) const&;
+
+		value_type at(Point pos)&&;
+
+		[[nodiscard]]
+		value_type* operator[](size_t index);
+
+		[[nodiscard]]
+		const value_type* operator[](size_t index) const;
+
+		[[nodiscard]]
+		value_type& operator[](Point&pos)&;
+
+		[[nodiscard]]
+		const value_type& operator[](Point pos) const&;
+
+		[[nodiscard]]
+		value_type operator[](Point pos)&&;
+
+		[[nodiscard]]
+		bool inBounds(int64 y, int64 x) const noexcept;
+
+		[[nodiscard]]
+		bool inBounds(Point pos) const noexcept;
+
+		[[nodiscard]] pointer data() noexcept;
+
+		[[nodiscard]] const_pointer data() const noexcept;
+
+		/// @brief 配列が空であるかを返します。
+		/// @return 配列が空である場合 true, それ以外の場合は false
+		[[nodiscard]]
+		bool isEmpty() const noexcept;
+
+		/// @brief 配列が要素を持っているかを返します。
+		/// @return 配列が要素を持っている場合 true, それ以外の場合は false
+		[[nodiscard]]
+		explicit operator bool() const noexcept;
+
+		[[nodiscard]]
+		size_type width() const noexcept;
+
+		[[nodiscard]]
+		size_type height() const noexcept;
+
+		[[nodiscard]]
+		Size size() const noexcept;
+
+		[[nodiscard]]
+		size_type size_elements() const noexcept;
+
+		/// @brief 配列の要素の合計サイズ（バイト）を返します。
+		/// @return 配列の要素の合計サイズ（バイト）
+		[[nodiscard]]
+		size_t size_bytes() const noexcept;
+
+		[[nodiscard]]
+		const container_type& asArray() const noexcept;
+
+		void reserve(size_type w, size_type h);
+
+		void reserve(Size size);
+
+		[[nodiscard]]
+		size_type capacity() const noexcept;
+
+		void shrink_to_fit();
+
+		void clear() noexcept;
+
+		/// @brief 配列の要素を全て消去し、メモリも解放します。
+		void release();
+
+		[[nodiscard]]
+		iterator begin() noexcept;
+
+		[[nodiscard]]
+		const_iterator begin() const noexcept;
+
+		[[nodiscard]]
+		const_iterator cbegin() const noexcept;
+
+		[[nodiscard]]
+		iterator end() noexcept;
+
+		[[nodiscard]]
+		const_iterator end() const noexcept;
+
+		[[nodiscard]]
+		const_iterator cend() const noexcept;
+
+		[[nodiscard]]
+		reverse_iterator rbegin() noexcept;
+
+		[[nodiscard]]
+		const_reverse_iterator rbegin() const noexcept;
+
+		[[nodiscard]]
+		const_reverse_iterator crbegin() const noexcept;
+
+		[[nodiscard]]
+		reverse_iterator rend() noexcept;
+
+		[[nodiscard]]
+		const_reverse_iterator rend() const noexcept;
+
+		[[nodiscard]]
+		const_reverse_iterator crend() const noexcept;
+
+		void push_back_row(const value_type& value);
+
+		void pop_back_row();
+
+		void pop_back_row_N();
+
+		void push_back_column(const value_type& value);
+
+		void pop_back_column();
+
+		void pop_back_column_N();
+
+		void insert_row(size_type pos, const value_type& value);
+
+		void insert_rows(size_type pos, size_type rows, const value_type& value);
+
+		void insert_column(size_type pos, const value_type& value);
+
+		void insert_columns(size_type pos, size_type columns, const value_type& value);
+
+		void remove_row(size_type pos);
+
+		void remove_rows(size_type pos, size_type count);
+
+		void remove_column(size_type pos);
+
+		void remove_columns(size_type pos, size_type count);
+
+		void resize(size_type w, size_type h);
+
+		void resize(Size size);
+
+		void resize(size_type w, size_type h, const value_type& val);
+
+		void resize(Size size, const value_type& val);
+
+		[[nodiscard]]
+		friend bool operator ==(const Grid& lhs, const Grid& rhs);
+
+		[[nodiscard]]
+		friend bool operator !=(const Grid& lhs, const Grid& rhs);
+
+		friend std::ostream& operator <<(std::ostream& output, const Grid& value)
+		{
+			return (output << Format(value).narrow());
+		}
+
+		friend std::wostream& operator <<(std::wostream& output, const Grid& value)
+		{
+			return (output << Format(value).toWstr());
+		}
+
+		friend std::basic_ostream<char32>& operator <<(std::basic_ostream<char32>& output, const Grid& value)
+		{
+			const String s = Format(value);
+			return output.write(s.data(), s.size());
+		}
+
+		friend void Formatter(FormatData& formatData, const Grid& value)
+		{
+			formatData.string.push_back(U'{');
+
+			bool isFirst = true;
+
+			for (size_t y = 0; y < value.height(); ++y)
+			{
+				if (isFirst)
+				{
+					isFirst = false;
+				}
+				else
+				{
+					formatData.string.push_back(U',');
+
+					formatData.string.push_back(U'\n');
+				}
+
+				Formatter(formatData, value[y], value[y] + value.width());
+			}
+
+			formatData.string.push_back(U'}');
+		}
 	};
+
+	// deduction guide
+	template <class Type>
+	Grid(const std::initializer_list<std::initializer_list<Type>>&) -> Grid<Type>;
+
+	template <class Type, class Allocator>
+	inline void swap(Grid<Type, Allocator>& a, Grid<Type, Allocator>& b) noexcept;
 }
 
 # include "detail/Grid.ipp"

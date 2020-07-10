@@ -147,12 +147,12 @@ namespace s3d
 			erase(begin());
 		}
 
-		void popFrontN(const size_t n)
+		void pop_front_N(const size_t n)
 		{
 			erase(begin(), begin() + Min(n, size()));
 		}
 
-		void popBackN(const size_t n)
+		void pop_back_N(const size_t n)
 		{
 			erase(end() - Min(n, size()), end());
 		}

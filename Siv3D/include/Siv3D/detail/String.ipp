@@ -532,7 +532,7 @@ namespace s3d
 		m_string.erase(m_string.begin());
 	}
 
-	inline void String::popFrontN(const size_t n)
+	inline void String::pop_front_N(const size_t n)
 	{
 		m_string.erase(m_string.begin(), m_string.begin() + Min(n, m_string.size()));
 	}
@@ -542,7 +542,7 @@ namespace s3d
 		m_string.pop_back();
 	}
 
-	inline void String::popBackN(const size_t n) noexcept
+	inline void String::pop_back_N(const size_t n) noexcept
 	{
 		m_string.erase(m_string.end() - Min(n, m_string.size()), m_string.end());
 	}

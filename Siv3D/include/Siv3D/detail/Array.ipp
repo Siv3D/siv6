@@ -84,13 +84,13 @@ namespace s3d
 	}
 
 	template <class Type, class Allocator>
-	inline void Array<Type, Allocator>::popFrontN(const size_t n)
+	inline void Array<Type, Allocator>::pop_front_N(const size_t n)
 	{
 		erase(begin(), begin() + Min(n, size()));
 	}
 
 	template <class Type, class Allocator>
-	inline void Array<Type, Allocator>::popBackN(const size_t n)
+	inline void Array<Type, Allocator>::pop_back_N(const size_t n)
 	{
 		erase(end() - Min(n, size()), end());
 	}
