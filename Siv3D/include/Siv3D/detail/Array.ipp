@@ -46,7 +46,7 @@ namespace s3d
 	template <class Type, class Allocator>
 	inline Array<Type, Allocator>::operator bool() const noexcept
 	{
-		return not base_type::empty();
+		return (not base_type::empty());
 	}
 
 	template <class Type, class Allocator>
@@ -60,7 +60,7 @@ namespace s3d
 	template <class Type, class Allocator>
 	inline size_t Array<Type, Allocator>::size_bytes() const noexcept
 	{
-		static_assert(std::is_trivially_copyable_v<value_type>, "Array::size_bytes() value_type must be trivially copyable.");
+		static_assert(std::is_trivially_copyable_v<value_type>, "Array::size_bytes(): value_type must be trivially copyable.");
 
 		return size() * sizeof(value_type);
 	}

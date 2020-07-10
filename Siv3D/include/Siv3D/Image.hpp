@@ -278,111 +278,39 @@ namespace s3d
 		[[nodiscard]]
 		Array<Color> asArray()&&;
 
-		/// <summary>
-		/// 画像の先頭位置のイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の先頭位置のイテレータ
-		/// </returns>
 		[[nodiscard]]
 		iterator begin() noexcept;
 
-		/// <summary>
-		/// 画像の先頭位置のイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の先頭位置のイテレータ
-		/// </returns>
-		[[nodiscard]]
-		const_iterator begin() const noexcept;
-
-		/// <summary>
-		/// 画像の先頭位置のイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の先頭位置のイテレータ
-		/// </returns>
-		[[nodiscard]]
-		const_iterator cbegin() const noexcept;
-
-		/// <summary>
-		/// 画像の終了位置のイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の終了位置のイテレータ
-		/// </returns>
 		[[nodiscard]]
 		iterator end() noexcept;
 
-		/// <summary>
-		/// 画像の終了位置のイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の終了位置のイテレータ
-		/// </returns>
+		[[nodiscard]]
+		const_iterator begin() const noexcept;
+
 		[[nodiscard]]
 		const_iterator end() const noexcept;
 
-		/// <summary>
-		/// 画像の終了位置のイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の終了位置のイテレータ
-		/// </returns>
+		[[nodiscard]]
+		const_iterator cbegin() const noexcept;
+
 		[[nodiscard]]
 		const_iterator cend() const noexcept;
 
-		/// <summary>
-		/// 画像の末尾へのリバースイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の末尾へのリバースイテレータ
-		/// </returns>
 		[[nodiscard]]
 		reverse_iterator rbegin() noexcept;
 
-		/// <summary>
-		/// 画像の末尾へのリバースイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の末尾へのリバースイテレータ
-		/// </returns>
-		[[nodiscard]]
-		const_reverse_iterator rbegin() const noexcept;
-
-		/// <summary>
-		/// 画像の末尾へのリバースイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の末尾へのリバースイテレータ
-		/// </returns>
-		[[nodiscard]]
-		const_reverse_iterator crbegin() const noexcept;
-
-		/// <summary>
-		/// 画像の先頭の前へのリバースイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の先頭の前へのリバースイテレータ
-		/// </returns>
 		[[nodiscard]]
 		reverse_iterator rend() noexcept;
 
-		/// <summary>
-		/// 画像の先頭の前へのリバースイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の先頭の前へのリバースイテレータ
-		/// </returns>
+		[[nodiscard]]
+		const_reverse_iterator rbegin() const noexcept;
+
 		[[nodiscard]]
 		const_reverse_iterator rend() const noexcept;
 
-		/// <summary>
-		/// 画像の先頭の前へのリバースイテレータを取得します。
-		/// </summary>
-		/// <returns>
-		/// 画像の先頭の前へのリバースイテレータ
-		/// </returns>
+		[[nodiscard]]
+		const_reverse_iterator crbegin() const noexcept;
+
 		[[nodiscard]]
 		const_reverse_iterator crend() const noexcept;
 

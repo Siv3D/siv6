@@ -420,24 +420,24 @@ namespace s3d
 		return m_string.begin();
 	}
 
-	inline String::const_iterator String::begin() const noexcept
-	{
-		return m_string.begin();
-	}
-
-	inline String::const_iterator String::cbegin() const noexcept
-	{
-		return m_string.cbegin();
-	}
-
 	inline String::iterator String::end() noexcept
 	{
 		return m_string.end();
 	}
 
+	inline String::const_iterator String::begin() const noexcept
+	{
+		return m_string.begin();
+	}
+
 	inline String::const_iterator String::end() const noexcept
 	{
 		return m_string.end();
+	}
+
+	inline String::const_iterator String::cbegin() const noexcept
+	{
+		return m_string.cbegin();
 	}
 
 	inline String::const_iterator String::cend() const noexcept
@@ -450,24 +450,24 @@ namespace s3d
 		return m_string.rbegin();
 	}
 
-	inline String::const_reverse_iterator String::rbegin() const noexcept
-	{
-		return m_string.rbegin();
-	}
-
-	inline String::const_reverse_iterator String::crbegin() const noexcept
-	{
-		return m_string.crbegin();
-	}
-
 	inline String::reverse_iterator String::rend() noexcept
 	{
 		return m_string.rend();
 	}
 
+	inline String::const_reverse_iterator String::rbegin() const noexcept
+	{
+		return m_string.rbegin();
+	}
+
 	inline String::const_reverse_iterator String::rend() const noexcept
 	{
 		return m_string.rend();
+	}
+
+	inline String::const_reverse_iterator String::crbegin() const noexcept
+	{
+		return m_string.crbegin();
 	}
 
 	inline String::const_reverse_iterator String::crend() const noexcept
@@ -619,7 +619,7 @@ namespace s3d
 
 	inline String::operator bool() const noexcept
 	{
-		return not m_string.empty();
+		return (not m_string.empty());
 	}
 
 	inline size_t String::max_size() const noexcept

@@ -147,7 +147,7 @@ namespace s3d
 
 	inline constexpr StringView::operator bool() const noexcept
 	{
-		return not m_view.empty();
+		return (not m_view.empty());
 	}
 
 	constexpr void StringView::remove_prefix(const size_type n) noexcept

@@ -42,12 +42,12 @@ namespace s3d
 		using base_type::back;
 		using base_type::data;
 		using base_type::begin;
-		using base_type::cbegin;
 		using base_type::end;
+		using base_type::cbegin;
 		using base_type::cend;
 		using base_type::rbegin;
-		using base_type::crbegin;
 		using base_type::rend;
+		using base_type::crbegin;
 		using base_type::crend;
 		using base_type::empty;
 		using base_type::size;
@@ -121,7 +121,7 @@ namespace s3d
 		[[nodiscard]]
 		explicit operator bool() const noexcept
 		{
-			return not base_type::empty();
+			return (not base_type::empty());
 		}
 
 		void release()

@@ -12,6 +12,7 @@
 # pragma once
 # include "Common.hpp"
 # include "Array.hpp"
+# include "PointVector.hpp"
 
 namespace s3d
 {
@@ -61,15 +62,19 @@ namespace s3d
 
 		Grid(size_type w, size_type h);
 
-		Grid(size_type w, size_type h, const value_type& val);
+		Grid(size_type w, size_type h, const value_type& value);
 
 		explicit Grid(Size size);
 
-		Grid(Size size, const value_type& val);
+		Grid(Size size, const value_type& value);
 
 		Grid(size_type w, size_type h, const Array<value_type>& data);
 
 		Grid(size_type w, size_type h, Array<value_type>&& data);
+
+		Grid(Size size, const Array<value_type>& data);
+
+		Grid(Size size, Array<value_type>&& data);
 
 		Grid(const std::initializer_list<std::initializer_list<value_type>>& set);
 
@@ -124,7 +129,7 @@ namespace s3d
 		const value_type* operator[](size_t index) const;
 
 		[[nodiscard]]
-		value_type& operator[](Point&pos)&;
+		value_type& operator[](Point pos)&;
 
 		[[nodiscard]]
 		const value_type& operator[](Point pos) const&;
@@ -141,6 +146,11 @@ namespace s3d
 		[[nodiscard]] pointer data() noexcept;
 
 		[[nodiscard]] const_pointer data() const noexcept;
+
+		/// @brief 配列が空であるかを返します。
+		/// @return 配列が空である場合 true, それ以外の場合は false
+		[[nodiscard]]
+		bool empty() const noexcept;
 
 		/// @brief 配列が空であるかを返します。
 		/// @return 配列が空である場合 true, それ以外の場合は false
@@ -190,16 +200,16 @@ namespace s3d
 		iterator begin() noexcept;
 
 		[[nodiscard]]
-		const_iterator begin() const noexcept;
-
-		[[nodiscard]]
-		const_iterator cbegin() const noexcept;
-
-		[[nodiscard]]
 		iterator end() noexcept;
 
 		[[nodiscard]]
+		const_iterator begin() const noexcept;
+
+		[[nodiscard]]
 		const_iterator end() const noexcept;
+
+		[[nodiscard]]
+		const_iterator cbegin() const noexcept;
 
 		[[nodiscard]]
 		const_iterator cend() const noexcept;
@@ -208,16 +218,16 @@ namespace s3d
 		reverse_iterator rbegin() noexcept;
 
 		[[nodiscard]]
-		const_reverse_iterator rbegin() const noexcept;
-
-		[[nodiscard]]
-		const_reverse_iterator crbegin() const noexcept;
-
-		[[nodiscard]]
 		reverse_iterator rend() noexcept;
 
 		[[nodiscard]]
+		const_reverse_iterator rbegin() const noexcept;
+
+		[[nodiscard]]
 		const_reverse_iterator rend() const noexcept;
+
+		[[nodiscard]]
+		const_reverse_iterator crbegin() const noexcept;
 
 		[[nodiscard]]
 		const_reverse_iterator crend() const noexcept;

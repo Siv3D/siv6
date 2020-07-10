@@ -135,7 +135,7 @@ namespace s3d
 
 	inline Image::operator bool() const noexcept
 	{
-		return not m_data.empty();
+		return (not m_data.empty());
 	}
 
 	inline void Image::shrink_to_fit()
@@ -225,24 +225,24 @@ namespace s3d
 		return m_data.begin();
 	}
 
-	inline Image::const_iterator Image::begin() const noexcept
-	{
-		return m_data.begin();
-	}
-
-	inline Image::const_iterator Image::cbegin() const noexcept
-	{
-		return m_data.cbegin();
-	}
-
 	inline Image::iterator Image::end() noexcept
 	{
 		return m_data.end();
 	}
 
+	inline Image::const_iterator Image::begin() const noexcept
+	{
+		return m_data.begin();
+	}
+
 	inline Image::const_iterator Image::end() const noexcept
 	{
 		return m_data.end();
+	}
+
+	inline Image::const_iterator Image::cbegin() const noexcept
+	{
+		return m_data.cbegin();
 	}
 
 	inline Image::const_iterator Image::cend() const noexcept
@@ -255,24 +255,24 @@ namespace s3d
 		return m_data.rbegin();
 	}
 
-	inline Image::const_reverse_iterator Image::rbegin() const noexcept
-	{
-		return m_data.rbegin();
-	}
-
-	inline Image::const_reverse_iterator Image::crbegin() const noexcept
-	{
-		return m_data.crbegin();
-	}
-
 	inline Image::reverse_iterator Image::rend() noexcept
 	{
 		return m_data.rend();
 	}
 
+	inline Image::const_reverse_iterator Image::rbegin() const noexcept
+	{
+		return m_data.rbegin();
+	}
+
 	inline Image::const_reverse_iterator Image::rend() const noexcept
 	{
 		return m_data.rend();
+	}
+
+	inline Image::const_reverse_iterator Image::crbegin() const noexcept
+	{
+		return m_data.crbegin();
 	}
 
 	inline Image::const_reverse_iterator Image::crend() const noexcept
