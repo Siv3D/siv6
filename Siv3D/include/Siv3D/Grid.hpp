@@ -268,6 +268,15 @@ namespace s3d
 
 		void resize(Size size, const value_type& val);
 
+
+
+		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
+		auto map(Fty f) const;
+
+
+
+
+
 		[[nodiscard]]
 		friend bool operator ==(const Grid& lhs, const Grid& rhs);
 
@@ -318,10 +327,52 @@ namespace s3d
 
 	// deduction guide
 	template <class Type>
-	Grid(const std::initializer_list<std::initializer_list<Type>>&) -> Grid<Type>;
+	Grid(std::initializer_list<std::initializer_list<Type>>) -> Grid<Type>;
+
+	template <class Type>
+	Grid(typename Grid<Type>::size_type, typename Grid<Type>::size_type, const Array<Type>&) -> Grid<Type>;
+
+	template <class Type>
+	Grid(typename Grid<Type>::size_type, typename Grid<Type>::size_type, Array<Type>&&) -> Grid<Type>;
+
+	template <class Type>
+	Grid(Size, const Array<Type>&) -> Grid<Type>;
+
+	template <class Type>
+	Grid(Size, Array<Type>&&) -> Grid<Type>;
 
 	template <class Type, class Allocator>
 	inline void swap(Grid<Type, Allocator>& a, Grid<Type, Allocator>& b) noexcept;
 }
+
+template <class Type, class Allocator>
+struct SIV3D_HIDDEN fmt::formatter<s3d::Grid<Type, Allocator>, s3d::char32>
+{
+	std::u32string tag;
+
+	auto parse(basic_format_parse_context<s3d::char32>& ctx)
+	{
+		return s3d::detail::GetFormatTag(tag, ctx);
+	}
+
+	template <class FormatContext>
+	auto format(const s3d::Grid<Type, Allocator>& value, FormatContext& ctx)
+	{
+		if (tag.empty())
+		{
+			const s3d::String s = s3d::Format(value).replace(U"{", U"{{").replace(U"}", U"}}");
+			const basic_string_view<s3d::char32> sv(s.data(), s.size());
+			return format_to(ctx.out(), sv);
+		}
+		else
+		{
+			const s3d::String format = U"{:" + tag + U'}';
+			const auto formatHelper = s3d::Fmt(format);
+			const s3d::String s = s3d::Format(value.map([&formatHelper](const auto& e) { return formatHelper(e); })).replace(U"{", U"{{").replace(U"}", U"}}");
+			const basic_string_view<s3d::char32> sv(s.data(), s.size());
+			return format_to(ctx.out(), sv);
+		}
+	}
+};
 
 # include "detail/Grid.ipp"

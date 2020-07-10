@@ -595,33 +595,5 @@ namespace s3d
 	inline auto MakeArray(T0&& first, Ts&&... args);
 }
 
-template <class Type, class Allocator>
-struct SIV3D_HIDDEN fmt::formatter<s3d::Array<Type, Allocator>, s3d::char32>
-{
-	std::u32string tag;
-
-	auto parse(basic_format_parse_context<s3d::char32>& ctx)
-	{
-		return s3d::detail::GetFormatTag(tag, ctx);
-	}
-
-	template <class FormatContext>
-	auto format(const s3d::Array<Type, Allocator>& value, FormatContext& ctx)
-	{
-		const s3d::String s = s3d::Format(value).replace(U"{", U"{{").replace(U"}", U"}}");
-		const basic_string_view<s3d::char32> sv(s.data(), s.size());
-
-		if (tag.empty())
-		{
-			return format_to(ctx.out(), sv);
-		}
-		else
-		{
-			const std::u32string format = (U"{:" + tag + U'}');
-			return format_to(ctx.out(), format, sv);
-		}
-	}
-};
-
 # include "detail/Array.ipp"
 # include "detail/BoolArray.ipp"

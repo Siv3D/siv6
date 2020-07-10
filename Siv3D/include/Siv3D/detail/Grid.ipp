@@ -415,4 +415,26 @@ namespace s3d
 	{
 		return m_data.crend();
 	}
+
+
+
+
+
+	template <class Type, class Allocator>
+	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>*>
+	inline auto Grid<Type, Allocator>::map(Fty f) const
+	{
+		using ResultType = std::decay_t<std::invoke_result_t<Fty, Type>>;
+
+		Array<ResultType> new_grid;
+
+		new_grid.reserve(m_width * m_height);
+
+		for (const auto& v : m_data)
+		{
+			new_grid.push_back(f(v));
+		}
+
+		return Grid<ResultType>(m_width, m_height, std::move(new_grid));
+	}
 }

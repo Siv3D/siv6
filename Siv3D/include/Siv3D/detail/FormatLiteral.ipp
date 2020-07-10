@@ -28,9 +28,9 @@ namespace s3d
 		};
 	}
 
-	inline detail::FormatHelper Fmt(const String& s) noexcept
+	inline constexpr detail::FormatHelper Fmt(const char32* s) noexcept
 	{
-		return detail::FormatHelper{ s.c_str(), s.size() };
+		return detail::FormatHelper{ s, std::char_traits<char32>::length(s) };
 	}
 
 	inline constexpr detail::FormatHelper Fmt(const StringView s) noexcept
@@ -38,9 +38,14 @@ namespace s3d
 		return detail::FormatHelper{ s.data(), s.size() };
 	}
 
-	inline constexpr detail::FormatHelper Fmt(const char32* s) noexcept
+	inline detail::FormatHelper Fmt(const String& s) noexcept
 	{
-		return detail::FormatHelper{ s, std::char_traits<char32>::length(s) };
+		return detail::FormatHelper{ s.c_str(), s.size() };
+	}
+
+	inline detail::FormatHelper Fmt(const std::u32string& s) noexcept
+	{
+		return detail::FormatHelper{ s.c_str(), s.size() };
 	}
 
 	inline namespace Literals
