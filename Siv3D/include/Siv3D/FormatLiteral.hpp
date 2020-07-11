@@ -10,20 +10,9 @@
 //-----------------------------------------------
 
 # pragma once
-
-# ifdef __clang__
-#	pragma clang diagnostic push
-#	pragma clang diagnostic ignored "-Wsign-compare"
-# endif
-SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4389)
-# include <ThirdParty/fmt/format.h>
-# include <ThirdParty/fmt/ostream.h>
-SIV3D_DISABLE_MSVC_WARNINGS_POP()
-# ifdef __clang__
-#	pragma clang diagnostic pop
-# endif
 # include "String.hpp"
 # include "Array.hpp"
+# include "detail/FormatLiteral_impl.ipp"
 
 namespace s3d
 {
