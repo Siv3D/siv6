@@ -206,18 +206,6 @@ namespace s3d
 			}();
 			
 			//static bool g_isSandBoxed;
-			
-			void SetInitialPath(FilePath& path)
-			{
-				g_initialPath = std::move(path);
-			}
-		
-			void SetModulePath(FilePath&& path)
-			{
-				g_modulePath = std::move(path);
-				
-				//g_isSandBoxed = FileSystem::SpecialFolderPath(SpecialFolder::Caches).includes(U"/Library/Containers/");
-			}
 		}
 	}
 

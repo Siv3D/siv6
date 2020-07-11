@@ -57,6 +57,8 @@ namespace s3d
 	}
 }
 
+# include "detail/FormatLiteral.ipp"
+
 template <>
 struct SIV3D_HIDDEN fmt::formatter<s3d::String, s3d::char32>
 {
@@ -140,5 +142,3 @@ struct SIV3D_HIDDEN fmt::formatter<s3d::Array<Type, Allocator>, s3d::char32>
 		}
 	}
 };
-
-# include "detail/FormatLiteral.ipp"

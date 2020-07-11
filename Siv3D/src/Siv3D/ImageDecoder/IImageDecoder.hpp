@@ -13,6 +13,8 @@
 # include <Siv3D/Common.hpp>
 # include <Siv3D/ImageInfo.hpp>
 # include <Siv3D/Image.hpp>
+# include <Siv3D/Optional.hpp>
+# include <Siv3D/Grid.hpp>
 # include <Siv3D/IImageDecoder.hpp>
 
 namespace s3d
