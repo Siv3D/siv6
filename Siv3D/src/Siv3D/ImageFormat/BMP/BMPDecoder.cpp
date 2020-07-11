@@ -71,8 +71,15 @@ namespace s3d
 		}
 
 		const Size size(header.biWidth, std::abs(header.biHeight));
+		
+		PixelFormat pixelFormat = PixelFormat::R8G8B8;
 
-		return ImageInfo{ ImageFormat::BMP, PixelFormat::R8G8B8, size, false };
+		if (header.biBitCount == 32)
+		{
+			pixelFormat = PixelFormat::R8G8B8X8;
+		}
+
+		return ImageInfo{ ImageFormat::BMP, pixelFormat, size, false };
 	}
 
 	Image BMPDecoder::decode(IReader& reader, const FilePathView) const
@@ -112,6 +119,8 @@ namespace s3d
 		}
 
 		Image image(width, height);
+
+		LOG_VERBOSE(U"BMPHeader::biBitCount: {}"_fmt(header.biBitCount));
 
 		switch (const int32 depth = header.biBitCount)
 		{
@@ -196,7 +205,7 @@ namespace s3d
 			}
 		}
 
-		LOG_VERBOSE(U"BMPDecoder::decode(): Image ({}x{}) decoded"_fmt(
+		LOG_VERBOSE(U"Image ({}x{}) decoded"_fmt(
 			width, height));
 
 		return image;
