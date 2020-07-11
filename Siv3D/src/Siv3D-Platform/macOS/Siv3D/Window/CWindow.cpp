@@ -40,7 +40,7 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CWindow::init()");
 		
-		//::glfwInitHint(GLFW_COCOA_CHDIR_RESOURCES, GLFW_FALSE);
+		::glfwInitHint(GLFW_COCOA_CHDIR_RESOURCES, GLFW_FALSE);
 		
 		if (!::glfwInit())
 		{

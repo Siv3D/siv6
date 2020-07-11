@@ -115,11 +115,14 @@ namespace s3d
 							 length:sizeof(VSConstants2D)
 							atIndex:1];
 
-			[encoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle
-								indexCount:m_draw_indexCount
-								 indexType:MTLIndexTypeUInt16
-							   indexBuffer:m_batches.getCurrentIndexBuffer()
-						 indexBufferOffset:0];
+			if (m_draw_indexCount)
+			{
+				[encoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle
+									indexCount:m_draw_indexCount
+									 indexType:MTLIndexTypeUInt16
+								   indexBuffer:m_batches.getCurrentIndexBuffer()
+							 indexBufferOffset:0];
+			}
 			
 			[encoder endEncoding];
 			[buffer presentDrawable:drawable];
