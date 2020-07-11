@@ -437,4 +437,12 @@ namespace s3d
 
 		return Grid<ResultType>(m_width, m_height, std::move(new_grid));
 	}
+
+
+
+	template <class Type, class Allocator>
+	inline void swap(Grid<Type, Allocator>& a, Grid<Type, Allocator>& b) noexcept
+	{
+		a.swap(b);
+	}
 }

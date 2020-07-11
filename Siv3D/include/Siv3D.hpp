@@ -843,7 +843,11 @@
 
 
 # include <Siv3D/ImageFormat.hpp>
+# include <Siv3D/PixelFormat.hpp>
+# include <Siv3D/ImageInfo.hpp>
 # include <Siv3D/Image.hpp>
+# include <Siv3D/IImageDecoder.hpp>
+# include <Siv3D/ImageDecoder.hpp>
 
 # include <Siv3D/Scene.hpp>
 

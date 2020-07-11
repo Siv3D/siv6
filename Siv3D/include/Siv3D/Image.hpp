@@ -90,11 +90,7 @@ namespace s3d
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty, Vec2> || std::is_invocable_r_v<Color, Fty, double, double>)>* = nullptr>
 		Image(Size size, Arg::generator0_1_<Fty> generator);
 
-
-
-
-
-		explicit Image(FilePathView path);
+		explicit Image(FilePathView path, ImageFormat format = ImageFormat::Unspecified);
 
 		explicit Image(IReader&& reader, ImageFormat format = ImageFormat::Unspecified);
 
@@ -326,10 +322,15 @@ namespace s3d
 		/// </returns>
 		void fill(Color color) noexcept;
 
+		void resize(size_t width, size_t height);
 
+		void resize(Size size);
 
+		void resize(size_t width, size_t height, Color fillColor);
 
+		void resize(Size size, Color fillColor);
 
+		void resizeRows(size_t rows, Color fillColor);
 
 
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty>

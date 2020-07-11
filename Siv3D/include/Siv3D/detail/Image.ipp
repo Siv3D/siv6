@@ -291,6 +291,73 @@ namespace s3d
 		}
 	}
 
+	inline void Image::resize(const size_t width, const size_t height)
+	{
+		resize(Size(width, height));
+	}
+
+	inline void Image::resize(const Size size)
+	{
+		if (not detail::IsValidImageSize(size))
+		{
+			return clear();
+		}
+
+		if (size == Size(m_width, m_height))
+		{
+			return;
+		}
+
+		m_data.resize(size.x * size.y);
+		m_width		= static_cast<uint32>(size.x);
+		m_height	= static_cast<uint32>(size.y);
+	}
+
+	inline void Image::resize(const size_t width, const size_t height, const Color fillColor)
+	{
+		resize(Size(width, height), fillColor);
+	}
+
+	inline void Image::resize(const Size size, const Color fillColor)
+	{
+		if (not detail::IsValidImageSize(size))
+		{
+			return clear();
+		}
+
+		if (size == Size(m_width, m_height))
+		{
+			return;
+		}
+
+		m_data.assign(size.x * size.y, fillColor);
+		m_width		= static_cast<uint32>(size.x);
+		m_height	= static_cast<uint32>(size.y);
+	}
+
+	inline void Image::resizeRows(const size_t rows, const Color fillColor)
+	{
+		if (rows == m_height)
+		{
+			return;
+		}
+
+		if (!detail::IsValidImageSize(Size(m_width, rows)))
+		{
+			return clear();
+		}
+
+		if (rows < m_height)
+		{
+			m_data.resize(m_width * rows);
+		}
+		else
+		{
+			m_data.insert(m_data.end(), m_width * (rows - m_height), fillColor);
+		}
+
+		m_height = static_cast<uint32>(rows);
+	}
 
 
 

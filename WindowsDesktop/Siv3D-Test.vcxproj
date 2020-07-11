@@ -109,6 +109,7 @@
   <ItemGroup>
     <ClCompile Include="..\Test\Siv3DTest.cpp" />
     <ClCompile Include="..\Test\Siv3DTest_FileSystem.cpp" />
+    <ClCompile Include="..\Test\Siv3DTest_Image.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>

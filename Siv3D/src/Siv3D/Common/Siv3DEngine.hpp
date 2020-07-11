@@ -21,6 +21,7 @@ namespace s3d
 	class ISiv3DProfiler;
 	class ISiv3DUserAction;
 	class ISiv3DWindow;
+	class ISiv3DImageDecoder;
 	class ISiv3DScene;
 	class ISiv3DConsole;
 	class ISiv3DCursor;
@@ -40,6 +41,7 @@ namespace s3d
 			Siv3DComponent<ISiv3DProfiler>,
 			Siv3DComponent<ISiv3DUserAction>,
 			Siv3DComponent<ISiv3DWindow>,
+			Siv3DComponent<ISiv3DImageDecoder>,
 			Siv3DComponent<ISiv3DScene>,
 			Siv3DComponent<ISiv3DConsole>,
 			Siv3DComponent<ISiv3DCursor>,

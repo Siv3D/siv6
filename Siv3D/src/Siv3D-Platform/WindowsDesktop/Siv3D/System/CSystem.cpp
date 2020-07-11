@@ -11,6 +11,7 @@
 
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/Profiler/IProfiler.hpp>
+# include <Siv3D/ImageDecoder/IImageDecoder.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Scene/IScene.hpp>
 # include <Siv3D/Cursor/ICursor.hpp>
@@ -53,6 +54,7 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CSystem::init2()");
 
+		SIV3D_ENGINE(ImageDecoder)->init();
 		SIV3D_ENGINE(Cursor)->init();
 		SIV3D_ENGINE(Renderer)->init();
 		SIV3D_ENGINE(Renderer2D)->init();

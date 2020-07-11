@@ -278,10 +278,16 @@ namespace s3d
 
 
 		[[nodiscard]]
-		friend bool operator ==(const Grid& lhs, const Grid& rhs);
+		friend bool operator ==(const Grid& lhs, const Grid& rhs)
+		{
+			return (lhs.asArray() == rhs.asArray());
+		}
 
 		[[nodiscard]]
-		friend bool operator !=(const Grid& lhs, const Grid& rhs);
+		friend bool operator !=(const Grid& lhs, const Grid& rhs)
+		{
+			return (lhs.asArray() != rhs.asArray());
+		}
 
 		friend std::ostream& operator <<(std::ostream& output, const Grid& value)
 		{
