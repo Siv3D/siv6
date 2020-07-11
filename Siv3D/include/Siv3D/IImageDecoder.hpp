@@ -16,6 +16,8 @@
 # include "ImageInfo.hpp"
 # include "Image.hpp"
 # include "Optional.hpp"
+# include "Grid.hpp"
+# include "BinaryReader.hpp"
 
 namespace s3d
 {
@@ -35,9 +37,23 @@ namespace s3d
 		virtual const Array<String>& possibleExtensions() const = 0;
 
 		[[nodiscard]]
+		virtual Optional<ImageInfo> getImageInfo(FilePathView path) const;
+
+		[[nodiscard]]
 		virtual Optional<ImageInfo> getImageInfo(IReader& reader, FilePathView pathHint) const = 0;
 
 		[[nodiscard]]
+		virtual Image decode(FilePathView path) const;
+
+		[[nodiscard]]
 		virtual Image decode(IReader& reader, FilePathView pathHint) const = 0;
+
+		[[nodiscard]]
+		virtual Grid<uint16> decodeGray16(FilePathView path) const;
+
+		[[nodiscard]]
+		virtual Grid<uint16> decodeGray16(IReader&, FilePathView) const;
 	};
 }
+
+# include "detail/IImageDecoder.ipp"

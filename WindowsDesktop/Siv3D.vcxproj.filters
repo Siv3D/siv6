@@ -352,8 +352,14 @@
     <Filter Include="src\Siv3D\ImageFormat">
       <UniqueIdentifier>{55b16fd5-1904-4b63-bfb2-72a4af407e99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Siv3D\ImageFormat\BMP">
-      <UniqueIdentifier>{3b72fc44-ccca-4b33-bd95-c5479690359e}</UniqueIdentifier>
+    <Filter Include="src\ThirdParty\libpng">
+      <UniqueIdentifier>{72524d07-563f-4290-a0e6-37c20a4980f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ThirdParty\zlib">
+      <UniqueIdentifier>{cbb375cb-3b52-4a4c-898d-5d16a88073a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Siv3D\ImageFormat">
+      <UniqueIdentifier>{13aaae02-f1d6-4e1c-86aa-cd673cfbc91b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1242,8 +1248,29 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ImageDecoder.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\src\Siv3D\ImageFormat\BMP\BMPDecoder.hpp">
-      <Filter>src\Siv3D\ImageFormat\BMP</Filter>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zlib.h">
+      <Filter>src\ThirdParty\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zconf.h">
+      <Filter>src\ThirdParty\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\libpng\png.h">
+      <Filter>src\ThirdParty\libpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\libpng\pngconf.h">
+      <Filter>src\ThirdParty\libpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\libpng\pnglibconf.h">
+      <Filter>src\ThirdParty\libpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat\BMPDecoder.hpp">
+      <Filter>include\Siv3D\ImageFormat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat\PNGDecoder.hpp">
+      <Filter>include\Siv3D\ImageFormat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\IImageDecoder.ipp">
+      <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1817,8 +1844,11 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Image\SivImage.cpp">
       <Filter>src\Siv3D\Image</Filter>
     </ClCompile>
-    <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\BMP\BMPDecoder.cpp">
-      <Filter>src\Siv3D\ImageFormat\BMP</Filter>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\BMPDecoder.cpp">
+      <Filter>src\Siv3D\ImageFormat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\PNGDecoder.cpp">
+      <Filter>src\Siv3D\ImageFormat</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

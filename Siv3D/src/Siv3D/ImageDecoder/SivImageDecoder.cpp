@@ -52,6 +52,23 @@ namespace s3d
 			return SIV3D_ENGINE(ImageDecoder)->decode(reader, {}, imageFormat);
 		}
 
+		Grid<uint16> DecodeGray16(FilePathView path, const ImageFormat imageFormat)
+		{
+			BinaryReader reader(path);
+
+			if (not reader)
+			{
+				return{};
+			}
+
+			return SIV3D_ENGINE(ImageDecoder)->decodeGray16(reader, path, imageFormat);
+		}
+
+		Grid<uint16> DecodeGray16(IReader& reader, const ImageFormat imageFormat)
+		{
+			return SIV3D_ENGINE(ImageDecoder)->decodeGray16(reader, {}, imageFormat);
+		}
+
 		bool Add(std::unique_ptr<IImageDecoder>&& decoder)
 		{
 			return SIV3D_ENGINE(ImageDecoder)->add(std::move(decoder));

@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------
 
-# include "BMPDecoder.hpp"
+# include <Siv3D/ImageFormat/BMPDecoder.hpp>
 # include <Siv3D/EngineLog.hpp>
 
 namespace s3d
@@ -59,6 +59,11 @@ namespace s3d
 		return extensions;
 	}
 
+	Optional<ImageInfo> BMPDecoder::getImageInfo(const FilePathView path) const
+	{
+		return IImageDecoder::getImageInfo(path);
+	}
+
 	Optional<ImageInfo> BMPDecoder::getImageInfo(IReader& reader, const FilePathView) const
 	{
 		BMPHeader header;
@@ -80,6 +85,11 @@ namespace s3d
 		}
 
 		return ImageInfo{ ImageFormat::BMP, pixelFormat, size, false };
+	}
+
+	Image BMPDecoder::decode(const FilePathView path) const
+	{
+		return IImageDecoder::decode(path);
 	}
 
 	Image BMPDecoder::decode(IReader& reader, const FilePathView) const

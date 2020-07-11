@@ -848,6 +848,8 @@
 # include <Siv3D/Image.hpp>
 # include <Siv3D/IImageDecoder.hpp>
 # include <Siv3D/ImageDecoder.hpp>
+# include <Siv3D/ImageFormat/BMPDecoder.hpp>
+# include <Siv3D/ImageFormat/PNGDecoder.hpp>
 
 # include <Siv3D/Scene.hpp>
 

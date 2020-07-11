@@ -25,5 +25,7 @@
 # pragma comment (lib, "opengl32")
 # pragma comment (lib, "version")
 # pragma comment (lib, "Siv3D" SIV3D_DEBUG_LIB_POSTFIX(_d))
+# pragma comment (lib, "libpng/libpng16" SIV3D_DEBUG_LIB_POSTFIX(_d))
+# pragma comment (lib, "zlib/zlib" SIV3D_DEBUG_LIB_POSTFIX(_d))
 
 # undef SIV3D_DEBUG_LIB_POSTFIX

@@ -35,6 +35,8 @@ namespace s3d
 
 		Image decode(IReader& reader, FilePathView pathHint, ImageFormat imageFormat) override;
 
+		Grid<uint16> decodeGray16(IReader& reader, FilePathView pathHint, ImageFormat imageFormat) override;
+
 		bool add(std::unique_ptr<IImageDecoder>&& decoder) override;
 
 		void remove(StringView name) override;

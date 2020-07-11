@@ -28,9 +28,15 @@ namespace s3d
 		const Array<String>& possibleExtensions() const override;
 
 		[[nodiscard]]
-		Optional<ImageInfo> getImageInfo(IReader& reader, FilePathView pathHint) const override;
+		Optional<ImageInfo> getImageInfo(FilePathView path) const override;
 
 		[[nodiscard]]
-		Image decode(IReader& reader, FilePathView pathHint) const override;
+		Optional<ImageInfo> getImageInfo(IReader& reader, FilePathView pathHint = {}) const override;
+
+		[[nodiscard]]
+		Image decode(FilePathView path) const override;
+
+		[[nodiscard]]
+		Image decode(IReader& reader, FilePathView pathHint = {}) const override;
 	};
 }

@@ -31,6 +31,8 @@ namespace s3d
 
 		virtual Image decode(IReader& reader, FilePathView pathHint, ImageFormat imageFormat) = 0;
 
+		virtual Grid<uint16> decodeGray16(IReader& reader, FilePathView pathHint, ImageFormat imageFormat) = 0;
+
 		virtual bool add(std::unique_ptr<IImageDecoder>&& decoder) = 0;
 
 		virtual void remove(StringView name) = 0;

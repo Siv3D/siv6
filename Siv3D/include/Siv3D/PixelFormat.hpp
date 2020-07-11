@@ -24,5 +24,13 @@ namespace s3d
 		R8G8B8X8,
 
 		R8G8B8A8,
+
+		Gray8,
+
+		Gray16,
+
+		Gray8A8,
+
+		Gray16A16,
 	};
 }

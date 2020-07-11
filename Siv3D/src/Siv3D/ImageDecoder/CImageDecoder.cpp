@@ -11,14 +11,16 @@
 
 # include <Siv3D/FileSystem.hpp>
 # include "CImageDecoder.hpp"
-# include <Siv3D/ImageFormat/BMP/BMPDecoder.hpp>
 # include <Siv3D/EngineLog.hpp>
+# include <Siv3D/ImageFormat/BMPDecoder.hpp>
+# include <Siv3D/ImageFormat/PNGDecoder.hpp>
 
 namespace s3d
 {
 	void CImageDecoder::init()
 	{
 		m_decoders.push_back(std::make_unique<BMPDecoder>());
+		m_decoders.push_back(std::make_unique<PNGDecoder>());
 	}
 
 	Optional<ImageInfo> CImageDecoder::getImageInfo(IReader& reader, const FilePathView pathHint, const ImageFormat imageFormat)
@@ -49,6 +51,22 @@ namespace s3d
 		LOG_TRACE(U"Image decoder name: {}"_fmt((*it)->name()));
 
 		return (*it)->decode(reader, pathHint);
+	}
+
+	Grid<uint16> CImageDecoder::decodeGray16(IReader& reader, const FilePathView pathHint, const ImageFormat imageFormat)
+	{
+		LOG_SCOPED_TRACE(U"CImageDecoder::decodeGray16()");
+
+		const auto it = findDecoder(reader, pathHint);
+
+		if (it == m_decoders.end())
+		{
+			return{};
+		}
+
+		LOG_TRACE(U"Image decoder name: {}"_fmt((*it)->name()));
+
+		return (*it)->decodeGray16(reader, pathHint);
 	}
 
 	bool CImageDecoder::add(std::unique_ptr<IImageDecoder>&& decoder)

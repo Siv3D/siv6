@@ -16,6 +16,7 @@
 # include "IReader.hpp"
 # include "IImageDecoder.hpp"
 # include "Optional.hpp"
+# include "Grid.hpp"
 
 namespace s3d
 {
@@ -32,6 +33,12 @@ namespace s3d
 
 		[[nodiscard]]
 		Image Decode(IReader& reader, ImageFormat imageFormat = ImageFormat::Unspecified);
+
+		[[nodiscard]]
+		Grid<uint16> DecodeGray16(FilePathView path, ImageFormat imageFormat = ImageFormat::Unspecified);
+
+		[[nodiscard]]
+		Grid<uint16> DecodeGray16(IReader& reader, ImageFormat imageFormat = ImageFormat::Unspecified);
 
 		template <class ImageDecoder>
 		bool Add();

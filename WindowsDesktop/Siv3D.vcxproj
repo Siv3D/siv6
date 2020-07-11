@@ -20,9 +20,12 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Char.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Color.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ColorF.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\IImageDecoder.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ImageDecoder.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IImageDecoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ImageDecoder.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat\BMPDecoder.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat\PNGDecoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ImageInfo.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PixelFormat.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ColorHSV.hpp" />
@@ -247,7 +250,6 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\Dummy\IDummy.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\ImageDecoder\CImageDecoder.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\ImageDecoder\IImageDecoder.hpp" />
-    <ClInclude Include="..\Siv3D\src\Siv3D\ImageFormat\BMP\BMPDecoder.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Logger\ILogger.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\CProfiler.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\IProfiler.hpp" />
@@ -299,6 +301,9 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\system.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\infoware\version.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\levenshtein-sse\levenshtein-sse.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\libpng\png.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\libpng\pngconf.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\libpng\pnglibconf.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\miniutf\miniutf.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\config.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\oniggnu.h" />
@@ -307,6 +312,8 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\regint.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\regparse.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\st.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zconf.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zlib.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\CRenderer2D_GL4.cpp" />
@@ -363,7 +370,8 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageDecoder\CImageDecoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageDecoder\ImageDecoderFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageDecoder\SivImageDecoder.cpp" />
-    <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\BMP\BMPDecoder.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\BMPDecoder.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\PNGDecoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Image\SivImage.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Int128\SivInt128.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\IntFormatter\SivIntFormatter.cpp" />
