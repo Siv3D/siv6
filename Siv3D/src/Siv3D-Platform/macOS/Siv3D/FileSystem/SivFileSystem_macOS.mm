@@ -415,12 +415,12 @@ namespace s3d
 		int64 Size(const FilePathView path)
 		{
 			namespace fs = boost::filesystem;
-			
+
 			if (not path) SIV3D_UNLIKELY
 			{
 				return 0;
 			}
-			
+
 			const FilePath fullPath = FullPath(path);
 			
 			struct stat s;
@@ -428,7 +428,7 @@ namespace s3d
 			{
 				return 0;
 			}
-			
+
 			if (S_ISREG(s.st_mode))
 			{
 				return s.st_size;
@@ -436,22 +436,16 @@ namespace s3d
 			else if (S_ISDIR(s.st_mode))
 			{
 				int64 result = 0;
-				
-				std::cout << "###" << fullPath << "\n";
-				
-				for (const auto& v : fs::recursive_directory_iterator(fullPath.narrow()))
+
+				for (const auto& v : fs::recursive_directory_iterator(path.narrow()))
 				{
 					struct stat s;
 					
-					std::cout << v.path() << " ";
-					
 					if (::stat(v.path().c_str(), &s) != 0 || S_ISDIR(s.st_mode))
 					{
-						std::cout << "SKIPPED\n";
 						continue;
 					}
-					
-					std::cout << s.st_size << '\n';
+
 					result += s.st_size;
 				}
 				
