@@ -380,6 +380,7 @@
 		2C481E0F24460B5700A5D88D /* cpuinfo_x86.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cpuinfo_x86.c; sourceTree = "<group>"; };
 		2C481E1024460B5700A5D88D /* cpuid_x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpuid_x86.h; sourceTree = "<group>"; };
 		2C481E1124460B5700A5D88D /* cpu_features_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_features_macros.h; sourceTree = "<group>"; };
+		2C4922DD24BF2E0C0024685C /* SpecialFolder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpecialFolder.hpp; sourceTree = "<group>"; };
 		2C4A83E32457E7A4007AAE76 /* XoshiroCpp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XoshiroCpp.hpp; sourceTree = "<group>"; };
 		2C4CBE5224370FFA00F8B7A6 /* glew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glew.h; sourceTree = "<group>"; };
 		2C4CBE582437100100F8B7A6 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glew.c; sourceTree = "<group>"; };
@@ -1191,6 +1192,7 @@
 				2C531DA024BA009600378977 /* ScopeGuard.hpp */,
 				2C531DAF24BA009600378977 /* SIMD.hpp */,
 				2C531D7D24BA009600378977 /* SMFT.hpp */,
+				2C4922DD24BF2E0C0024685C /* SpecialFolder.hpp */,
 				2C531D3524BA009600378977 /* Statistics.hpp */,
 				2C531D0E24BA009600378977 /* Step.hpp */,
 				2C531D1F24BA009600378977 /* Step2D.hpp */,

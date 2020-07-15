@@ -72,4 +72,13 @@ TEST_CASE("FileSystem")
 	Console << (U"UserFonts\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::UserFonts)));
 	Console << (U"UserProfile\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::UserProfile)));
 	Console << (U"ProgramFiles\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::ProgramFiles)));
+	
+	
+	{
+		const FilePath current = FileSystem::CurrentDirectory();
+		const FilePath target = FileSystem::CurrentDirectory() + U"test/";
+		Console << (U"ChangeCurrentDirectory\t: {}"_fmt(FileSystem::ChangeCurrentDirectory(target)));
+		Console << (U"Current\t: {}"_fmt(FileSystem::CurrentDirectory()));
+		Console << (U"ChangeCurrentDirectory\t: {}"_fmt(FileSystem::ChangeCurrentDirectory(current)));
+	}
 }

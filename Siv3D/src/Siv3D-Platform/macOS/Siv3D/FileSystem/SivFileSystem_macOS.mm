@@ -119,18 +119,81 @@ namespace s3d
 		{
 			@autoreleasepool
 			{
-				NSDictionary* env = [[NSProcessInfo processInfo] environment];
-				
-				if (NSString* current = env[@"PWD"])
+				if (NSString* current = [[NSFileManager defaultManager] currentDirectoryPath]) // requires permission
 				{
 					return [current UTF8String];
 				}
-				else if (NSString* current = [[NSFileManager defaultManager] currentDirectoryPath]) // requires permission
+				else
 				{
-					return [current UTF8String];
+					NSDictionary* env = [[NSProcessInfo processInfo] environment];
+					
+					if (NSString* current = env[@"PWD"])
+					{
+						return [current UTF8String];
+					}
 				}
 			
 				return "";
+			}
+		}
+	
+		[[nodiscard]]
+		static bool MacOS_ChangeCurrentDirectory(const char* _path)
+		{
+			@autoreleasepool
+			{
+				NSString* path = [NSString stringWithUTF8String:_path];
+				return ([[NSFileManager defaultManager] changeCurrentDirectoryPath:path] == YES);
+			}
+		}
+	
+		static std::string MacOS_SpecialFolder(const SpecialFolder folder)
+		{
+			@autoreleasepool
+			{
+				const NSSearchPathDirectory folders[] = {
+					NSDesktopDirectory,
+					NSDocumentDirectory,
+					NSCachesDirectory,
+					NSPicturesDirectory,
+					NSMusicDirectory,
+					NSMoviesDirectory,
+					NSLibraryDirectory, // (dummy)
+					NSLibraryDirectory, // (dummy)
+					NSLibraryDirectory, // (dummy)
+					NSLibraryDirectory, // (dummy)
+					NSApplicationDirectory,
+				};
+				
+				NSArray* paths = NSSearchPathForDirectoriesInDomains(folders[FromEnum(folder)], NSUserDomainMask, YES);
+				
+				NSString* directory = [paths objectAtIndex:0];
+				
+				// NSCachesDirectory
+				if (folder == SpecialFolder::LocalAppData)
+				{
+					NSString* bundleID = [[NSBundle mainBundle] bundleIdentifier];
+					directory = [directory stringByAppendingString:@"/Siv3DApp/"];
+					directory = [directory stringByAppendingString:bundleID];
+				}
+				else if (folder == SpecialFolder::SystemFonts)
+				{
+					directory = @"/System/Library/Fonts";
+				}
+				else if (folder == SpecialFolder::LocalFonts)
+				{
+					directory = @"/Library/Fonts";
+				}
+				else if (folder == SpecialFolder::UserFonts)
+				{
+					directory = [directory stringByAppendingString:@"/Fonts"];
+				}
+				else if (folder == SpecialFolder::UserProfile)
+				{
+					directory = NSHomeDirectory();
+				}
+				
+				return [directory UTF8String];
 			}
 		}
 	
@@ -497,10 +560,20 @@ namespace s3d
 		{
 			return detail::NormalizePath(Unicode::Widen(detail::MacOS_CurrentPath()));
 		}
+	
+		bool ChangeCurrentDirectory(const FilePathView path)
+		{
+			if (!IsDirectory(path))
+			{
+				return false;
+			}
+			
+			return detail::MacOS_ChangeCurrentDirectory(path.narrow().c_str());
+		}
 
 		FilePath GetFolderPath(const SpecialFolder folder)
 		{
-			return{};
+			return Unicode::Widen(detail::MacOS_SpecialFolder(folder)) << U'/';
 		}
 	}
 }
