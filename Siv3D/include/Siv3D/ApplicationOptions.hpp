@@ -18,11 +18,11 @@ namespace s3d
 		/// @brief デバッグヒープマネージャ (Windows のみ)
 		enum class DebugHeap
 		{
-			/// @brief 無効
-			No,
-
 			/// @brief 有効
 			Yes,
+
+			/// @brief 無効
+			No,
 		};
 
 		/// @brief レンダラー
@@ -47,7 +47,7 @@ namespace s3d
 
 	struct ApplicationOptions
 	{
-		EngineOption::DebugHeap debugHeap	= EngineOption::DebugHeap::No;
+		EngineOption::DebugHeap debugHeap	= EngineOption::DebugHeap::Yes;
 
 		EngineOption::Renderer renderer		= EngineOption::Renderer::PlatformDefault;
 	};
