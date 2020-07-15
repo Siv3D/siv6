@@ -9,7 +9,6 @@
 //
 //-----------------------------------------------
 
-# include <array>
 # include <Siv3D/Byte.hpp>
 # include <Siv3D/ParseInt.hpp>
 
@@ -19,38 +18,36 @@ namespace s3d
 	{
 		template <class CharType>
 		[[nodiscard]]
-		constexpr std::array<CharType, 2> ToHex(const Byte value) noexcept
+		constexpr std::initializer_list<CharType> ToHex(const Byte value) noexcept
 		{
 			constexpr char s[16] =
 			{
 				'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
 			};
 
-			return{ {
+			return{
 				static_cast<CharType>(s[static_cast<uint8>(value) >> 4]),
-				static_cast<CharType>(s[static_cast<uint8>(value) & 0xF]) } };
+				static_cast<CharType>(s[static_cast<uint8>(value) & 0xF]) };
 		}
 	}
 
 	void Formatter(FormatData& formatData, const Byte& value)
 	{
-		const auto hex = detail::ToHex<char32>(value);
-
-		formatData.string.append(hex.begin(), hex.end());
+		formatData.string.append(detail::ToHex<char32>(value));
 	}
 
 	std::ostream& operator <<(std::ostream& output, const Byte& value)
 	{
 		const auto hex = detail::ToHex<char>(value);
 
-		return output.write(hex.data(), 2);
+		return output.write(hex.begin(), hex.size());
 	}
 
 	std::wostream& operator <<(std::wostream& output, const Byte& value)
 	{
 		const auto hex = detail::ToHex<wchar_t>(value);
 
-		return output.write(hex.data(), 2);
+		return output.write(hex.begin(), hex.size());
 	}
 
 	std::istream& operator >>(std::istream& input, Byte& value)

@@ -15,10 +15,7 @@
 
 namespace s3d
 {
-	CRenderer2D_D3D11::CRenderer2D_D3D11()
-	{
-	
-	}
+	CRenderer2D_D3D11::CRenderer2D_D3D11() = default;
 
 	CRenderer2D_D3D11::~CRenderer2D_D3D11()
 	{

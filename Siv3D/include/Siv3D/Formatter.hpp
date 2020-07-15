@@ -22,7 +22,7 @@
 
 namespace s3d
 {
-	void Formatter(FormatData& formatData, FormatData::DecimalPlaces decimalPlace);
+	inline void Formatter(FormatData& formatData, FormatData::DecimalPlaces decimalPlace);
 
 	void Formatter(FormatData& formatData, bool value);
 

@@ -15,10 +15,7 @@
 
 namespace s3d
 {
-	RegExp::RegExpDetail::RegExpDetail()
-	{
-
-	}
+	RegExp::RegExpDetail::RegExpDetail() = default;
 
 	RegExp::RegExpDetail::RegExpDetail(const StringView pattern)
 	{

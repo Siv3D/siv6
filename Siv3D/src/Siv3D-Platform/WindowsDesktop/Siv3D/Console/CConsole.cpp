@@ -17,10 +17,7 @@
 
 namespace s3d
 {
-	CConsole::CConsole()
-	{
-
-	}
+	CConsole::CConsole() = default;
 
 	CConsole::~CConsole()
 	{
@@ -40,11 +37,8 @@ namespace s3d
 
 		::AllocConsole();
 		::freopen_s(&m_fpOut, "CONOUT$", "w", stdout);
-		::freopen_s(&m_fpIn, "CONIN$", "r", stdin);
-		if (g_applicationOptions.stdErr == EngineOption::StdErr::Yes)
-		{
-			::freopen_s(&m_fpErr, "CONOUT$", "w", stderr);
-		}
+		::freopen_s(&m_fpIn,  "CONIN$",  "r", stdin);
+		::freopen_s(&m_fpErr, "CONOUT$", "w", stderr);
 
 		m_isOpen = true;
 	}

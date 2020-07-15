@@ -19,7 +19,7 @@ namespace s3d
 	namespace detail
 	{
 		[[nodiscard]]
-		CPUInfo InitCPUInfo() noexcept
+		static CPUInfo InitCPUInfo() noexcept
 		{
 			static_assert(sizeof(s3d::X86Features) == sizeof(cpu_features::X86Features));
 

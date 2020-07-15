@@ -15,10 +15,7 @@
 
 namespace s3d
 {
-	CWindow_Null::CWindow_Null()
-	{
-
-	}
+	CWindow_Null::CWindow_Null() = default;
 
 	CWindow_Null::~CWindow_Null()
 	{

@@ -18,16 +18,10 @@ namespace s3d
 		/// @brief デバッグヒープマネージャ (Windows のみ)
 		enum class DebugHeap
 		{
+			/// @brief 無効
 			No,
 
-			Yes,
-		};
-
-		/// @brief std::cerr の出力
-		enum class StdErr
-		{
-			No,
-
+			/// @brief 有効
 			Yes,
 		};
 
@@ -54,16 +48,13 @@ namespace s3d
 	struct ApplicationOptions
 	{
 		EngineOption::DebugHeap debugHeap	= EngineOption::DebugHeap::No;
-		
-		EngineOption::StdErr stdErr			= EngineOption::StdErr::No;
-		
+
 		EngineOption::Renderer renderer		= EngineOption::Renderer::PlatformDefault;
 	};
 
 	namespace detail
 	{
 		int SetEngineOption(EngineOption::DebugHeap) noexcept;
-		int SetEngineOption(EngineOption::StdErr) noexcept;
 		int SetEngineOption(EngineOption::Renderer) noexcept;
 	}
 

@@ -159,14 +159,14 @@ namespace s3d
 		{
 			const static FilePath g_initialDirectory = FileSystem::CurrentDirectory();
 
-			const static FilePath g_modulePath = []()
+			const static FilePath g_modulePath = []() -> FilePath
 			{
 				wchar_t result[1024];
 				const DWORD length = ::GetModuleFileNameW(nullptr, result, _countof(result));
 
 				if ((length == 0) || (length >= _countof(result)))
 				{
-					return FilePath{};
+					return{};
 				}
 
 				return NormalizePath(Unicode::FromWstring(std::wstring_view(result, length)));
@@ -236,7 +236,7 @@ namespace s3d
 		{
 			if (not path) [[unlikely]]
 			{
-				return FilePath{};
+				return{};
 			}
 
 			if (IsResourcePath(path)) [[unlikely]]
@@ -251,7 +251,7 @@ namespace s3d
 
 			if (length == 0) [[unlikely]]
 			{
-				return FilePath{};
+				return{};
 			}
 			else if (length > std::size(result)) [[unlikely]]
 			{
@@ -260,7 +260,7 @@ namespace s3d
 
 				if ((length2 == 0) || (length2 > length))
 				{
-					return FilePath{};
+					return{};
 				}
 
 				const bool isDirectory = (pFilePart == nullptr);
@@ -275,12 +275,12 @@ namespace s3d
 		{
 			if (not path) [[unlikely]]
 			{
-				return Platform::NativeFilePath{};
+				return{};
 			}
 
 			if (IsResourcePath(path)) [[unlikely]]
 			{
-				return Platform::NativeFilePath{};
+				return{};
 			}
 
 			const std::wstring wpath = path.toWstr();
@@ -290,7 +290,7 @@ namespace s3d
 
 			if (length == 0) [[unlikely]]
 			{
-				return Platform::NativeFilePath{};
+				return{};
 			}
 			else if (length > std::size(result)) [[unlikely]]
 			{
@@ -299,7 +299,7 @@ namespace s3d
 
 				if ((length2 == 0) || (length2 > length))
 				{
-					return Platform::NativeFilePath{};
+					return{};
 				}
 
 				return result2;
@@ -317,7 +317,7 @@ namespace s3d
 
 			if (IsResourcePath(path))
 			{
-				return FilePath{};
+				return{};
 			}
 
 			const std::wstring wpath = path.toWstr();
@@ -325,7 +325,7 @@ namespace s3d
 
 			if (::GetVolumePathNameW(wpath.c_str(), result, _countof(result)) == 0)
 			{
-				return FilePath();
+				return{};
 			}
 
 			return Unicode::FromWstring(result).replace(U'\\', U'/');
@@ -524,7 +524,7 @@ namespace s3d
 
 			if (length == 0)
 			{
-				return FilePath{};
+				return{};
 			}
 			else if (length > std::size(result))
 			{
@@ -533,7 +533,7 @@ namespace s3d
 
 				if ((length2 == 0) || (length2 > length))
 				{
-					return FilePath{};
+					return{};
 				}
 
 				return detail::NormalizePath(Unicode::FromWstring(result2), true);

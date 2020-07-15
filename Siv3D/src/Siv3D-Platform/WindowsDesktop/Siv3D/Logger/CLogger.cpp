@@ -33,15 +33,9 @@ namespace s3d
 		};
 	}
 
-	CLogger::CLogger()
-	{
+	CLogger::CLogger() = default;
 
-	}
-
-	CLogger::~CLogger()
-	{
-	
-	}
+	CLogger::~CLogger() = default;
 
 	void CLogger::write(const LogType type, const StringView s)
 	{

@@ -27,10 +27,7 @@
 
 namespace s3d
 {
-	CSystem::CSystem()
-	{
-
-	}
+	CSystem::CSystem() = default;
 
 	CSystem::~CSystem()
 	{

@@ -23,10 +23,7 @@
 
 namespace s3d
 {
-	CRenderer_GL4::CRenderer_GL4()
-	{
-	
-	}
+	CRenderer_GL4::CRenderer_GL4() = default;
 
 	CRenderer_GL4::~CRenderer_GL4()
 	{

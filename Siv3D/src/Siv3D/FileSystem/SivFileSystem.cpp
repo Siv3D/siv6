@@ -19,14 +19,14 @@ namespace s3d
 		{
 			if (not path) SIV3D_UNLIKELY
 			{
-				return String{};
+				return{};
 			}
 
 			if constexpr (Platform::HasEmbeddedResource)
 			{
 				if (IsResourcePath(path))
 				{
-					return String();
+					return{};
 				}
 			}
 
@@ -34,14 +34,14 @@ namespace s3d
 
 			if (dotPos == String::npos)
 			{
-				return String{};
+				return{};
 			}
 
 			const size_t sepPos = path.lastIndexOfAny(U"/\\");
 
 			if ((sepPos != String::npos) && (dotPos < sepPos))
 			{
-				return String{};
+				return{};
 			}
 
 			return String(path.substr(dotPos + 1)).lowercase();
@@ -51,14 +51,14 @@ namespace s3d
 		{
 			if (not path) SIV3D_UNLIKELY
 			{
-				return String{};
+				return{};
 			}
 
 			if constexpr (Platform::HasEmbeddedResource)
 			{
 				if (IsResourcePath(path))
 				{
-					return String{};
+					return{};
 				}
 			}
 
@@ -96,7 +96,7 @@ namespace s3d
 
 			if (fileName.isEmpty())
 			{
-				return String();
+				return{};
 			}
 
 			const size_t dotPos = fileName.lastIndexOf(U'.');
@@ -119,14 +119,14 @@ namespace s3d
 		{
 			if (not path) SIV3D_UNLIKELY
 			{
-				return FilePath{};
+				return{};
 			}
 
 			if constexpr (Platform::HasEmbeddedResource)
 			{
 				if (IsResourcePath(path))
 				{
-					return FilePath{};
+					return{};
 				}
 			}
 

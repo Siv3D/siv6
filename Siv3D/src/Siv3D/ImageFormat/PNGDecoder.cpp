@@ -50,30 +50,6 @@ namespace s3d
 
 	Optional<ImageInfo> PNGDecoder::getImageInfo(IReader& reader, const FilePathView) const
 	{
-		/*
-		uint8 buf[24];
-
-		if (!reader.lookahead(buf))
-		{
-			return{};
-		}
-
-		if (buf[12] != 'I' || buf[13] != 'H' || buf[14] != 'D' || buf[15] != 'R')
-		{
-			return{};
-		}
-
-		const int32 width = (buf[16] << 24) + (buf[17] << 16) + (buf[18] << 8) + (buf[19] << 0);
-		const int32 height = (buf[20] << 24) + (buf[21] << 16) + (buf[22] << 8) + (buf[23] << 0);
-		
-		PixelFormat pixelFormat = PixelFormat::R8G8B8A8;
-
-		//if (header.biBitCount == 32)
-		//{
-		//	pixelFormat = PixelFormat::R8G8B8X8;
-		//}
-		*/
-
 		// png_ptr
 		png_structp png_ptr = ::png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
 		{

@@ -52,6 +52,6 @@ namespace s3d
 			s /= 1024.0;
 		}
 
-		return String();
+		return{};
 	}
 }

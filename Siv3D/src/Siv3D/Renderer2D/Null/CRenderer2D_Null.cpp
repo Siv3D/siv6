@@ -15,10 +15,7 @@
 
 namespace s3d
 {
-	CRenderer2D_Null::CRenderer2D_Null()
-	{
-	
-	}
+	CRenderer2D_Null::CRenderer2D_Null() = default;
 
 	CRenderer2D_Null::~CRenderer2D_Null()
 	{

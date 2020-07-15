@@ -78,10 +78,7 @@ namespace s3d
 		}
 	}
 
-	CWindow::CWindow()
-	{
-
-	}
+	CWindow::CWindow() = default;
 
 	CWindow::~CWindow()
 	{

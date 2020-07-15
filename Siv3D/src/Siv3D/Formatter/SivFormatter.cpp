@@ -16,11 +16,6 @@
 
 namespace s3d
 {
-	void Formatter(FormatData& formatData, const FormatData::DecimalPlaces decimalPlace)
-	{
-		formatData.decimalPlaces = decimalPlace;
-	}
-
 	void Formatter(FormatData& formatData, const bool value)
 	{
 		formatData.string.append(value ? U"true"_sv : U"false"_sv);

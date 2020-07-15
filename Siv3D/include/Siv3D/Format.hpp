@@ -98,7 +98,7 @@ namespace s3d
 			{
 				// Format できない値が Format() に渡されたときに発生するエラーです
 				static_assert(0, "Format(): Unformattable type detected");
-				return String();
+				return{};
 			}
 
 		# else
@@ -121,7 +121,7 @@ namespace s3d
 				// font(...) などで、U"..." (const char32*) ではない文字列が使われていることを知らせるエラーです
 				static_assert(FormatArgValidation<Args...>::value, "string literal \"\" and L\"\" cannot be used in Format(). Use U\"\" instead.");
 
-				return String();
+				return{};
 			}
 
 		# endif

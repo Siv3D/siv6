@@ -23,12 +23,6 @@ namespace s3d
 			return 0;
 		}
 
-		int SetEngineOption(const EngineOption::StdErr value) noexcept
-		{
-			g_applicationOptions.stdErr = value;
-			return 0;
-		}
-
 		int SetEngineOption(const EngineOption::Renderer value) noexcept
 		{
 			g_applicationOptions.renderer = value;

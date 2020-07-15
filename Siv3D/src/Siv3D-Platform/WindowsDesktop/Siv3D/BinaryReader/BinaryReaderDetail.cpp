@@ -46,10 +46,7 @@ namespace s3d
 		}
 	}
 
-	BinaryReader::BinaryReaderDetail::BinaryReaderDetail()
-	{
-
-	}
+	BinaryReader::BinaryReaderDetail::BinaryReaderDetail() = default;
 
 	BinaryReader::BinaryReaderDetail::~BinaryReaderDetail()
 	{

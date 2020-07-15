@@ -15,10 +15,7 @@
 
 namespace s3d
 {
-	CCursor_Null::CCursor_Null()
-	{
-
-	}
+	CCursor_Null::CCursor_Null() = default;
 
 	CCursor_Null::~CCursor_Null()
 	{
