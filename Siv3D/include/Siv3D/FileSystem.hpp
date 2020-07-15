@@ -15,6 +15,7 @@
 # include "Optional.hpp"
 # include "DateTime.hpp"
 # include "Array.hpp"
+# include "SpecialFolder.hpp"
 
 namespace s3d
 {
@@ -138,5 +139,8 @@ namespace s3d
 		FilePath CurrentDirectory();
 
 		bool ChangeCurrentDirectory(FilePathView path);
+
+		[[nodiscard]]
+		FilePath GetFolderPath(SpecialFolder folder);
 	}
 }

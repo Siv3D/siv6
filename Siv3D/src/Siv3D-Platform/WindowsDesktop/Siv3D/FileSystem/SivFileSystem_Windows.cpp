@@ -12,6 +12,7 @@
 # include <filesystem>
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Windows/Windows.hpp>
+# include <Shlobj.h>
 # include <Siv3D/String.hpp>
 # include <Siv3D/FileSystem.hpp>
 
@@ -540,6 +541,44 @@ namespace s3d
 			}
 
 			return detail::NormalizePath(Unicode::FromWstring(std::wstring_view(result, length)), true);
+		}
+
+		bool ChangeCurrentDirectory(const FilePathView path)
+		{
+			if (!IsDirectory(path))
+			{
+				return false;
+			}
+
+			return (::SetCurrentDirectoryW(path.toWstr().c_str()) != 0);
+		}
+
+		FilePath GetFolderPath(const SpecialFolder folder)
+		{
+			static constexpr int ids[] = {
+				CSIDL_DESKTOP,
+				CSIDL_MYDOCUMENTS,
+				CSIDL_LOCAL_APPDATA,
+				CSIDL_MYPICTURES,
+				CSIDL_MYMUSIC,
+				CSIDL_MYVIDEO,
+				CSIDL_FONTS,
+				CSIDL_FONTS,
+				CSIDL_FONTS,
+				CSIDL_PROFILE,
+				CSIDL_PROGRAM_FILES,
+			};
+
+			assert(static_cast<size_t>(folder) < std::size(ids));
+
+			wchar_t path[MAX_PATH];
+
+			if (FAILED(::SHGetFolderPathW(nullptr, ids[FromEnum(folder)], nullptr, 0, path)))
+			{
+				return FilePath();
+			}
+
+			return detail::NormalizePath(Unicode::FromWstring(path), true);
 		}
 	}
 }

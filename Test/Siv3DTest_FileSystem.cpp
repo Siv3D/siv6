@@ -57,4 +57,19 @@ TEST_CASE("FileSystem")
 	Console << (U"Write\t: {}"_fmt(FileSystem::WriteTime(modulePath)));
 	Console << (U"Access\t: {}"_fmt(FileSystem::AccessTime(modulePath)));
 	Console << (U"DirCon\t: {}"_fmt(FileSystem::DirectoryContents(U"./")));
+
+
+	Console << (U"Desktop\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::Desktop)));
+	Console << (U"Documents\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::Documents)));
+	Console << (U"LocalAppData\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::LocalAppData)));
+	Console << (U"Pictures\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::Pictures)));
+	Console << (U"Music\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::Music)));
+	Console << (U"Videos\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::Videos)));
+	Console << (U"Caches\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::Caches)));
+	Console << (U"Movies\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::Movies)));
+	Console << (U"SystemFonts\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::SystemFonts)));
+	Console << (U"LocalFonts\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::LocalFonts)));
+	Console << (U"UserFonts\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::UserFonts)));
+	Console << (U"UserProfile\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::UserProfile)));
+	Console << (U"ProgramFiles\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::ProgramFiles)));
 }

@@ -344,5 +344,10 @@ namespace s3d
 		{
 			return detail::NormalizePath(Unicode::Widen(fs::current_path().string()));
 		}
+
+		FilePath GetFolderPath(const SpecialFolder folder)
+		{
+			return{};
+		}
 	}
 }

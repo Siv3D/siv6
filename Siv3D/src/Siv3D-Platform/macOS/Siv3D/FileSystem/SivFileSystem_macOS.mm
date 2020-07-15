@@ -497,5 +497,10 @@ namespace s3d
 		{
 			return detail::NormalizePath(Unicode::Widen(detail::MacOS_CurrentPath()));
 		}
+
+		FilePath GetFolderPath(const SpecialFolder folder)
+		{
+			return{};
+		}
 	}
 }

@@ -441,6 +441,10 @@
 // IWriter interface
 //# include <Siv3D/IWriter.hpp>
 
+// 特殊フォルダ
+// Special folders
+# include <Siv3D/SpecialFolder.hpp>
+
 // ファイルとディレクトリ
 // Files and directories
 # include <Siv3D/FileSystem.hpp> // [Siv3D ToDo]
