@@ -361,6 +361,9 @@
     <Filter Include="include\Siv3D\ImageFormat">
       <UniqueIdentifier>{13aaae02-f1d6-4e1c-86aa-cd673cfbc91b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\TextEncoding">
+      <UniqueIdentifier>{e97d6835-1bee-499a-8650-5087eab9e894}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1278,6 +1281,15 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\SpecialFolder.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\TextReader.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\TextEncoding.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextEncoding.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -1855,6 +1867,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\PNGDecoder.cpp">
       <Filter>src\Siv3D\ImageFormat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\TextEncoding\SivTextEncoding.cpp">
+      <Filter>src\Siv3D\TextEncoding</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

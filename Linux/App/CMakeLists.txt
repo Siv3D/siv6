@@ -38,6 +38,7 @@ add_executable(Siv3DTest
   ../../Test/Siv3DTest.cpp
   ../../Test/Siv3DTest_FileSystem.cpp
   ../../Test/Siv3DTest_Image.cpp
+  ../../Test/Siv3DTest_TextEncoding.cpp
   )
 target_include_directories(Siv3DTest PRIVATE
   "/usr/include"

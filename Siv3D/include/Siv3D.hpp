@@ -492,11 +492,11 @@
 
 // 文字列エンコード
 // Text encoding
-//# include <Siv3D/TextEncoding.hpp>
+# include <Siv3D/TextEncoding.hpp>
 
 // 読み込み専用テキストファイル
 //Text file reader
-//# include <Siv3D/TextReader.hpp>
+# include <Siv3D/TextReader.hpp>
 
 // 書き込み専用テキストファイル
 // Text file writer
