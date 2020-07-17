@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include <sys/stat.h>
+# include <unistd.h>
 # include <filesystem>
 # include <Siv3D/String.hpp>
 # include <Siv3D/FileSystem.hpp>
@@ -344,6 +345,16 @@ namespace s3d
 		{
 			return detail::NormalizePath(Unicode::Widen(fs::current_path().string()));
 		}
+
+		bool ChangeCurrentDirectory(const FilePathView path)
+		{
+			if (!IsDirectory(path))
+			{
+				return false;
+			}
+			
+			return (chdir(path.narrow().c_str()) == 0);
+		}	
 
 		FilePath GetFolderPath(const SpecialFolder folder)
 		{
