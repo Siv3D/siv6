@@ -65,12 +65,12 @@ namespace s3d
 		/// @brief コピーコンストラクタ
 		/// @param rhs 他の Optional オブジェクト
 		SIV3D_NODISCARD_CXX20
-		Optional(const Optional& rhs);
+		Optional(const Optional& other);
 
 		/// @brief ムーブコンストラクタ
 		/// @param rhs 他の Optional オブジェクト
 		SIV3D_NODISCARD_CXX20
-		Optional(Optional&& rhs) noexcept(std::is_nothrow_move_constructible_v<Type>);
+		Optional(Optional&& other) noexcept(std::is_nothrow_move_constructible_v<Type>);
 
 		/// @brief Optional 値を初期化します。
 		/// @param v 初期値
@@ -352,7 +352,7 @@ namespace s3d
 		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Optional<Type>& value)
 		{
-			if (std::is_same_v<CharType, char32>)
+			if constexpr (std::is_same_v<CharType, char32>)
 			{
 				const String s = Format(value);
 				return output.write(s.data(), s.size());
@@ -362,7 +362,15 @@ namespace s3d
 				if (value)
 				{
 					const CharType opt[] = { '(', 'O','p','t','i','o','n','a','l',')','\0' };
-					return output << opt << value.value();
+					
+					if constexpr (std::is_same_v<Type, char32>)
+					{
+						return output << opt << String(1, value.value());
+					}
+					else
+					{
+						return output << opt << value.value();
+					}
 				}
 				else
 				{
@@ -433,7 +441,7 @@ namespace s3d
 		/// 他の Optional オブジェクト
 		/// </param>
 		SIV3D_NODISCARD_CXX20
-		constexpr Optional(const Optional& rhs) noexcept;
+		constexpr Optional(const Optional& other) noexcept;
 
 		/// <summary>
 		/// コピーコンストラクタ
@@ -643,7 +651,7 @@ namespace s3d
 		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Optional<Type&>& value)
 		{
-			if (std::is_same_v<CharType, char32>)
+			if constexpr (std::is_same_v<CharType, char32>)
 			{
 				const String s = Format(value);
 				return output.write(s.data(), s.size());

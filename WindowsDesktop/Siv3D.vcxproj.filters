@@ -364,6 +364,12 @@
     <Filter Include="src\Siv3D\TextEncoding">
       <UniqueIdentifier>{e97d6835-1bee-499a-8650-5087eab9e894}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\TextReader">
+      <UniqueIdentifier>{d80c45e7-b7c8-41f5-897d-cb4aab8f68a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\UnicodeConverter">
+      <UniqueIdentifier>{f82dfb88-888d-4296-a7e9-93ae3ffca05e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1290,6 +1296,21 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextEncoding.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextReader.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\TextReader\TextReaderDetail.hpp">
+      <Filter>src\Siv3D\TextReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Unicode.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\UnicodeConverter.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\UnicodeConverter.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -1870,6 +1891,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\TextEncoding\SivTextEncoding.cpp">
       <Filter>src\Siv3D\TextEncoding</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\TextReader\SivTextReader.cpp">
+      <Filter>src\Siv3D\TextReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\TextReader\TextReaderDetail.cpp">
+      <Filter>src\Siv3D\TextReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\UnicodeConverter\SivUnicodeConverter.cpp">
+      <Filter>src\Siv3D\UnicodeConverter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

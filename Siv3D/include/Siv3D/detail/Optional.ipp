@@ -90,23 +90,23 @@ namespace s3d
 		: OptionalBase<Type>() {};
 
 	template <class Type>
-	inline Optional<Type>::Optional(const Optional& rhs)
+	inline Optional<Type>::Optional(const Optional& other)
 		: OptionalBase<Type>()
 	{
-		if (rhs.has_value())
+		if (other.has_value())
 		{
-			::new (static_cast<void*>(dataptr())) Type(*rhs);
+			::new (static_cast<void*>(dataptr())) Type(*other);
 			OptionalBase<Type>::init_ = true;
 		}
 	}
 
 	template <class Type>
-	inline Optional<Type>::Optional(Optional&& rhs) noexcept(std::is_nothrow_move_constructible_v<Type>)
+	inline Optional<Type>::Optional(Optional&& other) noexcept(std::is_nothrow_move_constructible_v<Type>)
 		: OptionalBase<Type>()
 	{
-		if (rhs.has_value())
+		if (other.has_value())
 		{
-			::new (static_cast<void*>(dataptr())) Type(std::move(*rhs));
+			::new (static_cast<void*>(dataptr())) Type(std::move(*other));
 			OptionalBase<Type>::init_ = true;
 		}
 	}
@@ -351,8 +351,8 @@ namespace s3d
 		: ref(std::addressof(v)) {}
 
 	template <class Type>
-	inline constexpr Optional<Type&>::Optional(const Optional& rhs) noexcept
-		: ref(rhs.ref) {}
+	inline constexpr Optional<Type&>::Optional(const Optional& other) noexcept
+		: ref(other.ref) {}
 
 	template <class Type>
 	inline constexpr Optional<Type&>::Optional(InPlace_t, Type& v) noexcept

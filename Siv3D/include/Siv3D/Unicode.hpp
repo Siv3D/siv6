@@ -170,5 +170,13 @@ namespace s3d
 		/// </returns>
 		[[nodiscard]]
 		std::u32string ToUTF32(StringView s);
+
+		[[nodiscard]]
+		inline constexpr bool IsHighSurrogate(const char16 ch) noexcept;
+
+		[[nodiscard]]
+		inline constexpr bool IsLowSurrogate(const char16 ch) noexcept;
 	}
 }
+
+# include "detail/Unicode.ipp"

@@ -35,7 +35,7 @@ namespace s3d
 		UTF16BE,
 
 		/// @brief デフォルト [UTF-8]
-		Default = UTF8_WITH_BOM,
+		Default = UTF8_NO_BOM,
 	};
 
 	namespace Unicode

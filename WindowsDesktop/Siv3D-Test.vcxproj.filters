@@ -26,6 +26,9 @@
     <ClCompile Include="..\Test\Siv3DTest_TextEncoding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Test\Siv3DTest_TextReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">

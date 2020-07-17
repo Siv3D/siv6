@@ -251,6 +251,8 @@
 // Unicode
 # include <Siv3D/Unicode.hpp> // [Siv3D ToDo]
 
+# include <Siv3D/UnicodeConverter.hpp> // [Siv3D ToDo]
+
 // アルファベットの大文字・小文字
 // Letter case
 # include <Siv3D/LetterCase.hpp>
