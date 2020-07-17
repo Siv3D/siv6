@@ -1422,5 +1422,4 @@ TEST_CASE("TextReader::readAll(String&) | LONG")
 	}
 }
 
-
 SIV3D_DISABLE_MSVC_WARNINGS_POP()
