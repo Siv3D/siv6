@@ -193,11 +193,8 @@ namespace s3d
 
 			if ((codePoint == U'\n') || (codePoint == U'\0'))
 			{
-				if (line)
-				{
-					lines.push_back(line);
-					line.clear();
-				}
+				lines.push_back(line);
+				line.clear();
 			}
 			else if (codePoint != U'\r')
 			{
@@ -280,6 +277,11 @@ namespace s3d
 
 			if (!readCodePoint(codePoint))
 			{
+				if (line)
+				{
+					return true;
+				}
+
 				return false;
 			}
 
@@ -316,16 +318,18 @@ namespace s3d
 					lines.push_back(std::move(line));
 				}
 
+				if (!lines)
+				{
+					return false;
+				}
+
 				return true;
 			}
 
 			if ((codePoint == U'\n') || (codePoint == U'\0'))
 			{
-				if (line)
-				{
-					lines.push_back(line);
-					line.clear();
-				}
+				lines.push_back(line);
+				line.clear();
 			}
 			else if (codePoint != U'\r')
 			{
@@ -349,6 +353,11 @@ namespace s3d
 
 			if (!readCodePoint(codePoint))
 			{
+				if (!s)
+				{
+					return false;
+				}
+
 				return true;
 			}
 

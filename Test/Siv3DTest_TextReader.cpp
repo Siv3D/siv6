@@ -21,11 +21,24 @@ SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4566)
 
 TEST_CASE("TextReader")
 {
+	SECTION("Nonexist")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/nonexist.txt");
+		const TextReader reader(path);
+		REQUIRE(reader.isOpen() == false);
+		REQUIRE(!reader == true);
+		REQUIRE(static_cast<bool>(reader) == false);
+		REQUIRE(reader.encoding() == TextEncoding::Default);
+		REQUIRE(reader.path() == U"");
+	}
+
 	SECTION("Empty")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/empty.txt");
 		const TextReader reader(path);
 		REQUIRE(reader.isOpen() == true);
+		REQUIRE(!reader == false);
+		REQUIRE(static_cast<bool>(reader) == true);
 		REQUIRE(reader.encoding() == TextEncoding::Default);
 		REQUIRE(reader.path() == path);
 	}
@@ -35,6 +48,8 @@ TEST_CASE("TextReader")
 		const FilePath path = FileSystem::FullPath(U"test/text/utf8_no_bom.txt");
 		const TextReader reader(path);
 		REQUIRE(reader.isOpen() == true);
+		REQUIRE(!reader == false);
+		REQUIRE(static_cast<bool>(reader) == true);
 		REQUIRE(reader.encoding() == TextEncoding::UTF8_NO_BOM);
 		REQUIRE(reader.path() == path);
 	}
@@ -44,6 +59,8 @@ TEST_CASE("TextReader")
 		const FilePath path = FileSystem::FullPath(U"test/text/utf8_with_bom.txt");
 		const TextReader reader(path);
 		REQUIRE(reader.isOpen() == true);
+		REQUIRE(!reader == false);
+		REQUIRE(static_cast<bool>(reader) == true);
 		REQUIRE(reader.encoding() == TextEncoding::UTF8_WITH_BOM);
 		REQUIRE(reader.path() == path);
 	}
@@ -53,6 +70,8 @@ TEST_CASE("TextReader")
 		const FilePath path = FileSystem::FullPath(U"test/text/utf16_le.txt");
 		const TextReader reader(path);
 		REQUIRE(reader.isOpen() == true);
+		REQUIRE(!reader == false);
+		REQUIRE(static_cast<bool>(reader) == true);
 		REQUIRE(reader.encoding() == TextEncoding::UTF16LE);
 		REQUIRE(reader.path() == path);
 	}
@@ -62,15 +81,24 @@ TEST_CASE("TextReader")
 		const FilePath path = FileSystem::FullPath(U"test/text/utf16_be.txt");
 		const TextReader reader(path);
 		REQUIRE(reader.isOpen() == true);
+		REQUIRE(!reader == false);
+		REQUIRE(static_cast<bool>(reader) == true);
 		REQUIRE(reader.encoding() == TextEncoding::UTF16BE);
 		REQUIRE(reader.path() == path);
 	}
 }
 
-
-TEST_CASE("TextReader::readChar()")
+TEST_CASE("TextReader::readChar() | SHORT")
 {
-	SECTION("Empty.short")
+	SECTION("Nonexist")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/nonexist.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readChar() == none);
+		REQUIRE(reader.readChar() == none);
+	}
+
+	SECTION("Empty")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/empty.txt");
 		TextReader reader(path);
@@ -78,7 +106,7 @@ TEST_CASE("TextReader::readChar()")
 		REQUIRE(reader.readChar() == none);
 	}
 
-	SECTION("UTF8_NO_BOM.short")
+	SECTION("UTF8_NO_BOM")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/utf8_no_bom.txt");
 		TextReader reader(path);
@@ -91,7 +119,7 @@ TEST_CASE("TextReader::readChar()")
 		REQUIRE(reader.readChar() == none);
 	}
 
-	SECTION("UTF8_WITH_BOM.short")
+	SECTION("UTF8_WITH_BOM")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/utf8_with_bom.txt");
 		TextReader reader(path);
@@ -104,7 +132,7 @@ TEST_CASE("TextReader::readChar()")
 		REQUIRE(reader.readChar() == none);
 	}
 
-	SECTION("UTF16LE.short")
+	SECTION("UTF16LE")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/utf16_le.txt");
 		TextReader reader(path);
@@ -117,7 +145,7 @@ TEST_CASE("TextReader::readChar()")
 		REQUIRE(reader.readChar() == none);
 	}
 
-	SECTION("UTF16BE.short")
+	SECTION("UTF16BE")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/utf16_be.txt");
 		TextReader reader(path);
@@ -129,8 +157,11 @@ TEST_CASE("TextReader::readChar()")
 		REQUIRE(reader.readChar() == none);
 		REQUIRE(reader.readChar() == none);
 	}
+}
 
-	SECTION("UTF8_NO_BOM.long")
+TEST_CASE("TextReader::readChar() | LONG")
+{
+	SECTION("UTF8_NO_BOM")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_no_bom.txt");
 		TextReader reader(path);
@@ -162,7 +193,7 @@ TEST_CASE("TextReader::readChar()")
 		REQUIRE(reader.readChar() == none);
 	}
 
-	SECTION("UTF8_WITH_BOM.long")
+	SECTION("UTF8_WITH_BOM")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_with_bom.txt");
 		TextReader reader(path);
@@ -194,7 +225,7 @@ TEST_CASE("TextReader::readChar()")
 		REQUIRE(reader.readChar() == none);
 	}
 
-	SECTION("UTF16LE.long")
+	SECTION("UTF16LE")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_le.txt");
 		TextReader reader(path);
@@ -226,7 +257,7 @@ TEST_CASE("TextReader::readChar()")
 		REQUIRE(reader.readChar() == none);
 	}
 
-	SECTION("UTF16BE.long")
+	SECTION("UTF16BE")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_be.txt");
 		TextReader reader(path);
@@ -259,8 +290,19 @@ TEST_CASE("TextReader::readChar()")
 	}
 }
 
-TEST_CASE("TextReader::readChar(char32&) | short")
+TEST_CASE("TextReader::readChar(char32&) | SHORT")
 {
+	SECTION("Nonexist")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/nonexist.txt");
+		TextReader reader(path);
+		char32 c = U'\0';
+		REQUIRE(reader.readChar(c) == false);
+		REQUIRE(c == U'\0');
+		REQUIRE(reader.readChar(c) == false);
+		REQUIRE(c == U'\0');
+	}
+
 	SECTION("Empty")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/empty.txt");
@@ -342,7 +384,7 @@ TEST_CASE("TextReader::readChar(char32&) | short")
 	}
 }
 
-TEST_CASE("TextReader::readChar(char32&) | long")
+TEST_CASE("TextReader::readChar(char32&) | LONG")
 {
 	SECTION("UTF8_NO_BOM")
 	{
@@ -581,8 +623,16 @@ TEST_CASE("TextReader::readChar(char32&) | long")
 	}
 }
 
-TEST_CASE("TextReader::readLine() | short")
+TEST_CASE("TextReader::readLine() | SHORT")
 {
+	SECTION("Nonexist")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/nonexist.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLine() == none);
+		REQUIRE(reader.readLine() == none);
+	}
+
 	SECTION("Empty")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/empty.txt");
@@ -628,31 +678,749 @@ TEST_CASE("TextReader::readLine() | short")
 	}
 }
 
-TEST_CASE("TextReader::readLine() | long")
+TEST_CASE("TextReader::readLine() | LONG")
 {
 	SECTION("UTF8_NO_BOM")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_no_bom.txt");
 		TextReader reader(path);
+		REQUIRE(reader.readLine() == U"あいうえお");
+		REQUIRE(reader.readLine() == U"𩸽齟齬😎🙊");
+		REQUIRE(reader.readLine() == U"ABC");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == U"AB");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == U"A");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == none);
+		REQUIRE(reader.readLine() == none);
 	}
 
 	SECTION("UTF8_WITH_BOM")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_with_bom.txt");
 		TextReader reader(path);
+		REQUIRE(reader.readLine() == U"あいうえお");
+		REQUIRE(reader.readLine() == U"𩸽齟齬😎🙊");
+		REQUIRE(reader.readLine() == U"ABC");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == U"AB");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == U"A");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == none);
+		REQUIRE(reader.readLine() == none);
 	}
 
 	SECTION("UTF16LE")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_le.txt");
 		TextReader reader(path);
+		REQUIRE(reader.readLine() == U"あいうえお");
+		REQUIRE(reader.readLine() == U"𩸽齟齬😎🙊");
+		REQUIRE(reader.readLine() == U"ABC");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == U"AB");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == U"A");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == none);
+		REQUIRE(reader.readLine() == none);
 	}
 
 	SECTION("UTF16BE")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_be.txt");
 		TextReader reader(path);
+		REQUIRE(reader.readLine() == U"あいうえお");
+		REQUIRE(reader.readLine() == U"𩸽齟齬😎🙊");
+		REQUIRE(reader.readLine() == U"ABC");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == U"AB");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == U"A");
+		REQUIRE(reader.readLine() == U"");
+		REQUIRE(reader.readLine() == none);
+		REQUIRE(reader.readLine() == none);
 	}
 }
+
+TEST_CASE("TextReader::readLine(String&) | SHORT")
+{
+	SECTION("Nonexist")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/nonexist.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+
+	SECTION("Empty")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/empty.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_no_bom.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"Siv3D");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_with_bom.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"Siv3D");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_le.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"Siv3D");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_be.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"Siv3D");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+}
+
+TEST_CASE("TextReader::readLine(String&) | LONG")
+{
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_no_bom.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"あいうえお");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"𩸽齟齬😎🙊");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"ABC");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"AB");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"A");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_with_bom.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"あいうえお");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"𩸽齟齬😎🙊");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"ABC");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"AB");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"A");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_le.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"あいうえお");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"𩸽齟齬😎🙊");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"ABC");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"AB");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"A");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_be.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"あいうえお");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"𩸽齟齬😎🙊");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"ABC");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"AB");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"A");
+		REQUIRE(reader.readLine(line) == true);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+		REQUIRE(reader.readLine(line) == false);
+		REQUIRE(line == U"");
+	}
+}
+
+TEST_CASE("TextReader::readLines() | SHORT")
+{
+	const Array<String> expected = { U"Siv3D" };
+
+	SECTION("Nonexist")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/nonexist.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+
+	SECTION("Empty")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/empty.txt");
+		TextReader reader(path);
+		String line;
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_no_bom.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLines() == expected);
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_with_bom.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLines() == expected);
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_le.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLines() == expected);
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_be.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLines() == expected);
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+}
+
+TEST_CASE("TextReader::readLines() | LONG")
+{
+	const Array<String> expected =
+	{
+		U"あいうえお",
+		U"𩸽齟齬😎🙊",
+		U"ABC",
+		U"",
+		U"AB",
+		U"",
+		U"A",
+		U"",
+	};
+
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_no_bom.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLines() == expected);
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_with_bom.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLines() == expected);
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_le.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLines() == expected);
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_be.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readLines() == expected);
+		REQUIRE(reader.readLines() == Array<String>{});
+		REQUIRE(reader.readLines() == Array<String>{});
+	}
+}
+
+TEST_CASE("TextReader::readLines(Array<String>&) | SHORT")
+{
+	const Array<String> expected = { U"Siv3D" };
+
+	SECTION("Nonexist")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/nonexist.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+
+	SECTION("Empty")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/empty.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_no_bom.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == true);
+		REQUIRE(lines == expected);
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_with_bom.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == true);
+		REQUIRE(lines == expected);
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_le.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == true);
+		REQUIRE(lines == expected);
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_be.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == true);
+		REQUIRE(lines == expected);
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+}
+
+TEST_CASE("TextReader::readLines(Array<String>&) | LONG")
+{
+	const Array<String> expected =
+	{
+		U"あいうえお",
+		U"𩸽齟齬😎🙊",
+		U"ABC",
+		U"",
+		U"AB",
+		U"",
+		U"A",
+		U"",
+	};
+
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_no_bom.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == true);
+		REQUIRE(lines == expected);
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_with_bom.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == true);
+		REQUIRE(lines == expected);
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_le.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == true);
+		REQUIRE(lines == expected);
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_be.txt");
+		TextReader reader(path);
+		Array<String> lines;
+		REQUIRE(reader.readLines(lines) == true);
+		REQUIRE(lines == expected);
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+		REQUIRE(reader.readLines(lines) == false);
+		REQUIRE(lines == Array<String>{});
+	}
+}
+
+TEST_CASE("TextReader::readAll() | SHORT")
+{
+	const String expected = U"Siv3D";
+
+	SECTION("Nonexist")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/nonexist.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+
+	SECTION("Empty")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/empty.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_no_bom.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == expected);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_with_bom.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == expected);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_le.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == expected);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_be.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == expected);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+}
+
+TEST_CASE("TextReader::readAll() | LONG")
+{
+	const String expected = U"あいうえお\n𩸽齟齬😎🙊\nABC\n\nAB\n\nA\n\n";
+
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_no_bom.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == expected);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_with_bom.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == expected);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_le.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == expected);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_be.txt");
+		TextReader reader(path);
+		REQUIRE(reader.readAll() == expected);
+		REQUIRE(reader.readAll() == U"");
+		REQUIRE(reader.readAll() == U"");
+	}
+}
+
+TEST_CASE("TextReader::readAll(String&) | SHORT")
+{
+	const String expected = U"Siv3D";
+
+	SECTION("Nonexist")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/nonexist.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+
+	SECTION("Empty")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/empty.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_no_bom.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == true);
+		REQUIRE(s == expected);
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf8_with_bom.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == true);
+		REQUIRE(s == expected);
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_le.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == true);
+		REQUIRE(s == expected);
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/utf16_be.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == true);
+		REQUIRE(s == expected);
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+}
+
+TEST_CASE("TextReader::readAll(String&) | LONG")
+{
+	const String expected = U"あいうえお\n𩸽齟齬😎🙊\nABC\n\nAB\n\nA\n\n";
+
+	SECTION("UTF8_NO_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_no_bom.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == true);
+		REQUIRE(s == expected);
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+
+	SECTION("UTF8_WITH_BOM")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf8_with_bom.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == true);
+		REQUIRE(s == expected);
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+
+	SECTION("UTF16LE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_le.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == true);
+		REQUIRE(s == expected);
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+
+	SECTION("UTF16BE")
+	{
+		const FilePath path = FileSystem::FullPath(U"test/text/long/utf16_be.txt");
+		TextReader reader(path);
+		String s;
+		REQUIRE(reader.readAll(s) == true);
+		REQUIRE(s == expected);
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+		REQUIRE(reader.readAll(s) == false);
+		REQUIRE(s == U"");
+	}
+}
+
 
 SIV3D_DISABLE_MSVC_WARNINGS_POP()
