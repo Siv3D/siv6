@@ -753,9 +753,6 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Unspecified.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Optional_misc.ipp">
-      <Filter>include\Siv3D\detail</Filter>
-    </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\None.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>

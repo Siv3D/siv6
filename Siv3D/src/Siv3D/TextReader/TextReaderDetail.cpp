@@ -148,7 +148,12 @@ namespace s3d
 
 			if (!readCodePoint(codePoint))
 			{
-				return line;
+				if (line)
+				{
+					return line;
+				}
+
+				return none;
 			}
 
 			if ((codePoint == U'\n') || (codePoint == U'\0'))

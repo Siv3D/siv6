@@ -463,8 +463,6 @@ namespace s3d
 	/// @param pred 条件
 	template <class Container, class Pred>
 	inline void EraseNodes_if(Container& c, Pred pred);
-
-	inline constexpr struct InPlace_t {} InPlace{};
 }
 
 # include "detail/Utility.ipp"
