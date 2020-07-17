@@ -215,7 +215,7 @@ namespace s3d
 	}
 
 	template <class Type>
-	inline constexpr bool operator <(const Optional<Type>& opt, None_t) noexcept
+	inline constexpr bool operator <(const Optional<Type>&, None_t) noexcept
 	{
 		return false;
 	}
@@ -233,7 +233,7 @@ namespace s3d
 	}
 
 	template <class Type>
-	inline constexpr bool operator <=(None_t, const Optional<Type>& opt) noexcept
+	inline constexpr bool operator <=(None_t, const Optional<Type>&) noexcept
 	{
 		return true;
 	}
@@ -245,13 +245,13 @@ namespace s3d
 	}
 
 	template <class Type>
-	inline constexpr bool operator >(None_t, const Optional<Type>& opt) noexcept
+	inline constexpr bool operator >(None_t, const Optional<Type>&) noexcept
 	{
 		return false;
 	}
 
 	template <class Type>
-	inline constexpr bool operator >=(const Optional<Type>& opt, None_t) noexcept
+	inline constexpr bool operator >=(const Optional<Type>&, None_t) noexcept
 	{
 		return true;
 	}

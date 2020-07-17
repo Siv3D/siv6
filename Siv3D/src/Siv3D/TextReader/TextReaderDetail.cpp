@@ -108,7 +108,7 @@ namespace s3d
 
 	Optional<char32> TextReader::TextReaderDetail::readChar()
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return none;
 		}
@@ -135,7 +135,7 @@ namespace s3d
 
 	Optional<String> TextReader::TextReaderDetail::readLine()
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return none;
 		}
@@ -169,7 +169,7 @@ namespace s3d
 
 	Array<String> TextReader::TextReaderDetail::readLines()
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return{};
 		}
@@ -205,7 +205,7 @@ namespace s3d
 
 	String TextReader::TextReaderDetail::readAll()
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return{};
 		}
@@ -236,7 +236,7 @@ namespace s3d
 	{
 		ch = 0;
 
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return false;
 		}
@@ -266,7 +266,7 @@ namespace s3d
 	{
 		line.clear();
 
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return false;
 		}
@@ -300,7 +300,7 @@ namespace s3d
 	{
 		lines.clear();
 
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return false;
 		}
@@ -342,7 +342,7 @@ namespace s3d
 	{
 		s.clear();
 
-		if (!m_info.isOpen) [[unlikely]]
+		if (!m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return false;
 		}
