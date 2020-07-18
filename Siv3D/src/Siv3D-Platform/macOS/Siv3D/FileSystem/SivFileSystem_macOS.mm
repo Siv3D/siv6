@@ -569,5 +569,47 @@ namespace s3d
 		{
 			return Unicode::Widen(detail::MacOS_SpecialFolder(folder)) << U'/';
 		}
+	
+	
+	
+	
+	
+	
+		bool CreateDirectories(const FilePathView path)
+		{
+			namespace fs = boost::filesystem;
+			
+			if (not path)
+			{
+				return false;
+			}
+
+			try
+			{
+				fs::create_directories(fs::path(path.toWstr()));
+				return true;
+			}
+			catch (const fs::filesystem_error&)
+			{
+				return false;
+			}
+		}
+
+		bool CreateParentDirectories(const FilePathView path)
+		{
+			if (not path)
+			{
+				return false;
+			}
+
+			const FilePath parentDirectory = ParentPath(FullPath(path));
+			
+			if (not Exists(parentDirectory))
+			{
+				return CreateDirectories(parentDirectory);
+			}
+			
+			return true;
+		}
 	}
 }

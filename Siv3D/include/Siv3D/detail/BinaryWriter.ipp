@@ -27,7 +27,7 @@ namespace s3d
 # if __cpp_lib_concepts
 	template <Concept::TriviallyCopyable Type>
 # else
-	template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
+	template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
 # endif
 	inline bool BinaryWriter::write(const Type& src)
 	{
