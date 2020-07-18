@@ -646,6 +646,7 @@ namespace s3d
 
 			return true;
 		}
+
 		bool Copy(const FilePathView from, const FilePathView to, const CopyOption copyOption)
 		{
 			if ((not from) || (not to))

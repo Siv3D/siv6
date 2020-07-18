@@ -11,6 +11,8 @@
 
 # include <sys/stat.h>
 # include <unistd.h>
+# include <glib-2.0/glib.h>
+# include <glib-2.0/gio/gio.h>
 # include <filesystem>
 # include <Siv3D/String.hpp>
 # include <Siv3D/FileSystem.hpp>
@@ -96,6 +98,45 @@ namespace s3d
 					lt.tm_min,
 					lt.tm_sec,
 					static_cast<int32>(tv.tv_nsec / (1'000'000))};
+		}		
+
+		[[nodiscard]]
+		inline constexpr std::filesystem::copy_options ToCopyOptions(const CopyOption copyOption) noexcept
+		{
+			switch (copyOption)
+			{
+			case CopyOption::SkipExisting:
+				return std::filesystem::copy_options::skip_existing;
+			case CopyOption::OverwriteExisting:
+				return std::filesystem::copy_options::overwrite_existing;
+			case CopyOption::UpdateExisting:
+				return std::filesystem::copy_options::update_existing;
+			default:
+				return std::filesystem::copy_options::none;
+			}
+		}
+
+		[[nodiscard]]
+		static bool Linux_TrashFile(const char* path)
+		{
+			GFile* gf = g_file_new_for_path(path);
+			GError* ge;
+
+			gboolean ret = g_file_trash(gf, nullptr, &ge);
+
+			if (ge)
+			{
+				g_error_free(ge);
+			}
+			
+			g_object_unref(gf);
+
+			if(!ret)
+			{
+				return false;
+			}
+
+			return true;
 		}		
 
 		namespace init
@@ -348,7 +389,7 @@ namespace s3d
 
 		bool ChangeCurrentDirectory(const FilePathView path)
 		{
-			if (!IsDirectory(path))
+			if (not IsDirectory(path))
 			{
 				return false;
 			}
@@ -360,5 +401,101 @@ namespace s3d
 		{
 			return{};
 		}
+
+		bool CreateDirectories(const FilePathView path)
+		{
+			if (not path)
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return false;
+			}
+
+			try
+			{
+				fs::create_directories(detail::ToPath(path));
+				return true;
+			}
+			catch (const fs::filesystem_error&)
+			{
+				return false;
+			}
+		}
+
+		bool CreateParentDirectories(const FilePathView path)
+		{
+			if (not path)
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return false;
+			}
+
+			const FilePath parentDirectory = ParentPath(FullPath(path));
+
+			if (not Exists(parentDirectory))
+			{
+				return CreateDirectories(parentDirectory);
+			}
+
+			return true;
+		}
+	
+		bool Copy(const FilePathView from, const FilePathView to, const CopyOption copyOption)
+		{
+			if ((not from) || (not to))
+			{
+				return false;
+			}
+
+			if (IsResourcePath(from) || IsResourcePath(to))
+			{
+				return false;
+			}
+
+			CreateParentDirectories(to);
+
+			const auto options = detail::ToCopyOptions(copyOption) | std::filesystem::copy_options::recursive;
+			std::error_code error;
+			std::filesystem::copy(detail::ToPath(from), detail::ToPath(to), options, error);
+
+			return (error.value() == 0);
+		}
+
+		bool Remove(const FilePathView path, const bool allowUndo)
+		{
+			if (not path)
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return false;
+			}
+
+			if (!allowUndo)
+			{
+				try
+				{
+					fs::remove_all(detail::ToPath(from));
+					return true;
+				}
+				catch (const fs::filesystem_error&)
+				{
+					return false;
+				}
+			}
+
+			const std::string utf8Path = Unicode::Narrow(path);
+
+			return detail::Linux_TrashFile(utf8Path.c_str());
+		}		
 	}
 }

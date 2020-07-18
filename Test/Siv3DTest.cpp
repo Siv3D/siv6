@@ -22,8 +22,16 @@ using namespace std::literals;
 void Siv3DTest()
 {
 	Console.open();
+	
+	{
+		FileSystem::Remove(U"test/");
+	
+		FileSystem::Copy(U"../../Test/test/", U"./test/");
 
-	Catch::Session().run();
+		Catch::Session().run();
+
+		FileSystem::Remove(U"test/");
+	}
 }
 
 TEST_CASE("String")

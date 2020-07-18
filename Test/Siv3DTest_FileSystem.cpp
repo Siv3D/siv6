@@ -72,13 +72,93 @@ TEST_CASE("FileSystem")
 	Console << (U"UserFonts\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::UserFonts)));
 	Console << (U"UserProfile\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::UserProfile)));
 	Console << (U"ProgramFiles\t: {}"_fmt(FileSystem::GetFolderPath(SpecialFolder::ProgramFiles)));
-	
-	
+
+}
+
+TEST_CASE("FileSystem::ChangeCurrentDirectory()")
+{
+	const FilePath current = FileSystem::CurrentDirectory();
+	const FilePath target = FileSystem::CurrentDirectory() + U"test/";
+	REQUIRE(FileSystem::ChangeCurrentDirectory(target) == true);
+	REQUIRE(FileSystem::CurrentDirectory() == target);
+	REQUIRE(FileSystem::ChangeCurrentDirectory(current) == true);
+}
+
+TEST_CASE("FileSystem::CreateDirectories()")
+{
+	const FilePath target = FileSystem::CurrentDirectory() + U"test/runtime/filesystem/a1/b1/c1/";
+	REQUIRE(FileSystem::Exists(target) == false);
+	REQUIRE(FileSystem::CreateDirectories(target) == true);
+	REQUIRE(FileSystem::Exists(target) == true);
+}
+
+TEST_CASE("FileSystem::CreateParentDirectories()")
+{
+	SECTION("by file")
 	{
-		const FilePath current = FileSystem::CurrentDirectory();
-		const FilePath target = FileSystem::CurrentDirectory() + U"test/";
-		Console << (U"ChangeCurrentDirectory\t: {}"_fmt(FileSystem::ChangeCurrentDirectory(target)));
-		Console << (U"Current\t: {}"_fmt(FileSystem::CurrentDirectory()));
-		Console << (U"ChangeCurrentDirectory\t: {}"_fmt(FileSystem::ChangeCurrentDirectory(current)));
+		const FilePath target = FileSystem::CurrentDirectory() + U"test/runtime/filesystem/a2/b2/c2/";
+		const FilePath targetFile = FileSystem::CurrentDirectory() + U"test/runtime/filesystem/a2/b2/c2/test.txt";
+		REQUIRE(FileSystem::Exists(target) == false);
+		REQUIRE(FileSystem::CreateParentDirectories(targetFile) == true);
+		REQUIRE(FileSystem::Exists(target) == true);
+	}
+
+	SECTION("by directory")
+	{
+		const FilePath target = FileSystem::CurrentDirectory() + U"test/runtime/filesystem/a3/b3/";
+		const FilePath targetFile = FileSystem::CurrentDirectory() + U"test/runtime/filesystem/a3/b3/c3/";
+		REQUIRE(FileSystem::Exists(target) == false);
+		REQUIRE(FileSystem::CreateParentDirectories(targetFile) == true);
+		REQUIRE(FileSystem::Exists(target) == true);
+	}
+}
+
+TEST_CASE("FileSystem::Copy()")
+{
+	SECTION("file")
+	{
+		const FilePath targetFile = FileSystem::CurrentDirectory() + U"test/runtime/filesystem/empty.txt";
+
+		REQUIRE(FileSystem::Exists(targetFile) == false);
+		REQUIRE(FileSystem::Copy(U"test/text/empty.txt", targetFile, CopyOption::None) == true);
+		REQUIRE(FileSystem::Exists(targetFile) == true);
+		REQUIRE(FileSystem::Remove(targetFile) == true);
+	}
+
+	SECTION("directory")
+	{
+		const FilePath targetDirectory = FileSystem::CurrentDirectory() + U"test/runtime/filesystem/text/";
+
+		REQUIRE(FileSystem::Exists(targetDirectory) == false);
+		REQUIRE(FileSystem::Copy(U"test/text/", targetDirectory, CopyOption::None) == true);
+		REQUIRE(FileSystem::Exists(targetDirectory) == true);
+		REQUIRE(FileSystem::Size(U"test/text/") == FileSystem::Size(targetDirectory));
+		REQUIRE(FileSystem::Remove(targetDirectory) == true);
+	}
+}
+
+TEST_CASE("FileSystem::Remove()")
+{
+	SECTION("file")
+	{
+		const FilePath targetFile = FileSystem::CurrentDirectory() + U"test/runtime/filesystem/remove/empty.txt";
+
+		REQUIRE(FileSystem::Exists(targetFile) == false);
+		REQUIRE(FileSystem::Copy(U"test/text/empty.txt", targetFile, CopyOption::None) == true);
+		REQUIRE(FileSystem::Exists(targetFile) == true);
+		REQUIRE(FileSystem::Remove(targetFile) == true);
+		REQUIRE(FileSystem::Exists(targetFile) == false);
+	}
+
+	SECTION("directory")
+	{
+		const FilePath targetDirectory = FileSystem::CurrentDirectory() + U"test/runtime/filesystem/remove/text/";
+
+		REQUIRE(FileSystem::Exists(targetDirectory) == false);
+		REQUIRE(FileSystem::Copy(U"test/text/", targetDirectory, CopyOption::None) == true);
+		REQUIRE(FileSystem::Exists(targetDirectory) == true);
+		REQUIRE(FileSystem::Size(U"test/text/") == FileSystem::Size(targetDirectory));
+		REQUIRE(FileSystem::Remove(targetDirectory) == true);
+		REQUIRE(FileSystem::Exists(targetDirectory) == false);
 	}
 }
