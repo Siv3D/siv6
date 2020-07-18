@@ -13,5 +13,24 @@
 
 namespace s3d
 {
+	inline BinaryWriter::BinaryWriter(const FilePathView path, const OpenMode openMode)
+		: BinaryWriter()
+	{
+		open(path, openMode);
+	}
 
+	inline BinaryWriter::operator bool() const noexcept
+	{
+		return isOpen();
+	}
+
+# if __cpp_lib_concepts
+	template <Concept::TriviallyCopyable Type>
+# else
+	template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
+# endif
+	inline bool BinaryWriter::write(const Type& src)
+	{
+		return (write(std::addressof(src), sizeof(Type)) == sizeof(Type));
+	}
 }

@@ -34,9 +34,9 @@ namespace s3d
 # else
 	template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
 # endif
-	inline bool BinaryReader::read(Type& to)
+	inline bool BinaryReader::read(Type& dst)
 	{
-		return read(std::addressof(to), sizeof(Type)) == sizeof(Type);
+		return (read(std::addressof(dst), sizeof(Type)) == sizeof(Type));
 	}
 
 # if __cpp_lib_concepts
@@ -44,8 +44,8 @@ namespace s3d
 # else
 	template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
 # endif
-	bool BinaryReader::lookahead(Type& to)
+	bool BinaryReader::lookahead(Type& dst)
 	{
-		return lookahead(std::addressof(to), sizeof(Type)) == sizeof(Type);
+		return (lookahead(std::addressof(dst), sizeof(Type)) == sizeof(Type));
 	}
 }

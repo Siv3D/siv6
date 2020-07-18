@@ -11,41 +11,42 @@
 
 # pragma once
 # include <Siv3D/Windows/Windows.hpp>
-# include <Siv3D/BinaryReader.hpp>
+# include <Siv3D/BinaryWriter.hpp>
 # include <Siv3D/Byte.hpp>
 # include <Siv3D/NonNull.hpp>
 
 namespace s3d
 {
-	class BinaryReader::BinaryReaderDetail
+	class BinaryWriter::BinaryWriterDetail
 	{
 	private:
+
+		constexpr static size_t BufferSize = 8192;
 
 		struct File
 		{
 			HANDLE handle = INVALID_HANDLE_VALUE;
 		} m_file;
 
-		struct Resource
-		{
-			const Byte* pointer = nullptr;
-			int64 pos = 0;
-		} m_resource;
-
 		struct Info
 		{
-			bool isOpen = false;
-			int64 size = 0;
 			FilePath fullPath;
+			bool isOpen = false;
 		} m_info;
 
-		bool isResource() const noexcept;
+		struct Buffer
+		{
+			std::unique_ptr<Byte[]> data;
+			size_t currentWritePos = 0;
+		} m_buffer;
+
+		int64 fillBuffer(NonNull<const void*> src, size_t size);
 
 	public:
 
-		BinaryReaderDetail();
+		BinaryWriterDetail();
 
-		~BinaryReaderDetail();
+		~BinaryWriterDetail();
 
 		bool open(FilePathView path, OpenMode openMode);
 
@@ -53,19 +54,17 @@ namespace s3d
 
 		bool isOpen() const noexcept;
 
-		int64 size() const noexcept;
+		void flush();
 
-		int64 setPos(int64 clampedPos);
+		void clear();
+
+		int64 size();
 
 		int64 getPos();
 
-		int64 read(NonNull<void*> dst, int64 size);
+		int64 setPos(int64 clampedPos);
 
-		int64 read(NonNull<void*> dst, int64 pos, int64 size);
-
-		int64 lookahead(NonNull<void*> dst, int64 size);
-
-		int64 lookahead(NonNull<void*> dst, int64 pos, int64 size);
+		int64 write(NonNull<const void*> src, size_t size);
 
 		const FilePath& path() const noexcept;
 	};

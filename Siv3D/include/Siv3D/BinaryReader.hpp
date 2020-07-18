@@ -82,52 +82,52 @@ namespace s3d
 		int64 skip(int64 offset) override;
 
 		/// @brief ファイルからデータを読み込みます。
-		/// @param buffer 読み込み先
+		/// @param dst 読み込み先
 		/// @param size 読み込むサイズ（バイト）
 		/// @return 実際に読み込んだサイズ（バイト）
-		int64 read(void* buffer, int64 size) override;
+		int64 read(void* dst, int64 size) override;
 
 		/// @brief ファイルからデータを読み込みます。
-		/// @param buffer 読み込み先
+		/// @param dst 読み込み先
 		/// @param pos 先頭から数えた読み込み開始位置（バイト）
 		/// @param size 読み込むサイズ（バイト）
 		/// @return 実際に読み込んだサイズ（バイト）
-		int64 read(void* buffer, int64 pos, int64 size) override;
+		int64 read(void* dst, int64 pos, int64 size) override;
 
 		/// @brief ファイルからデータを読み込みます。
 		/// @tparam Type 読み込む値の型
-		/// @param to 読み込み先
+		/// @param dst 読み込み先
 		/// @return 読み込みに成功したら true, それ以外の場合は false
 	# if __cpp_lib_concepts
 		template <Concept::TriviallyCopyable Type>
 	# else
 		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
 	# endif
-		bool read(Type& to);
+		bool read(Type& dst);
 
 		/// @brief 読み込み位置を変更しないでファイルからデータを読み込みます。
-		/// @param buffer 読み込み先
+		/// @param dst 読み込み先
 		/// @param size 読み込むサイズ（バイト）
 		/// @return 実際に読み込んだサイズ（バイト）
-		int64 lookahead(void* buffer, int64 size) const override;
+		int64 lookahead(void* dst, int64 size) const override;
 
 		/// @brief 読み込み位置を変更しないでファイルからデータを読み込みます。
-		/// @param buffer 読み込み先
+		/// @param dst 読み込み先
 		/// @param pos 先頭から数えた読み込み開始位置（バイト）
 		/// @param size 読み込むサイズ（バイト）
 		/// @return 実際に読み込んだサイズ（バイト）
-		int64 lookahead(void* buffer, int64 pos, int64 size) const override;
+		int64 lookahead(void* dst, int64 pos, int64 size) const override;
 
 		/// @brief 読み込み位置を変更しないでファイルからデータを読み込みます。
 		/// @tparam Type 読み込む値の型
-		/// @param to 読み込み先
+		/// @param dst 読み込み先
 		/// @return 読み込みに成功したら true, それ以外の場合は false
 	# if __cpp_lib_concepts
 		template <Concept::TriviallyCopyable Type>
 	# else
 		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
 	# endif
-		bool lookahead(Type& to);
+		bool lookahead(Type& dst);
 
 		/// @brief オープンしているファイルのパスを返します。
 		/// @return オープンしているファイルのパス。ファイルがオープンしていない場合は空の文字列

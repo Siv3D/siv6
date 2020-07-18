@@ -12,12 +12,61 @@
 # pragma once
 # include <memory>
 # include "Common.hpp"
+# include "IWriter.hpp"
+# include "String.hpp"
+# include "OpenMode.hpp"
 
 namespace s3d
 {
-	class BinaryWriter
+	class BinaryWriter : public IWriter
 	{
+	private:
 
+		class BinaryWriterDetail;
+
+		std::shared_ptr<BinaryWriterDetail> pImpl;
+
+	public:
+
+		BinaryWriter();
+
+		explicit BinaryWriter(FilePathView path, OpenMode openMode = OpenMode::Trunc);
+
+		bool open(FilePathView path, OpenMode openMode = OpenMode::Trunc);
+
+		void close();
+
+		[[nodiscard]]
+		bool isOpen() const noexcept override;
+
+		[[nodiscard]]
+		explicit operator bool() const noexcept;
+
+		void flush();
+
+		void clear();
+
+		[[nodiscard]]
+		int64 size() const override;
+
+		[[nodiscard]]
+		int64 getPos() const override;
+
+		bool setPos(int64 pos) override;
+
+		int64 seekToEnd();
+
+		int64 write(const void* src, int64 size) override;
+
+	# if __cpp_lib_concepts
+		template <Concept::TriviallyCopyable Type>
+	# else
+		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
+	# endif
+		bool write(const Type& src);
+
+		[[nodiscard]]
+		const FilePath& path() const noexcept;
 	};
 }
 

@@ -60,44 +60,44 @@ namespace s3d
 		return pImpl->setPos(pImpl->getPos() + offset);
 	}
 
-	int64 BinaryReader::read(void* const buffer, const int64 size)
+	int64 BinaryReader::read(void* const dst, const int64 size)
 	{
-		if ((buffer == nullptr) || (size <= 0))
+		if ((dst == nullptr) || (size <= 0))
 		{
 			return 0;
 		}
 
-		return pImpl->read(NonNull{ buffer }, size);
+		return pImpl->read(NonNull{ dst }, size);
 	}
 
-	int64 BinaryReader::read(void* const buffer, const int64 pos, const int64 size)
+	int64 BinaryReader::read(void* const dst, const int64 pos, const int64 size)
 	{
-		if ((buffer == nullptr) || (size <= 0) || (not InRange<int64>(pos, 0, pImpl->size())))
+		if ((dst == nullptr) || (size <= 0) || (not InRange<int64>(pos, 0, pImpl->size())))
 		{
 			return 0;
 		}
 
-		return pImpl->read(NonNull{ buffer }, pos, size);
+		return pImpl->read(NonNull{ dst }, pos, size);
 	}
 
-	int64 BinaryReader::lookahead(void* const buffer, const int64 size) const
+	int64 BinaryReader::lookahead(void* const dst, const int64 size) const
 	{
-		if ((buffer == nullptr) || (size <= 0))
+		if ((dst == nullptr) || (size <= 0))
 		{
 			return 0;
 		}
 
-		return pImpl->lookahead(NonNull{ buffer }, size);
+		return pImpl->lookahead(NonNull{ dst }, size);
 	}
 
-	int64 BinaryReader::lookahead(void* const buffer, const int64 pos, const int64 size) const
+	int64 BinaryReader::lookahead(void* const dst, const int64 pos, const int64 size) const
 	{
-		if ((buffer == nullptr) || (size <= 0) || (not InRange<int64>(pos, 0, pImpl->size())))
+		if ((dst == nullptr) || (size <= 0) || (not InRange<int64>(pos, 0, pImpl->size())))
 		{
 			return 0;
 		}
 
-		return pImpl->lookahead(NonNull{ buffer }, pos, size);
+		return pImpl->lookahead(NonNull{ dst }, pos, size);
 	}
 
 	const FilePath& BinaryReader::path() const noexcept

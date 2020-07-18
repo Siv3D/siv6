@@ -143,7 +143,7 @@ namespace s3d
 
 	void BinaryReader::BinaryReaderDetail::close()
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (not m_info.isOpen) [[unlikely]]
 		{
 			return;
 		}
@@ -177,7 +177,7 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::setPos(const int64 clampedPos)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (not m_info.isOpen) [[unlikely]]
 		{
 			return 0;
 		}
@@ -199,7 +199,7 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::getPos()
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (not m_info.isOpen) [[unlikely]]
 		{
 			return 0;
 		}
@@ -217,9 +217,9 @@ namespace s3d
 		}
 	}
 
-	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> buffer, const int64 size)
+	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> dst, const int64 size)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (not m_info.isOpen) [[unlikely]]
 		{
 			return 0;
 		}
@@ -227,7 +227,7 @@ namespace s3d
 		if (isResource())
 		{
 			const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_resource.pos));
-			std::memcpy(buffer.pointer, (m_resource.pointer + m_resource.pos), static_cast<size_t>(readBytes));
+			std::memcpy(dst.pointer, (m_resource.pointer + m_resource.pos), static_cast<size_t>(readBytes));
 			m_resource.pos += readBytes;
 			return readBytes;
 		}
@@ -235,7 +235,7 @@ namespace s3d
 		{
 			DWORD readBytes;
 
-			if (!::ReadFile(m_file.handle, buffer.pointer, static_cast<DWORD>(size), &readBytes, nullptr)) [[unlikely]]
+			if (!::ReadFile(m_file.handle, dst.pointer, static_cast<DWORD>(size), &readBytes, nullptr)) [[unlikely]]
 			{
 				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed. {1}"_fmt(
 					m_info.fullPath, Platform::Windows::GetLastErrorMessage()));
@@ -246,9 +246,9 @@ namespace s3d
 		}
 	}
 
-	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> buffer, const int64 pos, const int64 size)
+	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> dst, const int64 pos, const int64 size)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (not m_info.isOpen) [[unlikely]]
 		{
 			return 0;
 		}
@@ -256,7 +256,7 @@ namespace s3d
 		if (isResource())
 		{
 			const int64 readBytes = Clamp(size, 0LL, (m_info.size - pos));
-			std::memcpy(buffer.pointer, (m_resource.pointer + pos), static_cast<size_t>(readBytes));
+			std::memcpy(dst.pointer, (m_resource.pointer + pos), static_cast<size_t>(readBytes));
 			m_resource.pos = (pos + readBytes);
 			return readBytes;
 		}
@@ -265,7 +265,7 @@ namespace s3d
 			OVERLAPPED overlapped = detail::MakeOffset(pos);
 			DWORD readBytes;
 
-			if (!::ReadFile(m_file.handle, buffer.pointer, static_cast<DWORD>(size), &readBytes, &overlapped)) [[unlikely]]
+			if (!::ReadFile(m_file.handle, dst.pointer, static_cast<DWORD>(size), &readBytes, &overlapped)) [[unlikely]]
 			{
 				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed. {1}"_fmt(
 					m_info.fullPath, Platform::Windows::GetLastErrorMessage()));
@@ -276,9 +276,9 @@ namespace s3d
 		}
 	}
 
-	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> buffer, const int64 size)
+	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> dst, const int64 size)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (not m_info.isOpen) [[unlikely]]
 		{
 			return 0;
 		}
@@ -286,7 +286,7 @@ namespace s3d
 		if (isResource())
 		{
 			const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_resource.pos));
-			std::memcpy(buffer.pointer, (m_resource.pointer + m_resource.pos), static_cast<size_t>(readBytes));
+			std::memcpy(dst.pointer, (m_resource.pointer + m_resource.pos), static_cast<size_t>(readBytes));
 			return readBytes;
 		}
 		else
@@ -294,7 +294,7 @@ namespace s3d
 			const auto previousPos = getPos();
 			DWORD readBytes;
 
-			if (!::ReadFile(m_file.handle, buffer.pointer, static_cast<DWORD>(size), &readBytes, nullptr)) [[unlikely]]
+			if (!::ReadFile(m_file.handle, dst.pointer, static_cast<DWORD>(size), &readBytes, nullptr)) [[unlikely]]
 			{
 				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed. {1}"_fmt(
 					m_info.fullPath, Platform::Windows::GetLastErrorMessage()));
@@ -306,9 +306,9 @@ namespace s3d
 		}
 	}
 
-	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> buffer, const int64 pos, const int64 size)
+	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> dst, const int64 pos, const int64 size)
 	{
-		if (!m_info.isOpen) [[unlikely]]
+		if (not m_info.isOpen) [[unlikely]]
 		{
 			return 0;
 		}
@@ -316,7 +316,7 @@ namespace s3d
 		if (isResource())
 		{
 			const int64 readBytes = Clamp(size, 0LL, (m_info.size - pos));
-			std::memcpy(buffer.pointer, (m_resource.pointer + pos), static_cast<size_t>(readBytes));
+			std::memcpy(dst.pointer, (m_resource.pointer + pos), static_cast<size_t>(readBytes));
 			return readBytes;
 		}
 		else
@@ -325,7 +325,7 @@ namespace s3d
 			OVERLAPPED overlapped = detail::MakeOffset(pos);
 			DWORD readBytes;
 
-			if (!::ReadFile(m_file.handle, buffer.pointer, static_cast<DWORD>(size), &readBytes, &overlapped)) [[unlikely]]
+			if (!::ReadFile(m_file.handle, dst.pointer, static_cast<DWORD>(size), &readBytes, &overlapped)) [[unlikely]]
 			{
 				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed. {1}"_fmt(
 					m_info.fullPath, Platform::Windows::GetLastErrorMessage()));

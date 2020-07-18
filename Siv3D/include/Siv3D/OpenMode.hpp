@@ -19,6 +19,8 @@ namespace s3d
 	{
 		RandomAccess	= 1 << 0,
 		SequentialScan	= 1 << 1,
+		Trunc			= 1 << 2,
+		Append			= 1 << 3,
 	};
 	DEFINE_BITMASK_OPERATORS(OpenMode);
 }

@@ -142,5 +142,18 @@ namespace s3d
 
 		[[nodiscard]]
 		FilePath GetFolderPath(SpecialFolder folder);
+
+		[[nodiscard]]
+		FilePath TemporaryDirectoryPath();
+
+		[[nodiscard]]
+		FilePath UniqueFilePath(FilePathView directory = TemporaryDirectoryPath());
+
+		[[nodiscard]]
+		FilePath RelativePath(FilePathView path, FilePathView start = FileSystem::CurrentDirectory());
+
+		bool CreateDirectories(FilePathView path);
+
+		bool CreateParentDirectories(FilePathView path);
 	}
 }

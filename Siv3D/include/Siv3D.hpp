@@ -439,9 +439,9 @@
 // IReader interface
 # include <Siv3D/IReader.hpp>
 
-// IReader インタフェース
+// IWriter インタフェース
 // IWriter interface
-//# include <Siv3D/IWriter.hpp>
+# include <Siv3D/IWriter.hpp>
 
 // 特殊フォルダ
 // Special folders
