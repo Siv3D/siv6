@@ -484,7 +484,7 @@ namespace s3d
 			{
 				try
 				{
-					fs::remove_all(detail::ToPath(from));
+					fs::remove_all(detail::ToPath(path));
 					return true;
 				}
 				catch (const fs::filesystem_error&)
