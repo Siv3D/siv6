@@ -156,6 +156,22 @@ namespace s3d
 				systemtime.wHour, systemtime.wMinute, systemtime.wSecond, systemtime.wMilliseconds };
 		}
 
+		[[nodiscard]]
+		inline constexpr std::filesystem::copy_options ToCopyOptions(const CopyOption copyOption) noexcept
+		{
+			switch (copyOption)
+			{
+			case CopyOption::SkipExisting:
+				return std::filesystem::copy_options::skip_existing;
+			case CopyOption::OverwriteExisting:
+				return std::filesystem::copy_options::overwrite_existing;
+			case CopyOption::UpdateExisting:
+				return std::filesystem::copy_options::update_existing;
+			default:
+				return std::filesystem::copy_options::none;
+			}
+		}
+
 		namespace init
 		{
 			const static FilePath g_initialDirectory = FileSystem::CurrentDirectory();
@@ -579,6 +595,101 @@ namespace s3d
 			}
 
 			return detail::NormalizePath(Unicode::FromWstring(path), true);
+		}
+
+
+
+
+
+
+		bool CreateDirectories(const FilePathView path)
+		{
+			if (not path)
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return false;
+			}
+
+			try
+			{
+				fs::create_directories(detail::ToPath(path));
+				return true;
+			}
+			catch (const fs::filesystem_error&)
+			{
+				return false;
+			}
+		}
+
+		bool CreateParentDirectories(const FilePathView path)
+		{
+			if (not path)
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return false;
+			}
+
+			const FilePath parentDirectory = ParentPath(FullPath(path));
+
+			if (not Exists(parentDirectory))
+			{
+				return CreateDirectories(parentDirectory);
+			}
+
+			return true;
+		}
+		bool Copy(const FilePathView from, const FilePathView to, const CopyOption copyOption)
+		{
+			if ((not from) || (not to))
+			{
+				return false;
+			}
+
+			if (IsResourcePath(from) || IsResourcePath(to))
+			{
+				return false;
+			}
+
+			CreateParentDirectories(to);
+
+			const auto options = detail::ToCopyOptions(copyOption) | std::filesystem::copy_options::recursive;
+			std::error_code error;
+			std::filesystem::copy(detail::ToPath(from), detail::ToPath(to), options, error);
+
+			return (error.value() == 0);
+		}
+
+		bool Remove(const FilePathView path, const bool allowUndo)
+		{
+			if (not path)
+			{
+				return false;
+			}
+
+			if (IsResourcePath(path))
+			{
+				return false;
+			}
+
+			const std::wstring from = (path + U'\0').replaced(U'/', U'\\').toWstr();
+
+			SHFILEOPSTRUCTW fileOption =
+			{
+				.wFunc = FO_DELETE,
+				.pFrom = from.c_str(),
+				.fFlags = FILEOP_FLAGS(FOF_NOERRORUI | FOF_SILENT | FOF_NOCONFIRMATION | (allowUndo ? FOF_ALLOWUNDO : 0)),
+			};
+
+			return (::SHFileOperationW(&fileOption) == 0)
+				&& (not fileOption.fAnyOperationsAborted);
 		}
 	}
 }

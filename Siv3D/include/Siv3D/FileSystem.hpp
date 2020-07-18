@@ -16,6 +16,7 @@
 # include "DateTime.hpp"
 # include "Array.hpp"
 # include "SpecialFolder.hpp"
+# include "CopyOption.hpp"
 
 namespace s3d
 {
@@ -155,5 +156,13 @@ namespace s3d
 		bool CreateDirectories(FilePathView path);
 
 		bool CreateParentDirectories(FilePathView path);
+
+		bool Copy(FilePathView from, FilePathView to, CopyOption copyOption = CopyOption::Default);
+
+		bool Remove(FilePathView path, bool allowUndo = false);
+
+		bool RemoveContents(FilePathView path, bool allowUndo = false);
+
+		bool Rename(FilePathView from, FilePathView to);
 	}
 }

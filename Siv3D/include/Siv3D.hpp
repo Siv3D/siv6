@@ -447,6 +447,8 @@
 // Special folders
 # include <Siv3D/SpecialFolder.hpp>
 
+# include <Siv3D/CopyOption.hpp>
+
 // ファイルとディレクトリ
 // Files and directories
 # include <Siv3D/FileSystem.hpp> // [Siv3D ToDo]
