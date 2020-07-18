@@ -487,7 +487,7 @@
 
 // 書き込み専用バイナリファイル
 // Binary file writer
-//# include <Siv3D/BinaryWriter.hpp>
+# include <Siv3D/BinaryWriter.hpp>
 
 
 
@@ -497,12 +497,12 @@
 # include <Siv3D/TextEncoding.hpp>
 
 // 読み込み専用テキストファイル
-//Text file reader
+// Text file reader
 # include <Siv3D/TextReader.hpp>
 
 // 書き込み専用テキストファイル
 // Text file writer
-//# include <Siv3D/TextWriter.hpp>
+# include <Siv3D/TextWriter.hpp>
 
 // Base64
 // Base64
@@ -533,9 +533,9 @@
 // CSV File Reader/Writer
 //# include <Siv3D/CSVData.hpp>
 
-// INI ファイルデータの読み書き
-// INI File Reader/Writer
-//# include <Siv3D/INIData.hpp>
+// INI データの読み書き
+// INI Reader/Writer
+# include <Siv3D/INIData.hpp>
 
 // XML ファイルの読み込み
 // XML Parser
