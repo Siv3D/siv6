@@ -11,6 +11,7 @@
 		2C0FF4DE24C2E05B0014C96E /* SivBinaryWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4DD24C2E05B0014C96E /* SivBinaryWriter.cpp */; };
 		2C0FF4E224C2E1900014C96E /* BinaryWriterDetail.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C0FF4E024C2E1900014C96E /* BinaryWriterDetail.hpp */; };
 		2C0FF4E324C2E1900014C96E /* BinaryWriterDetail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4E124C2E1900014C96E /* BinaryWriterDetail.cpp */; };
+		2C0FF4E624C429B50014C96E /* Siv3DTest_BinaryReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4E524C429B40014C96E /* Siv3DTest_BinaryReader.cpp */; };
 		2C12089D24A30260008CAD99 /* CRenderer_Metal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */; };
 		2C1208A024A304E7008CAD99 /* CRenderer_Metal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */; };
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
@@ -327,6 +328,7 @@
 		2C0FF4E024C2E1900014C96E /* BinaryWriterDetail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinaryWriterDetail.hpp; sourceTree = "<group>"; };
 		2C0FF4E124C2E1900014C96E /* BinaryWriterDetail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryWriterDetail.cpp; sourceTree = "<group>"; };
 		2C0FF4E424C3F56A0014C96E /* CopyOption.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CopyOption.hpp; sourceTree = "<group>"; };
+		2C0FF4E524C429B40014C96E /* Siv3DTest_BinaryReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DTest_BinaryReader.cpp; sourceTree = "<group>"; };
 		2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_Metal.hpp; sourceTree = "<group>"; };
 		2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CRenderer_Metal.mm; sourceTree = "<group>"; };
 		2C1778B21CE0D5DB00BB8AD0 /* Siv3D-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Siv3D-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1863,11 +1865,12 @@
 		2C48584924C1FBAE0034F68D /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				2C48584A24C1FBAE0034F68D /* Siv3DTest_Image.cpp */,
-				2C48584B24C1FBAE0034F68D /* Siv3DTest.cpp */,
-				2C48584C24C1FBAE0034F68D /* Siv3DTest_TextReader.cpp */,
-				2C48584D24C1FBAE0034F68D /* Siv3DTest_TextEncoding.cpp */,
+				2C0FF4E524C429B40014C96E /* Siv3DTest_BinaryReader.cpp */,
 				2C48584E24C1FBAE0034F68D /* Siv3DTest_FileSystem.cpp */,
+				2C48584A24C1FBAE0034F68D /* Siv3DTest_Image.cpp */,
+				2C48584D24C1FBAE0034F68D /* Siv3DTest_TextEncoding.cpp */,
+				2C48584C24C1FBAE0034F68D /* Siv3DTest_TextReader.cpp */,
+				2C48584B24C1FBAE0034F68D /* Siv3DTest.cpp */,
 			);
 			name = Test;
 			path = ../Test;
@@ -2705,6 +2708,7 @@
 				2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */,
 				2CFF9F6924A473E9000B5A17 /* sprite.metal in Sources */,
 				2C48584F24C1FBAE0034F68D /* Siv3DTest_Image.cpp in Sources */,
+				2C0FF4E624C429B50014C96E /* Siv3DTest_BinaryReader.cpp in Sources */,
 				2C48585024C1FBAE0034F68D /* Siv3DTest.cpp in Sources */,
 				2C48585124C1FBAE0034F68D /* Siv3DTest_TextReader.cpp in Sources */,
 				2C48585324C1FBAE0034F68D /* Siv3DTest_FileSystem.cpp in Sources */,

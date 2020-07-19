@@ -16,10 +16,7 @@
 
 namespace s3d
 {
-	BinaryReader::BinaryReaderDetail::BinaryReaderDetail()
-	{
-
-	}
+	BinaryReader::BinaryReaderDetail::BinaryReaderDetail() = default;
 
 	BinaryReader::BinaryReaderDetail::~BinaryReaderDetail()
 	{
@@ -33,19 +30,17 @@ namespace s3d
 
 		close();
 
-		FILE* file = std::fopen(path.narrow().c_str(), "r");
-		
-		if (not file) SIV3D_UNLIKELY
+		// ファイルのオープン
 		{
-			LOG_FAIL(U"❌ BinaryReader: Failed to open the file `{0}`"_fmt(
-				path));
-			return false;
+			m_file.file.open(path.narrow(), std::ios_base::binary);
+			m_file.pos = 0;
+
+			if (not m_file.file) SIV3D_UNLIKELY
+			{
+				LOG_FAIL(U"❌ BinaryReader: Failed to open the file `{0}`"_fmt(path));
+				return false;
+			}
 		}
-		
-		m_file =
-		{
-			.file = file
-		};
 
 		m_info =
 		{
@@ -62,16 +57,15 @@ namespace s3d
 
 	void BinaryReader::BinaryReaderDetail::close()
 	{
-		if (!m_info.isOpen) SIV3D_UNLIKELY
+		if (not m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return;
 		}
 
-		std::fclose(m_file.file);
+		m_file.file.close();
+		m_file.pos = 0;
 		LOG_INFO(U"📥 BinaryReader: File `{0}` closed"_fmt(
 			m_info.fullPath));
-		
-		m_file = {};
 
 		m_info = {};
 	}
@@ -86,81 +80,157 @@ namespace s3d
 		return m_info.size;
 	}
 
-	int64 BinaryReader::BinaryReaderDetail::setPos(const int64 pos)
+	int64 BinaryReader::BinaryReaderDetail::setPos(const int64 clampedPos)
 	{
-		if (!m_info.isOpen) SIV3D_UNLIKELY
+		if (not m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}
-		
-		std::fseek(m_file.file, pos, SEEK_SET);
-		
-		return std::ftell(m_file.file);
+
+		assert(InRange<int64>(clampedPos, 0, size()));
+
+		m_file.file.seekg(clampedPos);
+		m_file.pos = clampedPos;
+		return m_file.pos;
 	}
 
 	int64 BinaryReader::BinaryReaderDetail::getPos()
 	{
-		if (!m_info.isOpen) SIV3D_UNLIKELY
+		if (not m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}
-		
-		return std::ftell(m_file.file);
+
+		return m_file.pos;
 	}
 
-	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> buffer, const int64 size)
+	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> dst, const int64 size)
 	{
-		if (!m_info.isOpen) SIV3D_UNLIKELY
+		if (not m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}
 
-		return std::fread(buffer.pointer, 1, size, m_file.file);
-	}
+		const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
 
-	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> buffer, const int64 pos, const int64 size)
-	{
-		if (!m_info.isOpen) SIV3D_UNLIKELY
+		if (readBytes)
 		{
-			return 0;
-		}
-	
-		setPos(pos);
-		
-		return std::fread(buffer.pointer, 1, size, m_file.file);
-	}
+			if (not m_file.file.read(static_cast<char*>(dst.pointer), readBytes))
+			{
+				m_file.pos = m_file.file.tellg();
 
-	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> buffer, const int64 size)
-	{
-		if (!m_info.isOpen) SIV3D_UNLIKELY
-		{
-			return 0;
+				if (m_file.file.eof())
+				{
+					return readBytes;
+				}
+
+				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed"_fmt(m_info.fullPath));
+				return 0;
+			}
 		}
 
-		const auto previousPos = getPos();
-		
-		const auto readBytes = std::fread(buffer.pointer, 1, size, m_file.file);
-		
-		setPos(previousPos);
-		
+		m_file.pos += readBytes;
 		return readBytes;
 	}
 
-	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> buffer, const int64 pos, const int64 size)
+	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> dst, const int64 pos, const int64 size)
 	{
-		if (!m_info.isOpen) SIV3D_UNLIKELY
+		if (not m_info.isOpen) SIV3D_UNLIKELY
+		{
+			return 0;
+		}
+
+		if (pos != setPos(pos))
+		{
+			return 0;
+		}
+
+		const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+
+		if (readBytes)
+		{
+			if (not m_file.file.read(static_cast<char*>(dst.pointer), readBytes))
+			{
+				m_file.pos = m_file.file.tellg();
+
+				if (m_file.file.eof())
+				{
+					return readBytes;
+				}
+
+				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed"_fmt(m_info.fullPath));
+				return 0;
+			}
+		}
+
+		m_file.pos += readBytes;
+		return readBytes;
+	}
+
+	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> dst, const int64 size)
+	{
+		if (not m_info.isOpen) SIV3D_UNLIKELY
 		{
 			return 0;
 		}
 
 		const auto previousPos = getPos();
-		
-		setPos(pos);
-		
-		const auto readBytes = std::fread(buffer.pointer, 1, size, m_file.file);
-		
+
+		const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+
+		if (readBytes)
+		{
+			if (not m_file.file.read(static_cast<char*>(dst.pointer), readBytes))
+			{
+				m_file.pos = m_file.file.tellg();
+
+				if (m_file.file.eof())
+				{
+					return readBytes;
+				}
+
+				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed"_fmt(m_info.fullPath));
+				return 0;
+			}
+		}
+
 		setPos(previousPos);
-		
+		return readBytes;
+	}
+
+	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> dst, const int64 pos, const int64 size)
+	{
+		if (not m_info.isOpen) SIV3D_UNLIKELY
+		{
+			return 0;
+		}
+
+		const auto previousPos = getPos();
+
+		if (pos != setPos(pos))
+		{
+			return 0;
+		}
+
+		const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+
+		if (readBytes)
+		{
+			if (not m_file.file.read(static_cast<char*>(dst.pointer), readBytes))
+			{
+				m_file.pos = m_file.file.tellg();
+
+				if (m_file.file.eof())
+				{
+					return readBytes;
+				}
+
+				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed"_fmt(m_info.fullPath));
+				return 0;
+			}
+		}
+
+		setPos(previousPos);
 		return readBytes;
 	}
 

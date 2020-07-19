@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <fstream>
 # include <Siv3D/BinaryReader.hpp>
 # include <Siv3D/NonNull.hpp>
 
@@ -21,7 +22,8 @@ namespace s3d
 		
 		struct File
 		{
-			FILE* file = nullptr;
+			std::ifstream file;
+			int64 pos = 0;
 		} m_file;
 		
 		struct Info
