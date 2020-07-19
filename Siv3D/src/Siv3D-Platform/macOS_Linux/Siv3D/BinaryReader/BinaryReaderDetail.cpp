@@ -96,21 +96,11 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::getPos()
 	{
-		if (not m_info.isOpen) SIV3D_UNLIKELY
-		{
-			return 0;
-		}
-
 		return m_file.pos;
 	}
 
 	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> dst, const int64 size)
 	{
-		if (not m_info.isOpen) SIV3D_UNLIKELY
-		{
-			return 0;
-		}
-
 		const int64 readBytes = Clamp<int64>(size, 0LL, (m_info.size - m_file.pos));
 
 		if (readBytes)
@@ -135,11 +125,6 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> dst, const int64 pos, const int64 size)
 	{
-		if (not m_info.isOpen) SIV3D_UNLIKELY
-		{
-			return 0;
-		}
-
 		if (pos != setPos(pos))
 		{
 			return 0;
@@ -169,11 +154,6 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> dst, const int64 size)
 	{
-		if (not m_info.isOpen) SIV3D_UNLIKELY
-		{
-			return 0;
-		}
-
 		const auto previousPos = getPos();
 
 		const int64 readBytes = Clamp<int64>(size, 0LL, (m_info.size - m_file.pos));
@@ -200,11 +180,6 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> dst, const int64 pos, const int64 size)
 	{
-		if (not m_info.isOpen) SIV3D_UNLIKELY
-		{
-			return 0;
-		}
-
 		const auto previousPos = getPos();
 
 		if (pos != setPos(pos))

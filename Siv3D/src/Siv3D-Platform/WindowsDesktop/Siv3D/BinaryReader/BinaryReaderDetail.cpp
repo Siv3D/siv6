@@ -146,11 +146,6 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::getPos()
 	{
-		if (not m_info.isOpen) [[unlikely]]
-		{
-			return 0;
-		}
-
 		if (isResource())
 		{
 			return m_resource.pos;
@@ -163,11 +158,6 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> dst, const int64 size)
 	{
-		if (not m_info.isOpen) [[unlikely]]
-		{
-			return 0;
-		}
-
 		if (isResource())
 		{
 			const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_resource.pos));
@@ -202,11 +192,6 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::read(const NonNull<void*> dst, const int64 pos, const int64 size)
 	{
-		if (not m_info.isOpen) [[unlikely]]
-		{
-			return 0;
-		}
-
 		if (isResource())
 		{
 			const int64 readBytes = Clamp(size, 0LL, (m_info.size - pos));
@@ -246,11 +231,6 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> dst, const int64 size)
 	{
-		if (not m_info.isOpen) [[unlikely]]
-		{
-			return 0;
-		}
-
 		if (isResource())
 		{
 			const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_resource.pos));
@@ -286,11 +266,6 @@ namespace s3d
 
 	int64 BinaryReader::BinaryReaderDetail::lookahead(const NonNull<void*> dst, const int64 pos, const int64 size)
 	{
-		if (not m_info.isOpen) [[unlikely]]
-		{
-			return 0;
-		}
-
 		if (isResource())
 		{
 			const int64 readBytes = Clamp(size, 0LL, (m_info.size - pos));
