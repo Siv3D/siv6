@@ -26,7 +26,7 @@ namespace s3d
 		[[nodiscard]]
 		static fs::path ToPath(const FilePathView path)
 		{
-			return fs::path(Unicode::ToWstring(path));
+			return fs::path(path.toWstr());
 		}
 
 		[[nodiscard]]
@@ -106,13 +106,13 @@ namespace s3d
 			switch (copyOption)
 			{
 			case CopyOption::SkipExisting:
-				return std::filesystem::copy_options::skip_existing;
+				return fs::copy_options::skip_existing;
 			case CopyOption::OverwriteExisting:
-				return std::filesystem::copy_options::overwrite_existing;
+				return fs::copy_options::overwrite_existing;
 			case CopyOption::UpdateExisting:
-				return std::filesystem::copy_options::update_existing;
+				return fs::copy_options::update_existing;
 			default:
-				return std::filesystem::copy_options::none;
+				return fs::copy_options::none;
 			}
 		}
 
@@ -461,9 +461,9 @@ namespace s3d
 
 			CreateParentDirectories(to);
 
-			const auto options = detail::ToCopyOptions(copyOption) | std::filesystem::copy_options::recursive;
+			const auto options = detail::ToCopyOptions(copyOption) | fs:copy_options::recursive;
 			std::error_code error;
-			std::filesystem::copy(detail::ToPath(from), detail::ToPath(to), options, error);
+			fs::copy(detail::ToPath(from), detail::ToPath(to), options, error);
 
 			return (error.value() == 0);
 		}

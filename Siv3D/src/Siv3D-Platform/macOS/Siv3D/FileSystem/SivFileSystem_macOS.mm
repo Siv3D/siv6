@@ -18,8 +18,16 @@
 
 namespace s3d
 {
+	namespace fs = boost::filesystem;
+
 	namespace detail
 	{
+		[[nodiscard]]
+		static fs::path ToPath(const FilePathView path)
+		{
+			return fs::path(path.toWstr());
+		}
+	
 		static bool GetStat(const FilePathView path, struct stat& s)
 		{
 			return (::stat(FilePath(path).replaced(U'\\', U'/').narrow().c_str(), &s) == 0);
@@ -194,6 +202,69 @@ namespace s3d
 				}
 				
 				return [directory UTF8String];
+			}
+		}
+	
+		static bool CopyDirectory(const fs::path& source, const fs::path& destination)
+		{
+			try
+			{
+				if (!fs::exists(source) || !fs::is_directory(source) )
+				{
+					return false;
+				}
+				
+				if (!fs::exists(destination))
+				{
+					if (!fs::create_directory(destination))
+					{
+						return false;
+					}
+				}
+			}
+			catch (fs::filesystem_error&)
+			{
+				return false;
+			}
+			
+			for (fs::directory_iterator file(source); file != fs::directory_iterator(); ++file)
+			{
+				try
+				{
+					fs::path current(file->path());
+					
+					if (fs::is_directory(current))
+					{
+						if (!CopyDirectory(current, destination / current.filename()))
+						{
+							return false;
+						}
+					}
+					else
+					{
+						fs::copy_file(current, destination / current.filename(), fs::copy_option::overwrite_if_exists);
+					}
+				}
+				catch (const fs::filesystem_error&)
+				{
+					return false;
+				}
+			}
+			
+			return true;
+		}
+	
+		static bool MacOS_TrashFile(const std::string_view path, const bool isDirectory)
+		{
+			@autoreleasepool
+			{
+				NSURL* url = (CFBridgingRelease(CFURLCreateFromFileSystemRepresentation(NULL, (const UInt8*)path.data(), path.size(), isDirectory)));
+				
+				const bool result = [[NSFileManager defaultManager] trashItemAtURL: url
+																  resultingItemURL: nil
+																			 error: nil];
+				
+				return result;
 			}
 		}
 	
@@ -383,8 +454,6 @@ namespace s3d
 	
 		bool IsEmptyDirectory(const FilePathView path)
 		{
-			namespace fs = boost::filesystem;
-			
 			if (not path) SIV3D_UNLIKELY
 			{
 				return false;
@@ -403,7 +472,7 @@ namespace s3d
 			}
 			else if (S_ISDIR(s.st_mode))
 			{
-				return fs::directory_iterator(fs::path(src.toWstr())) == fs::directory_iterator();
+				return fs::directory_iterator(detail::ToPath(src)) == fs::directory_iterator();
 			}
 			else
 			{
@@ -414,8 +483,6 @@ namespace s3d
 	
 		int64 Size(const FilePathView path)
 		{
-			namespace fs = boost::filesystem;
-
 			if (not path) SIV3D_UNLIKELY
 			{
 				return 0;
@@ -513,8 +580,6 @@ namespace s3d
 	
 		Array<FilePath> DirectoryContents(const FilePathView path, const bool recursive)
 		{
-			namespace fs = boost::filesystem;
-			
 			Array<FilePath> paths;
 			
 			if (path.isEmpty() || !IsDirectory(path))
@@ -577,8 +642,6 @@ namespace s3d
 	
 		bool CreateDirectories(const FilePathView path)
 		{
-			namespace fs = boost::filesystem;
-			
 			if (not path)
 			{
 				return false;
@@ -586,7 +649,7 @@ namespace s3d
 
 			try
 			{
-				fs::create_directories(fs::path(path.toWstr()));
+				fs::create_directories(detail::ToPath(path));
 				return true;
 			}
 			catch (const fs::filesystem_error&)
@@ -611,5 +674,78 @@ namespace s3d
 			
 			return true;
 		}
+	
+		bool Copy(const FilePathView from, const FilePathView to, const CopyOption copyOption)
+		{
+			if ((not from) || (not to))
+			{
+				return false;
+			}
+
+			if (IsResourcePath(from) || IsResourcePath(to))
+			{
+				return false;
+			}
+			
+			if (detail::Exists(to))
+			{
+				if (copyOption == CopyOption::None)
+				{
+					return false;
+				}
+				else if (copyOption == CopyOption::SkipExisting)
+				{
+					return true;
+				}
+			}
+
+			CreateParentDirectories(to);
+
+			if (IsFile(from))
+			{
+				const fs::copy_option option = (copyOption == CopyOption::OverwriteExisting)
+					? fs::copy_option::overwrite_if_exists
+					: fs::copy_option::fail_if_exists;
+				
+				try
+				{
+					fs::copy_file(detail::ToPath(from), detail::ToPath(to), option);
+				}
+				catch (const fs::filesystem_error&)
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return detail::CopyDirectory(detail::ToPath(from), detail::ToPath(to));
+			}
+			
+			return true;
+		}
+	
+		bool Remove(const FilePathView path, const bool allowUndo)
+		{
+			if (not path)
+			{
+				return false;
+			}
+			
+			if (!allowUndo)
+			{
+				try
+				{
+					fs::remove_all(detail::ToPath(path));
+					return true;
+				}
+				catch (const fs::filesystem_error&)
+				{
+					return false;
+				}
+			}
+
+			return detail::MacOS_TrashFile(path.narrow(), IsDirectory(path));
+		}
+	
 	}
 }

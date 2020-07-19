@@ -326,6 +326,7 @@
 		2C0FF4DD24C2E05B0014C96E /* SivBinaryWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivBinaryWriter.cpp; sourceTree = "<group>"; };
 		2C0FF4E024C2E1900014C96E /* BinaryWriterDetail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinaryWriterDetail.hpp; sourceTree = "<group>"; };
 		2C0FF4E124C2E1900014C96E /* BinaryWriterDetail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryWriterDetail.cpp; sourceTree = "<group>"; };
+		2C0FF4E424C3F56A0014C96E /* CopyOption.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CopyOption.hpp; sourceTree = "<group>"; };
 		2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_Metal.hpp; sourceTree = "<group>"; };
 		2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CRenderer_Metal.mm; sourceTree = "<group>"; };
 		2C1778B21CE0D5DB00BB8AD0 /* Siv3D-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Siv3D-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1138,6 +1139,7 @@
 				2C4856C024C1FB1E0034F68D /* CommonFloat.hpp */,
 				2C48568824C1FB1E0034F68D /* Concepts.hpp */,
 				2C4856C924C1FB1E0034F68D /* Console.hpp */,
+				2C0FF4E424C3F56A0014C96E /* CopyOption.hpp */,
 				2C48572F24C1FB1E0034F68D /* CPUInfo.hpp */,
 				2C48568B24C1FB1E0034F68D /* Cursor.hpp */,
 				2C4856CA24C1FB1E0034F68D /* Date.hpp */,
