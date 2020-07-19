@@ -12,12 +12,120 @@
 # pragma once
 # include <memory>
 # include "Common.hpp"
+# include "String.hpp"
+# include "TextEncoding.hpp"
+# include "OpenMode.hpp"
+# include "Formatter.hpp"
+# include "Format.hpp"
 
 namespace s3d
 {
+	class TextWriter;
+
+	namespace detail
+	{
+		class TextWriterBuffer
+		{
+		private:
+
+			TextWriter& m_writer;
+
+			bool m_isLast = false;
+
+		public:
+
+			std::unique_ptr<FormatData> formatData;
+
+			TextWriterBuffer(TextWriter& writer);
+
+			TextWriterBuffer(TextWriterBuffer&& other) noexcept;
+
+			~TextWriterBuffer();
+
+			template <class Type>
+			TextWriterBuffer& operator <<(const Type& value);
+		};
+	}
+
+	/// @brief 書き込み用テキストファイル
 	class TextWriter
 	{
+	private:
 
+		class TextWriterDetail;
+
+		std::shared_ptr<TextWriterDetail> pImpl;
+
+	public:
+
+		SIV3D_NODISCARD_CXX20
+		TextWriter();
+
+		TextWriter(FilePathView path, TextEncoding encoding);
+
+		explicit TextWriter(FilePathView path, OpenMode openMode = OpenMode::Trunc, TextEncoding encoding = TextEncoding::Default);
+	
+		bool open(FilePathView path, TextEncoding encoding);
+
+		bool open(FilePathView path, OpenMode openMode = OpenMode::Trunc, TextEncoding encoding = TextEncoding::Default);
+	
+		void close();
+
+		[[nodiscard]]
+		bool isOpen() const noexcept;
+
+		[[nodiscard]]
+		explicit operator bool() const noexcept;
+
+		void clear();
+
+		void write(char ch) = delete;
+
+		void write(char32 ch);
+
+		void write(const char32* s);
+
+		void write(StringView s);
+
+		void write(const String& s);
+
+	# if __cpp_lib_concepts
+		template <Concept::Formattable... Args>
+	# else
+		template <class... Args>
+	# endif
+		void write(const Args& ... args);
+
+		void writeln(char ch) = delete;
+
+		void writeln(char32 ch);
+
+		void writeln(const char32* s);
+
+		void writeln(StringView s);
+
+		void writeln(const String& s);
+
+	# if __cpp_lib_concepts
+		template <Concept::Formattable... Args>
+	# else
+		template <class... Args>
+	# endif
+		void writeln(const Args& ... args);
+
+		void writeUTF8(std::string_view s);
+
+		void writelnUTF8(std::string_view s);
+
+	# if __cpp_lib_concepts
+		template <Concept::Formattable Type>
+	# else
+		template <class Type>
+	# endif
+		detail::TextWriterBuffer operator <<(const Type& value);
+
+		[[nodiscard]]
+		const FilePath& path() const noexcept;
 	};
 }
 

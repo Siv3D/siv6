@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <array>
 # include "Common.hpp"
 
 namespace s3d
@@ -31,6 +32,61 @@ namespace s3d
 
 		[[nodiscard]]
 		char32 get() const noexcept;
+	};
+
+	struct UTF16toUTF32_Converter
+	{
+	private:
+
+		char32 m_result = 0;
+
+		char16 m_buffer = 0;
+
+		bool m_hasHighSurrogate = false;
+
+	public:
+
+		[[nodiscard]]
+		bool put(char16 code) noexcept;
+
+		[[nodiscard]]
+		char32 get() const noexcept;
+	};
+
+	struct UTF32toUTF8_Converter
+	{
+	private:
+
+		std::array<char8, 4> m_buffer;
+
+	public:
+
+		[[nodiscard]]
+		size_t put(char32 code) noexcept;
+
+		[[nodiscard]]
+		const std::array<char8, 4>& get() const noexcept;
+
+		[[nodiscard]]
+		std::array<char8, 4>::const_iterator begin() const noexcept;
+	};
+
+	struct UTF32toUTF16_Converter
+	{
+	private:
+
+		std::array<char16, 2> m_buffer;
+
+	public:
+
+		[[nodiscard]]
+		size_t put(char32 code) noexcept;
+
+		[[nodiscard]]
+		const std::array<char16, 2>& get() const noexcept;
+
+		[[nodiscard]]
+		std::array<char16, 2>::const_iterator begin() const noexcept;
 	};
 }
 

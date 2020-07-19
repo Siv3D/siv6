@@ -172,6 +172,24 @@ namespace s3d
 		std::u32string ToUTF32(StringView s);
 
 		[[nodiscard]]
+		std::u16string UTF8ToUTF16(std::string_view s);
+
+		[[nodiscard]]
+		std::u32string UTF8ToUTF32(std::string_view s);
+
+		[[nodiscard]]
+		std::string UTF16ToUTF8(std::u16string_view s);
+
+		[[nodiscard]]
+		std::u32string UTF16ToUTF32(std::u16string_view s);
+
+		[[nodiscard]]
+		std::string UTF32ToUTF8(std::u32string_view s);
+
+		[[nodiscard]]
+		std::u16string UTF32ToUTF16(std::u32string_view s);
+
+		[[nodiscard]]
 		inline constexpr bool IsHighSurrogate(const char16 ch) noexcept;
 
 		[[nodiscard]]

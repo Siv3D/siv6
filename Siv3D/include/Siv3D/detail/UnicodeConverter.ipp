@@ -17,4 +17,29 @@ namespace s3d
 	{
 		return m_result;
 	}
+
+	inline char32 UTF16toUTF32_Converter::get() const noexcept
+	{
+		return m_result;
+	}
+
+	inline const std::array<char8, 4>& UTF32toUTF8_Converter::get() const noexcept
+	{
+		return m_buffer;
+	}
+
+	inline std::array<char8, 4>::const_iterator UTF32toUTF8_Converter::begin() const noexcept
+	{
+		return m_buffer.begin();
+	}
+
+	inline const std::array<char16, 2>& UTF32toUTF16_Converter::get() const noexcept
+	{
+		return m_buffer;
+	}
+
+	inline std::array<char16, 2>::const_iterator UTF32toUTF16_Converter::begin() const noexcept
+	{
+		return m_buffer.begin();
+	}
 }

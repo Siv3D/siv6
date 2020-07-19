@@ -20,6 +20,25 @@ namespace s3d
 		// UTF-8
 		//
 
+		size_t UTF8_Length(const std::u16string_view s) noexcept
+		{
+			size_t length = 0;
+
+			const char16* pSrc = s.data();
+			const char16* const pSrcEnd = pSrc + s.size();
+
+			while (pSrc != pSrcEnd)
+			{
+				int32 offset;
+
+				length += UTF8_Length(utf16_decode(pSrc, pSrcEnd - pSrc, offset));
+
+				pSrc += offset;
+			}
+
+			return length;
+		}
+
 		size_t UTF8_Length(const char32 codePoint) noexcept
 		{
 			if (codePoint < 0x80) // 0x00 - 0x7F
@@ -101,6 +120,25 @@ namespace s3d
 		//
 		// UTF-16
 		//
+
+		size_t UTF16_Length(const std::string_view s) noexcept
+		{
+			size_t length = 0;
+
+			const char8* pSrc = s.data();
+			const char8* const pSrcEnd = pSrc + s.size();
+
+			while (pSrc != pSrcEnd)
+			{
+				int32 offset = 0;
+
+				length += UTF16_Length(detail::utf8_decode(pSrc, pSrcEnd - pSrc, offset));
+
+				pSrc += offset;
+			}
+
+			return length;
+		}
 
 		size_t UTF16_Length(const char32 codePoint) noexcept
 		{

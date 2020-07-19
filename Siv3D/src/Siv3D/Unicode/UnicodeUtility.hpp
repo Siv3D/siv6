@@ -21,6 +21,9 @@ namespace s3d
 		//
 
 		[[nodiscard]]
+		size_t UTF8_Length(std::u16string_view s) noexcept;
+
+		[[nodiscard]]
 		size_t UTF8_Length(char32 codePoint) noexcept;
 
 		[[nodiscard]]
@@ -32,6 +35,8 @@ namespace s3d
 		//
 		// UTF-16
 		//
+		[[nodiscard]]
+		size_t UTF16_Length(std::string_view s) noexcept;
 
 		[[nodiscard]]
 		size_t UTF16_Length(char32 codePoint) noexcept;

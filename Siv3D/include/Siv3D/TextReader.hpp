@@ -29,16 +29,18 @@ namespace s3d
 
 	public:
 
+		SIV3D_NODISCARD_CXX20
 		TextReader();
 
+		SIV3D_NODISCARD_CXX20
 		explicit TextReader(FilePathView path, const Optional<TextEncoding>& encoding = unspecified);
 
 		template <class Reader, std::enable_if_t<std::is_base_of_v<IReader, Reader> && !std::is_lvalue_reference_v<Reader>>* = nullptr>
+		SIV3D_NODISCARD_CXX20
 		explicit TextReader(Reader&& reader, const Optional<TextEncoding>& encoding = unspecified);
 
+		SIV3D_NODISCARD_CXX20
 		explicit TextReader(const std::shared_ptr<IReader>& reader, const Optional<TextEncoding>& encoding = unspecified);
-
-		~TextReader();
 
 		bool open(FilePathView path, const Optional<TextEncoding>& encoding = unspecified);
 
