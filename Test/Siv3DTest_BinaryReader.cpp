@@ -20,6 +20,27 @@ using namespace std::literals;
 
 TEST_CASE("BinaryReader")
 {
+	SECTION("default")
+	{
+		BinaryReader reader;
+		REQUIRE(reader.supportsLookahead() == true);
+		REQUIRE(reader.isOpen() == false);
+		REQUIRE(!reader == true);
+		REQUIRE(static_cast<bool>(reader) == false);
+		REQUIRE(reader.size() == 0);
+		REQUIRE(reader.getPos() == 0);
+		REQUIRE(reader.path() == U"");
+
+		reader.close();
+		REQUIRE(reader.supportsLookahead() == true);
+		REQUIRE(reader.isOpen() == false);
+		REQUIRE(!reader == true);
+		REQUIRE(static_cast<bool>(reader) == false);
+		REQUIRE(reader.size() == 0);
+		REQUIRE(reader.getPos() == 0);
+		REQUIRE(reader.path() == U"");
+	}
+
 	SECTION("Nonexist")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/binary/nonexist.bin");
@@ -363,12 +384,12 @@ TEST_CASE("BinaryReader::skip()")
 	REQUIRE(reader.skip(100) == 0);
 }
 
-
+/**
 TEST_CASE("BinaryReader : benchmark")
 {
 	Logger.disable();
 
-	BENCHMARK("4096 bytes / read")
+	BENCHMARK("BinaryReader | 4096 bytes / read")
 	{
 		BinaryReader reader(U"test/binary/large.bin");
 		uint8 buffer[4096];
@@ -398,7 +419,7 @@ TEST_CASE("BinaryReader : benchmark")
 		return 0;
 	};
 
-	BENCHMARK("128 bytes / read")
+	BENCHMARK("BinaryReader | 128 bytes / read")
 	{
 		BinaryReader reader(U"test/binary/large.bin");
 		uint8 buffer[128];
@@ -428,7 +449,7 @@ TEST_CASE("BinaryReader : benchmark")
 		return 0;
 	};
 
-	BENCHMARK("4 bytes / read")
+	BENCHMARK("BinaryReader | 4 bytes / read")
 	{
 		BinaryReader reader(U"test/binary/large.bin");
 		uint8 buffer[4];
@@ -460,3 +481,4 @@ TEST_CASE("BinaryReader : benchmark")
 
 	Logger.enable();
 }
+/**/
