@@ -379,6 +379,9 @@
     <Filter Include="src\Siv3D\TextWriter">
       <UniqueIdentifier>{00e80291-6d41-4e88-9bf3-0a8c7360350d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\INIData">
+      <UniqueIdentifier>{99308d0d-5d90-492a-9488-b14bd9384283}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1951,6 +1954,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\TextWriter\TextWriterDetail.cpp">
       <Filter>src\Siv3D\TextWriter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\INIData\SivINIData.cpp">
+      <Filter>src\Siv3D\INIData</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
