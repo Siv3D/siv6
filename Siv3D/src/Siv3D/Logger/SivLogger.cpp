@@ -68,5 +68,16 @@ namespace s3d
 		{
 			writeln(s);
 		}
+
+
+		void Logger_impl::disable() const
+		{
+			SIV3D_ENGINE(Logger)->setEnabled(false);
+		}
+
+		void Logger_impl::enable() const
+		{
+			SIV3D_ENGINE(Logger)->setEnabled(true);
+		}
 	}
 }

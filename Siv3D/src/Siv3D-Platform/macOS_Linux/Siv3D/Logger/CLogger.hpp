@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <atomic>
 # include <mutex>
 # include <Siv3D/Logger/ILogger.hpp>
 
@@ -21,6 +22,8 @@ namespace s3d
 
 		std::mutex m_mutex;
 
+		std::atomic<bool> m_enabled{ true };
+
 	public:
 
 		CLogger();
@@ -28,5 +31,7 @@ namespace s3d
 		~CLogger() override;
 
 		void write(LogType type, StringView s) override;
+
+		void setEnabled(bool enabled) override;
 	};
 }

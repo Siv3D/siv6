@@ -366,6 +366,8 @@ TEST_CASE("BinaryReader::skip()")
 
 TEST_CASE("BinaryReader : benchmark")
 {
+	Logger.disable();
+
 	BENCHMARK("4096 bytes / read")
 	{
 		BinaryReader reader(U"test/binary/large.bin");
@@ -455,4 +457,6 @@ TEST_CASE("BinaryReader : benchmark")
 
 		return 0;
 	};
+
+	Logger.enable();
 }

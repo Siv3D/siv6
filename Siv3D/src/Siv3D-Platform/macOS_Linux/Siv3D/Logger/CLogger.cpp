@@ -43,6 +43,11 @@ namespace s3d
 
 	void CLogger::write(const LogType type, const StringView s)
 	{
+		if (not m_enabled)
+		{
+			return;
+		}
+
 		const int64 timeStamp = Time::GetMillisec();
 		const StringView logTypeName = detail::LogTypeNames[FromEnum(type)];
 		const String text = U"{}: {}"_fmt(timeStamp, logTypeName) + s + U'\n';
@@ -53,4 +58,9 @@ namespace s3d
 			std::cout << output;
 		}
 	}
+
+	void CLogger::setEnabled(const bool enabled)
+	{
+		m_enabled = enabled;
+	}	
 }

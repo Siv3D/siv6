@@ -26,5 +26,7 @@ namespace s3d
 		virtual ~ISiv3DLogger() = default;
 
 		virtual void write(LogType type, StringView s) = 0;
+
+		virtual void setEnabled(bool enabled) = 0;
 	};
 }

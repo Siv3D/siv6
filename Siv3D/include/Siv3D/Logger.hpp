@@ -118,6 +118,12 @@ namespace s3d
 			}
 
 		# endif
+
+			/// @brief ログ出力を無効化します
+			void disable() const;
+
+			/// @brief ログ出力を有効化します
+			void enable() const;
 		};
 	}
 
