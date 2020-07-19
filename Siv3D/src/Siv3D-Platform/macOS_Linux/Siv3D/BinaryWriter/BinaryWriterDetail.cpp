@@ -120,6 +120,8 @@ namespace s3d
 
 		std::fwrite(m_buffer.data.get(), 1, m_buffer.currentWritePos, m_file.file);
 
+		std::fflush(m_file.file);
+
 		m_buffer.currentWritePos = 0;
 	}
 

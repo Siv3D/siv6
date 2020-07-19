@@ -68,7 +68,7 @@ namespace s3d
 			m_ref = Format(value);
 		}
 
-		operator const String&() const noexcept
+		operator StringView() const noexcept
 		{
 			return m_ref;
 		}
