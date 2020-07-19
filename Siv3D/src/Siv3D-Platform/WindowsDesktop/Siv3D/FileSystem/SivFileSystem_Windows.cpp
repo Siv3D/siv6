@@ -591,7 +591,7 @@ namespace s3d
 
 			if (FAILED(::SHGetFolderPathW(nullptr, ids[FromEnum(folder)], nullptr, 0, path)))
 			{
-				return FilePath();
+				return{};
 			}
 
 			return detail::NormalizePath(Unicode::FromWstring(path), true);

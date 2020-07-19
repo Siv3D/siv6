@@ -174,7 +174,7 @@ namespace s3d
 		return FileSystem::FileSize(m_info.fullPath);
 	}
 
-	int64 BinaryWriter::BinaryWriterDetail::setPos(int64 clampedPos)
+	int64 BinaryWriter::BinaryWriterDetail::setPos(const int64 clampedPos)
 	{
 		if (not m_info.isOpen) [[unlikely]]
 		{

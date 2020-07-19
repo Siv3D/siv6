@@ -493,9 +493,7 @@ namespace s3d
 				}
 			}
 
-			const std::string utf8Path = Unicode::Narrow(path);
-
-			return detail::Linux_TrashFile(utf8Path.c_str());
+			return detail::Linux_TrashFile(path.narrow().c_str());
 		}		
 	}
 }
