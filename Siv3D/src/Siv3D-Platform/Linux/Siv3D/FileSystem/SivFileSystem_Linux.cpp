@@ -461,7 +461,7 @@ namespace s3d
 
 			CreateParentDirectories(to);
 
-			const auto options = detail::ToCopyOptions(copyOption) | fs:copy_options::recursive;
+			const auto options = detail::ToCopyOptions(copyOption) | fs::copy_options::recursive;
 			std::error_code error;
 			fs::copy(detail::ToPath(from), detail::ToPath(to), options, error);
 
