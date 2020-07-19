@@ -35,6 +35,9 @@
     <ClCompile Include="..\Test\Siv3DTest_BinaryWriter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Test\Siv3DTest_TextWriter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">

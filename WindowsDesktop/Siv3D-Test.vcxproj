@@ -114,6 +114,7 @@
     <ClCompile Include="..\Test\Siv3DTest_Image.cpp" />
     <ClCompile Include="..\Test\Siv3DTest_TextEncoding.cpp" />
     <ClCompile Include="..\Test\Siv3DTest_TextReader.cpp" />
+    <ClCompile Include="..\Test\Siv3DTest_TextWriter.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
