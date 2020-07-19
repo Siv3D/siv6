@@ -12,6 +12,12 @@
 		2C0FF4E224C2E1900014C96E /* BinaryWriterDetail.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C0FF4E024C2E1900014C96E /* BinaryWriterDetail.hpp */; };
 		2C0FF4E324C2E1900014C96E /* BinaryWriterDetail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4E124C2E1900014C96E /* BinaryWriterDetail.cpp */; };
 		2C0FF4E624C429B50014C96E /* Siv3DTest_BinaryReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4E524C429B40014C96E /* Siv3DTest_BinaryReader.cpp */; };
+		2C0FF4E824C437020014C96E /* Siv3DTest_BinaryWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4E724C437020014C96E /* Siv3DTest_BinaryWriter.cpp */; };
+		2C0FF4ED24C4622C0014C96E /* TextWriterDetail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4EA24C4622C0014C96E /* TextWriterDetail.cpp */; };
+		2C0FF4EE24C4622C0014C96E /* TextWriterDetail.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C0FF4EB24C4622C0014C96E /* TextWriterDetail.hpp */; };
+		2C0FF4EF24C4622C0014C96E /* SivTextWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4EC24C4622C0014C96E /* SivTextWriter.cpp */; };
+		2C0FF4F224C486D00014C96E /* SivINIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4F124C486D00014C96E /* SivINIData.cpp */; };
+		2C0FF4F424C486ED0014C96E /* Siv3DTest_TextWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C0FF4F324C486ED0014C96E /* Siv3DTest_TextWriter.cpp */; };
 		2C12089D24A30260008CAD99 /* CRenderer_Metal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */; };
 		2C1208A024A304E7008CAD99 /* CRenderer_Metal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */; };
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
@@ -329,6 +335,12 @@
 		2C0FF4E124C2E1900014C96E /* BinaryWriterDetail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinaryWriterDetail.cpp; sourceTree = "<group>"; };
 		2C0FF4E424C3F56A0014C96E /* CopyOption.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CopyOption.hpp; sourceTree = "<group>"; };
 		2C0FF4E524C429B40014C96E /* Siv3DTest_BinaryReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DTest_BinaryReader.cpp; sourceTree = "<group>"; };
+		2C0FF4E724C437020014C96E /* Siv3DTest_BinaryWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DTest_BinaryWriter.cpp; sourceTree = "<group>"; };
+		2C0FF4EA24C4622C0014C96E /* TextWriterDetail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextWriterDetail.cpp; sourceTree = "<group>"; };
+		2C0FF4EB24C4622C0014C96E /* TextWriterDetail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextWriterDetail.hpp; sourceTree = "<group>"; };
+		2C0FF4EC24C4622C0014C96E /* SivTextWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivTextWriter.cpp; sourceTree = "<group>"; };
+		2C0FF4F124C486D00014C96E /* SivINIData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivINIData.cpp; sourceTree = "<group>"; };
+		2C0FF4F324C486ED0014C96E /* Siv3DTest_TextWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DTest_TextWriter.cpp; sourceTree = "<group>"; };
 		2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CRenderer_Metal.hpp; sourceTree = "<group>"; };
 		2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CRenderer_Metal.mm; sourceTree = "<group>"; };
 		2C1778B21CE0D5DB00BB8AD0 /* Siv3D-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Siv3D-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -924,6 +936,24 @@
 			path = BinaryWriter;
 			sourceTree = "<group>";
 		};
+		2C0FF4E924C4622C0014C96E /* TextWriter */ = {
+			isa = PBXGroup;
+			children = (
+				2C0FF4EA24C4622C0014C96E /* TextWriterDetail.cpp */,
+				2C0FF4EB24C4622C0014C96E /* TextWriterDetail.hpp */,
+				2C0FF4EC24C4622C0014C96E /* SivTextWriter.cpp */,
+			);
+			path = TextWriter;
+			sourceTree = "<group>";
+		};
+		2C0FF4F024C486D00014C96E /* INIData */ = {
+			isa = PBXGroup;
+			children = (
+				2C0FF4F124C486D00014C96E /* SivINIData.cpp */,
+			);
+			path = INIData;
+			sourceTree = "<group>";
+		};
 		2C12089A24A30260008CAD99 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1373,6 +1403,7 @@
 				2C48578924C1FB680034F68D /* Image */,
 				2C4857D924C1FB680034F68D /* ImageDecoder */,
 				2C4857B524C1FB680034F68D /* ImageFormat */,
+				2C0FF4F024C486D00014C96E /* INIData */,
 				2C4857E524C1FB680034F68D /* Int128 */,
 				2C48575B24C1FB680034F68D /* IntFormatter */,
 				2C48576824C1FB680034F68D /* Logger */,
@@ -1392,6 +1423,7 @@
 				2C48579824C1FB680034F68D /* System */,
 				2C4857B324C1FB680034F68D /* TextEncoding */,
 				2C48579224C1FB680034F68D /* TextReader */,
+				2C0FF4E924C4622C0014C96E /* TextWriter */,
 				2C4857D124C1FB680034F68D /* Threading */,
 				2C48576C24C1FB680034F68D /* Unicode */,
 				2C48578324C1FB680034F68D /* UnicodeConverter */,
@@ -1866,10 +1898,12 @@
 			isa = PBXGroup;
 			children = (
 				2C0FF4E524C429B40014C96E /* Siv3DTest_BinaryReader.cpp */,
+				2C0FF4E724C437020014C96E /* Siv3DTest_BinaryWriter.cpp */,
 				2C48584E24C1FBAE0034F68D /* Siv3DTest_FileSystem.cpp */,
 				2C48584A24C1FBAE0034F68D /* Siv3DTest_Image.cpp */,
 				2C48584D24C1FBAE0034F68D /* Siv3DTest_TextEncoding.cpp */,
 				2C48584C24C1FBAE0034F68D /* Siv3DTest_TextReader.cpp */,
+				2C0FF4F324C486ED0014C96E /* Siv3DTest_TextWriter.cpp */,
 				2C48584B24C1FBAE0034F68D /* Siv3DTest.cpp */,
 			);
 			name = Test;
@@ -2529,6 +2563,7 @@
 				2C423222242B155E00A16BCA /* glfw3.h in Headers */,
 				2C42321D242B155E00A16BCA /* internal.h in Headers */,
 				2C481E1424460B5700A5D88D /* cpu_features_cache_info.h in Headers */,
+				2C0FF4EE24C4622C0014C96E /* TextWriterDetail.hpp in Headers */,
 				2C439F89241DCEA9001154C2 /* fast-dtoa.h in Headers */,
 				2C48581724C1FB680034F68D /* SystemMisc.hpp in Headers */,
 				2C439F87241DCEA9001154C2 /* ieee.h in Headers */,
@@ -2711,8 +2746,10 @@
 				2C0FF4E624C429B50014C96E /* Siv3DTest_BinaryReader.cpp in Sources */,
 				2C48585024C1FBAE0034F68D /* Siv3DTest.cpp in Sources */,
 				2C48585124C1FBAE0034F68D /* Siv3DTest_TextReader.cpp in Sources */,
+				2C0FF4E824C437020014C96E /* Siv3DTest_BinaryWriter.cpp in Sources */,
 				2C48585324C1FBAE0034F68D /* Siv3DTest_FileSystem.cpp in Sources */,
 				2C48585224C1FBAE0034F68D /* Siv3DTest_TextEncoding.cpp in Sources */,
+				2C0FF4F424C486ED0014C96E /* Siv3DTest_TextWriter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2846,6 +2883,7 @@
 				2C48581324C1FB680034F68D /* SivSystem.cpp in Sources */,
 				2C48582824C1FB680034F68D /* PNGDecoder.cpp in Sources */,
 				2C4857E724C1FB680034F68D /* SivVector2D.cpp in Sources */,
+				2C0FF4ED24C4622C0014C96E /* TextWriterDetail.cpp in Sources */,
 				2C439F84241DCEA9001154C2 /* fast-dtoa.cc in Sources */,
 				2C60AE91248158A500277281 /* scope.cpp in Sources */,
 				2C834D90248805D4006208B8 /* iso8859_1.c in Sources */,
@@ -2886,6 +2924,7 @@
 				2C834DA2248805D4006208B8 /* koi8_r.c in Sources */,
 				2CF21D20249FAA8F00C864C9 /* OpenGL.cpp in Sources */,
 				2C60AE8D248158A500277281 /* os_info_darwin.cpp in Sources */,
+				2C0FF4F224C486D00014C96E /* SivINIData.cpp in Sources */,
 				2C834DC3248805D4006208B8 /* iso8859_4.c in Sources */,
 				2C4857F024C1FB680034F68D /* CDummy.cpp in Sources */,
 				2C4857EC24C1FB680034F68D /* SivIntFormatter.cpp in Sources */,
@@ -2897,6 +2936,7 @@
 				2C48581C24C1FB680034F68D /* Siv3DEngine.cpp in Sources */,
 				2C48580324C1FB680034F68D /* SivEngineLog.cpp in Sources */,
 				2C439F85241DCEA9001154C2 /* double-to-string.cc in Sources */,
+				2C0FF4EF24C4622C0014C96E /* SivTextWriter.cpp in Sources */,
 				2C60AE81248158A500277281 /* vendor_id.cpp in Sources */,
 				2C68509024B768A800B98A7F /* CConsole.cpp in Sources */,
 				2C48580924C1FB680034F68D /* SivParseFloat.cpp in Sources */,

@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -44,6 +44,8 @@ TEST_CASE("BinaryWriter")
 		REQUIRE(writer.path() == U"");
 	}
 
+# if SIV3D_PLATFORM(WINDOWS)
+	
 	SECTION("invalid file name 2")
 	{
 		const FilePath path = FileSystem::FullPath(U"test/runtime/binarywriter/?.bin");
@@ -56,6 +58,8 @@ TEST_CASE("BinaryWriter")
 		REQUIRE(writer.getPos() == 0);
 		REQUIRE(writer.path() == U"");
 	}
+	
+# endif
 
 	SECTION("new directory")
 	{

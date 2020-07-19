@@ -13,6 +13,11 @@
 
 namespace s3d
 {
+	inline INIData::INIData()
+	{
+	
+	}
+
 	inline INIData::INIData(const FilePathView path, const Optional<TextEncoding>& encoding)
 	{
 		load(path, encoding);

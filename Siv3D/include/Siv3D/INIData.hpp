@@ -19,6 +19,7 @@
 # include "TextEncoding.hpp"
 # include "Unspecified.hpp"
 # include "Format.hpp"
+# include "Parse.hpp"
 
 namespace s3d
 {
@@ -107,7 +108,7 @@ namespace s3d
 
 	public:
 
-		INIData() = default;
+		INIData();
 
 		explicit INIData(FilePathView path, const Optional<TextEncoding>& encoding = unspecified);
 

@@ -395,6 +395,8 @@ namespace s3d
 				return FilePath();
 			}
 			
+			const bool isDirectory = path.ends_with(U'/');
+			
 			FilePath src;
 			bool isRelative = false;
 			
@@ -415,7 +417,7 @@ namespace s3d
 				result.erase(result.begin(), result.begin() + 7);
 			}
 			
-			if (IsDirectory(result) && !result.ends_with(U'/'))
+			if ((isDirectory || IsDirectory(result)) && !result.ends_with(U'/'))
 			{
 				result.push_back(U'/');
 			}
