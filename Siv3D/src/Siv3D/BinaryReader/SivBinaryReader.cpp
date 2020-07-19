@@ -57,7 +57,9 @@ namespace s3d
 
 	int64 BinaryReader::skip(const int64 offset)
 	{
-		return pImpl->setPos(pImpl->getPos() + offset);
+		const int64 clampedPos = Clamp<int64>(pImpl->getPos() + offset, 0, pImpl->size());
+
+		return pImpl->setPos(clampedPos);
 	}
 
 	int64 BinaryReader::read(void* const dst, const int64 size)

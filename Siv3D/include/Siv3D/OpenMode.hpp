@@ -17,10 +17,8 @@ namespace s3d
 {
 	enum class OpenMode : uint32
 	{
-		RandomAccess	= 1 << 0,
-		SequentialScan	= 1 << 1,
-		Trunc			= 1 << 2,
-		Append			= 1 << 3,
+		Trunc			= 1 << 1,
+		Append			= 1 << 2,
 	};
 	DEFINE_BITMASK_OPERATORS(OpenMode);
 }

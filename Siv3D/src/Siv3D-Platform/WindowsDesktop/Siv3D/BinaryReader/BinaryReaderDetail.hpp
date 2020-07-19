@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <fstream>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/BinaryReader.hpp>
 # include <Siv3D/Byte.hpp>
@@ -23,7 +24,8 @@ namespace s3d
 
 		struct File
 		{
-			HANDLE handle = INVALID_HANDLE_VALUE;
+			std::ifstream file;
+			int64 pos = 0;
 		} m_file;
 
 		struct Resource

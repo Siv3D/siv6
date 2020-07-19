@@ -16,36 +16,6 @@
 
 namespace s3d
 {
-	namespace detail
-	{
-		inline constexpr DWORD MakeFlag(const OpenMode openMode) noexcept
-		{
-			DWORD flagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
-			
-			if (openMode & OpenMode::RandomAccess)
-			{
-				flagsAndAttributes |= FILE_FLAG_RANDOM_ACCESS;
-			}
-
-			if (openMode & OpenMode::SequentialScan)
-			{
-				flagsAndAttributes |= FILE_FLAG_SEQUENTIAL_SCAN;
-			}
-			
-			return flagsAndAttributes;
-		}
-
-		inline OVERLAPPED MakeOffset(const int64 offset)
-		{
-			const ULARGE_INTEGER i = { .QuadPart = static_cast<uint64>(offset) };
-			return OVERLAPPED
-			{
-				.Offset		= i.LowPart,
-				.OffsetHigh	= i.HighPart,
-			};
-		}
-	}
-
 	BinaryReader::BinaryReaderDetail::BinaryReaderDetail() = default;
 
 	BinaryReader::BinaryReaderDetail::~BinaryReaderDetail()
@@ -95,34 +65,12 @@ namespace s3d
 		{
 			// ファイルのオープン
 			{
-				const HANDLE handle = ::CreateFileW(path.toWstr().c_str(),
-					GENERIC_READ,
-					(FILE_SHARE_READ | FILE_SHARE_WRITE),
-					nullptr,
-					OPEN_EXISTING,
-					detail::MakeFlag(openMode),
-					nullptr);
+				m_file.file.open(path.toWstr(), std::ios_base::binary);
+				m_file.pos = 0;
 
-				if (handle == INVALID_HANDLE_VALUE) [[unlikely]]
+				if (not m_file.file) [[unlikely]]
 				{
-					LOG_FAIL(U"❌ BinaryReader: Failed to open the file `{0}`. {1}"_fmt(
-						path, Platform::Windows::GetLastErrorMessage()));
-					return false;
-				}
-
-				m_file =
-				{
-					.handle = handle
-				};
-			}
-
-			// ファイルのサイズ
-			LARGE_INTEGER size;
-			{
-				if (!::GetFileSizeEx(m_file.handle, &size)) [[unlikely]]
-				{
-					LOG_FAIL(U"❌ BinaryReader: GetFileSizeEx() failed. {0}"_fmt(
-						Platform::Windows::GetLastErrorMessage()));
+					LOG_FAIL(U"❌ BinaryReader: Failed to open the file `{0}`"_fmt(path));
 					return false;
 				}
 			}
@@ -130,7 +78,7 @@ namespace s3d
 			m_info =
 			{
 				.isOpen		= true,
-				.size		= size.QuadPart,
+				.size		= FileSystem::FileSize(path),
 				.fullPath	= FileSystem::FullPath(path)
 			};
 
@@ -156,8 +104,8 @@ namespace s3d
 		}
 		else
 		{
-			::CloseHandle(m_file.handle);		
-			m_file = {};
+			m_file.file.close();
+			m_file.pos = 0;
 			LOG_INFO(U"📥 BinaryReader: File `{0}` closed"_fmt(
 				m_info.fullPath));
 		}
@@ -190,10 +138,9 @@ namespace s3d
 		}
 		else
 		{
-			const LARGE_INTEGER distance = { .QuadPart = clampedPos };
-			LARGE_INTEGER newPos;
-			::SetFilePointerEx(m_file.handle, distance, &newPos, FILE_BEGIN);
-			return newPos.QuadPart;
+			m_file.file.seekg(clampedPos);
+			m_file.pos = clampedPos;
+			return m_file.pos;
 		}
 	}
 
@@ -210,10 +157,7 @@ namespace s3d
 		}
 		else
 		{
-			const LARGE_INTEGER distance = { .QuadPart = 0 };
-			LARGE_INTEGER currentPos;
-			::SetFilePointerEx(m_file.handle, distance, &currentPos, FILE_CURRENT);
-			return currentPos.QuadPart;
+			return m_file.pos;
 		}
 	}
 
@@ -233,15 +177,25 @@ namespace s3d
 		}
 		else
 		{
-			DWORD readBytes;
+			const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
 
-			if (!::ReadFile(m_file.handle, dst.pointer, static_cast<DWORD>(size), &readBytes, nullptr)) [[unlikely]]
+			if (readBytes)
 			{
-				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed. {1}"_fmt(
-					m_info.fullPath, Platform::Windows::GetLastErrorMessage()));
-				return 0;
+				if (not m_file.file.read(static_cast<char*>(dst.pointer), readBytes))
+				{
+					m_file.pos = m_file.file.tellg();
+
+					if (m_file.file.eof())
+					{
+						return readBytes;
+					}
+
+					LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed"_fmt(m_info.fullPath));
+					return 0;
+				}
 			}
 
+			m_file.pos += readBytes;
 			return readBytes;
 		}
 	}
@@ -262,16 +216,30 @@ namespace s3d
 		}
 		else
 		{
-			OVERLAPPED overlapped = detail::MakeOffset(pos);
-			DWORD readBytes;
-
-			if (!::ReadFile(m_file.handle, dst.pointer, static_cast<DWORD>(size), &readBytes, &overlapped)) [[unlikely]]
+			if (pos != setPos(pos))
 			{
-				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed. {1}"_fmt(
-					m_info.fullPath, Platform::Windows::GetLastErrorMessage()));
 				return 0;
 			}
 
+			const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+
+			if (readBytes)
+			{
+				if (not m_file.file.read(static_cast<char*>(dst.pointer), readBytes))
+				{
+					m_file.pos = m_file.file.tellg();
+
+					if (m_file.file.eof())
+					{
+						return readBytes;
+					}
+
+					LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed"_fmt(m_info.fullPath));
+					return 0;
+				}
+			}
+
+			m_file.pos += readBytes;
 			return readBytes;
 		}
 	}
@@ -292,13 +260,23 @@ namespace s3d
 		else
 		{
 			const auto previousPos = getPos();
-			DWORD readBytes;
 
-			if (!::ReadFile(m_file.handle, dst.pointer, static_cast<DWORD>(size), &readBytes, nullptr)) [[unlikely]]
+			const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+
+			if (readBytes)
 			{
-				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed. {1}"_fmt(
-					m_info.fullPath, Platform::Windows::GetLastErrorMessage()));
-				return 0;
+				if (not m_file.file.read(static_cast<char*>(dst.pointer), readBytes))
+				{
+					m_file.pos = m_file.file.tellg();
+
+					if (m_file.file.eof())
+					{
+						return readBytes;
+					}
+
+					LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed"_fmt(m_info.fullPath));
+					return 0;
+				}
 			}
 
 			setPos(previousPos);
@@ -322,14 +300,28 @@ namespace s3d
 		else
 		{
 			const auto previousPos = getPos();
-			OVERLAPPED overlapped = detail::MakeOffset(pos);
-			DWORD readBytes;
 
-			if (!::ReadFile(m_file.handle, dst.pointer, static_cast<DWORD>(size), &readBytes, &overlapped)) [[unlikely]]
+			if (pos != setPos(pos))
 			{
-				LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed. {1}"_fmt(
-					m_info.fullPath, Platform::Windows::GetLastErrorMessage()));
 				return 0;
+			}
+
+			const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+
+			if (readBytes)
+			{
+				if (not m_file.file.read(static_cast<char*>(dst.pointer), readBytes))
+				{
+					m_file.pos = m_file.file.tellg();
+
+					if (m_file.file.eof())
+					{
+						return readBytes;
+					}
+
+					LOG_FAIL(U"❌ BinaryReader `{0}`: ReadFile() failed"_fmt(m_info.fullPath));
+					return 0;
+				}
 			}
 
 			setPos(previousPos);
