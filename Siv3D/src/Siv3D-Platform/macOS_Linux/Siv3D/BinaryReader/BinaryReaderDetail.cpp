@@ -111,7 +111,7 @@ namespace s3d
 			return 0;
 		}
 
-		const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+		const int64 readBytes = Clamp<int64>(size, 0LL, (m_info.size - m_file.pos));
 
 		if (readBytes)
 		{
@@ -145,7 +145,7 @@ namespace s3d
 			return 0;
 		}
 
-		const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+		const int64 readBytes = Clamp<int64>(size, 0LL, (m_info.size - m_file.pos));
 
 		if (readBytes)
 		{
@@ -176,7 +176,7 @@ namespace s3d
 
 		const auto previousPos = getPos();
 
-		const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+		const int64 readBytes = Clamp<int64>(size, 0LL, (m_info.size - m_file.pos));
 
 		if (readBytes)
 		{
@@ -212,7 +212,7 @@ namespace s3d
 			return 0;
 		}
 
-		const int64 readBytes = Clamp(size, 0LL, (m_info.size - m_file.pos));
+		const int64 readBytes = Clamp<int64>(size, 0LL, (m_info.size - m_file.pos));
 
 		if (readBytes)
 		{
