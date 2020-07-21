@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Siv3D/Resource/IResource.hpp>
 # include <Siv3D/Profiler/IProfiler.hpp>
 # include <Siv3D/ImageDecoder/IImageDecoder.hpp>
 # include <Siv3D/Window/IWindow.hpp>
@@ -44,6 +45,7 @@ namespace s3d
 		SystemLog::Initial();
 		SystemMisc::Init();
 
+		SIV3D_ENGINE(Resource)->init();
 		SIV3D_ENGINE(Profiler)->init();
 	}
 

@@ -256,6 +256,7 @@
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\CRenderer_D3D11.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\GL4\CRenderer_GL4.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\GL4\WGLContext.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Resource\CResource.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\System\CSystem.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Window\CWindow.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Window\DPIAwareness.hpp" />
@@ -280,6 +281,7 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\Renderer2D\Null\CRenderer2D_Null.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Renderer\IRenderer.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Renderer\Null\CRenderer_Null.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\Resource\IResource.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Scene\CScene.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Scene\IScene.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\System\ISystem.hpp" />
@@ -359,6 +361,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\GL4\CRenderer_GL4.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\GL4\WGLContext.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\RendererFactory.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Resource\CResource.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Siv3DMain.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\System\CSystem.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\System\SivSystem_Windows.cpp" />
@@ -418,6 +421,8 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\RegExp\SivRegExp.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Renderer2D\Null\CRenderer2D_Null.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Renderer\Null\CRenderer_Null.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\Resource\ResourceFactory.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\Resource\SivResource.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Scene\CScene.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Scene\SceneFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Scene\SivScene.cpp" />

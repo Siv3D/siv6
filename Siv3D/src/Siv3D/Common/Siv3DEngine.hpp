@@ -18,6 +18,7 @@ namespace s3d
 	class ISiv3DDummy;
 	class ISiv3DLogger;
 	class ISiv3DSystem;
+	class ISiv3DResource;
 	class ISiv3DProfiler;
 	class ISiv3DUserAction;
 	class ISiv3DWindow;
@@ -38,6 +39,7 @@ namespace s3d
 			Siv3DComponent<ISiv3DDummy>,
 			Siv3DComponent<ISiv3DLogger>,
 			Siv3DComponent<ISiv3DSystem>,
+			Siv3DComponent<ISiv3DResource>,
 			Siv3DComponent<ISiv3DProfiler>,
 			Siv3DComponent<ISiv3DUserAction>,
 			Siv3DComponent<ISiv3DWindow>,

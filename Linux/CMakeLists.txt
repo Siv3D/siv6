@@ -47,6 +47,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer/RendererFactory.cpp
   
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer2D/Renderer2DFactory.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Resource/CResource.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Window/CWindow.cpp
@@ -108,6 +109,8 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/RegExp/SivRegExp.cpp
   ../Siv3D/src/Siv3D/Renderer/Null/CRenderer_Null.cpp
   ../Siv3D/src/Siv3D/Renderer2D/Null/CRenderer2D_Null.cpp
+  ../Siv3D/src/Siv3D/Resource/ResourceFactory.cpp
+  ../Siv3D/src/Siv3D/Resource/SivResource.cpp
   ../Siv3D/src/Siv3D/Scene/CScene.cpp
   ../Siv3D/src/Siv3D/Scene/SceneFactory.cpp
   ../Siv3D/src/Siv3D/Scene/SivScene.cpp
