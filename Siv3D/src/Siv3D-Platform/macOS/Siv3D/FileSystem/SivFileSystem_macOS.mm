@@ -348,7 +348,7 @@ namespace s3d
 			{
 				std::array<FilePath, 11> specialFolderPaths;
 
-				for (int32 i = 0; i < specialFolderPaths.size(); ++i)
+				for (int32 i = 0; i < static_cast<int32>(specialFolderPaths.size()); ++i)
 				{
 					specialFolderPaths[i] = Unicode::Widen(detail::MacOS_SpecialFolder(ToEnum<SpecialFolder>(i))) << U'/';
 				}

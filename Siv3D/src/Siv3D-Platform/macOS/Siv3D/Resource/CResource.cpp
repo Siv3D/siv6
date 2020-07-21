@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -11,7 +11,6 @@
 
 # include <Siv3D/Common.hpp>
 # include <Siv3D/EngineLog.hpp>
-# include <Siv3D/Windows/Windows.hpp>
 # include "CResource.hpp"
 
 namespace s3d
