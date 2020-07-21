@@ -649,7 +649,7 @@ namespace s3d
 			return detail::MacOS_ChangeCurrentDirectory(path.narrow().c_str());
 		}
 
-		FilePath GetFolderPath(const SpecialFolder folder)
+		const FilePath& GetFolderPath(const SpecialFolder folder)
 		{
 			assert(FromEnum(folder) < static_cast<int32>(std::size(detail::init::g_specialFolderPaths)));
 

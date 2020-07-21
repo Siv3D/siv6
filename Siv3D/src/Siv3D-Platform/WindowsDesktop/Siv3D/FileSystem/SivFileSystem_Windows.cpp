@@ -602,7 +602,7 @@ namespace s3d
 			return (::SetCurrentDirectoryW(path.toWstr().c_str()) != 0);
 		}
 
-		FilePath GetFolderPath(const SpecialFolder folder)
+		const FilePath& GetFolderPath(const SpecialFolder folder)
 		{
 			assert(FromEnum(folder) < std::size(ids));
 

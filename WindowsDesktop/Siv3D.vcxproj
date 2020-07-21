@@ -28,6 +28,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ImageDecoder.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\INIData.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IWriter.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Resource.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextEncoding.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextReader.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextWriter.ipp" />
@@ -182,6 +183,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\RDTSCClock.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Rectangle.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\RegExp.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Resource.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\ResourceOption.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Scene.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ScopeGuard.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\SIMD.hpp" />

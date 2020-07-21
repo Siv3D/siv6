@@ -451,7 +451,7 @@ namespace s3d
 			return (chdir(path.narrow().c_str()) == 0);
 		}	
 
-		FilePath GetFolderPath(const SpecialFolder folder)
+		const FilePath& GetFolderPath(const SpecialFolder folder)
 		{
 			assert(FromEnum(folder) < static_cast<int32>(std::size(detail::init::g_specialFolderPaths)));
 

@@ -142,7 +142,7 @@ namespace s3d
 		bool ChangeCurrentDirectory(FilePathView path);
 
 		[[nodiscard]]
-		FilePath GetFolderPath(SpecialFolder folder);
+		const FilePath& GetFolderPath(SpecialFolder folder);
 
 		[[nodiscard]]
 		FilePath TemporaryDirectoryPath();

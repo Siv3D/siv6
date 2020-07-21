@@ -453,9 +453,11 @@
 // Files and directories
 # include <Siv3D/FileSystem.hpp> // [Siv3D ToDo]
 
+# include <Siv3D/ResourceOption.hpp>
+
 // リソースファイルの管理
 // Resource files
-//# include <Siv3D/Resource.hpp>
+# include <Siv3D/Resource.hpp> // [Siv3D ToDo]
 
 // ファイルとディレクトリの変更の監視
 // Directory Watcher
