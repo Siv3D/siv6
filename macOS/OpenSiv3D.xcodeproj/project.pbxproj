@@ -287,6 +287,7 @@
 		2C834DC2248805D4006208B8 /* utf16_be.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D87248805D4006208B8 /* utf16_be.c */; };
 		2C834DC3248805D4006208B8 /* iso8859_4.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C834D88248805D4006208B8 /* iso8859_4.c */; };
 		2C8588EC1F929277000DA815 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C8588EB1F929277000DA815 /* icon.icns */; };
+		2C8E717D24C7458800CECCAE /* SivEnvironmentVariable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E717C24C7458800CECCAE /* SivEnvironmentVariable.cpp */; };
 		2CA1A884240BA55100ED4230 /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA7F73D1CA7F3B100495647 /* libSiv3D.a */; };
 		2CDE6E8B24A35C7B0048594F /* CRenderer2D_Metal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2CDE6E8924A35C7B0048594F /* CRenderer2D_Metal.hpp */; };
 		2CDE6E8D24A35EAC0048594F /* CRenderer2D_Metal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CDE6E8C24A35EAC0048594F /* CRenderer2D_Metal.mm */; };
@@ -840,6 +841,8 @@
 		2C834D87248805D4006208B8 /* utf16_be.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf16_be.c; sourceTree = "<group>"; };
 		2C834D88248805D4006208B8 /* iso8859_4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iso8859_4.c; sourceTree = "<group>"; };
 		2C8588EB1F929277000DA815 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		2C8E717A24C7456A00CECCAE /* EnvironmentVariable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnvironmentVariable.hpp; sourceTree = "<group>"; };
+		2C8E717C24C7458800CECCAE /* SivEnvironmentVariable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivEnvironmentVariable.cpp; sourceTree = "<group>"; };
 		2C9D1078249A3D680096DA03 /* SMFT.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SMFT.hpp; sourceTree = "<group>"; };
 		2CA7F73D1CA7F3B100495647 /* libSiv3D.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSiv3D.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA7F74E1CA7F43D00495647 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; usesTabs = 1; };
@@ -1184,6 +1187,7 @@
 				2C48574024C1FB1E0034F68D /* Duration.hpp */,
 				2C48571724C1FB1E0034F68D /* Endian.hpp */,
 				2C48569624C1FB1E0034F68D /* EngineLog.hpp */,
+				2C8E717A24C7456A00CECCAE /* EnvironmentVariable.hpp */,
 				2C4856C724C1FB1E0034F68D /* Error.hpp */,
 				2C4856A324C1FB1E0034F68D /* FastMath.hpp */,
 				2C4856AA24C1FB1E0034F68D /* FileSystem.hpp */,
@@ -2146,6 +2150,7 @@
 				2C68508524B768A800B98A7F /* Console */,
 				2C68507E24B768A800B98A7F /* Date */,
 				2C68507C24B768A800B98A7F /* DateTime */,
+				2C8E717B24C7458800CECCAE /* EnvironmentVariable */,
 				2C68507724B768A800B98A7F /* Logger */,
 				2C68508024B768A800B98A7F /* System */,
 				2C68507A24B768A800B98A7F /* Unicode */,
@@ -2307,6 +2312,14 @@
 				2C834D51248805D4006208B8 /* st.h */,
 			);
 			path = Oniguruma;
+			sourceTree = "<group>";
+		};
+		2C8E717B24C7458800CECCAE /* EnvironmentVariable */ = {
+			isa = PBXGroup;
+			children = (
+				2C8E717C24C7458800CECCAE /* SivEnvironmentVariable.cpp */,
+			);
+			path = EnvironmentVariable;
 			sourceTree = "<group>";
 		};
 		2C9D1077249A3D680096DA03 /* SMFT */ = {
@@ -2779,6 +2792,7 @@
 				2C834DBD248805D4006208B8 /* regerror.c in Sources */,
 				2C48584424C1FB680034F68D /* SivVector3D.cpp in Sources */,
 				2C834D96248805D4006208B8 /* iso8859_5.c in Sources */,
+				2C8E717D24C7458800CECCAE /* SivEnvironmentVariable.cpp in Sources */,
 				2C834DAB248805D4006208B8 /* st.c in Sources */,
 				2CF21D16249FAA8F00C864C9 /* CRenderer_GL4.cpp in Sources */,
 				2CF21D33249FAA9700C864C9 /* CRenderer2D_GL4.cpp in Sources */,
