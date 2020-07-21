@@ -46,7 +46,10 @@ namespace s3d
 
 		void Logger_impl::writeln(const StringView s) const
 		{
-			SIV3D_ENGINE(Logger)->write(LogType::App, s);
+			if (auto pLogger = SIV3D_ENGINE(Logger))
+			{
+				pLogger->write(LogType::App, s);
+			}
 		}
 
 		void Logger_impl::writeln(const String& s) const
