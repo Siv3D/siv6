@@ -31,7 +31,7 @@ namespace s3d
 			close();
 		}
 
-		std::shared_ptr<IReader> tmpReader = std::make_shared<BinaryReader>(path);
+		std::unique_ptr<IReader> tmpReader = std::make_unique<BinaryReader>(path);
 
 		if (not tmpReader->isOpen())
 		{
@@ -55,7 +55,7 @@ namespace s3d
 		return true;
 	}
 
-	bool TextReader::TextReaderDetail::open(const std::shared_ptr<IReader>& reader, const Optional<TextEncoding>& encoding)
+	bool TextReader::TextReaderDetail::open(std::unique_ptr<IReader>&& reader, const Optional<TextEncoding>& encoding)
 	{
 		if (m_info.isOpen)
 		{
@@ -72,7 +72,7 @@ namespace s3d
 			return false;
 		}
 
-		m_reader = reader;
+		m_reader = std::move(reader);
 
 		m_info =
 		{

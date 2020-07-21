@@ -53,9 +53,9 @@ namespace s3d
 		return true;
 	}
 
-	bool INIData::load(const std::shared_ptr<IReader>& reader, const Optional<TextEncoding>& encoding)
+	bool INIData::load(std::unique_ptr<IReader>&& reader, const Optional<TextEncoding>& encoding)
 	{
-		TextReader textReader(reader, encoding);
+		TextReader textReader(std::move(reader), encoding);
 
 		if (not loadFromTextReader(textReader))
 		{

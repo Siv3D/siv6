@@ -120,14 +120,14 @@ namespace s3d
 		template <class Reader, std::enable_if_t<std::is_base_of_v<IReader, Reader> && !std::is_lvalue_reference_v<Reader>>* = nullptr>
 		explicit INIData(Reader&& reader, const Optional<TextEncoding>& encoding = unspecified);
 
-		explicit INIData(const std::shared_ptr<IReader>& reader, const Optional<TextEncoding>& encoding = unspecified);
+		explicit INIData(std::unique_ptr<IReader>&& reader, const Optional<TextEncoding>& encoding = unspecified);
 
 		bool load(FilePathView path, const Optional<TextEncoding>& encoding = unspecified);
 
 		template <class Reader, std::enable_if_t<std::is_base_of_v<IReader, Reader> && !std::is_lvalue_reference_v<Reader>>* = nullptr>
 		bool load(Reader&& reader, const Optional<TextEncoding>& encoding = unspecified);
 
-		bool load(const std::shared_ptr<IReader>& reader, const Optional<TextEncoding>& encoding = unspecified);
+		bool load(std::unique_ptr<IReader>&& reader, const Optional<TextEncoding>& encoding = unspecified);
 
 		void clear();
 

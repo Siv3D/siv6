@@ -29,9 +29,9 @@ namespace s3d
 		load(std::move(reader), encoding);
 	}
 
-	inline INIData::INIData(const std::shared_ptr<IReader>& reader, const Optional<TextEncoding>& encoding)
+	inline INIData::INIData(std::unique_ptr<IReader>&& reader, const Optional<TextEncoding>& encoding)
 	{
-		load(reader, encoding);
+		load(std::move(reader), encoding);
 	}
 
 	template <class Reader, std::enable_if_t<std::is_base_of_v<IReader, Reader> && !std::is_lvalue_reference_v<Reader>>*>

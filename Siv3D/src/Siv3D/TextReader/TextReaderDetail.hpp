@@ -18,7 +18,7 @@ namespace s3d
 	{
 	private:
 
-		std::shared_ptr<IReader> m_reader;
+		std::unique_ptr<IReader> m_reader;
 
 		struct Info
 		{
@@ -55,7 +55,7 @@ namespace s3d
 		bool open(FilePathView path, const Optional<TextEncoding>& encoding);
 
 		[[nodiscard]]
-		bool open(const std::shared_ptr<IReader>& reader, const Optional<TextEncoding>& encoding);
+		bool open(std::unique_ptr<IReader>&& reader, const Optional<TextEncoding>& encoding);
 
 		void close();
 
