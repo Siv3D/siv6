@@ -16,6 +16,8 @@
 # include <filesystem>
 # include <Siv3D/String.hpp>
 # include <Siv3D/FileSystem.hpp>
+# include <Siv3D/EnvironmentVariable.hpp>
+# include <Siv3D/INIData.hpp>
 
 namespace s3d
 {
@@ -149,6 +151,45 @@ namespace s3d
 			{
 				g_modulePath = Unicode::Widen(arg);
 			}
+
+			const static std::array<FilePath, 11> g_specialFolderPaths = []()
+			{
+				const FilePath homeDirectory = EnvironmentVariable::Get(U"HOME");
+
+				if (!homeDirectory)
+				{
+					return{};
+				}
+
+				std::array<FilePath, 11> specialFolderPaths;
+				specialFolderPaths[FromEnum(SpecialFolder::UserProfile)] = (homeDirectory + U'/');
+
+				const FilePath iniFilePath = homeDirectory + U"/.config/user-dirs.dirs";
+
+				if (not FileSystem::Exists(iniFilePath))
+				{
+					return specialFolderPaths;
+				}
+
+				const INIData ini(iniFilePath);
+				specialFolderPaths[FromEnum(SpecialFolder::Desktop)]	= ini[U"XDG_DESKTOP_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
+				specialFolderPaths[FromEnum(SpecialFolder::Documents)]	= ini[U"XDG_DOCUMENTS_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
+				specialFolderPaths[FromEnum(SpecialFolder::Music)]		= ini[U"XDG_MUSIC_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
+				specialFolderPaths[FromEnum(SpecialFolder::Pictures)]	= ini[U"XDG_PICTURES_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
+				specialFolderPaths[FromEnum(SpecialFolder::Videos)]		= ini[U"XDG_VIDEOS_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
+				specialFolderPaths[FromEnum(SpecialFolder::ProgramFiles)]	= U"/usr/";
+				specialFolderPaths[FromEnum(SpecialFolder::LocalAppData)]	= U"/var/cache/";
+				specialFolderPaths[FromEnum(SpecialFolder::SystemFonts)]	= U"/usr/share/fonts/";
+
+				if (const FilePath localFontDirectory = homeDirectory + U"/.local/share/fonts/";
+					FileSystem::Exists(localFontDirectory))
+				{
+					specialFolderPaths[FromEnum(SpecialFolder::LocalFonts)] = localFontDirectory;
+					specialFolderPaths[FromEnum(SpecialFolder::UserFonts)] = localFontDirectory;
+				}
+
+				return specialFolderPaths;
+			}();
 		}
 	}
 
@@ -399,7 +440,9 @@ namespace s3d
 
 		FilePath GetFolderPath(const SpecialFolder folder)
 		{
-			return{};
+			assert(FromEnum(folder) < std::size(ids));
+
+			return detail::init::g_specialFolderPaths[FromEnum(folder)];
 		}
 
 		bool CreateDirectories(const FilePathView path)

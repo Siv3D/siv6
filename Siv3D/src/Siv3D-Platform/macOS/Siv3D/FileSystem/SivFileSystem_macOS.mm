@@ -28,6 +28,7 @@ namespace s3d
 			return fs::path(path.toWstr());
 		}
 	
+		[[nodiscard]]
 		static bool GetStat(const FilePathView path, struct stat& s)
 		{
 			return (::stat(FilePath(path).replaced(U'\\', U'/').narrow().c_str(), &s) == 0);
@@ -155,6 +156,7 @@ namespace s3d
 			}
 		}
 	
+		[[nodiscard]]
 		static std::string MacOS_SpecialFolder(const SpecialFolder folder)
 		{
 			@autoreleasepool
@@ -205,6 +207,7 @@ namespace s3d
 			}
 		}
 	
+		[[nodiscard]]
 		static bool CopyDirectory(const fs::path& source, const fs::path& destination)
 		{
 			try
@@ -254,6 +257,7 @@ namespace s3d
 			return true;
 		}
 	
+		[[nodiscard]]
 		static bool MacOS_TrashFile(const std::string_view path, const bool isDirectory)
 		{
 			@autoreleasepool
@@ -270,7 +274,8 @@ namespace s3d
 	
 		namespace init
 		{
-			FilePath ParentPath(FilePath path, size_t n)
+			[[nodiscard]]
+			static FilePath ParentPath(FilePath path, size_t n)
 			{
 				if (path.count(U'/') <= n)
 				{
@@ -295,7 +300,7 @@ namespace s3d
 				return path;
 			}
 		
-			static FilePath g_initialPath = []()
+			const static FilePath g_initialPath = []()
 			{
 				char path_str[4096];
 				uint32_t bufferSize = sizeof(path_str);
@@ -317,7 +322,7 @@ namespace s3d
 				return ParentPath(path, 3);
 			}();
 		
-			static FilePath g_modulePath = []()
+			const static FilePath g_modulePath = []()
 			{
 				char path_str[4096];
 				uint32_t bufferSize = sizeof(path_str);
@@ -337,6 +342,18 @@ namespace s3d
 				}
 
 				return modulePath;
+			}();
+
+			const static std::array<FilePath, 11> g_specialFolderPaths = []()
+			{
+				std::array<FilePath, 11> specialFolderPaths;
+
+				for (int32 i = 0; i < specialFolderPaths.size(); ++i)
+				{
+					specialFolderPaths[i] = Unicode::Widen(detail::MacOS_SpecialFolder(ToEnum<SpecialFolder>(i))) << U'/';
+				}
+
+				return specialFolderPaths;
 			}();
 			
 			//static bool g_isSandBoxed;
@@ -634,7 +651,9 @@ namespace s3d
 
 		FilePath GetFolderPath(const SpecialFolder folder)
 		{
-			return Unicode::Widen(detail::MacOS_SpecialFolder(folder)) << U'/';
+			assert(FromEnum(folder) < std::size(ids));
+
+			return detail::init::g_specialFolderPaths[FromEnum(folder)];
 		}
 	
 	

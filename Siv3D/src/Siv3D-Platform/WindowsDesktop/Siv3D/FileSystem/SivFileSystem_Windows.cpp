@@ -188,6 +188,39 @@ namespace s3d
 
 				return NormalizePath(Unicode::FromWstring(std::wstring_view(result, length)));
 			}();
+
+			const static std::array<FilePath, 11> g_specialFolderPaths = []()
+			{
+				static constexpr int ids[] = {
+					CSIDL_DESKTOP,
+					CSIDL_MYDOCUMENTS,
+					CSIDL_LOCAL_APPDATA,
+					CSIDL_MYPICTURES,
+					CSIDL_MYMUSIC,
+					CSIDL_MYVIDEO,
+					CSIDL_FONTS,
+					CSIDL_FONTS,
+					CSIDL_FONTS,
+					CSIDL_PROFILE,
+					CSIDL_PROGRAM_FILES,
+				};
+
+				std::array<FilePath, 11> specialFolderPaths;
+
+				for (size_t i = 0; i < specialFolderPaths.size(); ++i)
+				{
+					wchar_t path[MAX_PATH];
+
+					if (FAILED(::SHGetFolderPathW(nullptr, ids[i], nullptr, 0, path)))
+					{
+						continue;
+					}
+
+					specialFolderPaths[i] = detail::NormalizePath(Unicode::FromWstring(path), true);
+				}
+
+				return specialFolderPaths;
+			}();
 		}
 	}
 
@@ -571,30 +604,9 @@ namespace s3d
 
 		FilePath GetFolderPath(const SpecialFolder folder)
 		{
-			static constexpr int ids[] = {
-				CSIDL_DESKTOP,
-				CSIDL_MYDOCUMENTS,
-				CSIDL_LOCAL_APPDATA,
-				CSIDL_MYPICTURES,
-				CSIDL_MYMUSIC,
-				CSIDL_MYVIDEO,
-				CSIDL_FONTS,
-				CSIDL_FONTS,
-				CSIDL_FONTS,
-				CSIDL_PROFILE,
-				CSIDL_PROGRAM_FILES,
-			};
+			assert(FromEnum(folder) < std::size(ids));
 
-			assert(static_cast<size_t>(folder) < std::size(ids));
-
-			wchar_t path[MAX_PATH];
-
-			if (FAILED(::SHGetFolderPathW(nullptr, ids[FromEnum(folder)], nullptr, 0, path)))
-			{
-				return{};
-			}
-
-			return detail::NormalizePath(Unicode::FromWstring(path), true);
+			return detail::init::g_specialFolderPaths[FromEnum(folder)];
 		}
 
 
