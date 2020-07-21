@@ -139,7 +139,18 @@ namespace s3d
 			}
 
 			return true;
-		}		
+		}
+
+		[[nodiscard]]
+		FilePath AddSlash(FilePath path)
+		{
+			if (path.ends_with(U'/'))
+			{
+				return path;
+			}
+
+			return path + U'/';
+		}
 
 		namespace init
 		{
@@ -184,11 +195,11 @@ namespace s3d
 				}
 
 				const INIData ini(iniFilePath);
-				specialFolderPaths[FromEnum(SpecialFolder::Desktop)]	= ini[U"XDG_DESKTOP_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
-				specialFolderPaths[FromEnum(SpecialFolder::Documents)]	= ini[U"XDG_DOCUMENTS_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
-				specialFolderPaths[FromEnum(SpecialFolder::Music)]		= ini[U"XDG_MUSIC_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
-				specialFolderPaths[FromEnum(SpecialFolder::Pictures)]	= ini[U"XDG_PICTURES_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
-				specialFolderPaths[FromEnum(SpecialFolder::Videos)]		= ini[U"XDG_VIDEOS_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
+				specialFolderPaths[FromEnum(SpecialFolder::Desktop)]	= AddSlash(ini[U"XDG_DESKTOP_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory));
+				specialFolderPaths[FromEnum(SpecialFolder::Documents)]	= AddSlash(ini[U"XDG_DOCUMENTS_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory));
+				specialFolderPaths[FromEnum(SpecialFolder::Music)]		= AddSlash(ini[U"XDG_MUSIC_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory));
+				specialFolderPaths[FromEnum(SpecialFolder::Pictures)]	= AddSlash(ini[U"XDG_PICTURES_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory));
+				specialFolderPaths[FromEnum(SpecialFolder::Videos)]		= AddSlash(ini[U"XDG_VIDEOS_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory));
 
 				return specialFolderPaths;
 			}();
