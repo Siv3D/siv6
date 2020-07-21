@@ -382,6 +382,9 @@
     <Filter Include="src\Siv3D\INIData">
       <UniqueIdentifier>{99308d0d-5d90-492a-9488-b14bd9384283}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Siv3D\EnvironmentVariable">
+      <UniqueIdentifier>{8a14e9b1-a572-49ae-afc1-92a8878f5e04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1353,6 +1356,9 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\TextWriter\TextWriterDetail.hpp">
       <Filter>src\Siv3D\TextWriter</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\EnvironmentVariable.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -1957,6 +1963,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\INIData\SivINIData.cpp">
       <Filter>src\Siv3D\INIData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\EnvironmentVariable\SivEnvironmentVariable.cpp">
+      <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\EnvironmentVariable</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

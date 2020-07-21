@@ -822,6 +822,8 @@
 //
 //////////////////////////////////////////////////
 
+# include <Siv3D/EnvironmentVariable.hpp>
+
 # include <Siv3D/CPUInfo.hpp>
 
 # include <Siv3D/UserAction.hpp>
