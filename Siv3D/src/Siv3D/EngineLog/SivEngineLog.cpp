@@ -20,9 +20,9 @@ namespace s3d
 	{
 		void OutputEngineLog(const LogType type, const StringView s)
 		{
-			if (auto pLogger = SIV3D_ENGINE(Logger))
+			if (Siv3DEngine::isActive())
 			{
-				pLogger->write(type, s);
+				SIV3D_ENGINE(Logger)->write(type, s);
 			}
 		}
 
@@ -30,17 +30,17 @@ namespace s3d
 			: m_type(type)
 			, m_s(std::move(s))
 		{
-			if (auto pLogger = SIV3D_ENGINE(Logger))
+			if (Siv3DEngine::isActive())
 			{
-				pLogger->write(m_type, m_s + U" ---"_s);
+				SIV3D_ENGINE(Logger)->write(m_type, m_s + U" ---"_s);
 			}
 		}
 
 		ScopedEngineLog::~ScopedEngineLog()
 		{
-			if (auto pLogger = SIV3D_ENGINE(Logger))
+			if (Siv3DEngine::isActive())
 			{
-				pLogger->write(m_type, U"--- "_s + m_s);
+				SIV3D_ENGINE(Logger)->write(m_type, U"--- "_s + m_s);
 			}
 		}
 	}
