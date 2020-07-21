@@ -156,13 +156,23 @@ namespace s3d
 			{
 				std::array<FilePath, 11> specialFolderPaths;
 
+				specialFolderPaths[FromEnum(SpecialFolder::ProgramFiles)]	= U"/usr/";
+				specialFolderPaths[FromEnum(SpecialFolder::LocalAppData)]	= U"/var/cache/";
+				specialFolderPaths[FromEnum(SpecialFolder::SystemFonts)]	= U"/usr/share/fonts/";
+				if (const FilePath localFontDirectory = homeDirectory + U"/usr/local/share/fonts/";
+					FileSystem::Exists(localFontDirectory))
+				{
+					specialFolderPaths[FromEnum(SpecialFolder::LocalFonts)] = localFontDirectory;
+					specialFolderPaths[FromEnum(SpecialFolder::UserFonts)] = localFontDirectory;
+				}
+
 				const FilePath homeDirectory = EnvironmentVariable::Get(U"HOME");
 
 				if (!homeDirectory)
 				{
 					return specialFolderPaths;
 				}
-				
+
 				specialFolderPaths[FromEnum(SpecialFolder::UserProfile)] = (homeDirectory + U'/');
 
 				const FilePath iniFilePath = homeDirectory + U"/.config/user-dirs.dirs";
@@ -178,16 +188,6 @@ namespace s3d
 				specialFolderPaths[FromEnum(SpecialFolder::Music)]		= ini[U"XDG_MUSIC_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
 				specialFolderPaths[FromEnum(SpecialFolder::Pictures)]	= ini[U"XDG_PICTURES_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
 				specialFolderPaths[FromEnum(SpecialFolder::Videos)]		= ini[U"XDG_VIDEOS_DIR"].removed(U'\"').replaced(U"$HOME", homeDirectory);
-				specialFolderPaths[FromEnum(SpecialFolder::ProgramFiles)]	= U"/usr/";
-				specialFolderPaths[FromEnum(SpecialFolder::LocalAppData)]	= U"/var/cache/";
-				specialFolderPaths[FromEnum(SpecialFolder::SystemFonts)]	= U"/usr/share/fonts/";
-
-				if (const FilePath localFontDirectory = homeDirectory + U"/usr/local/share/fonts/";
-					FileSystem::Exists(localFontDirectory))
-				{
-					specialFolderPaths[FromEnum(SpecialFolder::LocalFonts)] = localFontDirectory;
-					specialFolderPaths[FromEnum(SpecialFolder::UserFonts)] = localFontDirectory;
-				}
 
 				return specialFolderPaths;
 			}();
