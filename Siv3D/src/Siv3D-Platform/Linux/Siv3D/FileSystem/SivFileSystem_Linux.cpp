@@ -159,18 +159,19 @@ namespace s3d
 				specialFolderPaths[FromEnum(SpecialFolder::ProgramFiles)]	= U"/usr/";
 				specialFolderPaths[FromEnum(SpecialFolder::LocalAppData)]	= U"/var/cache/";
 				specialFolderPaths[FromEnum(SpecialFolder::SystemFonts)]	= U"/usr/share/fonts/";
+
+				const FilePath homeDirectory = EnvironmentVariable::Get(U"HOME");
+
+				if (not homeDirectory)
+				{
+					return specialFolderPaths;
+				}
+
 				if (const FilePath localFontDirectory = homeDirectory + U"/usr/local/share/fonts/";
 					FileSystem::Exists(localFontDirectory))
 				{
 					specialFolderPaths[FromEnum(SpecialFolder::LocalFonts)] = localFontDirectory;
 					specialFolderPaths[FromEnum(SpecialFolder::UserFonts)] = localFontDirectory;
-				}
-
-				const FilePath homeDirectory = EnvironmentVariable::Get(U"HOME");
-
-				if (!homeDirectory)
-				{
-					return specialFolderPaths;
 				}
 
 				specialFolderPaths[FromEnum(SpecialFolder::UserProfile)] = (homeDirectory + U'/');
@@ -441,7 +442,7 @@ namespace s3d
 
 		FilePath GetFolderPath(const SpecialFolder folder)
 		{
-			assert(FromEnum(folder) < std::size(detail::init::g_specialFolderPaths));
+			assert(FromEnum(folder) < static_cast<int32>(std::size(detail::init::g_specialFolderPaths)));
 
 			return detail::init::g_specialFolderPaths[FromEnum(folder)];
 		}
