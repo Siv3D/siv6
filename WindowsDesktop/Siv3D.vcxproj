@@ -331,13 +331,7 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\libpng\pngconf.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\libpng\pnglibconf.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\miniutf\miniutf.hpp" />
-    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\config.h" />
-    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\oniggnu.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\oniguruma.h" />
-    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\regenc.h" />
-    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\regint.h" />
-    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\regparse.h" />
-    <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\st.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zconf.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zlib.h" />
   </ItemGroup>
@@ -466,7 +460,6 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\ThirdParty\double-conversion\strtod.cc" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\fmt\format.cc" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\GLEW\glew.c" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\architecture\architecture_non_windows.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\architecture\architecture_windows.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\cpu\endianness\all.cpp" />
@@ -505,54 +498,6 @@
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_darwin.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_non_windows_non_darwin.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_windows.cpp" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\ascii.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\big5.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\cp1251.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\euc_jp.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\euc_jp_prop.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\euc_kr.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\euc_tw.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\gb18030.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_1.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_10.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_11.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_13.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_14.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_15.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_16.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_2.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_3.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_4.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_5.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_6.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_7.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_8.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\iso8859_9.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\koi8.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\koi8_r.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\onig_init.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regcomp.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regenc.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regerror.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regexec.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\reggnu.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regparse.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regsyntax.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regtrav.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\regversion.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\sjis.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\sjis_prop.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\st.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode_fold1_key.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode_fold2_key.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode_fold3_key.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\unicode_unfold_key.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf16_be.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf16_le.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf32_be.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf32_le.c" />
-    <ClCompile Include="..\Siv3D\src\ThirdParty\Oniguruma\utf8.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
