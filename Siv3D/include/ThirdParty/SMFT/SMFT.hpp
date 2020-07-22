@@ -1,5 +1,6 @@
 ﻿
 # pragma once
+# include <cstring>
 # include <Siv3D/SIMD.hpp>
 
 //	Copyright (c) 2006,2007 Mutsuo Saito, Makoto Matsumoto and Hiroshima
