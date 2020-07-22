@@ -1,4 +1,4 @@
-/* Copyright (c) 2017-2020 Evan Nemerson <evan@nemerson.com>
+/* SPDX-License-Identifier: MIT
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -19,79 +19,43 @@
  * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
+ * Copyright:
+ *   2020      Evan Nemerson <evan@nemerson.com>
  */
 
-#if !defined(SIMDE__NEON_H)
-#  define SIMDE__INSIDE_NEON_H
-#  if !defined(SIMDE__NEON_H)
-#    define SIMDE__NEON_H
-#  endif
-#  include "../simde-common.h"
+#if !defined(SIMDE_ARM_NEON_H)
+#define SIMDE_ARM_NEON_H
 
-#  if defined(SIMDE_NEON_FORCE_NATIVE)
-#    define SIMDE_NEON_NATIVE
-#  elif defined(__ARM_NEON) && !defined(SIMDE_NEON_NO_NATIVE) && !defined(SIMDE_NO_NATIVE)
-#    define SIMDE_NEON_NATIVE
-#  endif
+#include "neon/types.h"
 
-#  if defined(SIMDE_NEON64_FORCE_NATIVE)
-#    define SIMDE_NEON64_NATIVE
-#  elif defined(SIMDE_ARCH_AARCH64) && !defined(SIMDE_NEON64_NO_NATIVE) && !defined(SIMDE_NO_NATIVE)
-#    define SIMDE_NEON64_NATIVE
-#  endif
+#include "neon/add.h"
+#include "neon/addw.h"
+#include "neon/and.h"
+#include "neon/bsl.h"
+#include "neon/cagt.h"
+#include "neon/dup_n.h"
+#include "neon/eor.h"
+#include "neon/get_high.h"
+#include "neon/get_lane.h"
+#include "neon/get_low.h"
+#include "neon/ld1.h"
+#include "neon/max.h"
+#include "neon/min.h"
+#include "neon/mla.h"
+#include "neon/mul.h"
+#include "neon/mull.h"
+#include "neon/orr.h"
+#include "neon/padd.h"
+#include "neon/pmax.h"
+#include "neon/pmin.h"
+#include "neon/reinterpret.h"
+#include "neon/shl.h"
+#include "neon/shl_n.h"
+#include "neon/shr_n.h"
+#include "neon/st1.h"
+#include "neon/sub.h"
+#include "neon/uzp1.h"
+#include "neon/uzp2.h"
 
-#  if defined(__MMX__) && !defined(SIMDE_NEON_NO_MMX) && !defined(SIMDE_NO_MMX)
-#    define SIMDE_NEON_MMX
-#    include <mmintrin.h>
-#  endif
-#  if defined(__SSE__) && !defined(SIMDE_NEON_NO_SSE) && !defined(SIMDE_NO_SSE)
-#    define SIMDE_NEON_SSE
-#    include <xmmintrin.h>
-#  endif
-#  if defined(__SSE2__) && !defined(SIMDE_NEON_NO_SSE2) && !defined(SIMDE_NO_SSE2)
-#    define SIMDE_NEON_SSE2
-#    include <emmintrin.h>
-#  endif
-
-#  if defined(SIMDE_NEON_NATIVE)
-#    include <arm_neon.h>
-#  endif
-#  include <stdint.h>
-
-SIMDE__BEGIN_DECLS
-
-#include "neon/int8x8.h"
-#include "neon/int16x4.h"
-#include "neon/int32x2.h"
-#include "neon/int64x1.h"
-#include "neon/uint8x8.h"
-#include "neon/uint16x4.h"
-#include "neon/uint32x2.h"
-#include "neon/uint64x1.h"
-#include "neon/float32x2.h"
-#include "neon/float64x1.h"
-
-#include "neon/int8x16.h"
-#include "neon/int16x8.h"
-#include "neon/int32x4.h"
-#include "neon/int64x2.h"
-#include "neon/uint8x16.h"
-#include "neon/uint16x8.h"
-#include "neon/uint32x4.h"
-#include "neon/uint64x2.h"
-#include "neon/float32x4.h"
-#include "neon/float64x2.h"
-
-SIMDE__FUNCTION_ATTRIBUTES
-int8_t
-simde_vget_lane_s8(simde_int8x8_t v, const int lane) {
-  return v.i8[lane];
-}
-#if defined(SIMDE_NEON_NATIVE)
-#  define simde_vget_lane_s8(v, lane) vget_lane_s8(v.n, lane)
-#endif
-
-SIMDE__END_DECLS
-
-#undef SIMDE__INSIDE_NEON_H
-#endif /* !defined(SIMDE__NEON_H) */
+#endif /* SIMDE_ARM_NEON_H */

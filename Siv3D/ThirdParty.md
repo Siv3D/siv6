@@ -17,6 +17,6 @@ Library | Version
 [Oniguruma](https://github.com/kkos/oniguruma) | v6.9.5_rev1
 [scope-guard](https://github.com/offa/scope-guard) | v0.3.4
 [SFMT](https://github.com/MersenneTwister-Lab/SFMT) | 1.5.2
-[simde](https://github.com/nemequ/simde) | 
+[simde](https://github.com/nemequ/simde) | 0.5.0
 [The Parallel Hashmap](https://github.com/greg7mdp/parallel-hashmap) | 1.3.2
 [Xoshiro-cpp](https://github.com/Reputeless/Xoshiro-cpp) | v1.1
