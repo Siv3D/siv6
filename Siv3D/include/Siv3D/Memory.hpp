@@ -142,6 +142,27 @@ namespace s3d
 	template <class Type, class ...Args, std::enable_if_t<std::is_constructible_v<Type, Args...>>* = nullptr>
 	[[nodiscard]]
 	inline auto MakeShared(Args&&... args);
+
+	namespace Platform
+	{
+		/// @brief ポインタのサイズ | The size of a pointer
+		constexpr size_t PointerSize = sizeof(void*);
+
+		/// @brief 最小のメモリアラインメント | The minimum alignment of the memory
+		constexpr size_t MinAlignment = __STDCPP_DEFAULT_NEW_ALIGNMENT__;
+
+		/// @brief アライメントを指定してメモリを確保します。
+		/// @param size 確保するメモリのサイズ
+		/// @return 確保したメモリ
+		template <size_t Alignment>
+		[[nodiscard]]
+		inline void* AlignedMalloc(size_t size) noexcept;
+
+		/// @brief アライメントを指定して確保したメモリを解放します。
+		/// @param p 解放するメモリのポインタ
+		/// @return なし
+		inline void AlignedFree(void* const p) noexcept;
+	}
 }
 
 # include "detail/Memory.ipp"

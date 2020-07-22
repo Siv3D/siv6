@@ -990,9 +990,6 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\MatchResults.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Platform.ipp">
-      <Filter>include\Siv3D\detail</Filter>
-    </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\BoolArray.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>

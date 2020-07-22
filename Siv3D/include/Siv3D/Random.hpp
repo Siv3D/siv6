@@ -11,6 +11,7 @@
 
 # pragma once
 # include "Common.hpp"
+# include "Concepts.hpp"
 # include "SMFT.hpp"
 # include "Distribution.hpp"
 

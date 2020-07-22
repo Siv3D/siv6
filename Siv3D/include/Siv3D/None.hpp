@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
-# include <iostream>
+# include <ostream>
 # include <optional>
 # include "Common.hpp"
 # include "FormatData.hpp"

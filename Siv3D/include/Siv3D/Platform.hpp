@@ -10,8 +10,6 @@
 //-----------------------------------------------
 
 # pragma once
-# include <cstdlib>
-# include <cstddef>
 
 //////////////////////////////////////////////////
 //
@@ -276,46 +274,6 @@
 
 //////////////////////////////////////////////////
 //
-//	ポインタのサイズとメモリアライメント
-//	Pointer size and minimum alignment
-//
-//////////////////////////////////////////////////
-
-namespace s3d::Platform
-{
-	/// @brief ポインタのサイズ | The size of a pointer
-	constexpr size_t PointerSize	= sizeof(void*);
-	
-	/// @brief 最小のメモリアラインメント | The minimum alignment of the memory
-	constexpr size_t MinAlignment	= __STDCPP_DEFAULT_NEW_ALIGNMENT__;
-}
-
-
-//////////////////////////////////////////////////
-//
-//	アライメントされたメモリの確保と開放
-//	Aligned memory allocation
-//
-//////////////////////////////////////////////////
-
-namespace s3d::detail
-{
-	/// @brief アライメントを指定してメモリを確保します。
-	/// @param size 確保するメモリのサイズ
-	/// @return 確保したメモリ
-	template <size_t Alignment>
-	[[nodiscard]]
-	inline void* AlignedMalloc(size_t size) noexcept;
-
-	/// @brief アライメントを指定して確保したメモリを解放します。
-	/// @param p 解放するメモリのポインタ
-	/// @return なし
-	inline void AlignedFree(void* const p) noexcept;
-}
-
-
-//////////////////////////////////////////////////
-//
 // 実行ファイル埋め込みリソース
 // Embedded Resource
 //
@@ -333,6 +291,3 @@ namespace s3d::Platform
 
 # endif
 }
-
-
-# include "detail/Platform.ipp"
