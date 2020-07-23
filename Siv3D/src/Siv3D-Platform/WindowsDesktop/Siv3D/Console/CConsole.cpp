@@ -40,6 +40,8 @@ namespace s3d
 		::freopen_s(&m_fpIn,  "CONIN$",  "r", stdin);
 		::freopen_s(&m_fpErr, "CONOUT$", "w", stderr);
 
+		std::ios_base::sync_with_stdio(false);
+
 		m_isOpen = true;
 	}
 

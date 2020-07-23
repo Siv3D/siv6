@@ -9,13 +9,14 @@
 //
 //-----------------------------------------------
 
+# include <ios>
 # include "CConsole.hpp"
 
 namespace s3d
 {
 	CConsole::CConsole()
 	{
-		// do nothing
+		std::ios_base::sync_with_stdio(false);
 	}
 
 	CConsole::~CConsole()
