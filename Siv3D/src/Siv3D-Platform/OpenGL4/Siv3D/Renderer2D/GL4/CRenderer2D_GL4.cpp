@@ -18,6 +18,7 @@
 # include <Siv3D/PointVector.hpp>
 # include <Siv3D/Vertex2D.hpp>
 # include <Siv3D/Mat3x2.hpp>
+# include <Siv3D/Resource.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
 
@@ -61,16 +62,15 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer2D_GL4::init()");
 
 		{
-			BinaryReader shader(U"engine/shader/glsl/test.vert");
+			BinaryReader shader(Resource(U"engine/shader/glsl/test.vert"));
 
 			if (!shader)
 			{
 				throw EngineError();
 			}
 
-			Array<char> source(shader.size());
+			Array<char> source(shader.size() + 1);
 			shader.read(source.data(), shader.size());
-			source.push_back('\0');
 			const char* pSource = source.data();
 			m_vsProgram = ::glCreateShaderProgramv(GL_VERTEX_SHADER, 1, &pSource);
 
@@ -97,16 +97,15 @@ namespace s3d
 		}
 
 		{
-			BinaryReader shader(U"engine/shader/glsl/test.frag");
+			BinaryReader shader(Resource(U"engine/shader/glsl/test.frag"));
 
 			if (!shader)
 			{
 				throw EngineError();
 			}
 
-			Array<char> source(shader.size());
+			Array<char> source(shader.size() + 1);
 			shader.read(source.data(), shader.size());
-			source.push_back('\0');
 			const char* pSource = source.data();
 			m_psProgram = ::glCreateShaderProgramv(GL_FRAGMENT_SHADER, 1, &pSource);
 

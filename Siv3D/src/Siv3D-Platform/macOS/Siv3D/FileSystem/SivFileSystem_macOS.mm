@@ -358,7 +358,7 @@ namespace s3d
 
 			const static Array<FilePath> g_resourceFilePaths = []()
 			{
-				const FilePath resourcePath = FileSystem::ModulePath() + U"Contents/Resources/";
+				const FilePath resourcePath = FileSystem::ModulePath() + U"/Contents/Resources/";
 
 				Array<FilePath> paths = FileSystem::DirectoryContents(resourcePath, true);
 
