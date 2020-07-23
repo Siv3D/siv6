@@ -10,14 +10,14 @@
 //-----------------------------------------------
 
 # pragma once
+# include "Common.hpp"
 # include <vector>
 # ifndef SIV3D_NO_CONCURRENT_API
 	# include <future>
-	# if __has_include(<execution>)
+	# if SIV3D_PLATFORM(WINDOWS)
 	#	include <execution>
 	# endif
 # endif
-# include "Common.hpp"
 # include "String.hpp"
 # include "Meta.hpp"
 # include "Threading.hpp"

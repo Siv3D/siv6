@@ -1145,7 +1145,7 @@ namespace s3d
 	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>*>
 	inline size_t Array<Type, Allocator>::parallel_count_if(Fty f) const
 	{
-	# if __cpp_lib_execution
+	# if SIV3D_PLATFORM(WINDOWS)
 
 		return std::count_if(std::execution::par, begin(), end(), f);
 
@@ -1209,7 +1209,7 @@ namespace s3d
 	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type&>>*>
 	inline void Array<Type, Allocator>::parallel_each(Fty f)
 	{
-	# if __cpp_lib_execution
+	# if SIV3D_PLATFORM(WINDOWS)
 
 		std::for_each(std::execution::par, begin(), end(), f);
 
@@ -1269,7 +1269,7 @@ namespace s3d
 	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>*>
 	inline void Array<Type, Allocator>::parallel_each(Fty f) const
 	{
-	# if __cpp_lib_execution
+	# if SIV3D_PLATFORM(WINDOWS)
 
 		std::for_each(std::execution::par, begin(), end(), f);
 
