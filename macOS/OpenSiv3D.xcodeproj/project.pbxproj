@@ -152,7 +152,7 @@
 		2C48582F24C1FB680034F68D /* CProfiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4857C124C1FB680034F68D /* CProfiler.hpp */; };
 		2C48583024C1FB680034F68D /* CProfiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4857C224C1FB680034F68D /* CProfiler.cpp */; };
 		2C48583124C1FB680034F68D /* SivProfiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4857C324C1FB680034F68D /* SivProfiler.cpp */; };
-		2C48583224C1FB680034F68D /* Levenshtein.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4857C524C1FB680034F68D /* Levenshtein.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
+		2C48583224C1FB680034F68D /* Levenshtein.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4857C524C1FB680034F68D /* Levenshtein.cpp */; };
 		2C48583324C1FB680034F68D /* SivString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4857C624C1FB680034F68D /* SivString.cpp */; };
 		2C48583424C1FB680034F68D /* SivRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4857C824C1FB680034F68D /* SivRandom.cpp */; };
 		2C48583524C1FB680034F68D /* SivBinaryReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4857CA24C1FB680034F68D /* SivBinaryReader.cpp */; };
@@ -377,6 +377,8 @@
 		2C423252242B19D100A16BCA /* egl_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = egl_context.h; sourceTree = "<group>"; };
 		2C423255242B19ED00A16BCA /* posix_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = posix_thread.h; sourceTree = "<group>"; };
 		2C423256242B19ED00A16BCA /* posix_thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = posix_thread.c; sourceTree = "<group>"; };
+		2C435A0124C97D2E007FBAA6 /* XXHash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XXHash.hpp; sourceTree = "<group>"; };
+		2C435A0224C97D44007FBAA6 /* XXHash.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XXHash.ipp; sourceTree = "<group>"; };
 		2C439F452419D686001154C2 /* format-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "format-inl.h"; sourceTree = "<group>"; };
 		2C439F462419D686001154C2 /* format.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = format.cc; sourceTree = "<group>"; };
 		2C439F63241DCEA9001154C2 /* string-to-double.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "string-to-double.h"; sourceTree = "<group>"; };
@@ -1302,6 +1304,7 @@
 				2C4856C824C1FB1E0034F68D /* Window.hpp */,
 				2C48572924C1FB1E0034F68D /* WindowState.hpp */,
 				2C48571F24C1FB1E0034F68D /* WindowStyle.hpp */,
+				2C435A0124C97D2E007FBAA6 /* XXHash.hpp */,
 				2C4856D024C1FB1E0034F68D /* detail */,
 				2C48572124C1FB1E0034F68D /* ImageFormat */,
 			);
@@ -1385,6 +1388,7 @@
 				2C4856F724C1FB1E0034F68D /* Vector3D.ipp */,
 				2C48571424C1FB1E0034F68D /* Vector4D.ipp */,
 				2C48570B24C1FB1E0034F68D /* Vertex2D.ipp */,
+				2C435A0224C97D44007FBAA6 /* XXHash.ipp */,
 			);
 			path = detail;
 			sourceTree = "<group>";
