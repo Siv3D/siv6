@@ -26,7 +26,7 @@ TEST_CASE("Array::parallel_count_if()")
 			v[i] = Random();
 		}
 
-		REQUIRE(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; })
+		REQUIRE(static_cast<size_t>(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; }))
 			== v.parallel_count_if([](double x) { return x < 0.5; }));
 
 		BENCHMARK("std::count_if() | 8")
@@ -47,7 +47,7 @@ TEST_CASE("Array::parallel_count_if()")
 			v[i] = Random();
 		}
 
-		REQUIRE(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; })
+		REQUIRE(static_cast<size_t>(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; }))
 			== v.parallel_count_if([](double x) { return x < 0.5; }));
 
 		BENCHMARK("std::count_if() | 1K")
@@ -68,7 +68,7 @@ TEST_CASE("Array::parallel_count_if()")
 			v[i] = Random();
 		}
 
-		REQUIRE(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; })
+		REQUIRE(static_cast<size_t>(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; }))
 			== v.parallel_count_if([](double x) { return x < 0.5; }));
 
 		BENCHMARK("std::count_if() | 64K")
@@ -89,7 +89,7 @@ TEST_CASE("Array::parallel_count_if()")
 			v[i] = Random();
 		}
 
-		REQUIRE(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; })
+		REQUIRE(static_cast<size_t>(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; }))
 			== v.parallel_count_if([](double x) { return x < 0.5; }));
 
 		BENCHMARK("std::count_if() | 1M")

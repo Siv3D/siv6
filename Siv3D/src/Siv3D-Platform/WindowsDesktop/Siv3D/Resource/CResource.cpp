@@ -27,4 +27,16 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CResource::init()");
 	}
+
+	void CResource::setResourceOption(const ResourceOption resourceOption)
+	{
+		LOG_TRACE(U"CResource::setResourceOption({})"_fmt(FromEnum(resourceOption)));
+
+		m_resourceOption = resourceOption;
+	}
+
+	ResourceOption CResource::getResourceOption() const noexcept
+	{
+		return m_resourceOption;
+	}
 }

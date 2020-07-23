@@ -11,6 +11,7 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
+# include <Siv3D/ResourceOption.hpp>
 
 namespace s3d
 {
@@ -23,5 +24,9 @@ namespace s3d
 		virtual ~ISiv3DResource() = default;
 
 		virtual void init() = 0;
+
+		virtual void setResourceOption(ResourceOption resourceOption) = 0;
+
+		virtual ResourceOption getResourceOption() const noexcept = 0;
 	};
 }

@@ -60,10 +60,9 @@ namespace s3d
 		static int64 ResourceSize(const FilePathView path)
 		{
 			HMODULE module = ::GetModuleHandleW(nullptr);
-			std::wstring resourceName = path.toWstr();
-			resourceName.front() = L'#';
+			const std::wstring pathW = path.toWstr();
 
-			if (HRSRC hrs = ::FindResourceW(module, resourceName.c_str(), L"FILE"))
+			if (HRSRC hrs = ::FindResourceW(module, &pathW[1], L"FILE"))
 			{
 				return ::SizeofResource(module, hrs);
 			}

@@ -10,8 +10,23 @@
 //-----------------------------------------------
 
 # include <Siv3D/Resource.hpp>
+# include <Siv3D/Resource/IResource.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
 {
+	//const Array<FilePath>& EnumResourceFiles() noexcept
+	//{
 
+	//}
+
+	void SetResourceOption(const ResourceOption resourceOption)
+	{
+		SIV3D_ENGINE(Resource)->setResourceOption(resourceOption);
+	}
+
+	ResourceOption GetResourceOption() noexcept
+	{
+		return SIV3D_ENGINE(Resource)->getResourceOption();
+	}
 }

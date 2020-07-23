@@ -18,6 +18,8 @@ namespace s3d
 	{
 	private:
 
+		ResourceOption m_resourceOption = ResourceOption::Default;
+
 	public:
 
 		CResource();
@@ -25,5 +27,9 @@ namespace s3d
 		~CResource() override;
 
 		void init() override;
+
+		void setResourceOption(ResourceOption resourceOption) override;
+
+		ResourceOption getResourceOption() const noexcept override;
 	};
 }

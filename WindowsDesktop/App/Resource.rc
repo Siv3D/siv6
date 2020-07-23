@@ -12,7 +12,8 @@ DefineResource(100, ICON, icon.ico)
 // Siv3D Engine Optional Resources (Can be removed if not required)
 //
 //////////////////////////////////////////////////////
-
+Resource(engine/shader/glsl/test.vert)
+Resource(engine/shader/glsl/test.frag)
 
 //////////////////////////////////////////////////////
 //
