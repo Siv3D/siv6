@@ -46,6 +46,7 @@
 		2C423254242B19D100A16BCA /* egl_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423252242B19D100A16BCA /* egl_context.h */; };
 		2C423257242B19ED00A16BCA /* posix_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423255242B19ED00A16BCA /* posix_thread.h */; };
 		2C423258242B19ED00A16BCA /* posix_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C423256242B19ED00A16BCA /* posix_thread.c */; };
+		2C435A0424C9A6BB007FBAA6 /* Siv3DTest_Array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C435A0324C9A6BB007FBAA6 /* Siv3DTest_Array.cpp */; };
 		2C439F472419D686001154C2 /* format-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F452419D686001154C2 /* format-inl.h */; };
 		2C439F482419D686001154C2 /* format.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F462419D686001154C2 /* format.cc */; };
 		2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F63241DCEA9001154C2 /* string-to-double.h */; };
@@ -379,6 +380,7 @@
 		2C423256242B19ED00A16BCA /* posix_thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = posix_thread.c; sourceTree = "<group>"; };
 		2C435A0124C97D2E007FBAA6 /* XXHash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XXHash.hpp; sourceTree = "<group>"; };
 		2C435A0224C97D44007FBAA6 /* XXHash.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XXHash.ipp; sourceTree = "<group>"; };
+		2C435A0324C9A6BB007FBAA6 /* Siv3DTest_Array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DTest_Array.cpp; sourceTree = "<group>"; };
 		2C439F452419D686001154C2 /* format-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "format-inl.h"; sourceTree = "<group>"; };
 		2C439F462419D686001154C2 /* format.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = format.cc; sourceTree = "<group>"; };
 		2C439F63241DCEA9001154C2 /* string-to-double.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "string-to-double.h"; sourceTree = "<group>"; };
@@ -1922,6 +1924,7 @@
 		2C48584924C1FBAE0034F68D /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				2C435A0324C9A6BB007FBAA6 /* Siv3DTest_Array.cpp */,
 				2C0FF4E524C429B40014C96E /* Siv3DTest_BinaryReader.cpp */,
 				2C0FF4E724C437020014C96E /* Siv3DTest_BinaryWriter.cpp */,
 				2C48584E24C1FBAE0034F68D /* Siv3DTest_FileSystem.cpp */,
@@ -2796,6 +2799,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C435A0424C9A6BB007FBAA6 /* Siv3DTest_Array.cpp in Sources */,
 				2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */,
 				2CFF9F6924A473E9000B5A17 /* sprite.metal in Sources */,
 				2C48584F24C1FBAE0034F68D /* Siv3DTest_Image.cpp in Sources */,
