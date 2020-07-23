@@ -202,6 +202,10 @@ namespace s3d
 		/// @return *this
 		Array& operator <<(value_type&& value);
 
+		/// @brief 全ての要素が条件を満たすかを返します。
+		/// @tparam Fty 条件を記述した関数の型
+		/// @param f 条件を記述した関数
+		/// @return 全ての要素が条件を満たすか、配列が空の場合 true, それ以外の場合は false
 		template <class Fty = decltype(Identity), std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
 		[[nodiscard]]
 		bool all(Fty f = Identity) const;

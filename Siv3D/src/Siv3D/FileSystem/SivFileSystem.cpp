@@ -17,7 +17,7 @@ namespace s3d
 	{
 		String Extension(const FilePathView path)
 		{
-			if (not path) SIV3D_UNLIKELY
+			if (not path)
 			{
 				return{};
 			}
@@ -44,12 +44,12 @@ namespace s3d
 				return{};
 			}
 
-			return String(path.substr(dotPos + 1)).lowercase();
+			return String{ path.substr(dotPos + 1) }.lowercase();
 		}
 
 		String FileName(const FilePathView path)
 		{
-			if (not path) SIV3D_UNLIKELY
+			if (not path)
 			{
 				return{};
 			}
@@ -117,7 +117,7 @@ namespace s3d
 
 		FilePath ParentPath(const FilePathView path, size_t level, FilePath& baseFullPath)
 		{
-			if (not path) SIV3D_UNLIKELY
+			if (not path)
 			{
 				return{};
 			}

@@ -14,6 +14,7 @@
 
 namespace s3d
 {
+	/// @brief 色の定数
 	namespace Palette
 	{
 		// HTML Color Names

@@ -20,7 +20,7 @@
 namespace s3d
 {
 	/// @brief マイクロ秒カウンター
-	/// @remarks 経過時間をマイクロ秒で計測します。
+	/// @remark 経過時間をマイクロ秒で計測します。
 	class MicrosecClock
 	{
 	private:

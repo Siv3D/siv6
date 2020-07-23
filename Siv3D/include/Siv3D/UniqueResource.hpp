@@ -15,5 +15,6 @@
 
 namespace s3d
 {
+	/// @brief オブジェクトの破棄時に、指定したデリータを呼ぶ RAII ラッパー
 	using sr::unique_resource;
 }

@@ -34,7 +34,7 @@ namespace s3d
 	void Reseed(const std::array<uint64, 16>& seeds) noexcept;
 
 	/// @brief [0, 1) の範囲の乱数を返します。
-	/// @remarks グローバルな乱数エンジンを使用します。
+	/// @remark グローバルな乱数エンジンを使用します。
 	/// @return [0, 1) の範囲の乱数
 	double Random() noexcept;
 
@@ -80,7 +80,7 @@ namespace s3d
 	/// @tparam Arithmetic 生成する乱数の型
 	/// @param min 生成する乱数の最小値
 	/// @param max 生成する乱数の最大値
-	/// @remarks Random(min, max) と同じです。
+	/// @remark Random(min, max) と同じです。
 	/// @return 生成された乱数
 # if __cpp_lib_concepts
 	template <Concept::Arithmetic Arithmetic>

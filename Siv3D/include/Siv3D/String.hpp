@@ -20,6 +20,7 @@ namespace s3d
 {
 	template <class Type, class Allocator> class Array;
 
+	/// @brief 文字列
 	class String
 	{
 	public:

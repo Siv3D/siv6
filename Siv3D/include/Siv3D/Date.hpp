@@ -38,7 +38,7 @@ namespace s3d
 		/// @param _year 西暦
 		/// @param _month 月
 		/// @param _day 日
-		/// @remarks 指定された日付が存在するかはチェックされません。
+		/// @remark 指定された日付が存在するかはチェックされません。
 		SIV3D_NODISCARD_CXX20
 		explicit constexpr Date(int32 _year, int32 _month = 1, int32 _day = 1) noexcept;
 
@@ -48,12 +48,12 @@ namespace s3d
 		constexpr DayOfWeek dayOfWeek() const noexcept;
 
 		/// @brief 現在のローカルの年月日と一致するかを返します。
-		/// @return 現在のローカルの年月日と一致する場合は true, それ以外の場合は false
+		/// @return 現在のローカルの年月日と一致する場合 true, それ以外の場合は false
 		[[nodiscard]]
 		bool isToday() const noexcept;
 
 		/// @brief うるう年であるかを返します。
-		/// @return うるう年である場合は true, それ以外の場合は false
+		/// @return うるう年である場合 true, それ以外の場合は false
 		[[nodiscard]]
 		constexpr bool isLeapYear() const noexcept;
 

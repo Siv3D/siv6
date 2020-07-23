@@ -349,6 +349,10 @@ namespace s3d::detail
 
 	struct IsOdd_impl
 	{
+		/// @brief 数が奇数かを返します。
+		/// @tparam Type 数値型
+		/// @param x 数
+		/// @return 数が奇数の場合 true, それ以外の場合は false
 		template <class Type>
 		[[nodiscard]]
 		constexpr bool operator()(const Type& x) const
@@ -371,6 +375,10 @@ namespace s3d::detail
 
 	struct IsEven_impl
 	{
+		/// @brief 数が偶数かを返します。
+		/// @tparam Type 数値型
+		/// @param x 数
+		/// @return 数が偶数の場合 true, それ以外の場合は false
 		template <class Type>
 		[[nodiscard]]
 		constexpr bool operator()(const Type& x) const

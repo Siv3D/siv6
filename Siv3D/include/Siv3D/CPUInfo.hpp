@@ -15,6 +15,7 @@
 
 namespace s3d
 {
+	/// @brief 対応命令セット
 	struct X86Features
 	{
         int fpu : 1;
@@ -80,14 +81,27 @@ namespace s3d
     /// @brief CPU 情報
     struct CPUInfo
     {
+        /// @brief 対応命令セット
         X86Features features;
+
+        /// @brief 
         int32 family;
+        
+        /// @brief 
         int32 model;
+        
+        /// @brief 
         int32 stepping;
+        
+        /// @brief 
         String vendor;
+        
+        /// @brief 
         String brand;
     };
 
+    /// @brief ユーザの CPU の情報を返します。
+    /// @return ユーザの CPU の情報
 	[[nodiscard]]
 	const CPUInfo& GetCPUInfo() noexcept;
 }

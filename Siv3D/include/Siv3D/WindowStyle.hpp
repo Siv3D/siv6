@@ -13,24 +13,16 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// 
-	/// </summary>
+	/// @brief ウィンドウスタイル
 	enum class WindowStyle
 	{
-		/// <summary>
-		/// 
-		/// </summary>
+		/// @brief サイズ変更できない枠付きのウィンドウ
 		Fixed,
 
-		/// <summary>
-		/// 
-		/// </summary>
+		/// @brief サイズ変更できる枠付きのウィンドウ
 		Sizable,
 
-		/// <summary>
-		/// 
-		/// </summary>
+		/// @brief 枠の無いウィンドウ
 		Frameless,
 	};
 }

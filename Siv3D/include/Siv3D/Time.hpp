@@ -14,12 +14,8 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// 時間
-	/// </summary>
-	/// <remarks>
-	/// 時間に関する機能を提供します。
-	/// </remarks>
+	/// @brief 時間
+	/// @remark 時間に関する機能を提供します。
 	namespace Time
 	{
 		/// @brief アプリケーションが起動してからの経過時間を秒で返します。

@@ -42,7 +42,7 @@ namespace s3d
 		/// @param _minute 分 [0-59]、デフォルトでは 0
 		/// @param _second 秒 [0-59]、デフォルトでは 0
 		/// @param _milliseconds ミリ秒 [0-999]、デフォルトでは 0
-		/// @remarks 指定された時刻や日付が存在するかはチェックされません。
+		/// @remark 指定された時刻や日付が存在するかはチェックされません。
 		SIV3D_NODISCARD_CXX20
 		constexpr DateTime(
 			int32 _year,
@@ -59,7 +59,7 @@ namespace s3d
 		/// @param _minute 分 [0-59]、デフォルトでは 0
 		/// @param _second 秒 [0-59]、デフォルトでは 0
 		/// @param _milliseconds ミリ秒 [0-999]、デフォルトでは 0
-		/// @remarks 指定された時刻や日付が存在するかはチェックされません。
+		/// @remark 指定された時刻や日付が存在するかはチェックされません。
 		SIV3D_NODISCARD_CXX20
 		constexpr DateTime(
 			const Date& date,
@@ -168,19 +168,19 @@ namespace s3d
 		size_t hash() const noexcept;
 
 		/// @brief 昨日の日付と時刻（ローカルタイム）を返します。
-		/// @remarks 時刻は午前 0 時 0 分にセットされます
+		/// @remark 時刻は午前 0 時 0 分にセットされます
 		/// @return 昨日の午前 0 時 0 分の日付と時刻（ローカルタイム）
 		[[nodiscard]]
 		static DateTime Yesterday() noexcept;
 
 		/// @brief 今日の日付と時刻（ローカルタイム）を返します。
-		/// @remarks 時刻は午前 0 時 0 分にセットされます
+		/// @remark 時刻は午前 0 時 0 分にセットされます
 		/// @return 今日の午前 0 時 0 分の日付と時刻（ローカルタイム）
 		[[nodiscard]]
 		static DateTime Today() noexcept;
 
 		/// @brief 明日の日付と時刻（ローカルタイム）を返します。
-		/// @remarks 時刻は午前 0 時 0 分にセットされます
+		/// @remark 時刻は午前 0 時 0 分にセットされます
 		/// @return 明日の午前 0 時 0 分の日付と時刻（ローカルタイム）
 		[[nodiscard]]
 		static DateTime Tomorrow() noexcept;

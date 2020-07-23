@@ -30,26 +30,26 @@ namespace s3d
 		Point PreviousPos();
 
 		/// @brief 直前のフレームから現在のフレームまでのマウスカーソルの移動量（ピクセル）を返します。
-		/// @remarks `Cursor::Pos() - Cursor::PreviousPos()` と同値です。
+		/// @remark `Cursor::Pos() - Cursor::PreviousPos()` と同値です。
 		/// @return 直前のフレームから現在のフレームまでのマウスカーソルの移動量 (ピクセル)
 		[[nodiscard]]
 		Point Delta();
 
 		/// @brief 現在のフレームにおける、マウスカーソルのクライアント座標（ピクセル）を返します。
-		/// @remarks 座標が小数値を含む場合があります。
+		/// @remark 座標が小数値を含む場合があります。
 		/// @return 現在のフレームおける、マウスカーソルの座標 (ピクセル)
 		[[nodiscard]]
 		Vec2 PosF();
 
 		/// @brief 直前のフレームにおける、マウスカーソルのクライアント座標（ピクセル）を返します。
-		/// @remarks 座標が小数値を含む場合があります。
+		/// @remark 座標が小数値を含む場合があります。
 		/// @return 直前のフレームおける、マウスカーソルの座標 (ピクセル)
 		[[nodiscard]]
 		Vec2 PreviousPosF();
 
 		/// @brief 直前のフレームから現在のフレームまでのマウスカーソルの移動量（ピクセル）を返します。
-		/// @remarks `Cursor::PosF() - Cursor::PreviousPosF()` と同値です。
-		/// @remarks 移動量が小数値を含む場合があります。
+		/// @remark `Cursor::PosF() - Cursor::PreviousPosF()` と同値です。
+		/// @remark 移動量が小数値を含む場合があります。
 		/// @return 直前のフレームから現在のフレームまでのマウスカーソルの移動量 (ピクセル)
 		[[nodiscard]]
 		Vec2 DeltaF();
@@ -65,7 +65,7 @@ namespace s3d
 		Point PreviousPosRaw();
 
 		/// @brief 直前のフレームから現在のフレームまでの未変換のマウスカーソルの移動量（ピクセル）を返します。
-		/// @remarks `Cursor::PosRaw() - Cursor::PreviousPosRaw()` と同値です。
+		/// @remark `Cursor::PosRaw() - Cursor::PreviousPosRaw()` と同値です。
 		/// @return 直前のフレームから現在のフレームまでの未変換のマウスカーソルの移動量 (ピクセル)
 		[[nodiscard]]
 		Point DeltaRaw();
@@ -81,7 +81,7 @@ namespace s3d
 		Point ScreenPreviousPos();
 
 		/// @brief 直前のフレームから現在のフレームまでの、スクリーン上でのマウスカーソルの移動量（ピクセル）を返します。
-		/// @remarks `Cursor::ScreenPos() - Cursor::ScreenPreviousPos()` と同値です。
+		/// @remark `Cursor::ScreenPos() - Cursor::ScreenPreviousPos()` と同値です。
 		/// @return 直前のフレームから現在のフレームまでのスクリーン上でのマウスカーソルの移動量 (ピクセル)
 		[[nodiscard]]
 		Point ScreenDelta();

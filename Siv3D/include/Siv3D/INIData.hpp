@@ -74,6 +74,7 @@ namespace s3d
 		}
 	};
 
+	/// @brief INI 形式の設定ファイルの読み書き
 	class INIData
 	{
 	public:

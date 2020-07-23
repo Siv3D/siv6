@@ -15,6 +15,9 @@
 
 namespace s3d
 {
+	/// @brief 名前をデマングルします。
+	/// @param name 名前
+	/// @return デマングルされた名前
 	inline String Demangle(const char* name);
 }
 
