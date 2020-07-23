@@ -282,7 +282,7 @@
 # if defined(__clang__)
 
 	# define SIV3D_DISABLE_CLANG_WARNINGS_POP()\
-		_Pragma("GCC diagnostic pop")
+		_Pragma("clang diagnostic pop")
 
 # else
 
@@ -301,7 +301,7 @@
 # if defined(__GNUC__)
 
 	# define SIV3D_DISABLE_GCC_WARNINGS_POP()\
-		_Pragma("clang diagnostic pop")
+		_Pragma("GCC diagnostic pop")
 
 # else
 
