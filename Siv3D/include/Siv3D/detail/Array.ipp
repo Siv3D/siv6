@@ -1217,7 +1217,7 @@ namespace s3d
 
 		if (isEmpty())
 		{
-			return 0;
+			return;
 		}
 
 		const size_t numThreads = Threading::GetConcurrency();
@@ -1277,7 +1277,7 @@ namespace s3d
 
 		if (isEmpty())
 		{
-			return 0;
+			return;
 		}
 
 		const size_t numThreads = Threading::GetConcurrency();
