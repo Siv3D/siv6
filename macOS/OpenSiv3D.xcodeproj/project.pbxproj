@@ -47,6 +47,8 @@
 		2C423257242B19ED00A16BCA /* posix_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C423255242B19ED00A16BCA /* posix_thread.h */; };
 		2C423258242B19ED00A16BCA /* posix_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C423256242B19ED00A16BCA /* posix_thread.c */; };
 		2C435A0424C9A6BB007FBAA6 /* Siv3DTest_Array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C435A0324C9A6BB007FBAA6 /* Siv3DTest_Array.cpp */; };
+		2C435A0624C9C7CB007FBAA6 /* Siv3DTest_Resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C435A0524C9C7CB007FBAA6 /* Siv3DTest_Resource.cpp */; };
+		2C435A0824C9C7EC007FBAA6 /* SivResource_macOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C435A0724C9C7EC007FBAA6 /* SivResource_macOS.cpp */; };
 		2C439F472419D686001154C2 /* format-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F452419D686001154C2 /* format-inl.h */; };
 		2C439F482419D686001154C2 /* format.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F462419D686001154C2 /* format.cc */; };
 		2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F63241DCEA9001154C2 /* string-to-double.h */; };
@@ -381,6 +383,8 @@
 		2C435A0124C97D2E007FBAA6 /* XXHash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XXHash.hpp; sourceTree = "<group>"; };
 		2C435A0224C97D44007FBAA6 /* XXHash.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XXHash.ipp; sourceTree = "<group>"; };
 		2C435A0324C9A6BB007FBAA6 /* Siv3DTest_Array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DTest_Array.cpp; sourceTree = "<group>"; };
+		2C435A0524C9C7CB007FBAA6 /* Siv3DTest_Resource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Siv3DTest_Resource.cpp; sourceTree = "<group>"; };
+		2C435A0724C9C7EC007FBAA6 /* SivResource_macOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivResource_macOS.cpp; sourceTree = "<group>"; };
 		2C439F452419D686001154C2 /* format-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "format-inl.h"; sourceTree = "<group>"; };
 		2C439F462419D686001154C2 /* format.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = format.cc; sourceTree = "<group>"; };
 		2C439F63241DCEA9001154C2 /* string-to-double.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "string-to-double.h"; sourceTree = "<group>"; };
@@ -1929,6 +1933,7 @@
 				2C0FF4E724C437020014C96E /* Siv3DTest_BinaryWriter.cpp */,
 				2C48584E24C1FBAE0034F68D /* Siv3DTest_FileSystem.cpp */,
 				2C48584A24C1FBAE0034F68D /* Siv3DTest_Image.cpp */,
+				2C435A0524C9C7CB007FBAA6 /* Siv3DTest_Resource.cpp */,
 				2C48584D24C1FBAE0034F68D /* Siv3DTest_TextEncoding.cpp */,
 				2C48584C24C1FBAE0034F68D /* Siv3DTest_TextReader.cpp */,
 				2C0FF4F324C486ED0014C96E /* Siv3DTest_TextWriter.cpp */,
@@ -2359,8 +2364,9 @@
 		2C8E718824C749C500CECCAE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				2C8E718924C749C500CECCAE /* CResource.hpp */,
 				2C8E718A24C749C500CECCAE /* CResource.cpp */,
+				2C435A0724C9C7EC007FBAA6 /* SivResource_macOS.cpp */,
+				2C8E718924C749C500CECCAE /* CResource.hpp */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2802,6 +2808,7 @@
 				2C435A0424C9A6BB007FBAA6 /* Siv3DTest_Array.cpp in Sources */,
 				2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */,
 				2CFF9F6924A473E9000B5A17 /* sprite.metal in Sources */,
+				2C435A0624C9C7CB007FBAA6 /* Siv3DTest_Resource.cpp in Sources */,
 				2C48584F24C1FBAE0034F68D /* Siv3DTest_Image.cpp in Sources */,
 				2C0FF4E624C429B50014C96E /* Siv3DTest_BinaryReader.cpp in Sources */,
 				2C48585024C1FBAE0034F68D /* Siv3DTest.cpp in Sources */,
@@ -2952,6 +2959,7 @@
 				2C834D8F248805D4006208B8 /* utf32_le.c in Sources */,
 				2C60AE84248158A500277281 /* memory_darwin.cpp in Sources */,
 				2C60AE8F248158A500277281 /* amounts_windows.cpp in Sources */,
+				2C435A0824C9C7EC007FBAA6 /* SivResource_macOS.cpp in Sources */,
 				2C423253242B19D100A16BCA /* egl_context.c in Sources */,
 				2C42321B242B155E00A16BCA /* monitor.c in Sources */,
 				2C834DAE248805D4006208B8 /* euc_kr.c in Sources */,
