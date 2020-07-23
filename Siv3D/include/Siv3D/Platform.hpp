@@ -247,12 +247,12 @@
 
 //////////////////////////////////////////////////
 //
-//	コンパイラ拡張
-//	Compiler Extensions
+//	コンパイラ拡張 (MSVC)
+//	Compiler Extensions (MSVC)
 //
 //////////////////////////////////////////////////
 
-# if SIV3D_PLATFORM(WINDOWS)
+# if defined(_MSC_VER)
 
     # define SIV3D_DISABLE_MSVC_WARNINGS_PUSH(warnings)	\
 			 __pragma(warning(push))					\
@@ -268,6 +268,44 @@
 	# define SIV3D_DISABLE_MSVC_WARNINGS_PUSH(warnings)
 	# define SIV3D_DISABLE_MSVC_WARNINGS_POP()
 	# define SIV3D_NOVTABLE
+
+# endif
+
+
+//////////////////////////////////////////////////
+//
+//	コンパイラ拡張 (Clang)
+//	Compiler Extensions (Clang)
+//
+//////////////////////////////////////////////////
+
+# if defined(__clang__)
+
+	# define SIV3D_DISABLE_CLANG_WARNINGS_POP()\
+		_Pragma("GCC diagnostic pop")
+
+# else
+
+	# define SIV3D_DISABLE_CLANG_WARNINGS_POP()
+
+# endif
+
+
+//////////////////////////////////////////////////
+//
+//	コンパイラ拡張 (GCC)
+//	Compiler Extensions (GCC)
+//
+//////////////////////////////////////////////////
+
+# if defined(__GNUC__)
+
+	# define SIV3D_DISABLE_GCC_WARNINGS_POP()\
+		_Pragma("clang diagnostic pop")
+
+# else
+
+	# define SIV3D_DISABLE_GCC_WARNINGS_POP()
 
 # endif
 

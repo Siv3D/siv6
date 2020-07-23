@@ -11,9 +11,9 @@
 
 # pragma once
 
-# ifdef __clang__
-	# pragma clang diagnostic push
-	# pragma clang diagnostic ignored "-Wshorten-64-to-32"
+# if defined(__clang__)
+	_Pragma("clang diagnostic push")
+	_Pragma("clang diagnostic ignored \"-Wshorten-64-to-32\"")
 # endif
 
 SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4127)
@@ -21,7 +21,4 @@ SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4244)
 # include <ThirdParty/absl/random/distributions.h>
 SIV3D_DISABLE_MSVC_WARNINGS_POP()
 SIV3D_DISABLE_MSVC_WARNINGS_POP()
-
-# ifdef __clang__
-	# pragma clang diagnostic pop
-# endif
+SIV3D_DISABLE_CLANG_WARNINGS_POP()

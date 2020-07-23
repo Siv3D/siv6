@@ -271,7 +271,7 @@ namespace s3d
 			return fs::weakly_canonical(detail::ToPath(path)).string();
 		}
 
-		FilePath VolumePath(const FilePathView path)
+		FilePath VolumePath(const FilePathView)
 		{
 			return U"/";
 		}
