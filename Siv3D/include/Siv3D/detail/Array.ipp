@@ -1143,31 +1143,57 @@ namespace s3d
 
 	template <class Type, class Allocator>
 	template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>*>
-	inline size_t Array<Type, Allocator>::parallel_count_if(Fty f, size_t numThreads) const
+	inline size_t Array<Type, Allocator>::parallel_count_if(Fty f) const
 	{
+	# if __cpp_lib_execution
+
+		return std::count_if(std::execution::par, begin(), end(), f);
+
+	# else
+
 		if (isEmpty())
 		{
 			return 0;
 		}
 
-		const size_t n = Max<size_t>(1, size() / Max<size_t>(1, numThreads));
+		const size_t numThreads = Threading::GetConcurrency();
+
+		if (numThreads <= 1)
+		{
+			return count_if(f);
+		}
+
+		const size_t countPerthread = Max<size_t>(1, (size() + (numThreads - 1)) / numThreads);
 
 		Array<std::future<std::ptrdiff_t>> futures;
 
 		auto it = begin();
-		const auto last = end();
+		size_t countLeft = size();
 
-		for (; it < last - n; it += n)
+		for (size_t i = 0; i < (numThreads - 1); ++i)
 		{
+			const size_t n = Min(countPerthread, countLeft);
+
+			if (n == 0)
+			{
+				break;
+			}
+
 			futures.emplace_back(std::async(std::launch::async, [=, &f]()
 			{
 				return std::count_if(it, it + n, f);
 			}));
+
+			it += n;
+			countLeft -= n;
 		}
 
-		std::for_each(it, last, f);
-
 		size_t result = 0;
+		
+		if (countLeft)
+		{
+			result = std::count_if(it, it + countLeft, f);
+		}
 
 		for (auto& future : futures)
 		{
@@ -1175,101 +1201,167 @@ namespace s3d
 		}
 
 		return result;
+
+	# endif
 	}
 
 	template <class Type, class Allocator>
 	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type&>>*>
-	inline Array<Type, Allocator>& Array<Type, Allocator>::parallel_each(Fty f, size_t numThreads)
+	inline void Array<Type, Allocator>::parallel_each(Fty f)
 	{
+	# if __cpp_lib_execution
+
+		std::for_each(std::execution::par, begin(), end(), f);
+
+	# else
+
 		if (isEmpty())
 		{
-			return *this;
+			return 0;
 		}
 
-		numThreads = Max<size_t>(1, numThreads);
+		const size_t numThreads = Threading::GetConcurrency();
 
-		const size_t n = Max<size_t>(1, size() / numThreads);
+		if (numThreads <= 1)
+		{
+			return each(f);
+		}
 
-		Array<std::future<void>> futures;
+		const size_t countPerthread = Max<size_t>(1, (size() + (numThreads - 1)) / numThreads);
+
+		Array<std::future<std::ptrdiff_t>> futures;
 
 		auto it = begin();
-		const auto last = end();
+		size_t countLeft = size();
 
-		for (; it < last - n; it += n)
+		for (size_t i = 0; i < (numThreads - 1); ++i)
 		{
+			const size_t n = Min(countPerthread, countLeft);
+
+			if (n == 0)
+			{
+				break;
+			}
+
 			futures.emplace_back(std::async(std::launch::async, [=, &f]()
 			{
 				std::for_each(it, it + n, f);
 			}));
+
+			it += n;
+			countLeft -= n;
 		}
 
-		std::for_each(it, last, f);
+		if (countLeft)
+		{
+			std::for_each(it, it + countLeft, f);
+		}
 
 		for (auto& future : futures)
 		{
-			future.wait();
+			future.get();
 		}
 
-		return *this;
+	# endif
 	}
 
 	template <class Type, class Allocator>
 	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>*>
-	inline const Array<Type, Allocator>& Array<Type, Allocator>::parallel_each(Fty f, const size_t numThreads) const
+	inline void Array<Type, Allocator>::parallel_each(Fty f) const
 	{
+	# if __cpp_lib_execution
+
+		std::for_each(std::execution::par, begin(), end(), f);
+
+	# else
+
 		if (isEmpty())
 		{
-			return *this;
+			return 0;
 		}
 
-		const size_t n = Max<size_t>(1, size() / Max<size_t>(1, numThreads));
+		const size_t numThreads = Threading::GetConcurrency();
 
-		Array<std::future<void>> futures;
+		if (numThreads <= 1)
+		{
+			return each(f);
+		}
+
+		const size_t countPerthread = Max<size_t>(1, (size() + (numThreads - 1)) / numThreads);
+
+		Array<std::future<std::ptrdiff_t>> futures;
 
 		auto it = begin();
-		const auto last = end();
+		size_t countLeft = size();
 
-		for (; it < last - n; it += n)
+		for (size_t i = 0; i < (numThreads - 1); ++i)
 		{
+			const size_t n = Min(countPerthread, countLeft);
+
+			if (n == 0)
+			{
+				break;
+			}
+
 			futures.emplace_back(std::async(std::launch::async, [=, &f]()
 			{
 				std::for_each(it, it + n, f);
 			}));
+
+			it += n;
+			countLeft -= n;
 		}
 
-		std::for_each(it, last, f);
+		if (countLeft)
+		{
+			std::for_each(it, it + countLeft, f);
+		}
 
 		for (auto& future : futures)
 		{
-			future.wait();
+			future.get();
 		}
 
-		return *this;
+	# endif
 	}
 
 	template <class Type, class Allocator>
 	template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>*>
-	inline auto Array<Type, Allocator>::parallel_map(Fty f, const size_t numThreads) const
+	inline auto Array<Type, Allocator>::parallel_map(Fty f) const
 	{
-		Array<std::decay_t<std::invoke_result_t<Fty, Type>>> new_array;
+		using Ret = std::decay_t<std::invoke_result_t<Fty, Type>>;
 
 		if (isEmpty())
 		{
-			return new_array;
+			return Array<Ret>{};
 		}
 
-		new_array.resize(size());
+		const size_t numThreads = Threading::GetConcurrency();
 
-		const size_t n = Max<size_t>(1, size() / Max<size_t>(1, numThreads));
+		if (numThreads <= 1)
+		{
+			return map(f);
+		}
+
+		Array<Ret> new_array(size());
+
+		const size_t countPerthread = Max<size_t>(1, (size() + (numThreads - 1)) / numThreads);
 
 		Array<std::future<void>> futures;
 
-		auto itSrc = begin();
-		const auto itSrcEnd = end();
 		auto itDst = new_array.begin();
+		auto itSrc = begin();
+		size_t countLeft = size();
 
-		for (; itSrc < itSrcEnd - n; itSrc += n, itDst += n)
+		for (size_t i = 0; i < (numThreads - 1); ++i)
 		{
+			const size_t n = Min(countPerthread, countLeft);
+
+			if (n == 0)
+			{
+				break;
+			}
+
 			futures.emplace_back(std::async(std::launch::async, [=, &f]() mutable
 			{
 				const auto itSrcEnd = itSrc + n;
@@ -1279,16 +1371,25 @@ namespace s3d
 					*itDst++ = f(*itSrc++);
 				}
 			}));
+
+			itDst += n;
+			itSrc += n;
+			countLeft -= n;
 		}
 
-		while (itSrc != itSrcEnd)
+		if (countLeft)
 		{
-			*itDst++ = f(*itSrc++);
+			const auto itSrcEnd = end();
+
+			while (itSrc != itSrcEnd)
+			{
+				*itDst++ = f(*itSrc++);
+			}
 		}
 
 		for (auto& future : futures)
 		{
-			future.wait();
+			future.get();
 		}
 
 		return new_array;

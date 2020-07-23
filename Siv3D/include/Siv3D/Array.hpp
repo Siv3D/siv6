@@ -13,6 +13,9 @@
 # include <vector>
 # ifndef SIV3D_NO_CONCURRENT_API
 	# include <future>
+	# if __has_include(<execution>)
+	#	include <execution>
+	# endif
 # endif
 # include "Common.hpp"
 # include "String.hpp"
@@ -516,16 +519,16 @@ namespace s3d
 
 		template <class Fty, std::enable_if_t<std::is_invocable_r_v<bool, Fty, Type>>* = nullptr>
 		[[nodiscard]]
-		size_t parallel_count_if(Fty f, size_t numThreads = Threading::GetConcurrency()) const;
+		size_t parallel_count_if(Fty f) const;
 
 		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type&>>* = nullptr>
-		Array& parallel_each(Fty f, size_t numThreads = Threading::GetConcurrency());
+		void parallel_each(Fty f);
 
 		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
-		const Array& parallel_each(Fty f, size_t numThreads = Threading::GetConcurrency()) const;
+		void parallel_each(Fty f) const;
 
 		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, Type>>* = nullptr>
-		auto parallel_map(Fty f, size_t numThreads = Threading::GetConcurrency()) const;
+		auto parallel_map(Fty f) const;
 
 	# endif
 

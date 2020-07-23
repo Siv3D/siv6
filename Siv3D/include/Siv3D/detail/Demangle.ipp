@@ -14,7 +14,6 @@
 #	define SIV3D_HAS_CXXABI
 #	include <cxxabi.h>
 # endif
-# include <Siv3D/String.hpp>
 
 namespace s3d
 {

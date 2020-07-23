@@ -36,6 +36,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 add_executable(Siv3DTest
   Main.cpp
   ../../Test/Siv3DTest.cpp
+  ../../Test/Siv3DTest_Array.cpp
   ../../Test/Siv3DTest_BinaryReader.cpp
   ../../Test/Siv3DTest_BinaryWriter.cpp
   ../../Test/Siv3DTest_FileSystem.cpp
