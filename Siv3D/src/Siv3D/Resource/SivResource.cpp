@@ -15,11 +15,6 @@
 
 namespace s3d
 {
-	//const Array<FilePath>& EnumResourceFiles() noexcept
-	//{
-
-	//}
-
 	void SetResourceOption(const ResourceOption resourceOption)
 	{
 		SIV3D_ENGINE(Resource)->setResourceOption(resourceOption);

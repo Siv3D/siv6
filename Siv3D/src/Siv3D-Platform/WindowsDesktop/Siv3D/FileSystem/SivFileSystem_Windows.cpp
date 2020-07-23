@@ -171,55 +171,97 @@ namespace s3d
 			}
 		}
 
+		static BOOL CALLBACK EnumResourceNameCallback(HMODULE, LPCWSTR, LPWSTR lpName, LONG_PTR lParam)
+		{
+			Array<FilePath>& paths = *reinterpret_cast<Array<FilePath>*>(lParam);
+
+			paths.push_back(U'/' + Unicode::FromWstring(lpName));
+
+			return true;
+		}
+
 		namespace init
 		{
-			const static FilePath g_initialDirectory = FileSystem::CurrentDirectory();
-
-			const static FilePath g_modulePath = []() -> FilePath
+			const static struct FilePathCache
 			{
-				wchar_t result[1024];
-				const DWORD length = ::GetModuleFileNameW(nullptr, result, _countof(result));
+				FilePath initialDirectory;
 
-				if ((length == 0) || (length >= _countof(result)))
-				{
-					return{};
-				}
-
-				return NormalizePath(Unicode::FromWstring(std::wstring_view(result, length)));
-			}();
-
-			const static std::array<FilePath, 11> g_specialFolderPaths = []()
-			{
-				static constexpr int ids[] = {
-					CSIDL_DESKTOP,
-					CSIDL_MYDOCUMENTS,
-					CSIDL_LOCAL_APPDATA,
-					CSIDL_MYPICTURES,
-					CSIDL_MYMUSIC,
-					CSIDL_MYVIDEO,
-					CSIDL_FONTS,
-					CSIDL_FONTS,
-					CSIDL_FONTS,
-					CSIDL_PROFILE,
-					CSIDL_PROGRAM_FILES,
-				};
+				FilePath modulePath;
 
 				std::array<FilePath, 11> specialFolderPaths;
 
-				for (size_t i = 0; i < specialFolderPaths.size(); ++i)
+				Array<FilePath> resourceFilePaths;
+
+				FilePathCache()
 				{
-					wchar_t path[MAX_PATH];
+					initialDirectory = FileSystem::CurrentDirectory();
 
-					if (FAILED(::SHGetFolderPathW(nullptr, ids[i], nullptr, 0, path)))
+					modulePath = []() -> FilePath
 					{
-						continue;
-					}
+						wchar_t result[1024];
+						const DWORD length = ::GetModuleFileNameW(nullptr, result, _countof(result));
 
-					specialFolderPaths[i] = detail::NormalizePath(Unicode::FromWstring(path), true);
+						if ((length == 0) || (length >= _countof(result)))
+						{
+							return{};
+						}
+
+						return NormalizePath(Unicode::FromWstring(std::wstring_view(result, length)));
+					}();
+
+					specialFolderPaths = []()
+					{
+						static constexpr int ids[] = {
+							CSIDL_DESKTOP,
+							CSIDL_MYDOCUMENTS,
+							CSIDL_LOCAL_APPDATA,
+							CSIDL_MYPICTURES,
+							CSIDL_MYMUSIC,
+							CSIDL_MYVIDEO,
+							CSIDL_FONTS,
+							CSIDL_FONTS,
+							CSIDL_FONTS,
+							CSIDL_PROFILE,
+							CSIDL_PROGRAM_FILES,
+						};
+
+						std::array<FilePath, 11> specialFolderPaths;
+
+						for (size_t i = 0; i < specialFolderPaths.size(); ++i)
+						{
+							wchar_t path[MAX_PATH];
+
+							if (FAILED(::SHGetFolderPathW(nullptr, ids[i], nullptr, 0, path)))
+							{
+								continue;
+							}
+
+							specialFolderPaths[i] = detail::NormalizePath(Unicode::FromWstring(path), true);
+						}
+
+						return specialFolderPaths;
+					}();
+
+					resourceFilePaths = []()
+					{
+						Array<FilePath> paths;
+
+						HMODULE hModule = ::GetModuleHandleW(nullptr);
+
+						::EnumResourceNamesW(hModule, L"FILE", EnumResourceNameCallback, (LONG_PTR)&paths);
+
+						paths.sort();
+
+						return paths;
+					}();
 				}
 
-				return specialFolderPaths;
-			}();
+			} g_filePathCache;
+
+			const Array<FilePath>& GetResourceFilePaths() noexcept
+			{
+				return g_filePathCache.resourceFilePaths;
+			}
 		}
 	}
 
@@ -558,12 +600,12 @@ namespace s3d
 
 		const FilePath& InitialDirectory() noexcept
 		{
-			return detail::init::g_initialDirectory;
+			return detail::init::g_filePathCache.initialDirectory;
 		}
 
 		const FilePath& ModulePath() noexcept
 		{
-			return detail::init::g_modulePath;
+			return detail::init::g_filePathCache.modulePath;
 		}
 
 		FilePath CurrentDirectory()
@@ -603,9 +645,9 @@ namespace s3d
 
 		const FilePath& GetFolderPath(const SpecialFolder folder)
 		{
-			assert(FromEnum(folder) < std::ssize(detail::init::g_specialFolderPaths));
+			assert(FromEnum(folder) < std::ssize(detail::init::g_filePathCache.specialFolderPaths));
 
-			return detail::init::g_specialFolderPaths[FromEnum(folder)];
+			return detail::init::g_filePathCache.specialFolderPaths[FromEnum(folder)];
 		}
 
 

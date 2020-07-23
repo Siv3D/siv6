@@ -6,15 +6,7 @@ void Siv3DTest();
 
 void Main()
 {
-	//Siv3DTest();
-
-	Console << Resource(U"engine/shader/glsl/test.vert");
-	Console << Resource(U"engine/shader/glsl/test2.vert");
-	Console << FileSystem::Size(U"/engine/shader/glsl/test.vert");
-	Console << FileSystem::FileSize(U"/engine/shader/glsl/test.vert");
-	Console << FileOrResource(U"engine/shader/glsl/test.vert");
-	SetResourceOption(ResourceOption::Resource);
-	Console << FileOrResource(U"engine/shader/glsl/test.vert");
+	Siv3DTest();
 
 	while (System::Update())
 	{

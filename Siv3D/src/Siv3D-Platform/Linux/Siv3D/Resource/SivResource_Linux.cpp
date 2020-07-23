@@ -11,7 +11,6 @@
 
 # include <Siv3D/Resource.hpp>
 # include <Siv3D/FileSystem.hpp>
-# include <Siv3D/Windows/Windows.hpp>
 
 namespace s3d
 {
@@ -27,11 +26,8 @@ namespace s3d
 
 	FilePath Resource(const FilePathView path)
 	{
-		if (path.starts_with(U'/'))
-		{
-			return FilePath{ path };
-		}
+		const FilePath resourceDirectory = (FileSystem::ModulePath() + U"/resources/");
 
-		return (U'/' + path);
+		return (resourceDirectory + path);
 	}
 }

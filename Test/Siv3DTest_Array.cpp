@@ -29,6 +29,7 @@ TEST_CASE("Array::parallel_count_if()")
 		REQUIRE(static_cast<size_t>(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; }))
 			== v.parallel_count_if([](double x) { return x < 0.5; }));
 
+		/**
 		BENCHMARK("std::count_if() | 8")
 		{
 			return std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; });
@@ -38,6 +39,7 @@ TEST_CASE("Array::parallel_count_if()")
 		{
 			return v.parallel_count_if([](double x) { return x < 0.5; });
 		};
+		/**/
 	}
 
 	{
@@ -50,6 +52,7 @@ TEST_CASE("Array::parallel_count_if()")
 		REQUIRE(static_cast<size_t>(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; }))
 			== v.parallel_count_if([](double x) { return x < 0.5; }));
 
+		/**
 		BENCHMARK("std::count_if() | 1K")
 		{
 			return std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; });
@@ -59,6 +62,7 @@ TEST_CASE("Array::parallel_count_if()")
 		{
 			return v.parallel_count_if([](double x) { return x < 0.5; });
 		};
+		/**/
 	}
 
 	{
@@ -71,6 +75,7 @@ TEST_CASE("Array::parallel_count_if()")
 		REQUIRE(static_cast<size_t>(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; }))
 			== v.parallel_count_if([](double x) { return x < 0.5; }));
 
+		/**
 		BENCHMARK("std::count_if() | 64K")
 		{
 			return std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; });
@@ -80,6 +85,7 @@ TEST_CASE("Array::parallel_count_if()")
 		{
 			return v.parallel_count_if([](double x) { return x < 0.5; });
 		};
+		/**/
 	}
 
 	{
@@ -92,6 +98,7 @@ TEST_CASE("Array::parallel_count_if()")
 		REQUIRE(static_cast<size_t>(std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; }))
 			== v.parallel_count_if([](double x) { return x < 0.5; }));
 
+		/**
 		BENCHMARK("std::count_if() | 1M")
 		{
 			return std::count_if(v.begin(), v.end(), [](double x) { return x < 0.5; });
@@ -101,9 +108,9 @@ TEST_CASE("Array::parallel_count_if()")
 		{
 			return v.parallel_count_if([](double x) { return x < 0.5; });
 		};
+		/**/
 	}
 }
-
 
 TEST_CASE("Array::parallel_map()")
 {
@@ -117,6 +124,7 @@ TEST_CASE("Array::parallel_map()")
 		REQUIRE(v.map([](int32 n) { return n / 10.0 + std::sin(n / 10.0) + std::sqrt(n / 10.0); })
 			== v.parallel_map([](int32 n) { return n / 10.0 + std::sin(n / 10.0) + std::sqrt(n / 10.0); }));
 
+		/**
 		BENCHMARK("Array::map() | 64K")
 		{
 			return v.map([](int32 n) { return n / 10.0 + std::sin(n / 10.0) + std::sqrt(n / 10.0); });
@@ -126,5 +134,6 @@ TEST_CASE("Array::parallel_map()")
 		{
 			return v.parallel_map([](int32 n) { return n / 10.0 + std::sin(n / 10.0) + std::sqrt(n / 10.0); });
 		};
+		/**/
 	}
 }

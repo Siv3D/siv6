@@ -355,6 +355,26 @@ namespace s3d
 
 				return specialFolderPaths;
 			}();
+
+			const static Array<FilePath> g_resourceFilePaths = []()
+			{
+				const FilePath resourcePath = FileSystem::ModulePath() + U"/Contents/Resources/";
+
+				Array<FilePath> paths = FileSystem::DirectoryContents(resourcePath, true);
+
+				paths.remove_if(FileSystem::IsDirectory);
+				
+				paths.remove(resourcePath + U"icon.icns");
+
+				paths.sort();
+				
+				return paths;
+			}();
+
+			const Array<FilePath>& GetResourceFilePaths() noexcept
+			{
+				return g_resourceFilePaths;
+			}			
 			
 			//static bool g_isSandBoxed;
 		}

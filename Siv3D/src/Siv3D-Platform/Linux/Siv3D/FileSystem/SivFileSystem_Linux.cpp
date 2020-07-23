@@ -203,6 +203,22 @@ namespace s3d
 
 				return specialFolderPaths;
 			}();
+
+			const static Array<FilePath> g_resourceFilePaths = []()
+			{
+				Array<FilePath> paths = FileSystem::DirectoryContents(U"/resources/", true);
+
+				paths.remove_if(FileSystem::IsDirectory);
+				
+				paths.sort();
+				
+				return paths;
+			}();
+
+			const Array<FilePath>& GetResourceFilePaths() noexcept
+			{
+				return g_resourceFilePaths;
+			}
 		}
 	}
 
