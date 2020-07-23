@@ -21,7 +21,7 @@ namespace s3d
 	{
 	private:
 		
-		String m_title = String(Window::DefaultTitle);
+		String m_title{ Window::DefaultTitle };
 		
 		WindowState m_state;
 

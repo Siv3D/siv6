@@ -20,7 +20,6 @@
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/UserAction/IUSerAction.hpp>
 # include <Siv3D/Common.hpp>
-# include <Siv3D/String.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/System/SystemLog.hpp>
 # include <Siv3D/System/SystemMisc.hpp>
