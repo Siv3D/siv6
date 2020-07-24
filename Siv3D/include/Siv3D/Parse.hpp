@@ -22,80 +22,95 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// 文字列をデータ型に変換します。
-	/// </summary>
-	/// <param name="text">
-	/// 変換する文字列
-	/// </param>
-	/// <exception cref="ParseError">
-	/// パースエラーが発生したときに例外が投げられます。
-	/// Thrown when a parsing error occurs
-	/// </exception>
-	/// <returns>
-	/// 文字列から変換されたデータ
-	/// </returns>
+	/// @brief 文字列をパースしてデータ型に変換します。
+	/// @tparam Type 変換先のデータ型
+	/// @param s 変換する文字列
+	/// @throw ParseError パースに失敗した場合
+	/// @return 文字列から変換されたデータ
 	template <class Type>
 	[[nodiscard]]
 	inline Type Parse(StringView s);
 
+	/// @brief 文字列をパースして bool 型に変換します。
+	/// @param s 変換する文字列
+	/// @throw ParseError パースに失敗した場合
+	/// @return 文字列から変換されたデータ
 	template <>
 	[[nodiscard]]
 	inline bool Parse<bool>(StringView s);
 
+	/// @brief 文字列をパースして char 型に変換します。
+	/// @param s 変換する文字列
+	/// @throw ParseError パースに失敗した場合
+	/// @return 文字列から変換されたデータ
 	template <>
 	[[nodiscard]]
 	inline char Parse<char>(StringView s);
 
+	/// @brief 文字列をパースして char32 型に変換します。
+	/// @param s 変換する文字列
+	/// @throw ParseError パースに失敗した場合
+	/// @return 文字列から変換されたデータ
 	template <>
 	[[nodiscard]]
 	inline char32 Parse<char32>(StringView s);
 
+	/// @brief 文字列をパースして返します。
+	/// @param s 変換する文字列
+	/// @remark 前後の空白文字は除去されます。
+	/// @return 文字列から変換されたデータ
 	template <>
 	[[nodiscard]]
 	inline String Parse<String>(StringView s);
 
-	/// <summary>
-	/// 文字列をデータ型に変換します。
-	/// </summary>
-	/// <param name="str">
-	/// 変換する文字列
-	/// </param>
-	/// <returns>
-	/// 文字列から変換されたデータの Optional, 失敗した場合は none
-	/// </returns>
+	/// @brief 文字列をパースしてデータ型に変換します。
+	/// @tparam Type 変換先のデータ型
+	/// @param s 変換する文字列
+	/// @remark この関数はパースに失敗しても例外を投げません。
+	/// @return 文字列から変換されたデータの Optional, 失敗した場合は none
 	template <class Type>
 	[[nodiscard]]
 	inline Optional<Type> ParseOpt(StringView s);
 
+	/// @brief 文字列をパースして bool 型に変換します。
+	/// @param s 変換する文字列
+	/// @remark この関数はパースに失敗しても例外を投げません。
+	/// @return 文字列から変換されたデータの Optional, 失敗した場合は none
 	template <>
 	[[nodiscard]]
 	inline Optional<bool> ParseOpt<bool>(StringView s);
 
+	/// @brief 文字列をパースして char 型に変換します。
+	/// @param s 変換する文字列
+	/// @remark この関数はパースに失敗しても例外を投げません。
+	/// @return 文字列から変換されたデータの Optional, 失敗した場合は none
 	template <>
 	[[nodiscard]]
 	inline Optional<char> ParseOpt<char>(StringView s);
 
+	/// @brief 文字列をパースして char32 型に変換します。
+	/// @param s 変換する文字列
+	/// @remark この関数はパースに失敗しても例外を投げません。
+	/// @return 文字列から変換されたデータの Optional, 失敗した場合は none
 	template <>
 	[[nodiscard]]
 	inline Optional<char32> ParseOpt<char32>(StringView s);
 
+	/// @brief 文字列をパースして返します。
+	/// @param s 変換する文字列
+	/// @remark 前後の空白文字は除去されます。
+	/// @return 文字列から変換されたデータの Optional, 文字列が空だった場合は none
 	template <>
 	[[nodiscard]]
 	inline Optional<String> ParseOpt<String>(StringView s);
 
-	/// <summary>
-	/// 文字列をデータ型に変換します。
-	/// </summary>
-	/// <param name="text">
-	/// 変換する文字列
-	/// </param>
-	/// <param name="defaultValue">
-	/// 変換に失敗した場合に返す値
-	/// </param>
-	/// <returns>
-	/// 文字列から変換されたデータの, 失敗した場合は defaultValue
-	/// </returns>
+	/// @brief 文字列をパースしてデータ型に変換します。
+	/// @tparam Type 変換先のデータ型
+	/// @tparam U パースに失敗したときに代わりに返す値を構築する引数の型
+	/// @param s 変換する文字列
+	/// @param defaultValue パースに失敗したときに代わりに返す値を構築する引数
+	/// @remark この関数はパースに失敗しても例外を投げません。
+	/// @return 文字列から変換されたデータ、失敗した場合は defaultValue から構築した Type 型の値
 	template <class Type, class U>
 	[[nodiscard]]
 	Type ParseOr(StringView s, U&& defaultValue);

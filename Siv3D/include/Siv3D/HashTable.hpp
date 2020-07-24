@@ -20,6 +20,12 @@
 
 namespace s3d
 {
+	/// @brief ハッシュテーブル
+	/// @tparam Key キーの型
+	/// @tparam Value 値の型
+	/// @tparam Hash ハッシュ関数の型
+	/// @tparam Eq キーの比較関数の型
+	/// @tparam Alloc アロケータの型
 	template <class Key, class Value,
 		class Hash	= std::conditional_t<std::is_same_v<Key, String>, StringHash, phmap::container_internal::hash_default_hash<Key>>,
 		class Eq	= std::conditional_t<std::is_same_v<Key, String>, StringCompare, phmap::container_internal::hash_default_eq<Key>>,

@@ -15,11 +15,11 @@ namespace s3d
 {
 	namespace FastMath
 	{
-		inline constexpr std::pair<float, float> SinCos(const float value) noexcept
+		inline constexpr std::pair<float, float> SinCos(const float angleRadians) noexcept
 		{
-			float quotient = (Math::InvTwoPiF * value);
+			float quotient = (Math::InvTwoPiF * angleRadians);
 
-			if (value >= 0.0f)
+			if (angleRadians >= 0.0f)
 			{
 				quotient = static_cast<float>(static_cast<int32>(quotient + 0.5f));
 			}
@@ -28,7 +28,7 @@ namespace s3d
 				quotient = static_cast<float>(static_cast<int32>(quotient - 0.5f));
 			}
 
-			float y = (value - (Math::TwoPiF * quotient));
+			float y = (angleRadians - (Math::TwoPiF * quotient));
 			float sign = 1.0f;
 
 			if (y > Math::HalfPiF)
@@ -50,11 +50,11 @@ namespace s3d
 			return{ sin, cos };
 		}
 
-		inline constexpr std::pair<float, float> SinCos(const double value) noexcept
+		inline constexpr std::pair<float, float> SinCos(const double angleRadians) noexcept
 		{
-			double quotient = (Math::InvTwoPi * value);
+			double quotient = (Math::InvTwoPi * angleRadians);
 
-			if (value >= 0.0)
+			if (angleRadians >= 0.0)
 			{
 				quotient = static_cast<double>(static_cast<int32>(quotient + 0.5));
 			}
@@ -63,7 +63,7 @@ namespace s3d
 				quotient = static_cast<double>(static_cast<int32>(quotient - 0.5));
 			}
 
-			float y = static_cast<float>(value - (Math::TwoPi * quotient));
+			float y = static_cast<float>(angleRadians - (Math::TwoPi * quotient));
 			float sign = 1.0f;
 
 			if (y > Math::HalfPiF)

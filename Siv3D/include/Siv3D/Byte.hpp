@@ -17,7 +17,7 @@
 
 namespace s3d
 {
-	/// @brief バイトを表現する型
+	/// @brief 1 バイトを表現する型
 	enum class Byte : unsigned char {};
 
 # if __cpp_lib_concepts

@@ -14,6 +14,7 @@
 
 namespace s3d
 {
+	/// @brief HSV 表色系の色
 	struct HSV
 	{
 		/// @brief 色相 |Hue [0.0, 360.0)
@@ -37,15 +38,27 @@ namespace s3d
 		SIV3D_NODISCARD_CXX20
 		explicit constexpr HSV(double _h, double _a = 1.0) noexcept;
 
+		/// @brief HSV 表色系の色を作成します。
+		/// @param _h 色相
+		/// @param _s 彩度
+		/// @param _v 明度
+		/// @param _a アルファ
 		SIV3D_NODISCARD_CXX20
 		constexpr HSV(double _h, double _s, double _v, double _a = 1.0) noexcept;
 
+		/// @brief HSV 表色系の色を作成します。
+		/// @param hsv 色
+		/// @param _a アルファ
 		SIV3D_NODISCARD_CXX20
 		constexpr HSV(const HSV& hsv, double _a) noexcept;
 
+		/// @brief HSV 表色系の色を作成します。
+		/// @param color 色
 		SIV3D_NODISCARD_CXX20
 		HSV(Color color) noexcept;
 
+		/// @brief HSV 表色系の色を作成します。
+		/// @param color 色
 		SIV3D_NODISCARD_CXX20
 		HSV(const ColorF& color) noexcept;
 

@@ -33,6 +33,8 @@ namespace s3d
 
 	namespace Platform::Windows
 	{
+		/// @brief GetLastError() の結果を文字列で取得します。
+		/// @return 文字列化された GetLastError() の結果
 		String GetLastErrorMessage();
 	}
 }

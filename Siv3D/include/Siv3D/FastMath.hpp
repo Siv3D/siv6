@@ -18,11 +18,17 @@ namespace s3d
 {
 	namespace FastMath
 	{
+		/// @brief sin, cos の近似を高速に計算します。
+		/// @param angleRadians ラジアン角
+		/// @return sin, cos の近似結果
 		[[nodiscard]]
-		inline constexpr std::pair<float, float> SinCos(float value) noexcept;
+		inline constexpr std::pair<float, float> SinCos(float angleRadians) noexcept;
 
+		/// @brief sin, cos の近似を高速に計算します。
+		/// @param angleRadians ラジアン角
+		/// @return sin, cos の近似結果
 		[[nodiscard]]
-		inline constexpr std::pair<float, float> SinCos(double value) noexcept;
+		inline constexpr std::pair<float, float> SinCos(double angleRadians) noexcept;
 	}
 }
 

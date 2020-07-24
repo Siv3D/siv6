@@ -21,13 +21,20 @@ namespace s3d
 	using Float2	= Vector2D<float>;
 	using Vec2		= Vector2D<double>;
 
+	/// @brief 2 次元のベクトル（整数）
 	struct Point
 	{
+		/// @brief ベクトルの要素の型
 		using value_type = int32;
 
+		/// @brief ベクトルの次元数
 		static constexpr size_t Dimension = 2;
 
-		value_type x, y;
+		/// @brief ベクトルの X 成分
+		value_type x;
+		
+		/// @brief ベクトルの Y 成分
+		value_type y;
 
 		SIV3D_NODISCARD_CXX20
 		Point() = default;
