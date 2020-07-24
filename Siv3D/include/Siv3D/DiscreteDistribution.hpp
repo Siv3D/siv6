@@ -44,22 +44,16 @@ namespace s3d
 
 		template <size_t Size>
 		SIV3D_NODISCARD_CXX20
-		explicit DiscreteDistribution(const std::array<double, Size>& weights)
-			: m_distribution(weights.begin(), weights.end()) {}
+		explicit DiscreteDistribution(const std::array<double, Size>& weights);
 
 		template <class Iterator>
 		SIV3D_NODISCARD_CXX20
-		explicit DiscreteDistribution(Iterator begin, Iterator end)
-			: m_distribution(begin, end) {}
+		explicit DiscreteDistribution(Iterator begin, Iterator end);
 
 		DiscreteDistribution& operator =(std::initializer_list<double> ilist);
 
 		template <size_t Size>
-		DiscreteDistribution& operator =(const std::array<double, Size>& weights)
-		{
-			m_distribution = distribution_type(weights.begin(), weights.end());
-			return *this;
-		}
+		DiscreteDistribution& operator =(const std::array<double, Size>& weights);
 
 		DiscreteDistribution& operator =(const Array<double>& weights);
 
@@ -67,10 +61,7 @@ namespace s3d
 		Array<double> probabilities() const;
 
 		template <class URBG>
-		result_type operator()(URBG& rbg)
-		{
-			return m_distribution(rbg);
-		}
+		result_type operator()(URBG& rbg);
 
 		[[nodiscard]]
 		size_t min() const;
@@ -82,3 +73,5 @@ namespace s3d
 		size_t size() const;
 	};
 }
+
+# include "detail/DiscreteDistribution.ipp"

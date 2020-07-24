@@ -605,7 +605,7 @@
 
 # include <Siv3D/Distribution.hpp> // [Siv3D ToDo]
 
-# include <Siv3D/DiscreteDistribution.hpp> // [Siv3D ToDo]
+# include <Siv3D/DiscreteDistribution.hpp>
 
 # include <Siv3D/Random.hpp>
 

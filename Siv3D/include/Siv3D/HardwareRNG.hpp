@@ -44,10 +44,7 @@ namespace s3d
 		/// 生成される乱数の最小値
 		/// </returns>
 		[[nodiscard]]
-		static constexpr result_type min() noexcept
-		{
-			return engine_type::min();
-		}
+		static constexpr result_type min() noexcept;
 
 		/// <summary>
 		/// 生成される乱数の最大値を返します。
@@ -56,10 +53,7 @@ namespace s3d
 		/// 生成される乱数の最大値
 		/// </returns>
 		[[nodiscard]]
-		static constexpr result_type max() noexcept
-		{
-			return engine_type::max();
-		}
+		static constexpr result_type max() noexcept;
 
 		/// <summary>
 		/// 乱数を生成します。
@@ -67,22 +61,11 @@ namespace s3d
 		/// <returns>
 		/// 乱数
 		/// </returns>
-		result_type operator()()
-		{
-			return m_engine();
-		}
+		result_type operator()();
 
 		template <size_t N>
-		std::array<result_type, N> generateSeeds() noexcept
-		{
-			std::array<result_type, N> seeds;
-
-			for (auto& seed : seeds)
-			{
-				seed = m_engine();
-			}
-
-			return seeds;
-		}
+		std::array<result_type, N> generateSeeds() noexcept;
 	};
 }
+
+# include "detail/HardwareRNG.ipp"

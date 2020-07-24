@@ -27,7 +27,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\BigFloat.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\BigInt.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\BinaryWriter.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\DiscreteDistribution.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\FormatLiteral_impl.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\HardwareRNG.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IImageDecoder.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ImageDecoder.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\INIData.ipp" />
