@@ -389,7 +389,7 @@
 
 // 時間
 // Time
-# include <Siv3D/Time.hpp> // [Siv3D ToDo]
+# include <Siv3D/Time.hpp>
 
 // 経過時間の計測
 // Stopwatch

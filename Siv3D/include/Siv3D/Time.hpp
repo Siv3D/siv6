@@ -37,5 +37,25 @@ namespace s3d
 		/// @return アプリケーションが起動してからの経過時間（ナノ秒）
 		[[nodiscard]]
 		uint64 GetNanosec() noexcept;
+
+		/// @brief 協定世界時 (UTC) で 1970 年 1 月 1 日午前 0 時からの経過時間を秒で返します。
+		/// @return 1970 年 1 月 1 日午前 0 時からの経過時間（秒）
+		[[nodiscard]]
+		uint64 GetSecSinceEpoch();
+
+		/// @brief 協定世界時 (UTC) で 1970 年 1 月 1 日午前 0 時からの経過時間をミリ秒で返します。
+		/// @return 1970 年 1 月 1 日午前 0 時からの経過時間（ミリ秒）
+		[[nodiscard]]
+		uint64 GetMillisecSinceEpoch();
+
+		/// @brief 協定世界時 (UTC) で 1970 年 1 月 1 日午前 0 時からの経過時間をマイクロ秒で返します。
+		/// @return 1970 年 1 月 1 日午前 0 時からの経過時間（マイクロ秒）
+		[[nodiscard]]
+		uint64 GetMicrosecSinceEpoch();
+
+		/// @brief 協定世界時 (UTC) との時差を分で返します。
+		/// @return 協定世界時 (UTC) との時差（分）
+		[[nodiscard]]
+		int32 UTCOffsetMinutes();
 	}
 }

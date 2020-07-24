@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include <time.h>
+# include <sys/time.h>
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Time.hpp>
 
@@ -53,5 +54,30 @@ namespace s3d
 		{
 			return detail::GetApplicationTimeNS();
 		}
+
+			uint64 GetSecSinceEpoch()
+		{
+			return (GetMicrosecSinceEpoch() / 1'000'000);
+		}
+		
+		uint64 GetMillisecSinceEpoch()
+		{
+			return (GetMicrosecSinceEpoch() / 1'000);
+		}
+		
+		uint64 GetMicrosecSinceEpoch()
+		{
+			::timeval tv;
+			::gettimeofday(&tv, nullptr);
+			return (tv.tv_sec * 1'000'000ULL + tv.tv_usec);
+		}
+		
+		int32 UTCOffsetMinutes()
+		{
+			struct timeval tv;
+			struct timezone tz;
+			::gettimeofday(&tv, &tz);
+			return -tz.tz_minuteswest;
+		}	
 	}
 }

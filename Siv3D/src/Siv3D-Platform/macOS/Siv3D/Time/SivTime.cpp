@@ -66,5 +66,29 @@ namespace s3d
 		{
 			return detail::GetApplicationTimeNS();
 		}
+
+		uint64 GetSecSinceEpoch()
+		{
+			return (GetMicrosecSinceEpoch() / 1'000'000);
+		}
+		
+		uint64 GetMillisecSinceEpoch()
+		{
+			return (GetMicrosecSinceEpoch() / 1'000);
+		}
+		
+		uint64 GetMicrosecSinceEpoch()
+		{
+			::timeval tv;
+			::gettimeofday(&tv, nullptr);
+			return (tv.tv_sec * 1'000'000ULL + tv.tv_usec);
+		}
+		
+		int32 UTCOffsetMinutes()
+		{
+			struct timezone tz;
+			::gettimeofday(nullptr, &tz);
+			return -tz.tz_minuteswest;
+		}	
 	}
 }

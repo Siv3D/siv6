@@ -9,6 +9,7 @@
 //
 //-----------------------------------------------
 
+# include <ctime>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Time.hpp>
 
@@ -33,6 +34,13 @@ namespace s3d
 			::LARGE_INTEGER counter;
 			::QueryPerformanceCounter(&counter);
 			return (counter.QuadPart - g_QPC_Base);
+		}
+
+		inline uint64 Get100NanosecSinceEpoch()
+		{
+			::FILETIME fileTime;
+			::GetSystemTimeAsFileTime(&fileTime);
+			return (static_cast<uint64>(fileTime.dwHighDateTime) << 32) + fileTime.dwLowDateTime - (11'644'473'600 * 10'000'000);
 		}
 	}
 
@@ -60,6 +68,28 @@ namespace s3d
 		{
 			static const double QPF_Nanosec = (1'000'000'000.0 / detail::g_QPC_Freq);
 			return static_cast<uint64>(detail::GetCount() * QPF_Nanosec);
+		}
+
+		uint64 GetSecSinceEpoch()
+		{
+			return detail::Get100NanosecSinceEpoch() / 10'000'000;
+		}
+
+		uint64 GetMillisecSinceEpoch()
+		{
+			return detail::Get100NanosecSinceEpoch() / 10'000;
+		}
+
+		uint64 GetMicrosecSinceEpoch()
+		{
+			return detail::Get100NanosecSinceEpoch() / 10;
+		}
+
+		int32 UTCOffsetMinutes()
+		{
+			long timeZone;
+			::_get_timezone(&timeZone);
+			return -timeZone / 60;
 		}
 	}
 }
