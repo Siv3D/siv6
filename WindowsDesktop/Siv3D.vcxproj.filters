@@ -388,6 +388,12 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Siv3D\Resource">
       <UniqueIdentifier>{6f9fb076-5ced-4b84-9c54-d30e8e0c46af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\BigInt">
+      <UniqueIdentifier>{06cea7f9-76eb-4113-beb6-acbb16d70655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\BigFloat">
+      <UniqueIdentifier>{c79374e9-9441-43b1-be5b-d0d46284246c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1362,6 +1368,24 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\XXHash.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\BigInt.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\BigFloat.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\BigFloat.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\BigInt.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\BigInt\BigIntDetail.hpp">
+      <Filter>src\Siv3D\BigInt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\BigFloat\BigFloatDetail.hpp">
+      <Filter>src\Siv3D\BigFloat</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -1834,6 +1858,12 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Resource\SivResource_Windows.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\BigInt\SivBigInt.cpp">
+      <Filter>src\Siv3D\BigInt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\BigFloat\SivBigFloat.cpp">
+      <Filter>src\Siv3D\BigFloat</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

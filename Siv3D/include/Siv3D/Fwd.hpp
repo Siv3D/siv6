@@ -18,6 +18,9 @@ namespace s3d
 	class StringView;
 	class String;
 
+	class BigInt;
+	class BigFloat;
+
 	struct FormatData;
 
 	enum class LogLevel;
