@@ -21,4 +21,5 @@ Library | Version
 [simde](https://github.com/nemequ/simde) | 0.5.0
 [The Parallel Hashmap](https://github.com/greg7mdp/parallel-hashmap) | 1.3.2
 [Xoshiro-cpp](https://github.com/Reputeless/Xoshiro-cpp) | v1.1
+[xxHash](https://github.com/Cyan4973/xxHash) | v0.7.4
 [zlib](https://www.zlib.net/) | 1.2.11

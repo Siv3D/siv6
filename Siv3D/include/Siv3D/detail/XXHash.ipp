@@ -18,22 +18,19 @@ namespace s3d
 {
 	namespace Hash
 	{
-		inline namespace v073
+		inline uint64 XXHash3(const void* input, const size_t size) noexcept
 		{
-			inline uint64 XXHash3(const void* input, const size_t size) noexcept
-			{
-				return XXH3_64bits(input, size);
-			}
+			return XXH3_64bits(input, size);
+		}
 
-		# if __cpp_lib_concepts
-			template <Concept::TriviallyCopyable Type>
-		# else
-			template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
-		# endif
-			inline uint64 XXHash3(const Type& input) noexcept
-			{
-				return XXH3_64bits(std::addressof(input), sizeof(Type));
-			}
+	# if __cpp_lib_concepts
+		template <Concept::TriviallyCopyable Type>
+	# else
+		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
+	# endif
+		inline uint64 XXHash3(const Type& input) noexcept
+		{
+			return XXH3_64bits(std::addressof(input), sizeof(Type));
 		}
 	}
 }

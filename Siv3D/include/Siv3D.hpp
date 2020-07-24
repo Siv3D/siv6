@@ -100,6 +100,8 @@
 // Hash
 # include <Siv3D/Hash.hpp>
 
+// 高速なハッシュ
+// XXHash
 # include <Siv3D/XXHash.hpp>
 
 // 範囲
@@ -251,9 +253,11 @@
 
 // Unicode
 // Unicode
-# include <Siv3D/Unicode.hpp> // [Siv3D ToDo]
+# include <Siv3D/Unicode.hpp>
 
-# include <Siv3D/UnicodeConverter.hpp> // [Siv3D ToDo]
+// Unicode の逐次変換
+// Unicode converter
+# include <Siv3D/UnicodeConverter.hpp>
 
 // アルファベットの大文字・小文字
 // Letter case
@@ -308,7 +312,7 @@
 
 // 文字列ユーティリティ
 // Formatting utilities
-# include <Siv3D/FormatUtility.hpp> // [Siv3D ToDo]
+# include <Siv3D/FormatUtility.hpp>
 
 //////////////////////////////////////////////////
 //
