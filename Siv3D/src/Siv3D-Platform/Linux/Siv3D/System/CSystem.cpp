@@ -14,6 +14,7 @@
 # include <Siv3D/Resource/IResource.hpp>
 # include <Siv3D/Profiler/IProfiler.hpp>
 # include <Siv3D/ImageDecoder/IImageDecoder.hpp>
+# include <Siv3D/ImageEncoder/IImageEncoder.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Scene/IScene.hpp>
 # include <Siv3D/Cursor/ICursor.hpp>
@@ -50,6 +51,7 @@ namespace s3d
 		SIV3D_ENGINE(Profiler)->init();
 		SIV3D_ENGINE(Window)->init();
 		SIV3D_ENGINE(ImageDecoder)->init();
+		SIV3D_ENGINE(ImageEncoder)->init();
 		SIV3D_ENGINE(Cursor)->init();
 		SIV3D_ENGINE(Renderer)->init();
 		SIV3D_ENGINE(Renderer2D)->init();

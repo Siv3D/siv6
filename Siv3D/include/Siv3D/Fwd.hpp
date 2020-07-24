@@ -21,6 +21,9 @@ namespace s3d
 	class BigInt;
 	class BigFloat;
 
+	class IReader;
+	class IWriter;
+
 	struct FormatData;
 
 	enum class LogLevel;
@@ -41,7 +44,7 @@ namespace s3d
 	using Rect = Rectangle<Point>;
 	using RectF = Rectangle<Vec2>;
 
-
+	class Image;
 
 
 	enum class WindowStyle;

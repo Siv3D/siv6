@@ -9,21 +9,12 @@
 //
 //-----------------------------------------------
 
-# pragma once
-# include "Common.hpp"
-# include "Fwd.hpp"
-# include "Blob.hpp"
-# include "ImageFormat.hpp"
+# include "CImageEncoder.hpp"
 
 namespace s3d
 {
-	class IImageEncoder
+	ISiv3DImageEncoder* ISiv3DImageEncoder::Create()
 	{
-	public:
-
-		virtual ~IImageEncoder() = default;
-
-		[[nodiscard]]
-		virtual StringView name() const = 0;
-	};
+		return new CImageEncoder;
+	}
 }

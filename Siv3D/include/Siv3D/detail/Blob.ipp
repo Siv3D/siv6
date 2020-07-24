@@ -55,72 +55,72 @@ namespace s3d
 		m_data = std::move(data);
 	}
 
-	const Byte& Blob::operator[](const size_t index) const
+	inline const Byte& Blob::operator[](const size_t index) const
 	{
 		return m_data[index];
 	}
 
-	Byte& Blob::operator[](const size_t index)
+	inline Byte& Blob::operator[](const size_t index)
 	{
 		return m_data[index];
 	}
 
-	const Byte* Blob::data() const noexcept
+	inline const Byte* Blob::data() const noexcept
 	{
 		return m_data.data();
 	}
 
-	Byte* Blob::data() noexcept
+	inline Byte* Blob::data() noexcept
 	{
 		return m_data.data();
 	}
 
-	const Array<Byte>& Blob::asArray() const noexcept
+	inline const Array<Byte>& Blob::asArray() const noexcept
 	{
 		return m_data;
 	}
 
-	bool Blob::empty() const noexcept
+	inline bool Blob::empty() const noexcept
 	{
 		return m_data.empty();
 	}
 
-	bool Blob::isEmpty() const noexcept
+	inline bool Blob::isEmpty() const noexcept
 	{
 		return m_data.empty();
 	}
 
-	Blob::operator bool() const noexcept
+	inline Blob::operator bool() const noexcept
 	{
 		return (not m_data.empty());
 	}
 
-	size_t Blob::size() const noexcept
+	inline size_t Blob::size() const noexcept
 	{
 		return m_data.size();
 	}
 
-	size_t Blob::capacity() const noexcept
+	inline size_t Blob::capacity() const noexcept
 	{
 		return m_data.capacity();
 	}
 
-	void Blob::reserve(const size_t sizeBytes)
+	inline void Blob::reserve(const size_t sizeBytes)
 	{
 		m_data.reserve(sizeBytes);
 	}
 
-	void Blob::shrink_to_fit()
+	inline void Blob::shrink_to_fit()
 	{
 		m_data.shrink_to_fit();
 	}
 
-	void Blob::clear()
+	inline void Blob::clear()
 	{
 		m_data.clear();
 	}
 
-	void Blob::release()
+	inline void Blob::release()
 	{
 		m_data.release();
 	}
@@ -185,7 +185,7 @@ namespace s3d
 		return m_data.crend();
 	}
 
-	void Blob::append(const void* src, const size_t sizeBytes)
+	inline void Blob::append(const void* src, const size_t sizeBytes)
 	{
 		m_data.insert(m_data.end(), static_cast<const Byte*>(src), (static_cast<const Byte*>(src) + sizeBytes));
 	}

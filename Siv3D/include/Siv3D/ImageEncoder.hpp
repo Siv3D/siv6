@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # pragma once
+# include <memory>
 # include "Common.hpp"
 # include "IImageEncoder.hpp"
 
@@ -19,6 +20,19 @@ namespace s3d
 	{
 		bool Save(const Image& image, ImageFormat format, FilePathView path);
 
+		bool Encode(const Image& image, ImageFormat format, IWriter& writer);
+
 		Blob Encode(const Image& image, ImageFormat format);
+
+		template <class ImageEncoder>
+		bool Add();
+
+		bool Add(std::unique_ptr<IImageEncoder>&& encoder);
+
+		void Remove(StringView name);
+
+		const Array<std::unique_ptr<IImageEncoder>>& Enum();
 	}
 }
+
+# include "detail/ImageEncoder.ipp"

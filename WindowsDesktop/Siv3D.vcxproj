@@ -34,6 +34,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HardwareRNG.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IImageDecoder.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ImageDecoder.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\ImageEncoder.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\INIData.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IWriter.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Resource.ipp" />
@@ -286,6 +287,8 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\Dummy\IDummy.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\ImageDecoder\CImageDecoder.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\ImageDecoder\IImageDecoder.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\ImageEncoder\CImageEncoder.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\ImageEncoder\IImageEncoder.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Logger\ILogger.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\CProfiler.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\IProfiler.hpp" />
@@ -411,6 +414,9 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageDecoder\CImageDecoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageDecoder\ImageDecoderFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageDecoder\SivImageDecoder.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageEncoder\CImageEncoder.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageEncoder\ImageEncoderFactory.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageEncoder\SivImageEncoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\BMPDecoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\PNGDecoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Image\SivImage.cpp" />

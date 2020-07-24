@@ -97,6 +97,9 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/ImageDecoder/CImageDecoder.cpp
   ../Siv3D/src/Siv3D/ImageDecoder/ImageDecoderFactory.cpp
   ../Siv3D/src/Siv3D/ImageDecoder/SivImageDecoder.cpp
+  ../Siv3D/src/Siv3D/ImageEncoder/CImageEncoder.cpp
+  ../Siv3D/src/Siv3D/ImageEncoder/ImageEncoderFactory.cpp
+  ../Siv3D/src/Siv3D/ImageEncoder/SivImageEncoder.cpp 
   ../Siv3D/src/Siv3D/ImageFormat/BMPDecoder.cpp
   ../Siv3D/src/Siv3D/ImageFormat/PNGDecoder.cpp
   ../Siv3D/src/Siv3D/INIData/SivINIData.cpp

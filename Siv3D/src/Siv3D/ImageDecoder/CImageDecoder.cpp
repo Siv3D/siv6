@@ -17,8 +17,15 @@
 
 namespace s3d
 {
+	CImageDecoder::~CImageDecoder()
+	{
+		LOG_SCOPED_TRACE(U"CImageDecoder::~CImageDecoder()");
+	}
+
 	void CImageDecoder::init()
 	{
+		LOG_SCOPED_TRACE(U"CImageDecoder::init()");
+
 		m_decoders.push_back(std::make_unique<BMPDecoder>());
 		m_decoders.push_back(std::make_unique<PNGDecoder>());
 	}

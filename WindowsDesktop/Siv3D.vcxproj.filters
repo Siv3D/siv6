@@ -397,6 +397,9 @@
     <Filter Include="src\Siv3D\Blob">
       <UniqueIdentifier>{cd95a4ff-41db-4ee6-a4b3-eeb7db50d123}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\ImageEncoder">
+      <UniqueIdentifier>{dc84514d-7bb3-4bd4-b314-77cb9a46ad23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1407,6 +1410,15 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Blob.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\ImageEncoder\CImageEncoder.hpp">
+      <Filter>src\Siv3D\ImageEncoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\ImageEncoder\IImageEncoder.hpp">
+      <Filter>src\Siv3D\ImageEncoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\ImageEncoder.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -1888,6 +1900,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Blob\SivBlob.cpp">
       <Filter>src\Siv3D\Blob</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageEncoder\ImageEncoderFactory.cpp">
+      <Filter>src\Siv3D\ImageEncoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageEncoder\SivImageEncoder.cpp">
+      <Filter>src\Siv3D\ImageEncoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageEncoder\CImageEncoder.cpp">
+      <Filter>src\Siv3D\ImageEncoder</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

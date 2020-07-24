@@ -10,20 +10,15 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Common.hpp"
-# include "Fwd.hpp"
-# include "Blob.hpp"
-# include "ImageFormat.hpp"
 
 namespace s3d
 {
-	class IImageEncoder
+	namespace ImageDecoder
 	{
-	public:
-
-		virtual ~IImageEncoder() = default;
-
-		[[nodiscard]]
-		virtual StringView name() const = 0;
-	};
+		template <class ImageDecoder>
+		bool Add()
+		{
+			return Add(std::make_unique<ImageDecoder>());
+		}
+	}
 }

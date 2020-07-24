@@ -29,6 +29,8 @@ namespace s3d
 
 		CImageDecoder() = default;
 
+		~CImageDecoder() override;
+
 		void init() override;
 
 		Optional<ImageInfo> getImageInfo(IReader& reader, FilePathView pathHint, ImageFormat imageFormat) override;
