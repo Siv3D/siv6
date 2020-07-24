@@ -12,6 +12,7 @@
 # pragma once
 # include "Common.hpp"
 # include "String.hpp"
+# include "Format.hpp"
 
 namespace s3d
 {
@@ -21,6 +22,22 @@ namespace s3d
 
 	[[nodiscard]]
 	String FormatDataSize(int64 bytes);
+
+# if __cpp_lib_concepts
+	template <Concept::Integral Integer>
+# else
+	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
+# endif
+	[[nodiscard]]
+	inline String ThousandsSeparate(Integer value, StringView separator = U","_sv);
+
+# ifdef __cpp_lib_concepts
+	template <Concept::FloatingPoint FloatingPoint>
+# else
+	template <class FloatingPoint, std::enable_if_t<std::is_floating_point_v<FloatingPoint>>* = nullptr>
+# endif
+	[[nodiscard]]
+	inline String ThousandsSeparate(FloatingPoint value, int32 decimalPlace = 3, bool fixed = false, StringView separator = U","_sv);
 }
 
 # include "detail/FormatUtility.ipp"

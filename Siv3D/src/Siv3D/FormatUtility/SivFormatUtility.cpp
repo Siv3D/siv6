@@ -28,6 +28,48 @@ namespace s3d
 			U"ZiB"_sv,
 			U"YiB"_sv
 		};
+
+		String ThousandsSeparateInt(String&& value, const StringView separator)
+		{
+			String result = std::move(value);
+
+			const size_t endIndex = result.starts_with(U'-') ? 1 : 0;
+
+			size_t count = 0;
+
+			for (size_t i = result.size(); i != endIndex; --i)
+			{
+				if (++count == 4)
+				{
+					result.insert(i, separator);
+					count = 1;
+				}
+			}
+
+			return result;
+		}
+
+		String ThousandsSeparateFloat(String&& value, const StringView separator)
+		{
+			String result = std::move(value);
+
+			const size_t zeroPos = result.lastIndexOf(U'.');
+			const size_t startIndex = (zeroPos == String::npos) ? result.size() : zeroPos;
+			const size_t endIndex = result.starts_with(U'-') ? 1 : 0;
+
+			size_t count = 0;
+
+			for (size_t i = startIndex; i != endIndex; --i)
+			{
+				if (++count == 4)
+				{
+					result.insert(i, separator);
+					count = 1;
+				}
+			}
+
+			return result;
+		}
 	}
 
 	String FormatDataSize(const int64 bytes)
