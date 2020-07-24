@@ -23,6 +23,8 @@ namespace s3d
 
 		Array<std::unique_ptr<IImageEncoder>> m_encoders;
 
+		Array<std::unique_ptr<IImageEncoder>>::const_iterator findEncoder(StringView encoderName) const;
+
 	public:
 
 		CImageEncoder() = default;
@@ -30,6 +32,12 @@ namespace s3d
 		~CImageEncoder();
 
 		void init() override;
+
+		bool save(const Image& image, StringView encoderName, FilePathView path) override;
+
+		bool encode(const Image& image, StringView encoderName, IWriter& writer) override;
+
+		Blob encode(const Image& image, StringView encoderName) override;
 
 		bool add(std::unique_ptr<IImageEncoder>&& encoder) override;
 

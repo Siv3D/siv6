@@ -8,6 +8,10 @@ void Main()
 {
 	//Siv3DTest();
 
+	Image image(200, 200, Palette::Skyblue);
+
+	ImageEncoder::Save(image, ImageFormat::BMP, U"save.bmp");
+
 	while (System::Update())
 	{
 		for (auto i : step(20))

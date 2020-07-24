@@ -30,6 +30,48 @@ namespace s3d
 		//m_Encoders.push_back(std::make_unique<PNGEncoder>());
 	}
 
+	bool CImageEncoder::save(const Image& image, const StringView encoderName, const FilePathView path)
+	{
+		LOG_SCOPED_TRACE(U"CImageEncoder::save({}, {})"_fmt(encoderName, path));
+
+		const auto it = findEncoder(encoderName);
+
+		if (it == m_encoders.end())
+		{
+			return{};
+		}
+
+		return (*it)->save(image, path);
+	}
+
+	bool CImageEncoder::encode(const Image& image, const StringView encoderName, IWriter& writer)
+	{
+		LOG_SCOPED_TRACE(U"CImageEncoder::encode({})"_fmt(encoderName));
+
+		const auto it = findEncoder(encoderName);
+
+		if (it == m_encoders.end())
+		{
+			return false;
+		}
+
+		return (*it)->encode(image, writer);
+	}
+
+	Blob CImageEncoder::encode(const Image& image, const StringView encoderName)
+	{
+		LOG_SCOPED_TRACE(U"CImageEncoder::encode({})"_fmt(encoderName));
+
+		const auto it = findEncoder(encoderName);
+
+		if (it == m_encoders.end())
+		{
+			return{};
+		}
+
+		return (*it)->encode(image);
+	}
+
 	bool CImageEncoder::add(std::unique_ptr<IImageEncoder>&& encoder)
 	{
 		const StringView name = encoder->name();
@@ -60,5 +102,18 @@ namespace s3d
 	const Array<std::unique_ptr<IImageEncoder>>& CImageEncoder::enumEncoder() const noexcept
 	{
 		return m_encoders;
+	}
+
+	Array<std::unique_ptr<IImageEncoder>>::const_iterator CImageEncoder::findEncoder(const StringView encoderName) const
+	{
+		for (auto it = m_encoders.begin(); it != m_encoders.end(); ++it)
+		{
+			if ((*it)->name() == encoderName)
+			{
+				return it;
+			}
+		}
+
+		return m_encoders.end();
 	}
 }
