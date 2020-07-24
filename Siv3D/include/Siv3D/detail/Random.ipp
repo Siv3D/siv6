@@ -30,6 +30,11 @@ namespace s3d
 		}
 	}
 
+	inline Duration Random(const Duration& min, const Duration& max) noexcept
+	{
+		return Duration{ Random(min.count(), max.count()) };
+	}
+
 # if __cpp_lib_concepts
 	template <Concept::Arithmetic Arithmetic>
 # else
@@ -38,6 +43,11 @@ namespace s3d
 	inline Arithmetic Random(const Arithmetic max)
 	{
 		return Random<Arithmetic>(0, max);
+	}
+
+	inline Duration Random(const Duration& max) noexcept
+	{
+		return Duration{ Random(max.count()) };
 	}
 
 # if __cpp_lib_concepts
@@ -123,5 +133,17 @@ namespace s3d
 	inline int64 RandomInt64()
 	{
 		return UniformIntDistribution<int64>(0)(GetDefaultRNG());
+	}
+
+	template <class Container>
+	inline void Shuffle(Container& c)
+	{
+		std::shuffle(std::begin(c), std::end(c), GetDefaultRNG());
+	}
+
+	template <class RandomIt>
+	inline void Shuffle(RandomIt first, RandomIt last)
+	{
+		std::shuffle(first, last, GetDefaultRNG());
 	}
 }

@@ -603,7 +603,7 @@
 
 # include <Siv3D/DiscreteDistribution.hpp> // [Siv3D ToDo]
 
-# include <Siv3D/Random.hpp> // [Siv3D ToDo] Random<Duration>
+# include <Siv3D/Random.hpp>
 
 // ランダムな Point の作成
 // Random Point Generation

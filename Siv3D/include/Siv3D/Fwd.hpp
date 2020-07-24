@@ -18,6 +18,8 @@ namespace s3d
 	class StringView;
 	class String;
 
+	struct FormatData;
+
 	enum class LogLevel;
 	enum class LogType;
 
