@@ -13,6 +13,7 @@ Library | Version
 [GLFW](https://github.com/glfw/glfw) | 3.3.2
 [infoware](https://github.com/ThePhD/infoware) | v0.5.3
 [levenshtein-sse](https://github.com/addaleax/levenshtein-sse) | 
+[libpng](http://www.libpng.org/pub/png/libpng.html) | 1.6.37
 [miniutf](https://github.com/dropbox/miniutf) | 
 [Oniguruma](https://github.com/kkos/oniguruma) | v6.9.5_rev1
 [scope-guard](https://github.com/offa/scope-guard) | v0.3.4
@@ -20,3 +21,4 @@ Library | Version
 [simde](https://github.com/nemequ/simde) | 0.5.0
 [The Parallel Hashmap](https://github.com/greg7mdp/parallel-hashmap) | 1.3.2
 [Xoshiro-cpp](https://github.com/Reputeless/Xoshiro-cpp) | v1.1
+[zlib](https://www.zlib.net/) | 1.2.11
