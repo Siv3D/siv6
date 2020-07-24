@@ -81,29 +81,25 @@ namespace s3d
 			*p += length;
 		}
 
-	# ifdef __cpp_lib_concepts
-		template <Concept::UnsignedIntegral UnsignedInteger>
-	# else
-		template <class UnsignedInteger>
-	# endif
+		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		inline String ItoW(const UnsignedInteger value, const unsigned radix, const bool isNegative, const LetterCase letterCase)
+		inline String ItoW(const UnsignedInt value, const unsigned radix, const bool isNegative, const LetterCase letterCase)
 		{
 			if (radix < 2 || 36 < radix)
 			{
 				return{};
 			}
 
-			char32 buffer[std::numeric_limits<UnsignedInteger>::digits];
+			char32 buffer[std::numeric_limits<UnsignedInt>::digits];
 			char32* p = buffer;
 			size_t length = 0;
-			UnsignedInteger remaining = value;
+			UnsignedInt remaining = value;
 
 			if (isNegative)
 			{
 				*p++ = '-';
 				++length;
-				remaining = static_cast<UnsignedInteger>(-static_cast<std::make_signed_t<UnsignedInteger>>(remaining));
+				remaining = static_cast<UnsignedInt>(-static_cast<std::make_signed_t<UnsignedInt>>(remaining));
 			}
 
 			char32* first_digit = p;
@@ -111,8 +107,8 @@ namespace s3d
 
 			do
 			{
-				const UnsignedInteger digit = static_cast<UnsignedInteger>(remaining % static_cast<UnsignedInteger>(radix));
-				remaining /= static_cast<UnsignedInteger>(radix);
+				const UnsignedInt digit = static_cast<UnsignedInt>(remaining % static_cast<UnsignedInt>(radix));
+				remaining /= static_cast<UnsignedInt>(radix);
 				*p++ = static_cast<char32>(digit < 10 ? (U'0' + digit) : (a + digit - 10));
 				++length;
 			} while (remaining > 0);

@@ -11,12 +11,7 @@
 
 # pragma once
 # include <limits>
-
-# ifdef __cpp_lib_concepts
-#	define SIV3D_MATH_CONSTANTS_CONCEPT template <Concept::FloatingPoint FloatingPoint>
-# else
-#	define SIV3D_MATH_CONSTANTS_CONCEPT template <class FloatingPoint>
-# endif
+# include "Concepts.hpp"
 
 namespace s3d
 {
@@ -24,71 +19,71 @@ namespace s3d
 	{
 		inline namespace Constants
 		{
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint E_v			= FloatingPoint(2.718281828459045235360287471352662498L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float E_v			= Float(2.718281828459045235360287471352662498L);
 
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint Log2E_v		= FloatingPoint(1.442695040888963407359924681001892137L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float Log2E_v		= Float(1.442695040888963407359924681001892137L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint Log10E_v		= FloatingPoint(0.434294481903251827651128918916605082L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float Log10E_v		= Float(0.434294481903251827651128918916605082L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint Pi_v			= FloatingPoint(3.141592653589793238462643383279502884L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float Pi_v			= Float(3.141592653589793238462643383279502884L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint QuarterPi_v	= FloatingPoint(0.785398163397448309615660845819875721L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float QuarterPi_v	= Float(0.785398163397448309615660845819875721L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint OneThirdPi_v	= FloatingPoint(1.047197551196597746154214461093167628L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float OneThirdPi_v	= Float(1.047197551196597746154214461093167628L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint HalfPi_v		= FloatingPoint(1.570796326794896619231321691639751442L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float HalfPi_v		= Float(1.570796326794896619231321691639751442L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint TwoPi_v		= FloatingPoint(6.283185307179586476925286766559005768L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float TwoPi_v		= Float(6.283185307179586476925286766559005768L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint InvTwoPi_v	= FloatingPoint(0.159154943091895335768883763372514362L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float InvTwoPi_v	= Float(0.159154943091895335768883763372514362L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint InvPi_v		= FloatingPoint(0.318309886183790671537767526745028724L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float InvPi_v		= Float(0.318309886183790671537767526745028724L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint InvSqrtPi_v	= FloatingPoint(0.564189583547756286948079451560772586L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float InvSqrtPi_v	= Float(0.564189583547756286948079451560772586L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint Ln2_v		= FloatingPoint(0.693147180559945309417232121458176568L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float Ln2_v		= Float(0.693147180559945309417232121458176568L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint Ln10_v		= FloatingPoint(2.302585092994045684017991454684364208L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float Ln10_v		= Float(2.302585092994045684017991454684364208L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint Sqrt2_v		= FloatingPoint(1.414213562373095048801688724209698078L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float Sqrt2_v		= Float(1.414213562373095048801688724209698078L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint Sqrt3_v		= FloatingPoint(1.732050807568877293527446341505872366L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float Sqrt3_v		= Float(1.732050807568877293527446341505872366L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint InvSqrt2_v	= FloatingPoint(0.707106781186547524400844362104849039L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float InvSqrt2_v	= Float(0.707106781186547524400844362104849039L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint InvSqrt3_v	= FloatingPoint(0.577350269189625764509148780501957456L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float InvSqrt3_v	= Float(0.577350269189625764509148780501957456L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint EGamma_v		= FloatingPoint(0.577215664901532860606512090082402431L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float EGamma_v		= Float(0.577215664901532860606512090082402431L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint Phi_v		= FloatingPoint(1.618033988749894848204586834365638117L);
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float Phi_v		= Float(1.618033988749894848204586834365638117L);
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint QNaN_v		= std::numeric_limits<FloatingPoint>::quiet_NaN();
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float QNaN_v		= std::numeric_limits<Float>::quiet_NaN();
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint NaN_v		= std::numeric_limits<FloatingPoint>::signaling_NaN();
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float NaN_v		= std::numeric_limits<Float>::signaling_NaN();
 			
-			SIV3D_MATH_CONSTANTS_CONCEPT
-			inline constexpr FloatingPoint Inf_v		= std::numeric_limits<FloatingPoint>::infinity();
+			SIV3D_CONCEPT_FLOATING_POINT
+			inline constexpr Float Inf_v		= std::numeric_limits<Float>::infinity();
 
 			/// @brief (float) π
 			inline constexpr float PiF			= Pi_v<float>;

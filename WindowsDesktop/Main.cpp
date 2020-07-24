@@ -8,6 +8,9 @@ void Main()
 {
 	//Siv3DTest();
 
+	BigInt bi;
+	BigFloat bf;
+
 	while (System::Update())
 	{
 		for (auto i : step(20))

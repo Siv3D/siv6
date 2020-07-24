@@ -75,3 +75,23 @@ namespace s3d
 }
 
 # endif
+
+# if __cpp_lib_concepts
+
+	# define SIV3D_CONCEPT_SIGNED_INTEGRAL		template <s3d::Concept::SignedIntegral SignedInt>
+	# define SIV3D_CONCEPT_SIGNED_INTEGRAL_		template <s3d::Concept::SignedIntegral SignedInt>
+	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL	template <s3d::Concept::UnsignedIntegral UnsignedInt>
+	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL_	template <s3d::Concept::UnsignedIntegral UnsignedInt>
+	# define SIV3D_CONCEPT_FLOATING_POINT		template <s3d::Concept::FloatingPoint Float>
+	# define SIV3D_CONCEPT_FLOATING_POINT_		template <s3d::Concept::FloatingPoint Float>
+
+# else
+
+	# define SIV3D_CONCEPT_SIGNED_INTEGRAL		template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt>&& std::is_signed_v<SignedInt>)>* = nullptr>
+	# define SIV3D_CONCEPT_SIGNED_INTEGRAL_		template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt>&& std::is_signed_v<SignedInt>)>*>
+	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL	template <class UnsignedInt, std::enable_if_t<(std::is_integral_v<UnsignedInt>&& !std::is_signed_v<UnsignedInt>)>* = nullptr>
+	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL_	template <class UnsignedInt, std::enable_if_t<(std::is_integral_v<UnsignedInt>&& !std::is_signed_v<UnsignedInt>)>*>
+	# define SIV3D_CONCEPT_FLOATING_POINT		template <class Float, std::enable_if_t<std::is_floating_point_v<Float>>* = nullptr>
+	# define SIV3D_CONCEPT_FLOATING_POINT_		template <class Float, std::enable_if_t<std::is_floating_point_v<Float>>*>
+
+# endif

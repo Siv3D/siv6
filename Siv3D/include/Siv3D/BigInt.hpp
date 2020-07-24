@@ -15,22 +15,6 @@
 # include "Concepts.hpp"
 # include "String.hpp"
 
-# if __cpp_lib_concepts
-	# define SIV3D_CONCEPT_SIGNED_INTEGRAL template <Concept::SignedIntegral Integer>
-	# define SIV3D_CONCEPT_SIGNED_INTEGRAL_ template <Concept::SignedIntegral Integer>
-	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL template <Concept::UnsignedIntegral Integer>
-	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL_ template <Concept::UnsignedIntegral Integer>
-	# define SIV3D_CONCEPT_FLOATING_POINT template <Concept::FloatingPoint Float>
-	# define SIV3D_CONCEPT_FLOATING_POINT_ template <Concept::FloatingPoint Float>
-# else
-	# define SIV3D_CONCEPT_SIGNED_INTEGRAL template <class Integer, std::enable_if_t<(std::is_integral_v<Integer>&& std::is_signed_v<Integer>)>* = nullptr>
-	# define SIV3D_CONCEPT_SIGNED_INTEGRAL_ template <class Integer, std::enable_if_t<(std::is_integral_v<Integer>&& std::is_signed_v<Integer>)>*>
-	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL template <class Integer, std::enable_if_t<(std::is_integral_v<Integer>&& !std::is_signed_v<Integer>)>* = nullptr>
-	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL_ template <class Integer, std::enable_if_t<(std::is_integral_v<Integer>&& !std::is_signed_v<Integer>)>*>
-	# define SIV3D_CONCEPT_FLOATING_POINT template <class Float, std::enable_if_t<std::is_floating_point_v<Float>>* = nullptr>
-	# define SIV3D_CONCEPT_FLOATING_POINT_ template <class Float, std::enable_if_t<std::is_floating_point_v<Float>>*>
-# endif
-
 namespace s3d
 {
 	class BigInt
@@ -40,22 +24,23 @@ namespace s3d
 		struct BigIntDetail;
 		
 		std::unique_ptr<BigIntDetail> pImpl;
-		
-		friend class BigFloat;
+
 		friend BigInt operator /(int64 a, const BigInt& b);
 		friend BigInt operator /(uint64 a, const BigInt& b);
 		friend BigInt operator %(int64 a, const BigInt& b);
 		friend BigInt operator %(uint64 a, const BigInt& b);
+		friend BigInt GCD(const BigInt&, const BigInt&);
+		friend BigInt LCM(const BigInt&, const BigInt&);
 
 	public:
 
 		BigInt();
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt(Integer i);
+		BigInt(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt(Integer i);
+		BigInt(UnsignedInt i);
 		
 		BigInt(int64 i);
 		
@@ -69,6 +54,8 @@ namespace s3d
 		
 		BigInt(BigInt&& other) noexcept;
 
+		~BigInt();
+
 		//////////////////////////////////////////////////
 		//
 		//	assign
@@ -80,10 +67,10 @@ namespace s3d
 		BigInt& assign(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& assign(Integer i);
+		BigInt& assign(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& assign(Integer i);
+		BigInt& assign(UnsignedInt i);
 		
 		BigInt& assign(std::string_view number);
 		
@@ -104,14 +91,14 @@ namespace s3d
 		BigInt& operator =(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator =(Integer i);
+		BigInt& operator =(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator =(Integer i);
+		BigInt& operator =(UnsignedInt i);
 		
-		BigInt& operator =(const std::string_view number);
+		BigInt& operator =(std::string_view number);
 		
-		BigInt& operator =(const StringView number);
+		BigInt& operator =(StringView number);
 		
 		BigInt& operator =(const BigInt& other);
 		
@@ -138,11 +125,11 @@ namespace s3d
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL	
 		[[nodiscard]]
-		BigInt operator +(Integer i) const;
+		BigInt operator +(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator +(Integer i) const;
+		BigInt operator +(UnsignedInt i) const;
 		
 		[[nodiscard]]
 		BigInt operator +(const BigInt& i) const;
@@ -152,10 +139,10 @@ namespace s3d
 		BigInt& operator +=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL	
-		BigInt& operator +=(Integer i);
+		BigInt& operator +=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator +=(Integer i);
+		BigInt& operator +=(UnsignedInt i);
 		
 		BigInt& operator +=(const BigInt& i);
 
@@ -183,11 +170,11 @@ namespace s3d
 
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator -(Integer i) const;
+		BigInt operator -(SignedInt i) const;
 
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator -(Integer i) const;
+		BigInt operator -(UnsignedInt i) const;
 
 		[[nodiscard]]
 		BigInt operator -(const BigInt& i) const;
@@ -197,10 +184,10 @@ namespace s3d
 		BigInt& operator -=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator -=(Integer i);
+		BigInt& operator -=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator -=(Integer i);
+		BigInt& operator -=(UnsignedInt i);
 		
 		BigInt& operator -=(const BigInt& i);
 
@@ -218,11 +205,11 @@ namespace s3d
 
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator *(Integer i) const;
+		BigInt operator *(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator *(Integer i) const;
+		BigInt operator *(UnsignedInt i) const;
 		
 		[[nodiscard]]
 		BigInt operator *(const BigInt& i) const;
@@ -232,10 +219,10 @@ namespace s3d
 		BigInt& operator *=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator *=(Integer i);
+		BigInt& operator *=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator *=(Integer i);
+		BigInt& operator *=(UnsignedInt i);
 		
 		BigInt& operator *=(const BigInt& i);
 
@@ -253,11 +240,11 @@ namespace s3d
 
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator /(Integer i) const;
+		BigInt operator /(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator /(Integer i) const;
+		BigInt operator /(UnsignedInt i) const;
 
 		[[nodiscard]]
 		BigInt operator /(const BigInt& i) const;
@@ -267,10 +254,10 @@ namespace s3d
 		BigInt& operator /=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator /=(Integer i);
+		BigInt& operator /=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator /=(Integer i);
+		BigInt& operator /=(UnsignedInt i);
 		
 		BigInt& operator /=(const BigInt& i);
 
@@ -288,11 +275,11 @@ namespace s3d
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator %(Integer i) const;
+		BigInt operator %(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator %(Integer i) const;
+		BigInt operator %(UnsignedInt i) const;
 		
 		[[nodiscard]]
 		BigInt operator %(const BigInt& i) const;
@@ -302,10 +289,10 @@ namespace s3d
 		BigInt& operator %=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator %=(Integer i);
+		BigInt& operator %=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL	
-		BigInt& operator %=(Integer i);
+		BigInt& operator %=(UnsignedInt i);
 		
 		BigInt& operator %=(const BigInt& i);
 
@@ -323,11 +310,11 @@ namespace s3d
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator &(Integer i) const;
+		BigInt operator &(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator &(Integer i) const;
+		BigInt operator &(UnsignedInt i) const;
 		
 		[[nodiscard]]
 		BigInt operator &(const BigInt& i) const;
@@ -337,10 +324,10 @@ namespace s3d
 		BigInt& operator &=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator &=(Integer i);
+		BigInt& operator &=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator &=(Integer i);
+		BigInt& operator &=(UnsignedInt i);
 		
 		BigInt& operator &=(const BigInt& i);
 
@@ -358,11 +345,11 @@ namespace s3d
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator |(Integer i) const;
+		BigInt operator |(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator |(Integer i) const;
+		BigInt operator |(UnsignedInt i) const;
 		
 		[[nodiscard]]
 		BigInt operator |(const BigInt& i) const;
@@ -372,10 +359,10 @@ namespace s3d
 		BigInt& operator |=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator |=(Integer i);
+		BigInt& operator |=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator |=(Integer i);
+		BigInt& operator |=(UnsignedInt i);
 		
 		BigInt& operator |=(const BigInt& i);
 
@@ -393,11 +380,11 @@ namespace s3d
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator ^(Integer i) const;
+		BigInt operator ^(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator ^(Integer i) const;
+		BigInt operator ^(UnsignedInt i) const;
 		
 		[[nodiscard]]
 		BigInt operator ^(const BigInt& i) const;
@@ -407,10 +394,10 @@ namespace s3d
 		BigInt& operator ^=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator ^=(Integer i);
+		BigInt& operator ^=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator ^=(Integer i);
+		BigInt& operator ^=(UnsignedInt i);
 		
 		BigInt& operator ^=(const BigInt& i);
 
@@ -428,21 +415,21 @@ namespace s3d
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator <<(Integer i) const;
+		BigInt operator <<(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator <<(Integer i) const;
+		BigInt operator <<(UnsignedInt i) const;
 		
 		BigInt& operator <<=(int64 i);
 		
 		BigInt& operator <<=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator <<=(Integer i);
+		BigInt& operator <<=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator <<=(Integer i);
+		BigInt& operator <<=(UnsignedInt i);
 
 		//////////////////////////////////////////////////
 		//
@@ -458,21 +445,21 @@ namespace s3d
 
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator >>(Integer i) const;
+		BigInt operator >>(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		BigInt operator >>(Integer i) const;
+		BigInt operator >>(UnsignedInt i) const;
 		
 		BigInt& operator >>=(int64 i);
 		
 		BigInt& operator >>=(uint64 i);
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
-		BigInt& operator >>=(Integer i);
+		BigInt& operator >>=(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-		BigInt& operator >>=(Integer i);
+		BigInt& operator >>=(UnsignedInt i);
 
 		//////////////////////////////////////////////////
 		//
@@ -491,11 +478,11 @@ namespace s3d
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
 		[[nodiscard]]
-		int32 compare(Integer i) const;
+		int32 compare(SignedInt i) const;
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
 		[[nodiscard]]
-		int32 compare(Integer i) const;
+		int32 compare(UnsignedInt i) const;
 		
 		SIV3D_CONCEPT_FLOATING_POINT
 		[[nodiscard]]
@@ -536,6 +523,16 @@ namespace s3d
 		BigInt& bitSet(uint32 index, bool value);
 		
 		BigInt& bitFlip(uint32 index);
+
+		void swap(BigInt& other) noexcept;
+
+		size_t hash() const;
+
+		//////////////////////////////////////////////////
+		//
+		//	conversions
+		//
+		//////////////////////////////////////////////////
 
 		[[nodiscard]]
 		int32 asInt32() const;
@@ -582,12 +579,17 @@ namespace s3d
 		[[nodiscard]]
 		String str() const;
 
-		void swap(BigInt& other) noexcept;
+		//////////////////////////////////////////////////
+		//
+		//	detail
+		//
+		//////////////////////////////////////////////////
 
-		//size_t hash() const;
+		[[nodiscard]]
+		BigIntDetail& _detail();
 
-		friend BigInt GCD(const BigInt&, const BigInt&);
-		friend BigInt LCM(const BigInt&, const BigInt&);
+		[[nodiscard]]
+		const BigIntDetail& _detail() const;
 	};
 
 	/*
@@ -609,14 +611,14 @@ namespace s3d
 		return b * a;
 	}
 
-	template <class Integer, std::enable_if_t<(std::is_integral_v<Integer> && std::is_signed_v<Integer>)>* = nullptr>
-	[[nodiscard]] inline BigInt operator /(Integer a, const BigInt& b)
+	template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt> && std::is_signed_v<SignedInt>)>* = nullptr>
+	[[nodiscard]] inline BigInt operator /(SignedInt a, const BigInt& b)
 	{
 		return static_cast<int64>(a) / b;
 	}
 
-	template <class Integer, std::enable_if_t<(std::is_integral_v<Integer> && !std::is_signed_v<Integer>)>* = nullptr>
-	[[nodiscard]] inline BigInt operator /(Integer a, const BigInt& b)
+	template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt> && !std::is_signed_v<SignedInt>)>* = nullptr>
+	[[nodiscard]] inline BigInt operator /(SignedInt a, const BigInt& b)
 	{
 		return static_cast<uint64>(a) / b;
 	}
@@ -624,14 +626,14 @@ namespace s3d
 	[[nodiscard]] BigInt operator /(int64 a, const BigInt& b);
 	[[nodiscard]] BigInt operator /(uint64 a, const BigInt& b);
 
-	template <class Integer, std::enable_if_t<(std::is_integral_v<Integer> && std::is_signed_v<Integer>)>* = nullptr>
-	[[nodiscard]] inline BigInt operator %(Integer a, const BigInt& b)
+	template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt> && std::is_signed_v<SignedInt>)>* = nullptr>
+	[[nodiscard]] inline BigInt operator %(SignedInt a, const BigInt& b)
 	{
 		return static_cast<int64>(a) / b;
 	}
 
-	template <class Integer, std::enable_if_t<(std::is_integral_v<Integer> && !std::is_signed_v<Integer>)>* = nullptr>
-	[[nodiscard]] inline BigInt operator %(Integer a, const BigInt& b)
+	template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt> && !std::is_signed_v<SignedInt>)>* = nullptr>
+	[[nodiscard]] inline BigInt operator %(SignedInt a, const BigInt& b)
 	{
 		return static_cast<uint64>(a) / b;
 	}
@@ -662,18 +664,6 @@ namespace s3d
 	[[nodiscard]] BigInt LCM(const BigInt& a, const BigInt& b);
 
 	[[nodiscard]] bool IsPrime(uint64 n);
-
-	inline namespace Literals
-	{
-		inline namespace BigNumLiterals
-		{
-			[[nodiscard]] BigInt operator ""_big(unsigned long long int i);
-
-			[[nodiscard]] BigInt operator ""_big(const char* number, size_t);
-
-			[[nodiscard]] BigInt operator ""_big(const char32* number, size_t);
-		}
-	}
 
 	[[nodiscard]] inline bool operator ==(const BigInt& a, const BigInt& b)
 	{
@@ -777,16 +767,34 @@ namespace s3d
 		return b.compare(a) >= 0;
 	}
 	*/
+
+	inline namespace Literals
+	{
+		inline namespace BigNumLiterals
+		{
+			[[nodiscard]]
+			BigInt operator ""_big(unsigned long long int i);
+
+			[[nodiscard]]
+			BigInt operator ""_big(const char* s, size_t length);
+
+			[[nodiscard]]
+			BigInt operator ""_big(const char32* s, size_t length);
+		}
+	}
 }
 
 template <>
 inline void std::swap(s3d::BigInt& a, s3d::BigInt& b) noexcept;
 
-# include "detail/BigInt.ipp"
+template <>
+struct std::hash<s3d::BigInt>
+{
+	[[nodiscard]]
+	size_t operator()(const s3d::BigInt& value) const noexcept
+	{
+		return value.hash();
+	}
+};
 
-# undef SIV3D_CONCEPT_SIGNED_INTEGRAL
-# undef SIV3D_CONCEPT_SIGNED_INTEGRAL_
-# undef SIV3D_CONCEPT_UNSIGNED_INTEGRAL
-# undef SIV3D_CONCEPT_UNSIGNED_INTEGRAL_
-# undef SIV3D_CONCEPT_FLOATING_POINT
-# undef SIV3D_CONCEPT_FLOATING_POINT_
+# include "detail/BigInt.ipp"
