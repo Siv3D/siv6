@@ -394,6 +394,9 @@
     <Filter Include="src\Siv3D\BigFloat">
       <UniqueIdentifier>{c79374e9-9441-43b1-be5b-d0d46284246c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Blob">
+      <UniqueIdentifier>{cd95a4ff-41db-4ee6-a4b3-eeb7db50d123}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1392,6 +1395,18 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\DiscreteDistribution.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\IImageEncoder.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\ImageEncoder.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Blob.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Blob.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -1870,6 +1885,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\BigFloat\SivBigFloat.cpp">
       <Filter>src\Siv3D\BigFloat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Blob\SivBlob.cpp">
+      <Filter>src\Siv3D\Blob</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

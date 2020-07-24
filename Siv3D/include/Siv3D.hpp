@@ -869,6 +869,9 @@
 # include <Siv3D/ImageFormat/BMPDecoder.hpp>
 # include <Siv3D/ImageFormat/PNGDecoder.hpp>
 
+# include <Siv3D/IImageEncoder.hpp>
+# include <Siv3D/ImageEncoder.hpp>
+
 # include <Siv3D/Scene.hpp>
 
 # include <Siv3D/Console.hpp>
