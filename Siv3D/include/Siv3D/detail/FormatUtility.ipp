@@ -23,7 +23,7 @@ namespace s3d
 	}
 
 	template <class Type>
-	inline String Pad(const Type& value, const std::pair<int32, char32>& padding)
+	inline String Pad(const Type& value, std::pair<int32, char32> padding)
 	{
 		return Format(value).lpadded(padding.first, padding.second);
 	}

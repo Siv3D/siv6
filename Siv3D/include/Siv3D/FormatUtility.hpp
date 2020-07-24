@@ -16,13 +16,26 @@
 
 namespace s3d
 {
+	/// @brief 
+	/// @tparam Type 
+	/// @param value 
+	/// @param padding 
+	/// @return 
 	template <class Type>
 	[[nodiscard]]
-	inline String Pad(const Type& value, const std::pair<int32, char32>& padding);
+	inline String Pad(const Type& value, std::pair<int32, char32> padding);
 
+	/// @brief 
+	/// @param bytes 
+	/// @return 
 	[[nodiscard]]
 	String FormatDataSize(int64 bytes);
 
+	/// @brief 
+	/// @tparam Integer 
+	/// @param value 
+	/// @param separator 
+	/// @return 
 # if __cpp_lib_concepts
 	template <Concept::Integral Integer>
 # else
@@ -31,6 +44,13 @@ namespace s3d
 	[[nodiscard]]
 	inline String ThousandsSeparate(Integer value, StringView separator = U","_sv);
 
+	/// @brief 
+	/// @tparam FloatingPoint 
+	/// @param value 
+	/// @param decimalPlace 
+	/// @param fixed 
+	/// @param separator 
+	/// @return 
 # ifdef __cpp_lib_concepts
 	template <Concept::FloatingPoint FloatingPoint>
 # else

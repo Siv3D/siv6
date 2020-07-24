@@ -18,14 +18,22 @@ namespace s3d
 {
 	struct Point;
 
+	/// @brief 2 次元のベクトル
+	/// @tparam Type ベクトルの要素の型
 	template <class Type>
 	struct Vector2D
 	{
+		/// @brief ベクトルの要素の型
 		using value_type = Type;
 
+		/// @brief ベクトルの次元数
 		static constexpr size_t Dimension = 2;
 
-		value_type x, y;
+		/// @brief ベクトルの X 成分
+		value_type x;
+		
+		/// @brief ベクトルの Y 成分
+		value_type y;
 
 		SIV3D_NODISCARD_CXX20
 		Vector2D() = default;
