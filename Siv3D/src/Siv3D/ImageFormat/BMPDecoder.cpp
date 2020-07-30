@@ -11,35 +11,10 @@
 
 # include <Siv3D/ImageFormat/BMPDecoder.hpp>
 # include <Siv3D/EngineLog.hpp>
+# include "BMPHeader.hpp"
 
 namespace s3d
 {
-# pragma pack (push, 1)
-
-	struct BMPHeader
-	{
-		uint16 bfType;
-		uint32 bfSize;
-		uint16 bfReserved1;
-		uint16 bfReserved2;
-		uint32 bfOffBits;
-		uint32 biSize;
-		int32  biWidth;
-		int32  biHeight;
-		uint16 biPlanes;
-		uint16 biBitCount;
-		uint32 biCompression;
-		uint32 biSizeImage;
-		int32  biXPelsPerMeter;
-		int32  biYPelsPerMeter;
-		uint32 biClrUsed;
-		uint32 biClrImportant;
-	};
-
-	static_assert(sizeof(BMPHeader) == 54);
-
-# pragma pack (pop)
-
 	StringView BMPDecoder::name() const
 	{
 		return U"BMP"_sv;

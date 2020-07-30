@@ -1419,6 +1419,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ImageEncoder.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\ImageFormat\BMPHeader.hpp">
+      <Filter>src\Siv3D\ImageFormat</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -1909,6 +1912,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageEncoder\CImageEncoder.cpp">
       <Filter>src\Siv3D\ImageEncoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\BMPEncoder.cpp">
+      <Filter>src\Siv3D\ImageFormat</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
