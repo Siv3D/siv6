@@ -100,10 +100,6 @@
 // Hash
 # include <Siv3D/Hash.hpp>
 
-// 高速なハッシュ
-// XXHash
-# include <Siv3D/XXHash.hpp>
-
 // 範囲
 // Range
 # include <Siv3D/Step.hpp>

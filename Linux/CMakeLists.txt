@@ -93,6 +93,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/FormatInt/SivFormatInt.cpp
   ../Siv3D/src/Siv3D/Formatter/SivFormatter.cpp
   ../Siv3D/src/Siv3D/FormatUtility/SivFormatUtility.cpp
+  ../Siv3D/src/Siv3D/Hash/SivHash.cpp
   ../Siv3D/src/Siv3D/Image/SivImage.cpp
   ../Siv3D/src/Siv3D/ImageDecoder/CImageDecoder.cpp
   ../Siv3D/src/Siv3D/ImageDecoder/ImageDecoderFactory.cpp
@@ -268,6 +269,8 @@ add_library(Siv3D STATIC
   ../Siv3D/src/ThirdParty/Oniguruma/utf32_be.c
   ../Siv3D/src/ThirdParty/Oniguruma/utf32_le.c
   ../Siv3D/src/ThirdParty/Oniguruma/utf8.c
+
+  ../Siv3D/src/ThirdParty/xxHash/xxhash.c
   )
 
 target_include_directories(Siv3D PUBLIC

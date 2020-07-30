@@ -43,7 +43,6 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextWriter.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Unicode.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\UnicodeConverter.ipp" />
-    <ClInclude Include="..\Siv3D\include\Siv3D\detail\XXHash.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\EnvironmentVariable.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IImageDecoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IImageEncoder.hpp" />
@@ -235,7 +234,6 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Windows\Libraries.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Windows\Resource.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Windows\Windows.hpp" />
-    <ClInclude Include="..\Siv3D\include\Siv3D\XXHash.hpp" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\Catch2\catch.hpp" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\EnumBitmask\EnumBitmask.hpp" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\fmt\core.h" />
@@ -257,8 +255,6 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\scope-guard\unique_resource.h" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\SMFT\SMFT.hpp" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\Xoshiro-cpp\XoshiroCpp.hpp" />
-    <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxh3.h" />
-    <ClInclude Include="..\Siv3D\include\ThirdParty\xxHash\xxhash.h" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\CRenderer2D_GL4.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\Vertex2DBatch_GL4.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\BinaryReader\BinaryReaderDetail.hpp" />
@@ -352,6 +348,7 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\libpng\pnglibconf.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\miniutf\miniutf.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\oniguruma.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\xxHash\xxhash.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zconf.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zlib.h" />
   </ItemGroup>
@@ -415,6 +412,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\FormatInt\SivFormatInt.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Formatter\SivFormatter.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\FormatUtility\SivFormatUtility.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\Hash\SivHash.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageDecoder\CImageDecoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageDecoder\ImageDecoderFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageDecoder\SivImageDecoder.cpp" />
@@ -527,6 +525,7 @@
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_darwin.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_non_windows_non_darwin.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\infoware\src\system\OS_info\os_info_windows.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\xxHash\xxhash.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
