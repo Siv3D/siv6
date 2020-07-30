@@ -50,7 +50,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\ImageDecoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ImageEncoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat\BMPDecoder.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat\BMPEncoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat\PNGDecoder.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat\PNGEncoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ImageInfo.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\INIData.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IWriter.hpp" />
@@ -421,6 +423,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\BMPDecoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\BMPEncoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\PNGDecoder.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\PNGEncoder.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Image\SivImage.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\INIData\SivINIData.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Int128\SivInt128.cpp" />

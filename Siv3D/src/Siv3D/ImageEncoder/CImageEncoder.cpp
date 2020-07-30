@@ -13,7 +13,7 @@
 # include "CImageEncoder.hpp"
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/ImageFormat/BMPEncoder.hpp>
-//# include <Siv3D/ImageFormat/PNGEncoder.hpp>
+# include <Siv3D/ImageFormat/PNGEncoder.hpp>
 
 namespace s3d
 {
@@ -27,7 +27,7 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CImageEncoder::init()");
 
 		m_encoders.push_back(std::make_unique<BMPEncoder>());
-		//m_encoders.push_back(std::make_unique<PNGEncoder>());
+		m_encoders.push_back(std::make_unique<PNGEncoder>());
 	}
 
 	bool CImageEncoder::save(const Image& image, const StringView encoderName, const FilePathView path)
