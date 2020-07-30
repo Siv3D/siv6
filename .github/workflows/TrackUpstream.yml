@@ -30,15 +30,21 @@ jobs:
         git merge upstream/master
         git push origin master
 
+    - name: Calculate current version ID
+      run: |
+        CurrentVersionID=$(git branch -r --list **/web_experimental_merge_* | awk 'match($0, /[0-9]+/) { print substr($0, RSTART, RLENGTH)}' | sort -nr | head -n 1)
+        echo "::set-env name=CurrentVersionID::${CurrentVersionID}"
+        
     - name: Calculate next version ID
       run: |
-        NewVersionID=$(git branch -r --list **/web_experimental_merge_* | awk 'match($0, /[0-9]+/) { print substr($0, RSTART, RLENGTH) + 1 }' | sort -nr | head -n 1)
-        echo "::set-output name=NewVersionID::${NewVersionID}"
+        NewVersionID=$(echo ${CurrentVersionID} | awk '{ print $0 + 1}')
+        echo "::set-env name=NewVersionID::${NewVersionID}"
 
     - name: Apply Changes
       run: |
+        CurrentBranchName=$(echo "web_experimental_merge_v${CurrentVersionID}")
         NewBranchName=$(echo "web_experimental_merge_v${NewVersionID}")
-        git switch web
-        git checkout -b $NewBranchName
+        git switch ${CurrentBranchName}
+        git checkout -b ${NewBranchName}
         git rebase master
-        git push -u origin $NewBranchName
+        git push -u origin ${NewBranchName}
