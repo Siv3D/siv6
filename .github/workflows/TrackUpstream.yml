@@ -16,6 +16,11 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    
+    - name: Set Bot Profile
+      run: |
+        git config user.email "kamenokonokotan@gmail.com"
+        git config user.name "Kamenoko Auto-Commit bot"  
 
     - name: Fetch upstream and update master
       run: |
