@@ -36,6 +36,13 @@ namespace s3d
 		return U"PNG"_sv;
 	}
 
+	const Array<String>& PNGEncoder::possibleExtensions() const
+	{
+		static const Array<String> extensions = { U"png" };
+
+		return extensions;
+	}
+
 	bool PNGEncoder::save(const Image& image, const FilePathView path) const
 	{
 		return save(image, path, PNGFilter::Default);

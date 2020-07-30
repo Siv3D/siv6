@@ -30,7 +30,27 @@ namespace s3d
 		m_encoders.push_back(std::make_unique<PNGEncoder>());
 	}
 
-	bool CImageEncoder::save(const Image& image, const StringView encoderName, const FilePathView path)
+	String CImageEncoder::getEncoderNameFromExtension(const StringView extension) const
+	{
+		if (not extension)
+		{
+			return{};
+		}
+
+		const String ext = String(extension);
+
+		for (const auto& encoder : m_encoders)
+		{
+			if (encoder->possibleExtensions().includes(ext))
+			{
+				return String(encoder->name());
+			}
+		}
+
+		return{};
+	}
+
+	bool CImageEncoder::save(const Image& image, const StringView encoderName, const FilePathView path) const
 	{
 		LOG_SCOPED_TRACE(U"CImageEncoder::save({}, {})"_fmt(encoderName, path));
 
@@ -44,7 +64,7 @@ namespace s3d
 		return (*it)->save(image, path);
 	}
 
-	bool CImageEncoder::encode(const Image& image, const StringView encoderName, IWriter& writer)
+	bool CImageEncoder::encode(const Image& image, const StringView encoderName, IWriter& writer) const
 	{
 		LOG_SCOPED_TRACE(U"CImageEncoder::encode({})"_fmt(encoderName));
 
@@ -58,7 +78,7 @@ namespace s3d
 		return (*it)->encode(image, writer);
 	}
 
-	Blob CImageEncoder::encode(const Image& image, const StringView encoderName)
+	Blob CImageEncoder::encode(const Image& image, const StringView encoderName) const
 	{
 		LOG_SCOPED_TRACE(U"CImageEncoder::encode({})"_fmt(encoderName));
 

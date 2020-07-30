@@ -8,9 +8,9 @@ void Main()
 {
 	//Siv3DTest();
 
-	Image image(200, 200, Palette::Skyblue);
-	ImageEncoder::Save(image, ImageFormat::BMP, U"save.bmp");
-	ImageEncoder::Save(image, ImageFormat::PNG, U"save.png");
+	//Image image(200, 200, Palette::Skyblue);
+	//image.save(U"save.bmp");
+	//image.save(U"save.png");
 
 	while (System::Update())
 	{

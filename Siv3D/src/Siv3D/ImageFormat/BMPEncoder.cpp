@@ -22,6 +22,13 @@ namespace s3d
 		return U"BMP"_sv;
 	}
 
+	const Array<String>& BMPEncoder::possibleExtensions() const
+	{
+		static const Array<String> extensions = { U"bmp" };
+
+		return extensions;
+	}
+
 	bool BMPEncoder::save(const Image& image, const FilePathView path) const
 	{
 		BinaryWriter writer(path);

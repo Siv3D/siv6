@@ -20,6 +20,8 @@ namespace s3d
 
 		StringView name() const override;
 
+		const Array<String>& possibleExtensions() const override;
+
 		bool save(const Image& image, FilePathView path) const override;
 
 		bool encode(const Image& image, IWriter& writer) const override;

@@ -12,6 +12,7 @@
 # include <Siv3D/ImageEncoder.hpp>
 # include "IImageEncoder.hpp"
 # include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Siv3D/FileSystem.hpp>
 
 namespace s3d
 {
@@ -50,19 +51,45 @@ namespace s3d
 
 	namespace ImageEncoder
 	{
-		bool Save(const Image& image, const ImageFormat format, const FilePathView path)
+		bool Save(const Image& image, ImageFormat format, const FilePathView path)
 		{
-			return SIV3D_ENGINE(ImageEncoder)->save(image, detail::ToString(format), path);
+			String encoderName;
+
+			if (format == ImageFormat::Unspecified)
+			{
+				encoderName = SIV3D_ENGINE(ImageEncoder)->getEncoderNameFromExtension(FileSystem::Extension(path));
+			}
+			else
+			{
+				encoderName = detail::ToString(format);
+			}
+
+			return Save(image, encoderName, path);
+		}
+
+		bool Save(const Image& image, const String& encoderName, const FilePathView path)
+		{
+			return SIV3D_ENGINE(ImageEncoder)->save(image, encoderName, path);
 		}
 
 		bool Encode(const Image& image, const ImageFormat format, IWriter& writer)
 		{
-			return SIV3D_ENGINE(ImageEncoder)->encode(image, detail::ToString(format), writer);
+			return Encode(image, String(detail::ToString(format)), writer);
+		}
+
+		bool Encode(const Image& image, const String& encoderName, IWriter& writer)
+		{
+			return SIV3D_ENGINE(ImageEncoder)->encode(image, encoderName, writer);
 		}
 
 		Blob Encode(const Image& image, const ImageFormat format)
 		{
-			return SIV3D_ENGINE(ImageEncoder)->encode(image, detail::ToString(format));
+			return Encode(image, String(detail::ToString(format)));
+		}
+
+		Blob Encode(const Image& image, const String& encoderName)
+		{
+			return SIV3D_ENGINE(ImageEncoder)->encode(image, encoderName);
 		}
 
 		bool Add(std::unique_ptr<IImageEncoder>&& Encoder)

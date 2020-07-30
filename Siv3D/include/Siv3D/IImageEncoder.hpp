@@ -26,6 +26,9 @@ namespace s3d
 		[[nodiscard]]
 		virtual StringView name() const = 0;
 
+		[[nodiscard]]
+		virtual const Array<String>& possibleExtensions() const = 0;
+
 		virtual bool save(const Image& image, FilePathView path) const = 0;
 
 		virtual bool encode(const Image& image, IWriter& writer) const = 0;

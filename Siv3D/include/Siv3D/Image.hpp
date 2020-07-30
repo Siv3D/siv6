@@ -18,6 +18,7 @@
 # include "PointVector.hpp"
 # include "ColorHSV.hpp"
 # include "IReader.hpp"
+# include "PNGFilter.hpp"
 
 namespace s3d
 {
@@ -310,7 +311,6 @@ namespace s3d
 		[[nodiscard]]
 		const_reverse_iterator crend() const noexcept;
 
-
 		/// <summary>
 		/// 画像を指定した色で塗りつぶします。
 		/// </summary>
@@ -331,6 +331,27 @@ namespace s3d
 		void resize(Size size, Color fillColor);
 
 		void resizeRows(size_t rows, Color fillColor);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		bool save(FilePathView path, ImageFormat format = ImageFormat::Unspecified) const;
+
+		bool savePNG(FilePathView path, PNGFilter filter = PNGFilter::Default) const;
 
 
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty>

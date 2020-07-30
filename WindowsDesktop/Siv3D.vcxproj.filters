@@ -1428,6 +1428,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\ImageFormat\BMPEncoder.hpp">
       <Filter>include\Siv3D\ImageFormat</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\PNGFilter.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">

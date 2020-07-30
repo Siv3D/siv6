@@ -11,6 +11,8 @@
 
 # include <Siv3D/Image.hpp>
 # include <Siv3D/ImageDecoder.hpp>
+# include <Siv3D/ImageEncoder.hpp>
+# include <Siv3D/ImageFormat/PNGEncoder.hpp>
 
 namespace s3d
 {
@@ -22,5 +24,15 @@ namespace s3d
 	Image::Image(IReader&& reader, const ImageFormat format)
 	{
 		*this = ImageDecoder::Decode(reader, format);
+	}
+
+	bool Image::save(const FilePathView path, const ImageFormat format) const
+	{
+		return ImageEncoder::Save(*this, format, path);
+	}
+
+	bool Image::savePNG(const FilePathView path, const PNGFilter filter) const
+	{
+		return PNGEncoder{}.save(*this, path, filter);
 	}
 }

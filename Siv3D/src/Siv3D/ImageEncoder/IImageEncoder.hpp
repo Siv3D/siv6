@@ -25,11 +25,13 @@ namespace s3d
 
 		virtual void init() = 0;
 
-		virtual bool save(const Image& image, StringView encoderName, FilePathView path) = 0;
+		virtual String getEncoderNameFromExtension(StringView extension) const = 0;
 
-		virtual bool encode(const Image& image, StringView encoderName, IWriter& writer) = 0;
+		virtual bool save(const Image& image, StringView encoderName, FilePathView path) const = 0;
 
-		virtual Blob encode(const Image& image, StringView encoderName) = 0;
+		virtual bool encode(const Image& image, StringView encoderName, IWriter& writer) const = 0;
+
+		virtual Blob encode(const Image& image, StringView encoderName) const = 0;
 
 		virtual bool add(std::unique_ptr<IImageEncoder>&& Encoder) = 0;
 

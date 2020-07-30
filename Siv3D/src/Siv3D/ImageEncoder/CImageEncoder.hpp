@@ -33,11 +33,13 @@ namespace s3d
 
 		void init() override;
 
-		bool save(const Image& image, StringView encoderName, FilePathView path) override;
+		String getEncoderNameFromExtension(StringView extension) const override;
 
-		bool encode(const Image& image, StringView encoderName, IWriter& writer) override;
+		bool save(const Image& image, StringView encoderName, FilePathView path) const override;
 
-		Blob encode(const Image& image, StringView encoderName) override;
+		bool encode(const Image& image, StringView encoderName, IWriter& writer) const override;
+
+		Blob encode(const Image& image, StringView encoderName) const override;
 
 		bool add(std::unique_ptr<IImageEncoder>&& encoder) override;
 

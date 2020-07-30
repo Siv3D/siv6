@@ -20,9 +20,15 @@ namespace s3d
 	{
 		bool Save(const Image& image, ImageFormat format, FilePathView path);
 
+		bool Save(const Image& image, const String& encoderName, FilePathView path);
+
 		bool Encode(const Image& image, ImageFormat format, IWriter& writer);
 
+		bool Encode(const Image& image, const String& encoderName, IWriter& writer);
+
 		Blob Encode(const Image& image, ImageFormat format);
+
+		Blob Encode(const Image& image, const String& encoderName);
 
 		template <class ImageEncoder>
 		bool Add();
