@@ -11,12 +11,11 @@ set(CMAKE_C_FLAGS "-D_GLFW_X11")
 
 add_library(
   Siv3D STATIC
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/BinaryReader/BinaryReaderDetail.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Console/CConsole.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Date/SivDate_Platform.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/DateTime/SivDateTime_Platform.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Logger/CLogger.cpp
-  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Unicode/SivUnicode_Platform.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/BinaryReader/BinaryReaderDetail.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Console/CConsole.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Date/SivDate_macOS_Linux.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/DateTime/SivDateTime_macOS_Linux.cpp
+  ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Logger/CLogger.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3DMain.cpp
   ../Siv3D/src/Siv3D-Platform/Web/FileSystem/SivFileSystem_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Renderer/GLES3/CRenderer_GLES3.cpp
@@ -29,7 +28,7 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/Web/Window/WindowFactory.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/BinaryReader/SivBinaryReader.cpp
-  ../Siv3D/src/Siv3D/Common/ApplicationOptions.cpp
+  ../Siv3D/src/Siv3D/ApplicationOptions/SivApplicationOptions.cpp
   ../Siv3D/src/Siv3D/Common/Siv3DEngine.cpp
   ../Siv3D/src/Siv3D/Console/ConsoleFactory.cpp
   ../Siv3D/src/Siv3D/Console/SivConsole.cpp
@@ -62,6 +61,7 @@ add_library(
   ../Siv3D/src/Siv3D/System/SystemLog.cpp
   ../Siv3D/src/Siv3D/Threading/SivThreading.cpp
   ../Siv3D/src/Siv3D/Unicode/SivUnicode.cpp
+  ../Siv3D/src/Siv3D/UnicodeConverter/SivUnicodeConverter.cpp
   ../Siv3D/src/Siv3D/Unicode/UnicodeUtility.cpp
   ../Siv3D/src/Siv3D/UserAction/CUserAction.cpp
   ../Siv3D/src/Siv3D/UserAction/UserActionFactory.cpp
@@ -100,8 +100,6 @@ add_library(
   # ../Siv3D/src/ThirdParty/GLFW/x11_monitor.c
   # ../Siv3D/src/ThirdParty/GLFW/x11_window.c
   # ../Siv3D/src/ThirdParty/GLFW/xkb_unicode.c
-
-  ../Siv3D/src/Test/Siv3DTest.cpp
   )
 
 target_include_directories(
@@ -115,31 +113,3 @@ target_include_directories(
   ../Siv3D/src/ThirdParty
   ${LIBSIV3D_INCLUDE_DIRS}
   )
-
-enable_testing()
-
-add_executable(
-  Siv3DTest
-  ../Web/Main.cpp
-  )
-
-target_link_libraries(Siv3DTest PRIVATE
-  Siv3D
-  pthread
-  ${LIBSIV3D_LIBRARIES}
-  ${CMAKE_DL_LIBS}
-  )
-
-target_include_directories(
-  Siv3DTest
-  PRIVATE ../Siv3D/src/ThirdParty)
-
-set_target_properties(
-  Siv3DTest
-  PROPERTIES
-  LINK_FLAGS "-s FULL_ES3=1 -s USE_GLFW=3 -s ERROR_ON_UNDEFINED_SYMBOLS=0"
-)
-
-add_test(
-  NAME Siv3DTest
-  COMMAND Siv3DTest)
