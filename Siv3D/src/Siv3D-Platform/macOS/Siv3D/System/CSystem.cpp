@@ -13,6 +13,7 @@
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/Resource/IResource.hpp>
 # include <Siv3D/Profiler/IProfiler.hpp>
+# include <Siv3D/LicenseManager/ILicenseManager.hpp>
 # include <Siv3D/ImageDecoder/IImageDecoder.hpp>
 # include <Siv3D/ImageEncoder/IImageEncoder.hpp>
 # include <Siv3D/Window/IWindow.hpp>
@@ -85,6 +86,9 @@ namespace s3d
 		SIV3D_ENGINE(Renderer)->clear();
 		SIV3D_ENGINE(Cursor)->update();
 		
+		// triggerd by key inputs
+		SIV3D_ENGINE(LicenseManager)->update();
+
 		return true;
 	}
 }

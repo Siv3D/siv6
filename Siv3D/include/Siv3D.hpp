@@ -582,9 +582,11 @@
 
 # include <Siv3D/Logger.hpp>
 
+# include <Siv3D/LicenseInfo.hpp>
+
 // ライセンス出力の管理
 // License management
-//# include <Siv3D/LicenseManager.hpp>
+# include <Siv3D/LicenseManager.hpp>
 
 
 

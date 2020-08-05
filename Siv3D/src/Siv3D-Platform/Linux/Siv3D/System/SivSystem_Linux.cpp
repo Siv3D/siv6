@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -11,27 +11,11 @@
 
 # include <Siv3D/System.hpp>
 # include <Siv3D/FileSystem.hpp>
-# include <Siv3D/Windows/Windows.hpp>
 
 namespace s3d
 {
 	namespace System
 	{
-		void Sleep(const int32 milliseconds)
-		{
-			if (milliseconds < 0)
-			{
-				return;
-			}
-
-			// システムクロックの精度を上げる
-			::timeBeginPeriod(1);
-			{
-				::Sleep(milliseconds);
-			}
-			::timeEndPeriod(1);
-		}
-
 		bool LaunchBrowser(const FilePathView _url)
 		{
 			String url{ _url };
@@ -51,7 +35,17 @@ namespace s3d
 				url = (U"file://" + FileSystem::FullPath(_url));
 			}
 
-			return reinterpret_cast<size_t>(::ShellExecuteW(nullptr, L"open", url.toWstr().c_str(), nullptr, nullptr, SW_SHOWNORMAL)) > 32;
+			if (std::system("which xdg-open >/dev/null 2>&1") != 0)
+			{
+				// xdg-open command not found
+				return false;
+			}
+
+			String command = U"xdg-open ";
+			command += url;
+			command += U" >/dev/null 2>&1";
+
+			return (std::system(command.narrow().c_str()) == 0);
 		}
 	}
 }

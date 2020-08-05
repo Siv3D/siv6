@@ -53,7 +53,7 @@ namespace s3d
 		explicit AsyncTask(Fty&& f, Args&&... args);
 
 		/// @brief 非同期処理のタスクが完了しているかを返します。
-		/// @return 非同期処理のタスクが完了している場合 true, それ以外の場合 false
+		/// @return 非同期処理のタスクが完了している場合 true, それ以外の場合は false
 		[[nodiscard]]
 		bool isReady() const;
 	};

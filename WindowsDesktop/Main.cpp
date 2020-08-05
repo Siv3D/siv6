@@ -8,9 +8,7 @@ void Main()
 {
 	//Siv3DTest();
 
-	//Image image(200, 200, Palette::Skyblue);
-	//image.save(U"save.bmp");
-	//image.save(U"save.png");
+	//LicenseManager::ShowInBrowser();
 
 	while (System::Update())
 	{

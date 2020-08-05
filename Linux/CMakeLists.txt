@@ -43,6 +43,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Common/OpenGL.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Cursor/CCursor.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/FileSystem/SivFileSystem_Linux.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/System/SivSystem_Linux.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer/GL4/CRenderer_GL4.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer/RendererFactory.cpp
   
@@ -108,6 +109,9 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/INIData/SivINIData.cpp
   ../Siv3D/src/Siv3D/Int128/SivInt128.cpp
   ../Siv3D/src/Siv3D/IntFormatter/SivIntFormatter.cpp
+  ../Siv3D/src/Siv3D/LicenseManager/CLicenseManager.cpp
+  ../Siv3D/src/Siv3D/LicenseManager/LicenseManagerFactory.cpp
+  ../Siv3D/src/Siv3D/LicenseManager/SivLicenseManager.cpp
   ../Siv3D/src/Siv3D/Logger/LoggerFactory.cpp
   ../Siv3D/src/Siv3D/Logger/SivLogger.cpp
   ../Siv3D/src/Siv3D/Point/SivPoint.cpp

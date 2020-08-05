@@ -11,6 +11,7 @@
 
 # include "Siv3DEngine.hpp"
 # include <Siv3D/Dummy/IDummy.hpp>
+# include <Siv3D/LicenseManager/ILicenseManager.hpp>
 # include <Siv3D/Logger/ILogger.hpp>
 # include <Siv3D/System/ISystem.hpp>
 # include <Siv3D/Resource/IResource.hpp>

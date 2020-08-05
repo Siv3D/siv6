@@ -403,6 +403,9 @@
     <Filter Include="src\Siv3D\Hash">
       <UniqueIdentifier>{d3898a21-8893-487b-b594-e1cdf39bb6de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\LicenseManager">
+      <UniqueIdentifier>{a97418ee-8711-4954-b57a-dca011a513a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1425,6 +1428,21 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\xxHash\xxhash.h">
       <Filter>src\ThirdParty\xxHash</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\LicenseManager\CLicenseManager.hpp">
+      <Filter>src\Siv3D\LicenseManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\LicenseManager\ILicenseManager.hpp">
+      <Filter>src\Siv3D\LicenseManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\LicenseManager.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\LicenseInfo.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\LicenseManager\LicenseList.hpp">
+      <Filter>src\Siv3D\LicenseManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -1927,6 +1945,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Hash\SivHash.cpp">
       <Filter>src\Siv3D\Hash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\LicenseManager\LicenseManagerFactory.cpp">
+      <Filter>src\Siv3D\LicenseManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\LicenseManager\CLicenseManager.cpp">
+      <Filter>src\Siv3D\LicenseManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\LicenseManager\SivLicenseManager.cpp">
+      <Filter>src\Siv3D\LicenseManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

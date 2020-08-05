@@ -80,7 +80,7 @@ namespace s3d
 		/// @brief 2 つの色が等しいかを返します。
 		/// @param lhs 比較する色
 		/// @param rhs 比較する色
-		/// @return 2 つの色が等しい場合 true, それ以外の場合 false
+		/// @return 2 つの色が等しい場合 true, それ以外の場合は false
 		[[nodiscard]]
 		friend constexpr bool operator ==(Color lhs, Color rhs) noexcept
 		{
