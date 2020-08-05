@@ -8,6 +8,10 @@ void Main()
 {
 	Siv3DTest();
 	
+	//LicenseManager::ShowInBrowser();
+	//System::LaunchBrowser(U"test.html");
+	//System::LaunchBrowser(U"https://siv3d.github.io/");
+	
 	while (System::Update())
 	{
 		for (auto i : step(20))

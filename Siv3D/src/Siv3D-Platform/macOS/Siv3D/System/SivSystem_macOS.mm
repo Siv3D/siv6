@@ -11,38 +11,55 @@
 
 # include <Siv3D/System.hpp>
 # include <Siv3D/FileSystem.hpp>
-# import <Cocoa/Cocoa.h>
+# import  <Cocoa/Cocoa.h>
 
 namespace s3d
 {
 	namespace detail
 	{
-		static bool MacOS_LaunchBrowser(const char* url)
+		[[nodiscard]]
+		static bool MacOS_OpenURLInBrowser(const char* _url)
 		{
 			@autoreleasepool
 			{
-				NSString* str = [NSString stringWithCString:url encoding:NSUTF8StringEncoding];
-				NSURL* ns_url = [NSURL URLWithString:str];
-				
+				NSString* url = [NSString stringWithUTF8String:_url];
+				NSURL* ns_url = [NSURL URLWithString:url];
 				const bool result = [[NSWorkspace sharedWorkspace]
 									openURLs:@[ns_url]
 									withAppBundleIdentifier:nil
 									options:NSWorkspaceLaunchDefault
 									additionalEventParamDescriptor:nil
 									launchIdentifiers:nil];
-				
 				return result;
 			}
+		}
+	
+		[[nodiscard]]
+		static bool MacOS_OpenHTMLInBrowser(const char* _path)
+		{
+			@autoreleasepool
+			{
+				NSString* path = [NSString stringWithUTF8String:_path];
+				const bool result = [[NSWorkspace sharedWorkspace]
+									openFile:path];
+				return result;
+			}
+			
 		}
 	}
 
 	namespace System
 	{
-			String url{ _url };
-			const bool isWebPage = url.starts_with(U"http://")
-				|| url.starts_with(U"https://");
+		bool LaunchBrowser(const FilePathView _url)
+		{
+			const bool isWebPage = _url.starts_with(U"http://")
+				|| _url.starts_with(U"https://");
 
-			if (!isWebPage)
+			if (isWebPage)
+			{
+				return detail::MacOS_OpenURLInBrowser(_url.narrow().c_str());
+			}
+			else
 			{
 				const String extension = FileSystem::Extension(_url);
 				const bool isHTML = (extension == U"html") || (extension == U"htm");
@@ -52,10 +69,8 @@ namespace s3d
 					return false;
 				}
 
-				url = (U"file://" + FileSystem::FullPath(_url));
+				return detail::MacOS_OpenHTMLInBrowser(FileSystem::FullPath(_url).narrow().c_str());
 			}
-
-			return detail::MacOS_LaunchBrowser(url.narrow().c_str());
 		}
 	}
 }
