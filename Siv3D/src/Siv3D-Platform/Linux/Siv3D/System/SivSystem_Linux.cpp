@@ -32,7 +32,7 @@ namespace s3d
 					return false;
 				}
 
-				url = (U"file://" + FileSystem::FullPath(_url));
+				url = FileSystem::FullPath(_url);
 			}
 
 			if (std::system("which xdg-open >/dev/null 2>&1") != 0)
@@ -42,7 +42,7 @@ namespace s3d
 			}
 
 			String command = U"xdg-open ";
-			command += url;
+			command += (U'\"' + url + U'\"');
 			command += U" >/dev/null 2>&1";
 
 			return (std::system(command.narrow().c_str()) == 0);

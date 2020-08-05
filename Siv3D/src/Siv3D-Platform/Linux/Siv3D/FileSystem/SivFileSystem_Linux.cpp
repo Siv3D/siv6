@@ -178,6 +178,12 @@ namespace s3d
 					return specialFolderPaths;
 				}
 
+				if (const FilePath localCacheDirectory = homeDirectory + U"/.cache/";
+					FileSystem::Exists(localCacheDirectory))
+				{
+					specialFolderPaths[FromEnum(SpecialFolder::LocalAppData)] = localCacheDirectory;
+				}
+
 				if (const FilePath localFontDirectory = homeDirectory + U"/usr/local/share/fonts/";
 					FileSystem::Exists(localFontDirectory))
 				{
