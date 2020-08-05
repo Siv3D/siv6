@@ -97,11 +97,11 @@ div.c2		{ padding-bottom: 24px; color: #888888; text-align: center; font-size: 9
 				for (const auto& license : EnumLicenses())
 				{
 					writer.writelnUTF8(detail::licenseC0);
-					writer.writeln(license.title);
+					writer.writeln(license.title.xml_escaped());
 					writer.writelnUTF8(detail::divEnd);
 
 					writer.writelnUTF8(detail::licenseC1);
-					writer.writeln(license.copyright.replaced(U"\n", U"<br>"));
+					writer.writeln(license.copyright.xml_escaped().replaced(U"\n", U"<br>"));
 					writer.writelnUTF8(detail::divEnd);
 
 					writer.writelnUTF8(detail::licenseC2);

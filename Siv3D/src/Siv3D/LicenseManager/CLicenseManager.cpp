@@ -41,9 +41,9 @@ namespace s3d
 		{
 			const LicenseInfo info
 			{
-				.title = license.title.xml_escaped(),
-				.copyright = license.copyright.xml_escaped(),
-				.text = license.text.xml_escaped()
+				.title		= license.title,
+				.copyright	= license.copyright,
+				.text		= license.text.xml_escaped()
 			};
 			m_licenses.push_front(info);
 

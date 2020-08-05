@@ -4,6 +4,7 @@
 Library | Version
 --- | ---
 [Abseil](https://github.com/abseil/abseil-cpp) | 20200225.2
+Anti-Grain Geometry | v2.4
 [Catch2](https://github.com/catchorg/Catch2) | v2.12.2
 [cpu_features](https://github.com/google/cpu_features) | v0.4.1
 [double-conversion](https://github.com/google/double-conversion) | v3.1.5
@@ -14,6 +15,7 @@ Library | Version
 [infoware](https://github.com/ThePhD/infoware) | v0.5.3
 [levenshtein-sse](https://github.com/addaleax/levenshtein-sse) | 
 [libpng](http://www.libpng.org/pub/png/libpng.html) | 1.6.37
+[lunasvg](https://github.com/sammycage/lunasvg) | 
 [miniutf](https://github.com/dropbox/miniutf) | 
 [Oniguruma](https://github.com/kkos/oniguruma) | v6.9.5_rev1
 [scope-guard](https://github.com/offa/scope-guard) | v0.3.4
