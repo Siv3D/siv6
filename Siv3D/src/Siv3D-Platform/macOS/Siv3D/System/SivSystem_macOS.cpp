@@ -38,15 +38,21 @@ namespace s3d
 
 	namespace System
 	{
-		bool LaunchBrowser(const FilePathView _url)
-		{
 			String url{ _url };
 			const bool isWebPage = url.starts_with(U"http://")
 				|| url.starts_with(U"https://");
 
 			if (!isWebPage)
 			{
-				url.insert(0, U"file://");
+				const String extension = FileSystem::Extension(_url);
+				const bool isHTML = (extension == U"html") || (extension == U"htm");
+
+				if (!isHTML)
+				{
+					return false;
+				}
+
+				url = (U"file://" + FileSystem::FullPath(_url));
 			}
 
 			return detail::MacOS_LaunchBrowser(url.narrow().c_str());
