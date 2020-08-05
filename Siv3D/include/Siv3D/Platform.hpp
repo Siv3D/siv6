@@ -155,7 +155,7 @@
 //
 //////////////////////////////////////////////////
 
-#if defined(__cplusplus)
+# if defined(__cplusplus)
 
 	# if (__has_cpp_attribute(nodiscard) >= 201907L)
 

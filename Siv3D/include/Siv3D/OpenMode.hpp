@@ -15,9 +15,13 @@
 
 namespace s3d
 {
+	/// @brief ファイルのオープンモード
 	enum class OpenMode : uint32
 	{
+		/// @brief 新規作成
 		Trunc			= 1 << 1,
+
+		/// @brief 追加
 		Append			= 1 << 2,
 	};
 	DEFINE_BITMASK_OPERATORS(OpenMode);

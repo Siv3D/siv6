@@ -342,108 +342,78 @@ namespace s3d
 
 		void swap(String& other) noexcept;
 
-		/// <summary>
-		/// 指定した文字から始まるかを調べます。
-		/// </summary>
-		/// <param name="ch">
-		/// 検索する文字
-		/// </param>
-		/// <returns>
-		/// 指定した文字から始まる場合 true, それ以外の場合は false
-		/// </returns>
+		/// @brief 文字列が指定した文字から始まるかを返します。
+		/// @param ch 検索する文字
+		/// @return 指定した文字から始まる場合 true, それ以外の場合は false	
 		[[nodiscard]]
 		bool starts_with(value_type ch) const noexcept;
-		
-		/// <summary>
-		/// 指定した文字列から始まるかを調べます。
-		/// </summary>
-		/// <param name="str">
-		/// 検索する文字列
-		/// </param>
-		/// <returns>
-		/// 指定した文字列から始まる場合 true, それ以外の場合は false
-		/// </returns>
+
+		/// @brief 文字列が指定した文字列から始まるかを返します。
+		/// @param s 検索する文字列
+		/// @return 指定した文字列から始まる場合 true, それ以外の場合は false
 		[[nodiscard]]
 		bool starts_with(StringView s) const;
 
-		/// <summary>
-		/// 指定した文字で終わるかを調べます。
-		/// </summary>
-		/// <param name="ch">
-		/// 検索する文字
-		/// </param>
-		/// <returns>
-		/// 指定した文字で終わる場合 true, それ以外の場合は false
-		/// </returns>
+		/// @brief 文字列が指定した文字で終わるかを返します。
+		/// @param ch 検索する文字
+		/// @return 指定した文字で終わる場合 true, それ以外の場合は false
 		[[nodiscard]]
 		bool ends_with(value_type ch) const noexcept;
 
-		/// <summary>
-		/// 指定した文字列で終わるかを調べます。
-		/// </summary>
-		/// <param name="s">
-		/// 検索する文字列
-		/// </param>
-		/// <returns>
-		/// 指定した文字列で終わる場合 true, それ以外の場合は false
-		/// </returns>
+		/// @brief 文字列が指定した文字列で終わるかを返します。
+		/// @param s 検索する文字列
+		/// @return 指定した文字列で終わる場合 true, それ以外の場合は false
 		[[nodiscard]]
 		bool ends_with(StringView s) const;
 
+		/// @brief 
+		/// @param offset 
+		/// @param count 
+		/// @return 
 		[[nodiscard]]
 		String substr(size_t offset = 0, size_t count = npos) const;
 
+		/// @brief 
+		/// @param offset 
+		/// @param count 
+		/// @return 
 		[[nodiscard]]
 		StringView substrView(size_t offset = 0, size_t count = npos) const&;
 
+		/// @brief 
+		/// @param offset 
+		/// @param count 
+		/// @return 
 		[[nodiscard]]
 		StringView substrView(size_t offset = 0, size_t count = npos)&& = delete;
 
-		/// <summary>
-		/// 文字列をマルチバイト文字列に変換した結果を返します。
-		/// </summary>
-		/// <returns>
-		/// 変換された文字列
-		/// </returns>
+		/// @brief 文字列を std::string に変換します。
+		/// @return 変換された文字列
 		[[nodiscard]]
 		std::string narrow() const;
 
-		/// <summary>
-		/// 文字列を std::wstring に変換した結果を返します。
-		/// </summary>
-		/// <returns>
-		/// 変換された文字列
-		/// </returns>
+		/// @brief 文字列を std::wstring に変換します。
+		/// @return 変換された文字列
 		[[nodiscard]]
 		std::wstring toWstr() const;
 
-		/// <summary>
-		/// 文字列を UTF8 の std::string にエンコードします。
-		/// </summary>
-		/// <returns>
-		/// UTF8 でエンコードされた std::string
-		/// </returns>
+		/// @brief 文字列を UTF-8 文字列に変換します。
+		/// @return 変換された文字列
 		[[nodiscard]]
 		std::string toUTF8() const;
 
-		/// <summary>
-		/// 文字列を UTF16 の std::u16string にエンコードします。
-		/// </summary>
-		/// <returns>
-		/// UTF16 でエンコードされた std::u16string
-		/// </returns>
+		/// @brief 文字列を UTF-16 文字列に変換します。
+		/// @return 変換された文字列
 		[[nodiscard]]
 		std::u16string toUTF16() const;
 
-		/// <summary>
-		/// 文字列を UTF32 の std::u32string にエンコードします。
-		/// </summary>
-		/// <returns>
-		/// UTF32 でエンコードされた std::u32string
-		/// </returns>
+		/// @brief 文字列を UTF-32 文字列に変換します。
+		/// @return 変換された文字列
 		[[nodiscard]]
 		const std::u32string& toUTF32() const noexcept;
 
+		/// @brief 文字列のハッシュを返します。
+		/// @return 文字列のハッシュ
 		[[nodiscard]]
 		uint64 hash() const noexcept;
 
