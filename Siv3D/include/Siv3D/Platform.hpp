@@ -125,11 +125,11 @@
 //
 //////////////////////////////////////////////////
 
-# if SIV3D_PLATFORM(WINDOWS) && (_MSC_VER < 1926)
+# if SIV3D_PLATFORM(WINDOWS) && (_MSC_VER < 1928)
 
 	// お使いの Visual Studio のバージョンが古い場合、このエラーが発生します
 	// This error occures when your Visual Studio version is not up to date.
-	# error Please update the Visual Studio. Visual Studio 2019 16.6 or later is required to build this project.
+	# error Please update the Visual Studio. Visual Studio 2019 16.8 or later is required to build this project.
 
 # endif
 
