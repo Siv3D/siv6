@@ -143,7 +143,7 @@ namespace s3d
 	}
 
 	template <class Float>
-	inline constexpr typename BasicPerlinNoise<Float>::state_type& BasicPerlinNoise<Float>::serialize() const noexcept
+	inline constexpr const typename BasicPerlinNoise<Float>::state_type& BasicPerlinNoise<Float>::serialize() const noexcept
 	{
 		return m_perm;
 	}

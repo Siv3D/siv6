@@ -64,7 +64,7 @@ namespace s3d
 		value_type noise3D(value_type x, value_type y, value_type z) const noexcept;
 
 		[[nodiscard]]
-		constexpr state_type& serialize() const noexcept;
+		constexpr const state_type& serialize() const noexcept;
 
 		constexpr void deserialize(const state_type& state) noexcept;
 	};
