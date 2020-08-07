@@ -15,6 +15,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Allocator.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ApplicationOptions.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Array.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\BetterGradientNoise.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\BigFloat.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\BigInt.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\BinaryReader.hpp" />
@@ -37,6 +38,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\ImageEncoder.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\INIData.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IWriter.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Noise.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\PerlinNoise.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Resource.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextEncoding.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextReader.ipp" />
@@ -44,6 +47,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Unicode.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\UnicodeConverter.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\EnvironmentVariable.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\GaborNoise.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\GradientNoise.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IImageDecoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IImageEncoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ImageDecoder.hpp" />
@@ -58,6 +63,8 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\IWriter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LicenseInfo.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LicenseManager.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Noise.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\PerlinNoise.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PixelFormat.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ColorHSV.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Common.hpp" />

@@ -670,10 +670,6 @@
 // Periodic Functions
 //# include <Siv3D/Periodic.hpp>
 
-// Perlin ノイズ
-// Perlin Noise
-//# include <Siv3D/PerlinNoise.hpp>
-
 // ノイズ生成
 // Noise
 //# include <Siv3D/NoiseGenerator.hpp>
@@ -705,6 +701,31 @@
 // 統計
 // Statistics
 # include <Siv3D/Statistics.hpp>
+
+//////////////////////////////////////////////////
+//
+//	ノイズ
+//	Noise
+//
+//////////////////////////////////////////////////
+
+# include <Siv3D/Noise.hpp>
+
+// Gradient ノイズ (クラシック Perlin Noise)
+// Gradient Noise (Classic Perlin Noise)
+# include <Siv3D/GradientNoise.hpp>
+
+// 改良型 Gradient ノイズ
+// Better Gradient Noise
+# include <Siv3D/BetterGradientNoise.hpp>
+
+// Improved Perlin ノイズ
+// Improved Perlin Noise
+# include <Siv3D/PerlinNoise.hpp>
+
+// Gabor ノイズ
+// Gabor Noise
+# include <Siv3D/GaborNoise.hpp>
 
 //////////////////////////////////////////////////
 //

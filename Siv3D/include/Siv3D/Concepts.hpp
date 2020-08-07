@@ -84,6 +84,8 @@ namespace s3d
 	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL_	template <s3d::Concept::UnsignedIntegral UnsignedInt>
 	# define SIV3D_CONCEPT_FLOATING_POINT		template <s3d::Concept::FloatingPoint Float>
 	# define SIV3D_CONCEPT_FLOATING_POINT_		template <s3d::Concept::FloatingPoint Float>
+	# define SIV3D_CONCEPT_URBG					template <s3d::Concept::UniformRandomBitGenerator URBG>
+	# define SIV3D_CONCEPT_URBG_				template <s3d::Concept::UniformRandomBitGenerator URBG>
 
 # else
 
@@ -93,5 +95,7 @@ namespace s3d
 	# define SIV3D_CONCEPT_UNSIGNED_INTEGRAL_	template <class UnsignedInt, std::enable_if_t<(std::is_integral_v<UnsignedInt>&& !std::is_signed_v<UnsignedInt>)>*>
 	# define SIV3D_CONCEPT_FLOATING_POINT		template <class Float, std::enable_if_t<std::is_floating_point_v<Float>>* = nullptr>
 	# define SIV3D_CONCEPT_FLOATING_POINT_		template <class Float, std::enable_if_t<std::is_floating_point_v<Float>>*>
+	# define SIV3D_CONCEPT_URBG					template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
+	# define SIV3D_CONCEPT_URBG_				template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
 
 # endif

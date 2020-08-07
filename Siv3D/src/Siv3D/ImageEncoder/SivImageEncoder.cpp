@@ -10,6 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/ImageEncoder.hpp>
+# include <Siv3D/Image.hpp>
 # include "IImageEncoder.hpp"
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/FileSystem.hpp>
@@ -53,6 +54,11 @@ namespace s3d
 	{
 		bool Save(const Image& image, ImageFormat format, const FilePathView path)
 		{
+			if (not image)
+			{
+				return false;
+			}
+
 			String encoderName;
 
 			if (format == ImageFormat::Unspecified)
