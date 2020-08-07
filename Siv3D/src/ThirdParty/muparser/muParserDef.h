@@ -57,21 +57,11 @@
 */
 //#define MUP_USE_OPENMP
 
-#if defined(_UNICODE)
-	/** \brief Definition of the basic parser string type. */
-	#define MUP_STRING_TYPE std::wstring
+#define MUP_STRING_TYPE std::wstring
 
-	#if !defined(_T)
-		#define _T(x) L##x
-	#endif // not defined _T
-#else
-	#ifndef _T
-		#define _T(x) x
-	#endif
-
-	/** \brief Definition of the basic parser string type. */
-	#define MUP_STRING_TYPE std::string
-#endif
+#if !defined(_T)
+#define _T(x) L##x
+#endif // not defined _T
 
 /** \brief An assertion that does not kill the program. */
 #define MUP_ASSERT(COND)											\
