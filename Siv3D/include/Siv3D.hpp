@@ -106,7 +106,7 @@
 
 // 2D 範囲
 // 2D range
-# include <Siv3D/Step2D.hpp> // [Siv3D ToDo]
+# include <Siv3D/Step2D.hpp>
 
 // 無限リスト
 // Infinite list
@@ -459,7 +459,7 @@
 
 // リソースファイルの管理
 // Resource files
-# include <Siv3D/Resource.hpp> // [Siv3D ToDo]
+# include <Siv3D/Resource.hpp>
 
 // ファイルとディレクトリの変更の監視
 // Directory Watcher
@@ -588,8 +588,6 @@
 // License management
 # include <Siv3D/LicenseManager.hpp>
 
-
-
 //////////////////////////////////////////////////
 //
 //	乱数と分布
@@ -713,11 +711,11 @@
 
 // Gradient ノイズ (クラシック Perlin Noise)
 // Gradient Noise (Classic Perlin Noise)
-# include <Siv3D/GradientNoise.hpp>
+# include <Siv3D/GradientNoise.hpp> // [Siv3D ToDo]
 
 // 改良型 Gradient ノイズ
 // Better Gradient Noise
-# include <Siv3D/BetterGradientNoise.hpp>
+# include <Siv3D/BetterGradientNoise.hpp> // [Siv3D ToDo]
 
 // Improved Perlin ノイズ
 // Improved Perlin Noise
@@ -725,7 +723,7 @@
 
 // Gabor ノイズ
 // Gabor Noise
-# include <Siv3D/GaborNoise.hpp>
+# include <Siv3D/GaborNoise.hpp> // [Siv3D ToDo]
 
 //////////////////////////////////////////////////
 //
@@ -838,9 +836,6 @@
 // 平面分割
 // Planar Subdivisions
 //# include <Siv3D/Subdivision2D.hpp>
-
-
-
 
 //////////////////////////////////////////////////
 //
