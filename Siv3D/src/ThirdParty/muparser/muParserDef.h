@@ -58,10 +58,10 @@
 //#define MUP_USE_OPENMP
 
 #define MUP_STRING_TYPE std::wstring
-
-#if !defined(_T)
+#if defined(_T)
+#undef _T
+#endif
 #define _T(x) L##x
-#endif // not defined _T
 
 /** \brief An assertion that does not kill the program. */
 #define MUP_ASSERT(COND)											\
