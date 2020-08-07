@@ -49,7 +49,7 @@ namespace s3d
 		std::string source(reader.size(), '\0');
 
 		if (reader.read(source.data(), source.size())
-			!= source.size())
+			!= static_cast<int64>(source.size()))
 		{
 			LOG_FAIL(U"❌ SVGDecoder::getImageInfo(): Failed to read the source");
 			return none;
@@ -81,7 +81,7 @@ namespace s3d
 		std::string source(reader.size(), '\0');
 
 		if (reader.read(source.data(), source.size())
-			!= source.size())
+			!= static_cast<int64>(source.size()))
 		{
 			LOG_FAIL(U"❌ SVGDecoder::decode(): Failed to read the source");
 			return{};

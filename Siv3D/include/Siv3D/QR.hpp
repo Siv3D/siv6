@@ -37,8 +37,8 @@ namespace s3d
 		[[nodiscard]]
 		Grid<bool> EncodeBinary(const void* data, size_t size, QRErrorCorrection ec = QRErrorCorrection::Low, int32 minVersion = MinVersion);
 
-		Image MakeImage(const Grid<bool>& qr, int32 cellSize = 16, int32 borderCells = 4);
+		Image MakeImage(const Grid<bool>& qr, int32 cellSize = 16, size_t borderCells = 4);
 
-		bool SaveSVG(FilePathView path, const Grid<bool>& code, int32 borderCells = 4);
+		bool SaveSVG(FilePathView path, const Grid<bool>& code, size_t borderCells = 4);
 	}
 }

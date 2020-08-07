@@ -152,12 +152,12 @@ namespace s3d
 			}
 		}
 
-		Image MakeImage(const Grid<bool>& qr, const int32 cellSize, const int32 borderCells)
+		Image MakeImage(const Grid<bool>& qr, const int32 cellSize, const size_t borderCells)
 		{
-			const int32 cellWidth = static_cast<int32>(qr.width() + (borderCells * 2));
-			const int32 cellHeight = static_cast<int32>(qr.height() + (borderCells * 2));
-			const int32 imageWidth = (cellWidth * cellSize);
-			const int32 imageHeight = (cellHeight * cellSize);
+			const size_t cellWidth = (qr.width() + (borderCells * 2));
+			const size_t cellHeight = (qr.height() + (borderCells * 2));
+			const size_t imageWidth = (cellWidth * cellSize);
+			const size_t imageHeight = (cellHeight * cellSize);
 
 			if ((imageWidth > Image::MaxWidth)
 				|| (imageHeight > Image::MaxHeight))
@@ -167,14 +167,14 @@ namespace s3d
 
 			Image image(imageWidth, imageHeight, Color(255));
 
-			for (int32 cx = 0; cx < cellWidth; ++cx)
+			for (size_t cx = 0; cx < cellWidth; ++cx)
 			{
 				if ((cx < borderCells) || ((qr.width() + borderCells) <= cx))
 				{
 					continue;
 				}
 
-				for (int32 cy = 0; cy < cellHeight; ++cy)
+				for (size_t cy = 0; cy < cellHeight; ++cy)
 				{
 					if ((cy < borderCells) || ((qr.height() + borderCells) <= cy))
 					{
@@ -191,7 +191,7 @@ namespace s3d
 			return image;
 		}
 
-		bool SaveSVG(const FilePathView path, const Grid<bool>& qr, const int32 borderCells)
+		bool SaveSVG(const FilePathView path, const Grid<bool>& qr, const size_t borderCells)
 		{
 			std::ostringstream ss;
 			ss << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -201,9 +201,9 @@ namespace s3d
 			ss << "\t<rect width=\"100%\" height=\"100%\" fill=\"#FFFFFF\"/>\n";
 			ss << "\t<path d=\"";
 
-			for (int32 y = 0; y < qr.height(); ++y)
+			for (size_t y = 0; y < qr.height(); ++y)
 			{
-				for (int32 x = 0; x < qr.width(); ++x)
+				for (size_t x = 0; x < qr.width(); ++x)
 				{
 					if (!qr[y][x])
 					{
