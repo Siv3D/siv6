@@ -891,6 +891,12 @@
 # include <Siv3D/IImageEncoder.hpp>
 # include <Siv3D/ImageEncoder.hpp>
 
+
+# include <Siv3D/QRErrorCorrection.hpp>
+# include <Siv3D/QRMode.hpp>
+# include <Siv3D/QR.hpp>
+
+
 # include <Siv3D/Scene.hpp>
 
 # include <Siv3D/Console.hpp>

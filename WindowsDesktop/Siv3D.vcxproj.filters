@@ -412,6 +412,12 @@
     <Filter Include="src\ThirdParty\lunasvg">
       <UniqueIdentifier>{8e842899-56f0-4509-b3d0-7079ff887e6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ThirdParty\qr-code-generator-library">
+      <UniqueIdentifier>{935ac0b0-8f29-482a-b1cb-9d48fe36da86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\QR">
+      <UniqueIdentifier>{467a01c8-2868-4ae3-8705-709ca815ffdb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -2070,6 +2076,18 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Noise.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\QR.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\ThirdParty\qr-code-generator-library\QrCode.hpp">
+      <Filter>src\ThirdParty\qr-code-generator-library</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\QRErrorCorrection.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\QRMode.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -2866,6 +2884,12 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\ImageFormat\SVGDecoder.cpp">
       <Filter>src\Siv3D\ImageFormat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\ThirdParty\qr-code-generator-library\QrCode.cpp">
+      <Filter>src\ThirdParty\qr-code-generator-library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\QR\SivQR.cpp">
+      <Filter>src\Siv3D\QR</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

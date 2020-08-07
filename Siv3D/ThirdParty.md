@@ -18,6 +18,7 @@ Anti-Grain Geometry | v2.4
 [lunasvg](https://github.com/sammycage/lunasvg) | 
 [miniutf](https://github.com/dropbox/miniutf) | 
 [Oniguruma](https://github.com/kkos/oniguruma) | v6.9.5_rev1
+[qr-code-generator-library](https://github.com/nayuki/QR-Code-generator) | v1.6.0
 [scope-guard](https://github.com/offa/scope-guard) | v0.3.4
 [SFMT](https://github.com/MersenneTwister-Lab/SFMT) | 1.5.2
 [simde](https://github.com/nemequ/simde) | 0.5.0

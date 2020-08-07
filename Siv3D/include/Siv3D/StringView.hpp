@@ -240,6 +240,9 @@ namespace s3d
 		std::wstring toWstr() const;
 
 		[[nodiscard]]
+		std::string toUTF8() const;
+
+		[[nodiscard]]
 		friend constexpr bool operator ==(StringView lhs, StringView rhs) noexcept
 		{
 			return (lhs.compare(rhs) == 0);

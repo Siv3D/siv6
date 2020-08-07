@@ -23,4 +23,9 @@ namespace s3d
 	{
 		return Unicode::ToWstring(*this);
 	}
+
+	std::string StringView::toUTF8() const
+	{
+		return Unicode::ToUTF8(*this);
+	}
 }

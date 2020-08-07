@@ -202,6 +202,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\PredefinedNamedParameter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PRNG.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Profiler.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\QR.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\QRErrorCorrection.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\QRMode.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Random.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\RDTSCClock.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Rectangle.hpp" />
@@ -560,6 +563,7 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\lunasvg\svguseelement.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\miniutf\miniutf.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\oniguruma.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\qr-code-generator-library\QrCode.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\xxHash\xxhash.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zconf.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\zlib\zlib.h" />
@@ -652,6 +656,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Profiler\CProfiler.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Profiler\ProfilerFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Profiler\SivProfiler.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\QR\SivQR.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Random\SivRandom.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Rectangle\SivRectangle.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\RegExp\RegExpDetail.cpp" />
@@ -835,6 +840,7 @@
     <ClCompile Include="..\Siv3D\src\ThirdParty\lunasvg\svgtransform.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\lunasvg\svgurireference.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\lunasvg\svguseelement.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\qr-code-generator-library\QrCode.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\xxHash\xxhash.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
