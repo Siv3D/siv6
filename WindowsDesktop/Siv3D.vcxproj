@@ -63,6 +63,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\IWriter.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LicenseInfo.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\LicenseManager.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\MathParser.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\Noise.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PerlinNoise.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\PixelFormat.hpp" />
@@ -306,6 +307,7 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\LicenseManager\ILicenseManager.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\LicenseManager\LicenseList.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Logger\ILogger.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\MathParser\MathParserDetail.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\CProfiler.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Profiler\IProfiler.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\RegExp\RegExpDetail.hpp" />
@@ -562,6 +564,19 @@
     <ClInclude Include="..\Siv3D\src\ThirdParty\lunasvg\svgurireference.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\lunasvg\svguseelement.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\miniutf\miniutf.hpp" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParser.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserBase.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserBytecode.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserCallback.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserDef.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserDLL.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserError.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserFixes.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserInt.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserTemplateMagic.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserTest.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserToken.h" />
+    <ClInclude Include="..\Siv3D\src\ThirdParty\muparser\muParserTokenReader.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\Oniguruma\oniguruma.h" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\qr-code-generator-library\QrCode.hpp" />
     <ClInclude Include="..\Siv3D\src\ThirdParty\xxHash\xxhash.h" />
@@ -649,6 +664,8 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\LicenseManager\SivLicenseManager.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Logger\LoggerFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Logger\SivLogger.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\MathParser\MathParserDetail.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\MathParser\SivMathParser.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ParseBool\SivParseBool.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ParseFloat\SivParseFloat.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\ParseInt\SivParseInt.cpp" />
@@ -840,6 +857,15 @@
     <ClCompile Include="..\Siv3D\src\ThirdParty\lunasvg\svgtransform.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\lunasvg\svgurireference.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\lunasvg\svguseelement.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParser.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParserBase.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParserBytecode.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParserCallback.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParserDLL.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParserError.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParserInt.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParserTest.cpp" />
+    <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParserTokenReader.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\qr-code-generator-library\QrCode.cpp" />
     <ClCompile Include="..\Siv3D\src\ThirdParty\xxHash\xxhash.c" />
   </ItemGroup>
@@ -897,7 +923,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;MUPARSER_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <DebugInformationFormat />
@@ -923,7 +949,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;MUPARSER_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>

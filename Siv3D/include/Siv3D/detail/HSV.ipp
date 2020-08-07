@@ -83,6 +83,40 @@ namespace s3d
 		*this = detail::RGBAToHSV(color.r, color.g, color.b, color.a);
 	}
 
+	inline constexpr double HSV::elem(const size_t index) const noexcept
+	{
+		if (index == 0)
+		{
+			return h;
+		}
+		else if (index == 1)
+		{
+			return s;
+		}
+		else if (index == 2)
+		{
+			return v;
+		}
+		else if (index == 3)
+		{
+			return a;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	inline double* HSV::getPointer() noexcept
+	{
+		return &h;
+	}
+
+	inline const double* HSV::getPointer() const noexcept
+	{
+		return &h;
+	}
+
 	inline constexpr HSV HSV::operator +(const HSV& hsv) const noexcept
 	{
 		return{ h + hsv.h, Clamp(s + hsv.s, 0.0, 1.0), Clamp(v + hsv.v, 0.0, 1.0), a };

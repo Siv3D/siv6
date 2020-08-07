@@ -694,7 +694,7 @@
 
 // 数式パーサ
 // Math Parser
-//# include <Siv3D/MathParser.hpp>
+# include <Siv3D/MathParser.hpp>
 
 // 統計
 // Statistics

@@ -67,6 +67,15 @@ namespace s3d
 		SIV3D_NODISCARD_CXX20
 		explicit constexpr ColorF(StringView code) noexcept;
 
+		[[nodiscard]]
+		constexpr double elem(size_t index) const noexcept;
+
+		[[nodiscard]]
+		double* getPointer() noexcept;
+
+		[[nodiscard]]
+		const double* getPointer() const noexcept;
+
 		constexpr ColorF& operator =(const ColorF&) noexcept = default;
 
 		constexpr ColorF& operator =(Color color) noexcept;

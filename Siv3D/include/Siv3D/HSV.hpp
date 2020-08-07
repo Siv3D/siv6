@@ -63,6 +63,15 @@ namespace s3d
 		HSV(const ColorF& color) noexcept;
 
 		[[nodiscard]]
+		constexpr double elem(size_t index) const noexcept;
+
+		[[nodiscard]]
+		double* getPointer() noexcept;
+
+		[[nodiscard]]
+		const double* getPointer() const noexcept;
+
+		[[nodiscard]]
 		constexpr HSV operator +(const HSV& hsv) const noexcept;
 
 		[[nodiscard]]

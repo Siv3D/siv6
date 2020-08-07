@@ -68,6 +68,40 @@ namespace s3d
 	inline constexpr ColorF::ColorF(const StringView code) noexcept
 		: ColorF(Color(code)) {}
 
+	inline constexpr double ColorF::elem(const size_t index) const noexcept
+	{
+		if (index == 0)
+		{
+			return r;
+		}
+		else if (index == 1)
+		{
+			return g;
+		}
+		else if (index == 2)
+		{
+			return b;
+		}
+		else if (index == 3)
+		{
+			return a;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	inline double* ColorF::getPointer() noexcept
+	{
+		return &r;
+	}
+
+	inline const double* ColorF::getPointer() const noexcept
+	{
+		return &r;
+	}
+
 	inline constexpr ColorF& ColorF::operator =(const Color color) noexcept
 	{
 		r = color.r / 255.0;

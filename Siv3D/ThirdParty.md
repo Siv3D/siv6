@@ -17,6 +17,7 @@ Anti-Grain Geometry | v2.4
 [libpng](http://www.libpng.org/pub/png/libpng.html) | 1.6.37
 [lunasvg](https://github.com/sammycage/lunasvg) | 
 [miniutf](https://github.com/dropbox/miniutf) | 
+[muparser](https://github.com/beltoforion/muparser) | 2.3.2
 [Oniguruma](https://github.com/kkos/oniguruma) | v6.9.5_rev1
 [qr-code-generator-library](https://github.com/nayuki/QR-Code-generator) | v1.6.0
 [scope-guard](https://github.com/offa/scope-guard) | v0.3.4

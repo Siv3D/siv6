@@ -16,7 +16,7 @@ set(CMAKE_C_FLAGS_MINSIZEREL "-Os -DNDEBUG -march=x86-64")
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a -Wall -Wextra -fPIC -msse4.1 -D_GLFW_X11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a -Wall -Wextra -fPIC -msse4.1 -D_GLFW_X11 -DMUPARSER_STATIC")
 set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0 -pg -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG -march=x86-64")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g3 -Og -pg")
@@ -115,6 +115,8 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/LicenseManager/SivLicenseManager.cpp
   ../Siv3D/src/Siv3D/Logger/LoggerFactory.cpp
   ../Siv3D/src/Siv3D/Logger/SivLogger.cpp
+  ../Siv3D/src/Siv3D/MathParser/MathParserDetail.cpp
+  ../Siv3D/src/Siv3D/MathParser/SivMathParser.cpp
   ../Siv3D/src/Siv3D/Point/SivPoint.cpp
   ../Siv3D/src/Siv3D/Profiler/CProfiler.cpp
   ../Siv3D/src/Siv3D/Profiler/ProfilerFactory.cpp
@@ -322,6 +324,16 @@ add_library(Siv3D STATIC
   ../Siv3D/src/ThirdParty/lunasvg/svgtransform.cpp
   ../Siv3D/src/ThirdParty/lunasvg/svgurireference.cpp
   ../Siv3D/src/ThirdParty/lunasvg/svguseelement.cpp
+
+  ../Siv3D/src/ThirdParty/muparser/muParser.cpp
+  ../Siv3D/src/ThirdParty/muparser/muParserBase.cpp
+  ../Siv3D/src/ThirdParty/muparser/muParserBytecode.cpp
+  ../Siv3D/src/ThirdParty/muparser/muParserCallback.cpp
+  ../Siv3D/src/ThirdParty/muparser/muParserDLL.cpp
+  ../Siv3D/src/ThirdParty/muparser/muParserError.cpp
+  ../Siv3D/src/ThirdParty/muparser/muParserInt.cpp
+  ../Siv3D/src/ThirdParty/muparser/muParserTest.cpp
+  ../Siv3D/src/ThirdParty/muparser/muParserTokenReader.cpp
 
   ../Siv3D/src/ThirdParty/Oniguruma/ascii.c
   ../Siv3D/src/ThirdParty/Oniguruma/big5.c

@@ -17,6 +17,7 @@
 # endif
 # include <ThirdParty/parallel_hashmap/phmap.h>
 # include "HeterogeneousLookupHelper.hpp"
+# include "FormatData.hpp"
 
 namespace s3d
 {

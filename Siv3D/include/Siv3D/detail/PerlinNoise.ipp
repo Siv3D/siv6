@@ -13,19 +13,19 @@
 
 namespace s3d
 {
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline constexpr Float BasicPerlinNoise<Float>::Fade(const Float t) noexcept
 	{
 		return t * t * t * (t * (t * 6 - 15) + 10);
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline constexpr Float BasicPerlinNoise<Float>::Lerp(const Float a, const Float b, const Float t) noexcept
 	{
 		return a + (b - a) * t;
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline constexpr Float BasicPerlinNoise<Float>::Grad(const uint8 hash, const Float x, const Float y, const Float z) noexcept
 	{
 		const uint8 h = hash & 15;
@@ -34,7 +34,7 @@ namespace s3d
 		return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline constexpr BasicPerlinNoise<Float>::BasicPerlinNoise() noexcept
 		: m_perm{ 151,160,137,91,90,15,
 				131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,
@@ -51,26 +51,26 @@ namespace s3d
 				138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180
 	} {}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline BasicPerlinNoise<Float>::BasicPerlinNoise(const uint64 seed)
 	{
 		reseed(seed);
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	SIV3D_CONCEPT_URBG_
 	inline BasicPerlinNoise<Float>::BasicPerlinNoise(URBG&& urbg)
 	{
 		reseed(std::forward<URBG>(urbg));
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline void BasicPerlinNoise<Float>::reseed(const uint64 seed)
 	{
 		reseed(DefaultRNG_t{ seed });
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	SIV3D_CONCEPT_URBG_
 	inline void BasicPerlinNoise<Float>::reseed(URBG&& urbg)
 	{
@@ -78,7 +78,7 @@ namespace s3d
 		std::shuffle(m_perm.begin(), m_perm.end(), std::forward<URBG>(urbg));
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline typename BasicPerlinNoise<Float>::value_type BasicPerlinNoise<Float>::noise1D(const value_type x) const noexcept
 	{
 		return noise3D(x,
@@ -86,7 +86,7 @@ namespace s3d
 			static_cast<value_type>(0.12345678901234567890)); // for entropy
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline typename BasicPerlinNoise<Float>::value_type BasicPerlinNoise<Float>::noise2D(const value_type x, const value_type y) const noexcept
 	{
 		return noise3D(x,
@@ -94,7 +94,7 @@ namespace s3d
 			static_cast<value_type>(0.12345678901234567890)); // for entropy
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline typename BasicPerlinNoise<Float>::value_type BasicPerlinNoise<Float>::noise3D(const value_type x, const value_type y, const value_type z) const noexcept
 	{
 		const value_type _x = std::floor(x);
@@ -142,13 +142,13 @@ namespace s3d
 		return Lerp(r0, r1, w);
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline constexpr typename BasicPerlinNoise<Float>::state_type& BasicPerlinNoise<Float>::serialize() const noexcept
 	{
 		return m_perm;
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline constexpr void BasicPerlinNoise<Float>::deserialize(const state_type& state) noexcept
 	{
 		m_perm = state;
