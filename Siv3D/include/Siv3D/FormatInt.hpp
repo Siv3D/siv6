@@ -82,29 +82,17 @@ namespace s3d
 	String ToString(unsigned long long value, Arg::radix_<uint32> radix, LetterCase letterCase = LetterCase::Upper);
 
 
-# ifdef __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer>
-# endif
+	SIV3D_CONCEPT_INTEGRAL
 	[[nodiscard]]
-	inline String ToBinary(Integer value);
+	inline String ToBinary(Int value);
 
-# ifdef __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer>
-# endif
+	SIV3D_CONCEPT_INTEGRAL
 	[[nodiscard]]
-	inline String ToOctal(Integer value);
+	inline String ToOctal(Int value);
 
-# ifdef __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer>
-# endif
+	SIV3D_CONCEPT_INTEGRAL
 	[[nodiscard]]
-	inline String ToHex(Integer value, LetterCase letterCase = LetterCase::Upper);
+	inline String ToHex(Int value, LetterCase letterCase = LetterCase::Upper);
 }
 
 # include "detail/FormatInt.ipp"

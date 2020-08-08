@@ -29,12 +29,8 @@ namespace s3d
 
 			~ConsoleBuffer();
 
-		# if __cpp_lib_concepts
-			template <Concept::Formattable Type>
-		# else
-			template <class Type, class = decltype(Formatter(std::declval<FormatData&>(), std::declval<Type>()))>
-		# endif
-			ConsoleBuffer& operator <<(const Type& value)
+			SIV3D_CONCEPT_FORMATTABLE
+			ConsoleBuffer& operator <<(const Formattable& value)
 			{
 				Formatter(*formatData, value);
 
@@ -105,16 +101,6 @@ namespace s3d
 				static_assert(0, "Console(): Unformattable parameter value detected");
 			}
 
-			template <Concept::Formattable Type>
-			ConsoleBuffer operator <<(const Type& value) const
-			{
-				ConsoleBuffer buf;
-
-				Formatter(*buf.formatData, value);
-
-				return buf;
-			}
-
 		# else
 
 			template <class... Args>
@@ -134,9 +120,11 @@ namespace s3d
 			{
 				return write(Format(args..., U'\n'));
 			}
+	
+		# endif
 
-			template <class Type, class = decltype(Formatter(std::declval<FormatData&>(), std::declval<Type>()))>
-			ConsoleBuffer operator <<(const Type& value) const
+			SIV3D_CONCEPT_FORMATTABLE
+			ConsoleBuffer operator <<(const Formattable& value) const
 			{
 				ConsoleBuffer buf;
 
@@ -144,8 +132,6 @@ namespace s3d
 
 				return buf;
 			}
-	
-		# endif
 
 			template <class Type>
 			Type read() const

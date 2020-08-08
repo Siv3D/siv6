@@ -40,24 +40,9 @@ namespace s3d
 			SIV3D_ENGINE(Window)->setStyle(style);
 		}
 
-		WindowStyle GetStyle() noexcept
-		{
-			return GetState().style;
-		}
-
 		void SetPos(const Point& pos)
 		{
 			SIV3D_ENGINE(Window)->setPos(pos);
-		}
-
-		void SetPos(const int32 x, const int32 y)
-		{
-			SetPos(Point(x, y));
-		}
-
-		Point GetPos() noexcept
-		{
-			return GetState().bounds.pos;
 		}
 
 		void Maximize()
@@ -85,11 +70,6 @@ namespace s3d
 			return SIV3D_ENGINE(Window)->setVirtualSize(size);
 		}
 
-		bool Resize(const int32 width, const int32 height)
-		{
-			return Resize(Size(width, height));
-		}
-
 		bool ResizeFrameBuffer(const Size& size)
 		{
 			if (!InRange(size.x, 1, 8192) || !InRange(size.y, 1, 8192))
@@ -98,11 +78,6 @@ namespace s3d
 			}
 
 			return SIV3D_ENGINE(Window)->setFrameBufferSize(size);
-		}
-
-		bool ResizeFrameBuffer(const int32 width, const int32 height)
-		{
-			return ResizeFrameBuffer(Size(width, height));
 		}
 
 		void SetMinimumFrameBufferSize(const Size& size)

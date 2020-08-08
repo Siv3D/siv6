@@ -222,30 +222,18 @@ namespace s3d
 		[[nodiscard]]
 		const value_type& choice() const;
 
-	# if __cpp_lib_concepts
-		template <Concept::UniformRandomBitGenerator URBG>
-	# else
-		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_URBG
 		[[nodiscard]]
 		value_type& choice(URBG&& rbg);
 
-	# if __cpp_lib_concepts
-		template <Concept::UniformRandomBitGenerator URBG>
-	# else
-		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_URBG
 		[[nodiscard]]
 		const value_type& choice(URBG&& rbg) const;
 
 
-	# if __cpp_lib_concepts
-		template <Concept::Integral Size_t>
-	# else
-		template <class Size_t, std::enable_if_t<std::is_integral_v<Size_t>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_INTEGRAL
 		[[nodiscard]]
-		Array choice(Size_t n) const;
+		Array choice(Int n) const;
 
 	# if __cpp_lib_concepts
 		template <Concept::Integral Size_t, Concept::UniformRandomBitGenerator URBG>
@@ -395,11 +383,7 @@ namespace s3d
 
 		Array& shuffle();
 
-	# if __cpp_lib_concepts
-		template <Concept::UniformRandomBitGenerator URBG>
-	# else
-		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_URBG
 		Array& shuffle(URBG&& rbg);
 
 		[[nodiscard]]
@@ -408,19 +392,11 @@ namespace s3d
 		[[nodiscard]]
 		Array shuffled()&&;
 
-	# if __cpp_lib_concepts
-		template <Concept::UniformRandomBitGenerator URBG>
-	# else
-		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_URBG
 		[[nodiscard]]
 		Array shuffled(URBG&& rbg) const&;
 
-	# if __cpp_lib_concepts
-		template <Concept::UniformRandomBitGenerator URBG>
-	# else
-		template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_URBG
 		[[nodiscard]]
 		Array shuffled(URBG&& rbg)&&;
 

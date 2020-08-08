@@ -44,11 +44,7 @@ namespace s3d
 		write(StringView(s));
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Formattable... Args>
-# else
-	template <class... Args>
-# endif
+	SIV3D_CONCEPT_FORMATTABLE_ARGS_
 	inline void TextWriter::write(const Args& ... args)
 	{
 		write(Format(args...));
@@ -69,22 +65,14 @@ namespace s3d
 		writeln(StringView(s));
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Formattable... Args>
-# else
-	template <class... Args>
-# endif
+	SIV3D_CONCEPT_FORMATTABLE_ARGS_
 	inline void TextWriter::writeln(const Args& ... args)
 	{
 		writeln(Format(args...));
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Formattable Type>
-# else
-	template <class Type>
-# endif
-	inline detail::TextWriterBuffer TextWriter::operator <<(const Type& value)
+	SIV3D_CONCEPT_FORMATTABLE_
+	inline detail::TextWriterBuffer TextWriter::operator <<(const Formattable& value)
 	{
 		detail::TextWriterBuffer buffer(*this);
 

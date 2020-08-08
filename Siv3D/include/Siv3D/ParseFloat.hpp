@@ -15,13 +15,9 @@
 
 namespace s3d
 {
-# ifdef __cpp_lib_concepts
-	template <Concept::FloatingPoint FloatingPoint>
-# else
-	template <class FloatingPoint>
-# endif
+	SIV3D_CONCEPT_FLOATING_POINT
 	[[nodiscard]]
-	FloatingPoint ParseFloat(StringView s);
+	Float ParseFloat(StringView s);
 
 	template <>
 	[[nodiscard]]
@@ -36,13 +32,9 @@ namespace s3d
 	long double ParseFloat<long double>(StringView s);
 
 
-# ifdef __cpp_lib_concepts
-	template <Concept::FloatingPoint FloatingPoint>
-# else
-	template <class FloatingPoint>
-# endif
+	SIV3D_CONCEPT_FLOATING_POINT
 	[[nodiscard]]
-	Optional<FloatingPoint> ParseFloatOpt(StringView s) noexcept;
+	Optional<Float> ParseFloatOpt(StringView s) noexcept;
 
 	template <>
 	[[nodiscard]]

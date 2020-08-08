@@ -28,12 +28,8 @@ namespace s3d
 
 			~LoggerBuffer();
 
-		# if __cpp_lib_concepts
-			template <Concept::Formattable Type>
-		# else
-			template <class Type, class = decltype(Formatter(std::declval<FormatData&>(), std::declval<Type>()))>
-		# endif
-			LoggerBuffer& operator <<(const Type& value)
+			SIV3D_CONCEPT_FORMATTABLE
+			LoggerBuffer& operator <<(const Formattable& value)
 			{
 				Formatter(*formatData, value);
 
@@ -83,16 +79,6 @@ namespace s3d
 				static_assert(0, "Logger(): Unformattable parameter value detected");
 			}
 
-			template <Concept::Formattable Type>
-			LoggerBuffer operator <<(const Type& value) const
-			{
-				LoggerBuffer buf;
-
-				Formatter(*buf.formatData, value);
-
-				return buf;
-			}
-
 		# else
 
 			template <class... Args>
@@ -107,8 +93,10 @@ namespace s3d
 				return writeln(Format(args...));
 			}
 
-			template <class Type, class = decltype(Formatter(std::declval<FormatData&>(), std::declval<Type>()))>
-			LoggerBuffer operator <<(const Type& value) const
+		# endif
+
+			SIV3D_CONCEPT_FORMATTABLE
+			LoggerBuffer operator <<(const Formattable& value) const
 			{
 				LoggerBuffer buf;
 
@@ -116,8 +104,6 @@ namespace s3d
 
 				return buf;
 			}
-
-		# endif
 
 			/// @brief ログ出力を無効化します
 			void disable() const;

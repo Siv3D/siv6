@@ -16,13 +16,9 @@
 
 namespace s3d
 {
-# ifdef __cpp_lib_concepts
-	template <Concept::Integral Integral>
-# else
-	template <class Integral>
-# endif
+	SIV3D_CONCEPT_INTEGRAL
 	[[nodiscard]]
-	Integral ParseInt(StringView s, Arg::radix_<uint32> radix = 0);
+	Int ParseInt(StringView s, Arg::radix_<uint32> radix = 0);
 
 	/// <exception cref="ParseError">
 	/// パースエラーが発生したときに例外が投げられます。
@@ -105,13 +101,9 @@ namespace s3d
 	[[nodiscard]]
 	unsigned long long ParseInt<unsigned long long>(StringView s, Arg::radix_<uint32> radix);
 
-# ifdef __cpp_lib_concepts
-	template <Concept::Integral Integral>
-# else
-	template <class Integral>
-# endif
+	SIV3D_CONCEPT_INTEGRAL
 	[[nodiscard]]
-	Optional<Integral> ParseIntOpt(StringView s, Arg::radix_<uint32> radix = (Arg::radix = 0)) noexcept;
+	Optional<Int> ParseIntOpt(StringView s, Arg::radix_<uint32> radix = (Arg::radix = 0)) noexcept;
 
 	template <>
 	[[nodiscard]]

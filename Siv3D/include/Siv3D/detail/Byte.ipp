@@ -13,22 +13,14 @@
 
 namespace s3d
 {
-# if __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>*>
-# endif
-	inline constexpr Byte operator <<(const Byte value, const Integer shift) noexcept
+	SIV3D_CONCEPT_INTEGRAL_
+	inline constexpr Byte operator <<(const Byte value, const Int shift) noexcept
 	{
 		return static_cast<Byte>(static_cast<unsigned char>(static_cast<unsigned int>(value) << shift));
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>*>
-# endif
-	inline constexpr Byte operator >>(const Byte value, const Integer shift) noexcept
+	SIV3D_CONCEPT_INTEGRAL_
+	inline constexpr Byte operator >>(const Byte value, const Int shift) noexcept
 	{
 		return static_cast<Byte>(static_cast<unsigned char>(static_cast<unsigned int>(value) >> shift));
 	}
@@ -53,22 +45,14 @@ namespace s3d
 		return static_cast<Byte>(static_cast<unsigned char>(~static_cast<unsigned int>(value)));
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>*>
-# endif
-	inline constexpr Byte& operator <<=(Byte& value, const Integer shift) noexcept
+	SIV3D_CONCEPT_INTEGRAL_
+	inline constexpr Byte& operator <<=(Byte& value, const Int shift) noexcept
 	{
 		return value = (value << shift);
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>*>
-# endif
-	inline constexpr Byte& operator >>=(Byte& value, const Integer shift) noexcept
+	SIV3D_CONCEPT_INTEGRAL_
+	inline constexpr Byte& operator >>=(Byte& value, const Int shift) noexcept
 	{
 		return value = (value >> shift);
 	}

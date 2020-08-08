@@ -89,11 +89,7 @@ namespace s3d
 
 		void write(const String& s);
 
-	# if __cpp_lib_concepts
-		template <Concept::Formattable... Args>
-	# else
-		template <class... Args>
-	# endif
+		SIV3D_CONCEPT_FORMATTABLE_ARGS
 		void write(const Args& ... args);
 
 		void writeln(char ch) = delete;
@@ -106,23 +102,15 @@ namespace s3d
 
 		void writeln(const String& s);
 
-	# if __cpp_lib_concepts
-		template <Concept::Formattable... Args>
-	# else
-		template <class... Args>
-	# endif
+		SIV3D_CONCEPT_FORMATTABLE_ARGS
 		void writeln(const Args& ... args);
 
 		void writeUTF8(std::string_view s);
 
 		void writelnUTF8(std::string_view s);
 
-	# if __cpp_lib_concepts
-		template <Concept::Formattable Type>
-	# else
-		template <class Type>
-	# endif
-		detail::TextWriterBuffer operator <<(const Type& value);
+		SIV3D_CONCEPT_FORMATTABLE
+		detail::TextWriterBuffer operator <<(const Formattable& value);
 
 		[[nodiscard]]
 		const FilePath& path() const noexcept;

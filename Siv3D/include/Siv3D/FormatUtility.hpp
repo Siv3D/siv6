@@ -32,32 +32,24 @@ namespace s3d
 	String FormatDataSize(int64 bytes);
 
 	/// @brief 
-	/// @tparam Integer 
+	/// @tparam Int 
 	/// @param value 
 	/// @param separator 
 	/// @return 
-# if __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_INTEGRAL
 	[[nodiscard]]
-	inline String ThousandsSeparate(Integer value, StringView separator = U","_sv);
+	inline String ThousandsSeparate(Int value, StringView separator = U","_sv);
 
 	/// @brief 
-	/// @tparam FloatingPoint 
+	/// @tparam Float
 	/// @param value 
 	/// @param decimalPlace 
 	/// @param fixed 
 	/// @param separator 
 	/// @return 
-# ifdef __cpp_lib_concepts
-	template <Concept::FloatingPoint FloatingPoint>
-# else
-	template <class FloatingPoint, std::enable_if_t<std::is_floating_point_v<FloatingPoint>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_FLOATING_POINT_
 	[[nodiscard]]
-	inline String ThousandsSeparate(FloatingPoint value, int32 decimalPlace = 3, bool fixed = false, StringView separator = U","_sv);
+	inline String ThousandsSeparate(Float value, int32 decimalPlace = 3, bool fixed = false, StringView separator = U","_sv);
 }
 
 # include "detail/FormatUtility.ipp"

@@ -182,11 +182,7 @@ namespace s3d
 	}
 
 	template <class Type, class Allocator>
-# if __cpp_lib_concepts
-	template <Concept::UniformRandomBitGenerator URBG>
-# else
-	template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&>&& std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
-# endif
+	SIV3D_CONCEPT_URBG_
 	inline typename Array<Type, Allocator>::value_type& Array<Type, Allocator>::choice(URBG&& rbg)
 	{
 		if (empty())
@@ -200,11 +196,7 @@ namespace s3d
 	}
 
 	template <class Type, class Allocator>
-# if __cpp_lib_concepts
-	template <Concept::UniformRandomBitGenerator URBG>
-# else
-	template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&>&& std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
-# endif
+	SIV3D_CONCEPT_URBG_
 	inline const typename Array<Type, Allocator>::value_type& Array<Type, Allocator>::choice(URBG&& rbg) const
 	{
 		if (empty())
@@ -218,12 +210,8 @@ namespace s3d
 	}
 
 	template <class Type, class Allocator>
-# if __cpp_lib_concepts
-	template <Concept::Integral Size_t>
-# else
-	template <class Size_t, std::enable_if_t<std::is_integral_v<Size_t>>*>
-# endif
-	inline Array<Type, Allocator> Array<Type, Allocator>::choice(const Size_t n) const
+	SIV3D_CONCEPT_INTEGRAL_
+	inline Array<Type, Allocator> Array<Type, Allocator>::choice(const Int n) const
 	{
 		return choice(n, GetDefaultRNG());
 	}
@@ -823,11 +811,7 @@ namespace s3d
 	}
 
 	template <class Type, class Allocator>
-# if __cpp_lib_concepts
-	template <Concept::UniformRandomBitGenerator URBG>
-# else
-	template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&>&& std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
-# endif
+	SIV3D_CONCEPT_URBG_
 	inline Array<Type, Allocator>& Array<Type, Allocator>::shuffle(URBG&& rbg)
 	{
 		std::shuffle(begin(), end(), std::forward<URBG>(rbg));
@@ -848,22 +832,14 @@ namespace s3d
 	}
 
 	template <class Type, class Allocator>
-# if __cpp_lib_concepts
-	template <Concept::UniformRandomBitGenerator URBG>
-# else
-	template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&>&& std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
-# endif
+	SIV3D_CONCEPT_URBG_
 	inline Array<Type, Allocator> Array<Type, Allocator>::shuffled(URBG&& rbg) const&
 	{
 		return Array(*this).shuffle(std::forward<URBG>(rbg));
 	}
 
 	template <class Type, class Allocator>
-# if __cpp_lib_concepts
-	template <Concept::UniformRandomBitGenerator URBG>
-# else
-	template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&>&& std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
-# endif
+	SIV3D_CONCEPT_URBG_
 	inline Array<Type, Allocator> Array<Type, Allocator>::shuffled(URBG&& rbg)&&
 	{
 		shuffle(std::forward<URBG>(rbg));

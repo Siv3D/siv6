@@ -20,21 +20,13 @@ namespace s3d
 	/// @brief 1 バイトを表現する型
 	enum class Byte : unsigned char {};
 
-# if __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_INTEGRAL
 	[[nodiscard]]
-	inline constexpr Byte operator <<(Byte value, Integer shift) noexcept;
+	inline constexpr Byte operator <<(Byte value, Int shift) noexcept;
 
-# if __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_INTEGRAL
 	[[nodiscard]]
-	inline constexpr Byte operator >>(Byte value, Integer shift) noexcept;
+	inline constexpr Byte operator >>(Byte value, Int shift) noexcept;
 
 	[[nodiscard]]
 	inline constexpr Byte operator |(Byte x, Byte y) noexcept;
@@ -48,19 +40,11 @@ namespace s3d
 	[[nodiscard]]
 	inline constexpr Byte operator ~(Byte value) noexcept;
 
-# if __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
-# endif
-	inline constexpr Byte& operator <<=(Byte& value, Integer shift) noexcept;
+	SIV3D_CONCEPT_INTEGRAL
+	inline constexpr Byte& operator <<=(Byte& value, Int shift) noexcept;
 
-# if __cpp_lib_concepts
-	template <Concept::Integral Integer>
-# else
-	template <class Integer, std::enable_if_t<std::is_integral_v<Integer>>* = nullptr>
-# endif
-	inline constexpr Byte& operator >>=(Byte& value, Integer shift) noexcept;
+	SIV3D_CONCEPT_INTEGRAL
+	inline constexpr Byte& operator >>=(Byte& value, Int shift) noexcept;
 
 	inline constexpr Byte& operator |=(Byte& x, Byte y) noexcept;
 

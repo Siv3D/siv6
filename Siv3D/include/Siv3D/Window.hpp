@@ -15,90 +15,80 @@
 # include "PointVector.hpp"
 # include "StringView.hpp"
 # include "WindowStyle.hpp"
+# include "WindowState.hpp"
 
 namespace s3d
 {
-	struct WindowState;
-
 	namespace Window
-	{
-		inline constexpr Size DefaultClientSize = Size(800, 600);
-		
+	{	
+		/// @brief ウィンドウのデフォルトのタイトル
 		inline constexpr StringView DefaultTitle = U"Siv3D App";
 
-		/// <summary>
-		/// ウィンドウのタイトルを変更します。
-		/// </summary>
+		/// @brief ウィンドウのタイトルを変更します。
+		/// @param title 新しいタイトル
 		void SetTitle(const String& title);
 
-		/// <summary>
-		/// ウィンドウのタイトルを変更します。
-		/// </summary>
-	# if __cpp_lib_concepts
-		template <Concept::Formattable... Args>
-	# else
-		template <class... Args>
-	# endif
-		inline void SetTitle(const Args&... args)
-		{
-			SetTitle(Format(args...));
-		}
+		/// @brief ウィンドウのタイトルを変更します。
+		/// @tparam ...Args 新しいタイトルの値の型
+		/// @param ...args 新しいタイトル
+		SIV3D_CONCEPT_FORMATTABLE_ARGS
+		inline void SetTitle(const Args&... args);
 
-		/// <summary>
-		/// 現在のウィンドウタイトルを返します。
-		/// </summary>
+		/// @brief 現在のウィンドウのタイトルを返します。
+		/// @return  現在のウィンドウのタイトル
 		[[nodiscard]]
 		const String& GetTitle() noexcept;
 
+		/// @brief 現在のウィンドウの状態を返します。
+		/// @return 現在のウィンドウの状態
 		[[nodiscard]]
 		const WindowState& GetState() noexcept;
 
+		/// @brief ウィンドウスタイルを変更します。
+		/// @param style 新しいウィンドウスタイル
 		void SetStyle(WindowStyle style);
 
-		/// <summary>
-		/// 現在のウィンドウスタイルを返します。
-		/// </summary>
+		/// @brief 現在のウィンドウスタイルを返します。
+		/// @return 現在のウィンドウスタイル
 		[[nodiscard]]
-		WindowStyle GetStyle() noexcept;
+		inline WindowStyle GetStyle() noexcept;
 
-		/// <summary>
-		/// ウィンドウを指定した座標に移動させます。
-		/// </summary>
+		/// @brief ウィンドウを指定したスクリーン座標に移動させます。
+		/// @param pos 移動先のスクリーン座標
 		void SetPos(const Point& pos);
 
-		/// <summary>
-		/// ウィンドウを指定した座標に移動させます。
-		/// </summary>
-		void SetPos(int32 x, int32 y);
+		/// @brief ウィンドウを指定したスクリーン座標に移動させます。
+		/// @param x 移動先のスクリーン X 座標
+		/// @param y 移動先のスクリーン Y 座標
+		inline void SetPos(int32 x, int32 y);
 
+		/// @brief 現在のウィンドウの位置をスクリーン座標で返します。
+		/// @return 現在のウィンドウの位置
 		[[nodiscard]]
-		Point GetPos() noexcept;
+		inline Point GetPos() noexcept;
 
-		/// <summary>
-		/// ウィンドウを最大化します。
-		/// </summary>
+		/// @brief ウィンドウを最大化します。
 		void Maximize();
 
-		/// <summary>
-		/// 最大・最小化されたウィンドウを元のサイズに戻します。
-		/// </summary>
+		/// @brief 最大・最小化されたウィンドウを元のサイズに戻します。
 		void Restore();
 
-		/// <summary>
-		/// ウィンドウを最小化します。
-		/// </summary>
+		/// @brief ウィンドウを最小化します。
 		void Minimize();
 
-
+		/// @brief ウィンドウのクライアントサイズを仮想サイズ基準で変更します。
+		/// @param size 新しいサイズ
+		/// @return サイズの変更に成功した場合 true, それ以外の場合は false
 		bool Resize(const Size& size);
 
-		bool Resize(int32 width, int32 height);
+		inline bool Resize(int32 width, int32 height);
 
 		bool ResizeFrameBuffer(const Size& size);
 
-		bool ResizeFrameBuffer(int32 width, int32 height);
-
+		inline bool ResizeFrameBuffer(int32 width, int32 height);
 
 		void SetMinimumFrameBufferSize(const Size& size);
 	}
 }
+
+# include "detail/Window.ipp"

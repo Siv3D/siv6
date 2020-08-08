@@ -32,32 +32,20 @@ namespace s3d
 	/// <summary>
 	/// 正の無限大
 	/// </summary>
-# if __cpp_lib_concepts
-	template <Concept::FloatingPoint FloatingPoint>
-# else 
-	template <class FloatingPoint>
-# endif
-	constexpr FloatingPoint Inf = std::numeric_limits<FloatingPoint>::infinity();
+	SIV3D_CONCEPT_FLOATING_POINT
+	constexpr Float Inf = std::numeric_limits<Float>::infinity();
 
 	/// <summary>
 	/// qNaN
 	/// </summary>
-# if __cpp_lib_concepts
-	template <Concept::FloatingPoint FloatingPoint>
-# else 
-	template <class FloatingPoint>
-# endif
-	constexpr FloatingPoint QNaN = std::numeric_limits<FloatingPoint>::quiet_NaN();
+	SIV3D_CONCEPT_FLOATING_POINT
+	constexpr Float QNaN = std::numeric_limits<Float>::quiet_NaN();
 
 	/// <summary>
 	/// sNaN
 	/// </summary>
-# if __cpp_lib_concepts
-	template <Concept::FloatingPoint FloatingPoint>
-# else 
-	template <class FloatingPoint>
-# endif
-	constexpr FloatingPoint SNaN = std::numeric_limits<FloatingPoint>::signaling_NaN();
+	SIV3D_CONCEPT_FLOATING_POINT
+	constexpr Float SNaN = std::numeric_limits<Float>::signaling_NaN();
 
 	/// <summary>
 	/// 数値が非数 (NaN) であるかを示します。
