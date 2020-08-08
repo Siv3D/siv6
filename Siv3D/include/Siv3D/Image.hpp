@@ -47,67 +47,86 @@ namespace s3d
 		using reverse_iterator			= base_type::reverse_iterator;
 		using const_reverse_iterator	= base_type::const_reverse_iterator;
 
+		SIV3D_NODISCARD_CXX20
 		Image() = default;
 
+		SIV3D_NODISCARD_CXX20
 		Image(const Image&) = default;
 
+		SIV3D_NODISCARD_CXX20
 		Image(Image&& image) noexcept;
 
-
+		SIV3D_NODISCARD_CXX20
 		explicit Image(size_t size);
 
+		SIV3D_NODISCARD_CXX20
 		explicit Image(size_t size, Color color);
 
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty>
 			|| std::is_invocable_r_v<Color, Fty, Point> || std::is_invocable_r_v<Color, Fty, int32, int32>)>* = nullptr>
+		SIV3D_NODISCARD_CXX20
 		Image(size_t size, Arg::generator_<Fty> generator);
 
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty, Vec2> || std::is_invocable_r_v<Color, Fty, double, double>)>* = nullptr>
+		SIV3D_NODISCARD_CXX20
 		Image(size_t size, Arg::generator0_1_<Fty> generator);
 
-
-
+		SIV3D_NODISCARD_CXX20
 		Image(size_t width, size_t height);
 
+		SIV3D_NODISCARD_CXX20
 		Image(size_t width, size_t height, Color color);
 
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty>
 			|| std::is_invocable_r_v<Color, Fty, Point> || std::is_invocable_r_v<Color, Fty, int32, int32>)>* = nullptr>
+		SIV3D_NODISCARD_CXX20
 		Image(size_t width, size_t height, Arg::generator_<Fty> generator);
 
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty, Vec2> || std::is_invocable_r_v<Color, Fty, double, double>)>* = nullptr>
+		SIV3D_NODISCARD_CXX20
 		Image(size_t width, size_t height, Arg::generator0_1_<Fty> generator);
 
-
-
+		SIV3D_NODISCARD_CXX20
 		explicit Image(Size size);
 
+		SIV3D_NODISCARD_CXX20
 		Image(Size size, Color color);
 
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty>
 			|| std::is_invocable_r_v<Color, Fty, Point> || std::is_invocable_r_v<Color, Fty, int32, int32>)>* = nullptr>
+		SIV3D_NODISCARD_CXX20
 		Image(Size size, Arg::generator_<Fty> generator);
 
 		template <class Fty, std::enable_if_t<(std::is_invocable_r_v<Color, Fty, Vec2> || std::is_invocable_r_v<Color, Fty, double, double>)>* = nullptr>
+		SIV3D_NODISCARD_CXX20
 		Image(Size size, Arg::generator0_1_<Fty> generator);
 
+		SIV3D_NODISCARD_CXX20
 		explicit Image(FilePathView path, ImageFormat format = ImageFormat::Unspecified);
 
+		SIV3D_NODISCARD_CXX20
 		explicit Image(IReader&& reader, ImageFormat format = ImageFormat::Unspecified);
 
+		SIV3D_NODISCARD_CXX20
 		Image(FilePathView rgb, FilePathView alpha);
 
+		SIV3D_NODISCARD_CXX20
 		Image(Color rgb, FilePathView alpha);
 
+		//SIV3D_NODISCARD_CXX20
 		//explicit Image(const Emoji& emoji);
 
+		//SIV3D_NODISCARD_CXX20
 		//explicit Image(const Icon& icon);
 
+		//SIV3D_NODISCARD_CXX20
 		//explicit Image(const Grid<Color>& grid);
 
+		//SIV3D_NODISCARD_CXX20
 		//explicit Image(const Grid<ColorF>& grid);
 
 		//template <class Type, class Fty, std::enable_if_t<std::is_invocable_r_v<Color, Fty, Type>>* = nullptr>
+		//SIV3D_NODISCARD_CXX20
 		//explicit Image(const Grid<Type>& grid, Fty converter);
 
 		Image& operator =(const Image&) = default;

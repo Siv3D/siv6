@@ -13,23 +13,23 @@
 
 namespace s3d
 {
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline constexpr KahanSummation<Float>::KahanSummation(Float init) noexcept
 		: m_sum(init)
 	{
 	
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline constexpr void KahanSummation<Float>::operator +=(const Float value) noexcept
 	{
-		const Float y = value - m_err;
-		const Float t = m_sum + y;
-		m_err = (t - m_sum) - y;
+		const Float y = (value - m_err);
+		const Float t = (m_sum + y);
+		m_err = ((t - m_sum) - y);
 		m_sum = t;
 	}
 
-	SIV3D_CONCEPT_FLOATING_POINT_
+	template <class Float>
 	inline constexpr Float KahanSummation<Float>::value() const noexcept
 	{
 		return m_sum;

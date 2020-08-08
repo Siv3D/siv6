@@ -14,7 +14,7 @@
 
 namespace s3d
 {
-	SIV3D_CONCEPT_FLOATING_POINT
+	template <class Float>
 	class KahanSummation
 	{
 	private:
