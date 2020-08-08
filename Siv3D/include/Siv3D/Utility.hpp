@@ -416,11 +416,7 @@ namespace s3d
 
 	/// @brief 整数を列挙型の値に変換する関数オブジェクトです。
 	/// @tparam Enum 変換先の列挙型
-# if __cpp_lib_concepts
-	template <Concept::Enum Enum>
-# else
-	template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_ENUM
 	inline constexpr auto ToEnum = detail::ToEnum_impl<Enum>{};
 
 	//////////////////////////////////////////////////

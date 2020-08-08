@@ -71,12 +71,8 @@ namespace s3d
 		/// @tparam Type 読み込む値の型
 		/// @param dst 読み込み先
 		/// @return 読み込みに成功した場合 true, それ以外の場合は false
-	# if __cpp_lib_concepts
-		template <Concept::TriviallyCopyable Type>
-	# else
-		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
-	# endif
-		bool read(Type& dst);
+		SIV3D_CONCEPT_TRIVIALLY_COPYABLE
+		bool read(TriviallyCopyable& dst);
 
 		/// @brief Reader から読み込み位置を変更しないでデータを読み込みます。
 		/// @param dst 読み込み先
@@ -95,12 +91,8 @@ namespace s3d
 		/// @tparam Type 読み込む値の型
 		/// @param dst 読み込み先
 		/// @return 読み込みに成功したら true, それ以外の場合は false
-	# if __cpp_lib_concepts
-		template <Concept::TriviallyCopyable Type>
-	# else
-		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
-	# endif
-		bool lookahead(Type& dst) const;
+		SIV3D_CONCEPT_TRIVIALLY_COPYABLE
+		bool lookahead(TriviallyCopyable& dst) const;
 	};
 }
 

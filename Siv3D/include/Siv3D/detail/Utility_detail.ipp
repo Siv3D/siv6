@@ -297,11 +297,7 @@ namespace s3d::detail
 
 	struct FromEnum_impl
 	{
-	# if __cpp_lib_concepts
-		template <Concept::Enum Enum>
-	# else
-		template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ENUM
 		[[nodiscard]]
 		constexpr auto operator ()(Enum x) const noexcept
 		{
@@ -321,11 +317,7 @@ namespace s3d::detail
 	//
 	//////////////////////////////////////////////////
 
-# if __cpp_lib_concepts
-	template <Concept::Enum Enum>
-# else
-	template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_ENUM
 	struct ToEnum_impl
 	{
 		[[nodiscard]]

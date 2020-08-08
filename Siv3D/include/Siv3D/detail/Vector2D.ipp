@@ -407,7 +407,7 @@ namespace s3d
 	{
 		if (isZero())
 		{
-			return Math::Constants::NaN_v<Type>;
+			return Math::NaN_v<Type>;
 		}
 
 		return std::atan2(x, -y);
@@ -418,7 +418,7 @@ namespace s3d
 	{
 		if (isZero() || other.isZero())
 		{
-			return Math::Constants::NaN_v<Type>;
+			return Math::NaN_v<Type>;
 		}
 
 		return std::atan2(cross(other), dot(other));

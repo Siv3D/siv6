@@ -24,13 +24,9 @@ namespace s3d
 		return isOpen();
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::TriviallyCopyable Type>
-# else
-	template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
-# endif
-	inline bool BinaryWriter::write(const Type& src)
+	SIV3D_CONCEPT_TRIVIALLY_COPYABLE_
+	inline bool BinaryWriter::write(const TriviallyCopyable& src)
 	{
-		return (write(std::addressof(src), sizeof(Type)) == sizeof(Type));
+		return (write(std::addressof(src), sizeof(TriviallyCopyable)) == sizeof(TriviallyCopyable));
 	}
 }

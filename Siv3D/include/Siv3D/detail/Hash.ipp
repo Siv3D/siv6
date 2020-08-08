@@ -50,24 +50,16 @@ namespace s3d
 			}
 		}
 
-	# if __cpp_lib_concepts
-		template <Concept::TriviallyCopyable Type>
-	# else
-		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
-	# endif
-		inline size_t FNV1a(const Type& input) noexcept
+		SIV3D_CONCEPT_TRIVIALLY_COPYABLE_
+		inline size_t FNV1a(const TriviallyCopyable& input) noexcept
 		{
-			return FNV1a(std::addressof(input), sizeof(Type));
+			return FNV1a(std::addressof(input), sizeof(TriviallyCopyable));
 		}
 
-	# if __cpp_lib_concepts
-		template <Concept::TriviallyCopyable Type>
-	# else
-		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
-	# endif
-		inline uint64 XXHash3(const Type& input) noexcept
+		SIV3D_CONCEPT_TRIVIALLY_COPYABLE_
+		inline uint64 XXHash3(const TriviallyCopyable& input) noexcept
 		{
-			return XXHash3(std::addressof(input), sizeof(Type));
+			return XXHash3(std::addressof(input), sizeof(TriviallyCopyable));
 		}
 	}
 }

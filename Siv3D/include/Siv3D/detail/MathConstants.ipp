@@ -19,22 +19,22 @@ namespace s3d
 		{
 			inline constexpr double operator ""_pi(const long double x)
 			{
-				return static_cast<double>(x * Math::Constants::Pi);
+				return static_cast<double>(x * Math::Pi);
 			}
 
 			inline constexpr double operator ""_pi(const unsigned long long x)
 			{
-				return static_cast<double>(x * Math::Constants::Pi);
+				return static_cast<double>(x * Math::Pi);
 			}
 
 			inline constexpr double operator ""_deg(const long double deg)
 			{
-				return static_cast<double>(deg * Math::Constants::Pi / 180);
+				return static_cast<double>(deg * Math::Pi / 180);
 			}
 
 			inline constexpr double operator ""_deg(const unsigned long long deg)
 			{
-				return static_cast<double>(deg * Math::Constants::Pi / 180);
+				return static_cast<double>(deg * Math::Pi / 180);
 			}
 		}
 	}

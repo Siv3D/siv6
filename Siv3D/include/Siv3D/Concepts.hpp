@@ -70,7 +70,6 @@ namespace s3d
 		/// @tparam Type 型
 		template <class Type>
 		concept UniformRandomBitGenerator = std::invocable<Type&> && std::unsigned_integral<std::invoke_result_t<Type&>>;
-		// std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr
 	}
 }
 
@@ -92,6 +91,10 @@ namespace s3d
 	# define SIV3D_CONCEPT_FORMATTABLE_ARGS_	template <s3d::Concept::Formattable... Args>
 	# define SIV3D_CONCEPT_FORMATTABLE			template <s3d::Concept::Formattable Formattable>
 	# define SIV3D_CONCEPT_FORMATTABLE_			template <s3d::Concept::Formattable Formattable>
+	# define SIV3D_CONCEPT_TRIVIALLY_COPYABLE	template <s3d::Concept::TriviallyCopyable TriviallyCopyable>
+	# define SIV3D_CONCEPT_TRIVIALLY_COPYABLE_	template <s3d::Concept::TriviallyCopyable TriviallyCopyable>
+	# define SIV3D_CONCEPT_ENUM					template <s3d::Concept::Enum Enum>
+	# define SIV3D_CONCEPT_ENUM_				template <s3d::Concept::Enum Enum>
 
 # else
 
@@ -109,5 +112,9 @@ namespace s3d
 	# define SIV3D_CONCEPT_FORMATTABLE_ARGS_	template <class... Args>
 	# define SIV3D_CONCEPT_FORMATTABLE			template <class Formattable, class = decltype(Formatter(std::declval<FormatData&>(), std::declval<Formattable>()))>
 	# define SIV3D_CONCEPT_FORMATTABLE_			template <class Formattable, class>
+	# define SIV3D_CONCEPT_TRIVIALLY_COPYABLE	template <class TriviallyCopyable, std::enable_if_t<std::is_trivially_copyable_v<TriviallyCopyable>>* = nullptr>
+	# define SIV3D_CONCEPT_TRIVIALLY_COPYABLE_	template <class TriviallyCopyable, std::enable_if_t<std::is_trivially_copyable_v<TriviallyCopyable>>*>
+	# define SIV3D_CONCEPT_ENUM					template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>* = nullptr>
+	# define SIV3D_CONCEPT_ENUM_				template <class Enum, std::enable_if_t<std::is_enum_v<Enum>>*>
 
 # endif

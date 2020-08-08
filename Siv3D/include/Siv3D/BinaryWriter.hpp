@@ -58,12 +58,8 @@ namespace s3d
 
 		int64 write(const void* src, int64 size) override;
 
-	# if __cpp_lib_concepts
-		template <Concept::TriviallyCopyable Type>
-	# else
-		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
-	# endif
-		bool write(const Type& src);
+		SIV3D_CONCEPT_TRIVIALLY_COPYABLE
+		bool write(const TriviallyCopyable& src);
 
 		[[nodiscard]]
 		const FilePath& path() const noexcept;

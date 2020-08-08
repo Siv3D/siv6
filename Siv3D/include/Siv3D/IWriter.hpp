@@ -53,12 +53,8 @@ namespace s3d
 		/// @tparam Type 書き込む値の型
 		/// @param src 書き込むデータ
 		/// @return 書き込みに成功した場合 true, それ以外の場合は false
-	# if __cpp_lib_concepts
-		template <Concept::TriviallyCopyable Type>
-	# else
-		template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>* = nullptr>
-	# endif
-		bool write(const Type& src);
+		SIV3D_CONCEPT_TRIVIALLY_COPYABLE
+		bool write(const TriviallyCopyable& src);
 	};
 }
 

@@ -29,23 +29,15 @@ namespace s3d
 		return isOpen();
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::TriviallyCopyable Type>
-# else
-	template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
-# endif
-	inline bool BinaryReader::read(Type& dst)
+	SIV3D_CONCEPT_TRIVIALLY_COPYABLE_
+	inline bool BinaryReader::read(TriviallyCopyable& dst)
 	{
-		return (read(std::addressof(dst), sizeof(Type)) == sizeof(Type));
+		return (read(std::addressof(dst), sizeof(TriviallyCopyable)) == sizeof(TriviallyCopyable));
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::TriviallyCopyable Type>
-# else
-	template <class Type, std::enable_if_t<std::is_trivially_copyable_v<Type>>*>
-# endif
-	bool BinaryReader::lookahead(Type& dst)
+	SIV3D_CONCEPT_TRIVIALLY_COPYABLE_
+	bool BinaryReader::lookahead(TriviallyCopyable& dst)
 	{
-		return (lookahead(std::addressof(dst), sizeof(Type)) == sizeof(Type));
+		return (lookahead(std::addressof(dst), sizeof(TriviallyCopyable)) == sizeof(TriviallyCopyable));
 	}
 }
