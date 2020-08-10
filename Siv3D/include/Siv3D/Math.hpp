@@ -248,9 +248,9 @@ namespace s3d
 		[[nodiscard]]
 		inline constexpr Vec4 Square(Vec4 v) noexcept;
 
-		template <class Type, std::enable_if_t<std::is_arithmetic_v<Type>>* = nullptr>
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
-		inline constexpr Type Square(Type x) noexcept;
+		inline constexpr Arithmetic Square(Arithmetic x) noexcept;
 	}
 
 	//////////////////////////////////////////////////

@@ -44,11 +44,7 @@ namespace s3d
 	/// @param min 生成する乱数の最小値
 	/// @param max 生成する乱数の最大値
 	/// @return 生成された乱数
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC
 	[[nodiscard]]
 	inline Arithmetic Random(Arithmetic min, Arithmetic max);
 
@@ -63,11 +59,7 @@ namespace s3d
 	/// @tparam Arithmetic 生成する乱数の型
 	/// @param max 生成する乱数の最大値
 	/// @return 生成された乱数
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC
 	[[nodiscard]]
 	inline Arithmetic Random(Arithmetic max);
 
@@ -82,11 +74,7 @@ namespace s3d
 	/// @param min 生成する乱数の範囲の基準となる値（これより大きい）
 	/// @param max 生成する乱数の範囲の基準となる値（これ未満）
 	/// @return 生成された乱数
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC
 	[[nodiscard]]
 	inline Arithmetic RandomOpen(Arithmetic min, Arithmetic max);
 
@@ -96,11 +84,7 @@ namespace s3d
 	/// @param max 生成する乱数の最大値
 	/// @remark Random(min, max) と同じです。
 	/// @return 生成された乱数
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC
 	[[nodiscard]]
 	inline Arithmetic RandomClosed(Arithmetic min, Arithmetic max);
 
@@ -109,11 +93,7 @@ namespace s3d
 	/// @param min 生成する乱数の範囲の基準となる値（これより大きい）
 	/// @param max 生成する乱数の最大値
 	/// @return 生成された乱数
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC
 	[[nodiscard]]
 	inline Arithmetic RandomOpenClosed(Arithmetic min, Arithmetic max);
 
@@ -122,11 +102,7 @@ namespace s3d
 	/// @param min 生成する乱数の最小値
 	/// @param max 生成する乱数の範囲の基準となる値（これ未満）
 	/// @return 生成された乱数
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC
 	[[nodiscard]]
 	inline Arithmetic RandomClosedOpen(Arithmetic min, Arithmetic max);
 

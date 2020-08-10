@@ -13,11 +13,7 @@
 
 namespace s3d
 {
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr Mat3x2::Mat3x2(const Arithmetic s) noexcept
 		: _11(static_cast<value_type>(s)), _12(0.0f)
 		, _21(0.0f), _22(static_cast<value_type>(s))
@@ -52,11 +48,7 @@ namespace s3d
 		return mat;
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr Mat3x2 Mat3x2::scaled(const Arithmetic s, const Float2 center) const noexcept
 	{
 		const float b_11 = static_cast<value_type>(s);
@@ -94,11 +86,7 @@ namespace s3d
 				(_31 * b_11 + b_31), (_32 * b_22 + b_32) };
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline Mat3x2 Mat3x2::rotated(const Arithmetic angle, const Float2 center) const noexcept
 	{
 		Mat3x2 result;
@@ -106,11 +94,7 @@ namespace s3d
 		return result;
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr Mat3x2 Mat3x2::shearedX(const Arithmetic sx) const noexcept
 	{
 		const float b_21 = -static_cast<value_type>(sx);
@@ -120,11 +104,7 @@ namespace s3d
 				(_31 + _32 * b_21), _32 };
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr Mat3x2 Mat3x2::shearedY(const Arithmetic sy) const noexcept
 	{
 		const float b_12 = static_cast<value_type>(sy);
@@ -234,11 +214,7 @@ namespace s3d
 				(center.x - scale.x * center.x), (center.y - scale.y * center.y) };
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr Mat3x2 Mat3x2::Scale(const Arithmetic s, const Float2 center) noexcept
 	{
 		return{ static_cast<value_type>(s), 0.0f,
@@ -256,11 +232,7 @@ namespace s3d
 				(1.0f - static_cast<value_type>(sy)) * center.y };
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline Mat3x2 Mat3x2::Rotate(const Arithmetic angle, const Float2 center) noexcept
 	{
 		const float s = std::sin(static_cast<value_type>(angle));
@@ -270,11 +242,7 @@ namespace s3d
 				(center.x - center.x * c + center.y * s), (center.y - center.x * s - center.y * c) };
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr Mat3x2 Mat3x2::ShearX(const Arithmetic sx) noexcept
 	{
 		return{ 1.0f, 0.0f,
@@ -282,11 +250,7 @@ namespace s3d
 				0.0f, 0.0f };
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr Mat3x2 Mat3x2::ShearY(const Arithmetic sy) noexcept
 	{
 		return{ 1.0f, static_cast<value_type>(sy),

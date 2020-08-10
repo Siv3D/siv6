@@ -363,20 +363,6 @@ namespace s3d
 		return *this;
 	}
 
-	BigInt operator /(const int64 a, const BigInt& b)
-	{
-		BigInt tmp;
-		tmp.pImpl->data = a / b.pImpl->data;
-		return tmp;
-	}
-
-	BigInt operator /(const uint64 a, const BigInt& b)
-	{
-		BigInt tmp;
-		tmp.pImpl->data = a / b.pImpl->data;
-		return tmp;
-	}
-
 	//////////////////////////////////////////////////
 	//
 	//	%
@@ -420,20 +406,6 @@ namespace s3d
 	{
 		this->pImpl->data %= i.pImpl->data;
 		return *this;
-	}
-
-	BigInt operator %(const int64 a, const BigInt& b)
-	{
-		BigInt tmp;
-		tmp.pImpl->data = a % b.pImpl->data;
-		return tmp;
-	}
-
-	BigInt operator %(const uint64 a, const BigInt& b)
-	{
-		BigInt tmp;
-		tmp.pImpl->data = a % b.pImpl->data;
-		return tmp;
 	}
 
 	//////////////////////////////////////////////////
@@ -826,9 +798,45 @@ namespace s3d
 		return *pImpl;
 	}
 
+	//////////////////////////////////////////////////
+	//
+	//	_divI
+	//
+	//////////////////////////////////////////////////
 
+	BigInt BigInt::_divI(const int64 a) const
+	{
+		BigInt tmp;
+		tmp.pImpl->data = (a / pImpl->data);
+		return tmp;
+	}
 
+	BigInt BigInt::_divI(const uint64 a) const
+	{
+		BigInt tmp;
+		tmp.pImpl->data = (a / pImpl->data);
+		return tmp;
+	}
 
+	//////////////////////////////////////////////////
+	//
+	//	_modI
+	//
+	//////////////////////////////////////////////////
+
+	BigInt BigInt::_modI(const int64 a) const
+	{
+		BigInt tmp;
+		tmp.pImpl->data = (a % pImpl->data);
+		return tmp;
+	}
+
+	BigInt BigInt::_modI(const uint64 a) const
+	{
+		BigInt tmp;
+		tmp.pImpl->data = (a % pImpl->data);
+		return tmp;
+	}
 
 	inline namespace Literals
 	{
@@ -848,6 +856,23 @@ namespace s3d
 			{
 				return BigInt{ StringView{ s, length } };
 			}
+		}
+	}
+
+	namespace Math
+	{
+		BigInt GCD(const BigInt& a, const BigInt& b)
+		{
+			BigInt result;
+			result._detail().data = boost::multiprecision::gcd(a._detail().data, b._detail().data);
+			return result;
+		}
+
+		BigInt LCM(const BigInt& a, const BigInt& b)
+		{
+			BigInt result;
+			result._detail().data = boost::multiprecision::lcm(a._detail().data, b._detail().data);
+			return result;
 		}
 	}
 }

@@ -238,11 +238,7 @@ namespace s3d::detail
 	//
 	//////////////////////////////////////////////////
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC
 	struct AbsDiff1_impl
 	{
 		const Arithmetic a;
@@ -268,11 +264,7 @@ namespace s3d::detail
 
 	struct AbsDiff2_impl
 	{
-	# if __cpp_lib_concepts
-		template <Concept::Scalar Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
 		constexpr auto operator()(Arithmetic a, Arithmetic b) const noexcept
 		{

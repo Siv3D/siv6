@@ -13,11 +13,7 @@
 
 namespace s3d
 {
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline Arithmetic Random(const Arithmetic min, const Arithmetic max)
 	{
 		if constexpr (std::is_integral_v<Arithmetic>)
@@ -35,11 +31,7 @@ namespace s3d
 		return Duration{ Random(min.count(), max.count()) };
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline Arithmetic Random(const Arithmetic max)
 	{
 		return Random<Arithmetic>(0, max);
@@ -50,41 +42,25 @@ namespace s3d
 		return Duration{ Random(max.count()) };
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline Arithmetic RandomOpen(const Arithmetic min, const Arithmetic max)
 	{
 		return absl::Uniform(absl::IntervalOpen, GetDefaultRNG(), min, max);
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline Arithmetic RandomClosed(const Arithmetic min, const Arithmetic max)
 	{
 		return absl::Uniform(absl::IntervalClosed, GetDefaultRNG(), min, max);
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline Arithmetic RandomOpenClosed(const Arithmetic min, const Arithmetic max)
 	{
 		return absl::Uniform(absl::IntervalOpenClosed, GetDefaultRNG(), min, max);
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline Arithmetic RandomClosedOpen(const Arithmetic min, const Arithmetic max)
 	{
 		return absl::Uniform(absl::IntervalClosedOpen, GetDefaultRNG(), min, max);

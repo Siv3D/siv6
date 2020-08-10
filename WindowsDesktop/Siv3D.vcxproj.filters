@@ -424,6 +424,9 @@
     <Filter Include="src\Siv3D\MathParser">
       <UniqueIdentifier>{ccd0e1b4-1b30-43d0-bd69-3c91124214dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\PrimeNumber">
+      <UniqueIdentifier>{e85e4e72-9c83-4e46-befb-c8efa6b42308}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -2148,6 +2151,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\CommonVector.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\PrimeNumber.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -2983,6 +2989,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\ThirdParty\muparser\muParserCallback.cpp">
       <Filter>src\ThirdParty\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\PrimeNumber\SivPrimeNumber.cpp">
+      <Filter>src\Siv3D\PrimeNumber</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

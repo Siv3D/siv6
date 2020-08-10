@@ -118,6 +118,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/MathParser/MathParserDetail.cpp
   ../Siv3D/src/Siv3D/MathParser/SivMathParser.cpp
   ../Siv3D/src/Siv3D/Point/SivPoint.cpp
+  ../Siv3D/src/Siv3D/PrimeNumber/SivPrimeNumber.cpp
   ../Siv3D/src/Siv3D/Profiler/CProfiler.cpp
   ../Siv3D/src/Siv3D/Profiler/ProfilerFactory.cpp
   ../Siv3D/src/Siv3D/Profiler/SivProfiler.cpp

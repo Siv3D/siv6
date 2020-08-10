@@ -137,8 +137,8 @@ namespace s3d
 			return (x * x);
 		}
 
-		template <class Type, std::enable_if_t<std::is_arithmetic_v<Type>>*>
-		inline constexpr Type Square(const Type x) noexcept
+		SIV3D_CONCEPT_ARITHMETIC_
+		inline constexpr Arithmetic Square(const Arithmetic x) noexcept
 		{
 			return (x * x);
 		}

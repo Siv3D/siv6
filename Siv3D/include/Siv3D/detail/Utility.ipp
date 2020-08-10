@@ -233,21 +233,13 @@ namespace s3d
 	//
 	//////////////////////////////////////////////////
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr auto AbsDiff(const Arithmetic a, PlaceHolder_t) noexcept
 	{
 		return detail::AbsDiff1_impl<Arithmetic>(a);
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr auto AbsDiff(PlaceHolder_t, const Arithmetic b) noexcept
 	{
 		return detail::AbsDiff1_impl<Arithmetic>(b);
@@ -258,11 +250,7 @@ namespace s3d
 		return detail::AbsDiff2_impl{};
 	}
 
-# if __cpp_lib_concepts
-	template <Concept::Arithmetic Arithmetic>
-# else
-	template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>*>
-# endif
+	SIV3D_CONCEPT_ARITHMETIC_
 	inline constexpr auto AbsDiff(const Arithmetic a, const Arithmetic b) noexcept
 	{
 		return detail::AbsDiff2_impl{}(a, b);

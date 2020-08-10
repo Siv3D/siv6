@@ -26,11 +26,7 @@ namespace s3d
 		SIV3D_NODISCARD_CXX20
 		Mat3x2() = default;
 
-	# if __cpp_lib_concepts
-		template <Concept::Arithmetic Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		SIV3D_NODISCARD_CXX20
 		explicit constexpr Mat3x2(Arithmetic s) noexcept;
 
@@ -60,11 +56,7 @@ namespace s3d
 		[[nodiscard]]
 		Mat3x2 constexpr translated(X x, Y y) const noexcept;
 
-	# if __cpp_lib_concepts
-		template <Concept::Arithmetic Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
 		Mat3x2 constexpr scaled(Arithmetic s, Float2 center = Float2(0, 0)) const noexcept;
 
@@ -75,27 +67,15 @@ namespace s3d
 		[[nodiscard]]
 		Mat3x2 constexpr scaled(X sx, Y sy, Float2 center = Float2(0, 0)) const noexcept;
 
-	# if __cpp_lib_concepts
-		template <Concept::Arithmetic Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
 		Mat3x2 rotated(Arithmetic angle, Float2 center = Float2(0, 0)) const noexcept;
 
-	# if __cpp_lib_concepts
-		template <Concept::Arithmetic Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
 		constexpr Mat3x2 shearedX(Arithmetic sx) const noexcept;
 
-	# if __cpp_lib_concepts
-		template <Concept::Arithmetic Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
 		constexpr Mat3x2 shearedY(Arithmetic sy) const noexcept;
 
@@ -135,11 +115,7 @@ namespace s3d
 		[[nodiscard]]
 		static constexpr Mat3x2 Scale(Float2 scale, Float2 center = Float2(0, 0)) noexcept;
 
-	# if __cpp_lib_concepts
-		template <Concept::Arithmetic Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
 		static constexpr Mat3x2 Scale(Arithmetic s, Float2 center = Float2(0, 0)) noexcept;
 
@@ -147,27 +123,15 @@ namespace s3d
 		[[nodiscard]]
 		static constexpr Mat3x2 Scale(X sx, Y sy, Float2 center = Float2(0, 0)) noexcept;
 
-	# if __cpp_lib_concepts
-		template <Concept::Arithmetic Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
 		static Mat3x2 Rotate(Arithmetic angle, Float2 center = Float2(0, 0)) noexcept;
 
-	# if __cpp_lib_concepts
-		template <Concept::Arithmetic Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
 		static constexpr Mat3x2 ShearX(Arithmetic sx) noexcept;
 
-	# if __cpp_lib_concepts
-		template <Concept::Arithmetic Arithmetic>
-	# else
-		template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
-	# endif
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
 		static constexpr Mat3x2 ShearY(Arithmetic sy) noexcept;
 

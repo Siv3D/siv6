@@ -85,6 +85,8 @@ namespace s3d
 	# define SIV3D_CONCEPT_INTEGRAL_			template <s3d::Concept::Integral Int>
 	# define SIV3D_CONCEPT_FLOATING_POINT		template <s3d::Concept::FloatingPoint Float>
 	# define SIV3D_CONCEPT_FLOATING_POINT_		template <s3d::Concept::FloatingPoint Float>
+	# define SIV3D_CONCEPT_ARITHMETIC			template <s3d::Concept::Arithmetic Arithmetic>
+	# define SIV3D_CONCEPT_ARITHMETIC_			template <s3d::Concept::Arithmetic Arithmetic>
 	# define SIV3D_CONCEPT_URBG					template <s3d::Concept::UniformRandomBitGenerator URBG>
 	# define SIV3D_CONCEPT_URBG_				template <s3d::Concept::UniformRandomBitGenerator URBG>
 	# define SIV3D_CONCEPT_FORMATTABLE_ARGS		template <s3d::Concept::Formattable... Args>
@@ -106,6 +108,8 @@ namespace s3d
 	# define SIV3D_CONCEPT_INTEGRAL_			template <class Int, std::enable_if_t<std::is_integral_v<Int>>*>
 	# define SIV3D_CONCEPT_FLOATING_POINT		template <class Float, std::enable_if_t<std::is_floating_point_v<Float>>* = nullptr>
 	# define SIV3D_CONCEPT_FLOATING_POINT_		template <class Float, std::enable_if_t<std::is_floating_point_v<Float>>*>
+	# define SIV3D_CONCEPT_ARITHMETIC			template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
+	# define SIV3D_CONCEPT_ARITHMETIC_			template <class Arithmetic, std::enable_if_t<std::is_arithmetic_v<Arithmetic>>* = nullptr>
 	# define SIV3D_CONCEPT_URBG					template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>* = nullptr>
 	# define SIV3D_CONCEPT_URBG_				template <class URBG, std::enable_if_t<std::is_invocable_v<URBG&> && std::is_unsigned_v<std::invoke_result_t<URBG&>>>*>
 	# define SIV3D_CONCEPT_FORMATTABLE_ARGS		template <class... Args>

@@ -25,33 +25,40 @@ namespace s3d
 		
 		std::unique_ptr<BigIntDetail> pImpl;
 
-		friend BigInt operator /(int64 a, const BigInt& b);
-		friend BigInt operator /(uint64 a, const BigInt& b);
-		friend BigInt operator %(int64 a, const BigInt& b);
-		friend BigInt operator %(uint64 a, const BigInt& b);
-		friend BigInt GCD(const BigInt&, const BigInt&);
-		friend BigInt LCM(const BigInt&, const BigInt&);
+		BigInt _divI(int64 a) const;
+		BigInt _divI(uint64 a) const;
+		BigInt _modI(int64 a) const;
+		BigInt _modI(uint64 a) const;
 
 	public:
 
+		SIV3D_NODISCARD_CXX20
 		BigInt();
 		
 		SIV3D_CONCEPT_SIGNED_INTEGRAL
+		SIV3D_NODISCARD_CXX20
 		BigInt(SignedInt i);
 		
 		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
+		SIV3D_NODISCARD_CXX20
 		BigInt(UnsignedInt i);
 		
+		SIV3D_NODISCARD_CXX20
 		BigInt(int64 i);
 		
+		SIV3D_NODISCARD_CXX20
 		BigInt(uint64 i);
 		
+		SIV3D_NODISCARD_CXX20
 		explicit BigInt(std::string_view number);
 		
+		SIV3D_NODISCARD_CXX20
 		explicit BigInt(StringView number);
 		
+		SIV3D_NODISCARD_CXX20
 		BigInt(const BigInt& other);
 		
+		SIV3D_NODISCARD_CXX20
 		BigInt(BigInt&& other) noexcept;
 
 		~BigInt();
@@ -146,6 +153,13 @@ namespace s3d
 		
 		BigInt& operator +=(const BigInt& i);
 
+		SIV3D_CONCEPT_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator +(const Int a, const BigInt& b)
+		{
+			return (b + a);
+		}
+
 		//////////////////////////////////////////////////
 		//
 		//	-
@@ -191,6 +205,13 @@ namespace s3d
 		
 		BigInt& operator -=(const BigInt& i);
 
+		SIV3D_CONCEPT_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator -(const Int a, const BigInt& b)
+		{
+			return (-b + a);
+		}
+
 		//////////////////////////////////////////////////
 		//
 		//	*
@@ -225,6 +246,13 @@ namespace s3d
 		BigInt& operator *=(UnsignedInt i);
 		
 		BigInt& operator *=(const BigInt& i);
+
+		SIV3D_CONCEPT_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator *(const Int a, const BigInt& b)
+		{
+			return (b * a);
+		}
 
 		//////////////////////////////////////////////////
 		//
@@ -261,6 +289,32 @@ namespace s3d
 		
 		BigInt& operator /=(const BigInt& i);
 
+		SIV3D_CONCEPT_SIGNED_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator /(const SignedInt a, const BigInt& b)
+		{
+			return (static_cast<int64>(a) / b);
+		}
+
+		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator /(const UnsignedInt a, const BigInt& b)
+		{
+			return (static_cast<uint64>(a) / b);
+		}
+
+		[[nodiscard]]
+		friend inline BigInt operator /(const int64 a, const BigInt& b)
+		{
+			return b._divI(a);
+		}
+
+		[[nodiscard]]
+		friend inline BigInt operator /(const uint64 a, const BigInt& b)
+		{
+			return b._divI(a);
+		}
+
 		//////////////////////////////////////////////////
 		//
 		//	%
@@ -295,6 +349,32 @@ namespace s3d
 		BigInt& operator %=(UnsignedInt i);
 		
 		BigInt& operator %=(const BigInt& i);
+
+		SIV3D_CONCEPT_SIGNED_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator %(const SignedInt a, const BigInt& b)
+		{
+			return (static_cast<int64>(a) % b);
+		}
+
+		SIV3D_CONCEPT_UNSIGNED_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator %(const UnsignedInt a, const BigInt& b)
+		{
+			return (static_cast<uint64>(a) % b);
+		}
+
+		[[nodiscard]]
+		friend inline BigInt operator %(const int64 a, const BigInt& b)
+		{
+			return b._modI(a);
+		}
+
+		[[nodiscard]]
+		friend inline BigInt operator %(const uint64 a, const BigInt& b)
+		{
+			return b._modI(a);
+		}
 
 		//////////////////////////////////////////////////
 		//
@@ -331,6 +411,13 @@ namespace s3d
 		
 		BigInt& operator &=(const BigInt& i);
 
+		SIV3D_CONCEPT_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator &(const Int a, const BigInt& b)
+		{
+			return (b & a);
+		}
+
 		//////////////////////////////////////////////////
 		//
 		//	|
@@ -366,6 +453,13 @@ namespace s3d
 		
 		BigInt& operator |=(const BigInt& i);
 
+		SIV3D_CONCEPT_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator |(const Int a, const BigInt& b)
+		{
+			return (b | a);
+		}
+
 		//////////////////////////////////////////////////
 		//
 		//	^
@@ -400,6 +494,13 @@ namespace s3d
 		BigInt& operator ^=(UnsignedInt i);
 		
 		BigInt& operator ^=(const BigInt& i);
+
+		SIV3D_CONCEPT_INTEGRAL
+		[[nodiscard]]
+		friend inline BigInt operator ^(const Int a, const BigInt& b)
+		{
+			return (b ^ a);
+		}
 
 		//////////////////////////////////////////////////
 		//
@@ -493,6 +594,162 @@ namespace s3d
 
 		//////////////////////////////////////////////////
 		//
+		//	==
+		//
+		//////////////////////////////////////////////////
+
+		[[nodiscard]]
+		friend inline bool operator ==(const BigInt& a, const BigInt& b)
+		{
+			return (a.compare(b) == 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator ==(const BigInt& a, const Arithmetic b)
+		{
+			return (a.compare(b) == 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator ==(const Arithmetic a, const BigInt& b)
+		{
+			return (b.compare(a) == 0);
+		}
+
+		//////////////////////////////////////////////////
+		//
+		//	!=
+		//
+		//////////////////////////////////////////////////
+
+		[[nodiscard]]
+		friend inline bool operator !=(const BigInt& a, const BigInt& b)
+		{
+			return (a.compare(b) != 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator !=(const BigInt& a, const Arithmetic b)
+		{
+			return (a.compare(b) == 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator !=(const Arithmetic a, const BigInt& b)
+		{
+			return (b.compare(a) != 0);
+		}
+
+		//////////////////////////////////////////////////
+		//
+		//	<
+		//
+		//////////////////////////////////////////////////
+
+		[[nodiscard]]
+		friend inline bool operator <(const BigInt& a, const BigInt& b)
+		{
+			return (a.compare(b) < 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator <(const BigInt& a, const Arithmetic b)
+		{
+			return (a.compare(b) < 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator <(const Arithmetic a, const BigInt& b)
+		{
+			return (b.compare(a) > 0);
+		}
+
+		//////////////////////////////////////////////////
+		//
+		//	<=
+		//
+		//////////////////////////////////////////////////
+
+		[[nodiscard]]
+		friend inline bool operator <=(const BigInt& a, const BigInt& b)
+		{
+			return (a.compare(b) <= 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator <=(const BigInt& a, const Arithmetic b)
+		{
+			return (a.compare(b) <= 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator <=(const Arithmetic a, const BigInt& b)
+		{
+			return (b.compare(a) >= 0);
+		}
+
+		//////////////////////////////////////////////////
+		//
+		//	>
+		//
+		//////////////////////////////////////////////////
+
+		[[nodiscard]]
+		friend inline bool operator >(const BigInt& a, const BigInt& b)
+		{
+			return (a.compare(b) > 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator >(const BigInt& a, const Arithmetic b)
+		{
+			return (a.compare(b) > 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator >(const Arithmetic a, const BigInt& b)
+		{
+			return (b.compare(a) < 0);
+		}
+
+		//////////////////////////////////////////////////
+		//
+		//	>=
+		//
+		//////////////////////////////////////////////////
+
+		[[nodiscard]]
+		friend inline bool operator >=(const BigInt& a, const BigInt& b)
+		{
+			return (a.compare(b) >= 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator >=(const BigInt& a, const Arithmetic b)
+		{
+			return (a.compare(b) >= 0);
+		}
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend inline bool operator >=(const Arithmetic a, const BigInt& b)
+		{
+			return (b.compare(a) <= 0);
+		}
+
+		//////////////////////////////////////////////////
+		//
 		//	utilities
 		//
 		//////////////////////////////////////////////////
@@ -526,6 +783,7 @@ namespace s3d
 
 		void swap(BigInt& other) noexcept;
 
+		[[nodiscard]]
 		size_t hash() const;
 
 		//////////////////////////////////////////////////
@@ -592,182 +850,6 @@ namespace s3d
 		const BigIntDetail& _detail() const;
 	};
 
-	/*
-	template <class Type, std::enable_if_t<std::is_integral_v<Type>>* = nullptr>
-	[[nodiscard]] inline BigInt operator +(const Type& a, const BigInt& b)
-	{
-		return b + a;
-	}
-
-	template <class Type, std::enable_if_t<std::is_integral_v<Type>>* = nullptr>
-	[[nodiscard]] inline BigInt operator -(const Type& a, const BigInt& b)
-	{
-		return -b + a;
-	}
-
-	template <class Type, std::enable_if_t<std::is_integral_v<Type>>* = nullptr>
-	[[nodiscard]] inline BigInt operator *(const Type& a, const BigInt& b)
-	{
-		return b * a;
-	}
-
-	template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt> && std::is_signed_v<SignedInt>)>* = nullptr>
-	[[nodiscard]] inline BigInt operator /(SignedInt a, const BigInt& b)
-	{
-		return static_cast<int64>(a) / b;
-	}
-
-	template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt> && !std::is_signed_v<SignedInt>)>* = nullptr>
-	[[nodiscard]] inline BigInt operator /(SignedInt a, const BigInt& b)
-	{
-		return static_cast<uint64>(a) / b;
-	}
-
-	[[nodiscard]] BigInt operator /(int64 a, const BigInt& b);
-	[[nodiscard]] BigInt operator /(uint64 a, const BigInt& b);
-
-	template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt> && std::is_signed_v<SignedInt>)>* = nullptr>
-	[[nodiscard]] inline BigInt operator %(SignedInt a, const BigInt& b)
-	{
-		return static_cast<int64>(a) / b;
-	}
-
-	template <class SignedInt, std::enable_if_t<(std::is_integral_v<SignedInt> && !std::is_signed_v<SignedInt>)>* = nullptr>
-	[[nodiscard]] inline BigInt operator %(SignedInt a, const BigInt& b)
-	{
-		return static_cast<uint64>(a) / b;
-	}
-
-	[[nodiscard]] BigInt operator %(int64 a, const BigInt& b);
-	[[nodiscard]] BigInt operator %(uint64 a, const BigInt& b);
-
-	template <class Type, std::enable_if_t<std::is_integral_v<Type>>* = nullptr>
-	[[nodiscard]] inline BigInt operator &(const Type& a, const BigInt& b)
-	{
-		return b & a;
-	}
-
-	template <class Type, std::enable_if_t<std::is_integral_v<Type>>* = nullptr>
-	[[nodiscard]] inline BigInt operator |(const Type& a, const BigInt& b)
-	{
-		return b | a;
-	}
-
-	template <class Type, std::enable_if_t<std::is_integral_v<Type>>* = nullptr>
-	[[nodiscard]] inline BigInt operator ^(const Type& a, const BigInt& b)
-	{
-		return b ^ a;
-	}
-
-	[[nodiscard]] BigInt GCD(const BigInt& a, const BigInt& b);
-
-	[[nodiscard]] BigInt LCM(const BigInt& a, const BigInt& b);
-
-	[[nodiscard]] bool IsPrime(uint64 n);
-
-	[[nodiscard]] inline bool operator ==(const BigInt& a, const BigInt& b)
-	{
-		return a.compare(b) == 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator ==(const BigInt& a, Number b)
-	{
-		return a.compare(b) == 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator ==(Number a, const BigInt& b)
-	{
-		return b.compare(a) == 0;
-	}
-
-	[[nodiscard]] inline bool operator !=(const BigInt& a, const BigInt& b)
-	{
-		return a.compare(b) != 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator !=(const BigInt& a, Number b)
-	{
-		return a.compare(b) != 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator !=(Number a, const BigInt& b)
-	{
-		return b.compare(a) != 0;
-	}
-
-	[[nodiscard]] inline bool operator <(const BigInt& a, const BigInt& b)
-	{
-		return a.compare(b) < 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator <(const BigInt& a, Number b)
-	{
-		return a.compare(b) < 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator <(Number a, const BigInt& b)
-	{
-		return b.compare(a) < 0;
-	}
-
-	[[nodiscard]] inline bool operator <=(const BigInt& a, const BigInt& b)
-	{
-		return a.compare(b) <= 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator <=(const BigInt& a, Number b)
-	{
-		return a.compare(b) <= 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator <=(Number a, const BigInt& b)
-	{
-		return b.compare(a) <= 0;
-	}
-
-	[[nodiscard]] inline bool operator >(const BigInt& a, const BigInt& b)
-	{
-		return a.compare(b) > 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator >(const BigInt& a, Number b)
-	{
-		return a.compare(b) > 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator >(Number a, const BigInt& b)
-	{
-		return b.compare(a) > 0;
-	}
-
-	[[nodiscard]] inline bool operator >=(const BigInt& a, const BigInt& b)
-	{
-		return a.compare(b) >= 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator >=(const BigInt& a, Number b)
-	{
-		return a.compare(b) >= 0;
-	}
-
-	template <class Number, std::enable_if_t<std::is_arithmetic_v<Number>>* = nullptr>
-	[[nodiscard]] inline bool operator >=(Number a, const BigInt& b)
-	{
-		return b.compare(a) >= 0;
-	}
-	*/
-
 	inline namespace Literals
 	{
 		inline namespace BigNumLiterals
@@ -781,6 +863,15 @@ namespace s3d
 			[[nodiscard]]
 			BigInt operator ""_big(const char32* s, size_t length);
 		}
+	}
+
+	namespace Math
+	{
+		[[nodiscard]]
+		BigInt GCD(const BigInt& a, const BigInt& b);
+
+		[[nodiscard]]
+		BigInt LCM(const BigInt& a, const BigInt& b);
 	}
 }
 

@@ -700,6 +700,8 @@
 // Statistics
 # include <Siv3D/Statistics.hpp>
 
+# include <Siv3D/PrimeNumber.hpp>
+
 //////////////////////////////////////////////////
 //
 //	ノイズ
