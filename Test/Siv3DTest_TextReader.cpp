@@ -9,13 +9,7 @@
 //
 //-----------------------------------------------
 
-# define CATCH_CONFIG_FAST_COMPILE
-# define CATCH_CONFIG_ENABLE_BENCHMARKING
-# include <ThirdParty/Catch2/catch.hpp>
-
-# include <Siv3D.hpp>
-using namespace s3d;
-using namespace std::literals;
+# include "Siv3DTest.hpp"
 
 SIV3D_DISABLE_MSVC_WARNINGS_PUSH(4566)
 

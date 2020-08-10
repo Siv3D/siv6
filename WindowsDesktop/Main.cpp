@@ -6,7 +6,7 @@ void Siv3DTest();
 
 void Main()
 {
-	//Siv3DTest();
+	Siv3DTest();
 
 	//LicenseManager::ShowInBrowser();
 

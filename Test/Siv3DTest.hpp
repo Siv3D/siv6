@@ -9,9 +9,12 @@
 //
 //-----------------------------------------------
 
-# include "Siv3DTest.hpp"
+# pragma once
+# define CATCH_CONFIG_FAST_COMPILE
+# define CATCH_CONFIG_ENABLE_BENCHMARKING
+# include <ThirdParty/Catch2/catch.hpp>
+# include <Siv3D.hpp>
+using namespace s3d;
+using namespace std::literals;
 
-TEST_CASE("Resource")
-{
-	Console << (U"EnumResourceFiles()\t: {}"_fmt(EnumResourceFiles()));
-}
+//# define SIV3D_RUN_BENCHMARK

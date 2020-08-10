@@ -9,14 +9,8 @@
 //
 //-----------------------------------------------
 
-# define CATCH_CONFIG_FAST_COMPILE
-# define CATCH_CONFIG_ENABLE_BENCHMARKING
-# include <ThirdParty/Catch2/catch.hpp>
-
-# include <Siv3D.hpp>
+# include "Siv3DTest.hpp"
 # include <fstream>
-using namespace s3d;
-using namespace std::literals;
 
 TEST_CASE("BinaryWriter")
 {
@@ -334,7 +328,8 @@ TEST_CASE("BinaryWriter::flush()")
 	}
 }
 
-/**
+# if defined(SIV3D_RUN_BENCHMARK)
+
 TEST_CASE("BinaryWriter : benchmark")
 {
 	Logger.disable();
@@ -392,4 +387,5 @@ TEST_CASE("BinaryWriter : benchmark")
 
 	Logger.enable();
 }
-/**/
+
+# endif
