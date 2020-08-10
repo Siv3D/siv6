@@ -514,6 +514,7 @@
 		2C47B49C24DD97F2008D83BE /* muParserTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C47B48624DD97F1008D83BE /* muParserTest.h */; };
 		2C47B49D24DD97F2008D83BE /* muParserError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47B48724DD97F1008D83BE /* muParserError.cpp */; };
 		2C47B49E24DD97F2008D83BE /* muParserInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47B48824DD97F1008D83BE /* muParserInt.cpp */; };
+		2C47B4A524E16B90008D83BE /* SivPrimeNumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47B4A424E16B8F008D83BE /* SivPrimeNumber.cpp */; };
 		2C47E59924AF3C7B0060E8A7 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47E59824AF3C7B0060E8A7 /* libboost_filesystem.a */; };
 		2C481E1224460B5700A5D88D /* bit_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0C24460B5700A5D88D /* bit_utils.h */; };
 		2C481E1324460B5700A5D88D /* cpuinfo_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */; };
@@ -1431,6 +1432,12 @@
 		2C47B48624DD97F1008D83BE /* muParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = muParserTest.h; sourceTree = "<group>"; };
 		2C47B48724DD97F1008D83BE /* muParserError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = muParserError.cpp; sourceTree = "<group>"; };
 		2C47B48824DD97F1008D83BE /* muParserInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = muParserInt.cpp; sourceTree = "<group>"; };
+		2C47B49F24E16B06008D83BE /* Window.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Window.ipp; sourceTree = "<group>"; };
+		2C47B4A024E16B23008D83BE /* Math.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Math.ipp; sourceTree = "<group>"; };
+		2C47B4A124E16B55008D83BE /* CommonVector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommonVector.hpp; sourceTree = "<group>"; };
+		2C47B4A224E16B6E008D83BE /* PrimeNumber.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PrimeNumber.hpp; sourceTree = "<group>"; };
+		2C47B4A424E16B8F008D83BE /* SivPrimeNumber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivPrimeNumber.cpp; sourceTree = "<group>"; };
+		2C47B4A624E16BB9008D83BE /* Siv3DTest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Siv3DTest.hpp; sourceTree = "<group>"; };
 		2C47E59824AF3C7B0060E8A7 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../Siv3D/lib/macOS/boost/libboost_filesystem.a; sourceTree = "<group>"; };
 		2C481E0C24460B5700A5D88D /* bit_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_utils.h; sourceTree = "<group>"; };
 		2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpuinfo_x86.h; sourceTree = "<group>"; };
@@ -2196,6 +2203,7 @@
 				2C47B28624DD9789008D83BE /* ParseFloat */,
 				2C47B25B24DD9789008D83BE /* ParseInt */,
 				2C47B27A24DD9789008D83BE /* Point */,
+				2C47B4A324E16B8F008D83BE /* PrimeNumber */,
 				2C47B2C124DD9789008D83BE /* Profiler */,
 				2C47B28424DD9789008D83BE /* QR */,
 				2C47B2D024DD9789008D83BE /* Random */,
@@ -2818,6 +2826,7 @@
 				2C47B45A24DD97AF008D83BE /* ColorHSV.hpp */,
 				2C47B44924DD97AF008D83BE /* Common.hpp */,
 				2C47B3BD24DD97AF008D83BE /* CommonFloat.hpp */,
+				2C47B4A124E16B55008D83BE /* CommonVector.hpp */,
 				2C47B37D24DD97AF008D83BE /* Concepts.hpp */,
 				2C47B3C724DD97AF008D83BE /* Console.hpp */,
 				2C47B38E24DD97AF008D83BE /* CopyOption.hpp */,
@@ -2905,6 +2914,7 @@
 				2C47B3AE24DD97AF008D83BE /* Point.hpp */,
 				2C47B3A824DD97AF008D83BE /* PointVector.hpp */,
 				2C47B3AC24DD97AF008D83BE /* PredefinedNamedParameter.hpp */,
+				2C47B4A224E16B6E008D83BE /* PrimeNumber.hpp */,
 				2C47B43B24DD97AF008D83BE /* PRNG.hpp */,
 				2C47B46224DD97AF008D83BE /* Profiler.hpp */,
 				2C47B42A24DD97AF008D83BE /* QR.hpp */,
@@ -3007,6 +3017,7 @@
 				2C47B3E124DD97AF008D83BE /* KahanSummation.ipp */,
 				2C47B3FE24DD97AF008D83BE /* Mat3x2.ipp */,
 				2C47B3EC24DD97AF008D83BE /* MatchResults.ipp */,
+				2C47B4A024E16B23008D83BE /* Math.ipp */,
 				2C47B40F24DD97AF008D83BE /* MathConstants.ipp */,
 				2C47B3D624DD97AF008D83BE /* Memory.ipp */,
 				2C47B40B24DD97AF008D83BE /* MicrosecClock.ipp */,
@@ -3039,6 +3050,7 @@
 				2C47B40024DD97AF008D83BE /* Vector3D.ipp */,
 				2C47B41E24DD97AF008D83BE /* Vector4D.ipp */,
 				2C47B41424DD97AF008D83BE /* Vertex2D.ipp */,
+				2C47B49F24E16B06008D83BE /* Window.ipp */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -3103,6 +3115,14 @@
 			path = muparser;
 			sourceTree = "<group>";
 		};
+		2C47B4A324E16B8F008D83BE /* PrimeNumber */ = {
+			isa = PBXGroup;
+			children = (
+				2C47B4A424E16B8F008D83BE /* SivPrimeNumber.cpp */,
+			);
+			path = PrimeNumber;
+			sourceTree = "<group>";
+		};
 		2C481E0B24460B5700A5D88D /* cpu_features */ = {
 			isa = PBXGroup;
 			children = (
@@ -3119,6 +3139,7 @@
 		2C48584924C1FBAE0034F68D /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				2C47B4A624E16BB9008D83BE /* Siv3DTest.hpp */,
 				2C435A0324C9A6BB007FBAA6 /* Siv3DTest_Array.cpp */,
 				2C0FF4E524C429B40014C96E /* Siv3DTest_BinaryReader.cpp */,
 				2C0FF4E724C437020014C96E /* Siv3DTest_BinaryWriter.cpp */,
@@ -4247,6 +4268,7 @@
 				2C47B30324DD9789008D83BE /* SivBigFloat.cpp in Sources */,
 				2CFF9F6424A46481000B5A17 /* osmesa_context.c in Sources */,
 				2C47B22224DD9754008D83BE /* svgelementtail.cpp in Sources */,
+				2C47B4A524E16B90008D83BE /* SivPrimeNumber.cpp in Sources */,
 				2C834D93248805D4006208B8 /* euc_jp.c in Sources */,
 				2C423245242B155E00A16BCA /* cocoa_time.c in Sources */,
 				2C834DBC248805D4006208B8 /* gb18030.c in Sources */,
