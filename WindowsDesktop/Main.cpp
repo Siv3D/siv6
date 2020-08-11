@@ -11,6 +11,12 @@ void Main()
 
 	//LicenseManager::ShowInBrowser();
 
+	Texture t1, t2;
+	Console << t1.id().value();
+	Console << (t1 == t2);
+	Texture t3(Image(32, 32, Palette::Yellow));
+	Console << t3.id().value();
+
 	while (System::Update())
 	{
 		for (auto i : step(20))

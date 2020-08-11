@@ -902,7 +902,10 @@
 
 # include <Siv3D/Vertex2D.hpp>
 
-
+# include <Siv3D/AssetID.hpp>
+# include <Siv3D/AssetIDWrapper.hpp>
+# include <Siv3D/AssetHandle.hpp>
+# include <Siv3D/Texture.hpp>
 
 # if !defined(SIV3D_LIBRARY_BUILD) && SIV3D_PLATFORM(WINDOWS)
 
