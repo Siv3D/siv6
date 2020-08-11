@@ -31,9 +31,9 @@ namespace s3d
 
 		HWND hWnd	= static_cast<HWND>(SIV3D_ENGINE(Window)->getHandle());
 		const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
-		m_device	= std::make_unique<D3D11Device>();
-		m_swapChain = std::make_unique<D3D11SwapChain>(*m_device, hWnd, frameBufferSize);
-
+		m_device		= std::make_unique<D3D11Device>();
+		m_swapChain		= std::make_unique<D3D11SwapChain>(*m_device, hWnd, frameBufferSize);
+		m_backBuffer	= std::make_unique<D3D11BackBuffer>(*m_device, *m_swapChain);
 
 		clear();
 	}

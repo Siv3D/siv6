@@ -15,6 +15,7 @@
 # include <Siv3D/Renderer/IRenderer.hpp>
 # include "Device/D3D11Device.hpp"
 # include "SwapChain/D3D11SwapChain.hpp"
+# include "BackBuffer/D3D11BackBuffer.hpp"
 
 namespace s3d
 {
@@ -25,6 +26,8 @@ namespace s3d
 		std::unique_ptr<D3D11Device> m_device;
 
 		std::unique_ptr<D3D11SwapChain> m_swapChain;
+
+		std::unique_ptr<D3D11BackBuffer> m_backBuffer;
 
 	public:
 

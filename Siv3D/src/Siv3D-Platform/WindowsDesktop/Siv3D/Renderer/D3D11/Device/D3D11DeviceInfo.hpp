@@ -11,8 +11,7 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
-# include <Siv3D/Windows/Windows.hpp>
-# include <d3d11.h>
+# include <Siv3D/Common/D3D11.hpp>
 
 namespace s3d
 {
