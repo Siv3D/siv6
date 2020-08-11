@@ -14,11 +14,13 @@
 
 namespace s3d
 {
+	template <>
 	AssetIDWrapper<AssetHandle<Texture>::Tag>::AssetIDWrapper()
 	{
 
 	}
 
+	template <>
 	AssetIDWrapper<AssetHandle<Texture>::Tag>::~AssetIDWrapper()
 	{
 		LOG_INFO(U"pTexture->release({})"_fmt(m_id.value()));
