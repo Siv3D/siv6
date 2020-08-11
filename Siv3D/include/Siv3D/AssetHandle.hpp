@@ -20,9 +20,7 @@ namespace s3d
 	{
 	protected:
 
-		struct Tag {};
-
-		using AssetIDWrapperType = AssetIDWrapper<Tag>;
+		using AssetIDWrapperType = AssetIDWrapper<AssetHandle>;
 
 		std::shared_ptr<AssetIDWrapperType> m_handle;
 
