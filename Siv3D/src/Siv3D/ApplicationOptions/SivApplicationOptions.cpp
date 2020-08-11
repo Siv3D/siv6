@@ -28,5 +28,11 @@ namespace s3d
 			g_applicationOptions.renderer = value;
 			return 0;
 		}
+
+		int SetEngineOption(const EngineOption::D3D11Driver value) noexcept
+		{
+			g_applicationOptions.d3d11Driver = value;
+			return 0;
+		}
 	}
 }

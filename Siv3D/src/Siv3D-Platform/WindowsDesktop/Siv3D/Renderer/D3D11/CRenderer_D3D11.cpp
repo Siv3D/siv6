@@ -12,6 +12,9 @@
 # include "CRenderer_D3D11.hpp"
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
+# include <Siv3D/WindowState.hpp>
+# include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
 {
@@ -25,6 +28,12 @@ namespace s3d
 	void CRenderer_D3D11::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_D3D11::init()");
+
+		HWND hWnd	= static_cast<HWND>(SIV3D_ENGINE(Window)->getHandle());
+		const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
+		m_device	= std::make_unique<D3D11Device>();
+		m_swapChain = std::make_unique<D3D11SwapChain>(*m_device, hWnd, frameBufferSize);
+
 
 		clear();
 	}
@@ -47,6 +56,11 @@ namespace s3d
 
 	bool CRenderer_D3D11::present()
 	{
+		if (not m_swapChain->present())
+		{
+			return false;
+		}
+
 		return true;
 	}
 

@@ -221,6 +221,21 @@ namespace s3d
 			, size(static_cast<value_type>(r.w), static_cast<value_type>(r.h)) {}
 
 
+		[[nodiscard]]
+		friend constexpr bool operator ==(const Rectangle& lhs, const Rectangle& rhs) noexcept
+		{
+			return (lhs.pos == rhs.pos)
+				&& (lhs.size == rhs.size);
+		}
+
+		[[nodiscard]]
+		friend constexpr bool operator !=(const Rectangle& lhs, const Rectangle& rhs) noexcept
+		{
+			return (lhs.pos != rhs.pos)
+				|| (lhs.size != rhs.size);
+		}
+
+
 
 
 		template <class CharType>

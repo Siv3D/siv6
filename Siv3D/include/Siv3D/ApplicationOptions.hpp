@@ -43,19 +43,33 @@ namespace s3d
 			/// @brief Metal
 			Metal = 4,
 		};
+
+		enum class D3D11Driver
+		{
+			Hardware,
+
+			Hardware_FavorIntegrated,
+
+			WARP,
+
+			Reference
+		};
 	};
 
 	struct ApplicationOptions
 	{
-		EngineOption::DebugHeap debugHeap	= EngineOption::DebugHeap::Yes;
+		EngineOption::DebugHeap debugHeap		= EngineOption::DebugHeap::Yes;
 
-		EngineOption::Renderer renderer		= EngineOption::Renderer::PlatformDefault;
+		EngineOption::Renderer renderer			= EngineOption::Renderer::PlatformDefault;
+
+		EngineOption::D3D11Driver d3d11Driver	= EngineOption::D3D11Driver::Hardware;
 	};
 
 	namespace detail
 	{
 		int SetEngineOption(EngineOption::DebugHeap) noexcept;
 		int SetEngineOption(EngineOption::Renderer) noexcept;
+		int SetEngineOption(EngineOption::D3D11Driver) noexcept;
 	}
 
 	extern ApplicationOptions g_applicationOptions;
