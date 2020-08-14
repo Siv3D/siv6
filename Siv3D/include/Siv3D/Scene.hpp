@@ -14,6 +14,7 @@
 # include "PointVector.hpp"
 # include "Window.hpp"
 # include "TextureFilter.hpp"
+# include "ResizeMode.hpp"
 
 namespace s3d
 {
@@ -38,5 +39,7 @@ namespace s3d
 		/// <returns>`System::Update()` が呼ばれた回数</returns>
 		[[nodiscard]]
 		int32 FrameCount() noexcept;
+
+		void SetResizeMode(ResizeMode resizeMode);
 	}
 }

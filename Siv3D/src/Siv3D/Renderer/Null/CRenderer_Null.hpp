@@ -35,8 +35,12 @@ namespace s3d
 
 		bool present() override;
 
-		Size getFrameBufferSize() const override;
+		void setSceneResizeMode(ResizeMode resizeMode) override;
 
-		Size getSceneSize() const override;
+		ResizeMode getSceneResizeMode() const noexcept override;
+
+		void setSceneBufferSize(Size size) override;
+
+		Size getSceneBufferSize() const noexcept override;
 	};
 }

@@ -448,6 +448,18 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Siv3D\Texture\D3D11">
       <UniqueIdentifier>{0daa5a10-7148-4159-b117-515e59e6dcc3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\BlendState">
+      <UniqueIdentifier>{1762a431-773b-4ac3-962e-3602bda3c1d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\RasterizerState">
+      <UniqueIdentifier>{0884f026-fe2d-4e14-8993-1beb70017771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\DepthStencilState">
+      <UniqueIdentifier>{9ea184ec-7c28-4a9f-ab18-f8dd0fd03918}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\SamplerState">
+      <UniqueIdentifier>{a2c5bb29-b246-43dc-8610-075ac5614b25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -2230,6 +2242,9 @@
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\BackBuffer</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\TextureFilter.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\ResizeMode.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
   </ItemGroup>

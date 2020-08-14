@@ -11,6 +11,7 @@
 
 # include <Siv3D/Scene.hpp>
 # include <Siv3D/Scene/IScene.hpp>
+# include <Siv3D/Renderer/IRenderer.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
@@ -20,6 +21,11 @@ namespace s3d
 		int32 FrameCount() noexcept
 		{
 			return SIV3D_ENGINE(Scene)->getFrameCount();
+		}
+
+		void SetResizeMode(const ResizeMode resizeMode)
+		{
+			return SIV3D_ENGINE(Renderer)->setSceneResizeMode(resizeMode);
 		}
 	}
 }

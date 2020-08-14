@@ -88,7 +88,19 @@ namespace s3d
 		return m_sceneTextureFilter;
 	}
 
-	void D3D11BackBuffer::setSceneSize(const Size size)
+	void D3D11BackBuffer::setSceneResizeMode(const ResizeMode resizeMode)
+	{
+		m_sceneResizeMode = resizeMode;
+
+		updateSceneSize();
+	}
+
+	ResizeMode D3D11BackBuffer::getSceneResizeMode() const noexcept
+	{
+		return m_sceneResizeMode;
+	}
+
+	void D3D11BackBuffer::setSceneBufferSize(const Size size)
 	{
 		assert((0 < size.x) && (0 < size.y));
 
@@ -109,21 +121,21 @@ namespace s3d
 			m_sceneBufferMS	= D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount);
 		}
 
+		m_sceneBuffer.reset();
+
 		clear(ClearTarget::All);
 	}
 
-	const Size& D3D11BackBuffer::getSceneSize() const
+	const Size& D3D11BackBuffer::getSceneBufferSize() const
 	{
 		return m_sceneSize;
 	}
 
-	void D3D11BackBuffer::resizeBuffers(const Size backBufferSize, const Size sceneSize)
+	void D3D11BackBuffer::setBackBufferSize(const Size backBufferSize)
 	{
 		assert((0 < backBufferSize.x) && (0 < backBufferSize.y));
-		assert((0 < sceneSize.x) && (0 < sceneSize.y));
 
-		LOG_TRACE(U"D3D11BackBuffer::resizeBuffers(backBufferSize = {}, sceneSize = {})"_fmt(
-			backBufferSize, sceneSize));
+		LOG_TRACE(U"D3D11BackBuffer::setBackBufferSize({})"_fmt(backBufferSize));
 
 		unbindAllRenderTargets();
 
@@ -139,7 +151,7 @@ namespace s3d
 			m_backBuffer = D3D11InternalTexture2D::GetTextureFromSwapChain(m_device, m_swapChain1);
 		}
 
-		setSceneSize(sceneSize);
+		updateSceneSize();
 	}
 
 	const Size& D3D11BackBuffer::getBackBufferSize() const
@@ -150,5 +162,17 @@ namespace s3d
 	void D3D11BackBuffer::unbindAllRenderTargets()
 	{
 		m_context->OMSetRenderTargets(0, nullptr, nullptr);
+	}
+
+	void D3D11BackBuffer::updateSceneSize()
+	{
+		if (m_sceneResizeMode == ResizeMode::Actual)
+		{
+			setSceneBufferSize(Window::GetState().frameBufferSize);
+		}
+		else if (m_sceneResizeMode == ResizeMode::Virtual)
+		{
+			setSceneBufferSize(Window::GetState().virtualSize);
+		}
 	}
 }

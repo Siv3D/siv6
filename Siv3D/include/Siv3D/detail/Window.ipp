@@ -36,14 +36,24 @@ namespace s3d
 			return GetState().bounds.pos;
 		}
 
-		inline bool Resize(const int32 width, const int32 height)
+		inline bool Resize(const Size size)
 		{
-			return Resize(Size(width, height));
+			return ResizeVirtual(size);
 		}
 
-		inline bool ResizeFrameBuffer(const int32 width, const int32 height)
+		inline bool Resize(const int32 width, const int32 height)
 		{
-			return ResizeFrameBuffer(Size(width, height));
+			return ResizeVirtual(Size(width, height));
+		}
+
+		inline bool ResizeVirtual(const int32 width, const int32 height)
+		{
+			return ResizeVirtual(Size(width, height));
+		}
+
+		inline bool ResizeActual(const int32 width, const int32 height)
+		{
+			return ResizeActual(Size(width, height));
 		}
 	}
 }

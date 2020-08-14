@@ -40,7 +40,7 @@ namespace s3d
 			SIV3D_ENGINE(Window)->setStyle(style);
 		}
 
-		void SetPos(const Point& pos)
+		void SetPos(const Point pos)
 		{
 			SIV3D_ENGINE(Window)->setPos(pos);
 		}
@@ -60,27 +60,27 @@ namespace s3d
 			SIV3D_ENGINE(Window)->minimize();
 		}
 
-		bool Resize(const Size& size)
+		bool ResizeVirtual(const Size size)
 		{
 			if (!InRange(size.x, 1, 8192) || !InRange(size.y, 1, 8192))
 			{
-				throw Error(U"Window::Resize(): width and height must be in the range [1, 8192]");
+				throw Error(U"Window::ResizeVirtual(): width and height must be in the range [1, 8192]");
 			}
 
-			return SIV3D_ENGINE(Window)->setVirtualSize(size);
+			return SIV3D_ENGINE(Window)->resizeByVirtualSize(size);
 		}
 
-		bool ResizeFrameBuffer(const Size& size)
+		bool ResizeActual(const Size size)
 		{
 			if (!InRange(size.x, 1, 8192) || !InRange(size.y, 1, 8192))
 			{
-				throw Error(U"Window::ResizeFrameBuffer(): width and height must be in the range [1, 8192]");
+				throw Error(U"Window::ResizeActual(): width and height must be in the range [1, 8192]");
 			}
 
-			return SIV3D_ENGINE(Window)->setFrameBufferSize(size);
+			return SIV3D_ENGINE(Window)->resizeByFrameBufferSize(size);
 		}
 
-		void SetMinimumFrameBufferSize(const Size& size)
+		void SetMinimumFrameBufferSize(const Size size)
 		{
 			SIV3D_ENGINE(Window)->setMinimumFrameBufferSize(size);
 		}

@@ -55,7 +55,7 @@ namespace s3d
 
 		/// @brief ウィンドウを指定したスクリーン座標に移動させます。
 		/// @param pos 移動先のスクリーン座標
-		void SetPos(const Point& pos);
+		void SetPos(Point pos);
 
 		/// @brief ウィンドウを指定したスクリーン座標に移動させます。
 		/// @param x 移動先のスクリーン X 座標
@@ -79,15 +79,19 @@ namespace s3d
 		/// @brief ウィンドウのクライアントサイズを仮想サイズ基準で変更します。
 		/// @param size 新しいサイズ
 		/// @return サイズの変更に成功した場合 true, それ以外の場合は false
-		bool Resize(const Size& size);
+		inline bool Resize(Size size);
 
 		inline bool Resize(int32 width, int32 height);
 
-		bool ResizeFrameBuffer(const Size& size);
+		bool ResizeVirtual(Size size);
 
-		inline bool ResizeFrameBuffer(int32 width, int32 height);
+		inline bool ResizeVirtual(int32 width, int32 height);
 
-		void SetMinimumFrameBufferSize(const Size& size);
+		bool ResizeActual(Size size);
+
+		inline bool ResizeActual(int32 width, int32 height);
+
+		void SetMinimumFrameBufferSize(Size size);
 	}
 }
 

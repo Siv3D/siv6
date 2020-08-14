@@ -16,6 +16,7 @@
 # include <Siv3D/UserAction.hpp>
 # include <Siv3D/DLL.hpp>
 # include <Siv3D/Profiler/IProfiler.hpp>
+# include <Siv3D/Renderer/IRenderer.hpp>
 # include <Siv3D/UserAction/IUSerAction.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include "CWindow.hpp"
@@ -316,21 +317,21 @@ namespace s3d
 		::ShowWindow(m_hWnd, SW_MINIMIZE);
 	}
 
-	bool CWindow::setVirtualSize(const Size& size)
+	bool CWindow::resizeByVirtualSize(const Size& virtualSize)
 	{
-		LOG_TRACE(U"CWindow::setVirtualSize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow::resizeByVirtualSize(size = {})"_fmt(virtualSize));
 
 		const double scaling = detail::GetScaling(m_dpi);
-		const Size newFrameBufferSize = (size * scaling).asPoint();
+		const Size newFrameBufferSize = (virtualSize * scaling).asPoint();
 
-		return setFrameBufferSize(newFrameBufferSize);
+		return resizeByFrameBufferSize(newFrameBufferSize);
 	}
 
-	bool CWindow::setFrameBufferSize(const Size& size)
+	bool CWindow::resizeByFrameBufferSize(const Size& frameBufferSize)
 	{
-		LOG_TRACE(U"CWindow::setFrameBufferSize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow::resizeByFrameBufferSize(size = {})"_fmt(frameBufferSize));
 
-		if (m_state.virtualSize == size)
+		if (m_state.frameBufferSize == frameBufferSize)
 		{
 			return true;
 		}
@@ -345,7 +346,7 @@ namespace s3d
 			restore();
 		}
 
-		const Size newFrameBufferSize = size;
+		const Size newFrameBufferSize = frameBufferSize;
 
 		if ((newFrameBufferSize.x < m_state.minFrameBufferSize.x)
 			|| (newFrameBufferSize.y < m_state.minFrameBufferSize.y))
@@ -356,8 +357,8 @@ namespace s3d
 		const uint32 windowStyleFlags = detail::GetWindowStyleFlags(m_state.style);
 		Rect windowRect = adjustWindowRect(m_state.bounds.pos, newFrameBufferSize, windowStyleFlags);
 
-		m_state.virtualSize = size;
-		constexpr UINT flags = (SWP_NOACTIVATE | SWP_NOZORDER);
+		m_state.virtualSize		= (m_state.frameBufferSize * (1.0 / m_state.scaling)).asPoint();
+		constexpr UINT flags	= (SWP_NOACTIVATE | SWP_NOZORDER);
 		setWindowPos(windowRect, flags);
 
 		return true;

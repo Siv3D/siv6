@@ -50,7 +50,13 @@ namespace s3d
 
 	void CRenderer_D3D11::clear()
 	{
+		m_backBuffer->clear(ClearTarget::BackBuffer | ClearTarget::SceneMS);
 
+		if (const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
+			frameBufferSize != m_backBuffer->getBackBufferSize())
+		{
+			m_backBuffer->setBackBufferSize(frameBufferSize);
+		}
 	}
 
 	void CRenderer_D3D11::flush()
@@ -68,13 +74,23 @@ namespace s3d
 		return true;
 	}
 
-	Size CRenderer_D3D11::getFrameBufferSize() const
+	void CRenderer_D3D11::setSceneResizeMode(const ResizeMode resizeMode)
 	{
-		return(Size(0, 0));
+		m_backBuffer->setSceneResizeMode(resizeMode);
 	}
 
-	Size CRenderer_D3D11::getSceneSize() const
+	ResizeMode CRenderer_D3D11::getSceneResizeMode() const noexcept
 	{
-		return m_backBuffer->getSceneSize();
+		return m_backBuffer->getSceneResizeMode();
+	}
+
+	void CRenderer_D3D11::setSceneBufferSize(const Size size)
+	{
+		m_backBuffer->setSceneBufferSize(size);
+	}
+
+	Size CRenderer_D3D11::getSceneBufferSize() const noexcept
+	{
+		return m_backBuffer->getSceneBufferSize();;
 	}
 }

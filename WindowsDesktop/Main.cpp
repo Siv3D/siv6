@@ -8,10 +8,14 @@ void Siv3DTest();
 
 void Main()
 {
-	//Window::SetStyle(WindowStyle::Sizable);
+	Window::SetStyle(WindowStyle::Sizable);
 	//Siv3DTest();
 
 	//LicenseManager::ShowInBrowser();
+
+	//Scene::SetResizeMode(ResizeMode::Actual);
+
+	Window::Resize(1200, 800);
 
 	Texture t1, t2;
 	Console << t1.id().value();

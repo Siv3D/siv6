@@ -12,6 +12,7 @@
 # pragma once
 # include <Siv3D/Common.hpp>
 # include <Siv3D/PointVector.hpp>
+# include <Siv3D/ResizeMode.hpp>
 
 namespace s3d
 {
@@ -33,8 +34,12 @@ namespace s3d
 
 		virtual bool present() = 0;
 
-		virtual Size getFrameBufferSize() const = 0;
+		virtual void setSceneResizeMode(ResizeMode resizeMode) = 0;
 
-		virtual Size getSceneSize() const = 0;
+		virtual ResizeMode getSceneResizeMode() const noexcept;
+
+		virtual void setSceneBufferSize(Size size) = 0;
+
+		virtual Size getSceneBufferSize() const noexcept = 0;
 	};
 }

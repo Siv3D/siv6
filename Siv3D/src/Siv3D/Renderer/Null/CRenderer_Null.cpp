@@ -50,12 +50,22 @@ namespace s3d
 		return true;
 	}
 
-	Size CRenderer_Null::getFrameBufferSize() const
+	void CRenderer_Null::setSceneResizeMode(ResizeMode)
 	{
-		return Size(0, 0);
+
 	}
 
-	Size CRenderer_Null::getSceneSize() const
+	ResizeMode CRenderer_Null::getSceneResizeMode() const noexcept
+	{
+		return(ResizeMode::Default);
+	}
+
+	void CRenderer_Null::setSceneBufferSize(Size)
+	{
+		
+	}
+
+	Size CRenderer_Null::getSceneBufferSize() const noexcept
 	{
 		return Size(0, 0);
 	}

@@ -97,12 +97,12 @@ namespace s3d
 		return true;
 	}
 
-	Size CRenderer_Metal::getFrameBufferSize() const
+	void CRenderer_Metal::setSceneBufferSize(const Size size)
 	{
-		return m_frameBufferSize;
+
 	}
 
-	Size CRenderer_Metal::getSceneSize() const
+	Size CRenderer_Metal::getSceneBufferSize() const
 	{
 		return Size(0, 0);
 	}

@@ -48,9 +48,9 @@ namespace s3d
 
 		bool present() override;
 
-		Size getFrameBufferSize() const override;
+		void setSceneBufferSize(Size size) override;
 
-		Size getSceneSize() const override;
+		Size getSceneBufferSize() const override;
 		
 		id<MTLDevice> getDevice() const;
 		

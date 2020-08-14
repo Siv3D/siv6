@@ -216,26 +216,26 @@ namespace s3d
 		::glfwIconifyWindow(m_window);
 	}
 
-	bool CWindow::setVirtualSize(const Size& size)
+	bool CWindow::resizeByVirtualSize(const Size& virtualSize)
 	{
-		LOG_TRACE(U"CWindow::setVirtualSize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow::resizeByVirtualSize({})"_fmt(virtualSize));
 
-		::glfwSetWindowSize(m_window, size.x, size.y);
+		::glfwSetWindowSize(m_window, virtualSize.x, virtualSize.y);
 		return true;
 	}
 
-	bool CWindow::setFrameBufferSize(const Size& size)
+	bool CWindow::resizeByFrameBufferSize(const Size& frameBufferSize)
 	{
-		LOG_TRACE(U"CWindow::setFrameBufferSize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow::resizeByFrameBufferSize({})"_fmt(frameBufferSize));
 		
 		const double scaling = m_state.scaling;
-		const Size newFrameBufferSize = (size * (1.0 / scaling)).asPoint();
-		return setVirtualSize(newFrameBufferSize);
+		const Size newVirtualSize = (frameBufferSize * (1.0 / scaling)).asPoint();
+		return resizeByVirtualSize(newVirtualSize);
 	}
 
 	void CWindow::setMinimumFrameBufferSize(const Size& size)
 	{
-		LOG_TRACE(U"CWindow::setMinimumFrameBufferSize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow::setMinimumFrameBufferSize({})"_fmt(size));
 		
 		m_state.minFrameBufferSize = size;
 		::glfwSetWindowSizeLimits(m_window, size.x, size.y, GLFW_DONT_CARE, GLFW_DONT_CARE);

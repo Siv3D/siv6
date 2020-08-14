@@ -866,6 +866,7 @@
 
 # include <Siv3D/WindowState.hpp>
 
+
 # include <Siv3D/Window.hpp>
 
 
@@ -894,6 +895,7 @@
 # include <Siv3D/QR.hpp>
 
 
+# include <Siv3D/ResizeMode.hpp>
 # include <Siv3D/Scene.hpp>
 
 # include <Siv3D/Console.hpp>

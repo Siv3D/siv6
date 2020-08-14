@@ -77,16 +77,16 @@ namespace s3d
 		LOG_TRACE(U"CWindow_Null::minimize()");
 	}
 
-	bool CWindow_Null::setVirtualSize(const Size& size)
+	bool CWindow_Null::resizeByVirtualSize(const Size& size)
 	{
-		LOG_TRACE(U"CWindow_Null::setVirtualSize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow_Null::resizeByVirtualSize(size = {})"_fmt(size));
 		
 		return true;
 	}
 
-	bool CWindow_Null::setFrameBufferSize(const Size& size)
+	bool CWindow_Null::resizeByFrameBufferSize(const Size& size)
 	{
-		LOG_TRACE(U"CWindow_Null::setFrameBufferSize(size = {})"_fmt(size));
+		LOG_TRACE(U"CWindow_Null::resizeByFrameBufferSize(size = {})"_fmt(size));
 
 		return true;
 	}

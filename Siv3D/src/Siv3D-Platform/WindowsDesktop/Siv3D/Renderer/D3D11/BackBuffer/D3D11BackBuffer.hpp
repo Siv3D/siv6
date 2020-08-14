@@ -42,9 +42,11 @@ namespace s3d
 
 		IDXGISwapChain1* m_swapChain1	= nullptr;
 
-		uint32 m_sampleCount	= 4;
+		uint32 m_sampleCount			= 4;
 
-		Size m_sceneSize		= Scene::DefaultSceneSize;
+		ResizeMode m_sceneResizeMode	= ResizeMode::Default;
+
+		Size m_sceneSize				= Scene::DefaultSceneSize;
 	
 		D3D11InternalTexture2D m_backBuffer;
 
@@ -60,6 +62,8 @@ namespace s3d
 
 		// 全てのレンダーターゲットを解除
 		void unbindAllRenderTargets();
+
+		void updateSceneSize();
 
 	public:
 
@@ -104,14 +108,25 @@ namespace s3d
 
 		//////////////////////////////////////////////////
 		//
+		//	SceneResizeMode
+		//
+		//////////////////////////////////////////////////
+
+		void setSceneResizeMode(ResizeMode resizeMode);
+
+		[[nodiscard]]
+		ResizeMode getSceneResizeMode() const noexcept;
+
+		//////////////////////////////////////////////////
+		//
 		//	SceneSize
 		//
 		//////////////////////////////////////////////////
 
-		void setSceneSize(Size size);
+		void setSceneBufferSize(Size size);
 
 		[[nodiscard]]
-		const Size& getSceneSize() const;
+		const Size& getSceneBufferSize() const;
 
 		//////////////////////////////////////////////////
 		//
@@ -119,7 +134,7 @@ namespace s3d
 		//
 		//////////////////////////////////////////////////
 
-		void resizeBuffers(Size backBufferSize, Size sceneSize);
+		void setBackBufferSize(Size backBufferSize);
 
 		[[nodiscard]]
 		const Size& getBackBufferSize() const;

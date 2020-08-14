@@ -85,12 +85,22 @@ namespace s3d
 		return true;
 	}
 
-	Size CRenderer_GL4::getFrameBufferSize() const
+	void CRenderer_GL4::setSceneResizeMode(const ResizeMode resizeMode)
 	{
-		return m_frameBufferSize;
+
 	}
 
-	Size CRenderer_GL4::getSceneSize() const
+	ResizeMode CRenderer_GL4::getSceneResizeMode() const noexcept
+	{
+		return(ResizeMode::Default);
+	}
+
+	void CRenderer_GL4::setSceneBufferSize(const Size size)
+	{
+
+	}
+
+	Size CRenderer_GL4::getSceneBufferSize() const noexcept
 	{
 		return m_sceneSize;
 	}
