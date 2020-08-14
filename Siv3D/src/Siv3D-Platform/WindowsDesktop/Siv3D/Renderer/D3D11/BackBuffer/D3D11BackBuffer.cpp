@@ -23,17 +23,132 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"D3D11BackBuffer::D3D11BackBuffer()");
 
-		// バックバッファのサイズを取得
+		m_backBuffer	= D3D11InternalTexture2D::GetTextureFromSwapChain(m_device, m_swapChain1);
+
+		m_sceneSize		= Window::GetState().virtualSize;
+
+		if (m_sampleCount >= 2)
 		{
-			DXGI_SWAP_CHAIN_DESC1 desc = {};
-			m_swapChain1->GetDesc1(&desc);
-			//m_backBuffer.size.set(desc.Width, desc.Height);
-			//LOG_TRACE(U"D3D11RenderTarget::m_backBuffer.size = {}"_fmt(m_backBuffer.size));
+			m_sceneBufferMS	= D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount);
 		}
+
+		clear(ClearTarget::All);
 	}
 
 	D3D11BackBuffer::~D3D11BackBuffer()
 	{
 
+	}
+
+	void D3D11BackBuffer::clear(const ClearTarget clearTargets)
+	{
+		if (clearTargets & ClearTarget::BackBuffer)
+		{
+			m_backBuffer.clear(m_context, m_letterboxColor);
+		}
+
+		if ((clearTargets & ClearTarget::SceneMS))
+		{
+			m_sceneBufferMS.clear(m_context, m_backgroundColor);
+		}
+
+		if (clearTargets & ClearTarget::Scene)
+		{
+			m_sceneBuffer.clear(m_context, m_backgroundColor);
+		}
+	}
+
+	void D3D11BackBuffer::setLetterboxColor(const ColorF& color) noexcept
+	{
+		m_letterboxColor = color;
+	}
+
+	const ColorF& D3D11BackBuffer::getLetterBoxColor() const noexcept
+	{
+		return m_letterboxColor;
+	}
+
+	void D3D11BackBuffer::setBackgroundColor(const ColorF& color) noexcept
+	{
+		m_backgroundColor = color;
+	}
+
+	const ColorF& D3D11BackBuffer::getBackgroundColor() const noexcept
+	{
+		return m_backgroundColor;
+	}
+
+	void D3D11BackBuffer::setSceneTextureFilter(const TextureFilter textureFilter) noexcept
+	{
+		m_sceneTextureFilter = textureFilter;
+	}
+
+	TextureFilter D3D11BackBuffer::getSceneTextureFilter() const noexcept
+	{
+		return m_sceneTextureFilter;
+	}
+
+	void D3D11BackBuffer::setSceneSize(const Size size)
+	{
+		assert((0 < size.x) && (0 < size.y));
+
+		if (size == m_sceneSize)
+		{
+			return;
+		}
+
+		LOG_TRACE(U"D3D11BackBuffer::setSceneSize({})"_fmt(size));
+
+		unbindAllRenderTargets();
+
+		m_sceneSize = size;
+
+		if (m_sampleCount >= 2)
+		{
+			m_sceneBufferMS.reset();
+			m_sceneBufferMS	= D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount);
+		}
+
+		clear(ClearTarget::All);
+	}
+
+	const Size& D3D11BackBuffer::getSceneSize() const
+	{
+		return m_sceneSize;
+	}
+
+	void D3D11BackBuffer::resizeBuffers(const Size backBufferSize, const Size sceneSize)
+	{
+		assert((0 < backBufferSize.x) && (0 < backBufferSize.y));
+		assert((0 < sceneSize.x) && (0 < sceneSize.y));
+
+		LOG_TRACE(U"D3D11BackBuffer::resizeBuffers(backBufferSize = {}, sceneSize = {})"_fmt(
+			backBufferSize, sceneSize));
+
+		unbindAllRenderTargets();
+
+		m_backBuffer.reset();
+		{
+			DXGI_SWAP_CHAIN_DESC1 desc = {};
+			m_swapChain1->GetDesc1(&desc);
+			if (FAILED(m_swapChain1->ResizeBuffers(desc.BufferCount, backBufferSize.x, backBufferSize.y, desc.Format, desc.Flags)))
+			{
+				throw EngineError(U"IDXGISwapChain1->ResizeBuffers() failed");
+			}
+
+			m_backBuffer = D3D11InternalTexture2D::GetTextureFromSwapChain(m_device, m_swapChain1);
+		}
+
+		setSceneSize(sceneSize);
+	}
+
+	const Size& D3D11BackBuffer::getBackBufferSize() const
+	{
+		return m_backBuffer.getSize();
+	}
+
+	void D3D11BackBuffer::unbindAllRenderTargets()
+	{
+		m_context->OMSetRenderTargets(0, nullptr, nullptr);
 	}
 }

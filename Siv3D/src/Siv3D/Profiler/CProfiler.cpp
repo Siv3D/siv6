@@ -61,12 +61,13 @@ namespace s3d
 
 	String CProfiler::getSimpleStatistics() const
 	{
-		const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
-		const Size sceneSize(800, 600);// = Scene::Size();
-		return U"{} | {} FPS | F {}x{} | S {}x{}"_fmt(
+		const auto state = SIV3D_ENGINE(Window)->getState();
+		const Size sceneSize = SIV3D_ENGINE(Renderer)->getSceneSize();
+		return U"{} | {} FPS | F {}x{} | V {}x{} | S {}x{}"_fmt(
 			SIV3D_ENGINE(Renderer)->getName(),
 			m_currentFPS,
-			frameBufferSize.x, frameBufferSize.y,
+			state.frameBufferSize.x, state.frameBufferSize.y,
+			state.virtualSize.x, state.virtualSize.y,
 			sceneSize.x, sceneSize.y);
 	}
 }

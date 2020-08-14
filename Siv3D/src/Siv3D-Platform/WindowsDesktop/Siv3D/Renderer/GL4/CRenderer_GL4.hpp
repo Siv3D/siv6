@@ -12,6 +12,7 @@
 # pragma once
 # include <Siv3D/Common.hpp>
 # include <Siv3D/PointVector.hpp>
+# include <Siv3D/Scene.hpp>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
 # include "WGLContext.hpp"
@@ -26,9 +27,9 @@ namespace s3d
 
 		WGLContext m_wglContext;
 
-		Size m_frameBufferSize = Size(0, 0);
+		Size m_frameBufferSize	= Size(0, 0);
 
-		Size m_sceneSize = Size(800, 600);
+		Size m_sceneSize		= Scene::DefaultSceneSize;
 
 	public:
 

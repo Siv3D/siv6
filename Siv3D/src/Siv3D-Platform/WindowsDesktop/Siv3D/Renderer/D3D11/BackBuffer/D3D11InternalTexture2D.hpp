@@ -1,0 +1,48 @@
+﻿//-----------------------------------------------
+//
+//	This file is part of the Siv3D Engine.
+//
+//	Copyright (c) 2008-2020 Ryo Suzuki
+//	Copyright (c) 2016-2020 OpenSiv3D Project
+//
+//	Licensed under the MIT License.
+//
+//-----------------------------------------------
+
+# pragma once
+# include <Siv3D/Common.hpp>
+# include <Siv3D/Common/D3D11.hpp>
+# include <Siv3D/PointVector.hpp>
+# include <Siv3D/ColorHSV.hpp>
+
+namespace s3d
+{
+	class D3D11InternalTexture2D
+	{
+	private:
+
+		ComPtr<ID3D11Texture2D> m_texture;
+
+		ComPtr<ID3D11RenderTargetView> m_renderTargetView;
+
+		ComPtr<ID3D11ShaderResourceView> m_shaderResourceView;
+
+		Size m_size = Size(0, 0);
+
+	public:
+
+		bool isEmpty() const noexcept;
+
+		explicit operator bool() const noexcept;
+
+		const Size& getSize() const noexcept;
+
+		void clear(ID3D11DeviceContext* context, const ColorF color);
+
+		void reset();
+
+		static D3D11InternalTexture2D GetTextureFromSwapChain(ID3D11Device* device, IDXGISwapChain1* swapChain1);
+	
+		static D3D11InternalTexture2D CreateRenderTargetTexture2D(ID3D11Device* device, Size size, uint32 sampleCount);
+	};
+}

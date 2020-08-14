@@ -13,6 +13,7 @@
 # include "Common.hpp"
 # include "PointVector.hpp"
 # include "Window.hpp"
+# include "TextureFilter.hpp"
 
 namespace s3d
 {
@@ -22,6 +23,11 @@ namespace s3d
 		/// シーンの幅と高さ（ピクセル）のデフォルト値です。
 		/// </summary>
 		inline constexpr s3d::Size DefaultSceneSize = Window::DefaultClientSize;
+
+		/// <summary>
+		/// ウィンドウのクライアント領域がシーンのサイズと異なる場合、シーンを拡大縮小描画するために使うテクスチャフィルタのデフォルト値です。
+		/// </summary>
+		inline constexpr TextureFilter DefaultFilter = TextureFilter::Linear;
 
 		/// <summary>
 		/// `System::Update()` が呼ばれた回数（= フレームカウント）を返します。

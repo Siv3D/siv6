@@ -14,6 +14,7 @@
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Texture/ITexture.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
@@ -33,7 +34,10 @@ namespace s3d
 		const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
 		m_device		= std::make_unique<D3D11Device>();
 		m_swapChain		= std::make_unique<D3D11SwapChain>(*m_device, hWnd, frameBufferSize);
-		m_backBuffer	= std::make_unique<D3D11BackBuffer>(*m_device, *m_swapChain);
+		
+		SIV3D_ENGINE(Texture)->init();
+
+		m_backBuffer = std::make_unique<D3D11BackBuffer>(*m_device, *m_swapChain);
 
 		clear();
 	}
@@ -71,6 +75,6 @@ namespace s3d
 
 	Size CRenderer_D3D11::getSceneSize() const
 	{
-		return(Size(0, 0));
+		return m_backBuffer->getSceneSize();
 	}
 }
