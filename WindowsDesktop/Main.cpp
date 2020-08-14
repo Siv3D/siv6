@@ -8,23 +8,20 @@ void Siv3DTest();
 
 void Main()
 {
-	Window::SetStyle(WindowStyle::Sizable);
 	//Siv3DTest();
-
 	//LicenseManager::ShowInBrowser();
 
+	//Window::SetStyle(WindowStyle::Sizable);
 	//Scene::SetResizeMode(ResizeMode::Actual);
-
-	Window::Resize(1200, 800);
-
-	Texture t1, t2;
-	Console << t1.id().value();
-	Console << (t1 == t2);
-	Texture t3(Image(32, 32, Palette::Yellow));
-	Console << t3.id().value();
+	//Window::Resize(1200, 800);
 
 	while (System::Update())
 	{
+		//if (Scene::FrameCount() == 200)
+		//{
+		//	Window::Resize(600, 400);
+		//}
+
 		for (auto i : step(20))
 		{
 			Rect(Cursor::Pos().movedBy(0 + i * 20, 0), 20, 400)

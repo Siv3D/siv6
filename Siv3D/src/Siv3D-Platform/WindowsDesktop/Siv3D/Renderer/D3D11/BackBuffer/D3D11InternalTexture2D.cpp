@@ -43,6 +43,21 @@ namespace s3d
 		context->ClearRenderTargetView(m_renderTargetView.Get(), rgba.getPointer());
 	}
 
+	void D3D11InternalTexture2D::copyTo(ID3D11DeviceContext* context, D3D11InternalTexture2D& dst)
+	{
+		assert(getSize() == dst.getSize());
+
+		context->CopyResource(dst.m_texture.Get(), m_texture.Get());
+	}
+
+	void D3D11InternalTexture2D::resolveTo(ID3D11DeviceContext* context, D3D11InternalTexture2D& dst)
+	{
+		assert(getSize() == dst.getSize());
+
+		context->ResolveSubresource(dst.m_texture.Get(), 0,
+			m_texture.Get(), 0, DXGI_FORMAT_R8G8B8A8_UNORM);
+	}
+
 	void D3D11InternalTexture2D::reset()
 	{
 		m_texture.Reset();
@@ -52,6 +67,16 @@ namespace s3d
 		m_shaderResourceView.Reset();
 
 		m_size = Size(0, 0);
+	}
+
+	ID3D11ShaderResourceView* const* D3D11InternalTexture2D::getSRVPtr() const noexcept
+	{
+		return m_shaderResourceView.GetAddressOf();
+	}
+
+	ID3D11RenderTargetView* D3D11InternalTexture2D::getRTV() const noexcept
+	{
+		return m_renderTargetView.Get();
 	}
 
 	[[nodiscard]]

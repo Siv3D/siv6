@@ -9,19 +9,16 @@
 //
 //-----------------------------------------------
 
-# pragma once
-# include <Siv3D/Windows/Windows.hpp>
-# include <d3d11.h>
-# include <d3d11_1.h>
-# include <dxgi1_5.h>
-
-# define SIV3D_USE_DIRECT3D11_3
-//# define SIV3D_USE_DIRECT3D11_4
+# include "D3D11.hpp"
 
 namespace s3d
 {
 	namespace D3D11
 	{
-		void ResetPSShaderResources(ID3D11DeviceContext* context);
+		void ResetPSShaderResources(ID3D11DeviceContext* context)
+		{
+			constexpr ID3D11ShaderResourceView* nullAttach[16] = { nullptr };
+			context->PSSetShaderResources(0, 16, nullAttach);
+		}
 	}
 }

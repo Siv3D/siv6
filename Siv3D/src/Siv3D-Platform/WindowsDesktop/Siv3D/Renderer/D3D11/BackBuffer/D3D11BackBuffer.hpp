@@ -23,12 +23,10 @@ namespace s3d
 	enum class ClearTarget
 	{
 		BackBuffer	= 1 << 0,
-		
-		SceneMS		= 1 << 1,
-		
-		Scene		= 1 << 2,
 
-		All			= (BackBuffer | SceneMS | Scene),
+		Scene		= 1 << 1,
+
+		All			= (BackBuffer | Scene),
 	};
 	DEFINE_BITMASK_OPERATORS(ClearTarget);
 
@@ -50,13 +48,15 @@ namespace s3d
 	
 		D3D11InternalTexture2D m_backBuffer;
 
-		D3D11InternalTexture2D m_sceneBufferMS;
-
-		D3D11InternalTexture2D m_sceneBuffer;
+		struct SceneBuffer
+		{
+			D3D11InternalTexture2D scene;
+			D3D11InternalTexture2D resolved;
+		} m_sceneBuffers;
 
 		ColorF m_letterboxColor				= Palette::DefaultLetterbox;
 		
-		ColorF m_backgroundColor			= Palette::DefaultBackground;
+		ColorF m_backgroundColor			= Palette::Skyblue;
 
 		TextureFilter m_sceneTextureFilter	= Scene::DefaultFilter;
 
@@ -65,6 +65,8 @@ namespace s3d
 
 		void updateSceneSize();
 
+		void setRenderTarget(const D3D11InternalTexture2D& texture);
+
 	public:
 
 		D3D11BackBuffer(const D3D11Device& device, const D3D11SwapChain& swapChain);
@@ -72,6 +74,8 @@ namespace s3d
 		~D3D11BackBuffer();
 
 		void clear(ClearTarget clearTargets);
+
+		void updateFromSceneBuffer();
 
 		//////////////////////////////////////////////////
 		//

@@ -39,10 +39,18 @@ namespace s3d
 
 		void clear(ID3D11DeviceContext* context, const ColorF color);
 
+		void copyTo(ID3D11DeviceContext* context, D3D11InternalTexture2D& dst);
+
+		void resolveTo(ID3D11DeviceContext* context, D3D11InternalTexture2D& dst);
+
 		void reset();
+
+		ID3D11ShaderResourceView* const* getSRVPtr() const noexcept;
+
+		ID3D11RenderTargetView* getRTV() const noexcept;
 
 		static D3D11InternalTexture2D GetTextureFromSwapChain(ID3D11Device* device, IDXGISwapChain1* swapChain1);
 	
-		static D3D11InternalTexture2D CreateRenderTargetTexture2D(ID3D11Device* device, Size size, uint32 sampleCount);
+		static D3D11InternalTexture2D CreateRenderTargetTexture2D(ID3D11Device* device, Size size, uint32 sampleCount = 1);
 	};
 }

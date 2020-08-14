@@ -27,10 +27,10 @@ namespace s3d
 
 		m_sceneSize		= Window::GetState().virtualSize;
 
-		if (m_sampleCount >= 2)
+		m_sceneBuffers =
 		{
-			m_sceneBufferMS	= D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount);
-		}
+			.scene = D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount)
+		};
 
 		clear(ClearTarget::All);
 	}
@@ -47,14 +47,68 @@ namespace s3d
 			m_backBuffer.clear(m_context, m_letterboxColor);
 		}
 
-		if ((clearTargets & ClearTarget::SceneMS))
+		if ((clearTargets & ClearTarget::Scene))
 		{
-			m_sceneBufferMS.clear(m_context, m_backgroundColor);
+			m_sceneBuffers.scene.clear(m_context, m_backgroundColor);
+		}
+	}
+
+	void D3D11BackBuffer::updateFromSceneBuffer()
+	{
+		unbindAllRenderTargets();
+
+		if (m_sampleCount == 1)
+		{
+			if (m_backBuffer.getSize() == m_sceneBuffers.scene.getSize())
+			{
+				m_sceneBuffers.scene.copyTo(m_context, m_backBuffer);
+			}
+			else
+			{
+				setRenderTarget(m_backBuffer);
+				m_context->PSSetShaderResources(0, 1, m_sceneBuffers.scene.getSRVPtr());
+
+				if (m_sceneTextureFilter == TextureFilter::Nearest)
+				{
+					// [Siv3D ToDo] Draw Nearest
+				}
+				else // (m_sceneTextureFilter == TextureFilter::Linear)
+				{
+					// [Siv3D ToDo] Draw Linear
+				}
+			}
+
+			D3D11::ResetPSShaderResources(m_context);
+			return;
 		}
 
-		if (clearTargets & ClearTarget::Scene)
+		if (m_backBuffer.getSize() == m_sceneBuffers.scene.getSize())
 		{
-			m_sceneBuffer.clear(m_context, m_backgroundColor);
+			m_sceneBuffers.scene.resolveTo(m_context, m_backBuffer);
+		}
+		else
+		{
+			if (m_sceneTextureFilter == TextureFilter::Nearest)
+			{
+				setRenderTarget(m_backBuffer);
+				m_context->PSSetShaderResources(0, 1, m_sceneBuffers.scene.getSRVPtr());
+
+				// [Siv3D ToDo] Draw MSAA
+			}
+			else // (m_sceneTextureFilter == TextureFilter::Linear)
+			{
+				if (m_sceneBuffers.resolved.getSize() != m_sceneBuffers.scene.getSize())
+				{
+					m_sceneBuffers.resolved = D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize);
+				}
+				m_sceneBuffers.scene.resolveTo(m_context, m_sceneBuffers.resolved);
+
+				setRenderTarget(m_backBuffer);
+				m_context->PSSetShaderResources(0, 1, m_sceneBuffers.resolved.getSRVPtr());
+				// [Siv3D ToDo] Draw Linear
+			}
+
+			D3D11::ResetPSShaderResources(m_context);
 		}
 	}
 
@@ -115,13 +169,12 @@ namespace s3d
 
 		m_sceneSize = size;
 
-		if (m_sampleCount >= 2)
-		{
-			m_sceneBufferMS.reset();
-			m_sceneBufferMS	= D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount);
-		}
+		m_sceneBuffers = {};
 
-		m_sceneBuffer.reset();
+		m_sceneBuffers =
+		{
+			.scene = D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount)
+		};
 
 		clear(ClearTarget::All);
 	}
@@ -174,5 +227,17 @@ namespace s3d
 		{
 			setSceneBufferSize(Window::GetState().virtualSize);
 		}
+	}
+
+	void D3D11BackBuffer::setRenderTarget(const D3D11InternalTexture2D& texture)
+	{
+		assert(not texture.isEmpty());
+
+		ID3D11RenderTargetView* pRTV[1] =
+		{
+			texture.getRTV()
+		};
+
+		m_context->OMSetRenderTargets(static_cast<UINT>(std::size(pRTV)), std::data(pRTV), nullptr);
 	}
 }

@@ -16,6 +16,10 @@
 # include "Device/D3D11Device.hpp"
 # include "SwapChain/D3D11SwapChain.hpp"
 # include "BackBuffer/D3D11BackBuffer.hpp"
+# include "BlendState/D3D11BlendState.hpp"
+# include "RasterizerState/D3D11RasterizerState.hpp"
+# include "DepthStencilState/D3D11DepthStencilState.hpp"
+# include "SamplerState/D3D11SamplerState.hpp"
 
 namespace s3d
 {
@@ -28,6 +32,14 @@ namespace s3d
 		std::unique_ptr<D3D11SwapChain> m_swapChain;
 
 		std::unique_ptr<D3D11BackBuffer> m_backBuffer;
+
+		std::unique_ptr<D3D11BlendState> m_blendState;
+
+		std::unique_ptr<D3D11RasterizerState> m_rasterizerState;
+
+		std::unique_ptr<D3D11DepthStencilState> m_depthStencilState;
+
+		std::unique_ptr<D3D11SamplerState> m_samplerState;
 
 	public:
 

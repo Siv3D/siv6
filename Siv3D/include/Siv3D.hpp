@@ -904,6 +904,11 @@
 
 # include <Siv3D/Vertex2D.hpp>
 
+# include <Siv3D/BlendState.hpp>
+# include <Siv3D/RasterizerState.hpp>
+# include <Siv3D/DepthStencilState.hpp>
+# include <Siv3D/SamplerState.hpp>
+
 # include <Siv3D/AssetID.hpp>
 # include <Siv3D/AssetIDWrapper.hpp>
 # include <Siv3D/AssetHandle.hpp>

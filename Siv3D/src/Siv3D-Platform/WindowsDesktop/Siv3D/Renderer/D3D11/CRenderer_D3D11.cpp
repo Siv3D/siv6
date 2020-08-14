@@ -15,6 +15,7 @@
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Texture/ITexture.hpp>
+# include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
@@ -32,14 +33,18 @@ namespace s3d
 
 		HWND hWnd	= static_cast<HWND>(SIV3D_ENGINE(Window)->getHandle());
 		const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
-		m_device		= std::make_unique<D3D11Device>();
-		m_swapChain		= std::make_unique<D3D11SwapChain>(*m_device, hWnd, frameBufferSize);
 		
+		m_device			= std::make_unique<D3D11Device>();
+		m_swapChain			= std::make_unique<D3D11SwapChain>(*m_device, hWnd, frameBufferSize);
+		m_backBuffer		= std::make_unique<D3D11BackBuffer>(*m_device, *m_swapChain);
+		m_blendState		= std::make_unique<D3D11BlendState>(m_device->getDevice(), m_device->getContext());
+		m_rasterizerState	= std::make_unique<D3D11RasterizerState>(m_device->getDevice(), m_device->getContext());
+		m_depthStencilState	= std::make_unique<D3D11DepthStencilState>(m_device->getDevice(), m_device->getContext());
+		m_samplerState		= std::make_unique<D3D11SamplerState>(m_device->getDevice(), m_device->getContext());
+
 		SIV3D_ENGINE(Texture)->init();
 
-		m_backBuffer = std::make_unique<D3D11BackBuffer>(*m_device, *m_swapChain);
-
-		clear();
+		m_device->getContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);	
 	}
 
 	StringView CRenderer_D3D11::getName() const
@@ -50,7 +55,7 @@ namespace s3d
 
 	void CRenderer_D3D11::clear()
 	{
-		m_backBuffer->clear(ClearTarget::BackBuffer | ClearTarget::SceneMS);
+		m_backBuffer->clear(ClearTarget::BackBuffer | ClearTarget::Scene);
 
 		if (const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
 			frameBufferSize != m_backBuffer->getBackBufferSize())
@@ -61,7 +66,9 @@ namespace s3d
 
 	void CRenderer_D3D11::flush()
 	{
+		SIV3D_ENGINE(Renderer2D)->flush();
 
+		m_backBuffer->updateFromSceneBuffer();
 	}
 
 	bool CRenderer_D3D11::present()
