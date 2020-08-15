@@ -170,13 +170,48 @@ namespace s3d
 		return true;
 	}
 
+	void CRenderer_GL4::setSceneResizeMode(const ResizeMode resizeMode)
+	{
+
+	}
+
+	ResizeMode CRenderer_GL4::getSceneResizeMode() const noexcept
+	{
+		return(ResizeMode::Default);
+	}
+
 	void CRenderer_GL4::setSceneBufferSize(const Size size)
 	{
 
 	}
 
-	Size CRenderer_GL4::getSceneBufferSize() const
+	Size CRenderer_GL4::getSceneBufferSize() const noexcept
 	{
 		return m_sceneSize;
+	}
+
+	std::pair<float, FloatRect> CRenderer_GL4::getLetterboxComposition() const noexcept
+	{
+		const Float2 sceneSize		= m_sceneSize;
+		const Float2 backBufferSize	= m_frameBufferSize;
+
+		const float sx	= (backBufferSize.x / sceneSize.x);
+		const float sy	= (backBufferSize.y / sceneSize.y);
+		const float s	= Min(sx, sy);
+
+		if (sx <= sy)
+		{
+			const float offsetY = ((backBufferSize.y - sceneSize.y * s) * 0.5f);
+			const float bottom	= (backBufferSize.y - offsetY * 2.0f);
+
+			return{ s, FloatRect(0.0f, offsetY, backBufferSize.x, bottom) };
+		}
+		else
+		{
+			const float offsetX = ((backBufferSize.x - sceneSize.x * s) * 0.5f);
+			const float right	= (backBufferSize.x - offsetX * 2.0f);
+
+			return{ s, FloatRect(offsetX, 0.0f, right, backBufferSize.y) };
+		}
 	}
 }
