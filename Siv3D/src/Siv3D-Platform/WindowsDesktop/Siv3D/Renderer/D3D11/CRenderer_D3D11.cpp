@@ -15,6 +15,7 @@
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Texture/ITexture.hpp>
+# include <Siv3D/Shader/IShader.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
@@ -43,6 +44,7 @@ namespace s3d
 		m_samplerState		= std::make_unique<D3D11SamplerState>(m_device->getDevice(), m_device->getContext());
 
 		SIV3D_ENGINE(Texture)->init();
+		SIV3D_ENGINE(Shader)->init();
 
 		m_device->getContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);	
 	}

@@ -38,7 +38,11 @@ namespace s3d
 
 	D3D11SamplerState::D3D11SamplerState(ID3D11Device* device, ID3D11DeviceContext* context)
 		: m_device(device)
-		, m_context(context) {}
+		, m_context(context)
+	{
+		m_currentVSStates.fill(NullState);
+		m_currentPSStates.fill(NullState);
+	}
 
 	void D3D11SamplerState::setVS(const uint32 slot, const SamplerState& state)
 	{

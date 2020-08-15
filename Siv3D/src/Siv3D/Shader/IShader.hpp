@@ -11,6 +11,9 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
+# include <Siv3D/VertexShader.hpp>
+# include <Siv3D/PixelShader.hpp>
+# include <Siv3D/Blob.hpp>
 
 namespace s3d
 {
@@ -24,6 +27,20 @@ namespace s3d
 
 		virtual void init() = 0;
 
-		virtual bool update() = 0;
+		virtual VertexShader::IDType createVS(Blob&& blob, const Array<ConstantBufferBinding>& bindings) = 0;
+		
+		virtual VertexShader::IDType createVS(FilePathView path, const Array<ConstantBufferBinding>& bindings) = 0;
+
+		virtual PixelShader::IDType createPS(Blob&& blob, const Array<ConstantBufferBinding>& bindings) = 0;
+
+		virtual PixelShader::IDType createPS(FilePathView path, const Array<ConstantBufferBinding>& bindings) = 0;
+	
+		virtual void release(VertexShader::IDType handleID) = 0;
+
+		virtual void release(PixelShader::IDType handleID) = 0;
+
+		virtual void setVS(VertexShader::IDType handleID) = 0;
+
+		virtual void setPS(PixelShader::IDType handleID) = 0;
 	};
 }

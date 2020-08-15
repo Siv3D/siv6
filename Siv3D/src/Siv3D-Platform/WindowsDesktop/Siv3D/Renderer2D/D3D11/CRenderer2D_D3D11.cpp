@@ -11,6 +11,7 @@
 
 # include "CRenderer2D_D3D11.hpp"
 # include <Siv3D/Error.hpp>
+# include <Siv3D/Resource.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
@@ -28,8 +29,29 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer2D_D3D11::init()");
 
 		pRenderer	= dynamic_cast<CRenderer_D3D11*>(SIV3D_ENGINE(Renderer));
+		pShader		= dynamic_cast<CShader_D3D11*>(SIV3D_ENGINE(Shader));
 		m_device	= pRenderer->getDevice();
 		m_context	= pRenderer->getContext();
+
+		// 標準 VS をロード
+		{
+			m_standardVS = std::make_unique<D3D11StandardVS2D>();
+			m_standardVS->fullscreen_triangle	= VertexShader(FileOrResource(U"engine/shader/d3d11/fullscreen_triangle.vs"), {});
+			if (!m_standardVS->ok())
+			{
+				throw EngineError(U"CRenderer2D_D3D11::m_standardVS initialization failed");
+			}
+		}
+		
+		// 標準 PS をロード
+		{
+			m_standardPS = std::make_unique<D3D11StandardPS2D>();
+			m_standardPS->fullscreen_triangle	= PixelShader(FileOrResource(U"engine/shader/d3d11/fullscreen_triangle.ps"), {});
+			if (!m_standardPS->setup())
+			{
+				throw EngineError(U"CRenderer2D_D3D11::m_standardPS initialization failed");
+			}
+		}
 	}
 
 	void CRenderer2D_D3D11::flush()
@@ -75,14 +97,14 @@ namespace s3d
 		}
 		
 		// shaders
-		//detail::SetVS(m_standardVS->fullscreen_triangle_draw);
-		//detail::SetPS(m_standardPS->fullscreen_triangle_draw);
+		pShader->setVS(m_standardVS->fullscreen_triangle.id());
+		pShader->setPS(m_standardPS->fullscreen_triangle.id());
 
 		// draw null vertex buffer
 		m_context->IASetVertexBuffers(0, 0, nullptr, nullptr, nullptr);
 		m_context->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
 		m_context->IASetInputLayout(nullptr);
-		//m_context->Draw(3, 0);
+		m_context->Draw(3, 0);
 
 		//Siv3DEngine::Get<ISiv3DProfiler>()->reportDrawcalls(1, 1);
 	}

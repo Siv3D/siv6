@@ -12,7 +12,7 @@ void Main()
 	//LicenseManager::ShowInBrowser();
 
 	//Window::SetStyle(WindowStyle::Sizable);
-	//Scene::SetResizeMode(ResizeMode::Actual);
+	Scene::SetResizeMode(ResizeMode::Actual);
 	//Window::Resize(1200, 800);
 
 	while (System::Update())

@@ -27,6 +27,20 @@ namespace s3d
 
 		void init() override;
 
-		bool update() override;
+		VertexShader::IDType createVS(Blob&& binary, const Array<ConstantBufferBinding>& bindings) override;
+
+		VertexShader::IDType createVS(FilePathView path, const Array<ConstantBufferBinding>& bindings) override;
+
+		PixelShader::IDType createPS(Blob&& binary, const Array<ConstantBufferBinding>& bindings) override;
+
+		PixelShader::IDType createPS(FilePathView path, const Array<ConstantBufferBinding>& bindings) override;
+
+		void release(VertexShader::IDType handleID) override;
+
+		void release(PixelShader::IDType handleID) override;
+
+		void setVS(VertexShader::IDType handleID) override;
+
+		void setPS(PixelShader::IDType handleID) override;
 	};
 }

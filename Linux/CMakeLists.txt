@@ -135,7 +135,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/Scene/CScene.cpp
   ../Siv3D/src/Siv3D/Scene/SceneFactory.cpp
   ../Siv3D/src/Siv3D/Scene/SivScene.cpp
-  ../Siv3D/src/Siv3/Shader/Null/CShader_Null.cpp
+  ../Siv3D/src/Siv3D/Shader/Null/CShader_Null.cpp
   ../Siv3D/src/Siv3D/String/SivString.cpp
   ../Siv3D/src/Siv3D/String/Levenshtein.cpp
   ../Siv3D/src/Siv3D/StringView/SivStringView.cpp

@@ -18,15 +18,17 @@ namespace s3d
 	template <class AssetType>
 	struct AssetHandle
 	{
-	protected:
+	public:
 
 		using AssetIDWrapperType = AssetIDWrapper<AssetHandle>;
+
+		using IDType = typename AssetIDWrapperType::IDType;
+
+	protected:
 
 		std::shared_ptr<AssetIDWrapperType> m_handle;
 
 	public:
-
-		using IDType = typename AssetIDWrapperType::IDType;
 
 		AssetHandle();
 

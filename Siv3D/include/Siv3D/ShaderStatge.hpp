@@ -10,19 +10,14 @@
 //-----------------------------------------------
 
 # pragma once
-# include <Siv3D/Windows/Windows.hpp>
-# include <d3d11.h>
-# include <d3d11_1.h>
-# include <dxgi1_5.h>
-# include <d3dcompiler.h>
-
-# define SIV3D_USE_DIRECT3D11_3
-//# define SIV3D_USE_DIRECT3D11_4
+# include "Common.hpp"
 
 namespace s3d
 {
-	namespace D3D11
+	enum class ShaderStage
 	{
-		void ResetPSShaderResources(ID3D11DeviceContext* context);
-	}
+		Vertex,
+
+		Pixel,
+	};
 }

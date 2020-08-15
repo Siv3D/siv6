@@ -27,12 +27,46 @@ namespace s3d
 
 	void CShader_Null::init()
 	{
-		LOG_SCOPED_TRACE(U"CShader_Null::init()");
 
 	}
 
-	bool CShader_Null::update()
+	VertexShader::IDType CShader_Null::createVS(Blob&&, const Array<ConstantBufferBinding>&)
 	{
-		return true;
+		return VertexShader::IDType::NullAsset();
+	}
+
+	VertexShader::IDType CShader_Null::createVS(FilePathView, const Array<ConstantBufferBinding>&)
+	{
+		return VertexShader::IDType::NullAsset();
+	}
+
+	PixelShader::IDType CShader_Null::createPS(Blob&&, const Array<ConstantBufferBinding>&)
+	{
+		return PixelShader::IDType::NullAsset();
+	}
+
+	PixelShader::IDType CShader_Null::createPS(FilePathView, const Array<ConstantBufferBinding>&)
+	{
+		return PixelShader::IDType::NullAsset();
+	}
+
+	void CShader_Null::release(const VertexShader::IDType)
+	{
+
+	}
+
+	void CShader_Null::release(const PixelShader::IDType)
+	{
+
+	}
+
+	void CShader_Null::setVS(const VertexShader::IDType)
+	{
+
+	}
+
+	void CShader_Null::setPS(const PixelShader::IDType)
+	{
+
 	}
 }
