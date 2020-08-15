@@ -7,6 +7,7 @@ Library | Version
 Anti-Grain Geometry | v2.4
 [Catch2](https://github.com/catchorg/Catch2) | v2.12.2
 [cpu_features](https://github.com/google/cpu_features) | v0.4.1
+[DirectXMath](https://github.com/microsoft/DirectXMath) | April 2020
 [double-conversion](https://github.com/google/double-conversion) | v3.1.5
 [EnumBitmask](https://github.com/Reputeless/EnumBitmask) | v1.0
 [fmt](https://github.com/fmtlib/fmt) | 7.0.1

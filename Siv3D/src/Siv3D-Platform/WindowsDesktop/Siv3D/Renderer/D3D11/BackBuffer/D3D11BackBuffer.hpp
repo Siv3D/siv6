@@ -57,7 +57,7 @@ namespace s3d
 
 		ColorF m_letterboxColor				= Palette::DefaultLetterbox;
 		
-		ColorF m_backgroundColor			= Palette::Skyblue;
+		ColorF m_backgroundColor			= Palette::DefaultBackground;
 
 		TextureFilter m_sceneTextureFilter	= Scene::DefaultFilter;
 

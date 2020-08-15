@@ -17,7 +17,7 @@ namespace s3d
 		const TextureAddressMode address,
 		const TextureFilter filter,
 		const uint8 _maxAnisotropy,
-		const int16 _lodBias,
+		const float _lodBias,
 		const Float4 _borderColor) noexcept
 		: addressU(address)
 		, addressV(address)
@@ -37,7 +37,7 @@ namespace s3d
 		const TextureFilter _mag,
 		const TextureFilter _mip,
 		const uint8 _maxAnisotropy,
-		const int16 _lodBias,
+		const float _lodBias,
 		const Float4 _borderColor) noexcept
 		: addressU(_addressU)
 		, addressV(_addressV)

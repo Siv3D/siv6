@@ -48,10 +48,8 @@ namespace s3d
 		: m_hWnd(hWnd)
 		, m_device(device.getDevice())
 		, m_context(device.getContext())
-		, m_useFlipModel(device.hasDXGI_1_4())
 	{
 		LOG_SCOPED_TRACE(U"D3D11SwapChain::D3D11SwapChain()");
-		LOG_TRACE(U"Use flip model = {}"_fmt(m_useFlipModel));
 
 		m_desc.Width		= frameBufferSize.x;
 		m_desc.Height		= frameBufferSize.y;

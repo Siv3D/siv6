@@ -686,7 +686,7 @@
 
 // 半精度浮動小数点数
 // Half-Pecision Floating-Point
-//# include <Siv3D/HalfFloat.hpp>
+# include <Siv3D/HalfFloat.hpp>
 
 // SIMD 対応 Float4
 // SIMD Float4
@@ -854,7 +854,6 @@
 
 # include <Siv3D/System.hpp>
 
-
 //////////////////////////////////////////////////
 //
 //	ウィンドウ
@@ -865,7 +864,6 @@
 # include <Siv3D/WindowStyle.hpp>
 
 # include <Siv3D/WindowState.hpp>
-
 
 # include <Siv3D/Window.hpp>
 
@@ -904,15 +902,26 @@
 
 # include <Siv3D/Vertex2D.hpp>
 
-# include <Siv3D/BlendState.hpp>
-# include <Siv3D/RasterizerState.hpp>
-# include <Siv3D/DepthStencilState.hpp>
-# include <Siv3D/SamplerState.hpp>
-
 # include <Siv3D/AssetID.hpp>
 # include <Siv3D/AssetIDWrapper.hpp>
 # include <Siv3D/AssetHandle.hpp>
 # include <Siv3D/Texture.hpp>
+
+
+//////////////////////////////////////////////////
+//
+//	レンダーステート
+//	Render states
+//
+//////////////////////////////////////////////////
+
+# include <Siv3D/BlendState.hpp>
+
+# include <Siv3D/RasterizerState.hpp>
+
+# include <Siv3D/DepthStencilState.hpp>
+
+# include <Siv3D/SamplerState.hpp>
 
 //////////////////////////////////////////////////
 //

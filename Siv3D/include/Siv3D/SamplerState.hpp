@@ -78,32 +78,31 @@ namespace s3d
 
 		static constexpr uint32 MaxSamplerCount = 8;
 
-		using storage_type = std::array<uint32, 5>;
+		using storage_type = std::array<uint32, 6>;
 
-		TextureAddressMode addressU : 2 = TextureAddressMode::Clamp;
+		TextureAddressMode addressU : 4 = TextureAddressMode::Clamp;
 
-		TextureAddressMode addressV : 2 = TextureAddressMode::Clamp;
+		TextureAddressMode addressV : 4 = TextureAddressMode::Clamp;
 
-		TextureAddressMode addressW : 2 = TextureAddressMode::Clamp;
+		TextureAddressMode addressW : 4 = TextureAddressMode::Clamp;
 
-		TextureFilter min : 1 = TextureFilter::Linear;
+		TextureFilter min : 4	= TextureFilter::Linear;
 
-		TextureFilter mag : 1 = TextureFilter::Linear;
+		TextureFilter mag : 4	= TextureFilter::Linear;
 
-		TextureFilter mip : 1 = TextureFilter::Linear;
+		TextureFilter mip : 4	= TextureFilter::Linear;
 
-		uint8 maxAnisotropy : 7 = 1;
+		uint8 maxAnisotropy		= 1;
 
-		// [Siv3D ToDo] HalFloat に
-		int16 lodBias = 0;
+		float lodBias			= 0.0f;
 
-		Float4 borderColor = Float4(0, 0, 0, 0);
+		Float4 borderColor		= Float4(0, 0, 0, 0);
 
 		explicit constexpr SamplerState(
 			TextureAddressMode address,
 			TextureFilter filter,
 			uint8 _maxAnisotropy = 1,
-			int16 _lodBias = 0,
+			float _lodBias = 0.0f,
 			Float4 _borderColor = Float4(0, 0, 0, 0)) noexcept;
 
 		explicit constexpr SamplerState(
@@ -114,7 +113,7 @@ namespace s3d
 			TextureFilter _mag = TextureFilter::Linear,
 			TextureFilter _mip = TextureFilter::Linear,
 			uint8 _maxAnisotropy = 1,
-			int16 _lodBias = 0,
+			float _lodBias = 0.0f,
 			Float4 _borderColor = Float4(0, 0, 0, 0)) noexcept;
 
 		constexpr SamplerState(Predefined predefined) noexcept;

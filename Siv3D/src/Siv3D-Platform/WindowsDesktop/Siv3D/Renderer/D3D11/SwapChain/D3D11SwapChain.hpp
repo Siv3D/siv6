@@ -26,8 +26,6 @@ namespace s3d
 		ID3D11Device* m_device			= nullptr;
 		
 		ID3D11DeviceContext* m_context	= nullptr;
-		
-		bool m_useFlipModel				= false;
 
 		DXGI_SWAP_CHAIN_DESC1 m_desc	= {};
 

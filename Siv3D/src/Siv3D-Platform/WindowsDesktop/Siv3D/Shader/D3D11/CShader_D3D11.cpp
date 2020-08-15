@@ -323,6 +323,6 @@ namespace s3d
 		}
 
 		// コンパイルしたバイナリデータを返す
-		return Blob(binary->GetBufferPointer(), binary->GetBufferSize());
+		return Blob{ binary->GetBufferPointer(), binary->GetBufferSize() };
 	}
 }

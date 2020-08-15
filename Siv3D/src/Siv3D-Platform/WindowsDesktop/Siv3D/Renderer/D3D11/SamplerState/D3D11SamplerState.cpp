@@ -101,22 +101,22 @@ namespace s3d
 		const uint32 filterIndex = ((static_cast<int32>(state.min) & 1) << 2)
 			| ((static_cast<int32>(state.mag) & 1) << 1) | (static_cast<int32>(state.mip) & 1);
 
-		D3D11_SAMPLER_DESC desc{};
-		desc.Filter			= detail::filterTable[filterIndex];
-		desc.AddressU		= detail::addressModeTable[static_cast<int32>(state.addressU)];
-		desc.AddressV		= detail::addressModeTable[static_cast<int32>(state.addressV)];
-		desc.AddressW		= detail::addressModeTable[static_cast<int32>(state.addressW)];
-		desc.MipLODBias		= state.lodBias;
-		desc.ComparisonFunc	= D3D11_COMPARISON_NEVER;
-		desc.MaxAnisotropy	= state.maxAnisotropy;
-		desc.BorderColor[0] = state.borderColor.x;
-		desc.BorderColor[1] = state.borderColor.y;
-		desc.BorderColor[2] = state.borderColor.z;
-		desc.BorderColor[3] = state.borderColor.w;
-		desc.MinLOD			= -D3D11_FLOAT32_MAX;
-		desc.MaxLOD			= D3D11_FLOAT32_MAX;
+		D3D11_SAMPLER_DESC desc =
+		{
+			.Filter			= detail::filterTable[filterIndex],
+			.AddressU		= detail::addressModeTable[static_cast<int32>(state.addressU)],
+			.AddressV		= detail::addressModeTable[static_cast<int32>(state.addressV)],
+			.AddressW		= detail::addressModeTable[static_cast<int32>(state.addressW)],
+			.MipLODBias		= state.lodBias,
+			.MaxAnisotropy	= state.maxAnisotropy,
+			.ComparisonFunc	= D3D11_COMPARISON_NEVER,
+			.BorderColor	= { state.borderColor.x, state.borderColor.y, state.borderColor.z, state.borderColor.w },
+			.MinLOD			= -D3D11_FLOAT32_MAX,
+			.MaxLOD			= D3D11_FLOAT32_MAX,
+		};
 
-		if (desc.Filter == D3D11_FILTER_MIN_MAG_MIP_LINEAR && desc.MaxAnisotropy > 1)
+		if ((desc.Filter == D3D11_FILTER_MIN_MAG_MIP_LINEAR)
+			&& (desc.MaxAnisotropy > 1))
 		{
 			desc.Filter = D3D11_FILTER_ANISOTROPIC;
 		}
