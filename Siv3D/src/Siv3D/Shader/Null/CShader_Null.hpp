@@ -10,23 +10,23 @@
 //-----------------------------------------------
 
 # pragma once
-# include <memory>
-# include "Common.hpp"
-# include "Image.hpp"
-# include "AssetHandle.hpp"
+# include <Siv3D/Common.hpp>
+# include <Siv3D/Shader/IShader.hpp>
 
 namespace s3d
 {
-	class Texture : public AssetHandle<Texture>
+	class CShader_Null final : public ISiv3DShader
 	{
+	private:
+
 	public:
 
-		Texture();
+		CShader_Null();
 
-		explicit Texture(FilePathView path);
+		~CShader_Null() override;
 
-		explicit Texture(const Image& image);
+		void init() override;
 
-		//virtual ~Texture();
+		bool update() override;
 	};
 }

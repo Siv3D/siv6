@@ -10,23 +10,15 @@
 //-----------------------------------------------
 
 # pragma once
-# include <memory>
 # include "Common.hpp"
-# include "Image.hpp"
-# include "AssetHandle.hpp"
+# include "String.hpp"
 
 namespace s3d
 {
-	class Texture : public AssetHandle<Texture>
+	struct ConstantBufferBinding
 	{
-	public:
+		String name;
 
-		Texture();
-
-		explicit Texture(FilePathView path);
-
-		explicit Texture(const Image& image);
-
-		//virtual ~Texture();
+		uint32 index;
 	};
 }

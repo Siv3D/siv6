@@ -12,21 +12,27 @@
 # pragma once
 # include <memory>
 # include "Common.hpp"
-# include "Image.hpp"
 # include "AssetHandle.hpp"
+# include "Array.hpp"
+# include "ConstantBufferBinding.hpp"
+# include "Byte.hpp"
 
 namespace s3d
 {
-	class Texture : public AssetHandle<Texture>
+	class PixelShader : public AssetHandle<PixelShader>
 	{
 	public:
 
-		Texture();
+		PixelShader();
 
-		explicit Texture(FilePathView path);
+		PixelShader(FilePathView path, const Array<ConstantBufferBinding>& bindings);
 
-		explicit Texture(const Image& image);
+		//virtual ~PixelShader();
 
-		//virtual ~Texture();
+		[[nodiscard]]
+		size_t getBinarySize() const noexcept;
+
+		[[nodiscard]]
+		const Byte* getBinaryData() const noexcept;
 	};
 }

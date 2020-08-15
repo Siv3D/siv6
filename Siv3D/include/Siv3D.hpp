@@ -914,6 +914,10 @@
 # include <Siv3D/AssetHandle.hpp>
 # include <Siv3D/Texture.hpp>
 
+# include <Siv3D/VertexShader.hpp>
+# include <Siv3D/PixelShader.hpp>
+
+
 # if !defined(SIV3D_LIBRARY_BUILD) && SIV3D_PLATFORM(WINDOWS)
 
 	# include <Siv3D/Windows/Libraries.hpp>

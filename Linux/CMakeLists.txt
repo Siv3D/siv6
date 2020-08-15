@@ -117,6 +117,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/Logger/SivLogger.cpp
   ../Siv3D/src/Siv3D/MathParser/MathParserDetail.cpp
   ../Siv3D/src/Siv3D/MathParser/SivMathParser.cpp
+  ../Siv3D/src/Siv3D/PixelShader/SivPixelShader.cpp
   ../Siv3D/src/Siv3D/Point/SivPoint.cpp
   ../Siv3D/src/Siv3D/PrimeNumber/SivPrimeNumber.cpp
   ../Siv3D/src/Siv3D/Profiler/CProfiler.cpp
@@ -134,6 +135,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/Scene/CScene.cpp
   ../Siv3D/src/Siv3D/Scene/SceneFactory.cpp
   ../Siv3D/src/Siv3D/Scene/SivScene.cpp
+  ../Siv3D/src/Siv3/Shader/Null/CShader_Null.cpp
   ../Siv3D/src/Siv3D/String/SivString.cpp
   ../Siv3D/src/Siv3D/String/Levenshtein.cpp
   ../Siv3D/src/Siv3D/StringView/SivStringView.cpp
@@ -157,6 +159,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/Vector2D/SivVector2D.cpp
   ../Siv3D/src/Siv3D/Vector3D/SivVector3D.cpp
   ../Siv3D/src/Siv3D/Vector4D/SivVector4D.cpp
+  ../Siv3D/src/Siv3D/VertexShader/SivVertexShader.cpp
   ../Siv3D/src/Siv3D/Window/SivWindow.cpp
   ../Siv3D/src/Siv3D/Window/Null/CWindow_Null.cpp
 

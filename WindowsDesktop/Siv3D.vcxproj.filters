@@ -460,6 +460,18 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\SamplerState">
       <UniqueIdentifier>{a2c5bb29-b246-43dc-8610-075ac5614b25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\VertexShader">
+      <UniqueIdentifier>{5f7405a0-2e5b-4753-afe1-b3af6140aa04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Shader">
+      <UniqueIdentifier>{389287b2-5045-44e5-b89a-1bdeb670f385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\Shader\Null">
+      <UniqueIdentifier>{99b4b388-fef2-485b-ab7f-b6d371166420}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D\PixelShader">
+      <UniqueIdentifier>{fefcbee1-c4e9-4587-bb27-4638309d2044}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -2274,6 +2286,21 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\FloatRect.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\VertexShader.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\ConstantBufferBinding.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\PixelShader.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Shader\IShader.hpp">
+      <Filter>src\Siv3D\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Shader\Null\CShader_Null.hpp">
+      <Filter>src\Siv3D\Shader\Null</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -3154,6 +3181,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\DepthStencilState\D3D11DepthStencilState.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\DepthStencilState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\VertexShader\SivVertexShader.cpp">
+      <Filter>src\Siv3D\VertexShader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Shader\Null\CShader_Null.cpp">
+      <Filter>src\Siv3D\Shader\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\PixelShader\SivPixelShader.cpp">
+      <Filter>src\Siv3D\PixelShader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
