@@ -78,6 +78,8 @@ namespace s3d
 
 		void updateFromSceneBuffer();
 
+		void bindRenderTarget(ID3D11RenderTargetView* const rtv);
+
 		//////////////////////////////////////////////////
 		//
 		//	LetterboxColor
@@ -124,7 +126,7 @@ namespace s3d
 
 		//////////////////////////////////////////////////
 		//
-		//	SceneSize
+		//	SceneBuffer
 		//
 		//////////////////////////////////////////////////
 
@@ -132,6 +134,8 @@ namespace s3d
 
 		[[nodiscard]]
 		const Size& getSceneBufferSize() const noexcept;
+
+		const D3D11InternalTexture2D& getSceneBuffer() const noexcept;
 
 		//////////////////////////////////////////////////
 		//

@@ -139,6 +139,22 @@ namespace s3d
 
 
 
+
+
+
+
+
+		constexpr Vector4D& set(value_type _x, value_type _y, value_type _z, value_type _w) noexcept
+		{
+			x = _x; y = _y; z = _z; w = _w;
+			return *this;
+		}
+
+
+
+
+
+
 		[[nodiscard]]
 		size_t hash() const noexcept
 		{

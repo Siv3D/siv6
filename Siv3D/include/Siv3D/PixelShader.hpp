@@ -15,7 +15,7 @@
 # include "AssetHandle.hpp"
 # include "Array.hpp"
 # include "ConstantBufferBinding.hpp"
-# include "Byte.hpp"
+# include "Blob.hpp"
 
 namespace s3d
 {
@@ -30,9 +30,6 @@ namespace s3d
 		//virtual ~PixelShader();
 
 		[[nodiscard]]
-		size_t getBinarySize() const noexcept;
-
-		[[nodiscard]]
-		const Byte* getBinaryData() const noexcept;
+		const Blob& getBinary() const noexcept;
 	};
 }

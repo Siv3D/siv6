@@ -73,6 +73,8 @@ namespace s3d
 
 		ID3D11DeviceContext* getContext() const;
 
+		D3D11BackBuffer& getBackBuffer() noexcept;
+
 		D3D11BlendState& getBlendState() noexcept;
 
 		D3D11RasterizerState& getRasterizerState() noexcept;

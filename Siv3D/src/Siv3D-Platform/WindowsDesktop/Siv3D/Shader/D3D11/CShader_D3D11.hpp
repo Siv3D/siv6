@@ -72,10 +72,10 @@ namespace s3d
 		PixelShader::IDType createPS(FilePathView path, const Array<ConstantBufferBinding>& bindings) override;
 	
 		// 指定した VS を管理から除外
-		void release(VertexShader::IDType handleID) override;
+		void releaseVS(VertexShader::IDType handleID) override;
 
 		// 指定した PS を管理から除外
-		void release(PixelShader::IDType handleID) override;
+		void releasePS(PixelShader::IDType handleID) override;
 	
 		// 指定した VS を context にセット
 		void setVS(VertexShader::IDType handleID) override;
@@ -83,6 +83,15 @@ namespace s3d
 		// 指定した PS を context にセット
 		void setPS(PixelShader::IDType handleID) override;
 	
+		const Blob& getBinaryVS(VertexShader::IDType handleID) override;
+
+		const Blob& getBinaryPS(PixelShader::IDType handleID) override;
+
+		void setConstantBufferVS(uint32 slot, const ConstantBufferBase& cb) override;
+
+		void setConstantBufferPS(uint32 slot, const ConstantBufferBase& cb) override;
+
+
 		// HLSL シェーダコンパイラが利用可能かを返す
 		bool hasHLSLCompiler() const noexcept;
 	};

@@ -97,6 +97,16 @@ namespace s3d
 		}
 	}
 
+	void D3D11BackBuffer::bindRenderTarget(ID3D11RenderTargetView* const rtv)
+	{
+		ID3D11RenderTargetView* pRTV[1] =
+		{
+			rtv
+		};
+
+		m_context->OMSetRenderTargets(static_cast<UINT>(std::size(pRTV)), std::data(pRTV), nullptr);
+	}
+
 	void D3D11BackBuffer::setLetterboxColor(const ColorF& color) noexcept
 	{
 		m_letterboxColor = color;
@@ -167,6 +177,11 @@ namespace s3d
 	const Size& D3D11BackBuffer::getSceneBufferSize() const noexcept
 	{
 		return m_sceneSize;
+	}
+
+	const D3D11InternalTexture2D& D3D11BackBuffer::getSceneBuffer() const noexcept
+	{
+		return m_sceneBuffers.scene;
 	}
 
 	void D3D11BackBuffer::setBackBufferSize(const Size backBufferSize)
@@ -243,11 +258,6 @@ namespace s3d
 	{
 		assert(not texture.isEmpty());
 
-		ID3D11RenderTargetView* pRTV[1] =
-		{
-			texture.getRTV()
-		};
-
-		m_context->OMSetRenderTargets(static_cast<UINT>(std::size(pRTV)), std::data(pRTV), nullptr);
+		bindRenderTarget(texture.getRTV());
 	}
 }

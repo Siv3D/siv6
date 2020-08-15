@@ -50,12 +50,12 @@ namespace s3d
 		return PixelShader::IDType::NullAsset();
 	}
 
-	void CShader_Null::release(const VertexShader::IDType)
+	void CShader_Null::releaseVS(const VertexShader::IDType)
 	{
 
 	}
 
-	void CShader_Null::release(const PixelShader::IDType)
+	void CShader_Null::releasePS(const PixelShader::IDType)
 	{
 
 	}
@@ -66,6 +66,26 @@ namespace s3d
 	}
 
 	void CShader_Null::setPS(const PixelShader::IDType)
+	{
+
+	}
+
+	const Blob& CShader_Null::getBinaryVS(const VertexShader::IDType)
+	{
+		return m_emptyBinary;
+	}
+
+	const Blob& CShader_Null::getBinaryPS(const PixelShader::IDType)
+	{
+		return m_emptyBinary;
+	}
+
+	void CShader_Null::setConstantBufferVS(const uint32, const ConstantBufferBase&)
+	{
+
+	}
+
+	void CShader_Null::setConstantBufferPS(const uint32, const ConstantBufferBase&)
 	{
 
 	}

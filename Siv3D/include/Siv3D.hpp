@@ -914,8 +914,27 @@
 # include <Siv3D/AssetHandle.hpp>
 # include <Siv3D/Texture.hpp>
 
+//////////////////////////////////////////////////
+//
+//	シェーダ
+//	Shader
+//
+//////////////////////////////////////////////////
+
+# include <Siv3D/Shader.hpp>
+
+# include <Siv3D/ShaderStatge.hpp>
+
+# include <Siv3D/ConstantBufferBinding.hpp>
+
 # include <Siv3D/VertexShader.hpp>
+
 # include <Siv3D/PixelShader.hpp>
+
+# include <Siv3D/ConstantBuffer.hpp>
+
+
+
 
 
 # if !defined(SIV3D_LIBRARY_BUILD) && SIV3D_PLATFORM(WINDOWS)

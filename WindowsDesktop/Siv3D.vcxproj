@@ -30,6 +30,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\Color.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ColorF.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\CommonVector.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\ConstantBuffer.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\ConstantBufferBinding.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\CopyOption.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\DepthStencilState.hpp" />
@@ -299,9 +300,11 @@
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Common\D3D11.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Common\OpenGL.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Console\CConsole.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\ConstantBuffer\D3D11\ConstantBufferDetail_D3D11.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Cursor\CCursor.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Logger\CLogger.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer2D\D3D11\CRenderer2D_D3D11.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer2D\D3D11\D3D11Vertex2DBatch.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\BackBuffer\D3D11BackBuffer.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\BackBuffer\D3D11InternalTexture2D.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\BlendState\D3D11BlendState.hpp" />
@@ -333,6 +336,8 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\Common\Siv3DComponent.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Console\IConsole.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\ConstantBuffer\IConstantBufferDetail.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D\ConstantBuffer\Null\ConstantBufferDetail_Null.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Cursor\CCursor_Null.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Cursor\CursorState.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D\Cursor\ICursor.hpp" />
@@ -635,6 +640,8 @@
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Common\D3D11.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Common\OpenGL.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Console\CConsole.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\ConstantBuffer\ConstantBufferDetailFactory.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\ConstantBuffer\D3D11\ConstantBufferDetail_D3D11.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Cursor\CCursor.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\DateTime\SivDateTime_Windows.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Date\SivDate_Windows.cpp" />
@@ -643,6 +650,7 @@
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\FileSystem\SivFileSystem_Windows.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Logger\CLogger.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer2D\D3D11\CRenderer2D_D3D11.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer2D\D3D11\D3D11Vertex2DBatch.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer2D\Renderer2DFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\BackBuffer\D3D11BackBuffer.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer\D3D11\BackBuffer\D3D11InternalTexture2D.cpp" />
@@ -688,6 +696,8 @@
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Console\ConsoleFactory.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Console\SivConsole.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\ConstantBuffer\Null\ConstantBufferDetail_Null.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D\ConstantBuffer\SivConstantBuffer.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\CPUInfo\SivCPUInfo.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Cursor\CCursor_Null.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D\Cursor\CursorFactory.cpp" />

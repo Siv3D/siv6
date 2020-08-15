@@ -11,24 +11,24 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
-# include <Siv3D/Common/OpenGL.hpp>
+# include <Siv3D/Common/D3D11.hpp>
 # include <Siv3D/Vertex2D.hpp>
 # include <Siv3D/Array.hpp>
 
 namespace s3d
 {
-	class Renderer2DCommand_GL4;
+	class D3D11Renderer2DCommand {};
 
-	struct BatchInfo_GL4
+	struct D3D11BatchInfo
 	{
-		uint32 indexCount = 0;
+		uint32 indexCount			= 0;
 
-		uint32 startIndexLocation = 0;
+		uint32 startIndexLocation	= 0;
 
-		uint32 baseVertexLocation = 0;
+		uint32 baseVertexLocation	= 0;
 	};
 
-	class Vertex2DBatch_GL4
+	class D3D11Vertex2DBatch
 	{
 	private:
 
@@ -40,25 +40,25 @@ namespace s3d
 
 			void advance(uint16 vertexSize, uint32 indexSize) noexcept
 			{
-				vertexPos += vertexSize;
-				indexPos += indexSize;
+				vertexPos	+= vertexSize;
+				indexPos	+= indexSize;
 			}
 		};
 
-		using IndexType = Vertex2D::IndexType;
+		ID3D11Device* m_device			= nullptr;
 
-		GLuint m_vao = 0;
+		ID3D11DeviceContext* m_context	= nullptr;
 
-		GLuint m_vertexBuffer = 0;
+		ComPtr<ID3D11Buffer> m_vertexBuffer;
 		uint32 m_vertexBufferWritePos = 0;
 
-		GLuint m_indexBuffer = 0;
+		ComPtr<ID3D11Buffer> m_indexBuffer;
 		uint32 m_indexBufferWritePos = 0;
 
 		Array<Vertex2D> m_vertexArray;
 		uint32 m_vertexArrayWritePos = 0;
 
-		Array<IndexType> m_indexArray;
+		Array<Vertex2D::IndexType> m_indexArray;
 		uint32 m_indexArrayWritePos = 0;
 
 		Array<BatchBufferPos> m_batches;
@@ -76,22 +76,24 @@ namespace s3d
 
 	public:
 
-		Vertex2DBatch_GL4();
+		D3D11Vertex2DBatch();
 
-		~Vertex2DBatch_GL4();
-
-		[[nodiscard]]
-		bool init();
+		~D3D11Vertex2DBatch();
 
 		[[nodiscard]]
-		std::tuple<Vertex2D*, IndexType*, IndexType> requestBuffer(uint16 vertexSize, uint32 indexSize, Renderer2DCommand_GL4& command);
+		bool init(ID3D11Device* device, ID3D11DeviceContext* context);
+	
+		[[nodiscard]]
+		std::tuple<Vertex2D*, Vertex2D::IndexType*, Vertex2D::IndexType> requestBuffer(uint16 vertexSize, uint32 indexSize, D3D11Renderer2DCommand& command);
 
 		[[nodiscard]]
 		size_t num_batches() const noexcept;
 
 		void reset();
 
+		void setBuffers();
+
 		[[nodiscard]]
-		BatchInfo_GL4 updateBuffers(size_t batchIndex);
+		D3D11BatchInfo updateBuffers(size_t batchIndex);
 	};
 }

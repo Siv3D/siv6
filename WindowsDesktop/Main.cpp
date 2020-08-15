@@ -12,7 +12,7 @@ void Main()
 	//LicenseManager::ShowInBrowser();
 
 	//Window::SetStyle(WindowStyle::Sizable);
-	Scene::SetResizeMode(ResizeMode::Actual);
+	//Scene::SetResizeMode(ResizeMode::Actual);
 	//Window::Resize(1200, 800);
 
 	while (System::Update())
@@ -27,5 +27,8 @@ void Main()
 			Rect(Cursor::Pos().movedBy(0 + i * 20, 0), 20, 400)
 				.draw(HSV(i * 10, 0.5, 0.9));
 		}
+
+		const double x = (std::sin(Time::GetMillisec() * 0.004) + 1.0) * 360;
+		RectF(x, 400, 100, 100).draw();
 	}
 }

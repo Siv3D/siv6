@@ -36,7 +36,7 @@ namespace s3d
 
 		if (auto p = SIV3D_ENGINE(Shader))
 		{
-			p->release(m_id);
+			p->releaseVS(m_id);
 		}
 	}
 
@@ -49,5 +49,10 @@ namespace s3d
 		: AssetHandle(std::make_shared<AssetIDWrapperType>(SIV3D_ENGINE(Shader)->createVS(path, bindings)))
 	{
 
+	}
+
+	const Blob& VertexShader::getBinary() const noexcept
+	{
+		return SIV3D_ENGINE(Shader)->getBinaryVS(m_handle->id());
 	}
 }

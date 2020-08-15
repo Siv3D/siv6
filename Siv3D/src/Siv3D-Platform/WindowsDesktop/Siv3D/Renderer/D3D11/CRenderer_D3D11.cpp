@@ -120,6 +120,11 @@ namespace s3d
 		return m_device->getContext();
 	}
 
+	D3D11BackBuffer& CRenderer_D3D11::getBackBuffer() noexcept
+	{
+		return *m_backBuffer;
+	}
+
 	D3D11BlendState& CRenderer_D3D11::getBlendState() noexcept
 	{
 		return *m_blendState;

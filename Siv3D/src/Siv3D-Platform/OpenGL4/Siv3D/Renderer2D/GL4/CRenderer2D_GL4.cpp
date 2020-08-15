@@ -153,6 +153,11 @@ namespace s3d
 			m_draw_indexCount = 0;
 		};
 
+		if (m_draw_indexCount == 0)
+		{
+			return;
+		}
+
 		::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, m_vsProgram);
 		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, m_psProgram);
 
@@ -163,7 +168,7 @@ namespace s3d
 
 		Mat3x2 transform = Mat3x2::Identity();
 		Mat3x2 screenMat = Mat3x2::Screen(currentRenderTargetSize);
-		const Mat3x2 matrix = transform * screenMat;
+		const Mat3x2 matrix = (transform * screenMat);
 		
 		Float4 cb[3];
 		//cb[0] = Float4(matrix._11, -matrix._12, matrix._31, -matrix._32);

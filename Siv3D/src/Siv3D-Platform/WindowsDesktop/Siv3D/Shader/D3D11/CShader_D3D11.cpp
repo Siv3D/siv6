@@ -14,6 +14,7 @@
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/DLL.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Siv3D/ConstantBuffer/D3D11/ConstantBufferDetail_D3D11.hpp>
 
 namespace s3d
 {
@@ -104,6 +105,12 @@ namespace s3d
 
 			compileHLSL(U"engine/shader/d3d11/fullscreen_triangle.hlsl", ShaderStage::Pixel, U"PS")
 				.save(U"engine/shader/d3d11/fullscreen_triangle.ps");
+
+			compileHLSL(U"engine/shader/d3d11/sprite.hlsl", ShaderStage::Vertex, U"VS")
+				.save(U"engine/shader/d3d11/sprite.vs");
+
+			compileHLSL(U"engine/shader/d3d11/sprite.hlsl", ShaderStage::Pixel, U"PS_Shape")
+				.save(U"engine/shader/d3d11/shape.ps");
 
 			throw EngineError(U"Engine shaders have compiled. Please rebuild the project.");
 		}
@@ -211,13 +218,13 @@ namespace s3d
 		return createPS(std::move(binary), bindings);
 	}
 
-	void CShader_D3D11::release(const VertexShader::IDType handleID)
+	void CShader_D3D11::releaseVS(const VertexShader::IDType handleID)
 	{
 		// 指定した VS を管理から除外
 		m_vertexShaders.erase(handleID);
 	}
 
-	void CShader_D3D11::release(const PixelShader::IDType handleID)
+	void CShader_D3D11::releasePS(const PixelShader::IDType handleID)
 	{
 		// 指定した PS を管理から除外
 		m_pixelShaders.erase(handleID);
@@ -235,13 +242,39 @@ namespace s3d
 		m_context->PSSetShader(m_pixelShaders[handleID]->getShader(), nullptr, 0);
 	}
 
+	const Blob& CShader_D3D11::getBinaryVS(const VertexShader::IDType handleID)
+	{
+		return m_vertexShaders[handleID]->getBinary();
+	}
+
+	const Blob& CShader_D3D11::getBinaryPS(const PixelShader::IDType handleID)
+	{
+		return m_pixelShaders[handleID]->getBinary();
+	}
+
 	bool CShader_D3D11::hasHLSLCompiler() const noexcept
 	{
 		// D3DCompile2 関数が利用できるなら true
 		return (p_D3DCompile2 != nullptr);
 	}
 
+	void CShader_D3D11::setConstantBufferVS(const uint32 slot, const ConstantBufferBase& cb)
+	{
+		assert(slot < D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT);
 
+		const auto pCB = dynamic_cast<const ConstantBufferDetail_D3D11*>(cb._detail());
+
+		m_context->VSSetConstantBuffers(slot, 1, pCB->getBufferPtr());
+	}
+
+	void CShader_D3D11::setConstantBufferPS(const uint32 slot, const ConstantBufferBase& cb)
+	{
+		assert(slot < D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT);
+		
+		const auto pCB = dynamic_cast<const ConstantBufferDetail_D3D11*>(cb._detail());
+
+		m_context->PSSetConstantBuffers(slot, 1, pCB->getBufferPtr());
+	}
 
 
 	Blob CShader_D3D11::compileHLSL(const FilePathView path, const ShaderStage stage, const StringView entryPoint, const Platform::Windows::HLSLCompileOption flags) const

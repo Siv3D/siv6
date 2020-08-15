@@ -59,9 +59,9 @@ namespace s3d
 		m_desc.Stereo		= FALSE;
 		m_desc.SampleDesc	= { 1, 0 };
 		m_desc.BufferUsage	= DXGI_USAGE_RENDER_TARGET_OUTPUT;
-		m_desc.BufferCount	= 2;
+		m_desc.BufferCount	= 1;
 		m_desc.Scaling		= DXGI_SCALING_STRETCH;
-		m_desc.SwapEffect	= (m_useFlipModel ? DXGI_SWAP_EFFECT_FLIP_DISCARD : DXGI_SWAP_EFFECT_DISCARD);
+		m_desc.SwapEffect	= DXGI_SWAP_EFFECT_DISCARD;
 		m_desc.AlphaMode	= DXGI_ALPHA_MODE_IGNORE;
 		m_desc.Flags		= 0;
 

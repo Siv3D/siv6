@@ -36,7 +36,7 @@ namespace s3d
 
 		if (auto p = SIV3D_ENGINE(Shader))
 		{
-			p->release(m_id);
+			p->releasePS(m_id);
 		}
 	}
 
@@ -49,5 +49,10 @@ namespace s3d
 		: AssetHandle(std::make_shared<AssetIDWrapperType>(SIV3D_ENGINE(Shader)->createPS(path, bindings)))
 	{
 
+	}
+
+	const Blob& PixelShader::getBinary() const noexcept
+	{
+		return SIV3D_ENGINE(Shader)->getBinaryPS(m_handle->id());
 	}
 }
