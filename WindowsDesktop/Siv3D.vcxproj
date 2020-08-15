@@ -40,8 +40,11 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\BigFloat.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\BigInt.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\BinaryWriter.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\BlendState.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Blob.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\ConstantBuffer.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\DiscreteDistribution.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\FloatRect.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\FormatLiteral_impl.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HardwareRNG.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\IImageDecoder.ipp" />
@@ -52,7 +55,9 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Math.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Noise.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\PerlinNoise.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\RasterizerState.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Resource.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\SamplerState.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextEncoding.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextReader.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextWriter.ipp" />
@@ -294,7 +299,7 @@
     <ClInclude Include="..\Siv3D\include\ThirdParty\SMFT\SMFT.hpp" />
     <ClInclude Include="..\Siv3D\include\ThirdParty\Xoshiro-cpp\XoshiroCpp.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\CRenderer2D_GL4.hpp" />
-    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\Vertex2DBatch_GL4.hpp" />
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\GL4Vertex2DBatch.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\BinaryReader\BinaryReaderDetail.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\BinaryWriter\BinaryWriterDetail.hpp" />
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Common\D3D11.hpp" />
@@ -634,7 +639,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\CRenderer2D_GL4.cpp" />
-    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\Vertex2DBatch_GL4.cpp" />
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\GL4Vertex2DBatch.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\BinaryReader\BinaryReaderDetail.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\BinaryWriter\BinaryWriterDetail.cpp" />
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Common\D3D11.cpp" />

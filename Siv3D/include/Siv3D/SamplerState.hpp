@@ -10,6 +10,9 @@
 //-----------------------------------------------
 
 # pragma once
+# if  __has_include(<bit>)
+#	include <bit>
+# endif
 # include <cstring>
 # include <functional>
 # include "Common.hpp"
@@ -19,35 +22,23 @@
 
 namespace s3d
 {
-	/// <summary>
-	/// テクスチャアドレスモード
-	/// </summary>
+	/// @brief テクスチャアドレスモード
 	enum class TextureAddressMode : uint8
 	{
-		/// <summary>
-		/// 繰り返し
-		/// </summary>
+		/// @brief 繰り返し
 		Repeat,
 
-		/// <summary>
-		/// ミラーで繰り返し
-		/// </summary>
+		/// @brief ミラーで繰り返し
 		Mirror,
 
-		/// <summary>
-		/// 繰り返しなし
-		/// </summary>
+		/// @brief 繰り返しなし
 		Clamp,
 
-		/// <summary>
-		/// 繰り返しなしで範囲外は境界色
-		/// </summary>
+		/// @brief 繰り返しなしで範囲外は境界色
 		Border,
 	};
 
-	/// <summary>
-	/// サンプラーステート
-	/// </summary>
+	/// @brief サンプラーステート
 	struct SamplerState
 	{
 	private:
@@ -109,6 +100,13 @@ namespace s3d
 		Float4 borderColor = Float4(0, 0, 0, 0);
 
 		explicit constexpr SamplerState(
+			TextureAddressMode address,
+			TextureFilter filter,
+			uint8 _maxAnisotropy = 1,
+			int16 _lodBias = 0,
+			Float4 _borderColor = Float4(0, 0, 0, 0)) noexcept;
+
+		explicit constexpr SamplerState(
 			TextureAddressMode _addressU = TextureAddressMode::Clamp,
 			TextureAddressMode _addressV = TextureAddressMode::Clamp,
 			TextureAddressMode _addressW = TextureAddressMode::Clamp,
@@ -117,109 +115,41 @@ namespace s3d
 			TextureFilter _mip = TextureFilter::Linear,
 			uint8 _maxAnisotropy = 1,
 			int16 _lodBias = 0,
-			Float4 _borderColor = Float4(0, 0, 0, 0)) noexcept
-			: addressU(_addressU)
-			, addressV(_addressV)
-			, addressW(_addressW)
-			, min(_min)
-			, mag(_mag)
-			, mip(_mip)
-			, maxAnisotropy(_maxAnisotropy)
-			, lodBias(_lodBias)
-			, borderColor{ _borderColor.x, _borderColor.y, _borderColor.z, _borderColor.w } {}
+			Float4 _borderColor = Float4(0, 0, 0, 0)) noexcept;
 
 		constexpr SamplerState(Predefined predefined) noexcept;
 
 		[[nodiscard]]
-		storage_type asValue() const noexcept
-		{
-			storage_type t;
-			std::memcpy(&t, this, sizeof(storage_type));
-			return t;
-		}
+		storage_type asValue() const noexcept;
 
 		[[nodiscard]]
-		bool operator ==(const SamplerState& other) const noexcept
-		{
-			return (asValue() == other.asValue());
-		}
+		bool operator ==(const SamplerState& other) const noexcept;
 
 		[[nodiscard]]
-		bool operator !=(const SamplerState& other) const noexcept
-		{
-			return (asValue() != other.asValue());
-		}
+		bool operator !=(const SamplerState& other) const noexcept;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined RepeatNearest = Predefined::RepeatNearest;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined RepeatLinear = Predefined::RepeatLinear;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined RepeatAniso = Predefined::RepeatAniso;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined MirrorNearest = Predefined::MirrorNearest;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined MirrorLinear = Predefined::MirrorLinear;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined MirrorAniso = Predefined::MirrorAniso;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined ClampNearest = Predefined::ClampNearest;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined ClampLinear = Predefined::ClampLinear;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined ClampAniso = Predefined::ClampAniso;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined BorderNearest = Predefined::BorderNearest;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined BorderLinear = Predefined::BorderLinear;
 
-		/// <summary>
-		/// 
-		/// 
-		/// </summary>
 		static constexpr Predefined BorderAniso = Predefined::BorderAniso;
 
 		/// <summary>
@@ -235,53 +165,6 @@ namespace s3d
 		static constexpr Predefined Default3D = Predefined::Default3D;
 	};
 	static_assert(sizeof(SamplerState) == sizeof(SamplerState::storage_type));
-
-	inline constexpr SamplerState::SamplerState(const Predefined predefined) noexcept
-	{
-		constexpr SamplerState PredefinedStates[12] =
-		{
-			SamplerState{ TextureAddressMode::Repeat, TextureAddressMode::Repeat, TextureAddressMode::Repeat,
-							TextureFilter::Nearest, TextureFilter::Nearest, TextureFilter::Nearest },
-
-			SamplerState{ TextureAddressMode::Repeat, TextureAddressMode::Repeat, TextureAddressMode::Repeat,
-							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear },
-
-			SamplerState{ TextureAddressMode::Repeat, TextureAddressMode::Repeat, TextureAddressMode::Repeat,
-							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear, 16 },
-
-
-			SamplerState{ TextureAddressMode::Mirror, TextureAddressMode::Mirror, TextureAddressMode::Mirror,
-							TextureFilter::Nearest, TextureFilter::Nearest, TextureFilter::Nearest },
-
-			SamplerState{ TextureAddressMode::Mirror, TextureAddressMode::Mirror, TextureAddressMode::Mirror,
-							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear },
-
-			SamplerState{ TextureAddressMode::Mirror, TextureAddressMode::Mirror, TextureAddressMode::Mirror,
-							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear, 16 },
-
-
-			SamplerState{ TextureAddressMode::Clamp, TextureAddressMode::Clamp, TextureAddressMode::Clamp,
-							TextureFilter::Nearest, TextureFilter::Nearest, TextureFilter::Nearest },
-
-			SamplerState{ TextureAddressMode::Clamp, TextureAddressMode::Clamp, TextureAddressMode::Clamp,
-							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear },
-
-			SamplerState{ TextureAddressMode::Clamp, TextureAddressMode::Clamp, TextureAddressMode::Clamp,
-							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear, 16 },
-
-
-			SamplerState{ TextureAddressMode::Border, TextureAddressMode::Border, TextureAddressMode::Border,
-							TextureFilter::Nearest, TextureFilter::Nearest, TextureFilter::Nearest },
-
-			SamplerState{ TextureAddressMode::Border, TextureAddressMode::Border, TextureAddressMode::Border,
-							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear },
-
-			SamplerState{ TextureAddressMode::Border, TextureAddressMode::Border, TextureAddressMode::Border,
-							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear, 16 },
-		};
-
-		*this = PredefinedStates[FromEnum(predefined)];
-	}
 }
 
 //////////////////////////////////////////////////
@@ -299,3 +182,5 @@ struct std::hash<s3d::SamplerState>
 		return s3d::Hash::FNV1a(&value, sizeof(value));
 	}
 };
+
+# include "detail/SamplerState.ipp"

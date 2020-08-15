@@ -26,8 +26,10 @@ namespace s3d
 
 		using IDType = AssetID<AssetTag>;
 
+		SIV3D_NODISCARD_CXX20
 		AssetIDWrapper();
 
+		SIV3D_NODISCARD_CXX20
 		explicit AssetIDWrapper(IDType id) noexcept;
 
 		~AssetIDWrapper();

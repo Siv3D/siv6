@@ -19,6 +19,7 @@
 
 namespace s3d
 {
+	/// @brief ピクセルシェーダ
 	class PixelShader : public AssetHandle<PixelShader>
 	{
 	public:

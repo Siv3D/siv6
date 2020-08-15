@@ -10,6 +10,9 @@
 //-----------------------------------------------
 
 # pragma once
+# if  __has_include(<bit>)
+#	include <bit>
+# endif
 # include <cstring>
 # include <functional>
 # include "Common.hpp"
@@ -20,33 +23,54 @@ namespace s3d
 	enum class Blend : uint8
 	{
 		Zero			= 1,
+		
 		One				= 2,
+		
 		SrcColor		= 3,
+		
 		InvSrcColor		= 4,
+		
 		SrcAlpha		= 5,
+		
 		InvSrcAlpha		= 6,
+		
 		DestAlpha		= 7,
+		
 		InvDestAlpha	= 8,
+		
 		DestColor		= 9,
+		
 		InvDestColor	= 10,
+		
 		SrcAlphaSat		= 11,
+		
 		BlendFactor		= 14,
+		
 		InvBlendFactor	= 15,
+		
 		Src1Color		= 16,
+		
 		InvSrc1Color	= 17,
+		
 		Src1Alpha		= 18,
+		
 		InvSrc1Alpha	= 19
 	};
 
 	enum class BlendOp : uint8
 	{
 		Add			= 1,
+		
 		Subtract	= 2,
+		
 		RevSubtract	= 3,
+		
 		Min			= 4,
+		
 		Max			= 5
 	};
 
+	/// @brief ブレンドステート
 	struct BlendState
 	{
 	private:
@@ -74,7 +98,6 @@ namespace s3d
 
 		using storage_type = uint32;
 
-
 		bool enable		: 1 = true;
 
 		bool writeR		: 1 = true;
@@ -99,7 +122,6 @@ namespace s3d
 
 		BlendOp opAlpha	: 3 = BlendOp::Add;
 
-
 		explicit constexpr BlendState(
 			bool _enable = true,
 			Blend _src = Blend::SrcAlpha,
@@ -113,107 +135,52 @@ namespace s3d
 			bool _writeG = true,
 			bool _writeB = true,
 			bool _writeA = true
-		) noexcept
-		: enable(_enable)
-		, writeR(_writeR)
-		, writeG(_writeG)
-		, src(_src)
-		, dst(_dst)
-		, op(_op)
-		, alphaToCoverageEnable(_alphaToCoverageEnable)
-		, writeB(_writeB)
-		, writeA(_writeA)
-		, srcAlpha(_srcAlpha)
-		, dstAlpha(_dstAlpha)
-		, opAlpha(_opAlpha) {}
+		) noexcept;
 
 		constexpr BlendState(Predefined predefined) noexcept;
 
 		[[nodiscard]]
-		storage_type asValue() const noexcept
-		{
-			storage_type t;
-			std::memcpy(&t, this, sizeof(storage_type));
-			return t;
-		}
+		storage_type asValue() const noexcept;
 
 		[[nodiscard]]
-		bool operator ==(const BlendState& other) const noexcept
-		{
-			return (asValue() == other.asValue());
-		}
+		bool operator ==(const BlendState& other) const noexcept;
 
 		[[nodiscard]]
-		bool operator !=(const BlendState& other) const noexcept
-		{
-			return (asValue() != other.asValue());
-		}
+		bool operator !=(const BlendState& other) const noexcept;
 
-		/// <summary>
-		/// デフォルトのブレンド
-		/// BlendState{ true, Blend::SrcAlpha, Blend::InvSrcAlpha, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
-		/// </summary>
+		/// @brief デフォルトのブレンド
+		/// @remark BlendState{ true, Blend::SrcAlpha, Blend::InvSrcAlpha, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
 		static constexpr Predefined NonPremultiplied = Predefined::NonPremultiplied;
 
-		/// <summary>
-		/// 乗算済みアルファブレンド
-		/// BlendState{ true, Blend::One, Blend::InvSrcAlpha, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
-		/// </summary>
+		/// @brief 乗算済みアルファブレンド
+		/// @remark BlendState{ true, Blend::One, Blend::InvSrcAlpha, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
 		static constexpr Predefined Premultiplied = Predefined::Premultiplied;
 
-		/// <summary>
-		/// 不透明
-		/// BlendState{ false }
-		/// </summary>
+		/// @brief 不透明
+		/// @remark BlendState{ false }
 		static constexpr Predefined Opaque = Predefined::Opaque;
 
-		/// <summary>
-		/// 加算ブレンド
-		/// BlendState{ true, Blend::SrcAlpha, Blend::One, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
-		/// </summary>
+		/// @brief 加算ブレンド
+		/// @remark BlendState{ true, Blend::SrcAlpha, Blend::One, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
 		static constexpr Predefined Additive = Predefined::Additive;
 
-		/// <summary>
-		/// 減算ブレンド
-		/// BlendState{ true, Blend::SrcAlpha, Blend::One, BlendOp::RevSubtract, Blend::Zero, Blend::One, BlendOp::Add }
-		/// </summary>
+		/// @brief 減算ブレンド
+		/// @remark BlendState{ true, Blend::SrcAlpha, Blend::One, BlendOp::RevSubtract, Blend::Zero, Blend::One, BlendOp::Add }
 		static constexpr Predefined Subtractive = Predefined::Subtractive;
 
-		/// <summary>
-		/// 乗算ブレンド
-		/// BlendState{ true, Blend::Zero, Blend::SrcColor, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
-		/// </summary>
+		/// @brief 乗算ブレンド
+		/// @remark BlendState{ true, Blend::Zero, Blend::SrcColor, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
 		static constexpr Predefined Multiplicative = Predefined::Multiplicative;
 
-		/// <summary>
-		/// 2X 乗算ブレンド
-		/// BlendState{ true, Blend::DestColor, Blend::SrcColor, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
-		/// </summary>
+		/// @brief 2X 乗算ブレンド
+		/// @remark BlendState{ true, Blend::DestColor, Blend::SrcColor, BlendOp::Add, Blend::Zero, Blend::One, BlendOp::Add }
 		static constexpr Predefined Multiplicative2X = Predefined::Multiplicative2X;
 
-		/// <summary>
-		/// デフォルトのブレンド
-		/// BlendState{ true }
-		/// </summary>
+		/// @brief デフォルトのブレンド
+		/// @remark BlendState{ true }	
 		static constexpr Predefined Default = Predefined::Default;
 	};
 	static_assert(sizeof(BlendState) == sizeof(BlendState::storage_type));
-
-	inline constexpr BlendState::BlendState(const Predefined predefined) noexcept
-	{
-		constexpr BlendState PredefinedStates[7] =
-		{
-			BlendState{ true },																// NonPremultiplied
-			BlendState{ true, Blend::One },													// Premultiplied
-			BlendState{ false },															// Opaque
-			BlendState{ true, Blend::SrcAlpha,	Blend::One,			BlendOp::Add },			// Additive
-			BlendState{ true, Blend::SrcAlpha,	Blend::One,			BlendOp::RevSubtract },	// Subtractive
-			BlendState{ true, Blend::Zero,		Blend::SrcColor,	BlendOp::Add },			// Multiplicative
-			BlendState{ true, Blend::DestColor,	Blend::SrcColor,	BlendOp::Add },			// Multiplicative2X
-		};
-
-		*this = PredefinedStates[FromEnum(predefined)];
-	}
 }
 
 //////////////////////////////////////////////////
@@ -231,3 +198,5 @@ struct std::hash<s3d::BlendState>
 		return hash<s3d::BlendState::storage_type>()(value.asValue());
 	}
 };
+
+# include "detail/BlendState.ipp"

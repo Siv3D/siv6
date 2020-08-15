@@ -30,8 +30,10 @@ namespace s3d
 
 	public:
 
+		SIV3D_NODISCARD_CXX20
 		AssetHandle();
 
+		SIV3D_NODISCARD_CXX20
 		explicit AssetHandle(std::shared_ptr<AssetIDWrapperType>&& id);
 
 		[[nodiscard]]
@@ -44,10 +46,10 @@ namespace s3d
 		explicit operator bool() const noexcept;
 
 		[[nodiscard]]
-		bool operator ==(const AssetHandle& other) const;
+		bool operator ==(const AssetHandle& other) const noexcept;
 
 		[[nodiscard]]
-		bool operator !=(const AssetHandle& other) const;
+		bool operator !=(const AssetHandle& other) const noexcept;
 
 		void release();
 	};

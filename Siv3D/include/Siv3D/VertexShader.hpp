@@ -19,6 +19,7 @@
 
 namespace s3d
 {
+	/// @brief 頂点シェーダ
 	class VertexShader : public AssetHandle<VertexShader>
 	{
 	public:

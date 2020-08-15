@@ -31,20 +31,28 @@ namespace s3d
 		using reverse_iterator			= base_type::reverse_iterator;
 		using const_reverse_iterator	= base_type::const_reverse_iterator;
 
+		SIV3D_NODISCARD_CXX20
 		Blob() = default;
 
+		SIV3D_NODISCARD_CXX20
 		Blob(const Blob&) = default;
 
+		SIV3D_NODISCARD_CXX20
 		Blob(Blob&&) = default;
 
+		SIV3D_NODISCARD_CXX20
 		explicit Blob(size_t sizeBytes);
 
+		SIV3D_NODISCARD_CXX20
 		explicit Blob(FilePathView path);
 
+		SIV3D_NODISCARD_CXX20
 		Blob(const void* src, size_t sizeBytes);
 
+		SIV3D_NODISCARD_CXX20
 		explicit Blob(const Array<Byte>& data);
 
+		SIV3D_NODISCARD_CXX20
 		explicit Blob(Array<Byte>&& data);
 
 		void create(const Blob& other);

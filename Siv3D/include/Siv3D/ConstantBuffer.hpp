@@ -18,6 +18,7 @@ namespace s3d
 {
 	class IConstantBufferDetail;
 
+	/// @brief 定数バッファ（シェーダ）ベース
 	class ConstantBufferBase
 	{
 	private:
@@ -26,17 +27,24 @@ namespace s3d
 
 	public:
 
+		SIV3D_NODISCARD_CXX20
 		ConstantBufferBase() = default;
 
+		SIV3D_NODISCARD_CXX20
 		ConstantBufferBase(const ConstantBufferBase&) = default;
 
+		SIV3D_NODISCARD_CXX20
 		explicit ConstantBufferBase(size_t size);
 
+		[[nodiscard]]
 		bool _internal_update(const void* data, size_t size);
 
+		[[nodiscard]]
 		const IConstantBufferDetail* _detail() const;
 	};
 
+	/// @brief 定数バッファ（シェーダ）
+	/// @tparam Type 定数バッファ用の型
 	template <class Type>
 	class ConstantBuffer
 	{
@@ -57,100 +65,49 @@ namespace s3d
 
 		bool m_hasDirty					= false;
 
-		bool update()
-		{
-			return m_base._internal_update(&(m_wrapper->data), Size);
-		}
-
 	public:
 
 		static constexpr size_t Size		= sizeof(WrapperType);
 
 		static constexpr size_t Alignment	= alignof(WrapperType);
 
-		ConstantBuffer()
-			: m_base(Size)
-		{
+		SIV3D_NODISCARD_CXX20
+		ConstantBuffer();
 
-		}
+		SIV3D_NODISCARD_CXX20
+		explicit ConstantBuffer(const Type& data);
 
-		explicit ConstantBuffer(const Type& data)
-			: ConstantBuffer()
-		{
-			m_hasDirty		= true;
-			m_wrapper->data	= data;
-		}
-
-		~ConstantBuffer()
-		{
-			AlignedDelete(m_wrapper);
-		}
+		~ConstantBuffer();
 
 		[[nodiscard]]
-		constexpr size_t size() const noexcept
-		{
-			return Size;
-		}
+		constexpr size_t size() const noexcept;
 
 		[[nodiscard]]
-		const float* data() const noexcept
-		{
-			return static_cast<const float*>(static_cast<const void*>(&(m_wrapper->data)));
-		}
+		const float* data() const noexcept;
 
 		[[nodiscard]]
-		Type& get() noexcept
-		{
-			m_hasDirty = true;
-			return *(m_wrapper->data);
-		}
+		Type& get() noexcept;
 
 		[[nodiscard]]
-		const Type& get() const noexcept
-		{
-			return *(m_wrapper->data);
-		}
+		const Type& get() const noexcept;
 
-		bool _update_if_dirty()
-		{
-			if (!m_hasDirty)
-			{
-				return true;
-			}
-
-			return update();
-		}
+		bool _update_if_dirty();
 
 		[[nodiscard]]
-		const ConstantBufferBase& base() const noexcept
-		{
-			return m_base;
-		}
+		const ConstantBufferBase& base() const noexcept;
 
 		[[nodiscard]]
-		Type& operator *() noexcept
-		{
-			m_hasDirty = true;
-			return *(m_wrapper->data);
-		}
+		Type& operator *() noexcept;
 
 		[[nodiscard]]
-		const Type& operator *() const noexcept
-		{
-			return *(m_wrapper->data);
-		}
+		const Type& operator *() const noexcept;
 
 		[[nodiscard]]
-		Type* operator ->() noexcept
-		{
-			m_hasDirty = true;
-			return &(m_wrapper->data);
-		}
+		Type* operator ->() noexcept;
 
 		[[nodiscard]]
-		const Type* operator ->() const noexcept
-		{
-			return &(m_wrapper->data);
-		}
+		const Type* operator ->() const noexcept;
 	};
 }
+
+# include "detail/ConstantBuffer.ipp"

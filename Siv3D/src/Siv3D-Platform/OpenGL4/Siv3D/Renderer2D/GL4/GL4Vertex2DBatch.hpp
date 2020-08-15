@@ -17,9 +17,9 @@
 
 namespace s3d
 {
-	class Renderer2DCommand_GL4;
+	class GL4Renderer2DCommand;
 
-	struct BatchInfo_GL4
+	struct GL4BatchInfo
 	{
 		uint32 indexCount = 0;
 
@@ -28,7 +28,7 @@ namespace s3d
 		uint32 baseVertexLocation = 0;
 	};
 
-	class Vertex2DBatch_GL4
+	class GL4Vertex2DBatch
 	{
 	private:
 
@@ -45,8 +45,6 @@ namespace s3d
 			}
 		};
 
-		using IndexType = Vertex2D::IndexType;
-
 		GLuint m_vao = 0;
 
 		GLuint m_vertexBuffer = 0;
@@ -58,7 +56,7 @@ namespace s3d
 		Array<Vertex2D> m_vertexArray;
 		uint32 m_vertexArrayWritePos = 0;
 
-		Array<IndexType> m_indexArray;
+		Array<Vertex2D::IndexType> m_indexArray;
 		uint32 m_indexArrayWritePos = 0;
 
 		Array<BatchBufferPos> m_batches;
@@ -76,15 +74,15 @@ namespace s3d
 
 	public:
 
-		Vertex2DBatch_GL4();
+		GL4Vertex2DBatch();
 
-		~Vertex2DBatch_GL4();
+		~GL4Vertex2DBatch();
 
 		[[nodiscard]]
 		bool init();
 
 		[[nodiscard]]
-		std::tuple<Vertex2D*, IndexType*, IndexType> requestBuffer(uint16 vertexSize, uint32 indexSize, Renderer2DCommand_GL4& command);
+		std::tuple<Vertex2D*, Vertex2D::IndexType*, Vertex2D::IndexType> requestBuffer(uint16 vertexSize, uint32 indexSize, GL4Renderer2DCommand& command);
 
 		[[nodiscard]]
 		size_t num_batches() const noexcept;
@@ -92,6 +90,6 @@ namespace s3d
 		void reset();
 
 		[[nodiscard]]
-		BatchInfo_GL4 updateBuffers(size_t batchIndex);
+		GL4BatchInfo updateBuffers(size_t batchIndex);
 	};
 }

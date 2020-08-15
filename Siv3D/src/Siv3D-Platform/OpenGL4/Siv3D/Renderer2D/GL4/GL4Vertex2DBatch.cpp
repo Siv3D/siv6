@@ -11,7 +11,7 @@
 
 # include <Siv3D/Common.hpp>
 # include <Siv3D/EngineLog.hpp>
-# include "Vertex2DBatch_GL4.hpp"
+# include "GL4Vertex2DBatch.hpp"
 
 namespace s3d
 {
@@ -30,7 +30,7 @@ namespace s3d
 		}
 	}
 
-	Vertex2DBatch_GL4::Vertex2DBatch_GL4()
+	GL4Vertex2DBatch::GL4Vertex2DBatch()
 		: m_vertexArray(InitialVertexArraySize)
 		, m_indexArray(InitialIndexArraySize)
 		, m_batches(1)
@@ -38,7 +38,7 @@ namespace s3d
 
 	}
 
-	Vertex2DBatch_GL4::~Vertex2DBatch_GL4()
+	GL4Vertex2DBatch::~GL4Vertex2DBatch()
 	{
 		if (m_indexBuffer)
 		{
@@ -59,7 +59,7 @@ namespace s3d
 		}
 	}
 
-	bool Vertex2DBatch_GL4::init()
+	bool GL4Vertex2DBatch::init()
 	{
 		::glGenVertexArrays(1, &m_vao);
 		::glGenBuffers(1, &m_vertexBuffer);
@@ -92,7 +92,7 @@ namespace s3d
 		return true;
 	}
 
-	std::tuple<Vertex2D*, Vertex2DBatch_GL4::IndexType*, Vertex2DBatch_GL4::IndexType> Vertex2DBatch_GL4::requestBuffer(const uint16 vertexSize, const uint32 indexSize, Renderer2DCommand_GL4& command)
+	std::tuple<Vertex2D*, Vertex2D::IndexType*, Vertex2D::IndexType> GL4Vertex2DBatch::requestBuffer(const uint16 vertexSize, const uint32 indexSize, GL4Renderer2DCommand& command)
 	{
 		// VB
 		if (const uint32 vertexArrayWritePosTarget = m_vertexArrayWritePos + vertexSize;
@@ -104,7 +104,7 @@ namespace s3d
 			}
 
 			const size_t newVertexArraySize = detail::CalculateNewArraySize(m_vertexArray.size(), vertexArrayWritePosTarget);
-			LOG_TRACE(U"ℹ️ Resized Vertex2DBatch_GL4::m_vertexArray (size: {} -> {})"_fmt(m_vertexArray.size(), newVertexArraySize));
+			LOG_TRACE(U"ℹ️ Resized GL4Vertex2DBatch::m_vertexArray (size: {} -> {})"_fmt(m_vertexArray.size(), newVertexArraySize));
 			m_vertexArray.resize(newVertexArraySize);
 		}
 
@@ -118,7 +118,7 @@ namespace s3d
 			}
 
 			const size_t newIndexArraySize = detail::CalculateNewArraySize(m_indexArray.size(), indexArrayWritePosTarget);
-			LOG_TRACE(U"ℹ️ Resized Vertex2DBatch_GL4::m_indexArray (size: {} -> {})"_fmt(m_indexArray.size(), newIndexArraySize));
+			LOG_TRACE(U"ℹ️ Resized GL4Vertex2DBatch::m_indexArray (size: {} -> {})"_fmt(m_indexArray.size(), newIndexArraySize));
 			m_indexArray.resize(newIndexArraySize);
 		}
 
@@ -131,7 +131,7 @@ namespace s3d
 
 		auto& lastbatch = m_batches.back();
 		Vertex2D* const pVertex = (m_vertexArray.data() + m_vertexArrayWritePos);
-		IndexType* const pIndex = (m_indexArray.data() + m_indexArrayWritePos);
+		Vertex2D::IndexType* const pIndex = (m_indexArray.data() + m_indexArrayWritePos);
 		const auto vertexPos = lastbatch.vertexPos;
 
 		advanceArrayWritePos(vertexSize, indexSize);
@@ -140,12 +140,12 @@ namespace s3d
 		return{ pVertex, pIndex, vertexPos };
 	}
 
-	size_t Vertex2DBatch_GL4::num_batches() const noexcept
+	size_t GL4Vertex2DBatch::num_batches() const noexcept
 	{
 		return m_batches.size();
 	}
 
-	void Vertex2DBatch_GL4::reset()
+	void GL4Vertex2DBatch::reset()
 	{
 		m_batches.clear();
 		m_batches.emplace_back();
@@ -154,7 +154,7 @@ namespace s3d
 		m_indexArrayWritePos = 0;
 	}
 
-	BatchInfo_GL4 Vertex2DBatch_GL4::updateBuffers(const size_t batchIndex)
+	GL4BatchInfo GL4Vertex2DBatch::updateBuffers(const size_t batchIndex)
 	{
 		assert(batchIndex < m_batches.size());
 
@@ -170,7 +170,7 @@ namespace s3d
 		::glBindVertexArray(m_vao);
 		::glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
 
-		BatchInfo_GL4 batchInfo;
+		GL4BatchInfo batchInfo;
 		const auto& currentBatch = m_batches[batchIndex];
 
 		// VB
@@ -198,18 +198,18 @@ namespace s3d
 		// IB
 		if (const uint32 indexSize = currentBatch.indexPos)
 		{
-			const IndexType* pSrc = &m_indexArray[indexArrayReadPos];
+			const Vertex2D::IndexType* pSrc = &m_indexArray[indexArrayReadPos];
 
 			if (IndexBufferSize < (m_indexBufferWritePos + indexSize))
 			{
 				m_indexBufferWritePos = 0;
-				::glBufferData(GL_ELEMENT_ARRAY_BUFFER, (sizeof(IndexType) * IndexBufferSize), nullptr, GL_DYNAMIC_DRAW);
+				::glBufferData(GL_ELEMENT_ARRAY_BUFFER, (sizeof(Vertex2D::IndexType) * IndexBufferSize), nullptr, GL_DYNAMIC_DRAW);
 			}
 
-			void* const pDst = ::glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, sizeof(IndexType) * m_indexBufferWritePos, sizeof(IndexType) * indexSize,
+			void* const pDst = ::glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, sizeof(Vertex2D::IndexType) * m_indexBufferWritePos, sizeof(Vertex2D::IndexType) * indexSize,
 				GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_RANGE_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
 			{
-				std::memcpy(pDst, pSrc, sizeof(IndexType) * indexSize);
+				std::memcpy(pDst, pSrc, (sizeof(Vertex2D::IndexType) * indexSize));
 			}
 			::glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
 
@@ -221,7 +221,7 @@ namespace s3d
 		return batchInfo;
 	}
 
-	void Vertex2DBatch_GL4::advanceArrayWritePos(const uint16 vertexSize, const uint32 indexSize) noexcept
+	void GL4Vertex2DBatch::advanceArrayWritePos(const uint16 vertexSize, const uint32 indexSize) noexcept
 	{
 		m_vertexArrayWritePos	+= vertexSize;
 		m_indexArrayWritePos	+= indexSize;

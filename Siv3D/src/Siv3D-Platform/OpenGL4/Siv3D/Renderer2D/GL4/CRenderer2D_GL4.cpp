@@ -139,7 +139,7 @@ namespace s3d
 		// Batch 管理を初期化
 		if (!m_batches.init())
 		{
-			throw EngineError(U"Vertex2DBatch_GL4::init() failed");
+			throw EngineError(U"GL4Vertex2DBatch::init() failed");
 		}
 
 		CheckOpenGLError();

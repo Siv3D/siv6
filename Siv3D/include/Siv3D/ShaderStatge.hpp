@@ -14,10 +14,13 @@
 
 namespace s3d
 {
+	/// @brief シェーダステージ
 	enum class ShaderStage
 	{
+		/// @brief 頂点シェーダ
 		Vertex,
 
+		/// @brief ピクセルシェーダ
 		Pixel,
 	};
 }

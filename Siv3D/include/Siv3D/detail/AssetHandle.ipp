@@ -46,13 +46,13 @@ namespace s3d
 	}
 
 	template <class AssetType>
-	inline bool AssetHandle<AssetType>::operator ==(const AssetHandle& other) const
+	inline bool AssetHandle<AssetType>::operator ==(const AssetHandle& other) const noexcept
 	{
 		return (m_handle->id() == other.m_handle->id());
 	}
 
 	template <class AssetType>
-	inline bool AssetHandle<AssetType>::operator !=(const AssetHandle& other) const
+	inline bool AssetHandle<AssetType>::operator !=(const AssetHandle& other) const noexcept
 	{
 		return (m_handle->id() != other.m_handle->id());
 	}

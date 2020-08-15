@@ -13,11 +13,11 @@
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/Common/OpenGL.hpp>
-# include "Vertex2DBatch_GL4.hpp"
+# include "GL4Vertex2DBatch.hpp"
 
 namespace s3d
 {
-	class Renderer2DCommand_GL4 {};
+	class GL4Renderer2DCommand {};
 
 	class CRenderer2D_GL4 final : public ISiv3DRenderer2D
 	{
@@ -28,8 +28,8 @@ namespace s3d
 		GLuint m_pipeline = 0;
 		GLuint m_uniformBuffer = 0;
 
-		Vertex2DBatch_GL4 m_batches;
-		Renderer2DCommand_GL4 m_command;
+		GL4Vertex2DBatch m_batches;
+		GL4Renderer2DCommand m_command;
 		uint32 m_draw_indexCount = 0;
 
 	public:

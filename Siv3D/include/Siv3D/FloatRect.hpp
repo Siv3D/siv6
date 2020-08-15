@@ -16,26 +16,26 @@ namespace s3d
 {
 	struct FloatRect
 	{
-		float left, top, right, bottom;
+		float left;
+		
+		float top;
+			
+		float right;
+		
+		float bottom;
 
+		SIV3D_NODISCARD_CXX20
 		FloatRect() = default;
 
-		constexpr FloatRect(float l, float t, float r, float b) noexcept
-			: left(l)
-			, top(t)
-			, right(r)
-			, bottom(b) {}
+		SIV3D_NODISCARD_CXX20
+		constexpr FloatRect(float l, float t, float r, float b) noexcept;
 
-		constexpr FloatRect(int32 l, int32 t, int32 r, int32 b) noexcept
-			: left(static_cast<float>(l))
-			, top(static_cast<float>(t))
-			, right(static_cast<float>(r))
-			, bottom(static_cast<float>(b)) {}
+		SIV3D_NODISCARD_CXX20
+		constexpr FloatRect(int32 l, int32 t, int32 r, int32 b) noexcept;
 
-		constexpr FloatRect(double l, double t, double r, double b) noexcept
-			: left(static_cast<float>(l))
-			, top(static_cast<float>(t))
-			, right(static_cast<float>(r))
-			, bottom(static_cast<float>(b)) {}
+		SIV3D_NODISCARD_CXX20
+		constexpr FloatRect(double l, double t, double r, double b) noexcept;
 	};
 }
+
+# include "detail/FloatRect.ipp"
