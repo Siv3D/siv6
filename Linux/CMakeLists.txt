@@ -49,6 +49,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Renderer2D/Renderer2DFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Resource/CResource.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Resource/SivResource_Linux.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Shader/ShaderFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Texture/TextureFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Time/SivTime.cpp
