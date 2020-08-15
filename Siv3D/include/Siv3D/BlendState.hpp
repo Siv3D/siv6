@@ -122,6 +122,7 @@ namespace s3d
 
 		BlendOp opAlpha	: 3 = BlendOp::Add;
 
+		SIV3D_NODISCARD_CXX20
 		explicit constexpr BlendState(
 			bool _enable = true,
 			Blend _src = Blend::SrcAlpha,
@@ -137,6 +138,7 @@ namespace s3d
 			bool _writeA = true
 		) noexcept;
 
+		SIV3D_NODISCARD_CXX20
 		constexpr BlendState(Predefined predefined) noexcept;
 
 		[[nodiscard]]

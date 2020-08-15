@@ -95,6 +95,7 @@ namespace s3d
 		/// @brief 深度バイアス
 		int32 depthBias	= 0;
 
+		SIV3D_NODISCARD_CXX20
 		explicit constexpr RasterizerState(
 			FillMode _fillMode = FillMode::Solid,
 			CullMode _cullMode = CullMode::Back,
@@ -103,6 +104,7 @@ namespace s3d
 			int32 _depthBias = 0
 		);
 
+		SIV3D_NODISCARD_CXX20
 		constexpr RasterizerState(Predefined predefined) noexcept;
 
 		[[nodiscard]]

@@ -98,6 +98,7 @@ namespace s3d
 
 		Float4 borderColor		= Float4(0, 0, 0, 0);
 
+		SIV3D_NODISCARD_CXX20
 		explicit constexpr SamplerState(
 			TextureAddressMode address,
 			TextureFilter filter,
@@ -105,6 +106,7 @@ namespace s3d
 			float _lodBias = 0.0f,
 			Float4 _borderColor = Float4(0, 0, 0, 0)) noexcept;
 
+		SIV3D_NODISCARD_CXX20
 		explicit constexpr SamplerState(
 			TextureAddressMode _addressU = TextureAddressMode::Clamp,
 			TextureAddressMode _addressV = TextureAddressMode::Clamp,
@@ -116,6 +118,7 @@ namespace s3d
 			float _lodBias = 0.0f,
 			Float4 _borderColor = Float4(0, 0, 0, 0)) noexcept;
 
+		SIV3D_NODISCARD_CXX20
 		constexpr SamplerState(Predefined predefined) noexcept;
 
 		[[nodiscard]]

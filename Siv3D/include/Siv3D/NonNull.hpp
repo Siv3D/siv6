@@ -11,6 +11,7 @@
 
 # pragma once
 # include <cassert>
+# include "Common.hpp"
 
 namespace s3d
 {
@@ -23,6 +24,7 @@ namespace s3d
 
 		NonNull(std::nullptr_t) = delete;
 
+		SIV3D_NODISCARD_CXX20
 		constexpr explicit NonNull(Pointer _pointer) noexcept
 			: pointer(_pointer)
 		{
