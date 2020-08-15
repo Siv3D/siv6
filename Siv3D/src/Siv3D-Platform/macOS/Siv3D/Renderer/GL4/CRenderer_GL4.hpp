@@ -42,9 +42,15 @@ namespace s3d
 		void flush() override;
 
 		bool present() override;
+		
+		void setSceneResizeMode(ResizeMode resizeMode) override;
+
+		ResizeMode getSceneResizeMode() const noexcept override;
 
 		void setSceneBufferSize(Size size) override;
 
-		Size getSceneBufferSize() const override;
+		Size getSceneBufferSize() const noexcept override;
+		
+		std::pair<float, FloatRect> getLetterboxComposition() const noexcept override;
 	};
 }

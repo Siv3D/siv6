@@ -225,7 +225,7 @@ namespace s3d
 	{
 		LOG_TRACE(U"CWindow::resizeByVirtualSize({})"_fmt(virtualSize));
 
-		::glfwSetWindowSize(m_window, size.x, size.y);
+		::glfwSetWindowSize(m_window, virtualSize.x, virtualSize.y);
 		return true;
 	}
 

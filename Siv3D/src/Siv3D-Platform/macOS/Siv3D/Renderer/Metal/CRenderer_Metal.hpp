@@ -32,6 +32,8 @@ namespace s3d
 		
 		Size m_frameBufferSize = Size(0, 0);
 		
+		Size m_sceneSize = Size(800, 600);
+		
 	public:
 
 		CRenderer_Metal();
@@ -47,10 +49,18 @@ namespace s3d
 		void flush() override;
 
 		bool present() override;
+		
+		void setSceneResizeMode(ResizeMode resizeMode) override;
+
+		ResizeMode getSceneResizeMode() const noexcept override;
 
 		void setSceneBufferSize(Size size) override;
 
-		Size getSceneBufferSize() const override;
+		Size getSceneBufferSize() const noexcept override;
+		
+		std::pair<float, FloatRect> getLetterboxComposition() const noexcept override;
+
+		
 		
 		id<MTLDevice> getDevice() const;
 		

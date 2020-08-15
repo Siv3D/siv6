@@ -169,6 +169,11 @@ namespace s3d
 		m_draw_indexCount += indexSize;
 	}
 
+	void CRenderer2D_Metal::drawFullScreenTriangle(TextureFilter textureFilter)
+	{
+	
+	}
+
 	void CRenderer2D_Metal::begin()
 	{
 		m_batches.begin();
