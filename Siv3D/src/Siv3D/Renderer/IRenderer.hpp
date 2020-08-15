@@ -13,6 +13,7 @@
 # include <Siv3D/Common.hpp>
 # include <Siv3D/PointVector.hpp>
 # include <Siv3D/ResizeMode.hpp>
+# include <Siv3D/FloatRect.hpp>
 
 namespace s3d
 {
@@ -36,10 +37,12 @@ namespace s3d
 
 		virtual void setSceneResizeMode(ResizeMode resizeMode) = 0;
 
-		virtual ResizeMode getSceneResizeMode() const noexcept;
+		virtual ResizeMode getSceneResizeMode() const noexcept = 0;
 
 		virtual void setSceneBufferSize(Size size) = 0;
 
 		virtual Size getSceneBufferSize() const noexcept = 0;
+
+		virtual std::pair<float, FloatRect> getLetterboxComposition() const noexcept = 0;
 	};
 }

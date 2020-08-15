@@ -474,9 +474,9 @@ namespace s3d
 
 	template <class T, class N, class S>
 	inline constexpr Step<T, N, S>::Iterator::Iterator()
-		: m_currentValue(T())
-		, m_count(N())
-		, m_step(S())
+		: m_currentValue(T{})
+		, m_count(N{})
+		, m_step(S{})
 	{
 	
 	}

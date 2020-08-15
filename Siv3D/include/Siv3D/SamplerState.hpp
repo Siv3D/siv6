@@ -13,6 +13,7 @@
 # include <cstring>
 # include <functional>
 # include "Common.hpp"
+# include "Utility.hpp"
 # include "PointVector.hpp"
 # include "TextureFilter.hpp"
 
@@ -127,7 +128,7 @@ namespace s3d
 			, lodBias(_lodBias)
 			, borderColor{ _borderColor.x, _borderColor.y, _borderColor.z, _borderColor.w } {}
 
-		SamplerState(Predefined predefined);
+		constexpr SamplerState(Predefined predefined) noexcept;
 
 		[[nodiscard]]
 		storage_type asValue() const noexcept
@@ -233,8 +234,54 @@ namespace s3d
 		/// </summary>
 		static constexpr Predefined Default3D = Predefined::Default3D;
 	};
-
 	static_assert(sizeof(SamplerState) == sizeof(SamplerState::storage_type));
+
+	inline constexpr SamplerState::SamplerState(const Predefined predefined) noexcept
+	{
+		constexpr SamplerState PredefinedStates[12] =
+		{
+			SamplerState{ TextureAddressMode::Repeat, TextureAddressMode::Repeat, TextureAddressMode::Repeat,
+							TextureFilter::Nearest, TextureFilter::Nearest, TextureFilter::Nearest },
+
+			SamplerState{ TextureAddressMode::Repeat, TextureAddressMode::Repeat, TextureAddressMode::Repeat,
+							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear },
+
+			SamplerState{ TextureAddressMode::Repeat, TextureAddressMode::Repeat, TextureAddressMode::Repeat,
+							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear, 16 },
+
+
+			SamplerState{ TextureAddressMode::Mirror, TextureAddressMode::Mirror, TextureAddressMode::Mirror,
+							TextureFilter::Nearest, TextureFilter::Nearest, TextureFilter::Nearest },
+
+			SamplerState{ TextureAddressMode::Mirror, TextureAddressMode::Mirror, TextureAddressMode::Mirror,
+							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear },
+
+			SamplerState{ TextureAddressMode::Mirror, TextureAddressMode::Mirror, TextureAddressMode::Mirror,
+							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear, 16 },
+
+
+			SamplerState{ TextureAddressMode::Clamp, TextureAddressMode::Clamp, TextureAddressMode::Clamp,
+							TextureFilter::Nearest, TextureFilter::Nearest, TextureFilter::Nearest },
+
+			SamplerState{ TextureAddressMode::Clamp, TextureAddressMode::Clamp, TextureAddressMode::Clamp,
+							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear },
+
+			SamplerState{ TextureAddressMode::Clamp, TextureAddressMode::Clamp, TextureAddressMode::Clamp,
+							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear, 16 },
+
+
+			SamplerState{ TextureAddressMode::Border, TextureAddressMode::Border, TextureAddressMode::Border,
+							TextureFilter::Nearest, TextureFilter::Nearest, TextureFilter::Nearest },
+
+			SamplerState{ TextureAddressMode::Border, TextureAddressMode::Border, TextureAddressMode::Border,
+							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear },
+
+			SamplerState{ TextureAddressMode::Border, TextureAddressMode::Border, TextureAddressMode::Border,
+							TextureFilter::Linear, TextureFilter::Linear, TextureFilter::Linear, 16 },
+		};
+
+		*this = PredefinedStates[FromEnum(predefined)];
+	}
 }
 
 //////////////////////////////////////////////////

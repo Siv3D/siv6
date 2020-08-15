@@ -12,6 +12,8 @@
 # include <Siv3D/DLL.hpp>
 # include <Siv3D/Window.hpp>
 # include <Siv3D/EngineLog.hpp>
+# include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Common/Siv3DEngine.hpp>
 # include "D3D11BackBuffer.hpp"
 
 namespace s3d
@@ -59,7 +61,7 @@ namespace s3d
 
 		if (m_sampleCount == 1)
 		{
-			if (m_backBuffer.getSize() == m_sceneBuffers.scene.getSize())
+			if (m_backBuffer.size() == m_sceneBuffers.scene.size())
 			{
 				m_sceneBuffers.scene.copyTo(m_context, m_backBuffer);
 			}
@@ -67,37 +69,20 @@ namespace s3d
 			{
 				setRenderTarget(m_backBuffer);
 				m_context->PSSetShaderResources(0, 1, m_sceneBuffers.scene.getSRVPtr());
-
-				if (m_sceneTextureFilter == TextureFilter::Nearest)
-				{
-					// [Siv3D ToDo] Draw Nearest
-				}
-				else // (m_sceneTextureFilter == TextureFilter::Linear)
-				{
-					// [Siv3D ToDo] Draw Linear
-				}
+				SIV3D_ENGINE(Renderer2D)->drawFullScreenTriangle(m_sceneTextureFilter);
+				
+				D3D11::ResetPSShaderResources(m_context);
 			}
-
-			D3D11::ResetPSShaderResources(m_context);
-			return;
-		}
-
-		if (m_backBuffer.getSize() == m_sceneBuffers.scene.getSize())
-		{
-			m_sceneBuffers.scene.resolveTo(m_context, m_backBuffer);
 		}
 		else
 		{
-			if (m_sceneTextureFilter == TextureFilter::Nearest)
+			if (m_backBuffer.size() == m_sceneBuffers.scene.size())
 			{
-				setRenderTarget(m_backBuffer);
-				m_context->PSSetShaderResources(0, 1, m_sceneBuffers.scene.getSRVPtr());
-
-				// [Siv3D ToDo] Draw MSAA
+				m_sceneBuffers.scene.resolveTo(m_context, m_backBuffer);
 			}
-			else // (m_sceneTextureFilter == TextureFilter::Linear)
+			else
 			{
-				if (m_sceneBuffers.resolved.getSize() != m_sceneBuffers.scene.getSize())
+				if (m_sceneBuffers.resolved.size() != m_sceneBuffers.scene.size())
 				{
 					m_sceneBuffers.resolved = D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize);
 				}
@@ -105,10 +90,10 @@ namespace s3d
 
 				setRenderTarget(m_backBuffer);
 				m_context->PSSetShaderResources(0, 1, m_sceneBuffers.resolved.getSRVPtr());
-				// [Siv3D ToDo] Draw Linear
-			}
+				SIV3D_ENGINE(Renderer2D)->drawFullScreenTriangle(m_sceneTextureFilter);
 
-			D3D11::ResetPSShaderResources(m_context);
+				D3D11::ResetPSShaderResources(m_context);
+			}
 		}
 	}
 
@@ -179,7 +164,7 @@ namespace s3d
 		clear(ClearTarget::All);
 	}
 
-	const Size& D3D11BackBuffer::getSceneBufferSize() const
+	const Size& D3D11BackBuffer::getSceneBufferSize() const noexcept
 	{
 		return m_sceneSize;
 	}
@@ -207,9 +192,34 @@ namespace s3d
 		updateSceneSize();
 	}
 
-	const Size& D3D11BackBuffer::getBackBufferSize() const
+	const Size& D3D11BackBuffer::getBackBufferSize() const noexcept
 	{
-		return m_backBuffer.getSize();
+		return m_backBuffer.size();
+	}
+
+	std::pair<float, FloatRect> D3D11BackBuffer::getLetterboxComposition() const noexcept
+	{
+		const Float2 sceneSize		= m_sceneSize;
+		const Float2 backBufferSize	= m_backBuffer.size();
+
+		const float sx	= (backBufferSize.x / sceneSize.x);
+		const float sy	= (backBufferSize.y / sceneSize.y);
+		const float s	= Min(sx, sy);
+
+		if (sx <= sy)
+		{
+			const float offsetY = ((backBufferSize.y - sceneSize.y * s) * 0.5f);
+			const float bottom	= (backBufferSize.y - offsetY * 2.0f);
+
+			return{ s, FloatRect(0.0f, offsetY, backBufferSize.x, bottom) };
+		}
+		else
+		{
+			const float offsetX = ((backBufferSize.x - sceneSize.x * s) * 0.5f);
+			const float right	= (backBufferSize.x - offsetX * 2.0f);
+
+			return{ s, FloatRect(offsetX, 0.0f, right, backBufferSize.y) };
+		}
 	}
 
 	void D3D11BackBuffer::unbindAllRenderTargets()

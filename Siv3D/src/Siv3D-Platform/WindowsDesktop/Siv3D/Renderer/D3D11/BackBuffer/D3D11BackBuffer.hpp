@@ -13,6 +13,7 @@
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Common/D3D11.hpp>
 # include <Siv3D/Scene.hpp>
+# include <Siv3D/FloatRect.hpp>
 # include <ThirdParty/EnumBitmask/EnumBitmask.hpp>
 # include "../Device/D3D11Device.hpp"
 # include "../SwapChain/D3D11SwapChain.hpp"
@@ -130,7 +131,7 @@ namespace s3d
 		void setSceneBufferSize(Size size);
 
 		[[nodiscard]]
-		const Size& getSceneBufferSize() const;
+		const Size& getSceneBufferSize() const noexcept;
 
 		//////////////////////////////////////////////////
 		//
@@ -141,6 +142,9 @@ namespace s3d
 		void setBackBufferSize(Size backBufferSize);
 
 		[[nodiscard]]
-		const Size& getBackBufferSize() const;
+		const Size& getBackBufferSize() const noexcept;
+
+		[[nodiscard]]
+		std::pair<float, FloatRect> getLetterboxComposition() const noexcept;
 	};
 }

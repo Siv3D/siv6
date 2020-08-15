@@ -54,5 +54,7 @@ namespace s3d
 		void setSceneBufferSize(Size size) override;
 
 		Size getSceneBufferSize() const noexcept override;
+
+		std::pair<float, FloatRect> getLetterboxComposition() const noexcept override;
 	};
 }

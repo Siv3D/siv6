@@ -69,4 +69,9 @@ namespace s3d
 	{
 		return Size(0, 0);
 	}
+
+	std::pair<float, FloatRect> CRenderer_Null::getLetterboxComposition() const noexcept
+	{
+		return{ 0, {} };
+	}
 }

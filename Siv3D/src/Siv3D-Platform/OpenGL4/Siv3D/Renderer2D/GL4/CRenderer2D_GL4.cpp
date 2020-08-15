@@ -229,4 +229,9 @@ namespace s3d
 
 		m_draw_indexCount += 6;
 	}
+
+	void CRenderer2D_GL4::drawFullScreenTriangle(const TextureFilter textureFilter)
+	{
+
+	}
 }

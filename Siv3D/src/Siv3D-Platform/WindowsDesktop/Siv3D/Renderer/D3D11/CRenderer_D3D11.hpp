@@ -64,5 +64,19 @@ namespace s3d
 		void setSceneBufferSize(Size size) override;
 
 		Size getSceneBufferSize() const noexcept override;
+
+		std::pair<float, FloatRect> getLetterboxComposition() const noexcept override;
+
+
+
+		ID3D11Device* getDevice() const;
+
+		ID3D11DeviceContext* getContext() const;
+
+		D3D11BlendState& getBlendState() noexcept;
+
+		D3D11RasterizerState& getRasterizerState() noexcept;
+
+		D3D11SamplerState& getSamplerState() noexcept;
 	};
 }

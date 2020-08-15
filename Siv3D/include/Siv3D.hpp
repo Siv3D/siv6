@@ -811,7 +811,7 @@
 //# include <Siv3D/Bezier3.hpp>
 
 // Float 型の長方形
-//# include <Siv3D/FloatRect.hpp>
+# include <Siv3D/FloatRect.hpp>
 
 // Float 型の四角形
 //# include <Siv3D/FloatQuad.hpp>

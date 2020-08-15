@@ -35,7 +35,7 @@ namespace s3d
 
 		explicit operator bool() const noexcept;
 
-		const Size& getSize() const noexcept;
+		const Size& size() const noexcept;
 
 		void clear(ID3D11DeviceContext* context, const ColorF color);
 

@@ -26,7 +26,7 @@ namespace s3d
 		return (not isEmpty());
 	}
 
-	const Size& D3D11InternalTexture2D::getSize() const noexcept
+	const Size& D3D11InternalTexture2D::size() const noexcept
 	{
 		return m_size;
 	}
@@ -45,14 +45,14 @@ namespace s3d
 
 	void D3D11InternalTexture2D::copyTo(ID3D11DeviceContext* context, D3D11InternalTexture2D& dst)
 	{
-		assert(getSize() == dst.getSize());
+		assert(size() == dst.size());
 
 		context->CopyResource(dst.m_texture.Get(), m_texture.Get());
 	}
 
 	void D3D11InternalTexture2D::resolveTo(ID3D11DeviceContext* context, D3D11InternalTexture2D& dst)
 	{
-		assert(getSize() == dst.getSize());
+		assert(size() == dst.size());
 
 		context->ResolveSubresource(dst.m_texture.Get(), 0,
 			m_texture.Get(), 0, DXGI_FORMAT_R8G8B8A8_UNORM);

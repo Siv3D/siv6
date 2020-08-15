@@ -36,4 +36,9 @@ namespace s3d
 	{
 
 	}
+
+	void CRenderer2D_Null::drawFullScreenTriangle(const TextureFilter)
+	{
+
+	}
 }

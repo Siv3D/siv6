@@ -100,4 +100,36 @@ namespace s3d
 	{
 		return m_backBuffer->getSceneBufferSize();;
 	}
+
+	std::pair<float, FloatRect> CRenderer_D3D11::getLetterboxComposition() const noexcept
+	{
+		return m_backBuffer->getLetterboxComposition();
+	}
+
+
+
+	ID3D11Device* CRenderer_D3D11::getDevice() const
+	{
+		return m_device->getDevice();
+	}
+
+	ID3D11DeviceContext* CRenderer_D3D11::getContext() const
+	{
+		return m_device->getContext();
+	}
+
+	D3D11BlendState& CRenderer_D3D11::getBlendState() noexcept
+	{
+		return *m_blendState;
+	}
+
+	D3D11RasterizerState& CRenderer_D3D11::getRasterizerState() noexcept
+	{
+		return *m_rasterizerState;
+	}
+
+	D3D11SamplerState& CRenderer_D3D11::getSamplerState() noexcept
+	{
+		return *m_samplerState;
+	}
 }

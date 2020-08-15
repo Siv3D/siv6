@@ -13,6 +13,7 @@
 # include <cstring>
 # include <functional>
 # include "Common.hpp"
+# include "Utility.hpp"
 
 namespace s3d
 {
@@ -126,7 +127,7 @@ namespace s3d
 		, dstAlpha(_dstAlpha)
 		, opAlpha(_opAlpha) {}
 
-		BlendState(Predefined predefined);
+		constexpr BlendState(Predefined predefined) noexcept;
 
 		[[nodiscard]]
 		storage_type asValue() const noexcept
@@ -196,8 +197,23 @@ namespace s3d
 		/// </summary>
 		static constexpr Predefined Default = Predefined::Default;
 	};
-
 	static_assert(sizeof(BlendState) == sizeof(BlendState::storage_type));
+
+	inline constexpr BlendState::BlendState(const Predefined predefined) noexcept
+	{
+		constexpr BlendState PredefinedStates[7] =
+		{
+			BlendState{ true },																// NonPremultiplied
+			BlendState{ true, Blend::One },													// Premultiplied
+			BlendState{ false },															// Opaque
+			BlendState{ true, Blend::SrcAlpha,	Blend::One,			BlendOp::Add },			// Additive
+			BlendState{ true, Blend::SrcAlpha,	Blend::One,			BlendOp::RevSubtract },	// Subtractive
+			BlendState{ true, Blend::Zero,		Blend::SrcColor,	BlendOp::Add },			// Multiplicative
+			BlendState{ true, Blend::DestColor,	Blend::SrcColor,	BlendOp::Add },			// Multiplicative2X
+		};
+
+		*this = PredefinedStates[FromEnum(predefined)];
+	}
 }
 
 //////////////////////////////////////////////////

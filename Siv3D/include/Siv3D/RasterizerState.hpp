@@ -13,6 +13,7 @@
 # include <cstring>
 # include <functional>
 # include "Common.hpp"
+# include "Utility.hpp"
 
 namespace s3d
 {
@@ -78,29 +79,19 @@ namespace s3d
 
 		using storage_type = uint64;
 
-		/// <summary>
-		/// 面の塗りつぶし方法
-		/// </summary>
+		/// @brief 面の塗りつぶし方法
 		FillMode fillMode : 2	= FillMode::Solid;
 
-		/// <summary>
-		/// カリングの基準
-		/// </summary>
+		/// @brief カリングの基準
 		CullMode cullMode : 2	= CullMode::Back;
 
-		/// <summary>
-		/// シザーテストを有効にするかどうかを示します。 
-		/// </summary>
+		/// @brief シザーテストの有効無効
 		bool scissorEnable : 2	= false;
 
-		/// <summary>
-		/// アンチエイリアスされた Line3D 描画
-		/// </summary>
+		/// @brief アンチエイリアスされた Line3D 描画
 		bool antialiasedLine3D : 2	= false;
 
-		/// <summary>
-		/// デプスのバイアス
-		/// </summary>
+		/// @brief 深度バイアス
 		int32 depthBias	= 0;
 
 		explicit constexpr RasterizerState(
@@ -116,7 +107,7 @@ namespace s3d
 			, antialiasedLine3D(_antialiasedLine3D)
 			, depthBias(_depthBias) {}
 
-		RasterizerState(Predefined predefined);
+		constexpr RasterizerState(Predefined predefined) noexcept;
 
 		[[nodiscard]]
 		storage_type asValue() const noexcept
@@ -234,8 +225,30 @@ namespace s3d
 		/// </summary>
 		static const Predefined Default3D = Predefined::Default3D;
 	};
-
 	static_assert(sizeof(RasterizerState) == sizeof(RasterizerState::storage_type));
+
+	inline constexpr RasterizerState::RasterizerState(const Predefined predefined) noexcept
+	{
+		constexpr RasterizerState PredefinedStates[14] =
+		{
+			RasterizerState{ FillMode::Solid,		CullMode::Back },	// SolidCullBack
+			RasterizerState{ FillMode::Solid,		CullMode::Front },	// SolidCullFront
+			RasterizerState{ FillMode::Solid,		CullMode::None },	// SolidCullNone
+			RasterizerState{ FillMode::Wireframe,	CullMode::Back },	// WireframeCullBack
+			RasterizerState{ FillMode::Wireframe,	CullMode::Front },	// WireframeCullFront
+			RasterizerState{ FillMode::Wireframe,	CullMode::None },	// WireframeCullNone
+			RasterizerState{ FillMode::Solid,		CullMode::None, false, true },	// AntialiasedLine3D
+			RasterizerState{ FillMode::Solid,		CullMode::Back, true },			// SolidCullBackScissor
+			RasterizerState{ FillMode::Solid,		CullMode::Front, true },		// SolidCullFrontScissor
+			RasterizerState{ FillMode::Solid,		CullMode::None, true },			// SolidCullNoneScissor
+			RasterizerState{ FillMode::Wireframe,	CullMode::Back, true },			// WireframeCullBackScissor
+			RasterizerState{ FillMode::Wireframe,	CullMode::Front, true },		// WireframeCullFrontScissor
+			RasterizerState{ FillMode::Wireframe,	CullMode::None, true },			// WireframeCullNoneScissor
+			RasterizerState{ FillMode::Solid,		CullMode::None, true, true },	// AntialiasedLine3DScissor
+		};
+
+		*this = PredefinedStates[FromEnum(predefined)];
+	}
 }
 
 //////////////////////////////////////////////////
