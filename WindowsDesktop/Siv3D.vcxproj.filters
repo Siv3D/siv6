@@ -499,6 +499,18 @@
     <Filter Include="src\Siv3D-Platform\WindowsDesktop\Siv3D\ConstantBuffer\D3D11">
       <UniqueIdentifier>{8d1b7897-d3fb-464a-b1a8-08f6d585123d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Renderer">
+      <UniqueIdentifier>{a7b449fc-8265-4ac9-9e30-801b6129b83f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4">
+      <UniqueIdentifier>{7c69d0b3-4eb1-406f-b017-d94fec206b51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4">
+      <UniqueIdentifier>{e47f519e-869f-4a6c-89fd-d8a3b557a4fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer">
+      <UniqueIdentifier>{d769f6a3-ee07-4f8d-a9dd-12d1f5ca5aa7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -1304,9 +1316,6 @@
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\Mat3x2.hpp">
       <Filter>include\Siv3D</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\CRenderer2D_GL4.hpp">
-      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\src\Siv3D\Renderer2D\Null\CRenderer2D_Null.hpp">
       <Filter>src\Siv3D\Renderer2D\Null</Filter>
@@ -2373,14 +2382,23 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\FloatRect.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
-    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\GL4Vertex2DBatch.hpp">
-      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D</Filter>
-    </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\HalfFloat.hpp">
       <Filter>include\Siv3D</Filter>
     </ClInclude>
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\HalfFloat.ipp">
       <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\CRenderer2D_GL4.hpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\GL4Vertex2DBatch.hpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer\GL4BackBuffer.hpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer\GL4InternalTexture2D.hpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2758,9 +2776,6 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Common\OpenGL.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\CRenderer2D_GL4.cpp">
-      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D</Filter>
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Renderer2D\Null\CRenderer2D_Null.cpp">
       <Filter>src\Siv3D\Renderer2D\Null</Filter>
@@ -3296,8 +3311,17 @@
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer2D\D3D11\D3D11Vertex2DBatch.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\Renderer2D\D3D11</Filter>
     </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\CRenderer2D_GL4.cpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4</Filter>
+    </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4\GL4Vertex2DBatch.cpp">
-      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D</Filter>
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer2D\GL4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer\GL4BackBuffer.cpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer\GL4InternalTexture2D.cpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

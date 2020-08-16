@@ -16,6 +16,7 @@
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
 # include "WGLContext.hpp"
+# include <Siv3D/Renderer/GL4/BackBuffer/GL4BackBuffer.hpp>
 
 namespace s3d
 {
@@ -27,9 +28,7 @@ namespace s3d
 
 		WGLContext m_wglContext;
 
-		Size m_frameBufferSize	= Size(0, 0);
-
-		Size m_sceneSize		= Scene::DefaultSceneSize;
+		std::unique_ptr<GL4BackBuffer> m_backBuffer;
 
 	public:
 

@@ -11,74 +11,65 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
-# include <Siv3D/Common/D3D11.hpp>
+# include <Siv3D/Common/OpenGL.hpp>
+# include <Siv3D/PointVector.hpp>
+# include <Siv3D/ResizeMode.hpp>
 # include <Siv3D/Scene.hpp>
 # include <Siv3D/FloatRect.hpp>
 # include <ThirdParty/EnumBitmask/EnumBitmask.hpp>
-# include "../Device/D3D11Device.hpp"
-# include "../SwapChain/D3D11SwapChain.hpp"
-# include "D3D11InternalTexture2D.hpp"
+# include "GL4InternalTexture2D.hpp"
 
 namespace s3d
 {
-	enum class D3D11ClearTarget
+	enum class GL4ClearTarget
 	{
-		BackBuffer	= 1 << 0,
+		BackBuffer = 1 << 0,
 
-		Scene		= 1 << 1,
+		Scene = 1 << 1,
 
-		All			= (BackBuffer | Scene),
+		All = (BackBuffer | Scene),
 	};
-	DEFINE_BITMASK_OPERATORS(D3D11ClearTarget);
+	DEFINE_BITMASK_OPERATORS(GL4ClearTarget);
 
-	class D3D11BackBuffer
+	class GL4BackBuffer
 	{
 	private:
 
-		ID3D11Device* m_device			= nullptr;
-		
-		ID3D11DeviceContext* m_context	= nullptr;
-
-		IDXGISwapChain1* m_swapChain1	= nullptr;
-
-		uint32 m_sampleCount			= 4;
+		uint32 m_sampleCount			= 1;
 
 		ResizeMode m_sceneResizeMode	= ResizeMode::Default;
 
+		Size m_backBufferSize			= Window::DefaultClientSize;
+
 		Size m_sceneSize				= Scene::DefaultSceneSize;
-	
-		D3D11InternalTexture2D m_backBuffer;
 
 		struct SceneBuffer
 		{
-			D3D11InternalTexture2D scene;
-			D3D11InternalTexture2D resolved;
+			std::unique_ptr<GL4InternalTexture2D> scene;
+			std::unique_ptr<GL4InternalTexture2D> resolved;
 		} m_sceneBuffers;
 
 		ColorF m_letterboxColor				= Palette::DefaultLetterbox;
 		
-		ColorF m_backgroundColor			= Palette::DefaultBackground;
+		ColorF m_backgroundColor			= Palette::Skyblue;
 
 		TextureFilter m_sceneTextureFilter	= Scene::DefaultFilter;
 
-		// 全てのレンダーターゲットを解除
-		void unbindAllRenderTargets();
-
 		void updateSceneSize();
-
-		void setRenderTarget(const D3D11InternalTexture2D& texture);
 
 	public:
 
-		D3D11BackBuffer(const D3D11Device& device, const D3D11SwapChain& swapChain);
+		GL4BackBuffer();
 
-		~D3D11BackBuffer();
+		~GL4BackBuffer();
 
-		void clear(D3D11ClearTarget clearTargets);
+		void clear(GL4ClearTarget clearTargets);
+
+		void bindSceneBuffer();
+
+		void unbind();
 
 		void updateFromSceneBuffer();
-
-		void bindRenderTarget(ID3D11RenderTargetView* const rtv);
 
 		//////////////////////////////////////////////////
 		//
@@ -148,7 +139,5 @@ namespace s3d
 
 		[[nodiscard]]
 		const Size& getSceneBufferSize() const noexcept;
-
-		const D3D11InternalTexture2D& getSceneBuffer() const noexcept;
 	};
 }

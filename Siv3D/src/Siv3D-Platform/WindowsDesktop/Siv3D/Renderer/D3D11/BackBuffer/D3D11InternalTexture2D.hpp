@@ -31,10 +31,13 @@ namespace s3d
 
 	public:
 
+		[[nodiscard]]
 		bool isEmpty() const noexcept;
 
+		[[nodiscard]]
 		explicit operator bool() const noexcept;
 
+		[[nodiscard]]
 		const Size& size() const noexcept;
 
 		void clear(ID3D11DeviceContext* context, const ColorF color);
@@ -45,12 +48,16 @@ namespace s3d
 
 		void reset();
 
+		[[nodiscard]]
 		ID3D11ShaderResourceView* const* getSRVPtr() const noexcept;
 
+		[[nodiscard]]
 		ID3D11RenderTargetView* getRTV() const noexcept;
 
+		[[nodiscard]]
 		static D3D11InternalTexture2D GetTextureFromSwapChain(ID3D11Device* device, IDXGISwapChain1* swapChain1);
 	
+		[[nodiscard]]
 		static D3D11InternalTexture2D CreateRenderTargetTexture2D(ID3D11Device* device, Size size, uint32 sampleCount = 1);
 	};
 }

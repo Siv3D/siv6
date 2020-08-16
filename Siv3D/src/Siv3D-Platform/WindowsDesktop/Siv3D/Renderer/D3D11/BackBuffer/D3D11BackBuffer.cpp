@@ -34,7 +34,7 @@ namespace s3d
 			.scene = D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount)
 		};
 
-		clear(ClearTarget::All);
+		clear(D3D11ClearTarget::All);
 	}
 
 	D3D11BackBuffer::~D3D11BackBuffer()
@@ -42,14 +42,14 @@ namespace s3d
 
 	}
 
-	void D3D11BackBuffer::clear(const ClearTarget clearTargets)
+	void D3D11BackBuffer::clear(const D3D11ClearTarget clearTargets)
 	{
-		if (clearTargets & ClearTarget::BackBuffer)
+		if (clearTargets & D3D11ClearTarget::BackBuffer)
 		{
 			m_backBuffer.clear(m_context, m_letterboxColor);
 		}
 
-		if ((clearTargets & ClearTarget::Scene))
+		if (clearTargets & D3D11ClearTarget::Scene)
 		{
 			m_sceneBuffers.scene.clear(m_context, m_backgroundColor);
 		}
@@ -107,6 +107,12 @@ namespace s3d
 		m_context->OMSetRenderTargets(static_cast<UINT>(std::size(pRTV)), std::data(pRTV), nullptr);
 	}
 
+	//////////////////////////////////////////////////
+	//
+	//	LetterboxColor
+	//
+	//////////////////////////////////////////////////
+
 	void D3D11BackBuffer::setLetterboxColor(const ColorF& color) noexcept
 	{
 		m_letterboxColor = color;
@@ -116,6 +122,12 @@ namespace s3d
 	{
 		return m_letterboxColor;
 	}
+
+	//////////////////////////////////////////////////
+	//
+	//	BackgroundColor
+	//
+	//////////////////////////////////////////////////
 
 	void D3D11BackBuffer::setBackgroundColor(const ColorF& color) noexcept
 	{
@@ -127,6 +139,12 @@ namespace s3d
 		return m_backgroundColor;
 	}
 
+	//////////////////////////////////////////////////
+	//
+	//	SceneTextureFilter
+	//
+	//////////////////////////////////////////////////
+
 	void D3D11BackBuffer::setSceneTextureFilter(const TextureFilter textureFilter) noexcept
 	{
 		m_sceneTextureFilter = textureFilter;
@@ -136,6 +154,12 @@ namespace s3d
 	{
 		return m_sceneTextureFilter;
 	}
+
+	//////////////////////////////////////////////////
+	//
+	//	SceneResizeMode
+	//
+	//////////////////////////////////////////////////
 
 	void D3D11BackBuffer::setSceneResizeMode(const ResizeMode resizeMode)
 	{
@@ -149,40 +173,11 @@ namespace s3d
 		return m_sceneResizeMode;
 	}
 
-	void D3D11BackBuffer::setSceneBufferSize(const Size size)
-	{
-		assert((0 < size.x) && (0 < size.y));
-
-		if (size == m_sceneSize)
-		{
-			return;
-		}
-
-		LOG_TRACE(U"D3D11BackBuffer::setSceneSize({})"_fmt(size));
-
-		unbindAllRenderTargets();
-
-		m_sceneSize = size;
-
-		m_sceneBuffers = {};
-
-		m_sceneBuffers =
-		{
-			.scene = D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount)
-		};
-
-		clear(ClearTarget::All);
-	}
-
-	const Size& D3D11BackBuffer::getSceneBufferSize() const noexcept
-	{
-		return m_sceneSize;
-	}
-
-	const D3D11InternalTexture2D& D3D11BackBuffer::getSceneBuffer() const noexcept
-	{
-		return m_sceneBuffers.scene;
-	}
+	//////////////////////////////////////////////////
+	//
+	//	BackBuffer
+	//
+	//////////////////////////////////////////////////
 
 	void D3D11BackBuffer::setBackBufferSize(const Size backBufferSize)
 	{
@@ -214,27 +209,68 @@ namespace s3d
 
 	std::pair<float, FloatRect> D3D11BackBuffer::getLetterboxComposition() const noexcept
 	{
-		const Float2 sceneSize		= m_sceneSize;
-		const Float2 backBufferSize	= m_backBuffer.size();
+		const Float2 sceneSize = m_sceneSize;
+		const Float2 backBufferSize = m_backBuffer.size();
 
-		const float sx	= (backBufferSize.x / sceneSize.x);
-		const float sy	= (backBufferSize.y / sceneSize.y);
-		const float s	= Min(sx, sy);
+		const float sx = (backBufferSize.x / sceneSize.x);
+		const float sy = (backBufferSize.y / sceneSize.y);
+		const float s = Min(sx, sy);
 
 		if (sx <= sy)
 		{
 			const float offsetY = ((backBufferSize.y - sceneSize.y * s) * 0.5f);
-			const float bottom	= (backBufferSize.y - offsetY * 2.0f);
+			const float bottom = (backBufferSize.y - offsetY * 2.0f);
 
 			return{ s, FloatRect(0.0f, offsetY, backBufferSize.x, bottom) };
 		}
 		else
 		{
 			const float offsetX = ((backBufferSize.x - sceneSize.x * s) * 0.5f);
-			const float right	= (backBufferSize.x - offsetX * 2.0f);
+			const float right = (backBufferSize.x - offsetX * 2.0f);
 
 			return{ s, FloatRect(offsetX, 0.0f, right, backBufferSize.y) };
 		}
+	}
+
+	//////////////////////////////////////////////////
+	//
+	//	SceneBuffer
+	//
+	//////////////////////////////////////////////////
+
+	void D3D11BackBuffer::setSceneBufferSize(const Size size)
+	{
+		assert((0 < size.x) && (0 < size.y));
+
+		if (size == m_sceneSize)
+		{
+			return;
+		}
+
+		LOG_TRACE(U"D3D11BackBuffer::setSceneSize({})"_fmt(size));
+
+		unbindAllRenderTargets();
+
+		m_sceneSize = size;
+
+		m_sceneBuffers = {};
+
+		m_sceneBuffers =
+		{
+			.scene = D3D11InternalTexture2D::CreateRenderTargetTexture2D(m_device, m_sceneSize, m_sampleCount)
+		};
+
+		clear(D3D11ClearTarget::All);
+	}
+
+	const Size& D3D11BackBuffer::getSceneBufferSize() const noexcept
+	{
+		return m_sceneSize;
+	}
+
+	const D3D11InternalTexture2D& D3D11BackBuffer::getSceneBuffer() const noexcept
+	{
+		return m_sceneBuffers.scene;
 	}
 
 	void D3D11BackBuffer::unbindAllRenderTargets()

@@ -57,7 +57,7 @@ namespace s3d
 
 	void CRenderer_D3D11::clear()
 	{
-		m_backBuffer->clear(ClearTarget::BackBuffer | ClearTarget::Scene);
+		m_backBuffer->clear(D3D11ClearTarget::BackBuffer | D3D11ClearTarget::Scene);
 
 		if (const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
 			frameBufferSize != m_backBuffer->getBackBufferSize())
@@ -100,7 +100,7 @@ namespace s3d
 
 	Size CRenderer_D3D11::getSceneBufferSize() const noexcept
 	{
-		return m_backBuffer->getSceneBufferSize();;
+		return m_backBuffer->getSceneBufferSize();
 	}
 
 	std::pair<float, FloatRect> CRenderer_D3D11::getLetterboxComposition() const noexcept

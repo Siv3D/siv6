@@ -12,6 +12,7 @@
 # pragma once
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Renderer/GL4/CRenderer_GL4.hpp>
 # include <Siv3D/Common/OpenGL.hpp>
 # include "GL4Vertex2DBatch.hpp"
 
@@ -23,14 +24,27 @@ namespace s3d
 	{
 	private:
 
-		GLuint m_vsProgram = 0;
-		GLuint m_psProgram = 0;
-		GLuint m_pipeline = 0;
-		GLuint m_uniformBuffer = 0;
+		CRenderer_GL4* pRenderer = nullptr;
+
+		GLuint m_vsProgram		= 0;
+		GLuint m_psProgram		= 0;
+		GLuint m_pipeline		= 0;
+		GLuint m_uniformBuffer	= 0;
 
 		GL4Vertex2DBatch m_batches;
 		GL4Renderer2DCommand m_command;
 		uint32 m_draw_indexCount = 0;
+
+		//////////////////////////////////////////////////
+		//
+		//	full screen triangle
+		//
+		//////////////////////////////////////////////////
+
+		GLuint m_copyProgram		= 0;
+		GLuint m_vertexArray		= 0;
+		GLuint m_sampler			= 0;
+		GLuint m_locationTexture	= 0;
 
 	public:
 
