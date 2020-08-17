@@ -13,6 +13,7 @@
 # include <memory>
 # include "Common.hpp"
 # include "Memory.hpp"
+# include "Utility.hpp"
 
 namespace s3d
 {

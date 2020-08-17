@@ -1,6 +1,6 @@
 
 # include <Siv3D.hpp>
-SIV3D_SET(EngineOption::Renderer::Metal)
+//SIV3D_SET(EngineOption::Renderer::Metal)
 
 void Siv3DTest();
 
@@ -11,6 +11,8 @@ void Main()
 	//LicenseManager::ShowInBrowser();
 	//System::LaunchBrowser(U"test.html");
 	//System::LaunchBrowser(U"https://siv3d.github.io/");
+	Window::SetStyle(WindowStyle::Sizable);
+	//Scene::SetResizeMode(ResizeMode::Actual);
 	
 	while (System::Update())
 	{
