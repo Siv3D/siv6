@@ -14,6 +14,7 @@
 # include <Siv3D/Common/OpenGL.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
 # include <Siv3D/PointVector.hpp>
+# include <Siv3D/Renderer/GL4/BackBuffer/GL4BackBuffer.hpp>
 
 namespace s3d
 {
@@ -23,9 +24,7 @@ namespace s3d
 		
 		GLFWwindow* m_window = nullptr;
 
-		Size m_frameBufferSize = Size(0, 0);
-
-		Size m_sceneSize = Size(800, 600);
+		std::unique_ptr<GL4BackBuffer> m_backBuffer;
 
 	public:
 

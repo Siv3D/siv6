@@ -86,7 +86,7 @@ namespace s3d
 		LOG_INFO(U"GL_MAJOR_VERSION: {}"_fmt(major));
 		LOG_INFO(U"GL_MINOR_VERSION: {}"_fmt(minor));
 
-		clear();
+		m_backBuffer = std::make_unique<GL4BackBuffer>();
 	}
 
 	StringView CRenderer_GL4::getName() const
@@ -97,28 +97,35 @@ namespace s3d
 
 	void CRenderer_GL4::clear()
 	{
-		::glClearColor(0.8f, 0.9f, 1.0f, 1.0f);
-		::glClear(GL_COLOR_BUFFER_BIT);
-
+		m_backBuffer->clear(GL4ClearTarget::BackBuffer | GL4ClearTarget::Scene);
+		
 		const auto& windowState = SIV3D_ENGINE(Window)->getState();
-		const Size newFrameBufferSize = windowState.frameBufferSize;
 
-		if (m_frameBufferSize != newFrameBufferSize)
+		if (const Size frameBufferSize = windowState.frameBufferSize; 
+			(frameBufferSize != m_backBuffer->getBackBufferSize()))
 		{
-			LOG_VERBOSE(U"CRenderer_GL4::clear(): Frame buffer size: {}"_fmt(newFrameBufferSize));
-			m_frameBufferSize = newFrameBufferSize;
-			::glViewport(0, 0, m_frameBufferSize.x, m_frameBufferSize.y);
+			m_backBuffer->setBackBufferSize(frameBufferSize);
 
 			if (windowState.sizeMove)
 			{
 				// sleep
 			}
-		}		
+		}	
 	}
 
 	void CRenderer_GL4::flush()
 	{
-		SIV3D_ENGINE(Renderer2D)->flush();
+		// Scene に 2D 描画
+		{
+			m_backBuffer->bindSceneBuffer();
+			SIV3D_ENGINE(Renderer2D)->flush();
+			m_backBuffer->unbind();
+		}
+
+		// ウィンドウに Scene を描画
+		{
+			m_backBuffer->updateFromSceneBuffer();
+		}
 	}
 
 	bool CRenderer_GL4::present()
@@ -172,46 +179,26 @@ namespace s3d
 
 	void CRenderer_GL4::setSceneResizeMode(const ResizeMode resizeMode)
 	{
-
+		m_backBuffer->setSceneResizeMode(resizeMode);
 	}
 
 	ResizeMode CRenderer_GL4::getSceneResizeMode() const noexcept
 	{
-		return(ResizeMode::Default);
+		return m_backBuffer->getSceneResizeMode();
 	}
 
 	void CRenderer_GL4::setSceneBufferSize(const Size size)
 	{
-
+		m_backBuffer->setSceneBufferSize(size);
 	}
 
 	Size CRenderer_GL4::getSceneBufferSize() const noexcept
 	{
-		return m_sceneSize;
+		return m_backBuffer->getSceneBufferSize();
 	}
 
 	std::pair<float, FloatRect> CRenderer_GL4::getLetterboxComposition() const noexcept
 	{
-		const Float2 sceneSize		= m_sceneSize;
-		const Float2 backBufferSize	= m_frameBufferSize;
-
-		const float sx	= (backBufferSize.x / sceneSize.x);
-		const float sy	= (backBufferSize.y / sceneSize.y);
-		const float s	= Min(sx, sy);
-
-		if (sx <= sy)
-		{
-			const float offsetY = ((backBufferSize.y - sceneSize.y * s) * 0.5f);
-			const float bottom	= (backBufferSize.y - offsetY * 2.0f);
-
-			return{ s, FloatRect(0.0f, offsetY, backBufferSize.x, bottom) };
-		}
-		else
-		{
-			const float offsetX = ((backBufferSize.x - sceneSize.x * s) * 0.5f);
-			const float right	= (backBufferSize.x - offsetX * 2.0f);
-
-			return{ s, FloatRect(offsetX, 0.0f, right, backBufferSize.y) };
-		}
+		return m_backBuffer->getLetterboxComposition();
 	}
 }
