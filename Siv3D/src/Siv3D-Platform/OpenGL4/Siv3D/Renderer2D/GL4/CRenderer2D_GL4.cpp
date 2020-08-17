@@ -251,7 +251,7 @@ namespace s3d
 
 		// full screen triangle
 		{
-			m_copyProgram = detail::LoadShaders(U"engine/shader/glsl/fullscreen_triangle.vert", U"engine/shader/glsl/fullscreen_triangle.frag");
+			m_copyProgram = detail::LoadShaders(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), Resource(U"engine/shader/glsl/fullscreen_triangle.frag"));
 			if (!m_copyProgram)
 			{
 				throw EngineError();
@@ -365,7 +365,11 @@ namespace s3d
 		{
 			::glBindFramebuffer(GL_FRAMEBUFFER, 0);
 			auto [s, viewRect] = pRenderer->getLetterboxComposition();
-			::glViewport(viewRect.left, viewRect.top, viewRect.right, viewRect.bottom);
+			::glViewport(
+				static_cast<int32>(viewRect.left),
+				static_cast<int32>(viewRect.top),
+				static_cast<int32>(viewRect.right),
+				static_cast<int32>(viewRect.bottom));
 		}
 
 		// render states

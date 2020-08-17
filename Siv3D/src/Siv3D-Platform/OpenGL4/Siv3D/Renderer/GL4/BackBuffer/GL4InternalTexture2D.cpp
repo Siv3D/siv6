@@ -9,7 +9,6 @@
 //
 //-----------------------------------------------
 
-# pragma once
 # include "GL4InternalTexture2D.hpp"
 
 namespace s3d
