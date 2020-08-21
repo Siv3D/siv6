@@ -103,6 +103,36 @@ namespace s3d
 		return m_backBuffer->getSceneBufferSize();
 	}
 
+	void CRenderer_D3D11::setSceneTextureFilter(const TextureFilter textureFilter)
+	{
+		m_backBuffer->setSceneTextureFilter(textureFilter);
+	}
+
+	TextureFilter CRenderer_D3D11::getSceneTextureFilter() const noexcept
+	{
+		return m_backBuffer->getSceneTextureFilter();
+	}
+
+	void CRenderer_D3D11::setBackgroundColor(const ColorF& color)
+	{
+		m_backBuffer->setBackgroundColor(color);
+	}
+
+	const ColorF& CRenderer_D3D11::getBackgroundColor() const noexcept
+	{
+		return m_backBuffer->getBackgroundColor();
+	}
+
+	void CRenderer_D3D11::setLetterboxColor(const ColorF& color)
+	{
+		m_backBuffer->setLetterboxColor(color);
+	}
+
+	const ColorF& CRenderer_D3D11::getLetterboxColor() const noexcept
+	{
+		return m_backBuffer->getLetterBoxColor();
+	}
+
 	std::pair<float, FloatRect> CRenderer_D3D11::getLetterboxComposition() const noexcept
 	{
 		return m_backBuffer->getLetterboxComposition();

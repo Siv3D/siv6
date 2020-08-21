@@ -12,8 +12,10 @@
 # pragma once
 # include <Siv3D/Common.hpp>
 # include <Siv3D/PointVector.hpp>
+# include <Siv3D/ColorHSV.hpp>
 # include <Siv3D/ResizeMode.hpp>
 # include <Siv3D/FloatRect.hpp>
+# include <Siv3D/TextureFilter.hpp>
 
 namespace s3d
 {
@@ -42,6 +44,18 @@ namespace s3d
 		virtual void setSceneBufferSize(Size size) = 0;
 
 		virtual Size getSceneBufferSize() const noexcept = 0;
+
+		virtual void setSceneTextureFilter(TextureFilter textureFilter) = 0;
+
+		virtual TextureFilter getSceneTextureFilter() const noexcept = 0;
+
+		virtual void setBackgroundColor(const ColorF& color) = 0;
+
+		virtual const ColorF& getBackgroundColor() const noexcept = 0;
+
+		virtual void setLetterboxColor(const ColorF& color) = 0;
+
+		virtual const ColorF& getLetterboxColor() const noexcept = 0;
 
 		virtual std::pair<float, FloatRect> getLetterboxComposition() const noexcept = 0;
 	};

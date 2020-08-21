@@ -15,6 +15,7 @@
 # include <Siv3D/PointVector.hpp>
 # include <Siv3D/ResizeMode.hpp>
 # include <Siv3D/Scene.hpp>
+# include <Siv3D/Graphics.hpp>
 # include <Siv3D/FloatRect.hpp>
 # include <ThirdParty/EnumBitmask/EnumBitmask.hpp>
 # include "GL4InternalTexture2D.hpp"
@@ -35,9 +36,9 @@ namespace s3d
 	{
 	private:
 
-		uint32 m_sampleCount			= 1;
+		uint32 m_sampleCount			= Graphics::DefaultSampleCount;
 
-		ResizeMode m_sceneResizeMode	= ResizeMode::Default;
+		ResizeMode m_sceneResizeMode	= Scene::DefaultResizeMode;
 
 		Size m_backBufferSize			= Window::DefaultClientSize;
 
@@ -49,11 +50,11 @@ namespace s3d
 			std::unique_ptr<GL4InternalTexture2D> resolved;
 		} m_sceneBuffers;
 
-		ColorF m_letterboxColor				= Palette::DefaultLetterbox;
+		ColorF m_letterboxColor				= Scene::DefaultLetterBoxColor;
 		
-		ColorF m_backgroundColor			= Palette::Skyblue;
+		ColorF m_backgroundColor			= Scene::DefaultBackgroundColor;
 
-		TextureFilter m_sceneTextureFilter	= Scene::DefaultFilter;
+		TextureFilter m_sceneTextureFilter	= Scene::DefaultTextureFilter;
 
 		void updateSceneSize();
 

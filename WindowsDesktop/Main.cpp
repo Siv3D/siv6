@@ -1,7 +1,7 @@
 ﻿
 # include <Siv3D.hpp> // OpenSiv3D v0.6
-//SIV3D_SET(EngineOption::Renderer::Direct3D11)
-SIV3D_SET(EngineOption::Renderer::OpenGL)
+SIV3D_SET(EngineOption::Renderer::Direct3D11)
+//SIV3D_SET(EngineOption::Renderer::OpenGL)
 SIV3D_SET(EngineOption::D3D11Driver::Hardware)
 
 void Siv3DTest();
@@ -11,8 +11,9 @@ void Main()
 	//Siv3DTest();
 	//LicenseManager::ShowInBrowser();
 
+	Scene::SetBackground(ColorF{ 0.8, 0.9, 1.0 });
 	Window::SetStyle(WindowStyle::Sizable);
-	//Scene::SetResizeMode(ResizeMode::Keep);
+	Scene::SetResizeMode(ResizeMode::Keep);
 	//Window::Resize(1200, 800);
 
 	while (System::Update())

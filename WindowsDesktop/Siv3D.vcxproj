@@ -59,6 +59,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\RasterizerState.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Resource.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\SamplerState.ipp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Scene.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextEncoding.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextReader.ipp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\TextWriter.ipp" />
@@ -69,6 +70,7 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\FloatRect.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\GaborNoise.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\GradientNoise.hpp" />
+    <ClInclude Include="..\Siv3D\include\Siv3D\Graphics.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\HalfFloat.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IImageDecoder.hpp" />
     <ClInclude Include="..\Siv3D\include\Siv3D\IImageEncoder.hpp" />

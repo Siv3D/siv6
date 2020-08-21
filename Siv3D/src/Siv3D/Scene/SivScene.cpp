@@ -18,14 +18,69 @@ namespace s3d
 {
 	namespace Scene
 	{
-		int32 FrameCount() noexcept
+		void Resize(const s3d::Size size)
 		{
-			return SIV3D_ENGINE(Scene)->getFrameCount();
+			SIV3D_ENGINE(Renderer)->setSceneBufferSize(size);
+		}
+
+		s3d::Size Size() noexcept
+		{
+			return SIV3D_ENGINE(Renderer)->getSceneBufferSize();
 		}
 
 		void SetResizeMode(const ResizeMode resizeMode)
 		{
 			return SIV3D_ENGINE(Renderer)->setSceneResizeMode(resizeMode);
 		}
+
+		ResizeMode GetResizeMode() noexcept
+		{
+			return SIV3D_ENGINE(Renderer)->getSceneResizeMode();
+		}
+
+		void SetTextureFilter(const TextureFilter textureFilter)
+		{
+			SIV3D_ENGINE(Renderer)->setSceneTextureFilter(textureFilter);
+		}
+
+		TextureFilter GetTextureFilter() noexcept
+		{
+			return SIV3D_ENGINE(Renderer)->getSceneTextureFilter();
+		}
+
+		void SetBackground(const ColorF& color)
+		{
+			SIV3D_ENGINE(Renderer)->setBackgroundColor(color);
+		}
+
+		const ColorF& GetBackground() noexcept
+		{
+			return SIV3D_ENGINE(Renderer)->getBackgroundColor();
+		}
+
+		void SetLetterbox(const ColorF& color)
+		{
+			SIV3D_ENGINE(Renderer)->setLetterboxColor(color);
+		}
+
+		const ColorF& GetLetterBox() noexcept
+		{
+			return SIV3D_ENGINE(Renderer)->getLetterboxColor();
+		}
+
+		//void SetMaxDeltaTime(double timeSec);
+
+		//double GetMaxDeltaTime() noexcept;
+
+		//double DeltaTime() noexcept;
+
+		//double Time() noexcept;
+
+		int32 FrameCount() noexcept
+		{
+			return SIV3D_ENGINE(Scene)->getFrameCount();
+		}
+
+		/*Vec2 ClientToScene(Vec2 pos) noexcept;*/
 	}
 }

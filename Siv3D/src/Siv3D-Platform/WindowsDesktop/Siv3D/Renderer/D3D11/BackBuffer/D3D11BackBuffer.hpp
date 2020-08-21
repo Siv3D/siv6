@@ -13,6 +13,7 @@
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Common/D3D11.hpp>
 # include <Siv3D/Scene.hpp>
+# include <Siv3D/Graphics.hpp>
 # include <Siv3D/FloatRect.hpp>
 # include <ThirdParty/EnumBitmask/EnumBitmask.hpp>
 # include "../Device/D3D11Device.hpp"
@@ -41,9 +42,9 @@ namespace s3d
 
 		IDXGISwapChain1* m_swapChain1	= nullptr;
 
-		uint32 m_sampleCount			= 4;
+		uint32 m_sampleCount			= Graphics::DefaultSampleCount;
 
-		ResizeMode m_sceneResizeMode	= ResizeMode::Default;
+		ResizeMode m_sceneResizeMode	= Scene::DefaultResizeMode;
 
 		Size m_sceneSize				= Scene::DefaultSceneSize;
 	
@@ -55,11 +56,11 @@ namespace s3d
 			D3D11InternalTexture2D resolved;
 		} m_sceneBuffers;
 
-		ColorF m_letterboxColor				= Palette::DefaultLetterbox;
+		ColorF m_letterboxColor				= Scene::DefaultLetterBoxColor;
 		
-		ColorF m_backgroundColor			= Palette::DefaultBackground;
+		ColorF m_backgroundColor			= Scene::DefaultBackgroundColor;
 
-		TextureFilter m_sceneTextureFilter	= Scene::DefaultFilter;
+		TextureFilter m_sceneTextureFilter	= Scene::DefaultTextureFilter;
 
 		// 全てのレンダーターゲットを解除
 		void unbindAllRenderTargets();

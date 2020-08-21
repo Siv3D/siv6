@@ -312,16 +312,16 @@ namespace s3d
 
 	inline constexpr Color Alpha(const uint32 alpha) noexcept
 	{
-		return Color(255, alpha);
+		return Color{ 255, alpha };
 	}
 
 	inline constexpr Color ToColor(const float rgb) noexcept
 	{
-		return Color(Color::ToUint8(rgb));
+		return Color{ Color::ToUint8(rgb) };
 	}
 
 	inline constexpr Color ToColor(const double rgb) noexcept
 	{
-		return Color(Color::ToUint8(rgb));
+		return Color{ Color::ToUint8(rgb) };
 	}
 }

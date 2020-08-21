@@ -908,6 +908,10 @@
 # include <Siv3D/Texture.hpp>
 
 
+# include <Siv3D/Graphics.hpp>
+
+
+
 //////////////////////////////////////////////////
 //
 //	レンダーステート

@@ -11,6 +11,7 @@
 
 # include "CRenderer_Null.hpp"
 # include <Siv3D/Error.hpp>
+# include <Siv3D/Scene.hpp>
 # include <Siv3D/EngineLog.hpp>
 
 namespace s3d
@@ -57,7 +58,7 @@ namespace s3d
 
 	ResizeMode CRenderer_Null::getSceneResizeMode() const noexcept
 	{
-		return(ResizeMode::Default);
+		return(Scene::DefaultResizeMode);
 	}
 
 	void CRenderer_Null::setSceneBufferSize(Size)
@@ -68,6 +69,38 @@ namespace s3d
 	Size CRenderer_Null::getSceneBufferSize() const noexcept
 	{
 		return Size(0, 0);
+	}
+
+	void CRenderer_Null::setSceneTextureFilter(const TextureFilter)
+	{
+
+	}
+
+	TextureFilter CRenderer_Null::getSceneTextureFilter() const noexcept
+	{
+		return Scene::DefaultTextureFilter;
+	}
+
+	void CRenderer_Null::setBackgroundColor(const ColorF&)
+	{
+
+	}
+
+	const ColorF& CRenderer_Null::getBackgroundColor() const noexcept
+	{
+		static constexpr ColorF backgroundColor = Scene::DefaultBackgroundColor;
+		return backgroundColor;
+	}
+
+	void CRenderer_Null::setLetterboxColor(const ColorF&)
+	{
+
+	}
+
+	const ColorF& CRenderer_Null::getLetterboxColor() const noexcept
+	{
+		static constexpr ColorF letterBoxColor = Scene::DefaultLetterBoxColor;
+		return letterBoxColor;
 	}
 
 	std::pair<float, FloatRect> CRenderer_Null::getLetterboxComposition() const noexcept

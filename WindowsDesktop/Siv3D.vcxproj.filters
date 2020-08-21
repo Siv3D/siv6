@@ -2400,6 +2400,12 @@
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer\GL4InternalTexture2D.hpp">
       <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\Graphics.hpp">
+      <Filter>include\Siv3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\include\Siv3D\detail\Scene.ipp">
+      <Filter>include\Siv3D\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">

@@ -10,19 +10,12 @@
 //-----------------------------------------------
 
 # pragma once
+# include "Common.hpp"
 
 namespace s3d
 {
-	/// @brief シーンサイズの設定
-	enum class ResizeMode
+	namespace Graphics
 	{
-		/// @brief ウィンドウの実サイズに合わせる
-		Actual,
-
-		/// @brief ウィンドウの仮想サイズに合わせる
-		Virtual,
-
-		/// @brief シーンのサイズは変更しない
-		Keep,
-	};
+		inline constexpr uint32 DefaultSampleCount = 4;
+	}
 }

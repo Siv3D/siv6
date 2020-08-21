@@ -65,6 +65,18 @@ namespace s3d
 
 		Size getSceneBufferSize() const noexcept override;
 
+		void setSceneTextureFilter(TextureFilter textureFilter) override;
+
+		TextureFilter getSceneTextureFilter() const noexcept override;
+
+		void setBackgroundColor(const ColorF& color) override;
+
+		const ColorF& getBackgroundColor() const noexcept override;
+
+		void setLetterboxColor(const ColorF& color) override;
+
+		const ColorF& getLetterboxColor() const noexcept override;
+
 		std::pair<float, FloatRect> getLetterboxComposition() const noexcept override;
 
 
