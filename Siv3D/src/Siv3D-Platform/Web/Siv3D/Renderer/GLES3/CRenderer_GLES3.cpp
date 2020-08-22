@@ -13,8 +13,10 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Unicode.hpp>
+# include <Siv3D/WindowState.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
@@ -85,15 +87,36 @@ namespace s3d
 		LOG_INFO(U"GL_MINOR_VERSION: {}"_fmt(minor));
 	}
 
+	StringView CRenderer_GLES3::getName() const
+	{
+		static constexpr StringView name(U"OpenGL");
+		return name;
+	}	
+
 	void CRenderer_GLES3::clear()
 	{
 		::glClearColor(0.8f, 0.9f, 1.0f, 1.0f);
 		::glClear(GL_COLOR_BUFFER_BIT);
+
+		const auto& windowState = SIV3D_ENGINE(Window)->getState();
+		const Size newFrameBufferSize = windowState.frameBufferSize;
+
+		if (m_frameBufferSize != newFrameBufferSize)
+		{
+			LOG_VERBOSE(U"CRenderer_GL4::clear(): Frame buffer size: {}"_fmt(newFrameBufferSize));
+			m_frameBufferSize = newFrameBufferSize;
+			::glViewport(0, 0, m_frameBufferSize.x, m_frameBufferSize.y);
+
+			if (windowState.sizeMove)
+			{
+				// sleep
+			}
+		}	
 	}
 
 	void CRenderer_GLES3::flush()
 	{
-
+		SIV3D_ENGINE(Renderer2D)->flush();
 	}
 
 	bool CRenderer_GLES3::present()
