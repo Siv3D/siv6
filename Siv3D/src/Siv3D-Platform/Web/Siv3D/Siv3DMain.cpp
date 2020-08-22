@@ -14,26 +14,31 @@
 # include <Siv3D/System/ISystem.hpp>
 # include <Siv3D/Error.hpp>
 
-void PerformTest();
 void Main();
 
-int main(int, char*[])
+namespace s3d::detail::init
 {
-	std::cout << "OpenSiv3D for Web\n";
-	
+	void InitModulePath(const char* arg);
+}
+
+int main(int, char* argv[])
+{
 	using namespace s3d;
+	std::cout << "OpenSiv3D for Web\n";
+
+	detail::init::InitModulePath("/a.out");
+
 	Siv3DEngine engine;
 	
 	try
 	{
 		SIV3D_ENGINE(System)->init();
 	}
-	catch (const Error&)
+	catch (const Error& error)
 	{
+		std::cout << error << '\n';
 		return -1;
 	}
 
 	Main();
-	
-	return 0;
 }
