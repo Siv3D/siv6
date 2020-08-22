@@ -19,17 +19,27 @@ jobs:
         uses: actions/checkout@v2
       - name: Create build folder
         working-directory: Web
-        run: mkdir build
+        run: |
+          mkdir build
+          mkdir App/build
       - name: Create project using cmake
         working-directory: Web/build
         run: emcmake cmake -DCMAKE_BUILD_TYPE=Release ..
       - name: Build project
         working-directory: Web/build
         run: cmake --build . --parallel 4
+
+      - name: Create test project using cmake
+        working-directory: Web/App/build
+        run: emcmake cmake -DCMAKE_BUILD_TYPE=Debug ..
+      - name: Build test project
+        working-directory: Web/App/build
+        run: cmake --build .
       - name: Test project
-        working-directory: Web/build
+        working-directory: Web/App
         run: |
           node Siv3DTest.js
+
       - name: Bundle output
         run: |
           mkdir Package
