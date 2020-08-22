@@ -88,8 +88,8 @@ add_library(
   ../Siv3D/src/Siv3D/LicenseManager/SivLicenseManager.cpp
   ../Siv3D/src/Siv3D/Logger/LoggerFactory.cpp
   ../Siv3D/src/Siv3D/Logger/SivLogger.cpp
-  # ../Siv3D/src/Siv3D/MathParser/MathParserDetail.cpp
-  # ../Siv3D/src/Siv3D/MathParser/SivMathParser.cpp
+  ../Siv3D/src/Siv3D/MathParser/MathParserDetail.cpp
+  ../Siv3D/src/Siv3D/MathParser/SivMathParser.cpp
   ../Siv3D/src/Siv3D/Point/SivPoint.cpp
   # ../Siv3D/src/Siv3D/PrimeNumber/SivPrimeNumber.cpp
   ../Siv3D/src/Siv3D/Profiler/CProfiler.cpp
