@@ -10,7 +10,6 @@
 //-----------------------------------------------
 
 # include <iostream>
-# include <Siv3D/Common/ApplicationOptions.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/System/ISystem.hpp>
 # include <Siv3D/Error.hpp>
@@ -20,7 +19,7 @@ void Main();
 
 int main(int, char*[])
 {
-	std::cout << "OpenSiv3D for Linux\n";
+	std::cout << "OpenSiv3D for Web\n";
 	
 	using namespace s3d;
 	Siv3DEngine engine;
@@ -29,22 +28,12 @@ int main(int, char*[])
 	{
 		SIV3D_ENGINE(System)->init();
 	}
-	catch (const Error& error)
+	catch (const Error&)
 	{
-		std::cout << error << '\n';
 		return -1;
 	}
-	
-	if (g_ApplicationOptions.runTest)
-	{
-		PerformTest();
-	}
-	
-	SIV3D_ENGINE(System)->onMainThreadStart();
-	
-	Main();
 
-	SIV3D_ENGINE(System)->onMainThreadTerminate();
+	Main();
 	
 	return 0;
 }
