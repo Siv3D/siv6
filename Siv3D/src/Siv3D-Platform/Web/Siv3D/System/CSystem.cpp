@@ -45,7 +45,7 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CSystem::init()");
 		
-		SystemLog::Initial();
+		// SystemLog::Initial();
 		SystemMisc::Init();
 		
 		SIV3D_ENGINE(Resource)->init();
