@@ -16,16 +16,16 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Date/SivDate_macOS_Linux.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/DateTime/SivDateTime_macOS_Linux.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Logger/CLogger.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Siv3DMain.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/FileSystem/SivFileSystem_Platform.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Renderer/GLES3/CRenderer_GLES3.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Renderer/Null/CRenderer_Null.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Renderer/RendererFactory.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/System/CSystem.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Time/SivTime.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Window/CWindow.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Window/CWindow_Null.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Window/WindowFactory.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Siv3DMain.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/FileSystem/SivFileSystem_Platform.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Renderer/GLES3/CRenderer_GLES3.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Renderer/Null/CRenderer_Null.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Renderer/RendererFactory.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/System/CSystem.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Time/SivTime.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Window/CWindow.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Window/CWindow_Null.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Window/WindowFactory.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/BinaryReader/SivBinaryReader.cpp
   ../Siv3D/src/Siv3D/ApplicationOptions/SivApplicationOptions.cpp
