@@ -85,13 +85,6 @@ namespace s3d
 		LOG_INFO(U"GL_MINOR_VERSION: {}"_fmt(minor));
 	}
 
-	void CRenderer_GLES3::onMainThreadStart()
-	{
-		LOG_SCOPED_TRACE(U"CRenderer_GLES3::onMainThreadStart()");
-
-		clear();
-	}
-
 	void CRenderer_GLES3::clear()
 	{
 		::glClearColor(0.8f, 0.9f, 1.0f, 1.0f);
@@ -151,4 +144,14 @@ namespace s3d
 		
 		return true;
 	}
+
+	Size CRenderer_GLES3::getFrameBufferSize() const
+	{
+		return m_frameBufferSize;
+	}
+
+	Size CRenderer_GLES3::getSceneSize() const
+	{
+		return m_sceneSize;
+	}	
 }
