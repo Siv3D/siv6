@@ -11,6 +11,10 @@
 
 # pragma once
 
+# if SIV3D_PLATFORM(WEB)
+#	include <emscripten.h>
+# endif
+
 namespace s3d
 {
 	namespace Platform
@@ -31,6 +35,13 @@ namespace s3d
 			return static_cast<uint64>(lo) | (static_cast<uint64>(hi) << 32);
 		}
 
+	# elif SIV3D_PLATFORM(WEB)
+
+		inline uint64 Rdtsc() noexcept
+		{
+			return static_cast<int64_t>(emscripten_get_now() * 1e+6);
+		}
+		
 	# else
 
 		# error Unimplemented
