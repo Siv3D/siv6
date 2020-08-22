@@ -133,6 +133,33 @@ add_library(
 
   ../Siv3D/src/ThirdParty/absl/numeric/int128.cc
 
+  ../Siv3D/src/ThirdParty/agg/agg_arc.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_arrowhead.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_bezier_arc.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_bspline.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_color_rgba.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_curves.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_embedded_raster_fonts.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_gsv_text.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_image_filters.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_line_aa_basics.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_line_profile_aa.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_rounded_rect.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_sqrt_tables.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_trans_affine.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_trans_double_path.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_trans_single_path.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_trans_warp_magnifier.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_vcgen_bspline.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_vcgen_contour.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_vcgen_dash.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_vcgen_markers_term.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_vcgen_smooth_poly1.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_vcgen_stroke.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_vpgen_clip_polygon.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_vpgen_clip_polyline.cpp
+  ../Siv3D/src/ThirdParty/agg/agg_vpgen_segmentator.cpp
+  
   # ../Siv3D/src/ThirdParty/cpu_features/cpuinfo_x86.c
 
   ../Siv3D/src/ThirdParty/double-conversion/bignum-dtoa.cc
