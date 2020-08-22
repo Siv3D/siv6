@@ -23,9 +23,14 @@ add_library(
   Siv3D STATIC
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Siv3DMain.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Common/OpenGL.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Cursor/CCursor.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/FileSystem/SivFileSystem_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Renderer/GLES3/CRenderer_GLES3.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Renderer/RendererFactory.cpp
+
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Renderer2D/Renderer2DFactory.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Resource/CResource.cpp
+  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Resource/SivResource_Web.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Window/CWindow.cpp
@@ -40,6 +45,9 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Logger/CLogger.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/System/SivSystem_macOS_Linux.cpp
   ../Siv3D/src/Siv3D-Platform/macOS_Linux/Siv3D/Unicode/SivUnicode_macOS_Linux.cpp
+
+  ../Siv3D/src/Siv3D-Platform/OpenGLES3/Siv3D/Renderer2D/GLES3/CRenderer2D_GLES3.cpp
+  ../Siv3D/src/Siv3D-Platform/OpenGLES3/Siv3D/Renderer2D/GLES3/Vertex2DBatch_GLES3.cpp
 
   ../Siv3D/src/Siv3D/ApplicationOptions/SivApplicationOptions.cpp
   # ../Siv3D/src/Siv3D/BigFloat/SivBigFloat.cpp
@@ -314,6 +322,7 @@ target_include_directories(
   ../Siv3D/src
   ../Siv3D/src/Siv3D-Platform/macOS_Linux
   ../Siv3D/src/Siv3D-Platform/Web
+  ../Siv3D/src/Siv3D-Platform/OpenGLES3
   ../Siv3D/src/ThirdParty
   ${LIBSIV3D_INCLUDE_DIRS}
   )
