@@ -20,7 +20,6 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Common/OpenGL.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/FileSystem/SivFileSystem_Platform.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Renderer/GLES3/CRenderer_GLES3.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Renderer/Null/CRenderer_Null.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Renderer/RendererFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Time/SivTime.cpp
