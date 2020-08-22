@@ -42,7 +42,7 @@ jobs:
 
     - name: Apply Changes
       run: |
-        CurrentBranchName=$(echo "web_experimental_merge_v${CurrentVersionID}")
+        CurrentBranchName=$(echo "web")
         NewBranchName=$(echo "web_experimental_merge_v${NewVersionID}")
         git switch ${CurrentBranchName}
         git checkout -b ${NewBranchName}
