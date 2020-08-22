@@ -9,15 +9,15 @@
 //
 //-----------------------------------------------
 
-# include <Window/CWindow_Null.hpp>
-# include <Window/CWindow.hpp>
-# include <Siv3D/Common/ApplicationOptions.hpp>
+# include <Siv3D/ApplicationOptions.hpp>
+# include <Siv3D/Window/Null/CWindow_Null.hpp>
+# include <Siv3D/Window/CWindow.hpp>
 
 namespace s3d
 {
 	ISiv3DWindow* ISiv3DWindow::Create()
 	{
-		if (g_ApplicationOptions.headlessMode)
+		if (g_applicationOptions.renderer == EngineOption::Renderer::Headless)
 		{
 			return new CWindow_Null;
 		}

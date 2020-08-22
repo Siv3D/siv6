@@ -24,7 +24,6 @@ add_library(
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/System/CSystem.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Time/SivTime.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Window/CWindow.cpp
-  ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Window/CWindow_Null.cpp
   ../Siv3D/src/Siv3D-Platform/Web/Siv3D/Window/WindowFactory.cpp
   ../Siv3D/src/Siv3D/Byte/SivByte.cpp
   ../Siv3D/src/Siv3D/BinaryReader/SivBinaryReader.cpp
