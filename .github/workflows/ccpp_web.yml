@@ -31,7 +31,7 @@ jobs:
 
       - name: Create test project using cmake
         working-directory: Web/App/build
-        run: emcmake cmake -DCMAKE_BUILD_TYPE=Debug ..
+        run: emcmake cmake -DCMAKE_BUILD_TYPE=Debug -DSIV3D_RUN_TEST_ON_NODE=On ..
       - name: Build test project
         working-directory: Web/App/build
         run: cmake --build .
