@@ -18,9 +18,9 @@ set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g3 -O2 -pg")
 set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
 
 if (SIV3D_RUN_TEST_ON_NODE)
-    set(CMAKE_EXE_LINKER_FLAGS "-lnodefs.js --pre-js '${CMAKE_SOURCE_DIR}/../../Test/Siv3DTest.js'")
+    set(CMAKE_EXE_LINKER_FLAGS "-lnodefs.js --pre-js \"${CMAKE_SOURCE_DIR}/../../Test/Siv3DTest.js\"")
 else()
-    set(CMAKE_EXE_LINKER_FLAGS "--preload-file '${CMAKE_SOURCE_DIR}/resources@/resources' --preload-file '${CMAKE_SOURCE_DIR}/../../Test/test@/test'")
+    set(CMAKE_EXE_LINKER_FLAGS "--preload-file \"${CMAKE_SOURCE_DIR}/resources@/resources\" --preload-file \"${CMAKE_SOURCE_DIR}/../../Test/test@/test\"")
     set(CMAKE_EXECUTABLE_SUFFIX ".html")
 endif()
 
