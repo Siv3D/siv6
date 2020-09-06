@@ -18,6 +18,9 @@ void Siv3DTest()
 	Console.open();
 	
 	{
+# if SIV3D_PLATFORM(WEB)
+		Catch::Session().run();
+# else
 		FileSystem::Remove(U"test/");
 	
 		FileSystem::Copy(U"../../Test/test/", U"./test/");
@@ -25,6 +28,7 @@ void Siv3DTest()
 		Catch::Session().run();
 
 		FileSystem::Remove(U"test/");
+# endif
 	}
 }
 
