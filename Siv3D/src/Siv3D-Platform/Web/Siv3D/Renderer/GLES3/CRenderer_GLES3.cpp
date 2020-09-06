@@ -85,6 +85,8 @@ namespace s3d
 		LOG_INFO(U"glslVersion: {}"_fmt(glslVersion));
 		LOG_INFO(U"GL_MAJOR_VERSION: {}"_fmt(major));
 		LOG_INFO(U"GL_MINOR_VERSION: {}"_fmt(minor));
+
+		clear();
 	}
 
 	StringView CRenderer_GLES3::getName() const
