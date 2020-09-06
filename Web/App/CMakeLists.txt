@@ -66,7 +66,7 @@ if(BUILD_TESTING)
 enable_testing()
 add_test(
   NAME Test
-  COMMAND Siv3DTest
+  COMMAND node Siv3DTest.js
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
   )
 endif()
