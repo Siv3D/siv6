@@ -65,6 +65,7 @@ namespace s3d
 			return false;
 		}
 		
+		SIV3D_ENGINE(Renderer)->clear();
 		SIV3D_ENGINE(Renderer)->flush();
 		SIV3D_ENGINE(Profiler)->endFrame();
 		SIV3D_ENGINE(Renderer)->present();
@@ -83,7 +84,6 @@ namespace s3d
 		}
 		SIV3D_ENGINE(Scene)->update();
 		SIV3D_ENGINE(Window)->update();
-		SIV3D_ENGINE(Renderer)->clear();
 		SIV3D_ENGINE(Cursor)->update();
 
 		// triggerd by key inputs
