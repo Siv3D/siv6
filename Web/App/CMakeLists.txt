@@ -46,7 +46,7 @@ add_executable(Siv3DTest
   ../../Test/Siv3DTest_Array.cpp
   ../../Test/Siv3DTest_BinaryReader.cpp
   ../../Test/Siv3DTest_BinaryWriter.cpp
-  ../../Test/Siv3DTest_FileSystem.cpp
+#  ../../Test/Siv3DTest_FileSystem.cpp
   ../../Test/Siv3DTest_Image.cpp
   ../../Test/Siv3DTest_Resource.cpp
   ../../Test/Siv3DTest_TextEncoding.cpp
