@@ -144,6 +144,17 @@ namespace s3d
 			m_pixelShader = 0;
 		}
 
+		{
+			const GLuint blockIndex = ::glGetUniformBlockIndex(m_program, "VSConstants2D");
+
+			if (blockIndex == GL_INVALID_INDEX)
+			{
+				LOG_FAIL(U"Uniform block `VSConstants2D` not found");
+			}
+
+			::glUniformBlockBinding(m_program, blockIndex, 0);
+		}
+
 		::glGenBuffers(1, &m_uniformBuffer);
 
 		// Batch 管理を初期化
@@ -174,7 +185,7 @@ namespace s3d
 		Float4 cb[3];
 		//cb[0] = Float4(matrix._11, -matrix._12, matrix._31, -matrix._32);
 		//cb[1] = Float4(matrix._21, -matrix._22, 0.0f, 1.0f);
-		cb[0] = Float4(matrix._11, -matrix._12, matrix._31, matrix._32);
+		cb[0] = Float4(matrix._11, matrix._12, matrix._31, matrix._32);
 		cb[1] = Float4(matrix._21, matrix._22, 0.0f, 1.0f);
 		cb[2] = Float4(1, 1, 1, 1);
 
