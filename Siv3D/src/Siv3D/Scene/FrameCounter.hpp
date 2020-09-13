@@ -10,24 +10,26 @@
 //-----------------------------------------------
 
 # pragma once
-# include "IScene.hpp"
+# include <Siv3D/Common.hpp>
 
 namespace s3d
 {
-	class CScene final : public ISiv3DScene
+	class FrameCounter
 	{
 	private:
 
-		FrameCounter m_frameCounter;
+		uint64 m_systemFrameCount = 0;
 
-		FrameTimer m_frameTimer;
+		int32 m_userFrameCount = 0;
 
 	public:
 
-		void update() override;
+		void operator ++() noexcept;
 
-		FrameCounter& getFrameCounter() noexcept override;
-
-		FrameTimer& getFrameTimer() noexcept override;
+		[[nodiscard]]
+		uint64 getSystemFrameCount() const noexcept;
+		
+		[[nodiscard]]
+		int32 getUserFrameCount() const noexcept;
 	};
 }

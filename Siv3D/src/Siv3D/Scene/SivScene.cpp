@@ -68,17 +68,29 @@ namespace s3d
 			return SIV3D_ENGINE(Renderer)->getLetterboxColor();
 		}
 
-		//void SetMaxDeltaTime(double timeSec);
+		void SetMaxDeltaTime(const double timeSec)
+		{
+			SIV3D_ENGINE(Scene)->getFrameTimer().setMaxDeltaTimeSec(timeSec);
+		}
 
-		//double GetMaxDeltaTime() noexcept;
+		double GetMaxDeltaTime() noexcept
+		{
+			return SIV3D_ENGINE(Scene)->getFrameTimer().getMaxDeltaTimeSec();
+		}
 
-		//double DeltaTime() noexcept;
+		double DeltaTime() noexcept
+		{
+			return SIV3D_ENGINE(Scene)->getFrameTimer().getDeltaTimeSec();
+		}
 
-		//double Time() noexcept;
+		double Time() noexcept
+		{
+			return SIV3D_ENGINE(Scene)->getFrameTimer().getTimeSec();
+		}
 
 		int32 FrameCount() noexcept
 		{
-			return SIV3D_ENGINE(Scene)->getFrameCount();
+			return SIV3D_ENGINE(Scene)->getFrameCounter().getUserFrameCount();
 		}
 
 		/*Vec2 ClientToScene(Vec2 pos) noexcept;*/

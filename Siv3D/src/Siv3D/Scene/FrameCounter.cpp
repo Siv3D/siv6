@@ -9,23 +9,24 @@
 //
 //-----------------------------------------------
 
-# include "CScene.hpp"
+# include "FrameCounter.hpp"
 
 namespace s3d
 {
-	void CScene::update()
+	void FrameCounter::operator ++() noexcept
 	{
-		++m_frameCounter;
-		m_frameTimer.update();
+		++m_systemFrameCount;
+		
+		++m_userFrameCount;
 	}
 
-	FrameCounter& CScene::getFrameCounter() noexcept
+	uint64 FrameCounter::getSystemFrameCount() const noexcept
 	{
-		return m_frameCounter;
+		return m_systemFrameCount;
 	}
 
-	FrameTimer& CScene::getFrameTimer() noexcept
+	int32 FrameCounter::getUserFrameCount() const noexcept
 	{
-		return m_frameTimer;
+		return m_userFrameCount;
 	}
 }

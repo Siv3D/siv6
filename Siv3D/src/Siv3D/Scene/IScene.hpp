@@ -11,6 +11,8 @@
 
 # pragma once
 # include <Siv3D/Common.hpp>
+# include "FrameCounter.hpp"
+# include "FrameTimer.hpp"
 
 namespace s3d
 {
@@ -24,6 +26,8 @@ namespace s3d
 
 		virtual void update() = 0;
 
-		virtual int32 getFrameCount() const noexcept = 0;
+		virtual FrameCounter& getFrameCounter() noexcept = 0;
+
+		virtual FrameTimer& getFrameTimer() noexcept = 0;
 	};
 }

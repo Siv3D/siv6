@@ -137,6 +137,8 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/Resource/ResourceFactory.cpp
   ../Siv3D/src/Siv3D/Resource/SivResource.cpp
   ../Siv3D/src/Siv3D/Scene/CScene.cpp
+  ../Siv3D/src/Siv3D/Scene/FrameCounter.cpp
+  ../Siv3D/src/Siv3D/Scene/FrameTimer.cpp
   ../Siv3D/src/Siv3D/Scene/SceneFactory.cpp
   ../Siv3D/src/Siv3D/Scene/SivScene.cpp
   ../Siv3D/src/Siv3D/Shader/Null/CShader_Null.cpp
