@@ -20,7 +20,7 @@ layout(location = 2) in vec4 VertexColor;
 //
 out vec4 Color;
 out vec2 UV;
-out vec4 Position;
+// out vec4 Position;
 
 vec4 StandardTransform(const vec2 pos)
 {
@@ -32,7 +32,7 @@ vec4 StandardTransform(const vec2 pos)
 
 void main()
 {
-	Position = StandardTransform(VertexPosition);
+	gl_Position = StandardTransform(VertexPosition);
 
 	Color = (VertexColor * g_colorMul);
 	
