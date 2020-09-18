@@ -26,6 +26,10 @@
  *
  *************************************************************************/
 
+# if defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__)
+    # include_next <GLFW/glfw3.h>
+# endif
+
 #ifndef _glfw3_h_
 #define _glfw3_h_
 

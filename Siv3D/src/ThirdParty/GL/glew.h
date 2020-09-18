@@ -77,6 +77,10 @@
 ** MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 */
 
+# if defined(EMSCRIPTEN) || defined(__EMSCRIPTEN__)
+    # include_next <GL/glew.h>
+# endif
+
 #ifndef __glew_h__
 #define __glew_h__
 #define __GLEW_H__

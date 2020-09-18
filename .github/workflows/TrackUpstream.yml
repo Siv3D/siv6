@@ -1,0 +1,50 @@
+name: Track Upstream
+
+on:
+  push:
+    branches: 
+      - config-cron
+  schedule:
+    # On Every 4:00 on Monday (JST)
+    - cron: '0 21 * * 0'
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    
+    - name: Set Bot Profile
+      run: |
+        git config user.email "kamenokonokotan@gmail.com"
+        git config user.name "Kamenoko Auto-Commit bot"  
+
+    - name: Fetch upstream and update master
+      run: |
+        git switch master
+        git remote add upstream https://github.com/Siv3D/siv6
+        git fetch upstream
+        git merge upstream/master
+        git push origin master
+
+    - name: Calculate current version ID
+      run: |
+        CurrentVersionID=$(git branch -r --list **/web_experimental_merge_* | awk 'match($0, /[0-9]+/) { print substr($0, RSTART, RLENGTH)}' | sort -nr | head -n 1)
+        echo "::set-env name=CurrentVersionID::${CurrentVersionID}"
+        
+    - name: Calculate next version ID
+      run: |
+        NewVersionID=$(echo ${CurrentVersionID} | awk '{ print $0 + 1}')
+        echo "::set-env name=NewVersionID::${NewVersionID}"
+
+    - name: Apply Changes
+      run: |
+        CurrentBranchName=$(echo "web")
+        NewBranchName=$(echo "web_experimental_merge_v${NewVersionID}")
+        git switch ${CurrentBranchName}
+        git checkout -b ${NewBranchName}
+        git rebase master
+        git push -u origin ${NewBranchName}
