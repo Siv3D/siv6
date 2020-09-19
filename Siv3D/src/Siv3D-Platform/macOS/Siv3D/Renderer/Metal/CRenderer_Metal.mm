@@ -68,10 +68,10 @@ namespace s3d
 		const auto& windowState = SIV3D_ENGINE(Window)->getState();
 		const Size newFrameBufferSize = windowState.frameBufferSize;
 
-		if (m_frameBufferSize != newFrameBufferSize)
+		if (m_backBufferSize != newFrameBufferSize)
 		{
 			LOG_VERBOSE(U"CRenderer_Metal::clear(): Frame buffer size: {}"_fmt(newFrameBufferSize));
-			m_frameBufferSize = newFrameBufferSize;
+			m_backBufferSize = newFrameBufferSize;
 
 			if (windowState.sizeMove)
 			{
@@ -99,17 +99,17 @@ namespace s3d
 
 	void CRenderer_Metal::setSceneResizeMode(const ResizeMode resizeMode)
 	{
-
+		m_sceneResizeMode = resizeMode;
 	}
 
 	ResizeMode CRenderer_Metal::getSceneResizeMode() const noexcept
 	{
-		return(ResizeMode::Default);
+		return m_sceneResizeMode;
 	}
 
 	void CRenderer_Metal::setSceneBufferSize(const Size size)
 	{
-
+		m_sceneSize = size;
 	}
 
 	Size CRenderer_Metal::getSceneBufferSize() const noexcept
@@ -117,10 +117,40 @@ namespace s3d
 		return m_sceneSize;
 	}
 
+	void CRenderer_Metal::setSceneTextureFilter(const TextureFilter textureFilter)
+	{
+		m_sceneTextureFilter = textureFilter;
+	}
+
+	TextureFilter CRenderer_Metal::getSceneTextureFilter() const noexcept
+	{
+		return m_sceneTextureFilter;
+	}
+
+	void CRenderer_Metal::setBackgroundColor(const ColorF& color)
+	{
+		m_backgroundColor = color;
+	}
+
+	const ColorF& CRenderer_Metal::getBackgroundColor() const noexcept
+	{
+		return m_backgroundColor;
+	}
+
+	void CRenderer_Metal::setLetterboxColor(const ColorF& color)
+	{
+		m_letterboxColor = color;
+	}
+
+	const ColorF& CRenderer_Metal::getLetterboxColor() const noexcept
+	{
+		return m_letterboxColor;
+	}
+
 	std::pair<float, FloatRect> CRenderer_Metal::getLetterboxComposition() const noexcept
 	{
 		const Float2 sceneSize		= m_sceneSize;
-		const Float2 backBufferSize	= m_frameBufferSize;
+		const Float2 backBufferSize	= m_backBufferSize;
 
 		const float sx	= (backBufferSize.x / sceneSize.x);
 		const float sy	= (backBufferSize.y / sceneSize.y);

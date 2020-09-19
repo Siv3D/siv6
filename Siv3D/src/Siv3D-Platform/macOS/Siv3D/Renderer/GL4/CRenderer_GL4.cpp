@@ -173,6 +173,36 @@ namespace s3d
 		return m_backBuffer->getSceneBufferSize();
 	}
 
+	void CRenderer_GL4::setSceneTextureFilter(const TextureFilter textureFilter)
+	{
+		m_backBuffer->setSceneTextureFilter(textureFilter);
+	}
+
+	TextureFilter CRenderer_GL4::getSceneTextureFilter() const noexcept
+	{
+		return m_backBuffer->getSceneTextureFilter();
+	}
+
+	void CRenderer_GL4::setBackgroundColor(const ColorF& color)
+	{
+		m_backBuffer->setBackgroundColor(color);
+	}
+
+	const ColorF& CRenderer_GL4::getBackgroundColor() const noexcept
+	{
+		return m_backBuffer->getBackgroundColor();
+	}
+
+	void CRenderer_GL4::setLetterboxColor(const ColorF& color)
+	{
+		m_backBuffer->setLetterboxColor(color);
+	}
+
+	const ColorF& CRenderer_GL4::getLetterboxColor() const noexcept
+	{
+		return m_backBuffer->getLetterBoxColor();
+	}
+
 	std::pair<float, FloatRect> CRenderer_GL4::getLetterboxComposition() const noexcept
 	{
 		return m_backBuffer->getLetterboxComposition();

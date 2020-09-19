@@ -41,7 +41,7 @@ namespace s3d
 		void flush() override;
 
 		bool present() override;
-		
+
 		void setSceneResizeMode(ResizeMode resizeMode) override;
 
 		ResizeMode getSceneResizeMode() const noexcept override;
@@ -49,7 +49,19 @@ namespace s3d
 		void setSceneBufferSize(Size size) override;
 
 		Size getSceneBufferSize() const noexcept override;
-		
+
+		void setSceneTextureFilter(TextureFilter textureFilter) override;
+
+		TextureFilter getSceneTextureFilter() const noexcept override;
+
+		void setBackgroundColor(const ColorF& color) override;
+
+		const ColorF& getBackgroundColor() const noexcept override;
+
+		void setLetterboxColor(const ColorF& color) override;
+
+		const ColorF& getLetterboxColor() const noexcept override;
+
 		std::pair<float, FloatRect> getLetterboxComposition() const noexcept override;
 	};
 }
