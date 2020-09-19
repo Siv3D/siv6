@@ -53,6 +53,9 @@ namespace s3d
 		std::mutex g_mutex;
 		int g_initStep = 0;
 		bool g_hasError = false;
+
+		// デバッグ実行時には、Visual Studio に例外の情報を渡す
+		const bool g_isDebuggerPresent = IsDebuggerPresent();
 	}
 
 	std::atomic<bool> g_callWindowDestroy{ false };
@@ -72,6 +75,131 @@ namespace s3d
 			{
 				return;
 			}
+		}
+	}
+
+	namespace EngineMessageBox
+	{
+		static void ShowError(const StringView text)
+		{
+			HWND hWnd = nullptr;
+
+			if (Siv3DEngine::isActive())
+			{
+				hWnd = static_cast<HWND>(SIV3D_ENGINE(Window)->getHandle());
+			}
+
+			::MessageBoxW(hWnd, Unicode::ToWstring(text).c_str(), L"Application Error", MB_OK | MB_ICONERROR);
+		}
+	}
+
+	static void TryMain()
+	{
+		String errorMessage;
+
+		try
+		{
+			Main();
+		}
+		catch (const Error& error)
+		{
+			errorMessage = Format(error);
+		}
+		catch (const fmt::format_error& error)
+		{
+			errorMessage = U"Error occured in _fmt : {}"_fmt(Unicode::Widen(error.what()));
+		}
+		catch (const std::runtime_error& error)
+		{
+			errorMessage = U"[std::runtime_error] {}"_fmt(Unicode::Widen(error.what()));
+		}
+		catch (const std::out_of_range& error)
+		{
+			errorMessage = U"[std::out_of_range] {}"_fmt(Unicode::Widen(error.what()));
+		}
+		catch (const std::exception& error)
+		{
+			errorMessage = U"[std::exception] {}"_fmt(Unicode::Widen(error.what()));
+		}
+
+		if (errorMessage)
+		{
+			//static_cast<void>(Window::SetFullscreen(false)); // メッセージボックスを表示するためにフルスクリーンモードを解除
+
+			errorMessage += U"\n\nFor more information, [Debug] -> [Windows] -> [Exception Settings] -> Tick the C++ Exceptions checkbox under the [Break When Thrown] heading.";
+
+			EngineMessageBox::ShowError(errorMessage);
+		}
+	}
+
+	[[nodiscard]]
+	constexpr StringView ExceptionToString(const DWORD code) noexcept
+	{
+		switch (code)
+		{
+		case EXCEPTION_ACCESS_VIOLATION:
+			return U"EXCEPTION_ACCESS_VIOLATION"_sv;
+		case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:
+			return U"EXCEPTION_ARRAY_BOUNDS_EXCEEDED"_sv;
+		case EXCEPTION_BREAKPOINT:
+			return U"EXCEPTION_BREAKPOINT"_sv;
+		case EXCEPTION_DATATYPE_MISALIGNMENT:
+			return U"EXCEPTION_DATATYPE_MISALIGNMENT"_sv;
+		case EXCEPTION_FLT_DENORMAL_OPERAND:
+			return U"EXCEPTION_FLT_DENORMAL_OPERAND"_sv;
+		case EXCEPTION_FLT_DIVIDE_BY_ZERO:
+			return U"EXCEPTION_FLT_DIVIDE_BY_ZERO"_sv;
+		case EXCEPTION_FLT_INEXACT_RESULT:
+			return U"EXCEPTION_FLT_INEXACT_RESULT"_sv;
+		case EXCEPTION_FLT_INVALID_OPERATION:
+			return U"EXCEPTION_FLT_INVALID_OPERATION"_sv;
+		case EXCEPTION_FLT_OVERFLOW:
+			return U"EXCEPTION_FLT_OVERFLOW"_sv;
+		case EXCEPTION_FLT_STACK_CHECK:
+			return U"EXCEPTION_FLT_STACK_CHECK"_sv;
+		case EXCEPTION_FLT_UNDERFLOW:
+			return U"EXCEPTION_FLT_UNDERFLOW"_sv;
+		case EXCEPTION_ILLEGAL_INSTRUCTION:
+			return U"EXCEPTION_ILLEGAL_INSTRUCTION"_sv;
+		case EXCEPTION_IN_PAGE_ERROR:
+			return U"EXCEPTION_IN_PAGE_ERROR"_sv;
+		case EXCEPTION_INT_DIVIDE_BY_ZERO:
+			return U"EXCEPTION_INT_DIVIDE_BY_ZERO"_sv;
+		case EXCEPTION_INT_OVERFLOW:
+			return U"EXCEPTION_INT_OVERFLOW"_sv;
+		case EXCEPTION_INVALID_DISPOSITION:
+			return U"EXCEPTION_INVALID_DISPOSITION"_sv;
+		case EXCEPTION_NONCONTINUABLE_EXCEPTION:
+			return U"EXCEPTION_NONCONTINUABLE_EXCEPTION"_sv;
+		case EXCEPTION_PRIV_INSTRUCTION:
+			return U"EXCEPTION_PRIV_INSTRUCTION"_sv;
+		case EXCEPTION_SINGLE_STEP:
+			return U"EXCEPTION_SINGLE_STEP"_sv;
+		case EXCEPTION_STACK_OVERFLOW:
+			return U"EXCEPTION_STACK_OVERFLOW"_sv;
+		default:
+			return U"Unknown Exception"_sv;
+		}
+	}
+
+	static int ShowException(const DWORD code, struct _EXCEPTION_POINTERS*)
+	{
+		LOG_ERROR(U"🛑 Application terminated due to an exception `{}`"_fmt(ExceptionToString(code)));
+
+		EngineMessageBox::ShowError(U"Application terminated due to an exception `{}`"_fmt(ExceptionToString(code)));
+
+		return EXCEPTION_EXECUTE_HANDLER;
+	}
+
+	static void MainSEH()
+	{
+		__try
+		{
+			TryMain();
+		}
+		__except (ShowException(GetExceptionCode(), GetExceptionInformation()))
+		{
+
 		}
 	}
 
@@ -130,7 +258,7 @@ namespace s3d
 
 		LOG_TRACE(U"Main() ---");
 
-		Main();
+		MainSEH();
 
 		LOG_TRACE(U"--- Main()");
 	}
@@ -141,6 +269,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int)
 	using namespace s3d;
 
 	if (SIV3D_BUILD(DEBUG) &&
+		g_isDebuggerPresent &&
 		(g_applicationOptions.debugHeap == EngineOption::DebugHeap::Yes))
 	{
 		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
