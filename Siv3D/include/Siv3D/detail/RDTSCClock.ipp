@@ -39,7 +39,8 @@ namespace s3d
 
 		inline uint64 Rdtsc() noexcept
 		{
-			return static_cast<int64_t>(emscripten_get_now() * 1e+6);
+			// workaround
+			return static_cast<uint64>(emscripten_get_now() * 1e+6);
 		}
 		
 	# else
