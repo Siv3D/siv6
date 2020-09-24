@@ -1,13 +1,13 @@
 
 # include <Siv3D.hpp>
-SIV3D_SET(EngineOption::Renderer::OpenGL) // 非グラフィックモード
+SIV3D_SET(EngineOption::Renderer::Headless) // 非グラフィックモード
 
 void Siv3DTest();
 
 void Main()
 {
 	Siv3DTest();
-
+/*
 	//System::LaunchBrowser(U"https://siv3d.github.io/");
 	//LicenseManager::ShowInBrowser();
 	Window::SetStyle(WindowStyle::Sizable);
@@ -24,4 +24,5 @@ void Main()
 
 		Rect(Cursor::Pos(), 50).draw(ColorF(0.25));
 	}
+	*/
 }
