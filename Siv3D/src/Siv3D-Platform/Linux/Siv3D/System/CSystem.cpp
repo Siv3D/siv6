@@ -22,6 +22,7 @@
 # include <Siv3D/Renderer/IRenderer.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/UserAction/IUserAction.hpp>
+# include <Siv3D/Addon/IAddon.hpp>
 # include <Siv3D/System/SystemLog.hpp>
 # include <Siv3D/System/SystemMisc.hpp>
 # include "CSystem.hpp"
@@ -65,6 +66,7 @@ namespace s3d
 			return false;
 		}
 		
+		SIV3D_ENGINE(Addon)->draw();
 		SIV3D_ENGINE(Renderer)->flush();
 		SIV3D_ENGINE(Profiler)->endFrame();
 		SIV3D_ENGINE(Renderer)->present();
@@ -77,7 +79,7 @@ namespace s3d
 		// current frame
 		//
 		
-		if (!SIV3D_ENGINE(Profiler)->beginFrame())
+		if (not SIV3D_ENGINE(Profiler)->beginFrame())
 		{
 			return false;
 		}
@@ -85,6 +87,10 @@ namespace s3d
 		SIV3D_ENGINE(Window)->update();
 		SIV3D_ENGINE(Renderer)->clear();
 		SIV3D_ENGINE(Cursor)->update();
+		if (not SIV3D_ENGINE(Addon)->update())
+		{
+			return false;
+		}
 
 		// triggerd by key inputs
 		SIV3D_ENGINE(LicenseManager)->update();

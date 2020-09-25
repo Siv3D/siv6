@@ -12,6 +12,7 @@
 # pragma once
 # include "Common.hpp"
 # include "IAddon.hpp"
+# include "StringView.hpp"
 
 namespace s3d
 {

@@ -32,6 +32,7 @@ namespace s3d
 	class ISiv3DTexture;
 	class ISiv3DShader;
 	class ISiv3DRenderer2D;
+	class ISiv3DAddon;
 
 	class Siv3DEngine
 	{
@@ -56,7 +57,8 @@ namespace s3d
 			Siv3DComponent<ISiv3DRenderer>,
 			Siv3DComponent<ISiv3DTexture>,
 			Siv3DComponent<ISiv3DShader>,
-			Siv3DComponent<ISiv3DRenderer2D>> m_components;
+			Siv3DComponent<ISiv3DRenderer2D>,
+			Siv3DComponent<ISiv3DAddon>> m_components;
 
 	public:
 

@@ -71,6 +71,9 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/Renderer2D/GL4/CRenderer2D_GL4.cpp
   ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/Renderer2D/GL4/GL4Vertex2DBatch.cpp
 
+  ../Siv3D/src/Siv3D/Addon/AddonFactory.cpp
+  ../Siv3D/src/Siv3D/Addon/CAddon.cpp
+  ../Siv3D/src/Siv3D/Addon/SivAddon.cpp
   ../Siv3D/src/Siv3D/ApplicationOptions/SivApplicationOptions.cpp
   ../Siv3D/src/Siv3D/BigFloat/SivBigFloat.cpp
   ../Siv3D/src/Siv3D/BigInt/SivBigInt.cpp

@@ -511,6 +511,9 @@
     <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Renderer\GL4\BackBuffer">
       <UniqueIdentifier>{d769f6a3-ee07-4f8d-a9dd-12d1f5ca5aa7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D\Addon">
+      <UniqueIdentifier>{70561e46-77c1-466f-81c9-5f9274e75e86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -2421,6 +2424,12 @@
     <ClInclude Include="..\Siv3D\include\Siv3D\detail\Addon.ipp">
       <Filter>include\Siv3D\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Addon\CAddon.hpp">
+      <Filter>src\Siv3D\Addon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D\Addon\IAddon.hpp">
+      <Filter>src\Siv3D\Addon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -3349,6 +3358,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D\Scene\FrameCounter.cpp">
       <Filter>src\Siv3D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Addon\CAddon.cpp">
+      <Filter>src\Siv3D\Addon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Addon\AddonFactory.cpp">
+      <Filter>src\Siv3D\Addon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D\Addon\SivAddon.cpp">
+      <Filter>src\Siv3D\Addon</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

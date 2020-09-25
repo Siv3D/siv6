@@ -9,21 +9,12 @@
 //
 //-----------------------------------------------
 
-# pragma once
-# include "Common.hpp"
+# include "CAddon.hpp"
 
 namespace s3d
 {
-	class IAddon
+	ISiv3DAddon* ISiv3DAddon::Create()
 	{
-	public:
-
-		virtual ~IAddon() = default;
-
-		virtual bool init() { return true; }
-
-		virtual bool update() { return true; }
-
-		virtual void draw() const {}
-	};
+		return new CAddon;
+	}
 }
