@@ -86,11 +86,11 @@ namespace s3d
 
 		TextureAddressMode addressW : 4 = TextureAddressMode::Clamp;
 
-		TextureFilter min : 4	= TextureFilter::Linear;
+		TextureFilter min : 1	= TextureFilter::Linear;
 
-		TextureFilter mag : 4	= TextureFilter::Linear;
+		TextureFilter mag : 1	= TextureFilter::Linear;
 
-		TextureFilter mip : 4	= TextureFilter::Linear;
+		TextureFilter mip : 1	= TextureFilter::Linear;
 
 		uint8 maxAnisotropy		= 1;
 

@@ -9,7 +9,6 @@
 //
 //-----------------------------------------------
 
-# pragma once
 # include "ConstantBufferDetail_Null.hpp"
 
 namespace s3d

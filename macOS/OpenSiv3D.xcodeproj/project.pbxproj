@@ -16,6 +16,10 @@
 		2C12089D24A30260008CAD99 /* CRenderer_Metal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */; };
 		2C1208A024A304E7008CAD99 /* CRenderer_Metal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */; };
 		2C1778C31CE0D62A00BB8AD0 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7F74E1CA7F43D00495647 /* Main.cpp */; };
+		2C378CA8251E492B00D4B14B /* SivAddon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C378CA3251E492B00D4B14B /* SivAddon.cpp */; };
+		2C378CAA251E492B00D4B14B /* CAddon.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C378CA5251E492B00D4B14B /* CAddon.hpp */; };
+		2C378CAB251E492B00D4B14B /* AddonFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C378CA6251E492B00D4B14B /* AddonFactory.cpp */; };
+		2C378CAC251E492B00D4B14B /* CAddon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C378CA7251E492B00D4B14B /* CAddon.cpp */; };
 		2C423219242B155E00A16BCA /* cocoa_joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DB242B155E00A16BCA /* cocoa_joystick.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		2C42321B242B155E00A16BCA /* monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DD242B155E00A16BCA /* monitor.c */; };
 		2C42321C242B155E00A16BCA /* cocoa_init.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4231DE242B155E00A16BCA /* cocoa_init.m */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -710,6 +714,14 @@
 		2C1778B21CE0D5DB00BB8AD0 /* Siv3D-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Siv3D-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1778BF1CE0D5DB00BB8AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C22E2C11FD5BAF0002735AB /* Siv3D-Test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Siv3D-Test.entitlements"; sourceTree = SOURCE_ROOT; };
+		2C378C9F251E48F400D4B14B /* IAddon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IAddon.hpp; sourceTree = "<group>"; };
+		2C378CA0251E48F400D4B14B /* Addon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Addon.hpp; sourceTree = "<group>"; };
+		2C378CA1251E490D00D4B14B /* Addon.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Addon.ipp; sourceTree = "<group>"; };
+		2C378CA3251E492B00D4B14B /* SivAddon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivAddon.cpp; sourceTree = "<group>"; };
+		2C378CA4251E492B00D4B14B /* IAddon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IAddon.hpp; sourceTree = "<group>"; };
+		2C378CA5251E492B00D4B14B /* CAddon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CAddon.hpp; sourceTree = "<group>"; };
+		2C378CA6251E492B00D4B14B /* AddonFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AddonFactory.cpp; sourceTree = "<group>"; };
+		2C378CA7251E492B00D4B14B /* CAddon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAddon.cpp; sourceTree = "<group>"; };
 		2C4231DB242B155E00A16BCA /* cocoa_joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_joystick.m; sourceTree = "<group>"; };
 		2C4231DD242B155E00A16BCA /* monitor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = monitor.c; sourceTree = "<group>"; };
 		2C4231DE242B155E00A16BCA /* cocoa_init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoa_init.m; sourceTree = "<group>"; };
@@ -1770,6 +1782,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C378CA2251E492B00D4B14B /* Addon */ = {
+			isa = PBXGroup;
+			children = (
+				2C378CA3251E492B00D4B14B /* SivAddon.cpp */,
+				2C378CA4251E492B00D4B14B /* IAddon.hpp */,
+				2C378CA5251E492B00D4B14B /* CAddon.hpp */,
+				2C378CA6251E492B00D4B14B /* AddonFactory.cpp */,
+				2C378CA7251E492B00D4B14B /* CAddon.cpp */,
+			);
+			path = Addon;
+			sourceTree = "<group>";
+		};
 		2C4231D9242B155E00A16BCA /* GLFW */ = {
 			isa = PBXGroup;
 			children = (
@@ -2243,6 +2267,7 @@
 		2C47B23524DD9789008D83BE /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C378CA2251E492B00D4B14B /* Addon */,
 				2C47B2BF24DD9789008D83BE /* ApplicationOptions */,
 				2C47B6D724EAC84B008D83BE /* AssetHandleManager */,
 				2C47B24324DD9789008D83BE /* BigFloat */,
@@ -2969,6 +2994,7 @@
 		2C47B5B824EAC7E2008D83BE /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C378CA0251E48F400D4B14B /* Addon.hpp */,
 				2C47B5EA24EAC7E2008D83BE /* Allocator.hpp */,
 				2C47B5C124EAC7E2008D83BE /* ApplicationOptions.hpp */,
 				2C47B5E024EAC7E2008D83BE /* Array.hpp */,
@@ -3035,6 +3061,7 @@
 				2C47B60024EAC7E2008D83BE /* HashTable.hpp */,
 				2C47B6BD24EAC7E2008D83BE /* HeterogeneousLookupHelper.hpp */,
 				2C47B60424EAC7E2008D83BE /* HSV.hpp */,
+				2C378C9F251E48F400D4B14B /* IAddon.hpp */,
 				2C47B6BC24EAC7E2008D83BE /* IImageDecoder.hpp */,
 				2C47B68024EAC7E2008D83BE /* IImageEncoder.hpp */,
 				2C47B6B724EAC7E2008D83BE /* Image.hpp */,
@@ -3147,6 +3174,7 @@
 		2C47B61724EAC7E2008D83BE /* detail */ = {
 			isa = PBXGroup;
 			children = (
+				2C378CA1251E490D00D4B14B /* Addon.ipp */,
 				2C47B64F24EAC7E2008D83BE /* Allocator.ipp */,
 				2C47B64A24EAC7E2008D83BE /* Array.ipp */,
 				2C47B65E24EAC7E2008D83BE /* AssetHandle.ipp */,
@@ -4125,6 +4153,7 @@
 				2C47B1DD24DD9754008D83BE /* svgmaskelement.h in Headers */,
 				2C439F87241DCEA9001154C2 /* ieee.h in Headers */,
 				2C47B0C324DD974A008D83BE /* agg_renderer_primitives.h in Headers */,
+				2C378CAA251E492B00D4B14B /* CAddon.hpp in Headers */,
 				2C47B33924DD9789008D83BE /* SystemLog.hpp in Headers */,
 				2C47B0F324DD974A008D83BE /* agg_renderer_mclip.h in Headers */,
 				2C47B1D224DD9754008D83BE /* svgcircleelement.h in Headers */,
@@ -4759,6 +4788,7 @@
 				2C47B0DF24DD974A008D83BE /* agg_curves.cpp in Sources */,
 				2C834D8F248805D4006208B8 /* utf32_le.c in Sources */,
 				2C47B32A24DD9789008D83BE /* SivUnicodeConverter.cpp in Sources */,
+				2C378CA8251E492B00D4B14B /* SivAddon.cpp in Sources */,
 				2C47B1D624DD9754008D83BE /* svgelementutils.cpp in Sources */,
 				2C47B30724DD9789008D83BE /* SivParseBool.cpp in Sources */,
 				2C47B6E324EAC88E008D83BE /* SivConstantBuffer.cpp in Sources */,
@@ -4821,6 +4851,7 @@
 				2C47B20424DD9754008D83BE /* svgelementtext.cpp in Sources */,
 				2C834DC3248805D4006208B8 /* iso8859_4.c in Sources */,
 				2C834DB4248805D4006208B8 /* iso8859_7.c in Sources */,
+				2C378CAB251E492B00D4B14B /* AddonFactory.cpp in Sources */,
 				2C47B20224DD9754008D83BE /* pattern.cpp in Sources */,
 				2C439F85241DCEA9001154C2 /* double-to-string.cc in Sources */,
 				2C47B34224DD9789008D83BE /* UserActionFactory.cpp in Sources */,
@@ -4844,6 +4875,7 @@
 				2C68508B24B768A800B98A7F /* SivDateTime_macOS_Linux.cpp in Sources */,
 				2C47B2FF24DD9789008D83BE /* MathParserDetail.cpp in Sources */,
 				2C47B31124DD9789008D83BE /* SivBigInt.cpp in Sources */,
+				2C378CAC251E492B00D4B14B /* CAddon.cpp in Sources */,
 				2C47B1CE24DD9754008D83BE /* canvas.cpp in Sources */,
 				2C834D92248805D4006208B8 /* iso8859_11.c in Sources */,
 				2C47B0ED24DD974A008D83BE /* agg_trans_affine.cpp in Sources */,
