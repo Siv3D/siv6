@@ -91,8 +91,25 @@ namespace s3d
 		}
 	}
 
+	template <class Type, class Allocator>
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>*>
+	inline Grid<Type, Allocator>::Grid(const size_type w, const size_type h, Arg::generator_<Fty> generator)
+		: Grid(Generate(w, h, generator)) {}
 
+	template <class Type, class Allocator>
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>*>
+	inline Grid<Type, Allocator>::Grid(const Size size, Arg::generator_<Fty> generator)
+		: Grid(Generate(size, generator)) {}
 
+	template <class Type, class Allocator>
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>*>
+	inline Grid<Type, Allocator>::Grid(const size_type w, const size_type h, Arg::indexedGenerator_<Fty> indexedGenerator)
+		: Grid(IndexedGenerate(w, h, indexedGenerator)) {}
+
+	template <class Type, class Allocator>
+	template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>*>
+	inline Grid<Type, Allocator>::Grid(const Size size, Arg::indexedGenerator_<Fty> indexedGenerator)
+		: Grid(IndexedGenerate(size, indexedGenerator)) {}
 
 	template <class Type, class Allocator>
 	inline void Grid<Type, Allocator>::swap(Grid& other) noexcept
@@ -415,6 +432,223 @@ namespace s3d
 	{
 		return m_data.crend();
 	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::push_back_row(const value_type& value)
+	{
+		m_data.insert(m_data.end(), m_width, value);
+
+		++m_height;
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::pop_back_row()
+	{
+		if (m_height == 0)
+		{
+			throw std::out_of_range("Grid::pop_back_row(): pop_back_row from empty Grid");
+		}
+
+		--m_height;
+
+		m_data.resize(m_data.size() - m_width);
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::pop_back_row_N(const size_t n)
+	{
+		m_height -= Min(n, m_height);
+		
+		m_data.resize(m_width * m_height);
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::push_back_column(const value_type& value)
+	{
+		reserve((m_width + 1), m_height);
+
+		const size_type w = (m_width + 1);
+
+		for (size_type i = 0; i < m_height; ++i)
+		{
+			m_data.insert(m_data.begin() + (i * w + (w - 1)), value);
+		}
+
+		++m_width;
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::pop_back_column()
+	{
+		if (m_width == 0)
+		{
+			throw std::out_of_range("Grid::pop_back_column(): pop_back from empty Grid");
+		}
+
+		remove_column(m_width - 1);
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::pop_back_column_N(const size_t n)
+	{
+		const size_t w = Min(n, m_width);
+
+		remove_columns((m_width - w), w);
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::insert_row(const size_type pos, const value_type& value)
+	{
+		insert_rows(pos, 1, value);
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::insert_rows(const size_type pos, const size_type rows, const value_type& value)
+	{
+		m_data.insert(m_data.begin() + (m_width * pos), (m_width * rows), value);
+
+		m_height += rows;
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::insert_column(const size_type pos, const value_type& value)
+	{
+		reserve((m_width + 1), m_height);
+
+		const size_type w = (m_width + 1);
+
+		for (size_type i = 0; i < m_height; ++i)
+		{
+			m_data.insert(m_data.begin() + (i * w + pos), value);
+		}
+
+		++m_width;
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::insert_columns(const size_type pos, const size_type columns, const value_type& value)
+	{
+		reserve((m_width + columns), m_height);
+
+		const size_type w = (m_width + columns);
+
+		for (size_type i = 0; i < m_height; ++i)
+		{
+			m_data.insert(m_data.begin() + (i * w + pos), columns, value);
+		}
+
+		m_width += columns;
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::remove_row(const size_type pos)
+	{
+		if (m_height <= pos)
+		{
+			throw std::out_of_range("Grid::remove_row(): index out of range");
+		}
+
+		remove_rows(pos, 1);
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::remove_rows(const size_type pos, const size_type count)
+	{
+		if ((m_height <= pos)
+			|| (m_height < (pos + count)))
+		{
+			throw std::out_of_range("Grid::remove_rows(): index out of range");
+		}
+
+		const auto first = m_data.begin() + (m_width * pos);
+		const auto last = first + (m_width * count);
+
+		m_data.erase(first, last);
+
+		m_height -= count;
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::remove_column(const size_type pos)
+	{
+		if (m_width <= pos)
+		{
+			throw std::out_of_range("Grid::remove_column(): index out of range");
+		}
+
+		size_type index = 0;
+
+		m_data.remove_if([width = m_width, col = pos, &index](const value_type&)
+		{
+			return ((index++) % width == col);
+		});
+
+		--m_width;
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::remove_columns(const size_type pos, const size_type count)
+	{
+		if (m_width <= pos || m_width < (pos + count))
+		{
+			throw std::out_of_range("Grid::remove_columns(): index out of range");
+		}
+
+		size_type index = 0;
+
+		m_data.remove_if([width = m_width, a = pos, b = pos + count, &index](const value_type&)
+		{
+			const size_type col = (index++) % width;
+
+			return ((a <= col) && (col < b));
+		});
+
+		m_width -= count;
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::resize(const size_type w, const size_type h)
+	{
+		resize(w, h, value_type{});
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::resize(const Size size)
+	{
+		resize(size.x, size.y);
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::resize(const size_type w, const size_type h, const value_type& value)
+	{
+		if (m_width < w)
+		{
+			insert_columns(m_width, (w - m_width), value);
+		}
+		else if (m_width > w)
+		{
+			remove_columns(w, (m_width - w));
+		}
+
+		if (m_height < h)
+		{
+			insert_rows(m_height, (h - m_height), value);
+		}
+		else if (m_height > h)
+		{
+			remove_rows(h, (m_height - h));
+		}
+	}
+
+	template <class Type, class Allocator>
+	inline void Grid<Type, Allocator>::resize(const Size size, const value_type& value)
+	{
+		resize(size.x, size.y, value);
+	}
+
+
+
+
 
 
 

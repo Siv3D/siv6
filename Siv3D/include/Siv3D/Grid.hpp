@@ -236,13 +236,13 @@ namespace s3d
 
 		void pop_back_row();
 
-		void pop_back_row_N();
+		void pop_back_row_N(size_t n);
 
 		void push_back_column(const value_type& value);
 
 		void pop_back_column();
 
-		void pop_back_column_N();
+		void pop_back_column_N(size_t n);
 
 		void insert_row(size_type pos, const value_type& value);
 
@@ -264,9 +264,9 @@ namespace s3d
 
 		void resize(Size size);
 
-		void resize(size_type w, size_type h, const value_type& val);
+		void resize(size_type w, size_type h, const value_type& value);
 
-		void resize(Size size, const value_type& val);
+		void resize(Size size, const value_type& value);
 
 
 
@@ -329,6 +329,18 @@ namespace s3d
 
 			formatData.string.push_back(U'}');
 		}
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>* = nullptr>
+		static Grid Generate(size_type w, size_type h, Arg::generator_<Fty> generator);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty>>* = nullptr>
+		static Grid Generate(Size size, Arg::generator_<Fty> generator);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>* = nullptr>
+		static Grid IndexedGenerate(size_type w, size_type h, Arg::indexedGenerator_<Fty> indexedGenerator);
+
+		template <class Fty, std::enable_if_t<std::is_invocable_r_v<Type, Fty, size_t>>* = nullptr>
+		static Grid IndexedGenerate(Size size, Arg::indexedGenerator_<Fty> indexedGenerator);
 	};
 
 	// deduction guide
