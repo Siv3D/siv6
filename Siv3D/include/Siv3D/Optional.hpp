@@ -76,19 +76,27 @@ namespace s3d
 
 		void swap(Optional& other) noexcept(std::is_nothrow_move_constructible_v<Type>&& std::is_nothrow_swappable_v<Type>);
 
-		template <class Fty, std::enable_if_t<std::is_invocable_r_v<value_type, Fty>>* = nullptr>
+		template <class... Args, std::enable_if_t<std::is_copy_constructible_v<Type> && std::is_constructible_v<Type, Args...>>* = nullptr>
 		[[nodiscard]]
-		constexpr value_type value_or_eval(Fty f) const&;
+		constexpr value_type value_or_construct(Args&&... args) const&;
 
-		template <class Fty, std::enable_if_t<std::is_invocable_r_v<value_type, Fty>>* = nullptr>
+		template <class... Args, std::enable_if_t<std::is_move_constructible_v<Type> && std::is_constructible_v<Type, Args...>>* = nullptr>
 		[[nodiscard]]
-		value_type value_or_eval(Fty f)&&;
+		constexpr value_type value_or_construct(Args&&... args)&&;
+
+		template <class Fty, std::enable_if_t<std::is_copy_constructible_v<Type> && std::is_convertible_v<std::invoke_result_t<Fty>, Type>>* = nullptr>
+		[[nodiscard]]
+		constexpr value_type value_or_eval(Fty&& f) const&;
+
+		template <class Fty, std::enable_if_t<std::is_move_constructible_v<Type> && std::is_convertible_v<std::invoke_result_t<Fty>, Type>>* = nullptr>
+		[[nodiscard]]
+		constexpr value_type value_or_eval(Fty&& f)&&;
 
 		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, value_type&>>* = nullptr>
-		void then(Fty f);
+		constexpr void then(Fty&& f);
 
 		template <class Fty, std::enable_if_t<std::is_invocable_v<Fty, value_type>>* = nullptr>
-		void then(Fty f) const;
+		constexpr void then(Fty&& f) const;
 
 		template <class Fty, class R = std::decay_t<std::invoke_result_t<Fty, value_type&>>>
 		Optional<R> map(Fty f);
