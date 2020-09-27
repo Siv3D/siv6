@@ -19,16 +19,121 @@
 # include <Siv3D/Vertex2D.hpp>
 # include <Siv3D/Mat3x2.hpp>
 # include <Siv3D/Resource.hpp>
+# include <Siv3D/TextReader.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
 
 namespace s3d
 {
+	namespace detail
+	{
+		static GLuint LoadShaders(const FilePath& vsFilePath, const FilePath& psFilePath)
+		{
+			const std::string vsSource = TextReader(vsFilePath).readAll().toUTF8();
+			const std::string psSource = TextReader(psFilePath).readAll().toUTF8();
+
+			if (vsSource.empty() || psSource.empty())
+			{
+				return 0;
+			}
+
+			GLuint vertexShader = ::glCreateShader(GL_VERTEX_SHADER);
+			{
+				const char* vsSourcePtr = vsSource.c_str();
+
+				::glShaderSource(vertexShader, 1, &vsSourcePtr, nullptr);
+				::glCompileShader(vertexShader);
+
+				GLint status = GL_FALSE, infoLogLength = 0;
+				::glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);
+				::glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &infoLogLength);
+
+				if (infoLogLength > 0)
+				{
+					std::string logText(infoLogLength + 1, '\0');
+					::glGetShaderInfoLog(vertexShader, infoLogLength, nullptr, logText.data());
+					LOG_FAIL(U"VS: {0}"_fmt(Unicode::Widen(logText)));
+				}
+			}
+
+			GLuint pixelShader = ::glCreateShader(GL_FRAGMENT_SHADER);
+			{
+				const char* psSourcePtr = psSource.c_str();
+
+				::glShaderSource(pixelShader, 1, &psSourcePtr, nullptr);
+				::glCompileShader(pixelShader);
+
+				GLint status = GL_FALSE, infoLogLength = 0;
+				::glGetShaderiv(pixelShader, GL_COMPILE_STATUS, &status);
+				::glGetShaderiv(pixelShader, GL_INFO_LOG_LENGTH, &infoLogLength);
+
+				if (infoLogLength > 0)
+				{
+					std::string logText(infoLogLength + 1, '\0');
+					::glGetShaderInfoLog(pixelShader, infoLogLength, nullptr, logText.data());
+					LOG_FAIL(U"PS: {0}"_fmt(Unicode::Widen(logText)));
+				}
+			}
+
+			GLuint program = ::glCreateProgram();
+			{
+				::glAttachShader(program, vertexShader);
+				::glAttachShader(program, pixelShader);
+				::glLinkProgram(program);
+
+				GLint status = GL_FALSE, infoLogLength = 0;
+				::glGetProgramiv(program, GL_LINK_STATUS, &status);
+				::glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLogLength);
+
+				if (infoLogLength > 0)
+				{
+					std::string logText(infoLogLength + 1, '\0');
+					::glGetProgramInfoLog(program, infoLogLength, nullptr, logText.data());
+					LOG_FAIL(U"LINK: {0}"_fmt(Unicode::Widen(logText)));
+				}
+			}
+
+			::glDetachShader(program, vertexShader);
+			::glDetachShader(program, pixelShader);
+
+			::glDeleteShader(vertexShader);
+			::glDeleteShader(pixelShader);
+
+			return program;
+		}
+	}
+
 	CRenderer2D_GLES3::CRenderer2D_GLES3() = default;
 
 	CRenderer2D_GLES3::~CRenderer2D_GLES3()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer2D_GLES3::~CRenderer2D_GLES3()");
+
+		//////////////////////////////////////////////////
+		//
+		//	full screen triangle
+		//
+		//////////////////////////////////////////////////
+
+		if (m_sampler)
+		{
+			::glDeleteSamplers(1, &m_sampler);
+			m_sampler = 0;
+		}
+
+		if (m_vertexArray)
+		{
+			::glDeleteVertexArrays(1, &m_vertexArray);
+			m_vertexArray = 0;
+		}
+
+		if (m_copyProgram)
+		{
+			::glDeleteProgram(m_copyProgram);
+			m_copyProgram = 0;
+		}
+
+
 
 		if (m_uniformBuffer)
 		{
@@ -48,6 +153,8 @@ namespace s3d
 	void CRenderer2D_GLES3::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer2D_GLES3::init()");
+
+		pRenderer = dynamic_cast<CRenderer_GLES3*>(SIV3D_ENGINE(Renderer));
 
 		{
 			BinaryReader shader(Resource(U"engine/shader/glsl/test.vert"));
@@ -163,6 +270,24 @@ namespace s3d
 			throw EngineError(U"Vertex2DBatch_GLES3::init() failed");
 		}
 
+		// full screen triangle
+		{
+			m_copyProgram = detail::LoadShaders(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), Resource(U"engine/shader/glsl/fullscreen_triangle.frag"));
+			if (!m_copyProgram)
+			{
+				throw EngineError();
+			}
+			m_locationTexture = ::glGetUniformLocation(m_copyProgram, "Texture0");
+
+			::glGenVertexArrays(1, &m_vertexArray);
+			::glBindVertexArray(m_vertexArray);
+
+			::glGenSamplers(1, &m_sampler);
+			::glSamplerParameteri(m_sampler, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			::glSamplerParameteri(m_sampler, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			::glSamplerParameteri(m_sampler, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+		}
+
 		CheckOpenGLError();
 	}
 
@@ -174,19 +299,23 @@ namespace s3d
 			m_draw_indexCount = 0;
 		};
 
+		if (m_draw_indexCount == 0)
+		{
+			return;
+		}
+
 		::glUseProgram(m_program);
 
-		const Size currentRenderTargetSize = SIV3D_ENGINE(Renderer)->getSceneSize();
+		const Size currentRenderTargetSize = SIV3D_ENGINE(Renderer)->getSceneBufferSize();
+		::glViewport(0, 0, currentRenderTargetSize.x, currentRenderTargetSize.y);
 
 		Mat3x2 transform = Mat3x2::Identity();
 		Mat3x2 screenMat = Mat3x2::Screen(currentRenderTargetSize);
 		const Mat3x2 matrix = transform * screenMat;
 		
 		Float4 cb[3];
-		//cb[0] = Float4(matrix._11, -matrix._12, matrix._31, -matrix._32);
-		//cb[1] = Float4(matrix._21, -matrix._22, 0.0f, 1.0f);
-		cb[0] = Float4(matrix._11, matrix._12, matrix._31, matrix._32);
-		cb[1] = Float4(matrix._21, matrix._22, 0.0f, 1.0f);
+		cb[0] = Float4(matrix._11, -matrix._12, matrix._31, -matrix._32);
+		cb[1] = Float4(matrix._21, -matrix._22, 0.0f, 1.0f);
 		cb[2] = Float4(1, 1, 1, 1);
 
 		{
@@ -247,5 +376,42 @@ namespace s3d
 		}
 
 		m_draw_indexCount += 6;
+	}
+
+	void CRenderer2D_GLES3::drawFullScreenTriangle(const TextureFilter textureFilter)
+	{
+		// view port
+		{
+			::glBindFramebuffer(GL_FRAMEBUFFER, 0);
+			auto [s, viewRect] = pRenderer->getLetterboxComposition();
+			::glViewport(
+				static_cast<int32>(viewRect.left),
+				static_cast<int32>(viewRect.top),
+				static_cast<int32>(viewRect.right),
+				static_cast<int32>(viewRect.bottom));
+		}
+
+		// render states
+		{
+			const bool linearFilter = (textureFilter == TextureFilter::Linear);
+			::glBindSampler(0, m_sampler);
+			::glSamplerParameteri(m_sampler, GL_TEXTURE_MIN_FILTER, linearFilter ? GL_LINEAR : GL_NEAREST);
+			::glSamplerParameteri(m_sampler, GL_TEXTURE_MAG_FILTER, linearFilter ? GL_LINEAR : GL_NEAREST);
+		}
+
+		::glUseProgram(m_copyProgram);
+		{
+			::glUniform1i(m_locationTexture, 0);
+			
+			::glBindVertexArray(m_vertexArray);
+			{
+				::glBindBuffer(GL_ARRAY_BUFFER, 0);
+				::glDrawArrays(GL_TRIANGLES, 0, 3);
+			}
+			::glBindVertexArray(0);
+		}
+		::glUseProgram(0);
+
+		CheckOpenGLError();
 	}
 }
