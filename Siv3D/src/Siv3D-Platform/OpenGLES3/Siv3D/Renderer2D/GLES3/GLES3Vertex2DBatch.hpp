@@ -17,9 +17,9 @@
 
 namespace s3d
 {
-	class Renderer2DCommand_GLES3;
+	class GLES3Renderer2DCommand;
 
-	struct BatchInfo_GLES3
+	struct GLES3BatchInfo
 	{
 		uint32 indexCount = 0;
 
@@ -28,7 +28,7 @@ namespace s3d
 		uint32 baseVertexLocation = 0;
 	};
 
-	class Vertex2DBatch_GLES3
+	class GLES3Vertex2DBatch
 	{
 	private:
 
@@ -76,15 +76,15 @@ namespace s3d
 
 	public:
 
-		Vertex2DBatch_GLES3();
+		GLES3Vertex2DBatch();
 
-		~Vertex2DBatch_GLES3();
+		~GLES3Vertex2DBatch();
 
 		[[nodiscard]]
 		bool init();
 
 		[[nodiscard]]
-		std::tuple<Vertex2D*, IndexType*, IndexType> requestBuffer(uint16 vertexSize, uint32 indexSize, Renderer2DCommand_GLES3& command);
+		std::tuple<Vertex2D*, IndexType*, IndexType> requestBuffer(uint16 vertexSize, uint32 indexSize, GLES3Renderer2DCommand& command);
 
 		[[nodiscard]]
 		size_t num_batches() const noexcept;
@@ -92,6 +92,6 @@ namespace s3d
 		void reset();
 
 		[[nodiscard]]
-		BatchInfo_GLES3 updateBuffers(size_t batchIndex);
+		GLES3BatchInfo updateBuffers(size_t batchIndex);
 	};
 }

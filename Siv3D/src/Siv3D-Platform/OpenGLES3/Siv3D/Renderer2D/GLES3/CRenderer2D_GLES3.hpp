@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -13,7 +13,7 @@
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/Common/OpenGL.hpp>
-# include "Vertex2DBatch_GLES3.hpp"
+# include "GLES3Vertex2DBatch.hpp"
 
 namespace s3d
 {
