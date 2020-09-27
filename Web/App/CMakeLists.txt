@@ -17,12 +17,12 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g3 -O2 -pg")
 set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s MODULARIZE=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s ALLOW_MEMORY_GROWTH=1 -s FULL_ES3 -s USE_GLFW=3")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s ALLOW_MEMORY_GROWTH=1 -s FULL_ES3 -s USE_GLFW=3")
 
 if (SIV3D_RUN_TEST_ON_NODE)
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lnodefs.js --pre-js \"${CMAKE_SOURCE_DIR}/../../Test/Siv3DTest.js\"")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s ERROR_ON_UNDEFINED_SYMBOLS=0 -lnodefs.js --pre-js \"${CMAKE_SOURCE_DIR}/../../Test/Siv3DTest.js\"")
 else()
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s ALLOW_MEMORY_GROWTH=1 -s FULL_ES3 -s USE_GLFW=3 --preload-file \"${CMAKE_SOURCE_DIR}/resources@/resources\" --preload-file \"${CMAKE_SOURCE_DIR}/../../Test/test@/test\"")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --preload-file \"${CMAKE_SOURCE_DIR}/resources@/resources\"")
     set(CMAKE_EXECUTABLE_SUFFIX ".html")
 endif()
 
@@ -42,8 +42,10 @@ endif()
 
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+if (SIV3D_RUN_TEST_ON_NODE)
 add_executable(Siv3DTest
-  Main.cpp
+  TestMain.cpp
   ../../Test/Siv3DTest.cpp
   ../../Test/Siv3DTest_Array.cpp
   ../../Test/Siv3DTest_BinaryReader.cpp
@@ -55,6 +57,13 @@ add_executable(Siv3DTest
   ../../Test/Siv3DTest_TextReader.cpp
   ../../Test/Siv3DTest_TextWriter.cpp
   )
+else()
+add_executable(Siv3DTest
+  Main.cpp
+  )
+endif()
+
+
 target_include_directories(Siv3DTest PRIVATE
   "../../Siv3D/include"
   "../../Siv3D/include/ThirdParty"

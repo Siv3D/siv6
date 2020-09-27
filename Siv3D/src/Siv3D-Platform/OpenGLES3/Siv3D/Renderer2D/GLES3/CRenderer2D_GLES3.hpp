@@ -12,25 +12,39 @@
 # pragma once
 # include <Siv3D/Common.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Renderer/GLES3/CRenderer_GLES3.hpp>
 # include <Siv3D/Common/OpenGL.hpp>
-# include "Vertex2DBatch_GLES3.hpp"
+# include "GLES3Vertex2DBatch.hpp"
 
 namespace s3d
 {
-	class Renderer2DCommand_GLES3 {};
+	class GLES3Renderer2DCommand {};
 
 	class CRenderer2D_GLES3 final : public ISiv3DRenderer2D
 	{
 	private:
+
+		CRenderer_GLES3* pRenderer = nullptr;
 
 		GLuint m_vertexShader = 0;
 		GLuint m_pixelShader = 0;
 		GLuint m_program = 0;
 		GLuint m_uniformBuffer = 0;
 
-		Vertex2DBatch_GLES3 m_batches;
-		Renderer2DCommand_GLES3 m_command;
+		GLES3Vertex2DBatch m_batches;
+		GLES3Renderer2DCommand m_command;
 		uint32 m_draw_indexCount = 0;
+
+		//////////////////////////////////////////////////
+		//
+		//	full screen triangle
+		//
+		//////////////////////////////////////////////////
+
+		GLuint m_copyProgram		= 0;
+		GLuint m_vertexArray		= 0;
+		GLuint m_sampler			= 0;
+		GLuint m_locationTexture	= 0;
 
 	public:
 
@@ -43,5 +57,7 @@ namespace s3d
 		void flush() override;
 
 		void test_renderRectangle(const RectF& rect, const ColorF& color) override;
+
+		void drawFullScreenTriangle(TextureFilter textureFilter) override;
 	};
 }

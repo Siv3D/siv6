@@ -75,9 +75,9 @@ namespace s3d
 
 		void minimize() override;
 
-		bool setVirtualSize(const Size& size) override;
+		bool resizeByVirtualSize(const Size& virtualSize) override;
 
-		bool setFrameBufferSize(const Size& size) override;
+		bool resizeByFrameBufferSize(const Size& frameBufferSize) override;
 
 		void setMinimumFrameBufferSize(const Size& size) override;
 	};
