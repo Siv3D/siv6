@@ -42,8 +42,10 @@ endif()
 
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+if (SIV3D_RUN_TEST_ON_NODE)
 add_executable(Siv3DTest
-  Main.cpp
+  TestMain.cpp
   ../../Test/Siv3DTest.cpp
   ../../Test/Siv3DTest_Array.cpp
   ../../Test/Siv3DTest_BinaryReader.cpp
@@ -55,6 +57,13 @@ add_executable(Siv3DTest
   ../../Test/Siv3DTest_TextReader.cpp
   ../../Test/Siv3DTest_TextWriter.cpp
   )
+else()
+add_executable(Siv3DTest
+  Main.cpp
+  )
+endif()
+
+
 target_include_directories(Siv3DTest PRIVATE
   "../../Siv3D/include"
   "../../Siv3D/include/ThirdParty"
