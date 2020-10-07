@@ -750,16 +750,16 @@
 # include <Siv3D/PointVector.hpp> // [Siv3D ToDo]
 
 // 円座標
-//# include <Siv3D/Circular.hpp>
+# include <Siv3D/Circular.hpp>
 
 // オフセット付き円座標
-//# include <Siv3D/OffsetCircular.hpp>
+# include <Siv3D/OffsetCircular.hpp>
 
 // 円柱座標
-//# include <Siv3D/Cylindrical.hpp>
+# include <Siv3D/Cylindrical.hpp>
 
 // 球面座標
-//# include <Siv3D/Spherical.hpp>
+# include <Siv3D/Spherical.hpp>
 
 // 3x2 行列
 // 3x2 matrix
@@ -767,7 +767,7 @@
 
 // 線分
 // Line Segment
-//# include <Siv3D/Line.hpp>
+# include <Siv3D/Line.hpp>
 
 // 長方形
 // Rectangle
@@ -775,27 +775,27 @@
 
 // 円
 // Circle
-//# include <Siv3D/Circle.hpp>
+# include <Siv3D/Circle.hpp>
 
 // 楕円
 // Ellipse
-//# include <Siv3D/Ellipse.hpp>
+# include <Siv3D/Ellipse.hpp>
 
 // 三角形
 // Triangle
-//# include <Siv3D/Triangle.hpp>
+# include <Siv3D/Triangle.hpp>
 
 // 凸四角形
 // Convex quadrilateral
-//# include <Siv3D/Quad.hpp>
+# include <Siv3D/Quad.hpp>
 
 // 角丸長方形
 // Rounded rectangle
-//# include <Siv3D/RoundRect.hpp>
+# include <Siv3D/RoundRect.hpp>
 
 // 点の集合（とそれをつないで表現される線分）
 // A sequence of points (and the line segments connecting them)
-//# include <Siv3D/LineString.hpp>
+# include <Siv3D/LineString.hpp>
 
 // 多角形
 // Polygon
