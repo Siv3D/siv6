@@ -391,9 +391,11 @@
 // Time
 # include <Siv3D/Time.hpp>
 
+# include <Siv3D/ISteadyClock.hpp>
+
 // 経過時間の計測
 // Stopwatch
-//# include <Siv3D/Stopwatch.hpp> // [Siv3D ToDo]
+# include <Siv3D/Stopwatch.hpp> // [Siv3D ToDo]
 
 // スピードを変更可能なストップウォッチ
 // Stopwatch with Variable Speed

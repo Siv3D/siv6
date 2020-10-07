@@ -6,30 +6,53 @@ SIV3D_SET(EngineOption::D3D11Driver::Hardware)
 
 void Siv3DTest();
 
+
+
+struct CustomClock : ISteadyClock
+{
+	Stopwatch m_stopwatch{ true };
+
+	uint64 getMicrosec() override
+	{
+		return m_stopwatch.us();
+	}
+
+	void pause()
+	{
+		m_stopwatch.pause();
+	}
+
+	void resume()
+	{
+		m_stopwatch.resume();
+	}
+};
+
 void Main()
 {
-	//Siv3DTest();
-	//LicenseManager::ShowInBrowser();
-
-	Scene::SetBackground(ColorF{ 0.8, 0.9, 1.0 });
-	Window::SetStyle(WindowStyle::Sizable);
-	Scene::SetResizeMode(ResizeMode::Keep);
-	//Window::Resize(1200, 800);
+	CustomClock customClock;
+	Stopwatch s1(true);
+	Stopwatch s2(true, &customClock);
+	Stopwatch s3(true, &customClock);
 
 	while (System::Update())
 	{
-		//if (Scene::FrameCount() == 200)
-		//{
-		//	Window::Resize(600, 400);
-		//}
-
-		for (auto i : step(20))
+		if (Scene::FrameCount() == 200)
 		{
-			Rect(Cursor::Pos().movedBy(0 + i * 20, 0), 20, 400)
-				.draw(HSV(i * 10, 0.5, 0.9));
+			customClock.pause();
+		}
+		else if (Scene::FrameCount() == 300)
+		{
+			customClock.resume();
 		}
 
-		const double x = (std::sin(Time::GetMillisec() * 0.004) + 1.0) * 360;
-		RectF(x, 400, 100, 100).draw();
+		if (4s < s1)
+		{
+			return;
+		}
+
+		Window::SetTitle(U"{}, {}, {}"_fmt(s1, s2, s3));
 	}
 }
+
+
