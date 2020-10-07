@@ -395,11 +395,11 @@
 
 // 経過時間の計測
 // Stopwatch
-# include <Siv3D/Stopwatch.hpp> // [Siv3D ToDo]
+# include <Siv3D/Stopwatch.hpp>
 
 // スピードを変更可能なストップウォッチ
 // Stopwatch with Variable Speed
-//# include <Siv3D/CustomStopwatch.hpp> // [Siv3D ToDo]
+# include <Siv3D/VariableSpeedStopwatch.hpp> // [Siv3D ToDo]
 
 // カウントダウンタイマー
 // Countdown timer

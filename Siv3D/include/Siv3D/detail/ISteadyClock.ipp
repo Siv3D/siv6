@@ -10,20 +10,11 @@
 //-----------------------------------------------
 
 # pragma once
-# include "Common.hpp"
 
 namespace s3d
 {
-	class ISteadyClock
+	inline uint64 ISteadyClock::getNanosec()
 	{
-	public:
-
-		virtual ~ISteadyClock() = default;
-
-		virtual uint64 getMicrosec() = 0;
-
-		virtual uint64 getNanosec();
-	};
+		return (getMicrosec() * 1000);
+	}
 }
-
-# include "detail/ISteadyClock.ipp"
