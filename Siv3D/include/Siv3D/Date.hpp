@@ -121,6 +121,13 @@ namespace s3d
 		/// @return *this
 		Date& operator -=(const Days& days) noexcept;
 
+	# if __cpp_impl_three_way_comparison
+
+		[[nodiscard]]
+		constexpr auto operator <=>(const Date&) const = default;
+
+	# else
+
 		/// @brief 日付が等しいかを返します。
 		/// @param lhs 比較する日付
 		/// @param rhs 比較する日付
@@ -180,6 +187,8 @@ namespace s3d
 		{
 			return !(lhs < rhs);
 		}
+
+	# endif
 
 		/// @brief 日付のハッシュ値を返します
 		/// @return 日付のハッシュ値

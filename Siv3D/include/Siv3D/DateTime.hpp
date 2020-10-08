@@ -126,6 +126,13 @@ namespace s3d
 			return Subtract(to, from);
 		}
 
+	# if __cpp_impl_three_way_comparison
+
+		[[nodiscard]]
+		constexpr auto operator <=>(const DateTime&) const = default;
+
+	# else
+
 		[[nodiscard]]
 		friend bool operator ==(const DateTime & lhs, const DateTime & rhs) noexcept
 		{
@@ -161,6 +168,8 @@ namespace s3d
 		{
 			return std::memcmp(&lhs, &rhs, sizeof(DateTime)) >= 0;
 		}
+
+	# endif
 
 		/// @brief 日付と時刻のハッシュ値を返します
 		/// @return 日付と時刻のハッシュ値

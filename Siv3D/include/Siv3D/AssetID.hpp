@@ -38,6 +38,13 @@ namespace s3d
 		SIV3D_NODISCARD_CXX20
 		explicit constexpr AssetID(value_type id) noexcept;
 
+	# if __cpp_impl_three_way_comparison
+
+		[[nodiscard]]
+		constexpr auto operator <=>(const AssetID&) const = default;
+
+	# else
+
 		[[nodiscard]]
 		constexpr bool operator ==(const AssetID& other) const noexcept;
 
@@ -55,6 +62,8 @@ namespace s3d
 
 		[[nodiscard]]
 		constexpr bool operator >=(const AssetID& other) const noexcept;
+
+	# endif
 
 		[[nodiscard]]
 		constexpr value_type value() const noexcept;

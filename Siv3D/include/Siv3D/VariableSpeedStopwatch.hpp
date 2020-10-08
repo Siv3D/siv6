@@ -128,6 +128,16 @@ namespace s3d
 		[[nodiscard]]
 		String format(StringView format = U"H:mm:ss.xx"_sv) const;
 
+	# if __cpp_impl_three_way_comparison
+
+		[[nodiscard]]
+		friend auto operator <=>(const VariableSpeedStopwatch& s, const MicrosecondsF& timeUs)
+		{
+			return (s.usF() <=> timeUs.count());
+		}
+
+	# else
+
 		[[nodiscard]]
 		friend bool operator <(const VariableSpeedStopwatch& s, const MicrosecondsF& time)
 		{
@@ -175,6 +185,8 @@ namespace s3d
 		{
 			return (time >= s.elapsed());
 		}
+
+	# endif
 
 		/// @brief 
 		/// @tparam CharType 

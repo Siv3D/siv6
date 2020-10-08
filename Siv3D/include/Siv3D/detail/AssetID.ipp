@@ -17,6 +17,8 @@ namespace s3d
 	inline constexpr AssetID<AssetTag>::AssetID(const value_type id) noexcept
 		: m_value(id) {}
 
+# ifndef __cpp_impl_three_way_comparison
+
 	template <class AssetTag>
 	inline constexpr bool AssetID<AssetTag>::operator ==(const AssetID& other) const noexcept
 	{
@@ -52,6 +54,8 @@ namespace s3d
 	{
 		return (m_value >= other.m_value);
 	}
+
+# endif
 
 	template <class AssetTag>
 	inline constexpr typename AssetID<AssetTag>::value_type AssetID<AssetTag>::value() const noexcept
