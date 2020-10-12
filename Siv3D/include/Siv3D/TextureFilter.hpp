@@ -10,10 +10,11 @@
 //-----------------------------------------------
 
 # pragma once
+# include "Common.hpp"
 
 namespace s3d
 {
-	enum class TextureFilter : bool
+	enum class TextureFilter : uint8
 	{
 		Nearest,
 

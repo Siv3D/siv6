@@ -60,7 +60,7 @@ namespace s3d
 
 	inline bool Stopwatch::isRunning() const
 	{
-		return (m_isStarted && !m_pausing);
+		return (m_isStarted && not m_pausing);
 	}
 
 	inline void Stopwatch::start()

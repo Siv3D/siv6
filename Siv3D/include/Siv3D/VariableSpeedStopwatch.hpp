@@ -40,7 +40,7 @@ namespace s3d
 
 		explicit VariableSpeedStopwatch(double speed, bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
 
-		explicit VariableSpeedStopwatch(const Duration& startTime, double speed, bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
+		explicit VariableSpeedStopwatch(const Duration& startTime, double speed = 1.0, bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
 
 		[[nodiscard]]
 		bool isStarted() const;
