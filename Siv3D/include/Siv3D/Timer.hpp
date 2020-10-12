@@ -17,15 +17,15 @@
 
 namespace s3d
 {
-	class VariableSpeedStopwatch
+	class Timer
 	{
 	private:
 
-		double m_speed = 1.0;
+		int64 m_initialTimeMicrosec = 0;
 
-		mutable int64 m_lastTimeNanosec = 0;
+		int64 m_startTimeMicrosec = 0;
 
-		mutable int64 m_accumulationNanosec = 0;
+		int64 m_accumulationMicrosec = 0;
 
 		ISteadyClock* m_pSteadyClock = nullptr;
 
@@ -33,19 +33,10 @@ namespace s3d
 
 		bool m_pausing = true;
 
-		[[nodiscard]]
-		int64 ns() const;
-
 	public:
 
 		SIV3D_NODISCARD_CXX20
-		explicit VariableSpeedStopwatch(bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
-
-		SIV3D_NODISCARD_CXX20
-		explicit VariableSpeedStopwatch(double speed, bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
-
-		SIV3D_NODISCARD_CXX20
-		explicit VariableSpeedStopwatch(const Duration& startTime, double speed = 1.0, bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
+		explicit Timer(const Duration& startTime, bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
 
 		[[nodiscard]]
 		bool isStarted() const;
@@ -56,22 +47,20 @@ namespace s3d
 		[[nodiscard]]
 		bool isRunning() const;
 
+		[[nodiscard]]
+		bool reachedZero() const;
+
 		void start();
 
 		void pause();
 
 		void resume();
 
-		void reset() noexcept;
-
 		void restart();
 
-		void set(const Duration& time);
+		void restart(const Duration& startTime);
 
-		void setSpeed(double speed);
-
-		[[nodiscard]]
-		double getSpeed() const noexcept;
+		void setRemaining(const Duration& time);
 
 		[[nodiscard]]
 		int32 d() const;
@@ -128,7 +117,16 @@ namespace s3d
 		double usF() const;
 
 		[[nodiscard]]
-		Duration elapsed() const;
+		Duration duration() const;
+
+		[[nodiscard]]
+		Duration remaining() const;
+
+		[[nodiscard]]
+		double progress1_0() const;
+
+		[[nodiscard]]
+		double progress0_1() const;
 
 		[[nodiscard]]
 		String format(StringView format = U"H:mm:ss.xx"_sv) const;
@@ -136,59 +134,59 @@ namespace s3d
 	# if __cpp_impl_three_way_comparison
 
 		[[nodiscard]]
-		friend auto operator <=>(const VariableSpeedStopwatch& s, const MicrosecondsF& timeUs)
+		friend auto operator <=>(const Timer& t, const MicrosecondsF& timeUs)
 		{
-			return (s.usF() <=> timeUs.count());
+			return (t.usF() <=> timeUs.count());
 		}
 
 	# else
 
 		[[nodiscard]]
-		friend bool operator <(const VariableSpeedStopwatch& s, const MicrosecondsF& time)
+		friend bool operator <(const Timer& t, const MicrosecondsF& time)
 		{
-			return (s.elapsed() < time);
+			return (t.remaining() < time);
 		}
 
 		[[nodiscard]]
-		friend bool operator <=(const VariableSpeedStopwatch& s, const MicrosecondsF& time)
+		friend bool operator <=(const Timer& t, const MicrosecondsF& time)
 		{
-			return (s.elapsed() <= time);
+			return (t.remaining() <= time);
 		}
 
 		[[nodiscard]]
-		friend bool operator >(const VariableSpeedStopwatch& s, const MicrosecondsF& time)
+		friend bool operator >(const Timer& t, const MicrosecondsF& time)
 		{
-			return (s.elapsed() > time);
+			return (t.remaining() > time);
 		}
 
 		[[nodiscard]]
-		friend bool operator >=(const VariableSpeedStopwatch& s, const MicrosecondsF& time)
+		friend bool operator >=(const Timer& t, const MicrosecondsF& time)
 		{
-			return (s.elapsed() >= time);
+			return (t.remaining() >= time);
 		}
 
 		[[nodiscard]]
-		friend bool operator <(const MicrosecondsF& time, const VariableSpeedStopwatch& s)
+		friend bool operator <(const MicrosecondsF& time, const Timer& t)
 		{
-			return (time < s.elapsed());
+			return (time < t.remaining());
 		}
 
 		[[nodiscard]]
-		friend bool operator <=(const MicrosecondsF& time, const VariableSpeedStopwatch& s)
+		friend bool operator <=(const MicrosecondsF& time, const Timer& t)
 		{
-			return (time <= s.elapsed());
+			return (time <= t.remaining());
 		}
 
 		[[nodiscard]]
-		friend bool operator >(const MicrosecondsF& time, const VariableSpeedStopwatch& s)
+		friend bool operator >(const MicrosecondsF& time, const Timer& t)
 		{
-			return (time > s.elapsed());
+			return (time > t.remaining());
 		}
 
 		[[nodiscard]]
-		friend bool operator >=(const MicrosecondsF& time, const VariableSpeedStopwatch& s)
+		friend bool operator >=(const MicrosecondsF& time, const Timer& t)
 		{
-			return (time >= s.elapsed());
+			return (time >= t.remaining());
 		}
 
 	# endif
@@ -199,7 +197,7 @@ namespace s3d
 		/// @param value 
 		/// @return 
 		template <class CharType>
-		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const VariableSpeedStopwatch& value)
+		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Timer& value)
 		{
 			return output << value.format();
 		}
@@ -207,11 +205,11 @@ namespace s3d
 		/// @brief 
 		/// @param formatData 
 		/// @param value 
-		friend void Formatter(FormatData& formatData, const VariableSpeedStopwatch& value)
+		friend void Formatter(FormatData& formatData, const Timer& value)
 		{
 			formatData.string.append(value.format());
 		}
 	};
 }
 
-# include "detail/VariableSpeedStopwatch.ipp"
+# include "detail/Timer.ipp"

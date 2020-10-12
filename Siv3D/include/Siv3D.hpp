@@ -391,6 +391,8 @@
 // Time
 # include <Siv3D/Time.hpp>
 
+// 時刻提供インタフェース
+// Clock function interface
 # include <Siv3D/ISteadyClock.hpp>
 
 // 経過時間の計測
@@ -399,11 +401,11 @@
 
 // スピードを変更可能なストップウォッチ
 // Stopwatch with Variable Speed
-# include <Siv3D/VariableSpeedStopwatch.hpp> // [Siv3D ToDo]
+# include <Siv3D/VariableSpeedStopwatch.hpp>
 
 // カウントダウンタイマー
 // Countdown timer
-//# include <Siv3D/Timer.hpp> // [Siv3D ToDo]
+# include <Siv3D/Timer.hpp> // [Siv3D ToDo]
 
 //////////////////////////////////////////////////
 //
@@ -752,16 +754,16 @@
 # include <Siv3D/PointVector.hpp> // [Siv3D ToDo]
 
 // 円座標
-# include <Siv3D/Circular.hpp>
+# include <Siv3D/Circular.hpp> // [Siv3D ToDo]
 
 // オフセット付き円座標
-# include <Siv3D/OffsetCircular.hpp>
+# include <Siv3D/OffsetCircular.hpp> // [Siv3D ToDo]
 
 // 円柱座標
-# include <Siv3D/Cylindrical.hpp>
+# include <Siv3D/Cylindrical.hpp> // [Siv3D ToDo]
 
 // 球面座標
-# include <Siv3D/Spherical.hpp>
+# include <Siv3D/Spherical.hpp> // [Siv3D ToDo]
 
 // 3x2 行列
 // 3x2 matrix
@@ -769,35 +771,35 @@
 
 // 線分
 // Line Segment
-# include <Siv3D/Line.hpp>
+# include <Siv3D/Line.hpp> // [Siv3D ToDo]
 
 // 長方形
 // Rectangle
-# include <Siv3D/Rectangle.hpp>
+# include <Siv3D/Rectangle.hpp> // [Siv3D ToDo]
 
 // 円
 // Circle
-# include <Siv3D/Circle.hpp>
+# include <Siv3D/Circle.hpp> // [Siv3D ToDo]
 
 // 楕円
 // Ellipse
-# include <Siv3D/Ellipse.hpp>
+# include <Siv3D/Ellipse.hpp> // [Siv3D ToDo]
 
 // 三角形
 // Triangle
-# include <Siv3D/Triangle.hpp>
+# include <Siv3D/Triangle.hpp> // [Siv3D ToDo]
 
 // 凸四角形
 // Convex quadrilateral
-# include <Siv3D/Quad.hpp>
+# include <Siv3D/Quad.hpp> // [Siv3D ToDo]
 
 // 角丸長方形
 // Rounded rectangle
-# include <Siv3D/RoundRect.hpp>
+# include <Siv3D/RoundRect.hpp> // [Siv3D ToDo]
 
 // 点の集合（とそれをつないで表現される線分）
 // A sequence of points (and the line segments connecting them)
-# include <Siv3D/LineString.hpp>
+# include <Siv3D/LineString.hpp> // [Siv3D ToDo]
 
 // 多角形
 // Polygon

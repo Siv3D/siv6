@@ -11,6 +11,8 @@
 
 # pragma once
 # include "Common.hpp"
+# include "ISteadyClock.hpp"
+# include "Time.hpp"
 # include "Duration.hpp"
 
 namespace s3d
@@ -23,16 +25,18 @@ namespace s3d
 
 		int64 m_accumulationMicrosec = 0;
 
+		ISteadyClock* m_pSteadyClock = nullptr;
+
 		bool m_isStarted = false;
 
 		bool m_pausing = true;
 
-		ISteadyClock* m_pSteadyClock = nullptr;
-
 	public:
 
+		SIV3D_NODISCARD_CXX20
 		explicit Stopwatch(bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
 
+		SIV3D_NODISCARD_CXX20
 		explicit Stopwatch(const Duration& startTime, bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
 
 		[[nodiscard]]
