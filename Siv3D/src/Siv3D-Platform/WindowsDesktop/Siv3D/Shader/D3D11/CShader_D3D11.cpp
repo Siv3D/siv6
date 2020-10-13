@@ -52,13 +52,14 @@ namespace s3d
 
 	CShader_D3D11::CShader_D3D11()
 	{
-		m_pixelShaders.destroy();
-		m_vertexShaders.destroy();
+
 	}
 
 	CShader_D3D11::~CShader_D3D11()
 	{
 		LOG_SCOPED_TRACE(U"CShader_D3D11::~CShader_D3D11()");
+		m_pixelShaders.destroy();
+		m_vertexShaders.destroy();
 	}
 
 	void CShader_D3D11::init()

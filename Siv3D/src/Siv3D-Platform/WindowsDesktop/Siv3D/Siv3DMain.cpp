@@ -202,6 +202,7 @@ namespace s3d
 		catch (const Error& error)
 		{
 			::OutputDebugStringW(U"{}\n"_fmt(error).toWstr().c_str());
+			FreestandingMessageBox::ShowError(U"{}"_fmt(error));
 			g_hasError = true;
 
 			ul.unlock(); // --(1)
@@ -229,6 +230,7 @@ namespace s3d
 		catch (const Error& error)
 		{
 			::OutputDebugStringW(U"{}\n"_fmt(error).toWstr().c_str());
+			FreestandingMessageBox::ShowError(U"{}"_fmt(error));
 			g_hasError = true;
 			ul.unlock(); // --(3)
 			g_cv.notify_one();

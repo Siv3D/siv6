@@ -147,18 +147,6 @@ namespace s3d
 			m_pipeline = 0;
 		}
 
-		if (m_psProgram)
-		{
-			::glDeleteProgram(m_psProgram);
-			m_psProgram = 0;
-		}
-
-		if (m_vsProgram)
-		{
-			::glDeleteProgram(m_vsProgram);
-			m_vsProgram = 0;
-		}
-
 		CheckOpenGLError();
 	}
 
@@ -167,76 +155,18 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer2D_GL4::init()");
 
 		pRenderer = dynamic_cast<CRenderer_GL4*>(SIV3D_ENGINE(Renderer));
+		pShader = dynamic_cast<CShader_GL4*>(SIV3D_ENGINE(Shader));
 
+		m_vertexShaders << VertexShader((Resource(U"engine/shader/glsl/sprite.vert")), {});
+		if (!m_vertexShaders.front())
 		{
-			BinaryReader shader(Resource(U"engine/shader/glsl/test.vert"));
-
-			if (!shader)
-			{
-				throw EngineError();
-			}
-
-			Array<char> source(shader.size() + 1);
-			shader.read(source.data(), shader.size());
-			const char* pSource = source.data();
-			m_vsProgram = ::glCreateShaderProgramv(GL_VERTEX_SHADER, 1, &pSource);
-
-			GLint status = GL_FALSE;
-			::glGetProgramiv(m_vsProgram, GL_LINK_STATUS, &status);
-
-			GLint logLen = 0;
-			::glGetProgramiv(m_vsProgram, GL_INFO_LOG_LENGTH, &logLen);
-
-			if (logLen > 4)
-			{
-				std::string log(logLen + 1, '\0');
-				::glGetProgramInfoLog(m_vsProgram, logLen, &logLen, &log[0]);
-				LOG_FAIL(U"❌ Vertex shader compilation failed: {0}"_fmt(Unicode::Widen(log)));
-				throw EngineError();
-			}
-
-			if (status == GL_FALSE) // もしリンクに失敗していたら
-			{
-				::glDeleteProgram(m_vsProgram);
-				m_vsProgram = 0;
-				throw EngineError();
-			}
+			throw EngineError();
 		}
 
+		m_pixelShaders << PixelShader(Resource(U"engine/shader/glsl/shape.frag"), {});
+		if (!m_pixelShaders.front())
 		{
-			BinaryReader shader(Resource(U"engine/shader/glsl/test.frag"));
-
-			if (!shader)
-			{
-				throw EngineError();
-			}
-
-			Array<char> source(shader.size() + 1);
-			shader.read(source.data(), shader.size());
-			const char* pSource = source.data();
-			m_psProgram = ::glCreateShaderProgramv(GL_FRAGMENT_SHADER, 1, &pSource);
-
-			GLint status = GL_FALSE;
-			::glGetProgramiv(m_psProgram, GL_LINK_STATUS, &status);
-
-			GLint logLen = 0;
-			::glGetProgramiv(m_psProgram, GL_INFO_LOG_LENGTH, &logLen);
-
-			// ログメッセージ
-			if (logLen > 4)
-			{
-				std::string log(logLen + 1, '\0');
-				::glGetProgramInfoLog(m_psProgram, logLen, &logLen, &log[0]);
-				LOG_FAIL(U"❌ Pixel shader compilation failed: {0}"_fmt(Unicode::Widen(log)));
-				throw EngineError();
-			}
-
-			if (status == GL_FALSE) // もしリンクに失敗していたら
-			{
-				::glDeleteProgram(m_psProgram);
-				m_psProgram = 0;
-				throw EngineError();
-			}
+			throw EngineError();
 		}
 
 		::glGenProgramPipelines(1, &m_pipeline);
@@ -283,8 +213,8 @@ namespace s3d
 			return;
 		}
 
-		::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, m_vsProgram);
-		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, m_psProgram);
+		::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, pShader->getVSProgram(m_vertexShaders.front().id()));
+		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, pShader->getPSProgram(m_pixelShaders.front().id()));
 
 		::glUseProgram(0);
 		::glBindProgramPipeline(m_pipeline);
@@ -308,7 +238,7 @@ namespace s3d
 		}
 
 		{
-			const uint32 vsUniformBlockBinding = 0;
+			constexpr uint32 vsUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Vertex, 0);
 			::glBindBufferBase(GL_UNIFORM_BUFFER, vsUniformBlockBinding, m_uniformBuffer);
 		}
 

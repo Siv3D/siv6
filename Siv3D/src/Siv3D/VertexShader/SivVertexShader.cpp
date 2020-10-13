@@ -23,7 +23,7 @@ namespace s3d
 		if (!Siv3DEngine::isActive())
 		{
 			FreestandingMessageBox::ShowError(U"`VertexShader` must be initialized after engine-setup. Please fix the C++ code.");
-			std::exit(-1);
+			std::abort();
 		}
 	}
 

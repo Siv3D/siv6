@@ -21,14 +21,7 @@ namespace s3d
 	{
 		static void ShowFreestandingMessageBox(const StringView text, const uint32 type)
 		{
-			HWND hWnd = nullptr;
-
-			if (Siv3DEngine::isActive())
-			{
-				hWnd = static_cast<HWND>(SIV3D_ENGINE(Window)->getHandle());
-			}
-
-			::MessageBoxW(hWnd, text.toWstr().c_str(), L"Engine notification", type);
+			::MessageBoxW(nullptr, text.toWstr().c_str(), L"Engine notification", type);
 		}
 	}
 

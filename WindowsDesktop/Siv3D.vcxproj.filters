@@ -523,6 +523,18 @@
     <Filter Include="src\Siv3D\FreestandingMessageBox">
       <UniqueIdentifier>{c9cdd21c-2b10-4728-a9c4-d1b4f0a9b016}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Shader">
+      <UniqueIdentifier>{3f7ff9ab-5a21-4aec-b15b-29302183dd2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4">
+      <UniqueIdentifier>{b3805f8f-9fd9-47b8-9b26-833add67506a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\PixelShader">
+      <UniqueIdentifier>{8dac028b-a489-4ba0-9748-14c89cf21973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\VertexShader">
+      <UniqueIdentifier>{266aa901-a65a-4c35-a338-a8393b4e51e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -2463,6 +2475,15 @@
     <ClInclude Include="..\Siv3D\src\Siv3D\FreestandingMessageBox\FreestandingMessageBox.hpp">
       <Filter>src\Siv3D\FreestandingMessageBox</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\PixelShader\GL4PixelShader.hpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\PixelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\VertexShader\GL4VertexShader.hpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\VertexShader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\CShader_GL4.hpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -3334,6 +3355,15 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\WindowsDesktop\Siv3D\FreestandingMessageBox\FreestandingMessageBox_Windows.cpp">
       <Filter>src\Siv3D-Platform\WindowsDesktop\Siv3D\FreestandingMessageBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\PixelShader\GL4PixelShader.cpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\PixelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\VertexShader\GL4VertexShader.cpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\VertexShader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\CShader_GL4.cpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
