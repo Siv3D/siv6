@@ -25,84 +25,6 @@
 
 namespace s3d
 {
-	namespace detail
-	{
-		static GLuint LoadShaders(const FilePath& vsFilePath, const FilePath& psFilePath)
-		{
-			const std::string vsSource = TextReader(vsFilePath).readAll().toUTF8();
-			const std::string psSource = TextReader(psFilePath).readAll().toUTF8();
-
-			if (vsSource.empty() || psSource.empty())
-			{
-				return 0;
-			}
-
-			GLuint vertexShader = ::glCreateShader(GL_VERTEX_SHADER);
-			{
-				const char* vsSourcePtr = vsSource.c_str();
-
-				::glShaderSource(vertexShader, 1, &vsSourcePtr, nullptr);
-				::glCompileShader(vertexShader);
-
-				GLint status = GL_FALSE, infoLogLength = 0;
-				::glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);
-				::glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &infoLogLength);
-
-				if (infoLogLength > 0)
-				{
-					std::string logText(infoLogLength + 1, '\0');
-					::glGetShaderInfoLog(vertexShader, infoLogLength, nullptr, logText.data());
-					LOG_FAIL(U"VS: {0}"_fmt(Unicode::Widen(logText)));
-				}
-			}
-
-			GLuint pixelShader = ::glCreateShader(GL_FRAGMENT_SHADER);
-			{
-				const char* psSourcePtr = psSource.c_str();
-
-				::glShaderSource(pixelShader, 1, &psSourcePtr, nullptr);
-				::glCompileShader(pixelShader);
-
-				GLint status = GL_FALSE, infoLogLength = 0;
-				::glGetShaderiv(pixelShader, GL_COMPILE_STATUS, &status);
-				::glGetShaderiv(pixelShader, GL_INFO_LOG_LENGTH, &infoLogLength);
-
-				if (infoLogLength > 0)
-				{
-					std::string logText(infoLogLength + 1, '\0');
-					::glGetShaderInfoLog(pixelShader, infoLogLength, nullptr, logText.data());
-					LOG_FAIL(U"PS: {0}"_fmt(Unicode::Widen(logText)));
-				}
-			}
-
-			GLuint program = ::glCreateProgram();
-			{
-				::glAttachShader(program, vertexShader);
-				::glAttachShader(program, pixelShader);
-				::glLinkProgram(program);
-
-				GLint status = GL_FALSE, infoLogLength = 0;
-				::glGetProgramiv(program, GL_LINK_STATUS, &status);
-				::glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLogLength);
-
-				if (infoLogLength > 0)
-				{
-					std::string logText(infoLogLength + 1, '\0');
-					::glGetProgramInfoLog(pixelShader, infoLogLength, nullptr, logText.data());
-					LOG_FAIL(U"LINK: {0}"_fmt(Unicode::Widen(logText)));
-				}
-			}
-
-			::glDetachShader(program, vertexShader);
-			::glDetachShader(program, pixelShader);
-
-			::glDeleteShader(vertexShader);
-			::glDeleteShader(pixelShader);
-
-			return program;
-		}
-	}
-
 	CRenderer2D_GL4::CRenderer2D_GL4() = default;
 
 	CRenderer2D_GL4::~CRenderer2D_GL4()
@@ -126,13 +48,6 @@ namespace s3d
 			::glDeleteVertexArrays(1, &m_vertexArray);
 			m_vertexArray = 0;
 		}
-
-		if (m_copyProgram)
-		{
-			::glDeleteProgram(m_copyProgram);
-			m_copyProgram = 0;
-		}
-
 
 
 		if (m_uniformBuffer)
@@ -181,12 +96,24 @@ namespace s3d
 
 		// full screen triangle
 		{
-			m_copyProgram = detail::LoadShaders(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), Resource(U"engine/shader/glsl/fullscreen_triangle.frag"));
-			if (!m_copyProgram)
+			m_fstVertexShaders << VertexShader(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), {});
+			if (!m_fstVertexShaders.front())
 			{
 				throw EngineError();
 			}
-			m_locationTexture = ::glGetUniformLocation(m_copyProgram, "Texture0");
+			
+			m_fstPixelShaders << PixelShader(Resource(U"engine/shader/glsl/fullscreen_triangle.frag"), {});
+			if (!m_fstPixelShaders.front())
+			{
+				throw EngineError();
+			}
+
+			//m_copyProgram = detail::LoadShaders(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), Resource(U"engine/shader/glsl/fullscreen_triangle.frag"));
+			//if (!m_copyProgram)
+			//{
+			//	throw EngineError();
+			//}
+			//m_locationTexture = ::glGetUniformLocation(m_copyProgram, "Texture0");
 
 			::glGenVertexArrays(1, &m_vertexArray);
 			::glBindVertexArray(m_vertexArray);
@@ -310,10 +237,13 @@ namespace s3d
 			::glSamplerParameteri(m_sampler, GL_TEXTURE_MAG_FILTER, linearFilter ? GL_LINEAR : GL_NEAREST);
 		}
 
-		::glUseProgram(m_copyProgram);
+		::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, pShader->getVSProgram(m_fstVertexShaders.front().id()));
+		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, pShader->getPSProgram(m_fstPixelShaders.front().id()));
+		::glUseProgram(0);
+		::glBindProgramPipeline(m_pipeline);
 		{
-			::glUniform1i(m_locationTexture, 0);
-			
+			pShader->setPSSamplerUniform(m_fstPixelShaders.front().id());
+
 			::glBindVertexArray(m_vertexArray);
 			{
 				::glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -321,7 +251,6 @@ namespace s3d
 			}
 			::glBindVertexArray(0);
 		}
-		::glUseProgram(0);
 
 		CheckOpenGLError();
 	}

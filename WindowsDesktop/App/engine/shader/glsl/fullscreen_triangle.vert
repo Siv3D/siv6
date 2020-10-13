@@ -4,7 +4,11 @@
 // VSOutput
 //
 layout(location = 0) out vec2 UV;
-				
+out gl_PerVertex
+{
+	vec4 gl_Position;
+};
+
 void main()
 {
 	float x = -1.0 + float((gl_VertexID & 1) << 2);

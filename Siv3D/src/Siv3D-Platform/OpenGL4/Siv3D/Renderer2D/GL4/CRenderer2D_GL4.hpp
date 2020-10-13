@@ -53,10 +53,10 @@ namespace s3d
 		//
 		//////////////////////////////////////////////////
 
-		GLuint m_copyProgram		= 0;
+		Array<VertexShader> m_fstVertexShaders;
+		Array<PixelShader> m_fstPixelShaders;
 		GLuint m_vertexArray		= 0;
 		GLuint m_sampler			= 0;
-		GLuint m_locationTexture	= 0;
 
 	public:
 
