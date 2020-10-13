@@ -41,6 +41,7 @@ add_library(Siv3D STATIC
 
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Siv3DMain.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Common/OpenGL.cpp
+  ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/ConstantBuffer/ConstantBufferDetailFactory.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/Cursor/CCursor.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/FileSystem/SivFileSystem_Linux.cpp
   ../Siv3D/src/Siv3D-Platform/Linux/Siv3D/FreestandingMessageBox/FreestandingMessageBox_Linux.cpp
@@ -69,6 +70,7 @@ add_library(Siv3D STATIC
 
   ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/Renderer/GL4/BackBuffer/GL4BackBuffer.cpp
   ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/Renderer/GL4/BackBuffer/GL4InternalTexture2D.cpp
+  ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/ConstantBuffer/GL4/ConstantBufferDetail_GL4.cpp
   ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/Renderer2D/GL4/CRenderer2D_GL4.cpp
   ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/Renderer2D/GL4/GL4Vertex2DBatch.cpp
   ../Siv3D/src/Siv3D-Platform/OpenGL4/Siv3D/Shader/GL4/CShader_GL4.cpp

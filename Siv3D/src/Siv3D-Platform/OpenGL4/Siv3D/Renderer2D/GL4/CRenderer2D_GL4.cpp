@@ -22,6 +22,7 @@
 # include <Siv3D/TextReader.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
+# include <Siv3D/ConstantBuffer/GL4/ConstantBufferDetail_GL4.hpp>
 
 namespace s3d
 {
@@ -47,13 +48,6 @@ namespace s3d
 		{
 			::glDeleteVertexArrays(1, &m_vertexArray);
 			m_vertexArray = 0;
-		}
-
-
-		if (m_uniformBuffer)
-		{
-			::glDeleteBuffers(1, &m_uniformBuffer);
-			m_uniformBuffer = 0;
 		}
 
 		CheckOpenGLError();
@@ -84,8 +78,6 @@ namespace s3d
 			throw EngineError(U"GL4ShaderPipeline::init() failed");
 		}
 
-		::glGenBuffers(1, &m_uniformBuffer);
-
 		// Batch 管理を初期化
 		if (!m_batches.init())
 		{
@@ -105,13 +97,6 @@ namespace s3d
 			{
 				throw EngineError();
 			}
-
-			//m_copyProgram = detail::LoadShaders(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), Resource(U"engine/shader/glsl/fullscreen_triangle.frag"));
-			//if (!m_copyProgram)
-			//{
-			//	throw EngineError();
-			//}
-			//m_locationTexture = ::glGetUniformLocation(m_copyProgram, "Texture0");
 
 			::glGenVertexArrays(1, &m_vertexArray);
 			::glBindVertexArray(m_vertexArray);
@@ -148,24 +133,18 @@ namespace s3d
 		Mat3x2 transform = Mat3x2::Identity();
 		Mat3x2 screenMat = Mat3x2::Screen(currentRenderTargetSize);
 		const Mat3x2 matrix = (transform * screenMat);
-		
-		Float4 cb[3];
-		cb[0] = Float4(matrix._11, -matrix._12, matrix._31, -matrix._32);
-		cb[1] = Float4(matrix._21, -matrix._22, 0.0f, 1.0f);
-		cb[2] = Float4(1, 1, 1, 1);
 
-		{
-			::glBindBuffer(GL_UNIFORM_BUFFER, m_uniformBuffer);
-			::glBufferData(GL_UNIFORM_BUFFER, sizeof(Float4) * 3, cb, GL_STATIC_DRAW);
-			::glBindBuffer(GL_UNIFORM_BUFFER, 0);
-		}
+		m_vsConstants2D->transform[0] = Float4(matrix._11, -matrix._12, matrix._31, -matrix._32);
+		m_vsConstants2D->transform[1] = Float4(matrix._21, -matrix._22, 0.0f, 1.0f);
+		m_vsConstants2D->colorMul = Float4(1, 1, 1, 1);
 
 		{
 			constexpr uint32 vsUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Vertex, 0);
-			::glBindBufferBase(GL_UNIFORM_BUFFER, vsUniformBlockBinding, m_uniformBuffer);
+			::glBindBufferBase(GL_UNIFORM_BUFFER, vsUniformBlockBinding, dynamic_cast<const ConstantBufferDetail_GL4*>(m_vsConstants2D.base()._detail())->getHandle());
 		}
 
 		auto batchInfo = m_batches.updateBuffers(0);
+		m_vsConstants2D._update_if_dirty();
 
 		const uint32 indexCount = m_draw_indexCount;
 		const uint32 startIndexLocation = batchInfo.startIndexLocation;

@@ -23,12 +23,12 @@ namespace s3d
 {
 	class GL4Renderer2DCommand {};
 
-	//struct GL4VSConstants2D
-	//{
-	//	Float4 transform[2];
+	struct GL4VSConstants2D
+	{
+		Float4 transform[2];
 
-	//	Float4 colorMul;
-	//};
+		Float4 colorMul;
+	};
 
 	class GL4ShaderPipeline
 	{
@@ -83,8 +83,7 @@ namespace s3d
 		Array<VertexShader> m_vertexShaders;
 		Array<PixelShader> m_pixelShaders;
 		GL4ShaderPipeline m_pipeline;
-		GLuint m_uniformBuffer	= 0;
-		//ConstantBuffer<GL4VSConstants2D> m_vsConstants2D;
+		ConstantBuffer<GL4VSConstants2D> m_vsConstants2D;
 
 		GL4Vertex2DBatch m_batches;
 		GL4Renderer2DCommand m_command;

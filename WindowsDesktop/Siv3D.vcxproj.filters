@@ -535,6 +535,12 @@
     <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\VertexShader">
       <UniqueIdentifier>{266aa901-a65a-4c35-a338-a8393b4e51e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\ConstantBuffer">
+      <UniqueIdentifier>{aeaeaf6a-381e-467b-ad8e-a1d0dafce6fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siv3D-Platform\OpenGL4\Siv3D\ConstantBuffer\GL4">
+      <UniqueIdentifier>{f15a160b-257e-4fae-8ee9-2c218a0cbe54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Siv3D\include\Siv3D.hpp">
@@ -2484,6 +2490,9 @@
     <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\CShader_GL4.hpp">
       <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4</Filter>
     </ClInclude>
+    <ClInclude Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\ConstantBuffer\GL4\ConstantBufferDetail_GL4.hpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\ConstantBuffer\GL4</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Siv3D\src\Siv3D\Common\Siv3DEngine.cpp">
@@ -3364,6 +3373,9 @@
     </ClCompile>
     <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4\CShader_GL4.cpp">
       <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\Shader\GL4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Siv3D\src\Siv3D-Platform\OpenGL4\Siv3D\ConstantBuffer\GL4\ConstantBufferDetail_GL4.cpp">
+      <Filter>src\Siv3D-Platform\OpenGL4\Siv3D\ConstantBuffer\GL4</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
