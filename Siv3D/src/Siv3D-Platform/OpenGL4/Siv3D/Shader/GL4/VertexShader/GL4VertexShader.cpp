@@ -29,7 +29,7 @@ namespace s3d
 		}
 	}
 
-	GL4VertexShader::GL4VertexShader(const String& source)
+	GL4VertexShader::GL4VertexShader(const String& source, const Array<ConstantBufferBinding>& bindings)
 	{
 		// 頂点シェーダプログラムを作成
 		{
@@ -57,6 +57,8 @@ namespace s3d
 			::glDeleteProgram(m_vsProgram);
 			m_vsProgram = 0;
 		}
+
+		setUniformBlockBindings(bindings);
 
 		m_initialized = (m_vsProgram != 0);
 	}

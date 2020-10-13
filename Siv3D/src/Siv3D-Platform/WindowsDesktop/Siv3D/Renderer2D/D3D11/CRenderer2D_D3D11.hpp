@@ -45,14 +45,14 @@ namespace s3d
 		}
 	};
 
-	struct VSConstants2D
+	struct D3D11VSConstants2D
 	{
 		Float4 transform[2];
 
 		Float4 colorMul = Float4(1, 1, 1, 1);
 	};
 
-	struct PSConstants2D
+	struct D3D11PSConstants2D
 	{
 		Float4 colorAdd = Float4(0, 0, 0, 0);
 
@@ -77,9 +77,9 @@ namespace s3d
 
 		std::unique_ptr<D3D11StandardPS2D> m_standardPS;
 
-		ConstantBuffer<VSConstants2D> m_vsConstants2D;
+		ConstantBuffer<D3D11VSConstants2D> m_vsConstants2D;
 		
-		ConstantBuffer<PSConstants2D> m_psConstants2D;
+		ConstantBuffer<D3D11PSConstants2D> m_psConstants2D;
 
 		ComPtr<ID3D11InputLayout> m_inputLayout;
 

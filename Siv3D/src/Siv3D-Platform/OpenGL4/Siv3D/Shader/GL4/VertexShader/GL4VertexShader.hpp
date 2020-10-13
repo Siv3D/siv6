@@ -27,6 +27,10 @@ namespace s3d
 
 		bool m_initialized = false;
 
+		void setUniformBlockBinding(const StringView name, GLuint index);
+
+		void setUniformBlockBindings(const Array<ConstantBufferBinding>& bindings);
+
 	public:
 
 		struct Null {};
@@ -35,7 +39,7 @@ namespace s3d
 
 		explicit GL4VertexShader(Null);
 
-		explicit GL4VertexShader(const String& source);
+		explicit GL4VertexShader(const String& source, const Array<ConstantBufferBinding>& bindings);
 
 		~GL4VertexShader();
 
@@ -44,9 +48,5 @@ namespace s3d
 		const Blob& getBinary() const noexcept;
 
 		GLint getProgram() const;
-
-		void setUniformBlockBinding(const StringView name, GLuint index);
-
-		void setUniformBlockBindings(const Array<ConstantBufferBinding>& bindings);
 	};
 }

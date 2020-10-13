@@ -60,13 +60,13 @@ namespace s3d
 		pRenderer = dynamic_cast<CRenderer_GL4*>(SIV3D_ENGINE(Renderer));
 		pShader = dynamic_cast<CShader_GL4*>(SIV3D_ENGINE(Shader));
 
-		m_vertexShaders << VertexShader((Resource(U"engine/shader/glsl/sprite.vert")), {});
+		m_vertexShaders << VertexShader((Resource(U"engine/shader/glsl/sprite.vert")), { { U"VSConstants2D", 0 } });
 		if (!m_vertexShaders.front())
 		{
 			throw EngineError();
 		}
 
-		m_pixelShaders << PixelShader(Resource(U"engine/shader/glsl/shape.frag"), {});
+		m_pixelShaders << PixelShader(Resource(U"engine/shader/glsl/shape.frag"), { { U"PSConstants2D", 0 } });
 		if (!m_pixelShaders.front())
 		{
 			throw EngineError();
@@ -141,10 +141,14 @@ namespace s3d
 		{
 			constexpr uint32 vsUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Vertex, 0);
 			::glBindBufferBase(GL_UNIFORM_BUFFER, vsUniformBlockBinding, dynamic_cast<const ConstantBufferDetail_GL4*>(m_vsConstants2D.base()._detail())->getHandle());
+
+			constexpr uint32 psUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Pixel, 0);
+			::glBindBufferBase(GL_UNIFORM_BUFFER, psUniformBlockBinding, dynamic_cast<const ConstantBufferDetail_GL4*>(m_psConstants2D.base()._detail())->getHandle());
 		}
 
 		auto batchInfo = m_batches.updateBuffers(0);
 		m_vsConstants2D._update_if_dirty();
+		m_psConstants2D._update_if_dirty();
 
 		const uint32 indexCount = m_draw_indexCount;
 		const uint32 startIndexLocation = batchInfo.startIndexLocation;

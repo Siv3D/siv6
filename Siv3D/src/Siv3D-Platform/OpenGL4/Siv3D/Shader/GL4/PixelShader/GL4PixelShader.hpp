@@ -29,6 +29,10 @@ namespace s3d
 
 		bool m_initialized = false;
 
+		void setUniformBlockBinding(const String& name, GLuint index);
+
+		void setUniformBlockBindings(const Array<ConstantBufferBinding>& bindings);
+
 	public:
 
 		struct Null {};
@@ -37,7 +41,7 @@ namespace s3d
 
 		explicit GL4PixelShader(Null);
 
-		explicit GL4PixelShader(const String& source);
+		explicit GL4PixelShader(const String& source, const Array<ConstantBufferBinding>& bindings);
 
 		~GL4PixelShader();
 
@@ -48,9 +52,5 @@ namespace s3d
 		GLint getProgram() const;
 
 		void setPSSamplerUniform();
-
-		void setUniformBlockBinding(const String& name, GLuint index);
-
-		void setUniformBlockBindings(const Array<ConstantBufferBinding>& bindings);
 	};
 }

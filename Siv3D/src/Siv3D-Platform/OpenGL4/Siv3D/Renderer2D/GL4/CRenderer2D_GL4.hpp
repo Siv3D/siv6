@@ -30,6 +30,15 @@ namespace s3d
 		Float4 colorMul;
 	};
 
+	struct GL4PSConstants2D
+	{
+		Float4 colorAdd = Float4(0, 0, 0, 0);
+
+		Float4 sdfParam = Float4(0, 0, 0, 0);
+
+		Float4 internalParam = Float4(0, 0, 0, 0);
+	};
+
 	class GL4ShaderPipeline
 	{
 	private:
@@ -84,6 +93,7 @@ namespace s3d
 		Array<PixelShader> m_pixelShaders;
 		GL4ShaderPipeline m_pipeline;
 		ConstantBuffer<GL4VSConstants2D> m_vsConstants2D;
+		ConstantBuffer<GL4PSConstants2D> m_psConstants2D;
 
 		GL4Vertex2DBatch m_batches;
 		GL4Renderer2DCommand m_command;

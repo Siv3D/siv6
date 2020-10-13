@@ -30,7 +30,7 @@ namespace s3d
 		}
 	}
 
-	GL4PixelShader::GL4PixelShader(const String& source)
+	GL4PixelShader::GL4PixelShader(const String& source, const Array<ConstantBufferBinding>& bindings)
 	{
 		// ピクセルシェーダプログラムを作成
 		{
@@ -74,6 +74,8 @@ namespace s3d
 				}
 			}
 		}
+
+		setUniformBlockBindings(bindings);
 
 		m_initialized = (m_psProgram != 0);
 	}

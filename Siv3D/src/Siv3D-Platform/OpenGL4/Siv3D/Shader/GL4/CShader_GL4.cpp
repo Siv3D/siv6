@@ -83,7 +83,7 @@ namespace s3d
 	VertexShader::IDType CShader_GL4::createVSFromSource(const String& source, const Array<ConstantBufferBinding>& bindings)
 	{
 		// VS を作成
-		auto vertexShader = std::make_unique<GL4VertexShader>(source);
+		auto vertexShader = std::make_unique<GL4VertexShader>(source, bindings);
 
 		if (!vertexShader->isInitialized()) // もし作成に失敗していたら
 		{
@@ -115,7 +115,7 @@ namespace s3d
 	PixelShader::IDType CShader_GL4::createPSFromSource(const String& source, const Array<ConstantBufferBinding>& bindings)
 	{
 		// PS を作成
-		auto pixelShader = std::make_unique<GL4PixelShader>(source);
+		auto pixelShader = std::make_unique<GL4PixelShader>(source, bindings);
 
 		if (!pixelShader->isInitialized()) // もし作成に失敗していたら
 		{
