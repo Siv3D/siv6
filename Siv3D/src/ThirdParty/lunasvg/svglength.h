@@ -40,8 +40,9 @@ const SVGLength* hundredPercent();
 const SVGLength* fiftyPercent();
 const SVGLength* minusTenPercent();
 const SVGLength* oneTwentyPercent();
+const SVGLength* threePixels();
 
-class SVGLength : public SVGProperty
+class SVGLength : public SVGPropertyBase
 {
 public:
     SVGLength();
@@ -61,13 +62,24 @@ public:
     static bool parseLength(const char*& ptr, double& value, LengthUnit& unit);
     void setValueAsString(const std::string& value);
     std::string valueAsString() const;
-    SVGProperty* clone() const;
-    static PropertyType classType() { return PropertyTypeLength; }
+    SVGPropertyBase* clone() const;
 
 private:
     double m_value;
     LengthUnit m_unit;
 };
+
+class SVGLengthList : public SVGListProperty<SVGLength>
+{
+public:
+    SVGLengthList();
+
+    std::vector<double> values(const RenderState& state, LengthMode mode = LengthModeBoth) const;
+    void setValueAsString(const std::string& value);
+    SVGPropertyBase* clone() const;
+};
+
+typedef DOMSVGProperty<SVGLengthList> DOMSVGLengthList;
 
 class DOMSVGLength : public DOMSVGProperty<SVGLength>
 {

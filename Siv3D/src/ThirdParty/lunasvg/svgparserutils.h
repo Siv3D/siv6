@@ -13,24 +13,21 @@ namespace lunasvg {
 
 #define IS_ALPHA(c) (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
 #define IS_NUM(c) (c >= '0' && c <= '9')
-#define IS_WS(c) (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f')
+#define IS_WS(c) (c == ' ' || c == '\t' || c == '\n' || c == '\r')
 
 namespace Utils {
 
 inline const char* rtrim(const char* start, const char* end)
 {
-    if(start != end)
-    {
-        while((end-1)!=start && IS_WS(*(end-1)))
-            --end;
-    }
+    while(end > start && IS_WS(end[-1]))
+        --end;
 
     return end;
 }
 
 inline const char* ltrim(const char* start, const char* end)
 {
-    while(start!=end && IS_WS(*start))
+    while(start < end && IS_WS(*start))
         ++start;
 
     return start;
@@ -41,22 +38,15 @@ inline std::pair<const char*, const char*> trim(const char* start, const char* e
     return std::make_pair(ltrim(start, end), rtrim(start, end));
 }
 
-inline bool skipDesc(const char*& ptr, const char* str, size_t n)
+inline bool skipDesc(const char*& ptr, const char* str, int length)
 {
-    const char* start = ptr;
-    while(n && *ptr && *str && *ptr==*str)
+    for(int i = 0;i < length;i++)
     {
-        ++ptr;
-        ++str;
-        --n;
+        if(ptr[i] != str[i])
+            return false;
     }
 
-    if(n != 0)
-    {
-        ptr = start;
-        return false;
-    }
-
+    ptr += length;
     return true;
 }
 
@@ -118,14 +108,15 @@ inline bool parseInteger(const char*& ptr, T& integer, int base = 10)
 
     static const T intMax = std::numeric_limits<T>::max();
     static const bool isSigned = std::numeric_limits<T>::is_signed;
+    using signed_t = typename std::make_signed<T>::type;
     const T maxMultiplier = intMax / static_cast<T>(base);
 
-    if(*ptr && isSigned && *ptr == '-')
+    if(isSigned && *ptr == '-')
     {
         ++ptr;
         isNegative = true;
     }
-    else if(*ptr && *ptr == '+')
+    else if(*ptr == '+')
         ++ptr;
 
     if(!*ptr || !isIntegralDigit(*ptr, base))
@@ -148,7 +139,7 @@ inline bool parseInteger(const char*& ptr, T& integer, int base = 10)
     }
 
     if(isNegative)
-        integer = -static_cast<typename std::make_signed<T>::type>(value);
+        integer = -static_cast<signed_t>(value);
     else
         integer = value;
 
@@ -168,9 +159,9 @@ inline bool parseNumber(const char*& ptr, T& number)
     sign = 1;
     expsign = 1;
 
-    if(*ptr && *ptr == '+')
+    if(*ptr == '+')
         ++ptr;
-    else if(*ptr && *ptr == '-')
+    else if(*ptr == '-')
     {
         ++ptr;
         sign = -1;
@@ -185,7 +176,7 @@ inline bool parseNumber(const char*& ptr, T& number)
             integer = static_cast<T>(10) * integer + (*ptr++ - '0');
     }
 
-    if(*ptr && *ptr == '.')
+    if(*ptr == '.')
     {
         ++ptr;
         if(!*ptr || !IS_NUM(*ptr))

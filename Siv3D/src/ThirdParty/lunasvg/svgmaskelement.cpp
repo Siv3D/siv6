@@ -1,17 +1,16 @@
 #include "svgmaskelement.h"
-#include "svgelementtail.h"
 #include "rendercontext.h"
 
 namespace lunasvg {
 
-SVGMaskElement::SVGMaskElement(SVGDocument* document) :
-    SVGStyledElement(ElementIdMask, document),
-    m_x(DOMPropertyIdX, LengthModeWidth, AllowNegativeLengths),
-    m_y(DOMPropertyIdY, LengthModeHeight, AllowNegativeLengths),
-    m_width(DOMPropertyIdWidth, LengthModeWidth, ForbidNegativeLengths),
-    m_height(DOMPropertyIdHeight, LengthModeHeight, ForbidNegativeLengths),
-    m_maskUnits(DOMPropertyIdMaskUnits),
-    m_maskContentUnits(DOMPropertyIdMaskContentUnits)
+SVGMaskElement::SVGMaskElement(SVGDocument* document)
+    : SVGStyledElement(DOMElementIdMask, document),
+      m_x(DOMPropertyIdX, LengthModeWidth, AllowNegativeLengths),
+      m_y(DOMPropertyIdY, LengthModeHeight, AllowNegativeLengths),
+      m_width(DOMPropertyIdWidth, LengthModeWidth, ForbidNegativeLengths),
+      m_height(DOMPropertyIdHeight, LengthModeHeight, ForbidNegativeLengths),
+      m_maskUnits(DOMPropertyIdMaskUnits),
+      m_maskContentUnits(DOMPropertyIdMaskContentUnits)
 {
     m_x.setDefaultValue(minusTenPercent());
     m_y.setDefaultValue(minusTenPercent());
@@ -56,7 +55,7 @@ void SVGMaskElement::applyMask(RenderState& state) const
 
 void SVGMaskElement::render(RenderContext& context) const
 {
-    if(context.state().element->elementId() != ElementIdMask)
+    if(context.state().element->elementId() != DOMElementIdMask)
     {
         context.skipElement();
         return;

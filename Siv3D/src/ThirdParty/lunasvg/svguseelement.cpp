@@ -1,16 +1,15 @@
 #include "svguseelement.h"
-#include "svgelementtail.h"
 #include "svgdocumentimpl.h"
 
 namespace lunasvg {
 
-SVGUseElement::SVGUseElement(SVGDocument* document) :
-    SVGGraphicsElement(ElementIdUse, document),
-    SVGURIReference(this),
-    m_x(DOMPropertyIdX, LengthModeWidth, AllowNegativeLengths),
-    m_y(DOMPropertyIdY, LengthModeHeight, AllowNegativeLengths),
-    m_width(DOMPropertyIdWidth, LengthModeWidth, ForbidNegativeLengths),
-    m_height(DOMPropertyIdHeight, LengthModeHeight, ForbidNegativeLengths)
+SVGUseElement::SVGUseElement(SVGDocument* document)
+    : SVGGraphicsElement(DOMElementIdUse, document),
+      SVGURIReference(this),
+      m_x(DOMPropertyIdX, LengthModeWidth, AllowNegativeLengths),
+      m_y(DOMPropertyIdY, LengthModeHeight, AllowNegativeLengths),
+      m_width(DOMPropertyIdWidth, LengthModeWidth, ForbidNegativeLengths),
+      m_height(DOMPropertyIdHeight, LengthModeHeight, ForbidNegativeLengths)
 {
     m_height.setDefaultValue(hundredPercent());
     m_width.setDefaultValue(hundredPercent());
@@ -30,7 +29,7 @@ void SVGUseElement::render(RenderContext& context) const
     }
 
     SVGElementImpl* ref = document()->impl()->resolveIRI(hrefValue());
-    if(!ref || (context.mode() == RenderModeClipping && !ref->isSVGGeometryElement()))
+    if(!ref || (context.mode()==RenderModeClipping && !(ref->isSVGGeometryElement() || ref->elementId()==DOMElementIdText)))
     {
         context.skipElement();
         return;
@@ -49,11 +48,10 @@ void SVGUseElement::render(RenderContext& context) const
     newState.matrix.translate(_x, _y);
     newState.style.inheritFrom(state.style);
     newState.viewPort = state.viewPort;
-    newState.bbox = Rect(0, 0, 0, 0);
     newState.color = state.color;
     newState.dpi = state.dpi;
 
-    if(ref->elementId()==ElementIdSvg || ref->elementId()==ElementIdSymbol)
+    if(ref->elementId()==DOMElementIdSvg || ref->elementId()==DOMElementIdSymbol)
     {
         double _w = m_width.value(state);
         double _h = m_height.value(state);
@@ -72,7 +70,7 @@ SVGElementImpl* SVGUseElement::clone(SVGDocument* document) const
 {
     SVGUseElement* e = new SVGUseElement(document);
     baseClone(*e);
-    return  e;
+    return e;
 }
 
 } // namespace lunasvg

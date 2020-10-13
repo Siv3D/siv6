@@ -3,7 +3,7 @@
 
 namespace lunasvg {
 
-#define K_SQRT2 1.41421356237309504880
+#define SQRT2 1.41421356237309504880
 
 const SVGLength* hundredPercent()
 {
@@ -29,17 +29,21 @@ const SVGLength* oneTwentyPercent()
     return &value;
 }
 
-SVGLength::SVGLength() :
-    SVGProperty(PropertyTypeLength),
-    m_value(0),
-    m_unit(LengthUnitNumber)
+const SVGLength* threePixels()
+{
+    static SVGLength value(3.0, LengthUnitPx);
+    return &value;
+}
+
+SVGLength::SVGLength()
+    : m_value(0),
+      m_unit(LengthUnitNumber)
 {
 }
 
-SVGLength::SVGLength(double value, LengthUnit unit) :
-    SVGProperty(PropertyTypeLength),
-    m_value(value),
-    m_unit(unit)
+SVGLength::SVGLength(double value, LengthUnit unit)
+    : m_value(value),
+      m_unit(unit)
 {
 }
 
@@ -77,9 +81,7 @@ double SVGLength::value(double dpi) const
 double SVGLength::value(const RenderState& state, double max) const
 {
     if(m_unit == LengthUnitPercent)
-    {
         return m_value * max / 100.0;
-    }
 
     return value(state.dpi);
 }
@@ -90,7 +92,7 @@ double SVGLength::value(const RenderState& state, LengthMode mode) const
     {
         double w = state.viewPort.width;
         double h = state.viewPort.height;
-        double max = (mode == LengthModeWidth) ? w : (mode == LengthModeHeight) ? h : std::sqrt(w*w+h*h) / K_SQRT2;
+        double max = (mode == LengthModeWidth) ? w : (mode == LengthModeHeight) ? h : std::sqrt(w*w+h*h) / SQRT2;
         return m_value * max / 100.0;
     }
 
@@ -217,10 +219,10 @@ std::string SVGLength::valueAsString() const
         break;
     }
 
-    return  out;
+    return out;
 }
 
-SVGProperty* SVGLength::clone() const
+SVGPropertyBase* SVGLength::clone() const
 {
     SVGLength* property = new SVGLength();
     property->m_value = m_value;
@@ -229,11 +231,51 @@ SVGProperty* SVGLength::clone() const
     return property;
 }
 
-DOMSVGLength::DOMSVGLength(DOMPropertyID propertyId, LengthMode mode, LengthNegativeValuesMode negativeValuesMode) :
-    DOMSVGProperty<SVGLength>(propertyId),
-    m_mode(mode),
-    m_negativeValuesMode(negativeValuesMode),
-    m_defaultValue(nullptr)
+SVGLengthList::SVGLengthList()
+{
+}
+
+std::vector<double> SVGLengthList::values(const RenderState& state, LengthMode mode) const
+{
+    std::vector<double> v(length());
+    for(unsigned int i = 0;i < length();i++)
+        v[i] = at(i)->value(state, mode);
+    return v;
+}
+
+void SVGLengthList::setValueAsString(const std::string& value)
+{
+    clear();
+    if(value.empty())
+        return;
+
+    const char* ptr = value.c_str();
+    Utils::skipWs(ptr);
+    double number;
+    LengthUnit unit;
+    while(*ptr)
+    {
+        if(!SVGLength::parseLength(ptr, number, unit))
+            return;
+        SVGLength* item = new SVGLength(number, unit);
+        appendItem(item);
+        Utils::skipWsComma(ptr);
+    }
+}
+
+SVGPropertyBase* SVGLengthList::clone() const
+{
+    SVGLengthList* property = new SVGLengthList();
+    baseClone(property);
+
+    return property;
+}
+
+DOMSVGLength::DOMSVGLength(DOMPropertyID propertyId, LengthMode mode, LengthNegativeValuesMode negativeValuesMode)
+    : DOMSVGProperty<SVGLength>(propertyId),
+      m_mode(mode),
+      m_negativeValuesMode(negativeValuesMode),
+      m_defaultValue(nullptr)
 {
 }
 
@@ -241,7 +283,7 @@ void DOMSVGLength::setPropertyAsString(const std::string& value)
 {
     DOMSVGProperty::setPropertyAsString(value);
 
-    if(negativeValuesMode()==ForbidNegativeLengths && property()->value()<0)
+    if(m_negativeValuesMode==ForbidNegativeLengths && property()->value()<0)
     {
         property()->setValue(0);
         property()->setUnit(LengthUnitNumber);

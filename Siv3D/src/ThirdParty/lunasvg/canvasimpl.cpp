@@ -2,9 +2,6 @@
 #include "pathiterator.h"
 #include "affinetransform.h"
 #include "paint.h"
-#include "gradient.h"
-#include "pattern.h"
-#include "rgb.h"
 #include "strokedata.h"
 
 #include <agg/agg_scanline_u.h>
@@ -195,45 +192,59 @@ void CanvasImpl::draw(const Path& path, const AffineTransform& matrix, WindRule 
 
 void CanvasImpl::updateLuminance()
 {
-    std::uint8_t* ptr = data();
-    std::uint8_t* end = ptr + height() * stride();
-    while(ptr < end)
+    std::uint32_t width = this->width();
+    std::uint32_t height = this->height();
+    std::uint32_t stride = this->stride();
+    std::uint8_t* data = this->data();
+    for(std::uint32_t y = 0;y < height;y++)
     {
-        std::uint32_t b = *ptr++;
-        std::uint32_t g = *ptr++;
-        std::uint32_t r = *ptr++;
-        std::uint32_t luminosity = (2*r + 3*g + b) / 6;
-        *ptr++ = std::uint8_t(luminosity);
+        std::uint8_t* row = data + stride * y;
+        for(std::uint32_t x = 0;x < width;x++)
+        {
+            std::uint8_t b = row[0];
+            std::uint8_t g = row[1];
+            std::uint8_t r = row[2];
+
+            row[3] = (2*r + 3*g + b) / 6;
+
+            row += 4;
+        }
     }
 }
 
 void CanvasImpl::convertToRGBA()
 {
-    std::uint8_t* ptr = data();
-    std::uint8_t* end = ptr + height() * stride();
-    while(ptr < end)
+    std::uint32_t width = this->width();
+    std::uint32_t height = this->height();
+    std::uint32_t stride = this->stride();
+    std::uint8_t* data = this->data();
+    for(std::uint32_t y = 0;y < height;y++)
     {
-        std::uint8_t a = ptr[3];
-        if(a != 0)
+        std::uint8_t* row = data + stride * y;
+        for(std::uint32_t x = 0;x < width;x++)
         {
-            std::uint8_t r = ptr[2];
-            std::uint8_t g = ptr[1];
-            std::uint8_t b = ptr[0];
+            std::uint8_t a = row[3];
+            if(a != 0)
+            {
+                std::uint8_t r = row[2];
+                std::uint8_t g = row[1];
+                std::uint8_t b = row[0];
 
-            ptr[0] = (r * 255) / a;
-            ptr[1] = (g * 255) / a;
-            ptr[2] = (b * 255) / a;
-            ptr[3] = a;
-        }
-        else
-        {
-            ptr[0] = 0;
-            ptr[1] = 0;
-            ptr[2] = 0;
-            ptr[3] = 0;
-        }
+                row[0] = (r * 255) / a;
+                row[1] = (g * 255) / a;
+                row[2] = (b * 255) / a;
+                row[3] = a;
+            }
+            else
+            {
+                row[0] = 0;
+                row[1] = 0;
+                row[2] = 0;
+                row[3] = 0;
+            }
 
-        ptr += 4;
+            row += 4;
+        }
     }
 }
 
@@ -313,7 +324,7 @@ template<typename source_t, typename span_generator_t>
 void CanvasImpl::render_pattern(const Pattern* pattern, const agg::trans_affine& matrix)
 {
     typedef agg::span_interpolator_linear<> span_interpolator_t;
-    typedef agg::span_allocator<typename pixel_format_t::color_type> span_allocator_t;
+    typedef agg::span_allocator<agg::rgba8> span_allocator_t;
     typedef agg::renderer_scanline_aa<renderer_base_t, span_allocator_t, span_generator_t> pattern_renderer_t;
 
     agg::trans_affine transform(to_agg_transform(pattern->matrix()));
@@ -353,7 +364,7 @@ void CanvasImpl::render_scanlines(const Paint& paint, const agg::trans_affine& m
         {
             const RadialGradient* radial = static_cast<const RadialGradient*>(g);
             agg::gradient_radial_focus gradient_function(KGradientScale, KGradientScale*(radial->fx() - radial->cx())/ radial->r(), KGradientScale*(radial->fy() - radial->cy())/ radial->r());
-            render_gradient(gradient_function, radial, paint.opacity(), matrix);
+            render_gradient(gradient_function, g, paint.opacity(), matrix);
         }
     }
     else if(paint.type() == PaintTypePattern)

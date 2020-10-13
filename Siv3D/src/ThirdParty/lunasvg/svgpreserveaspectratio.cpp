@@ -4,10 +4,9 @@
 
 namespace lunasvg {
 
-SVGPreserveAspectRatio::SVGPreserveAspectRatio() :
-    SVGProperty(PropertyTypePreserveAspectRatio),
-    m_align(xMidYMid),
-    m_scale(Meet)
+SVGPreserveAspectRatio::SVGPreserveAspectRatio()
+    : m_align(xMidYMid),
+      m_scale(Meet)
 {
 }
 
@@ -173,10 +172,10 @@ std::string SVGPreserveAspectRatio::valueAsString() const
             out += "slice";
     }
 
-    return  out;
+    return out;
 }
 
-SVGProperty* SVGPreserveAspectRatio::clone() const
+SVGPropertyBase* SVGPreserveAspectRatio::clone() const
 {
     SVGPreserveAspectRatio* property = new SVGPreserveAspectRatio();
     property->m_align = m_align;

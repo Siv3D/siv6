@@ -2,9 +2,8 @@
 
 namespace lunasvg {
 
-SVGRect::SVGRect() :
-    SVGProperty(PropertyTypeRect),
-    m_valid(true)
+SVGRect::SVGRect()
+    : m_valid(true)
 {
 }
 
@@ -50,7 +49,7 @@ std::string SVGRect::valueAsString() const
     return out;
 }
 
-SVGProperty* SVGRect::clone() const
+SVGPropertyBase* SVGRect::clone() const
 {
     SVGRect* property = new SVGRect();
     property->m_value = m_value;
@@ -59,8 +58,8 @@ SVGProperty* SVGRect::clone() const
     return property;
 }
 
-DOMSVGViewBoxRect::DOMSVGViewBoxRect(DOMPropertyID propertyId) :
-    DOMSVGRect(propertyId)
+DOMSVGViewBoxRect::DOMSVGViewBoxRect(DOMPropertyID propertyId)
+    : DOMSVGRect(propertyId)
 {
 }
 

@@ -1,5 +1,5 @@
-#ifndef DOMSVGSTYLE_H
-#define DOMSVGSTYLE_H
+#ifndef CSSPROPERTY_H
+#define CSSPROPERTY_H
 
 #include "svgproperty.h"
 
@@ -14,35 +14,33 @@ class CSSPropertyBase
 public:
     static CSSPropertyBase* create(CSSPropertyID propertyId);
     virtual ~CSSPropertyBase();
-    virtual SVGProperty* ensureProperty() = 0;
-    virtual SVGProperty* property() const = 0;
+    virtual SVGPropertyBase* ensureProperty() = 0;
+    virtual SVGPropertyBase* property() const = 0;
     virtual void setInherited() = 0;
     virtual bool isInherited() const = 0;
     virtual void setPropertyAsString(const std::string& value) = 0;
     virtual std::string propertyAsString() const = 0;
     virtual CSSPropertyBase* clone() const = 0;
     CSSPropertyID propertyId() const { return m_propertyId; }
-    PropertyType propertyType() const { return m_propertyType; }
 
 protected:
-    CSSPropertyBase(CSSPropertyID propertyId, PropertyType propertyType);
+    CSSPropertyBase(CSSPropertyID propertyId);
 
 protected:
     const CSSPropertyID m_propertyId;
-    const PropertyType m_propertyType;
 };
 
 template<typename T>
 class CSSProperty : public CSSPropertyBase
 {
 public:
-    CSSProperty(CSSPropertyID propertyId) :
-        CSSPropertyBase(propertyId, T::classType()),
-        m_property(nullptr)
+    CSSProperty(CSSPropertyID propertyId)
+        : CSSPropertyBase(propertyId),
+          m_property(nullptr)
     {}
 
-    SVGProperty* ensureProperty();
-    SVGProperty* property() const { return m_property; }
+    SVGPropertyBase* ensureProperty();
+    SVGPropertyBase* property() const { return m_property; }
     bool isInherited() const { return !m_property; }
     void setInherited();
     void setPropertyAsString(const std::string& value);
@@ -55,7 +53,7 @@ private:
 };
 
 template<typename T>
-SVGProperty* CSSProperty<T>::ensureProperty()
+SVGPropertyBase* CSSProperty<T>::ensureProperty()
 {
     if(!m_property)
         m_property = new T();
@@ -102,7 +100,7 @@ CSSProperty<T>::~CSSProperty()
     delete m_property;
 }
 
-class CSSPropertyList : public SVGProperty
+class CSSPropertyList : public SVGPropertyBase
 {
 public:
     ~CSSPropertyList();
@@ -115,8 +113,7 @@ public:
 
     void setValueAsString(const std::string& value);
     std::string valueAsString() const;
-    SVGProperty* clone() const;
-    static PropertyType classType() { return PropertyTypeCSSPropertyList; }
+    SVGPropertyBase* clone() const;
 
 private:
     std::array<CSSPropertyBase*, MAX_STYLE> m_values;
@@ -138,4 +135,4 @@ public:
 
 } // namespace lunasvg
 
-#endif // DOMSVGSTYLE_H
+#endif // CSSPROPERTY_H

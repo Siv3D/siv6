@@ -2,10 +2,8 @@
 #define RENDERCONTEXT_H
 
 #include "cssproperty.h"
-#include "canvas.h"
-#include "affinetransform.h"
+#include "paint.h"
 #include "rect.h"
-#include "rgb.h"
 
 #include <stack>
 #include <set>
@@ -15,7 +13,11 @@ namespace lunasvg {
 class RenderState;
 class Paint;
 class StrokeData;
+class SVGDocument;
 class SVGElementImpl;
+class SVGMarkerElement;
+class SVGMaskElement;
+class SVGClipPathElement;
 
 class RenderStyle
 {
@@ -32,30 +34,33 @@ public:
     bool isDisplayNone() const;
     bool isHidden() const;
 
-    const SVGProperty* get(CSSPropertyID nameId) const { return m_properties[nameId]; }
+    const SVGPropertyBase* get(CSSPropertyID nameId) const { return m_properties[nameId]; }
     bool isSet(CSSPropertyID nameId) const { return m_properties[nameId]; }
     bool isEmpty() const { return m_properties.empty(); }
 
+    bool requiresCompositing(const SVGElementImpl* element) const;
     bool hasStroke() const;
     bool hasFill() const;
 
     StrokeData strokeData(const RenderState& state) const;
     Paint fillPaint(const RenderState& state) const;
     Paint strokePaint(const RenderState& state) const;
-    double strokeWidth(const RenderState &state) const;
+    double strokeWidth(const RenderState& state) const;
+    double fontSize(const RenderState& state) const;
     double fillOpacity() const;
     double strokeOpacity() const;
     double opacity() const;
-    const std::string& mask() const;
-    const std::string& clipPath() const;
-    const std::string& markerStart() const;
-    const std::string& markerMid() const;
-    const std::string& markerEnd() const;
     WindRule fillRule() const;
     WindRule clipRule() const;
+    TextAnchor textAnchor() const;
+    const SVGMaskElement* mask(const SVGDocument* document) const;
+    const SVGClipPathElement* clipPath(const SVGDocument* document) const;
+    const SVGMarkerElement* markerStart(const SVGDocument* document) const;
+    const SVGMarkerElement* markerMid(const SVGDocument* document) const;
+    const SVGMarkerElement* markerEnd(const SVGDocument* document) const;
 
 private:
-    std::array<const SVGProperty*, MAX_STYLE> m_properties;
+    std::array<const SVGPropertyBase*, MAX_STYLE> m_properties;
 };
 
 class RenderState
@@ -79,7 +84,7 @@ public:
     static bool hasElement(const SVGElementImpl* element);
 
 private:
-   static std::set<const SVGElementImpl*> renderBreaker;
+    static std::set<const SVGElementImpl*> renderBreaker;
 };
 
 enum RenderMode

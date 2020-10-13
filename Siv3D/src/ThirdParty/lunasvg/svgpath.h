@@ -6,7 +6,7 @@
 
 namespace lunasvg {
 
-class SVGPath : public SVGProperty
+class SVGPath : public SVGPropertyBase
 {
 public:
     SVGPath();
@@ -15,11 +15,10 @@ public:
     const Path& value() const { return  m_value; }
 
     static bool parseArcFlag(const char*& ptr, bool& flag);
-    static bool parseCoord(const char*& ptr, double& value);
+    static bool parseCoordinate(const char*& ptr, double* coords, int length);
     void setValueAsString(const std::string& value);
     std::string valueAsString() const;
-    SVGProperty* clone() const;
-    static PropertyType classType() { return PropertyTypePath; }
+    SVGPropertyBase* clone() const;
 
 private:
     Path m_value;

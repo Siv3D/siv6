@@ -1,7 +1,7 @@
 #include "cssproperty.h"
 #include "svgcolor.h"
+#include "svglength.h"
 #include "svgnumber.h"
-#include "svglengthlist.h"
 #include "svgenumeration.h"
 #include "svgstring.h"
 
@@ -11,9 +11,8 @@ CSSPropertyBase::~CSSPropertyBase()
 {
 }
 
-CSSPropertyBase::CSSPropertyBase(CSSPropertyID propertyId, PropertyType propertyType) :
-    m_propertyId(propertyId),
-    m_propertyType(propertyType)
+CSSPropertyBase::CSSPropertyBase(CSSPropertyID propertyId)
+    : m_propertyId(propertyId)
 {
 }
 
@@ -36,6 +35,7 @@ CSSPropertyBase* CSSPropertyBase::create(CSSPropertyID propertyId)
         return new CSSProperty<SVGNumberPercentage>(propertyId);
     case CSSPropertyIdStroke_Miterlimit:
         return new CSSProperty<SVGNumber>(propertyId);
+    case CSSPropertyIdFont_Size:
     case CSSPropertyIdStroke_Width:
     case CSSPropertyIdStroke_Dashoffset:
         return new CSSProperty<SVGLength>(propertyId);
@@ -50,10 +50,10 @@ CSSPropertyBase* CSSPropertyBase::create(CSSPropertyID propertyId)
         return new CSSProperty<SVGEnumeration<LineJoin>>(propertyId);
     case CSSPropertyIdDisplay:
         return new CSSProperty<SVGEnumeration<Display>>(propertyId);
+    case CSSPropertyIdText_Anchor:
+        return new CSSProperty<SVGEnumeration<TextAnchor>>(propertyId);
     case CSSPropertyIdVisibility:
         return new CSSProperty<SVGEnumeration<Visibility>>(propertyId);
-    case CSSPropertyIdOverflow:
-        return new CSSProperty<SVGEnumeration<Overflow>>(propertyId);
     case CSSPropertyIdClip_Path:
     case CSSPropertyIdMask:
     case CSSPropertyIdMarker_Start:
@@ -73,8 +73,7 @@ CSSPropertyList::~CSSPropertyList()
         delete m_values[i];
 }
 
-CSSPropertyList::CSSPropertyList() :
-    SVGProperty(PropertyTypeCSSPropertyList)
+CSSPropertyList::CSSPropertyList()
 {
     m_values.fill(nullptr);
 }
@@ -124,7 +123,7 @@ void CSSPropertyList::setValueAsString(const std::string& value)
             ++ptr;
         std::string name(start, ptr);
         Utils::skipWs(ptr);
-        if(!*ptr || *ptr!=':')
+        if(*ptr!=':')
             return;
         ++ptr;
         Utils::skipWs(ptr);
@@ -158,9 +157,9 @@ std::string CSSPropertyList::valueAsString() const
     return out;
 }
 
-SVGProperty* CSSPropertyList::clone() const
+SVGPropertyBase* CSSPropertyList::clone() const
 {
-    CSSPropertyList*  property = new CSSPropertyList;
+    CSSPropertyList* property = new CSSPropertyList;
     for(unsigned int i = 0;i < MAX_STYLE;i++)
     {
         if(m_values[i])
@@ -170,8 +169,8 @@ SVGProperty* CSSPropertyList::clone() const
     return property;
 }
 
-DOMSVGStyle::DOMSVGStyle(DOMPropertyID propertyId) :
-    DOMSVGProperty<CSSPropertyList>(propertyId)
+DOMSVGStyle::DOMSVGStyle(DOMPropertyID propertyId)
+    : DOMSVGProperty<CSSPropertyList>(propertyId)
 {
 }
 

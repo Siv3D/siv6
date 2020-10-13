@@ -5,7 +5,7 @@
 
 namespace lunasvg {
 
-class SVGNumber : public SVGProperty
+class SVGNumber : public SVGPropertyBase
 {
 public:
     SVGNumber();
@@ -15,8 +15,7 @@ public:
 
     std::string valueAsString() const;
     virtual void setValueAsString(const std::string& value);
-    virtual SVGProperty* clone() const;
-    static PropertyType classType() { return PropertyTypeNumber; }
+    virtual SVGPropertyBase* clone() const;
 
 protected:
     double m_value;
@@ -28,11 +27,22 @@ public:
     SVGNumberPercentage();
 
     void setValueAsString(const std::string& value);
-    SVGProperty* clone() const;
+    SVGPropertyBase* clone() const;
+};
+
+class SVGNumberList : public SVGListProperty<SVGNumber>
+{
+public:
+    SVGNumberList();
+
+    std::vector<double> values() const;
+    void setValueAsString(const std::string& value);
+    SVGPropertyBase* clone() const;
 };
 
 typedef DOMSVGProperty<SVGNumber> DOMSVGNumber;
 typedef DOMSVGProperty<SVGNumberPercentage> DOMSVGNumberPercentage;
+typedef DOMSVGProperty<SVGNumberList> DOMSVGNumberList;
 
 } // namespace lunasvg
 

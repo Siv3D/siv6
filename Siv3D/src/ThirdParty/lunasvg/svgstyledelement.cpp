@@ -7,12 +7,10 @@
 
 namespace lunasvg {
 
-SVGStyledElement::SVGStyledElement(ElementID elementId, SVGDocument* document) :
-    SVGElementHead(elementId, document),
-    m_className(DOMPropertyIdClass),
-    m_style(DOMPropertyIdStyle)
+SVGStyledElement::SVGStyledElement(DOMElementID elementId, SVGDocument* document)
+    : SVGElementHead(elementId, document),
+      m_style(DOMPropertyIdStyle)
 {
-    addToPropertyMap(m_className);
     addToPropertyMap(m_style);
 }
 
@@ -75,10 +73,10 @@ void SVGStyledElement::render(RenderContext& context) const
         state.style.clear(CSSPropertyIdMask);
     }
 
-    if((!isSVGGeometryElement() && state.style.opacity() != 1.0) || state.style.mask() != KEmptyString || state.style.clipPath() != KEmptyString)
+    if(state.style.requiresCompositing(this))
         state.canvas.reset(state.canvas.width(), state.canvas.height());
 
-    if(const SVGProperty* property = state.style.get(CSSPropertyIdColor))
+    if(const SVGPropertyBase* property = state.style.get(CSSPropertyIdColor))
     {
         const SVGColor* color = to<SVGColor>(property);
         if(color->colorType() != ColorTypeCurrentColor)
@@ -92,21 +90,13 @@ void SVGStyledElement::renderTail(RenderContext& context) const
     RenderState& newState = context.parent();
     if(state.canvas.impl() != newState.canvas.impl())
     {
-        if(state.style.clipPath() != KEmptyString)
-        {
-            SVGElementImpl* ref = document()->impl()->resolveIRI(state.style.clipPath());
-            if(ref && ref->elementId() == ElementIdClipPath)
-                to<SVGClipPathElement>(ref)->applyClip(state);
-        }
+        if(const SVGClipPathElement* clipPath = state.style.clipPath(document()))
+            clipPath->applyClip(state);
+        if(const SVGMaskElement* mask = state.style.mask(document()))
+            mask->applyMask(state);
 
-        if(state.style.mask() != KEmptyString)
-        {
-            SVGElementImpl* ref = document()->impl()->resolveIRI(state.style.mask());
-            if(ref && ref->elementId() == ElementIdMask)
-                to<SVGMaskElement>(ref)->applyMask(state);
-        }
-
-        newState.canvas.blend(state.canvas, BlendModeSrc_Over, isSVGGeometryElement() ? 1.0 : state.style.opacity(), 0.0, 0.0);
+        double opacity = (isSVGGeometryElement() || elementId()==DOMElementIdText) ? 1.0 : state.style.opacity();
+        newState.canvas.blend(state.canvas, BlendModeSrc_Over, opacity, 0.0, 0.0);
     }
 
     context.pop();
@@ -128,7 +118,7 @@ Rgb SVGStyledElement::currentColor() const
     return !isSVGRootElement() ? to<SVGStyledElement>(parent)->currentColor() : KRgbBlack;
 }
 
-SVGProperty* SVGStyledElement::findInheritedProperty(CSSPropertyID nameId) const
+SVGPropertyBase* SVGStyledElement::findInheritedProperty(CSSPropertyID nameId) const
 {
     if(style().isSpecified())
     {

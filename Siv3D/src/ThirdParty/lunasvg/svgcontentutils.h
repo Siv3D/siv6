@@ -1,23 +1,46 @@
-#ifndef SVGPROPERTYUTILS_H
-#define SVGPROPERTYUTILS_H
+#ifndef SVGCONTENTUTILS_H
+#define SVGCONTENTUTILS_H
 
 #include <string>
 
 namespace lunasvg {
 
+enum DOMElementID
+{
+    DOMElementIdUnknown = 0,
+    DOMElementIdCircle,
+    DOMElementIdClipPath,
+    DOMElementIdDefs,
+    DOMElementIdEllipse,
+    DOMElementIdG,
+    DOMElementIdLine,
+    DOMElementIdLinearGradient,
+    DOMElementIdMarker,
+    DOMElementIdMask,
+    DOMElementIdPath,
+    DOMElementIdPattern,
+    DOMElementIdPolygon,
+    DOMElementIdPolyline,
+    DOMElementIdRadialGradient,
+    DOMElementIdRect,
+    DOMElementIdSolidColor,
+    DOMElementIdStop,
+    DOMElementIdSvg,
+    DOMElementIdSymbol,
+    DOMElementIdText,
+    DOMElementIdUse,
+    DOMElementLastId
+};
+
 enum DOMPropertyID
 {
     DOMPropertyIdUnknown = 0,
-    DOMPropertyIdClass,
     DOMPropertyIdClipPathUnits,
     DOMPropertyIdCx,
     DOMPropertyIdCy,
     DOMPropertyIdD,
-    DOMPropertyIdDx,
-    DOMPropertyIdDy,
     DOMPropertyIdFx,
     DOMPropertyIdFy,
-    DOMPropertyIdFr,
     DOMPropertyIdGradientTransform,
     DOMPropertyIdGradientUnits,
     DOMPropertyIdHeight,
@@ -30,7 +53,6 @@ enum DOMPropertyID
     DOMPropertyIdMaskUnits,
     DOMPropertyIdOffset,
     DOMPropertyIdOrient,
-    DOMPropertyIdPath,
     DOMPropertyIdPatternContentUnits,
     DOMPropertyIdPatternTransform,
     DOMPropertyIdPatternUnits,
@@ -39,14 +61,11 @@ enum DOMPropertyID
     DOMPropertyIdR,
     DOMPropertyIdRefX,
     DOMPropertyIdRefY,
-    DOMPropertyIdRotate,
     DOMPropertyIdRx,
     DOMPropertyIdRy,
     DOMPropertyIdSpreadMethod,
-    DOMPropertyIdStartOffset,
     DOMPropertyIdStyle,
     DOMPropertyIdTransform,
-    DOMPropertyIdType,
     DOMPropertyIdViewBox,
     DOMPropertyIdWidth,
     DOMPropertyIdX,
@@ -58,62 +77,22 @@ enum DOMPropertyID
     DOMPropertyLastId
 };
 
-enum SMILPropertyID
-{
-    SMILPropertyIdUnknown = 0,
-    SMILPropertyIdAccumulate,
-    SMILPropertyIdAdditive,
-    SMILPropertyIdAttributeName,
-    SMILPropertyIdAttributeType,
-    SMILPropertyIdBegin,
-    SMILPropertyIdBy,
-    SMILPropertyIdCalcMode,
-    SMILPropertyIdDur,
-    SMILPropertyIdEnd,
-    SMILPropertyIdFill,
-    SMILPropertyIdFrom,
-    SMILPropertyIdKeyPoints,
-    SMILPropertyIdKeySplines,
-    SMILPropertyIdKeyTimes,
-    SMILPropertyIdMax,
-    SMILPropertyIdMin,
-    SMILPropertyIdOrigin,
-    SMILPropertyIdPath,
-    SMILPropertyIdRepeatCount,
-    SMILPropertyIdRepeatDur,
-    SMILPropertyIdRestart,
-    SMILPropertyIdRotate,
-    SMILPropertyIdTo,
-    SMILPropertyIdType,
-    SMILPropertyIdValues,
-    SMILPropertyLastId
-};
-
 enum CSSPropertyID
 {
     CSSPropertyIdUnknown = 0,
-    CSSPropertyIdClip,
     CSSPropertyIdClip_Path,
     CSSPropertyIdClip_Rule,
     CSSPropertyIdColor,
-    CSSPropertyIdDirection,
     CSSPropertyIdDisplay,
     CSSPropertyIdFill,
     CSSPropertyIdFill_Opacity,
     CSSPropertyIdFill_Rule,
-    CSSPropertyIdFont_Family,
     CSSPropertyIdFont_Size,
-    CSSPropertyIdFont_Size_Adjust,
-    CSSPropertyIdFont_Stretch,
-    CSSPropertyIdFont_Style,
-    CSSPropertyIdFont_Variant,
-    CSSPropertyIdFont_Weight,
     CSSPropertyIdMarker_End,
     CSSPropertyIdMarker_Mid,
     CSSPropertyIdMarker_Start,
     CSSPropertyIdMask,
     CSSPropertyIdOpacity,
-    CSSPropertyIdOverflow,
     CSSPropertyIdSolid_Color,
     CSSPropertyIdSolid_Opacity,
     CSSPropertyIdStop_Color,
@@ -127,17 +106,21 @@ enum CSSPropertyID
     CSSPropertyIdStroke_Opacity,
     CSSPropertyIdStroke_Width,
     CSSPropertyIdText_Anchor,
-    CSSPropertyIdText_Decoration,
     CSSPropertyIdVisibility,
     CSSPropertyLastId
 };
 
+class SVGElementHead;
+class SVGDocument;
+
 namespace Utils {
 
+const std::string& domElementName(DOMElementID nameId);
+DOMElementID domElementId(const std::string& name);
+bool isElementPermitted(DOMElementID parentId, DOMElementID childId);
+SVGElementHead* createElement(DOMElementID elementId, SVGDocument* document);
 const std::string& domPropertyName(DOMPropertyID nameId);
 DOMPropertyID domPropertyId(const std::string& name);
-const std::string& smilPropertyName(SMILPropertyID nameId);
-SMILPropertyID smilPropertyId(const std::string& name);
 const std::string& cssPropertyName(CSSPropertyID nameId);
 CSSPropertyID cssPropertyId(const std::string& name);
 
@@ -145,4 +128,4 @@ CSSPropertyID cssPropertyId(const std::string& name);
 
 } // namespace lunasvg
 
-#endif // SVGPROPERTYUTILS_H
+#endif // SVGCONTENTUTILS_H

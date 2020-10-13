@@ -1,102 +1,147 @@
 #ifndef SVGPROPERTY_H
 #define SVGPROPERTY_H
 
-#include "svgpropertyutils.h"
+#include "svgcontentutils.h"
 #include "svgparserutils.h"
 
+#include <vector>
 #include <cassert>
 
 namespace lunasvg {
 
-enum PropertyType
-{
-    PropertyTypeUnknown = 0,
-    PropertyTypeAngle,
-    PropertyTypeColor,
-    PropertyTypeCSSPropertyList,
-    PropertyTypeEnumeration,
-    PropertyTypeLength,
-    PropertyTypeLengthList,
-    PropertyTypeNumber,
-    PropertyTypeNumberList,
-    PropertyTypePath,
-    PropertyTypePoint,
-    PropertyTypePointList,
-    PropertyTypePreserveAspectRatio,
-    PropertyTypeRect,
-    PropertyTypeString,
-    PropertyTypeStringList,
-    PropertyTypeTransform,
-};
-
-class SVGProperty;
+class SVGPropertyBase;
 
 template<typename T>
-inline T* to(SVGProperty* property)
+inline T* to(SVGPropertyBase* property)
 {
     return static_cast<T*>(property);
 }
 
 template<typename T>
-inline const T* to(const SVGProperty* property)
+inline const T* to(const SVGPropertyBase* property)
 {
     return static_cast<const T*>(property);
 }
 
 const static std::string KEmptyString;
 
-class SVGProperty
+class SVGPropertyBase
 {
 public:
-    virtual ~SVGProperty();
+    virtual ~SVGPropertyBase();
     virtual void setValueAsString(const std::string& value) = 0;
     virtual std::string valueAsString() const = 0;
-    virtual SVGProperty* clone() const = 0;
-    PropertyType propertyType() const { return m_propertyType; }
+    virtual SVGPropertyBase* clone() const = 0;
 
 protected:
-    SVGProperty(PropertyType propertyType) : m_propertyType(propertyType) {}
-
-private:
-    PropertyType m_propertyType;
+    SVGPropertyBase();
 };
 
 class DOMSVGPropertyBase
 {
 public:
     virtual ~DOMSVGPropertyBase();
-    virtual SVGProperty* ensurePropertyBase() = 0;
-    virtual SVGProperty* propertyBase() const = 0;
+    virtual SVGPropertyBase* ensurePropertyBase() = 0;
+    virtual SVGPropertyBase* propertyBase() const = 0;
     virtual void setPropertyAsString(const std::string& value) = 0;
     virtual std::string propertyAsString() const = 0;
     virtual void resetProperty() = 0;
     virtual bool isSpecified() const = 0;
     virtual void clone(const DOMSVGPropertyBase* property) = 0;
     DOMPropertyID propertyId() const { return m_propertyId; }
-    PropertyType propertyType() const { return m_propertyType; }
 
 protected:
-    DOMSVGPropertyBase(DOMPropertyID propertyId, PropertyType propertyType)
-        : m_propertyId(propertyId),
-          m_propertyType(propertyType)
+    DOMSVGPropertyBase(DOMPropertyID propertyId)
+        : m_propertyId(propertyId)
     {}
 
 private:
     DOMPropertyID m_propertyId;
-    PropertyType m_propertyType;
 };
+
+template <typename T>
+class SVGListProperty : public SVGPropertyBase
+{
+public:
+    virtual ~SVGListProperty();
+    virtual std::string valueAsString() const;
+    const T* at(std::size_t index) const { return m_values.at(index); }
+    T* at(std::size_t index) { return m_values.at(index); }
+    std::size_t length() const { return  m_values.size(); }
+    bool isEmpty() const { return m_values.empty(); }
+    void appendItem(T* item) { m_values.push_back(item); }
+    void insertItem(T* item, std::size_t index) { m_values.insert(m_values.begin() + index, item); }
+    void replaceItem(T* item, std::size_t index)
+    {
+        delete m_values[index];
+        m_values[index] = item;
+    }
+
+    void removeItem(std::size_t index)
+    {
+        delete m_values[index];
+        m_values.erase(m_values.begin() + index);
+    }
+
+    void clear()
+    {
+        for(std::size_t i = 0;i < m_values.size();i++)
+            delete m_values[i];
+        m_values.clear();
+    }
+
+protected:
+    SVGListProperty();
+    void baseClone(SVGListProperty<T>* property) const
+    {
+        for(std::size_t i = 0;i < length();i++)
+        {
+            T* item = to<T>(at(i)->clone());
+            property->appendItem(item);
+        }
+    }
+
+private:
+    std::vector<T*> m_values;
+};
+
+template<typename T>
+SVGListProperty<T>::SVGListProperty()
+{
+}
+
+template<typename T>
+SVGListProperty<T>::~SVGListProperty()
+{
+    for(std::size_t i = 0;i < m_values.size();i++)
+        delete m_values[i];
+}
+
+template<typename T>
+std::string SVGListProperty<T>::valueAsString() const
+{
+    std::string out;
+    for(std::size_t i = 0;i < length();i++)
+    {
+        if(i != 0)
+            out += ' ';
+        out += at(i)->valueAsString();
+    }
+
+    return out;
+}
 
 template<typename T>
 class DOMSVGProperty : public DOMSVGPropertyBase
 {
 public:
     DOMSVGProperty(DOMPropertyID propertyId)
-        : DOMSVGPropertyBase(propertyId, T::classType()),
+        : DOMSVGPropertyBase(propertyId),
           m_property(nullptr)
     {}
 
-    SVGProperty* ensurePropertyBase() { return ensureProperty(); }
-    SVGProperty* propertyBase() const { return property(); }
+    SVGPropertyBase* ensurePropertyBase() { return ensureProperty(); }
+    SVGPropertyBase* propertyBase() const { return property(); }
     T* ensureProperty();
     T* property() const { return m_property; }
     bool isSpecified() const { return m_property; }

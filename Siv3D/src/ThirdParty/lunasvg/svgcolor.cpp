@@ -1,6 +1,7 @@
 #include "svgcolor.h"
 #include "svgdocumentimpl.h"
 #include "svgpaintelement.h"
+#include "rendercontext.h"
 
 #include <map>
 
@@ -157,9 +158,8 @@ static const std::map<std::string, Rgb> colormap = {
     {"yellowgreen", 0x9ACD32FF}
 };
 
-SVGColor::SVGColor() :
-    SVGProperty(PropertyTypeColor),
-    m_colorType(ColorTypeRgb)
+SVGColor::SVGColor()
+    : m_colorType(ColorTypeRgb)
 {
 }
 
@@ -186,8 +186,9 @@ bool SVGColor::parseColorComponent(const char*& ptr, double& value)
         return false;
 
     if(Utils::skipDesc(ptr, "%", 1))
-        value *= 2.55;
+        value *= 2.56;
 
+    value = (value < 0.0) ? 0.0 : (value > 255.0) ? 255.0 : std::round(value);
     return true;
 }
 
@@ -198,9 +199,10 @@ void SVGColor::setValueAsString(const std::string& value)
     if(value.empty())
         return;
 
-    if(value[0] == '#')
+    const char* ptr = value.c_str();
+    Utils::skipWs(ptr);
+    if(Utils::skipDesc(ptr, "#", 1))
     {
-        const char* ptr = value.c_str() + 1;
         const char* start = ptr;
         while(*ptr && Utils::isIntegralDigit(*ptr, 16))
             ++ptr;
@@ -231,7 +233,7 @@ void SVGColor::setValueAsString(const std::string& value)
         m_value.b = (hex&0x0000ff)>>0;
         m_value.a = 255;
     }
-    else if(value.compare("none") == 0)
+    else if(Utils::skipDesc(ptr, "none", 4))
     {
         m_colorType = ColorTypeNone;
         m_value.r = 0;
@@ -239,7 +241,7 @@ void SVGColor::setValueAsString(const std::string& value)
         m_value.b = 0;
         m_value.a = 0;
     }
-    else if(value.compare("currentColor") == 0)
+    else if(Utils::skipDesc(ptr, "currentColor", 12))
     {
         m_colorType = ColorTypeCurrentColor;
         m_value.r = 0;
@@ -247,9 +249,8 @@ void SVGColor::setValueAsString(const std::string& value)
         m_value.b = 0;
         m_value.a = 255;
     }
-    else if(value.substr(0, 4).compare("rgb(") == 0)
+    else if(Utils::skipDesc(ptr, "rgb(", 4))
     {
-        const char* ptr = value.c_str() + 4;
         double r, g, b;
         if(!Utils::skipWs(ptr)
             || !parseColorComponent(ptr, r)
@@ -287,7 +288,7 @@ std::string SVGColor::valueAsString() const
     return buf;
 }
 
-SVGProperty* SVGColor::clone() const
+SVGPropertyBase* SVGColor::clone() const
 {
     SVGColor* property = new SVGColor();
     property->m_colorType = m_colorType;
@@ -325,7 +326,7 @@ void SVGPaint::setValueAsString(const std::string& value)
     Utils::skipWs(ptr);
     if(Utils::skipDesc(ptr, "url(", 4))
     {
-        const char* closeBracket = strstr(ptr, ")");
+        const char* closeBracket = strchr(ptr, ')');
         if(!closeBracket)
             return;
 
@@ -334,7 +335,7 @@ void SVGPaint::setValueAsString(const std::string& value)
         return;
     }
 
-    SVGColor::setValueAsString(ptr);
+    SVGColor::setValueAsString(value);
 }
 
 std::string SVGPaint::valueAsString() const
@@ -342,7 +343,7 @@ std::string SVGPaint::valueAsString() const
     return  m_colorType == ColorTypeUrl ? "url(" + m_url + ")" : SVGColor::valueAsString();
 }
 
-SVGProperty* SVGPaint::clone() const
+SVGPropertyBase* SVGPaint::clone() const
 {
     SVGPaint* property = new SVGPaint();
     property->m_url = m_url;

@@ -2,13 +2,13 @@
 
 namespace lunasvg {
 
-SVGSVGElement::SVGSVGElement(SVGDocument* document) :
-    SVGGraphicsElement(ElementIdSvg, document),
-    SVGFitToViewBox(this),
-    m_x(DOMPropertyIdX, LengthModeWidth, AllowNegativeLengths),
-    m_y(DOMPropertyIdY, LengthModeHeight, AllowNegativeLengths),
-    m_width(DOMPropertyIdWidth, LengthModeWidth, ForbidNegativeLengths),
-    m_height(DOMPropertyIdHeight, LengthModeHeight, ForbidNegativeLengths)
+SVGSVGElement::SVGSVGElement(SVGDocument* document)
+    : SVGGraphicsElement(DOMElementIdSvg, document),
+      SVGFitToViewBox(this),
+      m_x(DOMPropertyIdX, LengthModeWidth, AllowNegativeLengths),
+      m_y(DOMPropertyIdY, LengthModeHeight, AllowNegativeLengths),
+      m_width(DOMPropertyIdWidth, LengthModeWidth, ForbidNegativeLengths),
+      m_height(DOMPropertyIdHeight, LengthModeHeight, ForbidNegativeLengths)
 {
     m_height.setDefaultValue(hundredPercent());
     m_width.setDefaultValue(hundredPercent());
@@ -29,7 +29,7 @@ void SVGSVGElement::render(RenderContext& context) const
 
     const RenderState& state = context.state();
     Rect viewPort;
-    if(state.element->elementId() == ElementIdUse)
+    if(state.element->elementId() == DOMElementIdUse)
     {
         viewPort = state.viewPort;
     }
@@ -58,7 +58,34 @@ SVGElementImpl* SVGSVGElement::clone(SVGDocument* document) const
 {
     SVGSVGElement* e = new SVGSVGElement(document);
     baseClone(*e);
-    return  e;
+    return e;
+}
+
+SVGRootElement::SVGRootElement(SVGDocument* document)
+    : SVGSVGElement(document)
+{
+}
+
+void SVGRootElement::renderToBitmap(Bitmap& bitmap, const Rect& viewBox, double dpi, std::uint32_t bgColor) const
+{
+    if(style().isDisplayNone() || next == tail)
+        return;
+
+    RenderContext context(this, RenderModeDisplay);
+    RenderState& state = context.state();
+    state.element = this;
+    state.canvas.reset(bitmap.data(), bitmap.width(), bitmap.height(), bitmap.stride());
+    state.canvas.clear(bgColor);
+    state.viewPort = Rect(0, 0, bitmap.width(), bitmap.height());
+    state.dpi = dpi;
+
+    SVGGraphicsElement::render(context);
+    RenderState& newState = context.state();
+    newState.matrix.multiply(calculateViewBoxTransform(state.viewPort, viewBox));
+    newState.viewPort = viewBox;
+
+    context.render(next, tail);
+    state.canvas.convertToRGBA();
 }
 
 } // namespace lunasvg

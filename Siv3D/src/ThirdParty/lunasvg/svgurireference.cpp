@@ -1,10 +1,10 @@
 #include "svgurireference.h"
-#include "svgelementhead.h"
+#include "svgelementimpl.h"
 
 namespace lunasvg {
 
-SVGURIReference::SVGURIReference(SVGElementHead* element) :
-    m_href(DOMPropertyIdHref)
+SVGURIReference::SVGURIReference(SVGElementHead* element)
+    : m_href(DOMPropertyIdHref)
 {
     element->addToPropertyMap(m_href);
 }

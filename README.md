@@ -11,4 +11,4 @@
 
 <small>* Some functionality may be missing or limited</small>
 
-- [Third-Party Libraries](Siv3D/ThirdParty.md)
+- [Third-Party Libraries](ThirdParty.md)

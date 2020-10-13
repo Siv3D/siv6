@@ -2,8 +2,8 @@
 
 namespace lunasvg {
 
-SVGDefsElement::SVGDefsElement(SVGDocument* document) :
-    SVGGraphicsElement(ElementIdDefs, document)
+SVGDefsElement::SVGDefsElement(SVGDocument* document)
+    : SVGGraphicsElement(DOMElementIdDefs, document)
 {
 }
 
@@ -16,7 +16,7 @@ SVGElementImpl* SVGDefsElement::clone(SVGDocument* document) const
 {
     SVGDefsElement* e = new SVGDefsElement(document);
     baseClone(*e);
-    return  e;
+    return e;
 }
 
 } // namespace lunasvg

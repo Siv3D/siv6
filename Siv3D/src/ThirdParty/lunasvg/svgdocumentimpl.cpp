@@ -1,14 +1,13 @@
 #include "svgdocumentimpl.h"
-#include "svgrootelement.h"
-#include "svgelementtail.h"
+#include "svgsvgelement.h"
 #include "svgparser.h"
+#include "font.h"
 
 #include <fstream>
 
 namespace lunasvg {
 
-SVGDocumentImpl::SVGDocumentImpl(SVGDocument* document) :
-    m_svgParser(new SVGParser(document))
+SVGDocumentImpl::SVGDocumentImpl(SVGDocument* document)
 {
     m_rootElement = new SVGRootElement(document);
     m_rootElement->tail = new SVGElementTail(document);
@@ -23,19 +22,19 @@ SVGDocumentImpl::SVGDocumentImpl(SVGDocument* document) :
 SVGDocumentImpl::~SVGDocumentImpl()
 {
     m_idCache.clear();
-    delete m_svgParser;
     freeElement(m_rootElement, m_rootElement->tail);
 }
 
 bool SVGDocumentImpl::loadFromFile(const std::string& filename)
 {
-    std::fstream fs;
+    std::ifstream fs;
     fs.open(filename.c_str());
     if(!fs.is_open())
         return false;
 
     std::string content;
     std::getline(fs, content, '\0');
+    fs.close();
 
     return loadFromData(content);
 }
@@ -43,7 +42,7 @@ bool SVGDocumentImpl::loadFromFile(const std::string& filename)
 bool SVGDocumentImpl::loadFromData(const std::string& content)
 {
     m_rootElement->clearContent();
-    SVGElementImpl* head = m_svgParser->parse(content, nullptr);
+    SVGElementImpl* head = SVGParser::parse(content, m_rootElement->document(), nullptr);
     if(!head)
         return false;
 
@@ -51,6 +50,12 @@ bool SVGDocumentImpl::loadFromData(const std::string& content)
     insertElement(head, tail, m_rootElement, AfterBegin);
     dispatchElementInsertEvent(head, tail);
     return true;
+}
+
+bool SVGDocumentImpl::loadFontFromFile(const std::string& filename)
+{
+    m_font = Font::loadFromFile(filename);
+    return !!m_font;
 }
 
 double SVGDocumentImpl::documentWidth(double dpi) const
@@ -95,10 +100,42 @@ Box SVGDocumentImpl::getBBox(double dpi) const
 
 Bitmap SVGDocumentImpl::renderToBitmap(std::uint32_t width, std::uint32_t height, double dpi, std::uint32_t bgColor) const
 {
-    return m_rootElement->renderToBitmap(width, height, dpi, bgColor);
+    double documentWidth = this->documentWidth(dpi);
+    double documentHeight = this->documentHeight(dpi);
+    if(documentWidth < 0.0 || documentHeight < 0.0)
+    {
+        Box bbox = this->getBBox(dpi);
+        documentWidth = bbox.width;
+        documentHeight = bbox.height;
+    }
+
+    if(documentWidth == 0.0 || documentHeight == 0.0)
+        return Bitmap();
+
+    if(width == 0 && height == 0)
+    {
+        width = std::uint32_t(std::ceil(documentWidth));
+        height = std::uint32_t(std::ceil(documentHeight));
+    }
+    else if(width != 0 && height == 0)
+    {
+        height = std::uint32_t(std::ceil(width * documentHeight / documentWidth));
+    }
+    else if(height != 0 && width == 0)
+    {
+        width = std::uint32_t(std::ceil(height * documentWidth / documentHeight));
+    }
+
+    Bitmap bitmap(width, height);
+    Rect viewBox(0, 0, documentWidth, documentHeight);
+    if(m_rootElement->viewBox().isSpecified() && m_rootElement->viewBox().property()->isValid())
+        viewBox = m_rootElement->viewBox().property()->value();
+
+    m_rootElement->renderToBitmap(bitmap, viewBox, dpi, bgColor);
+    return bitmap;
 }
 
-void SVGDocumentImpl::render(Bitmap bitmap, double dpi, std::uint32_t bgColor) const
+void SVGDocumentImpl::render(Bitmap& bitmap, double dpi, std::uint32_t bgColor) const
 {
     RenderContext context(m_rootElement, RenderModeDisplay);
     RenderState& state = context.state();
@@ -150,7 +187,7 @@ SVGElementImpl* SVGDocumentImpl::insertContent(const std::string& content, SVGEl
     else
         parent = target->parent;
 
-    SVGElementImpl* head = m_svgParser->parse(content, parent);
+    SVGElementImpl* head = SVGParser::parse(content, target->document(), parent);
     if(!head)
         return nullptr;
 
@@ -171,12 +208,12 @@ SVGElementImpl* SVGDocumentImpl::copyElement(const SVGElementImpl* element, SVGE
     if(element->isSVGElementHead() && !Utils::isElementPermitted(parent->elementId(), element->elementId()))
         return nullptr;
 
-    SVGElementImpl* head = const_cast<SVGElementImpl*>(element);
-    SVGElementImpl* tail;
+    const SVGElementImpl* head = element;
+    const SVGElementImpl* tail;
     if(element->isSVGElementHead())
         tail = to<SVGElementHead>(element)->tail;
     else
-        tail = const_cast<SVGElementImpl*>(element);
+        tail = element;
 
     std::stack<SVGElementHead*> blocks;
     SVGElementImpl* start = head->clone(parent->document());
@@ -229,7 +266,7 @@ SVGElementImpl* SVGDocumentImpl::moveElement(SVGElementImpl* element, SVGElement
     if(element->isSVGElementHead())
         tail = to<SVGElementHead>(element)->tail;
     else
-        tail = const_cast<SVGElementImpl*>(element);
+        tail = element;
 
     dispatchElementRemoveEvent(head, tail);
 
@@ -298,54 +335,54 @@ void SVGDocumentImpl::insertElement(SVGElementImpl* head, SVGElementImpl* tail, 
 
     switch(position)
     {
-        case BeforeBegin:
-        {
-            SVGElementImpl* targetPrev = target->prev;
+    case BeforeBegin:
+    {
+        SVGElementImpl* targetPrev = target->prev;
 
-            targetPrev->next = head;
-            head->prev = targetPrev;
+        targetPrev->next = head;
+        head->prev = targetPrev;
 
-            target->prev = tail;
-            tail->next = target;
-            break;
-        }
-        case AfterBegin:
-        {
-            SVGElementImpl* targetNext = target->next;
+        target->prev = tail;
+        tail->next = target;
+        break;
+    }
+    case AfterBegin:
+    {
+        SVGElementImpl* targetNext = target->next;
 
-            target->next = head;
-            head->prev = target;
+        target->next = head;
+        head->prev = target;
 
-            targetNext->prev = tail;
-            tail->next = targetNext;
-            break;
-        }
-        case BeforeEnd:
-        {
-            assert(target->isSVGElementHead());
-            target = to<SVGElementHead>(target)->tail;
-            SVGElementImpl* targetPrev = target->prev;
+        targetNext->prev = tail;
+        tail->next = targetNext;
+        break;
+    }
+    case BeforeEnd:
+    {
+        assert(target->isSVGElementHead());
+        target = to<SVGElementHead>(target)->tail;
+        SVGElementImpl* targetPrev = target->prev;
 
-            targetPrev->next = head;
-            head->prev = targetPrev;
+        targetPrev->next = head;
+        head->prev = targetPrev;
 
-            target->prev = tail;
-            tail->next = target;
-            break;
-        }
-        case AfterEnd:
-        {
-            assert(target->isSVGElementHead());
-            target = to<SVGElementHead>(target)->tail;
-            SVGElementImpl* targetNext = target->next;
+        target->prev = tail;
+        tail->next = target;
+        break;
+    }
+    case AfterEnd:
+    {
+        assert(target->isSVGElementHead());
+        target = to<SVGElementHead>(target)->tail;
+        SVGElementImpl* targetNext = target->next;
 
-            target->next = head;
-            head->prev = target;
+        target->next = head;
+        head->prev = target;
 
-            targetNext->prev = tail;
-            tail->next = targetNext;
-            break;
-        }
+        targetNext->prev = tail;
+        tail->next = targetNext;
+        break;
+    }
     }
 }
 
@@ -368,16 +405,15 @@ void SVGDocumentImpl::freeElement(SVGElementImpl* head, SVGElementImpl* tail)
 
 std::string SVGDocumentImpl::toString(const SVGElementImpl* element) const
 {
-    std::string out;
-    std::uint32_t indent = 0;
-
-    SVGElementImpl* head = const_cast<SVGElementImpl*>(element);
-    SVGElementImpl* tail;
+    const SVGElementImpl* head = element;
+    const SVGElementImpl* tail;
     if(element->isSVGElementHead())
         tail = to<SVGElementHead>(element)->tail;
     else
-        tail = const_cast<SVGElementImpl*>(element);
+        tail = element;
 
+    std::string out;
+    std::uint32_t indent = 0;
     head->externalise(out, indent);
     while(head != tail)
     {
@@ -408,11 +444,11 @@ double SVGDocumentImpl::currentTime() const
     return 0.0;
 }
 
-void SVGDocumentImpl::dispatchElementRemoveEvent(SVGElementImpl*, SVGElementImpl*)
+void SVGDocumentImpl::dispatchElementRemoveEvent(const SVGElementImpl*, const SVGElementImpl*)
 {
 }
 
-void SVGDocumentImpl::dispatchElementInsertEvent(SVGElementImpl*, SVGElementImpl*)
+void SVGDocumentImpl::dispatchElementInsertEvent(const SVGElementImpl*, const SVGElementImpl*)
 {
 }
 

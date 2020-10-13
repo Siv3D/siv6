@@ -1,12 +1,12 @@
 #include "svgdocument.h"
 #include "svgdocumentimpl.h"
-#include "svgrootelement.h"
+#include "svgsvgelement.h"
 
 namespace lunasvg {
 
 SVGDocument::SVGDocument()
+    : m_impl(new SVGDocumentImpl(this))
 {
-    m_impl = new SVGDocumentImpl(this);
 }
 
 SVGElement* SVGDocument::getElementById(const std::string& id, int index) const
@@ -52,6 +52,11 @@ bool SVGDocument::loadFromFile(const std::string& filename)
 bool SVGDocument::loadFromData(const std::string& content)
 {
     return m_impl->loadFromData(content);
+}
+
+bool SVGDocument::loadFontFromFile(const std::string& filename)
+{
+    return m_impl->loadFontFromFile(filename);
 }
 
 double SVGDocument::documentWidth(double dpi) const

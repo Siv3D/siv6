@@ -3,15 +3,15 @@
 
 namespace lunasvg {
 
-SVGSymbolElement::SVGSymbolElement(SVGDocument* document) :
-    SVGStyledElement(ElementIdSymbol, document),
-    SVGFitToViewBox(this)
+SVGSymbolElement::SVGSymbolElement(SVGDocument* document)
+    : SVGStyledElement(DOMElementIdSymbol, document),
+      SVGFitToViewBox(this)
 {
 }
 
 void SVGSymbolElement::render(RenderContext& context) const
 {
-    if(context.state().element->elementId() != ElementIdUse || style().isDisplayNone())
+    if(context.state().element->elementId() != DOMElementIdUse || style().isDisplayNone())
     {
         context.skipElement();
         return;
@@ -37,7 +37,7 @@ SVGElementImpl* SVGSymbolElement::clone(SVGDocument* document) const
 {
     SVGSymbolElement* e = new SVGSymbolElement(document);
     baseClone(*e);
-    return  e;
+    return e;
 }
 
 } // namespace lunasvg

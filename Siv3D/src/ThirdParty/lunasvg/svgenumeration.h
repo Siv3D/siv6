@@ -21,14 +21,6 @@ enum Visibility
     VisibilityCollaspe
 };
 
-enum Overflow
-{
-    OverflowVisible,
-    OverflowHidden,
-    OverflowScroll,
-    OverflowAuto
-};
-
 enum LineCap
 {
     LineCapButt,
@@ -62,20 +54,34 @@ enum SpreadMethod
     SpreadMethodRepeat
 };
 
+enum MarkerUnitType
+{
+    MarkerUnitTypeStrokeWidth,
+    MarkerUnitTypeUserSpaceOnUse
+};
+
+enum TextAnchor
+{
+    TextAnchorStart,
+    TextAnchorMiddle,
+    TextAnchorEnd
+};
+
 typedef std::pair<unsigned short, std::string> EnumEntry;
 typedef std::vector<EnumEntry> EnumEntryList;
 
 template<typename Enum> const EnumEntryList& getEnumEntryList();
 template<> const EnumEntryList& getEnumEntryList<Display>();
 template<> const EnumEntryList& getEnumEntryList<Visibility>();
-template<> const EnumEntryList& getEnumEntryList<Overflow>();
 template<> const EnumEntryList& getEnumEntryList<LineCap>();
 template<> const EnumEntryList& getEnumEntryList<LineJoin>();
 template<> const EnumEntryList& getEnumEntryList<WindRule>();
 template<> const EnumEntryList& getEnumEntryList<SpreadMethod>();
 template<> const EnumEntryList& getEnumEntryList<UnitType>();
+template<> const EnumEntryList& getEnumEntryList<MarkerUnitType>();
+template<> const EnumEntryList& getEnumEntryList<TextAnchor>();
 
-class SVGEnumerationBase : public SVGProperty
+class SVGEnumerationBase : public SVGPropertyBase
 {
 public:
     void setValue(unsigned short value) { m_value = value; }
@@ -83,13 +89,11 @@ public:
 
     void setValueAsString(const std::string& value);
     std::string valueAsString() const;
-    static PropertyType classType() { return PropertyTypeEnumeration; }
 
 protected:
-    SVGEnumerationBase(const EnumEntryList& entries) :
-        SVGProperty(PropertyTypeEnumeration),
-        m_value(0),
-        m_entries(entries)
+    SVGEnumerationBase(const EnumEntryList& entries)
+        : m_value(0),
+          m_entries(entries)
     {}
 
 protected:
@@ -101,8 +105,8 @@ template<typename T>
 class SVGEnumeration : public SVGEnumerationBase
 {
 public:
-    SVGEnumeration() :
-        SVGEnumerationBase(getEnumEntryList<T>())
+    SVGEnumeration()
+        : SVGEnumerationBase(getEnumEntryList<T>())
     {}
 
     T enumValue() const
@@ -115,7 +119,7 @@ public:
         m_value = value;
     }
 
-    SVGProperty* clone() const
+    SVGPropertyBase* clone() const
     {
         SVGEnumeration<T>* property = new SVGEnumeration<T>();
         property->m_value = m_value;
@@ -128,8 +132,8 @@ template<typename T>
 class DOMSVGEnumeration : public DOMSVGProperty<SVGEnumeration<T>>
 {
 public:
-    DOMSVGEnumeration(DOMPropertyID propertyId) :
-        DOMSVGProperty<SVGEnumeration<T>>(propertyId)
+    DOMSVGEnumeration(DOMPropertyID propertyId)
+        : DOMSVGProperty<SVGEnumeration<T>>(propertyId)
     {}
 };
 
