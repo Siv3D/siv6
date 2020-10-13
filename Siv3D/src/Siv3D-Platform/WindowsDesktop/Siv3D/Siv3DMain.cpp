@@ -14,6 +14,7 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/Format.hpp>
 # include <Siv3D/EngineLog.hpp>
+# include <Siv3D/FreestandingMessageBox/FreestandingMessageBox.hpp>
 # include <Siv3D/ApplicationOptions.hpp>
 # include <Siv3D/Windows/Windows.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
@@ -78,21 +79,6 @@ namespace s3d
 		}
 	}
 
-	namespace EngineMessageBox
-	{
-		static void ShowError(const StringView text)
-		{
-			HWND hWnd = nullptr;
-
-			if (Siv3DEngine::isActive())
-			{
-				hWnd = static_cast<HWND>(SIV3D_ENGINE(Window)->getHandle());
-			}
-
-			::MessageBoxW(hWnd, Unicode::ToWstring(text).c_str(), L"Application Error", MB_OK | MB_ICONERROR);
-		}
-	}
-
 	static void TryMain()
 	{
 		String errorMessage;
@@ -128,7 +114,7 @@ namespace s3d
 
 			errorMessage += U"\n\nFor more information, [Debug] -> [Windows] -> [Exception Settings] -> Tick the C++ Exceptions checkbox under the [Break When Thrown] heading.";
 
-			EngineMessageBox::ShowError(errorMessage);
+			FreestandingMessageBox::ShowError(errorMessage);
 		}
 	}
 
@@ -186,7 +172,7 @@ namespace s3d
 	{
 		LOG_ERROR(U"🛑 Application terminated due to an exception `{}`"_fmt(ExceptionToString(code)));
 
-		EngineMessageBox::ShowError(U"Application terminated due to an exception `{}`"_fmt(ExceptionToString(code)));
+		FreestandingMessageBox::ShowError(U"Application terminated due to an exception `{}`"_fmt(ExceptionToString(code)));
 
 		return EXCEPTION_EXECUTE_HANDLER;
 	}

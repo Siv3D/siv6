@@ -11,6 +11,7 @@
 
 # include <Siv3D/PixelShader.hpp>
 # include <Siv3D/EngineLog.hpp>
+# include <Siv3D/FreestandingMessageBox/FreestandingMessageBox.hpp>
 # include <Siv3D/Shader/IShader.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
@@ -21,7 +22,7 @@ namespace s3d
 	{
 		if (!Siv3DEngine::isActive())
 		{
-			//EngineMessageBox::Show(U"`VertexShader` must be initialized after engine setup.");
+			FreestandingMessageBox::ShowError(U"`PixelShader` must be initialized after engine-setup. Please fix the C++ code.");
 			std::exit(-1);
 		}
 	}
