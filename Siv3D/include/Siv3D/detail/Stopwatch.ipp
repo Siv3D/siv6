@@ -13,21 +13,6 @@
 
 namespace s3d
 {
-	namespace detail
-	{
-		inline uint64 StopwatchGetMicrosec(ISteadyClock* pSteadyClock)
-		{
-			if (pSteadyClock)
-			{
-				return pSteadyClock->getMicrosec();
-			}
-			else
-			{
-				return Time::GetMicrosec();
-			}
-		}
-	}
-
 	inline Stopwatch::Stopwatch(const bool startImmediately, ISteadyClock* pSteadyClock)
 		: m_pSteadyClock(pSteadyClock)
 	{
@@ -74,7 +59,7 @@ namespace s3d
 
 		m_pausing = false;
 
-		m_startTimeMicrosec = detail::StopwatchGetMicrosec(m_pSteadyClock);
+		m_startTimeMicrosec = ISteadyClock::GetMicrosec(m_pSteadyClock);
 	}
 
 	inline void Stopwatch::pause()
@@ -116,7 +101,7 @@ namespace s3d
 
 		m_accumulationMicrosec = static_cast<int64>(time.count() * (1000LL * 1000LL));
 
-		m_startTimeMicrosec = detail::StopwatchGetMicrosec(m_pSteadyClock);
+		m_startTimeMicrosec = ISteadyClock::GetMicrosec(m_pSteadyClock);
 	}
 
 	inline int32 Stopwatch::d() const
@@ -196,7 +181,7 @@ namespace s3d
 
 	inline int64 Stopwatch::us() const
 	{
-		const int64 t = detail::StopwatchGetMicrosec(m_pSteadyClock);
+		const int64 t = ISteadyClock::GetMicrosec(m_pSteadyClock);
 
 		if (!m_isStarted)
 		{

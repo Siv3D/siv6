@@ -12,7 +12,6 @@
 # pragma once
 # include "Common.hpp"
 # include "ISteadyClock.hpp"
-# include "Time.hpp"
 # include "Duration.hpp"
 
 namespace s3d

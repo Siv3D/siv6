@@ -25,7 +25,7 @@ namespace s3d
 
 		int64 m_startTimeMicrosec = 0;
 
-		int64 m_accumulationMicrosec = 0;
+		int64 m_remainingMicrosec = 0;
 
 		ISteadyClock* m_pSteadyClock = nullptr;
 
@@ -36,7 +36,7 @@ namespace s3d
 	public:
 
 		SIV3D_NODISCARD_CXX20
-		explicit Timer(const Duration& startTime, bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
+		explicit Timer(const Duration& startRemaining, bool startImmediately = false, ISteadyClock* pSteadyClock = nullptr);
 
 		[[nodiscard]]
 		bool isStarted() const;
@@ -58,9 +58,9 @@ namespace s3d
 
 		void restart();
 
-		void restart(const Duration& startTime);
+		void restart(const Duration& startRemaining);
 
-		void setRemaining(const Duration& time);
+		void setRemaining(const Duration& remaining);
 
 		[[nodiscard]]
 		int32 d() const;

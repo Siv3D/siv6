@@ -405,7 +405,7 @@
 
 // カウントダウンタイマー
 // Countdown timer
-# include <Siv3D/Timer.hpp> // [Siv3D ToDo]
+# include <Siv3D/Timer.hpp>
 
 //////////////////////////////////////////////////
 //

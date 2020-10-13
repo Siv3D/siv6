@@ -11,6 +11,7 @@
 
 # pragma once
 # include "Common.hpp"
+# include "Time.hpp"
 
 namespace s3d
 {
@@ -23,6 +24,10 @@ namespace s3d
 		virtual uint64 getMicrosec() = 0;
 
 		virtual uint64 getNanosec();
+
+		static uint64 GetMicrosec(ISteadyClock* pSteadyClock);
+
+		static uint64 GetNanosec(ISteadyClock* pSteadyClock);
 	};
 }
 

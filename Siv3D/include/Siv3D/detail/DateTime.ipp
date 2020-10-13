@@ -95,11 +95,11 @@ namespace s3d
 
 	inline DateTime& DateTime::operator +=(const Milliseconds& _milliseconds) noexcept
 	{
-		const int64 millisecIn1Day = 86400 * 1000;
+		const int64 millisecIn1Day = (86400 * 1000);
 
 		int64 count = _milliseconds.count();
 
-		if (const int64 days = count / millisecIn1Day)
+		if (const int64 days = (count / millisecIn1Day))
 		{
 			Date::operator +=(Days(days));
 

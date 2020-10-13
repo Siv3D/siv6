@@ -35,6 +35,7 @@ void Main()
 	Stopwatch s2(true, &customClock);
 	Stopwatch s3(true, &customClock);
 	VariableSpeedStopwatch vsw(0.0s, 0.5, true, &customClock);
+	Timer timer(180s, true, &customClock);
 
 	while (System::Update())
 	{
@@ -47,7 +48,7 @@ void Main()
 			customClock.resume();
 		}
 
-		Window::SetTitle(U"{}, {}, {}, {}"_fmt(s1, s2, s3, vsw));
+		Window::SetTitle(U"{}, {}, {}, {}, {}"_fmt(s1, s2, s3, vsw, timer));
 	}
 }
 

@@ -17,4 +17,28 @@ namespace s3d
 	{
 		return (getMicrosec() * 1000);
 	}
+
+	inline uint64 ISteadyClock::GetMicrosec(ISteadyClock* pSteadyClock)
+	{
+		if (pSteadyClock)
+		{
+			return pSteadyClock->getMicrosec();
+		}
+		else
+		{
+			return Time::GetMicrosec();
+		}
+	}
+
+	inline uint64 ISteadyClock::GetNanosec(ISteadyClock* pSteadyClock)
+	{
+		if (pSteadyClock)
+		{
+			return pSteadyClock->getNanosec();
+		}
+		else
+		{
+			return Time::GetNanosec();
+		}
+	}
 }

@@ -13,21 +13,6 @@
 
 namespace s3d
 {
-	namespace detail
-	{
-		inline uint64 StopwatchGetNanosec(ISteadyClock* pSteadyClock)
-		{
-			if (pSteadyClock)
-			{
-				return pSteadyClock->getNanosec();
-			}
-			else
-			{
-				return Time::GetNanosec();
-			}
-		}
-	}
-
 	inline VariableSpeedStopwatch::VariableSpeedStopwatch(const bool startImmediately, ISteadyClock* pSteadyClock)
 		: VariableSpeedStopwatch(1.0, startImmediately, pSteadyClock) {}
 
@@ -79,7 +64,7 @@ namespace s3d
 
 		m_pausing = false;
 
-		m_lastTimeNanosec = detail::StopwatchGetNanosec(m_pSteadyClock);
+		m_lastTimeNanosec = ISteadyClock::GetNanosec(m_pSteadyClock);
 	}
 
 	inline void VariableSpeedStopwatch::pause()
@@ -121,7 +106,7 @@ namespace s3d
 
 		m_accumulationNanosec = static_cast<int64>(time.count() * (1000LL * 1000LL * 1000LL));
 
-		m_lastTimeNanosec = detail::StopwatchGetNanosec(m_pSteadyClock);
+		m_lastTimeNanosec = ISteadyClock::GetNanosec(m_pSteadyClock);
 	}
 
 	inline void VariableSpeedStopwatch::setSpeed(const double speed)
@@ -245,7 +230,7 @@ namespace s3d
 
 	inline int64 VariableSpeedStopwatch::ns() const
 	{
-		const int64 t = detail::StopwatchGetNanosec(m_pSteadyClock);
+		const int64 t = ISteadyClock::GetNanosec(m_pSteadyClock);
 
 		if (not m_isStarted)
 		{
