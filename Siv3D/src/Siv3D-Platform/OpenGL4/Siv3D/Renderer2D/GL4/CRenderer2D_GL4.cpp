@@ -56,12 +56,6 @@ namespace s3d
 			m_uniformBuffer = 0;
 		}
 
-		if (m_pipeline)
-		{
-			::glDeleteProgramPipelines(1, &m_pipeline);
-			m_pipeline = 0;
-		}
-
 		CheckOpenGLError();
 	}
 
@@ -84,7 +78,11 @@ namespace s3d
 			throw EngineError();
 		}
 
-		::glGenProgramPipelines(1, &m_pipeline);
+		// パイプライン管理を初期化
+		if (!m_pipeline.init())
+		{
+			throw EngineError(U"GL4ShaderPipeline::init() failed");
+		}
 
 		::glGenBuffers(1, &m_uniformBuffer);
 
@@ -140,11 +138,9 @@ namespace s3d
 			return;
 		}
 
-		::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, pShader->getVSProgram(m_vertexShaders.front().id()));
-		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, pShader->getPSProgram(m_pixelShaders.front().id()));
-
-		::glUseProgram(0);
-		::glBindProgramPipeline(m_pipeline);
+		m_pipeline.setVS(pShader->getVSProgram(m_vertexShaders.front().id()));
+		m_pipeline.setPS(pShader->getPSProgram(m_pixelShaders.front().id()));
+		m_pipeline.use();
 
 		const Size currentRenderTargetSize = SIV3D_ENGINE(Renderer)->getSceneBufferSize();
 		::glViewport(0, 0, currentRenderTargetSize.x, currentRenderTargetSize.y);
@@ -237,10 +233,9 @@ namespace s3d
 			::glSamplerParameteri(m_sampler, GL_TEXTURE_MAG_FILTER, linearFilter ? GL_LINEAR : GL_NEAREST);
 		}
 
-		::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, pShader->getVSProgram(m_fstVertexShaders.front().id()));
-		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, pShader->getPSProgram(m_fstPixelShaders.front().id()));
-		::glUseProgram(0);
-		::glBindProgramPipeline(m_pipeline);
+		m_pipeline.setVS(pShader->getVSProgram(m_fstVertexShaders.front().id()));
+		m_pipeline.setPS(pShader->getPSProgram(m_fstPixelShaders.front().id()));
+		m_pipeline.use();
 		{
 			pShader->setPSSamplerUniform(m_fstPixelShaders.front().id());
 

@@ -30,6 +30,49 @@ namespace s3d
 	//	Float4 colorMul;
 	//};
 
+	class GL4ShaderPipeline
+	{
+	private:
+
+		GLuint m_pipeline = 0;
+
+	public:
+
+		GL4ShaderPipeline() = default;
+
+		~GL4ShaderPipeline()
+		{
+			if (m_pipeline)
+			{
+				::glDeleteProgramPipelines(1, &m_pipeline);
+				m_pipeline = 0;
+			}
+		}
+
+		bool init()
+		{
+			::glGenProgramPipelines(1, &m_pipeline);
+
+			return m_pipeline != 0;
+		}
+
+		void setVS(GLuint vsProgramHandle)
+		{
+			::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, vsProgramHandle);
+		}
+
+		void setPS(GLuint psProgramHandle)
+		{
+			::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, psProgramHandle);
+		}
+
+		void use()
+		{
+			::glUseProgram(0);
+			::glBindProgramPipeline(m_pipeline);
+		}
+	};
+
 	class CRenderer2D_GL4 final : public ISiv3DRenderer2D
 	{
 	private:
@@ -39,7 +82,7 @@ namespace s3d
 
 		Array<VertexShader> m_vertexShaders;
 		Array<PixelShader> m_pixelShaders;
-		GLuint m_pipeline		= 0;
+		GL4ShaderPipeline m_pipeline;
 		GLuint m_uniformBuffer	= 0;
 		//ConstantBuffer<GL4VSConstants2D> m_vsConstants2D;
 
