@@ -142,6 +142,12 @@
 		2C43964C2535DCCB00F6AECD /* svgelementimpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4395EF2535DCCA00F6AECD /* svgelementimpl.cpp */; };
 		2C43964D2535DCCB00F6AECD /* svgelementiter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C4395F02535DCCA00F6AECD /* svgelementiter.h */; };
 		2C4396502535DCEA00F6AECD /* FreestandingMessageBox_macOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43964F2535DCEA00F6AECD /* FreestandingMessageBox_macOS.cpp */; };
+		2C4397912536163000F6AECD /* GL4PixelShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43978A2536163000F6AECD /* GL4PixelShader.cpp */; };
+		2C4397922536163000F6AECD /* GL4PixelShader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43978B2536163000F6AECD /* GL4PixelShader.hpp */; };
+		2C4397932536163000F6AECD /* GL4VertexShader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43978D2536163000F6AECD /* GL4VertexShader.hpp */; };
+		2C4397942536163000F6AECD /* GL4VertexShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C43978E2536163000F6AECD /* GL4VertexShader.cpp */; };
+		2C4397952536163000F6AECD /* CShader_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C43978F2536163000F6AECD /* CShader_GL4.hpp */; };
+		2C4397962536163000F6AECD /* CShader_GL4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C4397902536163000F6AECD /* CShader_GL4.cpp */; };
 		2C439F472419D686001154C2 /* format-inl.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F452419D686001154C2 /* format-inl.h */; };
 		2C439F482419D686001154C2 /* format.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F462419D686001154C2 /* format.cc */; };
 		2C439F77241DCEA9001154C2 /* string-to-double.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C439F63241DCEA9001154C2 /* string-to-double.h */; };
@@ -1095,6 +1101,12 @@
 		2C4397832535DD3000F6AECD /* NonNull.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NonNull.hpp; sourceTree = "<group>"; };
 		2C4397842535DD3000F6AECD /* PNGFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PNGFilter.hpp; sourceTree = "<group>"; };
 		2C4397862535DDF300F6AECD /* stb_truetype.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_truetype.h; sourceTree = "<group>"; };
+		2C43978A2536163000F6AECD /* GL4PixelShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GL4PixelShader.cpp; sourceTree = "<group>"; };
+		2C43978B2536163000F6AECD /* GL4PixelShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GL4PixelShader.hpp; sourceTree = "<group>"; };
+		2C43978D2536163000F6AECD /* GL4VertexShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GL4VertexShader.hpp; sourceTree = "<group>"; };
+		2C43978E2536163000F6AECD /* GL4VertexShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GL4VertexShader.cpp; sourceTree = "<group>"; };
+		2C43978F2536163000F6AECD /* CShader_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CShader_GL4.hpp; sourceTree = "<group>"; };
+		2C4397902536163000F6AECD /* CShader_GL4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CShader_GL4.cpp; sourceTree = "<group>"; };
 		2C439F452419D686001154C2 /* format-inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "format-inl.h"; sourceTree = "<group>"; };
 		2C439F462419D686001154C2 /* format.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = format.cc; sourceTree = "<group>"; };
 		2C439F63241DCEA9001154C2 /* string-to-double.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "string-to-double.h"; sourceTree = "<group>"; };
@@ -2236,6 +2248,43 @@
 				2C4397862535DDF300F6AECD /* stb_truetype.h */,
 			);
 			path = stb;
+			sourceTree = "<group>";
+		};
+		2C4397872536163000F6AECD /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				2C4397882536163000F6AECD /* GL4 */,
+			);
+			path = Shader;
+			sourceTree = "<group>";
+		};
+		2C4397882536163000F6AECD /* GL4 */ = {
+			isa = PBXGroup;
+			children = (
+				2C4397892536163000F6AECD /* PixelShader */,
+				2C43978C2536163000F6AECD /* VertexShader */,
+				2C43978F2536163000F6AECD /* CShader_GL4.hpp */,
+				2C4397902536163000F6AECD /* CShader_GL4.cpp */,
+			);
+			path = GL4;
+			sourceTree = "<group>";
+		};
+		2C4397892536163000F6AECD /* PixelShader */ = {
+			isa = PBXGroup;
+			children = (
+				2C43978A2536163000F6AECD /* GL4PixelShader.cpp */,
+				2C43978B2536163000F6AECD /* GL4PixelShader.hpp */,
+			);
+			path = PixelShader;
+			sourceTree = "<group>";
+		};
+		2C43978C2536163000F6AECD /* VertexShader */ = {
+			isa = PBXGroup;
+			children = (
+				2C43978D2536163000F6AECD /* GL4VertexShader.hpp */,
+				2C43978E2536163000F6AECD /* GL4VertexShader.cpp */,
+			);
+			path = VertexShader;
 			sourceTree = "<group>";
 		};
 		2C439F442419D686001154C2 /* fmt */ = {
@@ -4000,6 +4049,7 @@
 			children = (
 				2C47B6E424EAC8D9008D83BE /* Renderer */,
 				2C47B6EB24EAC8D9008D83BE /* Renderer2D */,
+				2C4397872536163000F6AECD /* Shader */,
 			);
 			path = Siv3D;
 			sourceTree = "<group>";
@@ -4171,6 +4221,7 @@
 				2C47B0FC24DD974A008D83BE /* agg_trans_double_path.h in Headers */,
 				2C47B09624DD974A008D83BE /* agg_span_gouraud_gray.h in Headers */,
 				2C47B49324DD97F2008D83BE /* muParserBase.h in Headers */,
+				2C4397952536163000F6AECD /* CShader_GL4.hpp in Headers */,
 				2C47B6F524EAC8D9008D83BE /* CRenderer2D_GL4.hpp in Headers */,
 				2C4396152535DCCA00F6AECD /* svgangle.h in Headers */,
 				2C47B10B24DD974A008D83BE /* agg_basics.h in Headers */,
@@ -4281,11 +4332,13 @@
 				2C47B0A924DD974A008D83BE /* agg_trans_perspective.h in Headers */,
 				2C4395F82535DCCA00F6AECD /* svgnumber.h in Headers */,
 				2C47B09524DD974A008D83BE /* agg_span_image_filter_rgba.h in Headers */,
+				2C4397932536163000F6AECD /* GL4VertexShader.hpp in Headers */,
 				2C47B08C24DD974A008D83BE /* agg_pixfmt_amask_adaptor.h in Headers */,
 				2C47B0D924DD974A008D83BE /* agg_gradient_lut.h in Headers */,
 				2C47B36624DD9789008D83BE /* CScene.hpp in Headers */,
 				2C47B30124DD9789008D83BE /* MathParserDetail.hpp in Headers */,
 				2C47B0E924DD974A008D83BE /* agg_pixfmt_gray.h in Headers */,
+				2C4397922536163000F6AECD /* GL4PixelShader.hpp in Headers */,
 				2C47B0A824DD974A008D83BE /* agg_font_cache_manager2.h in Headers */,
 				2C47B0DA24DD974A008D83BE /* agg_span_gradient_alpha.h in Headers */,
 				2C42322A242B155E00A16BCA /* glfw3native.h in Headers */,
@@ -4459,6 +4512,7 @@
 				2C423245242B155E00A16BCA /* cocoa_time.c in Sources */,
 				2C4396282535DCCA00F6AECD /* svgdefselement.cpp in Sources */,
 				2C834DBC248805D4006208B8 /* gb18030.c in Sources */,
+				2C4397912536163000F6AECD /* GL4PixelShader.cpp in Sources */,
 				2C60AE82248158A500277281 /* memory_windows.cpp in Sources */,
 				2C47B30F24DD9789008D83BE /* CDummy.cpp in Sources */,
 				2C68508C24B768A800B98A7F /* SivDate_macOS_Linux.cpp in Sources */,
@@ -4650,6 +4704,7 @@
 				2C0FF4E324C2E1900014C96E /* BinaryWriterDetail.cpp in Sources */,
 				2C47B35224DD9789008D83BE /* SivFormatFloat.cpp in Sources */,
 				2CFF9F6C24A47730000B5A17 /* Vertex2DBatch_Metal.mm in Sources */,
+				2C4397962536163000F6AECD /* CShader_GL4.cpp in Sources */,
 				2C47B0C924DD974A008D83BE /* agg_color_rgba.cpp in Sources */,
 				2C439F7D241DCEA9001154C2 /* fixed-dtoa.cc in Sources */,
 				2C4396252535DCCA00F6AECD /* svgstring.cpp in Sources */,
@@ -4744,6 +4799,7 @@
 				2C60AE72248158A500277281 /* frequency_windows.cpp in Sources */,
 				2C60AE88248158A500277281 /* displays_darwin.cpp in Sources */,
 				2C47B36724DD9789008D83BE /* SivScene.cpp in Sources */,
+				2C4397942536163000F6AECD /* GL4VertexShader.cpp in Sources */,
 				2C47B6F224EAC8D9008D83BE /* GL4InternalTexture2D.cpp in Sources */,
 				2C439F86241DCEA9001154C2 /* cached-powers.cc in Sources */,
 				2C4396492535DCCA00F6AECD /* svglength.cpp in Sources */,
