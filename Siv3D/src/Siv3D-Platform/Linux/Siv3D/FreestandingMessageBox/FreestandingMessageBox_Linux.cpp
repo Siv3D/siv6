@@ -9,7 +9,6 @@
 //
 //-----------------------------------------------
 
-# pragma once
 # include <iostream>
 # include <Siv3D/FreestandingMessageBox/FreestandingMessageBox.hpp>
 
