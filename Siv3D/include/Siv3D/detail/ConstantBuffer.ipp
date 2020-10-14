@@ -21,7 +21,6 @@ namespace s3d
 	inline ConstantBuffer<Type>::ConstantBuffer(const Type& data)
 		: ConstantBuffer()
 	{
-		m_hasDirty		= true;
 		m_wrapper->data	= data;
 	}
 

@@ -64,7 +64,7 @@ namespace s3d
 
 		WrapperType* const m_wrapper	= AlignedNew<WrapperType>();
 
-		bool m_hasDirty					= false;
+		bool m_hasDirty					= true;
 
 	public:
 

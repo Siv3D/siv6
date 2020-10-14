@@ -73,9 +73,9 @@ namespace s3d
 					m_textureIndices.emplace_back(slot, location);
 				}
 			}
-		}
 
-		setUniformBlockBindings(bindings);
+			setUniformBlockBindings(bindings);
+		}
 
 		m_initialized = (m_psProgram != 0);
 	}

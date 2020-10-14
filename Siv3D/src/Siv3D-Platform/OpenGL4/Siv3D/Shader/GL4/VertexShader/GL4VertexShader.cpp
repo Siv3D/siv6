@@ -58,7 +58,10 @@ namespace s3d
 			m_vsProgram = 0;
 		}
 
-		setUniformBlockBindings(bindings);
+		if (m_vsProgram)
+		{
+			setUniformBlockBindings(bindings);
+		}
 
 		m_initialized = (m_vsProgram != 0);
 	}
