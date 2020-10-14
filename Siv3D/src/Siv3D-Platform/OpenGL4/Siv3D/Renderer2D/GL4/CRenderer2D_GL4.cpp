@@ -82,12 +82,6 @@ namespace s3d
 			}
 		}
 
-		// パイプライン管理を初期化
-		if (!m_pipeline.init())
-		{
-			throw EngineError(U"GL4ShaderPipeline::init() failed");
-		}
-
 		// Batch 管理を初期化
 		if (!m_batches.init())
 		{
@@ -121,9 +115,9 @@ namespace s3d
 			return;
 		}
 
-		m_pipeline.setVS(pShader->getVSProgram(m_standardVS->sprite.id()));
-		m_pipeline.setPS(pShader->getPSProgram(m_standardPS->shape.id()));
-		m_pipeline.use();
+		pShader->setVS(m_standardVS->sprite.id());
+		pShader->setPS(m_standardPS->shape.id());
+		pShader->usePipeline();
 
 		const Size currentRenderTargetSize = SIV3D_ENGINE(Renderer)->getSceneBufferSize();
 		::glViewport(0, 0, currentRenderTargetSize.x, currentRenderTargetSize.y);
@@ -209,9 +203,9 @@ namespace s3d
 			::glSamplerParameteri(m_sampler, GL_TEXTURE_MAG_FILTER, linearFilter ? GL_LINEAR : GL_NEAREST);
 		}
 
-		m_pipeline.setVS(pShader->getVSProgram(m_standardVS->fullscreen_triangle.id()));
-		m_pipeline.setPS(pShader->getPSProgram(m_standardPS->fullscreen_triangle.id()));
-		m_pipeline.use();
+		pShader->setVS(m_standardVS->fullscreen_triangle.id());
+		pShader->setPS(m_standardPS->fullscreen_triangle.id());
+		pShader->usePipeline();
 		{
 			pShader->setPSSamplerUniform(m_standardPS->fullscreen_triangle.id());
 

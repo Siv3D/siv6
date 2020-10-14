@@ -63,49 +63,6 @@ namespace s3d
 		Float4 internalParam = Float4(0, 0, 0, 0);
 	};
 
-	class GL4ShaderPipeline
-	{
-	private:
-
-		GLuint m_pipeline = 0;
-
-	public:
-
-		GL4ShaderPipeline() = default;
-
-		~GL4ShaderPipeline()
-		{
-			if (m_pipeline)
-			{
-				::glDeleteProgramPipelines(1, &m_pipeline);
-				m_pipeline = 0;
-			}
-		}
-
-		bool init()
-		{
-			::glGenProgramPipelines(1, &m_pipeline);
-
-			return m_pipeline != 0;
-		}
-
-		void setVS(GLuint vsProgramHandle)
-		{
-			::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, vsProgramHandle);
-		}
-
-		void setPS(GLuint psProgramHandle)
-		{
-			::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, psProgramHandle);
-		}
-
-		void use()
-		{
-			::glUseProgram(0);
-			::glBindProgramPipeline(m_pipeline);
-		}
-	};
-
 	class CRenderer2D_GL4 final : public ISiv3DRenderer2D
 	{
 	private:
@@ -116,7 +73,6 @@ namespace s3d
 		std::unique_ptr<GL4StandardVS2D> m_standardVS;
 		std::unique_ptr<GL4StandardPS2D> m_standardPS;
 
-		GL4ShaderPipeline m_pipeline;
 		ConstantBuffer<GL4VSConstants2D> m_vsConstants2D;
 		ConstantBuffer<GL4PSConstants2D> m_psConstants2D;
 

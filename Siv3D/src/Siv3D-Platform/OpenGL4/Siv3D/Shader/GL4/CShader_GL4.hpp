@@ -32,6 +32,8 @@ namespace s3d
 		// PS の管理
 		AssetHandleManager<PixelShader::IDType, GL4PixelShader> m_pixelShaders{ U"PixelShader" };
 
+		GLuint m_pipeline = 0;
+
 	public:
 
 		CShader_GL4();
@@ -62,10 +64,10 @@ namespace s3d
 		void releasePS(PixelShader::IDType handleID) override;
 	
 		// 指定した VS を context にセット
-		void setVS(VertexShader::IDType handleID) override {}
+		void setVS(VertexShader::IDType handleID) override;
 
 		// 指定した PS を context にセット
-		void setPS(PixelShader::IDType handleID) override {}
+		void setPS(PixelShader::IDType handleID) override;
 	
 		const Blob& getBinaryVS(VertexShader::IDType handleID) override;
 
@@ -75,10 +77,8 @@ namespace s3d
 
 		void setConstantBufferPS(uint32 slot, const ConstantBufferBase& cb) override;
 
-		GLuint getVSProgram(VertexShader::IDType handleID);
-		
-		GLuint getPSProgram(PixelShader::IDType handleID);
-		
+		void usePipeline();
+
 		void setPSSamplerUniform(PixelShader::IDType handleID);
 	};
 }

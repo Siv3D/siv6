@@ -26,6 +26,13 @@ namespace s3d
 	CShader_GL4::~CShader_GL4()
 	{
 		LOG_SCOPED_TRACE(U"CShader_GL4::~CShader_GL4()");
+
+		if (m_pipeline)
+		{
+			::glDeleteProgramPipelines(1, &m_pipeline);
+			m_pipeline = 0;
+		}
+
 		m_pixelShaders.destroy();
 		m_vertexShaders.destroy();
 	}
@@ -60,6 +67,13 @@ namespace s3d
 
 			// 管理に登録
 			m_pixelShaders.setNullData(std::move(nullPixelShader));
+		}
+
+		::glGenProgramPipelines(1, &m_pipeline);
+
+		if (!m_pipeline)
+		{
+			throw EngineError(U"glGenProgramPipelines() failed");
 		}
 	}
 
@@ -139,6 +153,18 @@ namespace s3d
 		m_pixelShaders.erase(handleID);
 	}
 
+	void CShader_GL4::setVS(const VertexShader::IDType handleID)
+	{
+		const GLuint vsProgram = m_vertexShaders[handleID]->getProgram();
+		::glUseProgramStages(m_pipeline, GL_VERTEX_SHADER_BIT, vsProgram);
+	}
+
+	void CShader_GL4::setPS(const PixelShader::IDType handleID)
+	{
+		const GLuint psProgram = m_pixelShaders[handleID]->getProgram();
+		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, psProgram);
+	}
+
 	const Blob& CShader_GL4::getBinaryVS(const VertexShader::IDType handleID)
 	{
 		return m_vertexShaders[handleID]->getBinary();
@@ -151,24 +177,20 @@ namespace s3d
 
 	void CShader_GL4::setConstantBufferVS(const uint32 slot, const ConstantBufferBase& cb)
 	{
-		const uint32 vsUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Vertex, 0);
+		const uint32 vsUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Vertex, slot);
 		::glBindBufferBase(GL_UNIFORM_BUFFER, vsUniformBlockBinding, dynamic_cast<const ConstantBufferDetail_GL4*>(cb._detail())->getHandle());
 	}
 
 	void CShader_GL4::setConstantBufferPS(const uint32 slot, const ConstantBufferBase& cb)
 	{
-		const uint32 psUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Pixel, 0);
+		const uint32 psUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Pixel, slot);
 		::glBindBufferBase(GL_UNIFORM_BUFFER, psUniformBlockBinding, dynamic_cast<const ConstantBufferDetail_GL4*>(cb._detail())->getHandle());
 	}
 
-	GLuint CShader_GL4::getVSProgram(const VertexShader::IDType handleID)
+	void CShader_GL4::usePipeline()
 	{
-		return m_vertexShaders[handleID]->getProgram();
-	}
-
-	GLuint CShader_GL4::getPSProgram(const PixelShader::IDType handleID)
-	{
-		return m_pixelShaders[handleID]->getProgram();
+		::glUseProgram(0);
+		::glBindProgramPipeline(m_pipeline);
 	}
 
 	void CShader_GL4::setPSSamplerUniform(const PixelShader::IDType handleID)
