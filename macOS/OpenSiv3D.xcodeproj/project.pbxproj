@@ -560,6 +560,9 @@
 		2C6106E424DB04E300BDEF72 /* xxhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C6106E224DB04E300BDEF72 /* xxhash.h */; };
 		2C6106E524DB04E300BDEF72 /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C6106E324DB04E300BDEF72 /* xxhash.c */; };
 		2C6106E924DB0B1D00BDEF72 /* SivSystem_macOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C6106E824DB0B1D00BDEF72 /* SivSystem_macOS.mm */; };
+		2C6390E525367EE40030F18E /* ConstantBufferDetail_GL4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6390E325367EE40030F18E /* ConstantBufferDetail_GL4.cpp */; };
+		2C6390E625367EE40030F18E /* ConstantBufferDetail_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C6390E425367EE40030F18E /* ConstantBufferDetail_GL4.hpp */; };
+		2C6390E925367F020030F18E /* ConstantBufferDetailFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6390E825367F020030F18E /* ConstantBufferDetailFactory.cpp */; };
 		2C68508824B768A800B98A7F /* CLogger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C68507824B768A800B98A7F /* CLogger.hpp */; };
 		2C68508924B768A800B98A7F /* CLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C68507924B768A800B98A7F /* CLogger.cpp */; };
 		2C68508A24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C68507B24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp */; };
@@ -1550,6 +1553,9 @@
 		2C6106E224DB04E300BDEF72 /* xxhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xxhash.h; sourceTree = "<group>"; };
 		2C6106E324DB04E300BDEF72 /* xxhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xxhash.c; sourceTree = "<group>"; };
 		2C6106E824DB0B1D00BDEF72 /* SivSystem_macOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SivSystem_macOS.mm; sourceTree = "<group>"; };
+		2C6390E325367EE40030F18E /* ConstantBufferDetail_GL4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantBufferDetail_GL4.cpp; sourceTree = "<group>"; };
+		2C6390E425367EE40030F18E /* ConstantBufferDetail_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConstantBufferDetail_GL4.hpp; sourceTree = "<group>"; };
+		2C6390E825367F020030F18E /* ConstantBufferDetailFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantBufferDetailFactory.cpp; sourceTree = "<group>"; };
 		2C68507824B768A800B98A7F /* CLogger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CLogger.hpp; sourceTree = "<group>"; };
 		2C68507924B768A800B98A7F /* CLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLogger.cpp; sourceTree = "<group>"; };
 		2C68507B24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivUnicode_macOS_Linux.cpp; sourceTree = "<group>"; };
@@ -3652,6 +3658,31 @@
 			path = xxHash;
 			sourceTree = "<group>";
 		};
+		2C6390E125367EE40030F18E /* ConstantBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				2C6390E225367EE40030F18E /* GL4 */,
+			);
+			path = ConstantBuffer;
+			sourceTree = "<group>";
+		};
+		2C6390E225367EE40030F18E /* GL4 */ = {
+			isa = PBXGroup;
+			children = (
+				2C6390E325367EE40030F18E /* ConstantBufferDetail_GL4.cpp */,
+				2C6390E425367EE40030F18E /* ConstantBufferDetail_GL4.hpp */,
+			);
+			path = GL4;
+			sourceTree = "<group>";
+		};
+		2C6390E725367F020030F18E /* ConstantBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				2C6390E825367F020030F18E /* ConstantBufferDetailFactory.cpp */,
+			);
+			path = ConstantBuffer;
+			sourceTree = "<group>";
+		};
 		2C68507624B768A800B98A7F /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
@@ -3936,11 +3967,12 @@
 		2CF21CF6249FAA8F00C864C9 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
-				2C43964E2535DCEA00F6AECD /* FreestandingMessageBox */,
 				2CF21D13249FAA8F00C864C9 /* Siv3DMain.cpp */,
 				2CF21D09249FAA8F00C864C9 /* Common */,
+				2C6390E725367F020030F18E /* ConstantBuffer */,
 				2CF21CFC249FAA8F00C864C9 /* Cursor */,
 				2CF21CFF249FAA8F00C864C9 /* FileSystem */,
+				2C43964E2535DCEA00F6AECD /* FreestandingMessageBox */,
 				2CF21CF7249FAA8F00C864C9 /* Renderer */,
 				2CF21D01249FAA8F00C864C9 /* Renderer2D */,
 				2C8E718824C749C500CECCAE /* Resource */,
@@ -4047,6 +4079,7 @@
 		2CF21D29249FAA9700C864C9 /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
+				2C6390E125367EE40030F18E /* ConstantBuffer */,
 				2C47B6E424EAC8D9008D83BE /* Renderer */,
 				2C47B6EB24EAC8D9008D83BE /* Renderer2D */,
 				2C4397872536163000F6AECD /* Shader */,
@@ -4201,6 +4234,7 @@
 				2C47B09B24DD974A008D83BE /* agg_conv_bspline.h in Headers */,
 				2C47B0A724DD974A008D83BE /* agg_span_pattern_rgb.h in Headers */,
 				2C47B0F024DD974A008D83BE /* agg_rounded_rect.h in Headers */,
+				2C6390E625367EE40030F18E /* ConstantBufferDetail_GL4.hpp in Headers */,
 				2CF21D1F249FAA8F00C864C9 /* OpenGL.hpp in Headers */,
 				2CF21D15249FAA8F00C864C9 /* CRenderer_GL4.hpp in Headers */,
 				2C834DAC248805D4006208B8 /* oniggnu.h in Headers */,
@@ -4653,6 +4687,7 @@
 				2C481E1524460B5700A5D88D /* cpuinfo_x86.c in Sources */,
 				2C60AE77248158A500277281 /* instruction_set.cpp in Sources */,
 				2C4396202535DCCA00F6AECD /* rendercontext.cpp in Sources */,
+				2C6390E925367F020030F18E /* ConstantBufferDetailFactory.cpp in Sources */,
 				2C47B47124DD97E4008D83BE /* QrCode.cpp in Sources */,
 				2C47B5B424E7670A008D83BE /* SivTexture.cpp in Sources */,
 				2C47B2F824DD9789008D83BE /* SivVector2D.cpp in Sources */,
@@ -4776,6 +4811,7 @@
 				2C423248242B155E00A16BCA /* xkb_unicode.c in Sources */,
 				2C98D0DE25158AC000904E67 /* FrameTimer.cpp in Sources */,
 				2C439F482419D686001154C2 /* format.cc in Sources */,
+				2C6390E525367EE40030F18E /* ConstantBufferDetail_GL4.cpp in Sources */,
 				2C834DA0248805D4006208B8 /* regcomp.c in Sources */,
 				2C47B31E24DD9789008D83BE /* SivCursor.cpp in Sources */,
 				2C834DA2248805D4006208B8 /* koi8_r.c in Sources */,
