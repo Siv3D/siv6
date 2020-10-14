@@ -39,7 +39,7 @@ namespace s3d
 
 		explicit GL4VertexShader(Null);
 
-		explicit GL4VertexShader(const String& source, const Array<ConstantBufferBinding>& bindings);
+		explicit GL4VertexShader(const StringView source, const Array<ConstantBufferBinding>& bindings);
 
 		~GL4VertexShader();
 

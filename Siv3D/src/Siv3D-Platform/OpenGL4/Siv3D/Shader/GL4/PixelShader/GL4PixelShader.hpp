@@ -41,7 +41,7 @@ namespace s3d
 
 		explicit GL4PixelShader(Null);
 
-		explicit GL4PixelShader(const String& source, const Array<ConstantBufferBinding>& bindings);
+		explicit GL4PixelShader(const StringView source, const Array<ConstantBufferBinding>& bindings);
 
 		~GL4PixelShader();
 

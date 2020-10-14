@@ -13,6 +13,7 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/DLL.hpp>
+# include <Siv3D/TextReader.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include <Siv3D/ConstantBuffer/D3D11/ConstantBufferDetail_D3D11.hpp>
 
@@ -147,21 +148,7 @@ namespace s3d
 		}
 	}
 
-	VertexShader::IDType CShader_D3D11::createVS(Blob&& binary, const Array<ConstantBufferBinding>&)
-	{
-		// VS を作成
-		auto vertexShader = std::make_unique<D3D11VertexShader>(std::move(binary), m_device);
-
-		if (!vertexShader->isInitialized()) // もし作成に失敗していたら
-		{
-			return VertexShader::IDType::NullAsset();
-		}
-
-		// VS を管理に登録
-		return m_vertexShaders.add(std::move(vertexShader));
-	}
-
-	VertexShader::IDType CShader_D3D11::createVS(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
+	VertexShader::IDType CShader_D3D11::createVSFromFile(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
 	{
 		Blob blob{ path };
 
@@ -178,26 +165,33 @@ namespace s3d
 			return createVS(std::move(blob), bindings);
 		}
 		
-		Blob binary = compileHLSL(blob, path, ShaderStage::Vertex, U"VS");
+		Blob binary = compileHLSLFromFile(path, ShaderStage::Vertex, U"VS");
 
 		return createVS(std::move(binary), bindings);
 	}
 
-	PixelShader::IDType CShader_D3D11::createPS(Blob&& binary, const Array<ConstantBufferBinding>&)
+	VertexShader::IDType CShader_D3D11::createVSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
 	{
-		// PS を作成
-		auto pixelShader = std::make_unique<D3D11PixelShader>(std::move(binary), m_device);
+		Blob binary = compileHLSLFromSource(source, ShaderStage::Vertex, U"VS");
 
-		if (!pixelShader->isInitialized()) // もし作成に失敗していたら
-		{
-			return PixelShader::IDType::NullAsset();
-		}
-
-		// PS を管理に登録
-		return m_pixelShaders.add(std::move(pixelShader));
+		return createVS(std::move(binary), bindings);
 	}
 
-	PixelShader::IDType CShader_D3D11::createPS(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
+	VertexShader::IDType CShader_D3D11::createVS(Blob&& binary, const Array<ConstantBufferBinding>&)
+	{
+		// VS を作成
+		auto vertexShader = std::make_unique<D3D11VertexShader>(std::move(binary), m_device);
+
+		if (!vertexShader->isInitialized()) // もし作成に失敗していたら
+		{
+			return VertexShader::IDType::NullAsset();
+		}
+
+		// VS を管理に登録
+		return m_vertexShaders.add(std::move(vertexShader));
+	}
+
+	PixelShader::IDType CShader_D3D11::createPSFromFile(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
 	{
 		Blob blob{ path };
 
@@ -214,9 +208,30 @@ namespace s3d
 			return createPS(std::move(blob), bindings);
 		}
 
-		Blob binary = compileHLSL(blob, path, ShaderStage::Pixel, U"PS");
+		Blob binary = compileHLSLFromFile(path, ShaderStage::Pixel, U"PS");
 
 		return createPS(std::move(binary), bindings);
+	}
+
+	PixelShader::IDType CShader_D3D11::createPSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
+	{
+		Blob binary = compileHLSLFromSource(source, ShaderStage::Pixel, U"PS");
+
+		return createPS(std::move(binary), bindings);
+	}
+
+	PixelShader::IDType CShader_D3D11::createPS(Blob&& binary, const Array<ConstantBufferBinding>&)
+	{
+		// PS を作成
+		auto pixelShader = std::make_unique<D3D11PixelShader>(std::move(binary), m_device);
+
+		if (!pixelShader->isInitialized()) // もし作成に失敗していたら
+		{
+			return PixelShader::IDType::NullAsset();
+		}
+
+		// PS を管理に登録
+		return m_pixelShaders.add(std::move(pixelShader));
 	}
 
 	void CShader_D3D11::releaseVS(const VertexShader::IDType handleID)
@@ -278,23 +293,38 @@ namespace s3d
 	}
 
 
-	Blob CShader_D3D11::compileHLSL(const FilePathView path, const ShaderStage stage, const StringView entryPoint, const Platform::Windows::HLSLCompileOption flags) const
+	Blob CShader_D3D11::compileHLSLFromFile(const FilePathView path, const ShaderStage stage, const StringView entryPoint, const Platform::Windows::HLSLCompileOption flags) const
 	{
-		LOG_TRACE(U"CShader_D3D11::compileHLSL(path = {}, stage = {}, entryPoint = {}, flags = {:#X})"_fmt(
+		LOG_TRACE(U"CShader_D3D11::compileHLSLFromFile(path = {}, stage = {}, entryPoint = {}, flags = {:#X})"_fmt(
 			path, Unicode::Widen(detail::StageToTarget(stage)), entryPoint, flags));
 
-		Blob blob{ path };
+		TextReader reader{ path };
 
-		if (!blob)
+		if (!reader)
 		{
-			LOG_FAIL(U"CShader_D3D11::compileHLSL(): failed to load source from `{}`"_fmt(path));
+			LOG_FAIL(U"CShader_D3D11::compileHLSLFromFile(): failed to load source from `{}`"_fmt(path));
 			return{};
 		}
 
-		return compileHLSL(blob, path, stage, entryPoint, flags);
+		const std::string sourceUTF8 = reader.readAll().toUTF8();
+		return compileHLSL(sourceUTF8, path, stage, entryPoint, flags);
 	}
 
-	Blob CShader_D3D11::compileHLSL(const Blob& blob, const FilePathView pathHint, const ShaderStage stage, const StringView entryPoint, const Platform::Windows::HLSLCompileOption flags) const
+	Blob CShader_D3D11::compileHLSLFromSource(const StringView source, const ShaderStage stage, const StringView entryPoint, const Platform::Windows::HLSLCompileOption flags) const
+	{
+		LOG_TRACE(U"CShader_D3D11::compileHLSLFromSource(stage = {}, entryPoint = {}, flags = {:#X})"_fmt(
+			Unicode::Widen(detail::StageToTarget(stage)), entryPoint, flags));
+
+		if (!source)
+		{
+			LOG_FAIL(U"CShader_D3D11::compileHLSLFromSource(): source is empty");
+			return{};
+		}
+
+		return compileHLSL(source.toUTF8(), U"", stage, entryPoint, flags);
+	}
+
+	Blob CShader_D3D11::compileHLSL(const std::string_view sourceUTF8, const FilePathView pathHint, const ShaderStage stage, const StringView entryPoint, const Platform::Windows::HLSLCompileOption flags) const
 	{
 		if (!hasHLSLCompiler()) // もし HLSL コンパイラが利用不可なら
 		{
@@ -304,7 +334,7 @@ namespace s3d
 
 		// HLSL ソースコードのコンパイル
 		ComPtr<ID3DBlob> binary, error;
-		const HRESULT hr = p_D3DCompile2(blob.data(), blob.size(),
+		const HRESULT hr = p_D3DCompile2(sourceUTF8.data(), sourceUTF8.size(),
 			pathHint.narrow().c_str(), nullptr, nullptr,
 			entryPoint.narrow().c_str(),
 			detail::StageToTarget(stage),

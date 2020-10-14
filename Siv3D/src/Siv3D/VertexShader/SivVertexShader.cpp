@@ -47,7 +47,7 @@ namespace s3d
 	}
 
 	VertexShader::VertexShader(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
-		: AssetHandle(std::make_shared<AssetIDWrapperType>(SIV3D_ENGINE(Shader)->createVS(path, bindings)))
+		: AssetHandle(std::make_shared<AssetIDWrapperType>(SIV3D_ENGINE(Shader)->createVSFromFile(path, bindings)))
 	{
 
 	}

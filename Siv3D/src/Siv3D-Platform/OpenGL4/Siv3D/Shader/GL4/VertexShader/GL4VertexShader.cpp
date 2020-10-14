@@ -29,7 +29,7 @@ namespace s3d
 		}
 	}
 
-	GL4VertexShader::GL4VertexShader(const String& source, const Array<ConstantBufferBinding>& bindings)
+	GL4VertexShader::GL4VertexShader(const StringView source, const Array<ConstantBufferBinding>& bindings)
 	{
 		// 頂点シェーダプログラムを作成
 		{

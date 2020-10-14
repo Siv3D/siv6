@@ -37,7 +37,7 @@ namespace s3d
 		public:
 
 			SIV3D_NODISCARD_CXX20
-			GetFunctionNoThrow(HMODULE module, const char* name);
+			GetFunctionNoThrow(HMODULE _module, const char* name);
 
 			template <class Type>
 			operator Type() const noexcept
@@ -55,7 +55,7 @@ namespace s3d
 		public:
 
 			SIV3D_NODISCARD_CXX20
-			GetFunction(HMODULE module, const char* name);
+			GetFunction(HMODULE _module, const char* name);
 
 			template <class Type>
 			operator Type() const noexcept
@@ -88,7 +88,7 @@ namespace s3d
 		public:
 
 			SIV3D_NODISCARD_CXX20
-			GetFunctionNoThrow(void* module, const char* name);
+			GetFunctionNoThrow(void* _module, const char* name);
 
 			template <class Type>
 			operator Type() const noexcept
@@ -106,7 +106,7 @@ namespace s3d
 		public:
 
 			SIV3D_NODISCARD_CXX20
-			GetFunction(void* module, const char* name);
+			GetFunction(void* _module, const char* name);
 
 			template <class Type>
 			operator Type() const noexcept

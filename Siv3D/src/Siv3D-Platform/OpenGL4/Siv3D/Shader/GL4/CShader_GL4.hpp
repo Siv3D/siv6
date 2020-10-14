@@ -42,19 +42,14 @@ namespace s3d
 
 		void init() override;
 
-
-		VertexShader::IDType createVS(Blob&& binary, const Array<ConstantBufferBinding>& bindings) override;
-
-		VertexShader::IDType createVS(FilePathView path, const Array<ConstantBufferBinding>& bindings) override;
+		VertexShader::IDType createVSFromFile(FilePathView path, const Array<ConstantBufferBinding>& bindings) override;
 		
-		VertexShader::IDType createVSFromSource(const String& source, const Array<ConstantBufferBinding>& bindings);
+		VertexShader::IDType createVSFromSource(StringView source, const Array<ConstantBufferBinding>& bindings) override;
 
 
-		PixelShader::IDType createPS(Blob&& binary, const Array<ConstantBufferBinding>& bindings) override;
-
-		PixelShader::IDType createPS(FilePathView path, const Array<ConstantBufferBinding>& bindings) override;
+		PixelShader::IDType createPSFromFile(FilePathView path, const Array<ConstantBufferBinding>& bindings) override;
 	
-		PixelShader::IDType createPSFromSource(const String& source, const Array<ConstantBufferBinding>& bindings);
+		PixelShader::IDType createPSFromSource(StringView source, const Array<ConstantBufferBinding>& bindings) override;
 
 
 		// 指定した VS を管理から除外
@@ -78,7 +73,5 @@ namespace s3d
 		void setConstantBufferPS(uint32 slot, const ConstantBufferBase& cb) override;
 
 		void usePipeline();
-
-		void setPSSamplerUniform(PixelShader::IDType handleID);
 	};
 }

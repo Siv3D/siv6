@@ -77,13 +77,7 @@ namespace s3d
 		}
 	}
 
-	VertexShader::IDType CShader_GL4::createVS(Blob&& binary, const Array<ConstantBufferBinding>& bindings)
-	{
-		// [Siv3D ToDo]
-		return VertexShader::IDType::NullAsset();
-	}
-
-	VertexShader::IDType CShader_GL4::createVS(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
+	VertexShader::IDType CShader_GL4::createVSFromFile(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
 	{
 		TextReader reader(path);
 
@@ -95,7 +89,7 @@ namespace s3d
 		return createVSFromSource(reader.readAll(), bindings);
 	}
 
-	VertexShader::IDType CShader_GL4::createVSFromSource(const String& source, const Array<ConstantBufferBinding>& bindings)
+	VertexShader::IDType CShader_GL4::createVSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
 	{
 		// VS を作成
 		auto vertexShader = std::make_unique<GL4VertexShader>(source, bindings);
@@ -109,13 +103,7 @@ namespace s3d
 		return m_vertexShaders.add(std::move(vertexShader));
 	}
 
-	PixelShader::IDType CShader_GL4::createPS(Blob&& binary, const Array<ConstantBufferBinding>& bindings)
-	{
-		// [Siv3D ToDo]
-		return PixelShader::IDType::NullAsset();
-	}
-
-	PixelShader::IDType CShader_GL4::createPS(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
+	PixelShader::IDType CShader_GL4::createPSFromFile(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
 	{
 		TextReader reader(path);
 
@@ -127,7 +115,7 @@ namespace s3d
 		return createPSFromSource(reader.readAll(), bindings);
 	}
 
-	PixelShader::IDType CShader_GL4::createPSFromSource(const String& source, const Array<ConstantBufferBinding>& bindings)
+	PixelShader::IDType CShader_GL4::createPSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
 	{
 		// PS を作成
 		auto pixelShader = std::make_unique<GL4PixelShader>(source, bindings);
@@ -161,8 +149,12 @@ namespace s3d
 
 	void CShader_GL4::setPS(const PixelShader::IDType handleID)
 	{
-		const GLuint psProgram = m_pixelShaders[handleID]->getProgram();
+		const auto& pixelShader = m_pixelShaders[handleID];
+
+		const GLuint psProgram = pixelShader->getProgram();
 		::glUseProgramStages(m_pipeline, GL_FRAGMENT_SHADER_BIT, psProgram);
+
+		pixelShader->setPSSamplerUniform();
 	}
 
 	const Blob& CShader_GL4::getBinaryVS(const VertexShader::IDType handleID)
@@ -191,10 +183,5 @@ namespace s3d
 	{
 		::glUseProgram(0);
 		::glBindProgramPipeline(m_pipeline);
-	}
-
-	void CShader_GL4::setPSSamplerUniform(const PixelShader::IDType handleID)
-	{
-		m_pixelShaders[handleID]->setPSSamplerUniform();
 	}
 }

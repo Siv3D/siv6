@@ -207,8 +207,6 @@ namespace s3d
 		pShader->setPS(m_standardPS->fullscreen_triangle.id());
 		pShader->usePipeline();
 		{
-			pShader->setPSSamplerUniform(m_standardPS->fullscreen_triangle.id());
-
 			::glBindVertexArray(m_vertexArray);
 			{
 				::glBindBuffer(GL_ARRAY_BUFFER, 0);

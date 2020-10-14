@@ -47,7 +47,7 @@ namespace s3d
 	}
 
 	PixelShader::PixelShader(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
-		: AssetHandle(std::make_shared<AssetIDWrapperType>(SIV3D_ENGINE(Shader)->createPS(path, bindings)))
+		: AssetHandle(std::make_shared<AssetIDWrapperType>(SIV3D_ENGINE(Shader)->createPSFromFile(path, bindings)))
 	{
 
 	}

@@ -30,22 +30,22 @@ namespace s3d
 
 	}
 
-	VertexShader::IDType CShader_Null::createVS(Blob&&, const Array<ConstantBufferBinding>&)
+	VertexShader::IDType CShader_Null::createVSFromFile(FilePathView, const Array<ConstantBufferBinding>&)
 	{
 		return VertexShader::IDType::NullAsset();
 	}
 
-	VertexShader::IDType CShader_Null::createVS(FilePathView, const Array<ConstantBufferBinding>&)
+	VertexShader::IDType CShader_Null::createVSFromSource(StringView, const Array<ConstantBufferBinding>&)
 	{
 		return VertexShader::IDType::NullAsset();
 	}
 
-	PixelShader::IDType CShader_Null::createPS(Blob&&, const Array<ConstantBufferBinding>&)
+	PixelShader::IDType CShader_Null::createPSFromFile(FilePathView, const Array<ConstantBufferBinding>&)
 	{
 		return PixelShader::IDType::NullAsset();
 	}
 
-	PixelShader::IDType CShader_Null::createPS(FilePathView, const Array<ConstantBufferBinding>&)
+	PixelShader::IDType CShader_Null::createPSFromSource(StringView, const Array<ConstantBufferBinding>&)
 	{
 		return PixelShader::IDType::NullAsset();
 	}

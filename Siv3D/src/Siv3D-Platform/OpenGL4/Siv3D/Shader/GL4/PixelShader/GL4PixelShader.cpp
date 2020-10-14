@@ -30,7 +30,7 @@ namespace s3d
 		}
 	}
 
-	GL4PixelShader::GL4PixelShader(const String& source, const Array<ConstantBufferBinding>& bindings)
+	GL4PixelShader::GL4PixelShader(const StringView source, const Array<ConstantBufferBinding>& bindings)
 	{
 		// ピクセルシェーダプログラムを作成
 		{
