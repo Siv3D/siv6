@@ -23,6 +23,30 @@ namespace s3d
 {
 	class GL4Renderer2DCommand {};
 
+	struct GL4StandardVS2D
+	{
+		VertexShader sprite;
+		VertexShader fullscreen_triangle;
+
+		bool ok() const
+		{
+			return sprite
+				&& fullscreen_triangle;
+		}
+	};
+
+	struct GL4StandardPS2D
+	{
+		PixelShader shape;
+		PixelShader fullscreen_triangle;
+
+		bool ok()
+		{
+			return shape
+				&& fullscreen_triangle;
+		}
+	};
+
 	struct GL4VSConstants2D
 	{
 		Float4 transform[2];
@@ -89,8 +113,9 @@ namespace s3d
 		CRenderer_GL4* pRenderer = nullptr;
 		CShader_GL4* pShader = nullptr;
 
-		Array<VertexShader> m_vertexShaders;
-		Array<PixelShader> m_pixelShaders;
+		std::unique_ptr<GL4StandardVS2D> m_standardVS;
+		std::unique_ptr<GL4StandardPS2D> m_standardPS;
+
 		GL4ShaderPipeline m_pipeline;
 		ConstantBuffer<GL4VSConstants2D> m_vsConstants2D;
 		ConstantBuffer<GL4PSConstants2D> m_psConstants2D;
@@ -104,9 +129,6 @@ namespace s3d
 		//	full screen triangle
 		//
 		//////////////////////////////////////////////////
-
-		Array<VertexShader> m_fstVertexShaders;
-		Array<PixelShader> m_fstPixelShaders;
 		GLuint m_vertexArray		= 0;
 		GLuint m_sampler			= 0;
 

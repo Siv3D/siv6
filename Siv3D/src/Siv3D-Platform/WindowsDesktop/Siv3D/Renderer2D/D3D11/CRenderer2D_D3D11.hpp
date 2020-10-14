@@ -38,7 +38,7 @@ namespace s3d
 		PixelShader shape;
 		PixelShader fullscreen_triangle;
 
-		bool setup()
+		bool ok()
 		{
 			return shape
 				&& fullscreen_triangle;

@@ -14,6 +14,7 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Siv3D/ConstantBuffer/GL4/ConstantBufferDetail_GL4.hpp>
 
 namespace s3d
 {
@@ -146,6 +147,18 @@ namespace s3d
 	const Blob& CShader_GL4::getBinaryPS(const PixelShader::IDType handleID)
 	{
 		return m_pixelShaders[handleID]->getBinary();
+	}
+
+	void CShader_GL4::setConstantBufferVS(const uint32 slot, const ConstantBufferBase& cb)
+	{
+		const uint32 vsUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Vertex, 0);
+		::glBindBufferBase(GL_UNIFORM_BUFFER, vsUniformBlockBinding, dynamic_cast<const ConstantBufferDetail_GL4*>(cb._detail())->getHandle());
+	}
+
+	void CShader_GL4::setConstantBufferPS(const uint32 slot, const ConstantBufferBase& cb)
+	{
+		const uint32 psUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Pixel, 0);
+		::glBindBufferBase(GL_UNIFORM_BUFFER, psUniformBlockBinding, dynamic_cast<const ConstantBufferDetail_GL4*>(cb._detail())->getHandle());
 	}
 
 	GLuint CShader_GL4::getVSProgram(const VertexShader::IDType handleID)

@@ -60,16 +60,26 @@ namespace s3d
 		pRenderer = dynamic_cast<CRenderer_GL4*>(SIV3D_ENGINE(Renderer));
 		pShader = dynamic_cast<CShader_GL4*>(SIV3D_ENGINE(Shader));
 
-		m_vertexShaders << VertexShader((Resource(U"engine/shader/glsl/sprite.vert")), { { U"VSConstants2D", 0 } });
-		if (!m_vertexShaders.front())
+		// 標準 VS をロード
 		{
-			throw EngineError();
+			m_standardVS = std::make_unique<GL4StandardVS2D>();
+			m_standardVS->sprite = VertexShader(Resource(U"engine/shader/glsl/sprite.vert"), { { U"VSConstants2D", 0 } });
+			m_standardVS->fullscreen_triangle = VertexShader(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), {});
+			if (!m_standardVS->ok())
+			{
+				throw EngineError(U"CRenderer2D_GL4::m_standardVS initialization failed");
+			}
 		}
 
-		m_pixelShaders << PixelShader(Resource(U"engine/shader/glsl/shape.frag"), { { U"PSConstants2D", 0 } });
-		if (!m_pixelShaders.front())
+		// 標準 PS をロード
 		{
-			throw EngineError();
+			m_standardPS = std::make_unique<GL4StandardPS2D>();
+			m_standardPS->shape = PixelShader(Resource(U"engine/shader/glsl/shape.frag"), { { U"PSConstants2D", 0 } });
+			m_standardPS->fullscreen_triangle = PixelShader(Resource(U"engine/shader/glsl/fullscreen_triangle.frag"), {});
+			if (!m_standardPS->ok())
+			{
+				throw EngineError(U"CRenderer2D_GL4::m_standardPS initialization failed");
+			}
 		}
 
 		// パイプライン管理を初期化
@@ -86,18 +96,6 @@ namespace s3d
 
 		// full screen triangle
 		{
-			m_fstVertexShaders << VertexShader(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), {});
-			if (!m_fstVertexShaders.front())
-			{
-				throw EngineError();
-			}
-			
-			m_fstPixelShaders << PixelShader(Resource(U"engine/shader/glsl/fullscreen_triangle.frag"), {});
-			if (!m_fstPixelShaders.front())
-			{
-				throw EngineError();
-			}
-
 			::glGenVertexArrays(1, &m_vertexArray);
 			::glBindVertexArray(m_vertexArray);
 
@@ -123,8 +121,8 @@ namespace s3d
 			return;
 		}
 
-		m_pipeline.setVS(pShader->getVSProgram(m_vertexShaders.front().id()));
-		m_pipeline.setPS(pShader->getPSProgram(m_pixelShaders.front().id()));
+		m_pipeline.setVS(pShader->getVSProgram(m_standardVS->sprite.id()));
+		m_pipeline.setPS(pShader->getPSProgram(m_standardPS->shape.id()));
 		m_pipeline.use();
 
 		const Size currentRenderTargetSize = SIV3D_ENGINE(Renderer)->getSceneBufferSize();
@@ -138,13 +136,8 @@ namespace s3d
 		m_vsConstants2D->transform[1] = Float4(matrix._21, -matrix._22, 0.0f, 1.0f);
 		m_vsConstants2D->colorMul = Float4(1, 1, 1, 1);
 
-		{
-			constexpr uint32 vsUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Vertex, 0);
-			::glBindBufferBase(GL_UNIFORM_BUFFER, vsUniformBlockBinding, dynamic_cast<const ConstantBufferDetail_GL4*>(m_vsConstants2D.base()._detail())->getHandle());
-
-			constexpr uint32 psUniformBlockBinding = Shader::Internal::MakeUniformBlockBinding(ShaderStage::Pixel, 0);
-			::glBindBufferBase(GL_UNIFORM_BUFFER, psUniformBlockBinding, dynamic_cast<const ConstantBufferDetail_GL4*>(m_psConstants2D.base()._detail())->getHandle());
-		}
+		pShader->setConstantBufferVS(0, m_vsConstants2D.base());
+		pShader->setConstantBufferPS(0, m_psConstants2D.base());
 
 		auto batchInfo = m_batches.updateBuffers(0);
 		m_vsConstants2D._update_if_dirty();
@@ -216,11 +209,11 @@ namespace s3d
 			::glSamplerParameteri(m_sampler, GL_TEXTURE_MAG_FILTER, linearFilter ? GL_LINEAR : GL_NEAREST);
 		}
 
-		m_pipeline.setVS(pShader->getVSProgram(m_fstVertexShaders.front().id()));
-		m_pipeline.setPS(pShader->getPSProgram(m_fstPixelShaders.front().id()));
+		m_pipeline.setVS(pShader->getVSProgram(m_standardVS->fullscreen_triangle.id()));
+		m_pipeline.setPS(pShader->getPSProgram(m_standardPS->fullscreen_triangle.id()));
 		m_pipeline.use();
 		{
-			pShader->setPSSamplerUniform(m_fstPixelShaders.front().id());
+			pShader->setPSSamplerUniform(m_standardPS->fullscreen_triangle.id());
 
 			::glBindVertexArray(m_vertexArray);
 			{

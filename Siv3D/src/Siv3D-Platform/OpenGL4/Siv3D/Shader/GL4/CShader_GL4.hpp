@@ -32,12 +32,6 @@ namespace s3d
 		// PS の管理
 		AssetHandleManager<PixelShader::IDType, GL4PixelShader> m_pixelShaders{ U"PixelShader" };
 
-		//[[nodiscard]]
-		//Blob compileHLSL(FilePathView path, ShaderStage stage, StringView entryPoint, Platform::Windows::HLSLCompileOption flags = Platform::Windows::HLSLCompileOption::Default) const;
-
-		//[[nodiscard]]
-		//Blob compileHLSL(const Blob& blob, FilePathView pathHint, ShaderStage stage, StringView entryPoint, Platform::Windows::HLSLCompileOption flags = Platform::Windows::HLSLCompileOption::Default) const;
-
 	public:
 
 		CShader_GL4();
@@ -77,9 +71,9 @@ namespace s3d
 
 		const Blob& getBinaryPS(PixelShader::IDType handleID) override;
 
-		void setConstantBufferVS(uint32 slot, const ConstantBufferBase& cb) override {}
+		void setConstantBufferVS(uint32 slot, const ConstantBufferBase& cb) override;
 
-		void setConstantBufferPS(uint32 slot, const ConstantBufferBase& cb) override {}
+		void setConstantBufferPS(uint32 slot, const ConstantBufferBase& cb) override;
 
 		GLuint getVSProgram(VertexShader::IDType handleID);
 		

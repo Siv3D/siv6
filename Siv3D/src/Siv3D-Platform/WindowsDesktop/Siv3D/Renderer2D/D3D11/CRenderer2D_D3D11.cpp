@@ -51,7 +51,7 @@ namespace s3d
 			m_standardPS = std::make_unique<D3D11StandardPS2D>();
 			m_standardPS->shape					= PixelShader(FileOrResource(U"engine/shader/d3d11/shape.ps"), {});
 			m_standardPS->fullscreen_triangle	= PixelShader(FileOrResource(U"engine/shader/d3d11/fullscreen_triangle.ps"), {});
-			if (!m_standardPS->setup())
+			if (!m_standardPS->ok())
 			{
 				throw EngineError(U"CRenderer2D_D3D11::m_standardPS initialization failed");
 			}
