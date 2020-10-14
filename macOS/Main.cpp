@@ -7,6 +7,7 @@ void Siv3DTest();
 void Main()
 {
 	Siv3DTest();
+	Scene::SetBackground(ColorF(0.8, 0.9, 1.0));
 	
 	//LicenseManager::ShowInBrowser();
 	//System::LaunchBrowser(U"test.html");

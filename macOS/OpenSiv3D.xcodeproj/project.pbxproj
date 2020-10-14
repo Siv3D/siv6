@@ -563,6 +563,8 @@
 		2C6390E525367EE40030F18E /* ConstantBufferDetail_GL4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6390E325367EE40030F18E /* ConstantBufferDetail_GL4.cpp */; };
 		2C6390E625367EE40030F18E /* ConstantBufferDetail_GL4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C6390E425367EE40030F18E /* ConstantBufferDetail_GL4.hpp */; };
 		2C6390E925367F020030F18E /* ConstantBufferDetailFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6390E825367F020030F18E /* ConstantBufferDetailFactory.cpp */; };
+		2C6390ED2536C5460030F18E /* MetalBackBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6390EB2536C5460030F18E /* MetalBackBuffer.cpp */; };
+		2C6390EE2536C5460030F18E /* MetalBackBuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C6390EC2536C5460030F18E /* MetalBackBuffer.hpp */; };
 		2C68508824B768A800B98A7F /* CLogger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C68507824B768A800B98A7F /* CLogger.hpp */; };
 		2C68508924B768A800B98A7F /* CLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C68507924B768A800B98A7F /* CLogger.cpp */; };
 		2C68508A24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C68507B24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp */; };
@@ -1556,6 +1558,8 @@
 		2C6390E325367EE40030F18E /* ConstantBufferDetail_GL4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantBufferDetail_GL4.cpp; sourceTree = "<group>"; };
 		2C6390E425367EE40030F18E /* ConstantBufferDetail_GL4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConstantBufferDetail_GL4.hpp; sourceTree = "<group>"; };
 		2C6390E825367F020030F18E /* ConstantBufferDetailFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantBufferDetailFactory.cpp; sourceTree = "<group>"; };
+		2C6390EB2536C5460030F18E /* MetalBackBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MetalBackBuffer.cpp; sourceTree = "<group>"; };
+		2C6390EC2536C5460030F18E /* MetalBackBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MetalBackBuffer.hpp; sourceTree = "<group>"; };
 		2C68507824B768A800B98A7F /* CLogger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CLogger.hpp; sourceTree = "<group>"; };
 		2C68507924B768A800B98A7F /* CLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLogger.cpp; sourceTree = "<group>"; };
 		2C68507B24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivUnicode_macOS_Linux.cpp; sourceTree = "<group>"; };
@@ -1720,6 +1724,7 @@
 		2C12089A24A30260008CAD99 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				2C6390EA2536C5460030F18E /* BackBuffer */,
 				2C12089B24A30260008CAD99 /* CRenderer_Metal.hpp */,
 				2C12089F24A304E7008CAD99 /* CRenderer_Metal.mm */,
 			);
@@ -3683,6 +3688,15 @@
 			path = ConstantBuffer;
 			sourceTree = "<group>";
 		};
+		2C6390EA2536C5460030F18E /* BackBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				2C6390EB2536C5460030F18E /* MetalBackBuffer.cpp */,
+				2C6390EC2536C5460030F18E /* MetalBackBuffer.hpp */,
+			);
+			path = BackBuffer;
+			sourceTree = "<group>";
+		};
 		2C68507624B768A800B98A7F /* Siv3D */ = {
 			isa = PBXGroup;
 			children = (
@@ -4182,6 +4196,7 @@
 				2C834D9B248805D4006208B8 /* regint.h in Headers */,
 				2C47B10424DD974A008D83BE /* agg_arc.h in Headers */,
 				2C4395FE2535DCCA00F6AECD /* svgelementimpl.h in Headers */,
+				2C6390EE2536C5460030F18E /* MetalBackBuffer.hpp in Headers */,
 				2C47B33124DD9789008D83BE /* IRenderer2D.hpp in Headers */,
 				2CDE6E8B24A35C7B0048594F /* CRenderer2D_Metal.hpp in Headers */,
 				2CF21D26249FAA8F00C864C9 /* CWindow.hpp in Headers */,
@@ -4558,6 +4573,7 @@
 				2CF21D14249FAA8F00C864C9 /* RendererFactory.mm in Sources */,
 				2C47B0AD24DD974A008D83BE /* agg_vcgen_dash.cpp in Sources */,
 				2C47B6FB24EAC98A008D83BE /* ShaderFactory.cpp in Sources */,
+				2C6390ED2536C5460030F18E /* MetalBackBuffer.cpp in Sources */,
 				2C47B49B24DD97F2008D83BE /* muParserBytecode.cpp in Sources */,
 				2C47B35524DD9789008D83BE /* ProfilerFactory.cpp in Sources */,
 				2C47B09D24DD974A008D83BE /* agg_gsv_text.cpp in Sources */,

@@ -80,7 +80,7 @@ namespace s3d
 		};
 		
 		m_batches.end();
-		const Size currentRenderTargetSize = Size(800, 600);// SIV3D_ENGINE(Renderer)->getSceneSize();
+		const Size currentRenderTargetSize = SIV3D_ENGINE(Renderer)->getSceneBufferSize();
 
 		Mat3x2 transform = Mat3x2::Identity();
 		Mat3x2 screenMat = Mat3x2::Screen(currentRenderTargetSize);

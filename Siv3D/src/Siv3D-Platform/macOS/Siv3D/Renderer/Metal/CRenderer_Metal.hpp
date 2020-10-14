@@ -16,6 +16,7 @@
 # include <Siv3D/Window.hpp>
 # include <Siv3D/Common/OpenGL.hpp>
 # include <Siv3D/Renderer/IRenderer.hpp>
+# include <Siv3D/Renderer/Metal/BackBuffer/MetalBackBuffer.hpp>
 # import <Metal/Metal.h>
 # import <QuartzCore/CAMetalLayer.h>
 
@@ -33,19 +34,7 @@ namespace s3d
 		
 		CAMetalLayer* m_swapchain = nullptr;
 		
-		uint32 m_sampleCount			= Graphics::DefaultSampleCount;
-
-		ResizeMode m_sceneResizeMode	= Scene::DefaultResizeMode;
-
-		Size m_backBufferSize			= Window::DefaultClientSize;
-
-		Size m_sceneSize				= Scene::DefaultSceneSize;
-
-		ColorF m_letterboxColor				= Scene::DefaultLetterBoxColor;
-		
-		ColorF m_backgroundColor			= Scene::DefaultBackgroundColor;
-
-		TextureFilter m_sceneTextureFilter	= Scene::DefaultTextureFilter;
+		std::unique_ptr<MetalBackBuffer> m_backBuffer;
 
 	public:
 

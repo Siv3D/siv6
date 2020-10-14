@@ -53,6 +53,8 @@ namespace s3d
 		NSWindow* nswin = ::glfwGetCocoaWindow(m_window);
 		nswin.contentView.layer			= m_swapchain;
 		nswin.contentView.wantsLayer	= YES;
+		
+		m_backBuffer = std::make_unique<MetalBackBuffer>();
 
 		clear();
 	}
@@ -65,13 +67,14 @@ namespace s3d
 
 	void CRenderer_Metal::clear()
 	{
+		//m_backBuffer->clear(GL4ClearTarget::BackBuffer | GL4ClearTarget::Scene);
+		
 		const auto& windowState = SIV3D_ENGINE(Window)->getState();
-		const Size newFrameBufferSize = windowState.frameBufferSize;
 
-		if (m_backBufferSize != newFrameBufferSize)
+		if (const Size frameBufferSize = windowState.frameBufferSize;
+			(frameBufferSize != m_backBuffer->getBackBufferSize()))
 		{
-			LOG_VERBOSE(U"CRenderer_Metal::clear(): Frame buffer size: {}"_fmt(newFrameBufferSize));
-			m_backBufferSize = newFrameBufferSize;
+			m_backBuffer->setBackBufferSize(frameBufferSize);
 
 			if (windowState.sizeMove)
 			{
@@ -99,77 +102,57 @@ namespace s3d
 
 	void CRenderer_Metal::setSceneResizeMode(const ResizeMode resizeMode)
 	{
-		m_sceneResizeMode = resizeMode;
+		m_backBuffer->setSceneResizeMode(resizeMode);
 	}
 
 	ResizeMode CRenderer_Metal::getSceneResizeMode() const noexcept
 	{
-		return m_sceneResizeMode;
+		return m_backBuffer->getSceneResizeMode();
 	}
 
 	void CRenderer_Metal::setSceneBufferSize(const Size size)
 	{
-		m_sceneSize = size;
+		m_backBuffer->setSceneBufferSize(size);
 	}
 
 	Size CRenderer_Metal::getSceneBufferSize() const noexcept
 	{
-		return m_sceneSize;
+		return m_backBuffer->getSceneBufferSize();
 	}
 
 	void CRenderer_Metal::setSceneTextureFilter(const TextureFilter textureFilter)
 	{
-		m_sceneTextureFilter = textureFilter;
+		m_backBuffer->setSceneTextureFilter(textureFilter);
 	}
 
 	TextureFilter CRenderer_Metal::getSceneTextureFilter() const noexcept
 	{
-		return m_sceneTextureFilter;
+		return m_backBuffer->getSceneTextureFilter();
 	}
 
 	void CRenderer_Metal::setBackgroundColor(const ColorF& color)
 	{
-		m_backgroundColor = color;
+		m_backBuffer->setBackgroundColor(color);
 	}
 
 	const ColorF& CRenderer_Metal::getBackgroundColor() const noexcept
 	{
-		return m_backgroundColor;
+		return m_backBuffer->getBackgroundColor();
 	}
 
 	void CRenderer_Metal::setLetterboxColor(const ColorF& color)
 	{
-		m_letterboxColor = color;
+		m_backBuffer->setLetterboxColor(color);
 	}
 
 	const ColorF& CRenderer_Metal::getLetterboxColor() const noexcept
 	{
-		return m_letterboxColor;
+		return m_backBuffer->getLetterBoxColor();
 	}
 
 	std::pair<float, FloatRect> CRenderer_Metal::getLetterboxComposition() const noexcept
 	{
-		const Float2 sceneSize		= m_sceneSize;
-		const Float2 backBufferSize	= m_backBufferSize;
-
-		const float sx	= (backBufferSize.x / sceneSize.x);
-		const float sy	= (backBufferSize.y / sceneSize.y);
-		const float s	= Min(sx, sy);
-
-		if (sx <= sy)
-		{
-			const float offsetY = ((backBufferSize.y - sceneSize.y * s) * 0.5f);
-			const float bottom	= (backBufferSize.y - offsetY * 2.0f);
-
-			return{ s, FloatRect(0.0f, offsetY, backBufferSize.x, bottom) };
-		}
-		else
-		{
-			const float offsetX = ((backBufferSize.x - sceneSize.x * s) * 0.5f);
-			const float right	= (backBufferSize.x - offsetX * 2.0f);
-
-			return{ s, FloatRect(offsetX, 0.0f, right, backBufferSize.y) };
-		}
+		return m_backBuffer->getLetterboxComposition();
 	}
 
 	id<MTLDevice> CRenderer_Metal::getDevice() const
