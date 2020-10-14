@@ -32,7 +32,7 @@ namespace s3d
 
 	void CShader_GL4::init()
 	{
-		LOG_SCOPED_TRACE(U"CShader_GL4::~init()");
+		LOG_SCOPED_TRACE(U"CShader_GL4::init()");
 
 		// null VS を管理に登録
 		{

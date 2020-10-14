@@ -64,7 +64,7 @@ namespace s3d
 
 	void CShader_D3D11::init()
 	{
-		LOG_SCOPED_TRACE(U"CShader_D3D11::~init()");
+		LOG_SCOPED_TRACE(U"CShader_D3D11::init()");
 
 		pRenderer	= dynamic_cast<CRenderer_D3D11*>(SIV3D_ENGINE(Renderer));
 		m_device	= pRenderer->getDevice();

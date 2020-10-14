@@ -16,6 +16,8 @@
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/FormatLiteral.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Texture/ITexture.hpp>
+# include <Siv3D/Shader/IShader.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
@@ -87,6 +89,9 @@ namespace s3d
 		LOG_INFO(U"GL_MINOR_VERSION: {}"_fmt(minor));
 
 		m_backBuffer = std::make_unique<GL4BackBuffer>();
+
+		SIV3D_ENGINE(Texture)->init();
+		SIV3D_ENGINE(Shader)->init();
 	}
 
 	StringView CRenderer_GL4::getName() const
