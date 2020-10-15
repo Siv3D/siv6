@@ -24,19 +24,18 @@ namespace s3d
 	private:
 		
 		CRenderer_Metal* m_pRenderer = nullptr;
-		
 		id<MTLDevice> m_device;
-		
 		id<MTLCommandQueue> m_commandQueue;
-		
 		CAMetalLayer* m_swapchain = nullptr;
 		
-		id<MTLRenderPipelineState> m_rps;
+		id<MTLRenderPipelineState> m_sceneRenderPipelineState;
+		id<MTLRenderPipelineState> m_fullscreenTriangleRenderPipelineState;
+		MTLRenderPassDescriptor* m_renderPassDescriptor;
+		
+		id<MTLTexture> m_sceneTexture;
 		
 		Vertex2DBatch_Metal m_batches;
-		
 		Renderer2DCommand_Metal m_command;
-		
 		uint32 m_draw_indexCount = 0;
 
 	public:

@@ -46,28 +46,62 @@ namespace s3d
 		m_swapchain = m_pRenderer->getSwapchain();
 	
 		id<MTLLibrary> defaultLibrary = [m_device newDefaultLibrary];
-		id<MTLFunction> vertexFunction = [defaultLibrary newFunctionWithName:@"VS_Sprite"];
-		id<MTLFunction> fragmentFunction = [defaultLibrary newFunctionWithName:@"PS_Shape"];
+		id<MTLFunction> vsSprite = [defaultLibrary newFunctionWithName:@"VS_Sprite"];
+		id<MTLFunction> psShape = [defaultLibrary newFunctionWithName:@"PS_Shape"];
+		id<MTLFunction> vsFullscreenTriangle = [defaultLibrary newFunctionWithName:@"VS_FullscreenTriangle"];
+		id<MTLFunction> psFullscreenTriangle = [defaultLibrary newFunctionWithName:@"PS_FullscreenTriangle"];
 		
 		MTLVertexDescriptor* vertexDescriptor = [MTLVertexDescriptor new];
-		vertexDescriptor.attributes[0].format = MTLVertexFormatFloat2;
-		vertexDescriptor.attributes[0].offset = 0;
-		vertexDescriptor.attributes[0].bufferIndex = 0;
-		vertexDescriptor.attributes[1].format = MTLVertexFormatFloat2;
-		vertexDescriptor.attributes[1].offset = 8;
-		vertexDescriptor.attributes[1].bufferIndex = 0;
-		vertexDescriptor.attributes[2].format = MTLVertexFormatFloat4;
-		vertexDescriptor.attributes[2].offset = 16;
-		vertexDescriptor.attributes[2].bufferIndex = 0;
-		vertexDescriptor.layouts[0].stride = 32;
-		 
-		MTLRenderPipelineDescriptor* rpd = [MTLRenderPipelineDescriptor new];
-		rpd.vertexFunction = vertexFunction;
-		rpd.fragmentFunction = fragmentFunction;
-		rpd.colorAttachments[0].pixelFormat = m_swapchain.pixelFormat;
-		rpd.vertexDescriptor = vertexDescriptor;
-		m_rps = [m_device newRenderPipelineStateWithDescriptor:rpd error:NULL];
-		assert(m_rps);
+		{
+			vertexDescriptor.attributes[0].format = MTLVertexFormatFloat2;
+			vertexDescriptor.attributes[0].offset = 0;
+			vertexDescriptor.attributes[0].bufferIndex = 0;
+			vertexDescriptor.attributes[1].format = MTLVertexFormatFloat2;
+			vertexDescriptor.attributes[1].offset = 8;
+			vertexDescriptor.attributes[1].bufferIndex = 0;
+			vertexDescriptor.attributes[2].format = MTLVertexFormatFloat4;
+			vertexDescriptor.attributes[2].offset = 16;
+			vertexDescriptor.attributes[2].bufferIndex = 0;
+			vertexDescriptor.layouts[0].stride = 32;
+		}
+		
+		//
+		// RenderPipelineState の作成
+		//
+		{
+			MTLRenderPipelineDescriptor* rpd = [MTLRenderPipelineDescriptor new];
+			{
+				rpd.vertexFunction = vsSprite;
+				rpd.fragmentFunction = psShape;
+				rpd.colorAttachments[0].pixelFormat = m_swapchain.pixelFormat;
+				rpd.vertexDescriptor = vertexDescriptor;
+			}
+			m_sceneRenderPipelineState = [m_device newRenderPipelineStateWithDescriptor:rpd error:NULL];
+			assert(m_sceneRenderPipelineState);
+			
+			{
+				rpd.vertexFunction = vsFullscreenTriangle;
+				rpd.fragmentFunction = psFullscreenTriangle;
+				rpd.colorAttachments[0].pixelFormat = m_swapchain.pixelFormat;
+				rpd.vertexDescriptor = vertexDescriptor;
+			}
+			m_fullscreenTriangleRenderPipelineState = [m_device newRenderPipelineStateWithDescriptor:rpd error:NULL];
+			assert(m_fullscreenTriangleRenderPipelineState);
+		}
+		
+		m_renderPassDescriptor = [MTLRenderPassDescriptor renderPassDescriptor];
+		
+		MTLTextureDescriptor* texDesc = [MTLTextureDescriptor new];
+		{
+			texDesc.width = 800;
+			texDesc.height = 600;
+			texDesc.depth = 1;
+			texDesc.textureType = MTLTextureType2D;
+			texDesc.usage = (MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead);
+			texDesc.storageMode = MTLStorageModePrivate;
+			texDesc.pixelFormat = MTLPixelFormatRGBA8Unorm;
+		}
+		m_sceneTexture = [m_device newTextureWithDescriptor:texDesc];
 		
 		m_batches.init(m_device);
 	}
@@ -80,8 +114,8 @@ namespace s3d
 		};
 		
 		m_batches.end();
+		
 		const Size currentRenderTargetSize = SIV3D_ENGINE(Renderer)->getSceneBufferSize();
-
 		Mat3x2 transform = Mat3x2::Identity();
 		Mat3x2 screenMat = Mat3x2::Screen(currentRenderTargetSize);
 		const Mat3x2 matrix = transform * screenMat;
@@ -94,46 +128,59 @@ namespace s3d
 		cb.colorMul = Float4(1, 1, 1, 1);
 		
 		@autoreleasepool {
-			id<MTLCommandBuffer> buffer = [m_commandQueue commandBuffer];
+			
+			id<MTLCommandBuffer> commandBuffer = [m_commandQueue commandBuffer];
+			
+			const ColorF& backgroundColor = m_pRenderer->getBackgroundColor();
+			m_renderPassDescriptor.colorAttachments[0].texture = m_sceneTexture;
+			m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(backgroundColor.r, backgroundColor.g, backgroundColor.b, 1);
+			m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
+			m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
+			id<MTLRenderCommandEncoder> sceneCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
+			{
+			  
+			}
+			[sceneCommandEncoder endEncoding];
+			
+			
 			id<CAMetalDrawable> drawable = [m_swapchain nextDrawable];
 			assert(drawable);
-
-			MTLRenderPassDescriptor* pass = [MTLRenderPassDescriptor renderPassDescriptor];
-			pass.colorAttachments[0].clearColor = MTLClearColorMake(0.8, 0.9, 1.0, 1);
-			pass.colorAttachments[0].loadAction  = MTLLoadActionClear;
-			pass.colorAttachments[0].storeAction = MTLStoreActionStore;
-			pass.colorAttachments[0].texture = drawable.texture;
-			id<MTLRenderCommandEncoder> encoder = [buffer renderCommandEncoderWithDescriptor:pass];
-
-			[encoder setRenderPipelineState:m_rps];
-
-			[encoder setVertexBuffer:m_batches.getCurrentVertexBuffer()
-							  offset:0
-							 atIndex:0];
 			
-			[encoder setVertexBytes:&cb
-							 length:sizeof(VSConstants2D)
-							atIndex:1];
-
-			if (m_draw_indexCount)
+			const ColorF& letterboxColor = m_pRenderer->getLetterboxColor();
+			m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(letterboxColor.r, letterboxColor.g, letterboxColor.b, 1);
+			m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
+			m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
+			m_renderPassDescriptor.colorAttachments[0].texture = drawable.texture;
+			id<MTLRenderCommandEncoder> renderCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
 			{
-				[encoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle
-									indexCount:m_draw_indexCount
-									 indexType:MTLIndexTypeUInt16
-								   indexBuffer:m_batches.getCurrentIndexBuffer()
-							 indexBufferOffset:0];
+				[renderCommandEncoder setRenderPipelineState:m_sceneRenderPipelineState];
+				[renderCommandEncoder setVertexBuffer:m_batches.getCurrentVertexBuffer()
+								  offset:0
+								 atIndex:0];
+				//[renderCommandEncoder setFragmentTexture:m_sceneTexture atIndex:0];
+				[renderCommandEncoder setVertexBytes:&cb
+								 length:sizeof(VSConstants2D)
+								atIndex:1];
+
+				if (m_draw_indexCount)
+				{
+					[renderCommandEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle
+										indexCount:m_draw_indexCount
+										 indexType:MTLIndexTypeUInt16
+									   indexBuffer:m_batches.getCurrentIndexBuffer()
+								 indexBufferOffset:0];
+				}
 			}
-			
-			[encoder endEncoding];
-			[buffer presentDrawable:drawable];
+			[renderCommandEncoder endEncoding];
+			[commandBuffer presentDrawable:drawable];
 			
 			__weak dispatch_semaphore_t semaphore = m_batches.getSemaphore();
-			[buffer addCompletedHandler:^(id<MTLCommandBuffer>)
+			[commandBuffer addCompletedHandler:^(id<MTLCommandBuffer>)
 			{
 				dispatch_semaphore_signal(semaphore);
 			}];
 			
-			[buffer commit];
+			[commandBuffer commit];
 		}
 	}
 
