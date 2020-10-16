@@ -1576,6 +1576,10 @@
 		2C6391042539BE6E0030F18E /* MetalPixelShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalPixelShader.mm; sourceTree = "<group>"; };
 		2C6391082539CF820030F18E /* MetalSamplerState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MetalSamplerState.hpp; sourceTree = "<group>"; };
 		2C63910B2539D0BE0030F18E /* MetalSamplerState.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalSamplerState.mm; sourceTree = "<group>"; };
+		2C63910D253A16620030F18E /* ShaderCommon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderCommon.hpp; sourceTree = "<group>"; };
+		2C63910E253A16870030F18E /* ShaderCommon.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderCommon.ipp; sourceTree = "<group>"; };
+		2C63910F253A16870030F18E /* PixelShader.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PixelShader.ipp; sourceTree = "<group>"; };
+		2C639110253A16870030F18E /* VertexShader.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexShader.ipp; sourceTree = "<group>"; };
 		2C68507824B768A800B98A7F /* CLogger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CLogger.hpp; sourceTree = "<group>"; };
 		2C68507924B768A800B98A7F /* CLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLogger.cpp; sourceTree = "<group>"; };
 		2C68507B24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivUnicode_macOS_Linux.cpp; sourceTree = "<group>"; };
@@ -2097,6 +2101,7 @@
 				2C4397772535DD3000F6AECD /* Scene.hpp */,
 				2C43976F2535DD3000F6AECD /* ScopeGuard.hpp */,
 				2C43974E2535DD3000F6AECD /* Shader.hpp */,
+				2C63910D253A16620030F18E /* ShaderCommon.hpp */,
 				2C43975D2535DD3000F6AECD /* ShaderStatge.hpp */,
 				2C4397802535DD3000F6AECD /* SIMD.hpp */,
 				2C4397302535DD3000F6AECD /* SMFT.hpp */,
@@ -2220,6 +2225,7 @@
 				2C4396E62535DD3000F6AECD /* Optional.ipp */,
 				2C4396D42535DD3000F6AECD /* Parse.ipp */,
 				2C4396E72535DD3000F6AECD /* PerlinNoise.ipp */,
+				2C63910F253A16870030F18E /* PixelShader.ipp */,
 				2C4397002535DD3000F6AECD /* Point.ipp */,
 				2C4396E92535DD3000F6AECD /* Quad.ipp */,
 				2C4396DC2535DD3000F6AECD /* Random.ipp */,
@@ -2231,6 +2237,7 @@
 				2C4396EB2535DD3000F6AECD /* SamplerState.ipp */,
 				2C4396D12535DD3000F6AECD /* Scene.ipp */,
 				2C4396CE2535DD3000F6AECD /* ScopeGuard.ipp */,
+				2C63910E253A16870030F18E /* ShaderCommon.ipp */,
 				2C4396E52535DD3000F6AECD /* SMFT.ipp */,
 				2C4397102535DD3000F6AECD /* Spherical.ipp */,
 				2C4396E32535DD3000F6AECD /* Statistics.ipp */,
@@ -2253,6 +2260,7 @@
 				2C4396F92535DD3000F6AECD /* Vector3D.ipp */,
 				2C4397262535DD3000F6AECD /* Vector4D.ipp */,
 				2C4397192535DD3000F6AECD /* Vertex2D.ipp */,
+				2C639110253A16870030F18E /* VertexShader.ipp */,
 				2C4396DB2535DD3000F6AECD /* Window.ipp */,
 			);
 			path = detail;

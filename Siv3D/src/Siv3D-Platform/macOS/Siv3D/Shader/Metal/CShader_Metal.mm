@@ -82,13 +82,13 @@ namespace s3d
 		return m_vertexShaders.add(std::move(vertexShader));
 	}
 
-	VertexShader::IDType CShader_Metal::createVSFromSource(const StringView source, const StringView entryPoint,, const Array<ConstantBufferBinding>&)
+	VertexShader::IDType CShader_Metal::createVSFromSource(const StringView source, const StringView entryPoint, const Array<ConstantBufferBinding>&)
 	{
 		// [Siv3D ToDo]
 		return VertexShader::IDType::NullAsset();
 	}
 
-	PixelShader::IDType CShader_Metal::createPSFromFile(const FilePathView path, const StringView entryPoint,, const Array<ConstantBufferBinding>&)
+	PixelShader::IDType CShader_Metal::createPSFromFile(const FilePathView path, const StringView entryPoint, const Array<ConstantBufferBinding>&)
 	{
 		// PS を作成
 		auto pixelShader = std::make_unique<MetalPixelShader>(m_defaultLibrary, entryPoint);
@@ -102,7 +102,7 @@ namespace s3d
 		return m_pixelShaders.add(std::move(pixelShader));
 	}
 
-	PixelShader::IDType CShader_Metal::createPSFromSource(const StringView source, const StringView entryPoint,, const Array<ConstantBufferBinding>&)
+	PixelShader::IDType CShader_Metal::createPSFromSource(const StringView source, const StringView entryPoint, const Array<ConstantBufferBinding>&)
 	{
 		// [Siv3D ToDo]
 		return PixelShader::IDType::NullAsset();

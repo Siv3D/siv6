@@ -22,6 +22,7 @@ namespace s3d
 	{
 	private:
 		
+		CRenderer2D_GL4* pRenderer2D = nullptr;
 		GLFWwindow* m_window = nullptr;
 		
 		std::unique_ptr<GL4BackBuffer> m_backBuffer;
