@@ -51,6 +51,8 @@ namespace s3d
 
 		~CRenderer_D3D11() override;
 
+		EngineOption::Renderer getRendererType() const noexcept override;
+
 		void init() override;
 
 		StringView getName() const override;

@@ -12,6 +12,7 @@
 # pragma once
 # include "Common.hpp"
 # include "Duration.hpp"
+# include "ApplicationOptions.hpp"
 
 namespace s3d
 {
@@ -55,5 +56,8 @@ namespace s3d
 		/// @param url URL
 		/// @return オープンに成功した場合 true, それ以外の場合は false
 		bool LaunchBrowser(FilePathView url);
+
+		[[nodiscard]]
+		EngineOption::Renderer GetRendererType();
 	}
 }

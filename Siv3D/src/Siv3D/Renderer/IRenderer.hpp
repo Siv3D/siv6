@@ -16,6 +16,7 @@
 # include <Siv3D/ResizeMode.hpp>
 # include <Siv3D/FloatRect.hpp>
 # include <Siv3D/TextureFilter.hpp>
+# include <Siv3D/ApplicationOptions.hpp>
 
 namespace s3d
 {
@@ -26,6 +27,8 @@ namespace s3d
 		static ISiv3DRenderer* Create();
 
 		virtual ~ISiv3DRenderer() = default;
+
+		virtual EngineOption::Renderer getRendererType() const noexcept = 0;
 
 		virtual void init() = 0;
 

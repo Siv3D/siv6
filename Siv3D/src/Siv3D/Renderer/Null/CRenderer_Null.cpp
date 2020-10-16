@@ -23,6 +23,11 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer_Null::~CRenderer_Null()");
 	}
 
+	EngineOption::Renderer CRenderer_Null::getRendererType() const noexcept
+	{
+		return EngineOption::Renderer::Headless;
+	}
+
 	void CRenderer_Null::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_Null::init()");

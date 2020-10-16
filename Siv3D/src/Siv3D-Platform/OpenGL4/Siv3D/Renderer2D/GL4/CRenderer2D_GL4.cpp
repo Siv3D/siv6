@@ -18,6 +18,7 @@
 # include <Siv3D/PointVector.hpp>
 # include <Siv3D/Vertex2D.hpp>
 # include <Siv3D/Mat3x2.hpp>
+# include <Siv3D/ShaderCommon.hpp>
 # include <Siv3D/Resource.hpp>
 # include <Siv3D/TextReader.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
@@ -64,8 +65,8 @@ namespace s3d
 		{
 			LOG_INFO(U"📦 Loading vertex shaders for CRenderer2D_GL4:");
 			m_standardVS = std::make_unique<GL4StandardVS2D>();
-			m_standardVS->sprite = VertexShader(Resource(U"engine/shader/glsl/sprite.vert"), { { U"VSConstants2D", 0 } });
-			m_standardVS->fullscreen_triangle = VertexShader(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), {});
+			m_standardVS->sprite = GLSL(Resource(U"engine/shader/glsl/sprite.vert"), { { U"VSConstants2D", 0 } });
+			m_standardVS->fullscreen_triangle = GLSL(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), {});
 			if (not m_standardVS->ok())
 			{
 				throw EngineError(U"CRenderer2D_GL4::m_standardVS initialization failed");
@@ -76,8 +77,8 @@ namespace s3d
 		{
 			LOG_INFO(U"📦 Loading pixel shaders for CRenderer2D_GL4:");
 			m_standardPS = std::make_unique<GL4StandardPS2D>();
-			m_standardPS->shape = PixelShader(Resource(U"engine/shader/glsl/shape.frag"), { { U"PSConstants2D", 0 } });
-			m_standardPS->fullscreen_triangle = PixelShader(Resource(U"engine/shader/glsl/fullscreen_triangle.frag"), {});
+			m_standardPS->shape = GLSL(Resource(U"engine/shader/glsl/shape.frag"), { { U"PSConstants2D", 0 } });
+			m_standardPS->fullscreen_triangle = GLSL(Resource(U"engine/shader/glsl/fullscreen_triangle.frag"), {});
 			if (not m_standardPS->ok())
 			{
 				throw EngineError(U"CRenderer2D_GL4::m_standardPS initialization failed");

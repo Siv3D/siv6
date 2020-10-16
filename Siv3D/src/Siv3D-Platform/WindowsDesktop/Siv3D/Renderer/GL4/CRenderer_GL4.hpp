@@ -37,6 +37,8 @@ namespace s3d
 
 		~CRenderer_GL4() override;
 
+		EngineOption::Renderer getRendererType() const noexcept override;
+
 		void init() override;
 
 		StringView getName() const override;

@@ -948,6 +948,8 @@
 
 # include <Siv3D/PixelShader.hpp>
 
+# include <Siv3D/ShaderCommon.hpp>
+
 # include <Siv3D/ConstantBuffer.hpp>
 
 //////////////////////////////////////////////////

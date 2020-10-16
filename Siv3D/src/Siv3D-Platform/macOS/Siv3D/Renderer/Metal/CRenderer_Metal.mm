@@ -33,6 +33,11 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer_Metal::~CRenderer_Metal()");
 	}
 
+	EngineOption::Renderer CRenderer_Metal::getRendererType() const noexcept
+	{
+		return EngineOption::Renderer::Metal;
+	}
+
 	void CRenderer_Metal::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_Metal::init()");

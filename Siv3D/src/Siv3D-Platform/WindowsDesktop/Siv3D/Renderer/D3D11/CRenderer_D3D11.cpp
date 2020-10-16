@@ -28,6 +28,11 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer_D3D11::~CRenderer_D3D11()");
 	}
 
+	EngineOption::Renderer CRenderer_D3D11::getRendererType() const noexcept
+	{
+		return EngineOption::Renderer::Direct3D11;
+	}
+
 	void CRenderer_D3D11::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_D3D11::init()");

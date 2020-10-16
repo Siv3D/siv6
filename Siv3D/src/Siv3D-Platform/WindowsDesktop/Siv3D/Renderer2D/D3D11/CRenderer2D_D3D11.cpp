@@ -15,6 +15,7 @@
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/ScopeGuard.hpp>
 # include <Siv3D/Mat3x2.hpp>
+# include <Siv3D/ShaderCommon.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
@@ -45,8 +46,8 @@ namespace s3d
 		{
 			LOG_INFO(U"📦 Loading vertex shaders for CRenderer2D_D3D11:");
 			m_standardVS = std::make_unique<D3D11StandardVS2D>();
-			m_standardVS->sprite				= VertexShader(FileOrResource(U"engine/shader/d3d11/sprite.vs"), {});
-			m_standardVS->fullscreen_triangle	= VertexShader(FileOrResource(U"engine/shader/d3d11/fullscreen_triangle.vs"), {});
+			m_standardVS->sprite				= HLSL(FileOrResource(U"engine/shader/d3d11/sprite.vs"));
+			m_standardVS->fullscreen_triangle	= HLSL(FileOrResource(U"engine/shader/d3d11/fullscreen_triangle.vs"));
 			if (not m_standardVS->ok())
 			{
 				throw EngineError(U"CRenderer2D_D3D11::m_standardVS initialization failed");
@@ -57,8 +58,8 @@ namespace s3d
 		{
 			LOG_INFO(U"📦 Loading pixel shaders for CRenderer2D_D3D11:");
 			m_standardPS = std::make_unique<D3D11StandardPS2D>();
-			m_standardPS->shape					= PixelShader(FileOrResource(U"engine/shader/d3d11/shape.ps"), {});
-			m_standardPS->fullscreen_triangle	= PixelShader(FileOrResource(U"engine/shader/d3d11/fullscreen_triangle.ps"), {});
+			m_standardPS->shape					= HLSL(FileOrResource(U"engine/shader/d3d11/shape.ps"));
+			m_standardPS->fullscreen_triangle	= HLSL(FileOrResource(U"engine/shader/d3d11/fullscreen_triangle.ps"));
 			if (not m_standardPS->ok())
 			{
 				throw EngineError(U"CRenderer2D_D3D11::m_standardPS initialization failed");

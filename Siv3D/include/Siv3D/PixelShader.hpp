@@ -26,11 +26,20 @@ namespace s3d
 
 		PixelShader();
 
-		PixelShader(FilePathView path, const Array<ConstantBufferBinding>& bindings);
+		PixelShader(FilePathView path, StringView entryPoint, const Array<ConstantBufferBinding>& bindings);
 
 		//virtual ~PixelShader();
 
 		[[nodiscard]]
 		const Blob& getBinary() const noexcept;
+
+		static PixelShader HLSL(FilePathView path, StringView entryPoint = U"PS");
+
+		static PixelShader GLSL(FilePathView path, const Array<ConstantBufferBinding>& bindings);
+
+		static PixelShader MSL(StringView entryPoint, FilePathView path = {});
 	};
 }
+
+# include "detail/PixelShader.ipp"
+

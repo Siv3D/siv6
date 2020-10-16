@@ -48,6 +48,11 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer_GL4::~CRenderer_GL4()");
 	}
 
+	EngineOption::Renderer CRenderer_GL4::getRendererType() const noexcept
+	{
+		return EngineOption::Renderer::OpenGL;
+	}	
+
 	void CRenderer_GL4::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_GL4::init()");

@@ -42,6 +42,9 @@ namespace s3d
 
 			/// @brief Metal
 			Metal = 4,
+
+			/// @brief WebGL
+			WebGL2 = 5,
 		};
 
 		enum class D3D11Driver

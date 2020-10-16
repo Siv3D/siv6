@@ -26,11 +26,19 @@ namespace s3d
 
 		VertexShader();
 
-		VertexShader(FilePathView path, const Array<ConstantBufferBinding>& bindings);
+		VertexShader(FilePathView path, StringView entryPoint, const Array<ConstantBufferBinding>& bindings);
 
 		//virtual ~VertexShader();
 
 		[[nodiscard]]
 		const Blob& getBinary() const noexcept;
+
+		static VertexShader HLSL(FilePathView path, StringView entryPoint = U"PS");
+
+		static VertexShader GLSL(FilePathView path, const Array<ConstantBufferBinding>& bindings);
+
+		static VertexShader MSL(StringView entryPoint, FilePathView path = {});
 	};
 }
+
+# include "detail/VertexShader.ipp"
