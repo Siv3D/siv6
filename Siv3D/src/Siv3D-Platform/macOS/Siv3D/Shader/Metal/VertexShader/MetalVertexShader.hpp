@@ -37,9 +37,7 @@ namespace s3d
 		explicit MetalVertexShader(id<MTLLibrary> library, StringView name);
 		
 		~MetalVertexShader();
-		/*
-		explicit GL4VertexShader(const StringView source, const Array<ConstantBufferBinding>& bindings);
-*/
+
 		bool isInitialized() const noexcept;
 
 		const Blob& getBinary() const noexcept;

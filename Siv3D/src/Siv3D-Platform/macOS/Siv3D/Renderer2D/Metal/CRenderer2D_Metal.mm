@@ -41,15 +41,7 @@ namespace s3d
 		m_device = pRenderer->getDevice();
 		m_commandQueue = pRenderer->getCommandQueue();
 		m_swapchain = pRenderer->getSwapchain();
-	
-		/*
-		id<MTLLibrary> defaultLibrary = [m_device newDefaultLibrary];
-		id<MTLFunction> vsSprite = [defaultLibrary newFunctionWithName:@"VS_Sprite"];
-		id<MTLFunction> psShape = [defaultLibrary newFunctionWithName:@"PS_Shape"];
-		id<MTLFunction> vsFullscreenTriangle = [defaultLibrary newFunctionWithName:@"VS_FullscreenTriangle"];
-		id<MTLFunction> psFullscreenTriangle = [defaultLibrary newFunctionWithName:@"PS_FullscreenTriangle"];
-		 */
-		
+
 		// 標準 VS をロード
 		{
 			m_standardVS = std::make_unique<MetalStandardVS2D>();
@@ -217,11 +209,12 @@ namespace s3d
 		m_draw_indexCount += indexSize;
 	}
 
-	void CRenderer2D_Metal::drawFullScreenTriangle(id<MTLCommandBuffer> commandBuffer, TextureFilter textureFilter)
+	void CRenderer2D_Metal::drawFullScreenTriangle(id<MTLCommandBuffer> commandBuffer, const TextureFilter textureFilter)
 	{
 		const ColorF& letterboxColor = pRenderer->getLetterboxColor();
 		const auto [s, viewRect] = pRenderer->getLetterboxComposition();
 		const MTLViewport viewport = { viewRect.x, viewRect.y, viewRect.w, viewRect.h, 0.0, 1.0 };
+		const SamplerState samplerState = (textureFilter == TextureFilter::Linear) ? SamplerState::ClampLinear : SamplerState::ClampNearest;
 		
 		@autoreleasepool {
 			
@@ -239,6 +232,7 @@ namespace s3d
 					[fullscreenTriangleCommandEncoder setRenderPipelineState:m_fullscreenTriangleRenderPipelineState];
 					[fullscreenTriangleCommandEncoder setFragmentTexture:sceneTexture atIndex:0];
 					[fullscreenTriangleCommandEncoder setViewport:viewport];
+					pRenderer->getSamplerState().setPS(fullscreenTriangleCommandEncoder, 0, samplerState);
 					[fullscreenTriangleCommandEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];
 				}
 				[fullscreenTriangleCommandEncoder endEncoding];

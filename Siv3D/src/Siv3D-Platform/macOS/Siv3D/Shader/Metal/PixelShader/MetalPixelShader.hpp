@@ -37,12 +37,7 @@ namespace s3d
 		MetalPixelShader(id<MTLLibrary> library, StringView name);
 		
 		~MetalPixelShader();
-		
-		/*
-		explicit GL4PixelShader(const StringView source, const Array<ConstantBufferBinding>& bindings);
 
-		~GL4PixelShader();
-*/
 		bool isInitialized() const noexcept;
 
 		const Blob& getBinary() const noexcept;

@@ -76,9 +76,10 @@ PSInput VS_FullscreenTriangle(uint id [[vertex_id]])
 
 fragment
 float4 PS_FullscreenTriangle(PSInput in [[stage_in]],
-				texture2d<float> colorTexture [[texture(0)]])
+				texture2d<float> colorTexture [[texture(0)]],
+				sampler smp [[sampler(0)]])
 {
-	constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
-	return float4(colorTexture.sample(textureSampler, in.uv).rgb, 1);
+	//constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
+	return float4(colorTexture.sample(smp, in.uv).rgb, 1);
 }
 
