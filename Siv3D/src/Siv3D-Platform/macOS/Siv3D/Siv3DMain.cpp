@@ -28,8 +28,9 @@ int main(int, char*[])
 	{
 		SIV3D_ENGINE(System)->init();
 	}
-	catch (const Error&)
+	catch (const Error& error)
 	{
+		std::cout << error << '\n';
 		return -1;
 	}
 

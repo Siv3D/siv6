@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -12,7 +12,7 @@
 # include <Siv3D/ApplicationOptions.hpp>
 # include <Siv3D/Shader/Null/CShader_Null.hpp>
 # include <Siv3D/Shader/GL4/CShader_GL4.hpp>
-//# include <Siv3D/Shader/Metal/CShader_Metal.hpp>
+# include <Siv3D/Shader/Metal/CShader_Metal.hpp>
 
 namespace s3d
 {
@@ -26,6 +26,10 @@ namespace s3d
 			|| g_applicationOptions.renderer == EngineOption::Renderer::OpenGL)
 		{
 			return new CShader_GL4;
+		}
+		else if (g_applicationOptions.renderer == EngineOption::Renderer::Metal)
+		{
+			return new CShader_Metal;
 		}
 		else
 		{

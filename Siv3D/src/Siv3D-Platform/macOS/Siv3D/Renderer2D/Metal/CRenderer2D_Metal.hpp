@@ -12,14 +12,39 @@
 # pragma once
 # include <Siv3D/Common.hpp>
 # include <Siv3D/ConstantBuffer.hpp>
+# include <Siv3D/VertexSHader.hpp>
+# include <Siv3D/PixelShader.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
-# include <Siv3D/Renderer/Metal/CRenderer_Metal.hpp>
 # import <Metal/Metal.h>
 # import <QuartzCore/CAMetalLayer.h>
 # include "Vertex2DBatch_Metal.hpp"
 
 namespace s3d
 {
+	struct MetalStandardVS2D
+	{
+		VertexShader sprite;
+		VertexShader fullscreen_triangle;
+
+		bool ok() const
+		{
+			return sprite
+				&& fullscreen_triangle;
+		}
+	};
+
+	struct MetalStandardPS2D
+	{
+		PixelShader shape;
+		PixelShader fullscreen_triangle;
+
+		bool ok()
+		{
+			return shape
+				&& fullscreen_triangle;
+		}
+	};
+
 	struct MetalVSConstants2D
 	{
 		Float4 transform[2];
@@ -33,11 +58,15 @@ namespace s3d
 		Float4 internal = Float4(0, 0, 0, 0);
 	};
 
+	class CRenderer_Metal;
+	class CShader_Metal;
+
 	class CRenderer2D_Metal final : public ISiv3DRenderer2D
 	{
 	private:
 		
 		CRenderer_Metal* pRenderer = nullptr;
+		CShader_Metal* pShader = nullptr;
 		id<MTLDevice> m_device = nil;
 		id<MTLCommandQueue> m_commandQueue = nil;
 		CAMetalLayer* m_swapchain = nullptr;
@@ -45,6 +74,9 @@ namespace s3d
 		id<MTLRenderPipelineState> m_sceneRenderPipelineState = nil;
 		id<MTLRenderPipelineState> m_fullscreenTriangleRenderPipelineState = nil;
 		MTLRenderPassDescriptor* m_renderPassDescriptor;
+		
+		std::unique_ptr<MetalStandardVS2D> m_standardVS;
+		std::unique_ptr<MetalStandardPS2D> m_standardPS;
 		
 		ConstantBuffer<MetalVSConstants2D> m_vsConstants2D;
 		ConstantBuffer<MetalPSConstants2D> m_psConstants2D;

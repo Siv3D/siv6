@@ -13,6 +13,8 @@
 # include <Siv3D/Error.hpp>
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
+# include <Siv3D/Renderer/Metal/CRenderer_Metal.hpp>
+# include <Siv3D/Shader/Metal/CShader_Metal.hpp>
 # include <Siv3D/ScopeGuard.hpp>
 # include <Siv3D/Array.hpp>
 # include <Siv3D/Vertex2D.hpp>
@@ -35,15 +37,40 @@ namespace s3d
 		LOG_SCOPED_TRACE(U"CRenderer2D_Metal::init()");
 		
 		pRenderer = dynamic_cast<CRenderer_Metal*>(SIV3D_ENGINE(Renderer));
+		pShader = dynamic_cast<CShader_Metal*>(SIV3D_ENGINE(Shader));
 		m_device = pRenderer->getDevice();
 		m_commandQueue = pRenderer->getCommandQueue();
 		m_swapchain = pRenderer->getSwapchain();
 	
+		/*
 		id<MTLLibrary> defaultLibrary = [m_device newDefaultLibrary];
 		id<MTLFunction> vsSprite = [defaultLibrary newFunctionWithName:@"VS_Sprite"];
 		id<MTLFunction> psShape = [defaultLibrary newFunctionWithName:@"PS_Shape"];
 		id<MTLFunction> vsFullscreenTriangle = [defaultLibrary newFunctionWithName:@"VS_FullscreenTriangle"];
 		id<MTLFunction> psFullscreenTriangle = [defaultLibrary newFunctionWithName:@"PS_FullscreenTriangle"];
+		 */
+		
+		// 標準 VS をロード
+		{
+			m_standardVS = std::make_unique<MetalStandardVS2D>();
+			m_standardVS->sprite = VertexShader(U"VS_Sprite", {});
+			m_standardVS->fullscreen_triangle = VertexShader(U"VS_FullscreenTriangle", {});
+			if (!m_standardVS->ok())
+			{
+				throw EngineError(U"CRenderer2D_Metal::m_standardVS initialization failed");
+			}
+		}
+
+		// 標準 PS をロード
+		{
+			m_standardPS = std::make_unique<MetalStandardPS2D>();
+			m_standardPS->shape = PixelShader(U"PS_Shape", {});
+			m_standardPS->fullscreen_triangle = PixelShader(U"PS_FullscreenTriangle", {});
+			if (!m_standardPS->ok())
+			{
+				throw EngineError(U"CRenderer2D_Metal::m_standardPS initialization failed");
+			}
+		}
 		
 		MTLVertexDescriptor* vertexDescriptor = [MTLVertexDescriptor new];
 		{
@@ -65,8 +92,8 @@ namespace s3d
 		{
 			MTLRenderPipelineDescriptor* rpd = [MTLRenderPipelineDescriptor new];
 			{
-				rpd.vertexFunction = vsSprite;
-				rpd.fragmentFunction = psShape;
+				rpd.vertexFunction = pShader->getFunctionVS(m_standardVS->sprite.id());
+				rpd.fragmentFunction = pShader->getFunctionPS(m_standardPS->shape.id());
 				rpd.colorAttachments[0].pixelFormat = MTLPixelFormatRGBA8Unorm;
 				rpd.vertexDescriptor = vertexDescriptor;
 				rpd.sampleCount = pRenderer->getSampleCount();
@@ -75,8 +102,8 @@ namespace s3d
 			assert(m_sceneRenderPipelineState);
 			
 			{
-				rpd.vertexFunction = vsFullscreenTriangle;
-				rpd.fragmentFunction = psFullscreenTriangle;
+				rpd.vertexFunction = pShader->getFunctionVS(m_standardVS->fullscreen_triangle.id());
+				rpd.fragmentFunction = pShader->getFunctionPS(m_standardPS->fullscreen_triangle.id());
 				rpd.colorAttachments[0].pixelFormat = m_swapchain.pixelFormat;
 				rpd.vertexDescriptor = nil;
 			}

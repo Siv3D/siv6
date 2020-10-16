@@ -15,6 +15,8 @@
 # include <Siv3D/WindowState.hpp>
 # include <Siv3D/System.hpp>
 # include <Siv3D/Window/IWindow.hpp>
+# include <Siv3D/Texture/ITexture.hpp>
+# include <Siv3D/Shader/IShader.hpp>
 # include <Siv3D/Renderer2D/Metal/CRenderer2D_Metal.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # import <QuartzCore/CAMetalLayer.h>
@@ -59,7 +61,10 @@ namespace s3d
 		nswin.contentView.wantsLayer	= YES;
 		
 		m_backBuffer = std::make_unique<MetalBackBuffer>();
-
+		
+		SIV3D_ENGINE(Texture)->init();
+		SIV3D_ENGINE(Shader)->init();
+		
 		clear();
 	}
 

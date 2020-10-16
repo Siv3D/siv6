@@ -502,7 +502,7 @@
 		2C47B6F624EAC8D9008D83BE /* GL4Vertex2DBatch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C47B6EE24EAC8D9008D83BE /* GL4Vertex2DBatch.hpp */; };
 		2C47B6F724EAC8D9008D83BE /* GL4Vertex2DBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47B6EF24EAC8D9008D83BE /* GL4Vertex2DBatch.cpp */; };
 		2C47B6F824EAC8D9008D83BE /* CRenderer2D_GL4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47B6F024EAC8D9008D83BE /* CRenderer2D_GL4.cpp */; };
-		2C47B6FB24EAC98A008D83BE /* ShaderFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C47B6FA24EAC98A008D83BE /* ShaderFactory.cpp */; };
+		2C47B6FB24EAC98A008D83BE /* ShaderFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C47B6FA24EAC98A008D83BE /* ShaderFactory.mm */; };
 		2C47E59924AF3C7B0060E8A7 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47E59824AF3C7B0060E8A7 /* libboost_filesystem.a */; };
 		2C481E1224460B5700A5D88D /* bit_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0C24460B5700A5D88D /* bit_utils.h */; };
 		2C481E1324460B5700A5D88D /* cpuinfo_x86.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */; };
@@ -565,6 +565,12 @@
 		2C6390E925367F020030F18E /* ConstantBufferDetailFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6390E825367F020030F18E /* ConstantBufferDetailFactory.cpp */; };
 		2C6390ED2536C5460030F18E /* MetalBackBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C6390EB2536C5460030F18E /* MetalBackBuffer.mm */; };
 		2C6390EE2536C5460030F18E /* MetalBackBuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C6390EC2536C5460030F18E /* MetalBackBuffer.hpp */; };
+		2C6390F82539ABAB0030F18E /* MetalPixelShader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C6390F12539ABAB0030F18E /* MetalPixelShader.hpp */; };
+		2C6390FA2539ABAB0030F18E /* CShader_Metal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C6390F32539ABAB0030F18E /* CShader_Metal.hpp */; };
+		2C6390FC2539ABAB0030F18E /* MetalVertexShader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C6390F62539ABAB0030F18E /* MetalVertexShader.hpp */; };
+		2C6390FF2539BB690030F18E /* CShader_Metal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C6390FE2539BB690030F18E /* CShader_Metal.mm */; };
+		2C6391032539BE5F0030F18E /* MetalVertexShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C6391022539BE5E0030F18E /* MetalVertexShader.mm */; };
+		2C6391052539BE6E0030F18E /* MetalPixelShader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C6391042539BE6E0030F18E /* MetalPixelShader.mm */; };
 		2C68508824B768A800B98A7F /* CLogger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C68507824B768A800B98A7F /* CLogger.hpp */; };
 		2C68508924B768A800B98A7F /* CLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C68507924B768A800B98A7F /* CLogger.cpp */; };
 		2C68508A24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C68507B24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp */; };
@@ -1479,7 +1485,7 @@
 		2C47B6EE24EAC8D9008D83BE /* GL4Vertex2DBatch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GL4Vertex2DBatch.hpp; sourceTree = "<group>"; };
 		2C47B6EF24EAC8D9008D83BE /* GL4Vertex2DBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GL4Vertex2DBatch.cpp; sourceTree = "<group>"; };
 		2C47B6F024EAC8D9008D83BE /* CRenderer2D_GL4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderer2D_GL4.cpp; sourceTree = "<group>"; };
-		2C47B6FA24EAC98A008D83BE /* ShaderFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderFactory.cpp; sourceTree = "<group>"; };
+		2C47B6FA24EAC98A008D83BE /* ShaderFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShaderFactory.mm; sourceTree = "<group>"; };
 		2C47E59824AF3C7B0060E8A7 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../Siv3D/lib/macOS/boost/libboost_filesystem.a; sourceTree = "<group>"; };
 		2C481E0C24460B5700A5D88D /* bit_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bit_utils.h; sourceTree = "<group>"; };
 		2C481E0D24460B5700A5D88D /* cpuinfo_x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpuinfo_x86.h; sourceTree = "<group>"; };
@@ -1560,6 +1566,12 @@
 		2C6390E825367F020030F18E /* ConstantBufferDetailFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantBufferDetailFactory.cpp; sourceTree = "<group>"; };
 		2C6390EB2536C5460030F18E /* MetalBackBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalBackBuffer.mm; sourceTree = "<group>"; };
 		2C6390EC2536C5460030F18E /* MetalBackBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MetalBackBuffer.hpp; sourceTree = "<group>"; };
+		2C6390F12539ABAB0030F18E /* MetalPixelShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MetalPixelShader.hpp; sourceTree = "<group>"; };
+		2C6390F32539ABAB0030F18E /* CShader_Metal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CShader_Metal.hpp; sourceTree = "<group>"; };
+		2C6390F62539ABAB0030F18E /* MetalVertexShader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MetalVertexShader.hpp; sourceTree = "<group>"; };
+		2C6390FE2539BB690030F18E /* CShader_Metal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CShader_Metal.mm; sourceTree = "<group>"; };
+		2C6391022539BE5E0030F18E /* MetalVertexShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalVertexShader.mm; sourceTree = "<group>"; };
+		2C6391042539BE6E0030F18E /* MetalPixelShader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MetalPixelShader.mm; sourceTree = "<group>"; };
 		2C68507824B768A800B98A7F /* CLogger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CLogger.hpp; sourceTree = "<group>"; };
 		2C68507924B768A800B98A7F /* CLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLogger.cpp; sourceTree = "<group>"; };
 		2C68507B24B768A800B98A7F /* SivUnicode_macOS_Linux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivUnicode_macOS_Linux.cpp; sourceTree = "<group>"; };
@@ -3389,7 +3401,8 @@
 		2C47B6F924EAC98A008D83BE /* Shader */ = {
 			isa = PBXGroup;
 			children = (
-				2C47B6FA24EAC98A008D83BE /* ShaderFactory.cpp */,
+				2C6390EF2539ABAB0030F18E /* Metal */,
+				2C47B6FA24EAC98A008D83BE /* ShaderFactory.mm */,
 			);
 			path = Shader;
 			sourceTree = "<group>";
@@ -3695,6 +3708,35 @@
 				2C6390EC2536C5460030F18E /* MetalBackBuffer.hpp */,
 			);
 			path = BackBuffer;
+			sourceTree = "<group>";
+		};
+		2C6390EF2539ABAB0030F18E /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				2C6390FE2539BB690030F18E /* CShader_Metal.mm */,
+				2C6390F32539ABAB0030F18E /* CShader_Metal.hpp */,
+				2C6390F02539ABAB0030F18E /* PixelShader */,
+				2C6390F42539ABAB0030F18E /* VertexShader */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
+		2C6390F02539ABAB0030F18E /* PixelShader */ = {
+			isa = PBXGroup;
+			children = (
+				2C6391042539BE6E0030F18E /* MetalPixelShader.mm */,
+				2C6390F12539ABAB0030F18E /* MetalPixelShader.hpp */,
+			);
+			path = PixelShader;
+			sourceTree = "<group>";
+		};
+		2C6390F42539ABAB0030F18E /* VertexShader */ = {
+			isa = PBXGroup;
+			children = (
+				2C6391022539BE5E0030F18E /* MetalVertexShader.mm */,
+				2C6390F62539ABAB0030F18E /* MetalVertexShader.hpp */,
+			);
+			path = VertexShader;
 			sourceTree = "<group>";
 		};
 		2C68507624B768A800B98A7F /* Siv3D */ = {
@@ -4147,6 +4189,7 @@
 				2C47B0F924DD974A008D83BE /* agg_color_rgba.h in Headers */,
 				2C43961E2535DCCA00F6AECD /* svglength.h in Headers */,
 				2C47B10A24DD974A008D83BE /* agg_conv_concat.h in Headers */,
+				2C6390FA2539ABAB0030F18E /* CShader_Metal.hpp in Headers */,
 				2C47B10624DD974A008D83BE /* agg_conv_stroke.h in Headers */,
 				2C47B0A324DD974A008D83BE /* agg_alpha_mask_u8.h in Headers */,
 				2C47B0A424DD974A008D83BE /* agg_span_gradient_contour.h in Headers */,
@@ -4227,6 +4270,7 @@
 				2C47B0F724DD974A008D83BE /* agg_rasterizer_scanline_aa_nogamma.h in Headers */,
 				2C47B08624DD974A008D83BE /* agg_conv_clip_polygon.h in Headers */,
 				2C43962A2535DCCA00F6AECD /* svggelement.h in Headers */,
+				2C6390F82539ABAB0030F18E /* MetalPixelShader.hpp in Headers */,
 				2C43961C2535DCCA00F6AECD /* svgstopelement.h in Headers */,
 				2C47B0AC24DD974A008D83BE /* agg_conv_close_polygon.h in Headers */,
 				2C423220242B155E00A16BCA /* cocoa_platform.h in Headers */,
@@ -4282,6 +4326,7 @@
 				2C47B10D24DD974A008D83BE /* agg_conv_smooth_poly1.h in Headers */,
 				2C439F83241DCEA9001154C2 /* double-conversion.h in Headers */,
 				2C4396062535DCCA00F6AECD /* svgparserutils.h in Headers */,
+				2C6390FC2539ABAB0030F18E /* MetalVertexShader.hpp in Headers */,
 				2C439F78241DCEA9001154C2 /* utils.h in Headers */,
 				2C47B33F24DD9789008D83BE /* Siv3DComponent.hpp in Headers */,
 				2C43960B2535DCCA00F6AECD /* path.h in Headers */,
@@ -4549,6 +4594,7 @@
 				2C60AE80248158A500277281 /* vendor_model_name_windows.cpp in Sources */,
 				2C47B33424DD9789008D83BE /* SivTextReader.cpp in Sources */,
 				2C423239242B155E00A16BCA /* input.c in Sources */,
+				2C6391032539BE5F0030F18E /* MetalVertexShader.mm in Sources */,
 				2C423236242B155E00A16BCA /* vulkan.c in Sources */,
 				2C43962B2535DCCA00F6AECD /* svggeometryelement.cpp in Sources */,
 				2C47B35424DD9789008D83BE /* SivApplicationOptions.cpp in Sources */,
@@ -4572,7 +4618,7 @@
 				2C6106E524DB04E300BDEF72 /* xxhash.c in Sources */,
 				2CF21D14249FAA8F00C864C9 /* RendererFactory.mm in Sources */,
 				2C47B0AD24DD974A008D83BE /* agg_vcgen_dash.cpp in Sources */,
-				2C47B6FB24EAC98A008D83BE /* ShaderFactory.cpp in Sources */,
+				2C47B6FB24EAC98A008D83BE /* ShaderFactory.mm in Sources */,
 				2C6390ED2536C5460030F18E /* MetalBackBuffer.mm in Sources */,
 				2C47B49B24DD97F2008D83BE /* muParserBytecode.cpp in Sources */,
 				2C47B35524DD9789008D83BE /* ProfilerFactory.cpp in Sources */,
@@ -4641,6 +4687,7 @@
 				2C47B0AB24DD974A008D83BE /* agg_line_profile_aa.cpp in Sources */,
 				2CF21D22249FAA8F00C864C9 /* CWindow.cpp in Sources */,
 				2C47B09824DD974A008D83BE /* agg_trans_warp_magnifier.cpp in Sources */,
+				2C6391052539BE6E0030F18E /* MetalPixelShader.mm in Sources */,
 				2C60AE96248158A500277281 /* sysctl_darwin.cpp in Sources */,
 				2C60AE7D248158A500277281 /* quantities_cache_darwin.cpp in Sources */,
 				2C47B31824DD9789008D83BE /* LoggerFactory.cpp in Sources */,
@@ -4718,6 +4765,7 @@
 				2C60AE73248158A500277281 /* frequency_non_windows_non_darwin.cpp in Sources */,
 				2C47B5B124E7670A008D83BE /* CTexture_Null.cpp in Sources */,
 				2C47B11924DD974A008D83BE /* agg_bezier_arc.cpp in Sources */,
+				2C6390FF2539BB690030F18E /* CShader_Metal.mm in Sources */,
 				2C47B30024DD9789008D83BE /* SivMathParser.cpp in Sources */,
 				2C4396142535DCCA00F6AECD /* svgtransform.cpp in Sources */,
 				2C4564E1247946AF00DB01F0 /* int128.cc in Sources */,
