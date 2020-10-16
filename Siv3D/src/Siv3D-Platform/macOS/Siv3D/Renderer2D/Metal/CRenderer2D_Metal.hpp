@@ -24,15 +24,16 @@ namespace s3d
 	private:
 		
 		CRenderer_Metal* pRenderer = nullptr;
-		id<MTLDevice> m_device;
-		id<MTLCommandQueue> m_commandQueue;
+		id<MTLDevice> m_device = nil;
+		id<MTLCommandQueue> m_commandQueue = nil;
 		CAMetalLayer* m_swapchain = nullptr;
 		
-		id<MTLRenderPipelineState> m_sceneRenderPipelineState;
-		id<MTLRenderPipelineState> m_fullscreenTriangleRenderPipelineState;
+		
+		id<MTLRenderPipelineState> m_sceneRenderPipelineState = nil;
+		id<MTLRenderPipelineState> m_fullscreenTriangleRenderPipelineState = nil;
 		MTLRenderPassDescriptor* m_renderPassDescriptor;
 		
-		id<MTLTexture> m_sceneTexture;
+		
 		
 		Vertex2DBatch_Metal m_batches;
 		Renderer2DCommand_Metal m_command;
@@ -46,11 +47,15 @@ namespace s3d
 
 		void init() override;
 
-		void flush() override;
+		void flush() override {}
+		
+		void flush(id<MTLCommandBuffer> commandBuffer);
 
 		void test_renderRectangle(const RectF& rect, const ColorF& color) override;
 		
-		void drawFullScreenTriangle(TextureFilter textureFilter) override;
+		void drawFullScreenTriangle(TextureFilter textureFilter) override {}
+		
+		void drawFullScreenTriangle(id<MTLCommandBuffer> commandBuffer, TextureFilter textureFilter);
 		
 		void begin();
 	};

@@ -17,11 +17,40 @@
 
 namespace s3d
 {
+	namespace detail
+	{
+		id<MTLTexture> CreateSceneTexture(id<MTLDevice> device, const Size size)
+		{
+			id<MTLTexture> texture = nil;
+			
+			@autoreleasepool {
+				MTLTextureDescriptor* texDesc = [MTLTextureDescriptor new];
+				{
+					texDesc.width = size.x;
+					texDesc.height = size.y;
+					texDesc.depth = 1;
+					texDesc.textureType = MTLTextureType2D;
+					texDesc.usage = (MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead);
+					texDesc.storageMode = MTLStorageModePrivate;
+					texDesc.pixelFormat = MTLPixelFormatRGBA8Unorm;
+				}
+				texture = [device newTextureWithDescriptor:texDesc];
+			}
+			
+			return texture;
+		}
+	}
+
 	MetalBackBuffer::MetalBackBuffer()
 	{
+		LOG_SCOPED_TRACE(U"MetalBackBuffer::MetalBackBuffer()");
+		
+		pRenderer = dynamic_cast<CRenderer_Metal*>(SIV3D_ENGINE(Renderer));
+		m_device = pRenderer->getDevice();
+		
 		m_sceneSize = Window::GetState().virtualSize;
 
-		//m_sceneBuffers.scene = GL4InternalTexture2D::CreateRenderTargetTexture2D(m_sceneSize, m_sampleCount);
+		m_sceneBuffers.scene = detail::CreateSceneTexture(m_device, m_sceneSize);
 
 		//if (m_sampleCount > 1)
 		//{
@@ -55,16 +84,6 @@ namespace s3d
 		}
 	}
 
-	void GL4BackBuffer::bindSceneBuffer()
-	{
-		::glBindFramebuffer(GL_FRAMEBUFFER, m_sceneBuffers.scene->getFrameBuffer());
-	}
-
-	void GL4BackBuffer::unbind()
-	{
-		::glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	}
-
 	void GL4BackBuffer::updateFromSceneBuffer()
 	{
 		if (m_sampleCount == 1)
@@ -91,6 +110,12 @@ namespace s3d
 		::glBindTexture(GL_TEXTURE_2D, 0);
 	}
 */
+
+	id<MTLTexture> MetalBackBuffer::getSceneTexture() const
+	{
+		return m_sceneBuffers.scene;
+	}
+
 	//////////////////////////////////////////////////
 	//
 	//	LetterboxColor
@@ -228,20 +253,18 @@ namespace s3d
 		//unbindAllRenderTargets();
 
 		m_sceneSize = size;
-		/*
+
 		{
 			m_sceneBuffers = {};
+			m_sceneBuffers.scene = detail::CreateSceneTexture(m_device, m_sceneSize);
 
-			m_sceneBuffers.scene = GL4InternalTexture2D::CreateRenderTargetTexture2D(m_sceneSize, m_sampleCount);
-
-			if (m_sampleCount > 1)
-			{
-				m_sceneBuffers.resolved = GL4InternalTexture2D::CreateRenderTargetTexture2D(m_sceneSize);
-			}
+			//if (m_sampleCount > 1)
+			//{
+			//	m_sceneBuffers.resolved = GL4InternalTexture2D::CreateRenderTargetTexture2D(m_sceneSize);
+			//}
 		}
 
-		clear(GL4ClearTarget::All);
-		 */
+		//clear(GL4ClearTarget::All);
 	}
 
 	const Size& MetalBackBuffer::getSceneBufferSize() const noexcept

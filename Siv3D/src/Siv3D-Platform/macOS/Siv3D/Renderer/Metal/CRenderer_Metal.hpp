@@ -22,15 +22,18 @@
 
 namespace s3d
 {
+	class CRenderer2D_Metal;
+
 	class CRenderer_Metal final : public ISiv3DRenderer
 	{
 	private:
 		
 		GLFWwindow* m_window = nullptr;
+		CRenderer2D_Metal* pRenderer2D = nullptr;
 
-		id<MTLDevice> m_device;
+		id<MTLDevice> m_device = nil;
 		
-		id<MTLCommandQueue> m_commandQueue;
+		id<MTLCommandQueue> m_commandQueue = nil;
 		
 		CAMetalLayer* m_swapchain = nullptr;
 		
@@ -79,9 +82,11 @@ namespace s3d
 		id<MTLDevice> getDevice() const;
 		
 		id<MTLCommandQueue> getCommandQueue() const;
-		
+
 		CAMetalLayer* getSwapchain() const;
 		
 		void changeFrameBufferSize(Size size);
+		
+		id<MTLTexture> getSceneTexture() const;
 	};
 }

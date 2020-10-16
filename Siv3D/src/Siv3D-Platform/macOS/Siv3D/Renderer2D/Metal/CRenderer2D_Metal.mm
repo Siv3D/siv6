@@ -91,22 +91,10 @@ namespace s3d
 		
 		m_renderPassDescriptor = [MTLRenderPassDescriptor renderPassDescriptor];
 		
-		MTLTextureDescriptor* texDesc = [MTLTextureDescriptor new];
-		{
-			texDesc.width = 800;
-			texDesc.height = 600;
-			texDesc.depth = 1;
-			texDesc.textureType = MTLTextureType2D;
-			texDesc.usage = (MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead);
-			texDesc.storageMode = MTLStorageModePrivate;
-			texDesc.pixelFormat = MTLPixelFormatRGBA8Unorm;
-		}
-		m_sceneTexture = [m_device newTextureWithDescriptor:texDesc];
-		
 		m_batches.init(m_device);
 	}
 
-	void CRenderer2D_Metal::flush()
+	void CRenderer2D_Metal::flush(id<MTLCommandBuffer> commandBuffer)
 	{
 		ScopeGuard cleanUp = [this]()
 		{
@@ -120,18 +108,18 @@ namespace s3d
 		Mat3x2 screenMat = Mat3x2::Screen(currentRenderTargetSize);
 		const Mat3x2 matrix = transform * screenMat;
 		
+		const ColorF& backgroundColor = pRenderer->getBackgroundColor();
+		
 		VSConstants2D cb;
 		cb.transform[0] = Float4(matrix._11, -matrix._12, matrix._31, matrix._32);
 		cb.transform[1] = Float4(matrix._21, matrix._22, 0.0f, 1.0f);
 		cb.colorMul = Float4(1, 1, 1, 1);
 		
 		@autoreleasepool {
-			
-			id<MTLCommandBuffer> commandBuffer = [m_commandQueue commandBuffer];
-			
-			//const MTLViewport sceneViewport = { 0, 0, (float)currentRenderTargetSize.x, (float)currentRenderTargetSize.y, 0.0f, 1.0f };
-			const ColorF& backgroundColor = pRenderer->getBackgroundColor();
-			m_renderPassDescriptor.colorAttachments[0].texture = m_sceneTexture;
+
+			id<MTLTexture> sceneTexture = pRenderer->getSceneTexture();
+
+			m_renderPassDescriptor.colorAttachments[0].texture = sceneTexture;
 			m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(backgroundColor.r, backgroundColor.g, backgroundColor.b, 1);
 			m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
 			m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
@@ -139,7 +127,6 @@ namespace s3d
 				id<MTLRenderCommandEncoder> sceneCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
 				{
 					[sceneCommandEncoder setRenderPipelineState:m_sceneRenderPipelineState];
-					//[sceneCommandEncoder setViewport:sceneViewport];
 					[sceneCommandEncoder setVertexBuffer:m_batches.getCurrentVertexBuffer()
 									offset:0
 								   atIndex:0];
@@ -158,41 +145,6 @@ namespace s3d
 				}
 				[sceneCommandEncoder endEncoding];
 			}
-			
-			
-			id<CAMetalDrawable> drawable = [m_swapchain nextDrawable];
-			assert(drawable);
-			
-			const auto [s, viewRect] = pRenderer->getLetterboxComposition();
-			const MTLViewport viewport = { viewRect.x, viewRect.y, viewRect.w, viewRect.h, 0.0, 1.0 };
-			
-			//LOG_TRACE(U"viewRect: {}, {}, {}, {}"_fmt(viewRect.left, viewRect.top, viewRect.right, viewRect.bottom));
-			LOG_TRACE(U"Drawable: {}x{}"_fmt(drawable.texture.width, drawable.texture.height));
-			
-			const ColorF& letterboxColor = pRenderer->getLetterboxColor();
-			m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(letterboxColor.r, letterboxColor.g, letterboxColor.b, 1);
-			m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
-			m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
-			m_renderPassDescriptor.colorAttachments[0].texture = drawable.texture;
-			{
-				id<MTLRenderCommandEncoder> fullscreenTriangleCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
-				{
-					[fullscreenTriangleCommandEncoder setRenderPipelineState:m_fullscreenTriangleRenderPipelineState];
-					[fullscreenTriangleCommandEncoder setFragmentTexture:m_sceneTexture atIndex:0];
-					[fullscreenTriangleCommandEncoder setViewport:viewport];
-					[fullscreenTriangleCommandEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];
-				}
-				[fullscreenTriangleCommandEncoder endEncoding];
-			}
-			[commandBuffer presentDrawable:drawable];
-			
-			__weak dispatch_semaphore_t semaphore = m_batches.getSemaphore();
-			[commandBuffer addCompletedHandler:^(id<MTLCommandBuffer>)
-			{
-				dispatch_semaphore_signal(semaphore);
-			}];
-			
-			[commandBuffer commit];
 		}
 	}
 
@@ -228,9 +180,42 @@ namespace s3d
 		m_draw_indexCount += indexSize;
 	}
 
-	void CRenderer2D_Metal::drawFullScreenTriangle(TextureFilter textureFilter)
+	void CRenderer2D_Metal::drawFullScreenTriangle(id<MTLCommandBuffer> commandBuffer, TextureFilter textureFilter)
 	{
-	
+		const ColorF& letterboxColor = pRenderer->getLetterboxColor();
+		const auto [s, viewRect] = pRenderer->getLetterboxComposition();
+		const MTLViewport viewport = { viewRect.x, viewRect.y, viewRect.w, viewRect.h, 0.0, 1.0 };
+		
+		@autoreleasepool {
+			
+			id<MTLTexture> sceneTexture = pRenderer->getSceneTexture();
+			id<CAMetalDrawable> drawable = [m_swapchain nextDrawable];
+			assert(drawable);
+
+			m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(letterboxColor.r, letterboxColor.g, letterboxColor.b, 1);
+			m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
+			m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
+			m_renderPassDescriptor.colorAttachments[0].texture = drawable.texture;
+			{
+				id<MTLRenderCommandEncoder> fullscreenTriangleCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
+				{
+					[fullscreenTriangleCommandEncoder setRenderPipelineState:m_fullscreenTriangleRenderPipelineState];
+					[fullscreenTriangleCommandEncoder setFragmentTexture:sceneTexture atIndex:0];
+					[fullscreenTriangleCommandEncoder setViewport:viewport];
+					[fullscreenTriangleCommandEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];
+				}
+				[fullscreenTriangleCommandEncoder endEncoding];
+			}
+			[commandBuffer presentDrawable:drawable];
+			
+			__weak dispatch_semaphore_t semaphore = m_batches.getSemaphore();
+			[commandBuffer addCompletedHandler:^(id<MTLCommandBuffer>)
+			{
+				dispatch_semaphore_signal(semaphore);
+			}];
+			
+			[commandBuffer commit];
+		}
 	}
 
 	void CRenderer2D_Metal::begin()

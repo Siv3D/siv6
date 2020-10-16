@@ -35,6 +35,8 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_Metal::init()");
 		
+		pRenderer2D = dynamic_cast<CRenderer2D_Metal*>(SIV3D_ENGINE(Renderer2D));
+		
 		m_window = static_cast<GLFWwindow*>(SIV3D_ENGINE(Window)->getHandle());
 
 		m_device = MTLCreateSystemDefaultDevice();
@@ -84,12 +86,16 @@ namespace s3d
 			}
 		}
 		
-		dynamic_cast<CRenderer2D_Metal*>(SIV3D_ENGINE(Renderer2D))->begin();
+		pRenderer2D->begin();
 	}
 
 	void CRenderer_Metal::flush()
 	{
-		SIV3D_ENGINE(Renderer2D)->flush();
+		@autoreleasepool {
+			id<MTLCommandBuffer> commandBuffer = [m_commandQueue commandBuffer];
+			pRenderer2D->flush(commandBuffer);
+			pRenderer2D->drawFullScreenTriangle(commandBuffer, TextureFilter::Linear);
+		}
 	}
 
 	bool CRenderer_Metal::present()
@@ -178,5 +184,10 @@ namespace s3d
 		{
 			m_swapchain.drawableSize = CGSize{ static_cast<CGFloat>(size.x), static_cast<CGFloat>(size.y) };
 		}
+	}
+
+	id<MTLTexture> CRenderer_Metal::getSceneTexture() const
+	{
+		return m_backBuffer->getSceneTexture();
 	}
 }

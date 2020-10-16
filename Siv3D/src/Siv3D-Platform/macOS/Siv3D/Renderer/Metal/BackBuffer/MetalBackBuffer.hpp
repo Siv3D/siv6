@@ -33,9 +33,14 @@ namespace s3d
 	DEFINE_BITMASK_OPERATORS(GL4ClearTarget);
 	 */
 
+	class CRenderer_Metal;
+
 	class MetalBackBuffer
 	{
 	private:
+		
+		CRenderer_Metal* pRenderer = nullptr;
+		id<MTLDevice> m_device;
 
 		uint32 m_sampleCount			= Graphics::DefaultSampleCount;
 
@@ -44,13 +49,13 @@ namespace s3d
 		Size m_backBufferSize			= Window::DefaultClientSize;
 
 		Size m_sceneSize				= Scene::DefaultSceneSize;
-		/*
+
 		struct SceneBuffer
 		{
-			std::unique_ptr<GL4InternalTexture2D> scene;
-			std::unique_ptr<GL4InternalTexture2D> resolved;
+			id<MTLTexture> scene = nil;
+			//std::unique_ptr<GL4InternalTexture2D> resolved;
 		} m_sceneBuffers;
-*/
+
 		ColorF m_letterboxColor				= Scene::DefaultLetterBoxColor;
 		
 		ColorF m_backgroundColor			= Scene::DefaultBackgroundColor;
@@ -68,12 +73,10 @@ namespace s3d
 		/*
 		void clear(GL4ClearTarget clearTargets);
 
-		void bindSceneBuffer();
-
-		void unbind();
-
 		void updateFromSceneBuffer();
 */
+		id<MTLTexture> getSceneTexture() const;
+		
 		//////////////////////////////////////////////////
 		//
 		//	LetterboxColor
