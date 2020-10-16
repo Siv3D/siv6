@@ -20,12 +20,6 @@
 
 namespace s3d
 {
-	struct alignas(16) VSConstants2D
-	{
-		Float4 transform[2];
-		Float4 colorMul;
-	};
-
 	CRenderer2D_Metal::CRenderer2D_Metal()
 	{
 	
@@ -111,10 +105,9 @@ namespace s3d
 		
 		const ColorF& backgroundColor = pRenderer->getBackgroundColor();
 		
-		VSConstants2D cb;
-		cb.transform[0] = Float4(matrix._11, -matrix._12, matrix._31, matrix._32);
-		cb.transform[1] = Float4(matrix._21, matrix._22, 0.0f, 1.0f);
-		cb.colorMul = Float4(1, 1, 1, 1);
+		m_vsConstants2D->transform[0] = Float4(matrix._11, -matrix._12, matrix._31, matrix._32);
+		m_vsConstants2D->transform[1] = Float4(matrix._21, matrix._22, 0.0f, 1.0f);
+		m_vsConstants2D->colorMul = Float4(1, 1, 1, 1);
 		
 		@autoreleasepool {
 
@@ -144,8 +137,11 @@ namespace s3d
 					[sceneCommandEncoder setVertexBuffer:m_batches.getCurrentVertexBuffer()
 									offset:0
 								   atIndex:0];
-					[sceneCommandEncoder setVertexBytes:&cb
-								   length:sizeof(VSConstants2D)
+					[sceneCommandEncoder setVertexBytes:m_vsConstants2D.data()
+								   length:m_vsConstants2D.size()
+								  atIndex:1];
+					[sceneCommandEncoder setFragmentBytes:m_psConstants2D.data()
+								   length:m_psConstants2D.size()
 								  atIndex:1];
 
 					if (m_draw_indexCount)

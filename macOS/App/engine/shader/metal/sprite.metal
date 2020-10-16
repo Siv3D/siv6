@@ -8,6 +8,13 @@ struct VSConstants2D
 	float4 colorMul;
 };
 
+struct PSConstants2D
+{
+	float4 colorAdd;
+	float4 sdfParam;
+	float4 internal;
+};
+
 struct Vertex2D
 {
 	float2 pos [[attribute(0)]];
@@ -43,9 +50,10 @@ PSInput VS_Sprite(Vertex2D in [[stage_in]],
 }
 
 fragment
-float4 PS_Shape(PSInput in [[stage_in]])
+float4 PS_Shape(PSInput in [[stage_in]],
+				constant PSConstants2D& cb [[buffer(1)]])
 {
-    return in.color;
+    return (in.color + cb.colorAdd);
 }
 
 vertex
