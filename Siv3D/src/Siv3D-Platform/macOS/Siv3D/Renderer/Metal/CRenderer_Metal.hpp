@@ -72,7 +72,7 @@ namespace s3d
 
 		const ColorF& getLetterboxColor() const noexcept override;
 		
-		std::pair<float, FloatRect> getLetterboxComposition() const noexcept override;
+		std::pair<float, RectF> getLetterboxComposition() const noexcept override;
 
 		
 		
@@ -81,5 +81,7 @@ namespace s3d
 		id<MTLCommandQueue> getCommandQueue() const;
 		
 		CAMetalLayer* getSwapchain() const;
+		
+		void changeFrameBufferSize(Size size);
 	};
 }

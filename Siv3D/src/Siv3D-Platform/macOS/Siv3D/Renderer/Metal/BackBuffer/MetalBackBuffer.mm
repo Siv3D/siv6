@@ -11,6 +11,7 @@
 
 # include <Siv3D/EngineLog.hpp>
 # include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Renderer/Metal/CRenderer_Metal.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include "MetalBackBuffer.hpp"
 
@@ -169,6 +170,8 @@ namespace s3d
 		LOG_TRACE(U"MetalBackBuffer::setBackBufferSize({})"_fmt(backBufferSize));
 
 		m_backBufferSize = backBufferSize;
+		
+		dynamic_cast<CRenderer_Metal*>(SIV3D_ENGINE(Renderer))->changeFrameBufferSize(m_backBufferSize);
 
 		updateSceneSize();
 	}
@@ -178,7 +181,7 @@ namespace s3d
 		return m_backBufferSize;
 	}
 
-	std::pair<float, FloatRect> MetalBackBuffer::getLetterboxComposition() const noexcept
+	std::pair<float, RectF> MetalBackBuffer::getLetterboxComposition() const noexcept
 	{
 		const Float2 sceneSize		= m_sceneSize;
 		const Float2 backBufferSize	= m_backBufferSize;
@@ -190,16 +193,18 @@ namespace s3d
 		if (sx <= sy)
 		{
 			const float offsetY = ((backBufferSize.y - sceneSize.y * s) * 0.5f);
-			const float bottom = (backBufferSize.y - offsetY * 2.0f);
+			const float width = backBufferSize.x;
+			const float height = (backBufferSize.y - offsetY * 2.0f);
 
-			return{ s, FloatRect(0.0f, offsetY, backBufferSize.x, bottom) };
+			return{ s, RectF(0.0f, offsetY, width, height) };
 		}
 		else
 		{
 			const float offsetX = ((backBufferSize.x - sceneSize.x * s) * 0.5f);
-			const float right = (backBufferSize.x - offsetX * 2.0f);
+			const float width = (backBufferSize.x - offsetX * 2.0f);
+			const float height = backBufferSize.y;
 
-			return{ s, FloatRect(offsetX, 0.0f, right, backBufferSize.y) };
+			return{ s, RectF(offsetX, 0.0f, width, height) };
 		}
 	}
 

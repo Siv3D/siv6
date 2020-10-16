@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -103,8 +103,8 @@ namespace s3d
 		return letterBoxColor;
 	}
 
-	std::pair<float, FloatRect> CRenderer_Null::getLetterboxComposition() const noexcept
+	std::pair<float, RectF> CRenderer_Null::getLetterboxComposition() const noexcept
 	{
-		return{ 0, {} };
+		return{ 0, { 0, 0, 0, 0 } };
 	}
 }

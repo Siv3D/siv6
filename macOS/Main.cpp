@@ -1,6 +1,6 @@
 
 # include <Siv3D.hpp>
-SIV3D_SET(EngineOption::Renderer::Metal)
+//SIV3D_SET(EngineOption::Renderer::Metal)
 
 void Siv3DTest();
 
@@ -9,6 +9,8 @@ void Main()
 	//Siv3DTest();
 	Scene::SetBackground(ColorF(0.8, 0.9, 1.0));
 	
+	Scene::SetResizeMode(ResizeMode::Keep);
+	Window::Resize(800, 800);
 	//LicenseManager::ShowInBrowser();
 	//System::LaunchBrowser(U"test.html");
 	//System::LaunchBrowser(U"https://siv3d.github.io/");
@@ -17,6 +19,11 @@ void Main()
 	
 	while (System::Update())
 	{
+		for (auto i : step(10))
+		{
+			Rect(i*100, i * 100, 100).draw();
+		}
+		
 		for (auto i : step(20))
 		{
 			Rect(Cursor::Pos().movedBy(0 + i * 20, 0), 20, 400)

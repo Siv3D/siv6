@@ -23,7 +23,7 @@ namespace s3d
 	{
 	private:
 		
-		CRenderer_Metal* m_pRenderer = nullptr;
+		CRenderer_Metal* pRenderer = nullptr;
 		id<MTLDevice> m_device;
 		id<MTLCommandQueue> m_commandQueue;
 		CAMetalLayer* m_swapchain = nullptr;

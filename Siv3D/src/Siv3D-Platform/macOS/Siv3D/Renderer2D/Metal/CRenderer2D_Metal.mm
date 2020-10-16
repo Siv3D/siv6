@@ -40,10 +40,10 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CRenderer2D_Metal::init()");
 		
-		m_pRenderer = dynamic_cast<CRenderer_Metal*>(SIV3D_ENGINE(Renderer));
-		m_device = m_pRenderer->getDevice();
-		m_commandQueue = m_pRenderer->getCommandQueue();
-		m_swapchain = m_pRenderer->getSwapchain();
+		pRenderer = dynamic_cast<CRenderer_Metal*>(SIV3D_ENGINE(Renderer));
+		m_device = pRenderer->getDevice();
+		m_commandQueue = pRenderer->getCommandQueue();
+		m_swapchain = pRenderer->getSwapchain();
 	
 		id<MTLLibrary> defaultLibrary = [m_device newDefaultLibrary];
 		id<MTLFunction> vsSprite = [defaultLibrary newFunctionWithName:@"VS_Sprite"];
@@ -73,7 +73,7 @@ namespace s3d
 			{
 				rpd.vertexFunction = vsSprite;
 				rpd.fragmentFunction = psShape;
-				rpd.colorAttachments[0].pixelFormat = m_swapchain.pixelFormat;
+				rpd.colorAttachments[0].pixelFormat = MTLPixelFormatRGBA8Unorm;
 				rpd.vertexDescriptor = vertexDescriptor;
 			}
 			m_sceneRenderPipelineState = [m_device newRenderPipelineStateWithDescriptor:rpd error:NULL];
@@ -83,7 +83,7 @@ namespace s3d
 				rpd.vertexFunction = vsFullscreenTriangle;
 				rpd.fragmentFunction = psFullscreenTriangle;
 				rpd.colorAttachments[0].pixelFormat = m_swapchain.pixelFormat;
-				rpd.vertexDescriptor = vertexDescriptor;
+				rpd.vertexDescriptor = nil;
 			}
 			m_fullscreenTriangleRenderPipelineState = [m_device newRenderPipelineStateWithDescriptor:rpd error:NULL];
 			assert(m_fullscreenTriangleRenderPipelineState);
@@ -115,14 +115,12 @@ namespace s3d
 		
 		m_batches.end();
 		
-		const Size currentRenderTargetSize = SIV3D_ENGINE(Renderer)->getSceneBufferSize();
+		const Size currentRenderTargetSize = pRenderer->getSceneBufferSize();
 		Mat3x2 transform = Mat3x2::Identity();
 		Mat3x2 screenMat = Mat3x2::Screen(currentRenderTargetSize);
 		const Mat3x2 matrix = transform * screenMat;
 		
 		VSConstants2D cb;
-		//cb[0] = Float4(matrix._11, -matrix._12, matrix._31, -matrix._32);
-		//cb[1] = Float4(matrix._21, -matrix._22, 0.0f, 1.0f);
 		cb.transform[0] = Float4(matrix._11, -matrix._12, matrix._31, matrix._32);
 		cb.transform[1] = Float4(matrix._21, matrix._22, 0.0f, 1.0f);
 		cb.colorMul = Float4(1, 1, 1, 1);
@@ -131,47 +129,61 @@ namespace s3d
 			
 			id<MTLCommandBuffer> commandBuffer = [m_commandQueue commandBuffer];
 			
-			const ColorF& backgroundColor = m_pRenderer->getBackgroundColor();
+			//const MTLViewport sceneViewport = { 0, 0, (float)currentRenderTargetSize.x, (float)currentRenderTargetSize.y, 0.0f, 1.0f };
+			const ColorF& backgroundColor = pRenderer->getBackgroundColor();
 			m_renderPassDescriptor.colorAttachments[0].texture = m_sceneTexture;
 			m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(backgroundColor.r, backgroundColor.g, backgroundColor.b, 1);
 			m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
 			m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
-			id<MTLRenderCommandEncoder> sceneCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
 			{
-			  
+				id<MTLRenderCommandEncoder> sceneCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
+				{
+					[sceneCommandEncoder setRenderPipelineState:m_sceneRenderPipelineState];
+					//[sceneCommandEncoder setViewport:sceneViewport];
+					[sceneCommandEncoder setVertexBuffer:m_batches.getCurrentVertexBuffer()
+									offset:0
+								   atIndex:0];
+					[sceneCommandEncoder setVertexBytes:&cb
+								   length:sizeof(VSConstants2D)
+								  atIndex:1];
+
+					if (m_draw_indexCount)
+					{
+					  [sceneCommandEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle
+										  indexCount:m_draw_indexCount
+										   indexType:MTLIndexTypeUInt16
+										 indexBuffer:m_batches.getCurrentIndexBuffer()
+								   indexBufferOffset:0];
+					}
+				}
+				[sceneCommandEncoder endEncoding];
 			}
-			[sceneCommandEncoder endEncoding];
 			
 			
 			id<CAMetalDrawable> drawable = [m_swapchain nextDrawable];
 			assert(drawable);
 			
-			const ColorF& letterboxColor = m_pRenderer->getLetterboxColor();
+			const auto [s, viewRect] = pRenderer->getLetterboxComposition();
+			const MTLViewport viewport = { viewRect.x, viewRect.y, viewRect.w, viewRect.h, 0.0, 1.0 };
+			
+			//LOG_TRACE(U"viewRect: {}, {}, {}, {}"_fmt(viewRect.left, viewRect.top, viewRect.right, viewRect.bottom));
+			LOG_TRACE(U"Drawable: {}x{}"_fmt(drawable.texture.width, drawable.texture.height));
+			
+			const ColorF& letterboxColor = pRenderer->getLetterboxColor();
 			m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(letterboxColor.r, letterboxColor.g, letterboxColor.b, 1);
 			m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
 			m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
 			m_renderPassDescriptor.colorAttachments[0].texture = drawable.texture;
-			id<MTLRenderCommandEncoder> renderCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
 			{
-				[renderCommandEncoder setRenderPipelineState:m_sceneRenderPipelineState];
-				[renderCommandEncoder setVertexBuffer:m_batches.getCurrentVertexBuffer()
-								  offset:0
-								 atIndex:0];
-				//[renderCommandEncoder setFragmentTexture:m_sceneTexture atIndex:0];
-				[renderCommandEncoder setVertexBytes:&cb
-								 length:sizeof(VSConstants2D)
-								atIndex:1];
-
-				if (m_draw_indexCount)
+				id<MTLRenderCommandEncoder> fullscreenTriangleCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
 				{
-					[renderCommandEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle
-										indexCount:m_draw_indexCount
-										 indexType:MTLIndexTypeUInt16
-									   indexBuffer:m_batches.getCurrentIndexBuffer()
-								 indexBufferOffset:0];
+					[fullscreenTriangleCommandEncoder setRenderPipelineState:m_fullscreenTriangleRenderPipelineState];
+					[fullscreenTriangleCommandEncoder setFragmentTexture:m_sceneTexture atIndex:0];
+					[fullscreenTriangleCommandEncoder setViewport:viewport];
+					[fullscreenTriangleCommandEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:3];
 				}
+				[fullscreenTriangleCommandEncoder endEncoding];
 			}
-			[renderCommandEncoder endEncoding];
 			[commandBuffer presentDrawable:drawable];
 			
 			__weak dispatch_semaphore_t semaphore = m_batches.getSemaphore();

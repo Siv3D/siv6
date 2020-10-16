@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -189,10 +189,10 @@ namespace s3d
 			::glBindFramebuffer(GL_FRAMEBUFFER, 0);
 			auto [s, viewRect] = pRenderer->getLetterboxComposition();
 			::glViewport(
-				static_cast<int32>(viewRect.left),
-				static_cast<int32>(viewRect.top),
-				static_cast<int32>(viewRect.right),
-				static_cast<int32>(viewRect.bottom));
+				static_cast<int32>(viewRect.x),
+				static_cast<int32>(viewRect.y),
+				static_cast<int32>(viewRect.w),
+				static_cast<int32>(viewRect.h));
 		}
 
 		// render states

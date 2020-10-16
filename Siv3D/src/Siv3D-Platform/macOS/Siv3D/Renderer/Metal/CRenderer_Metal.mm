@@ -49,7 +49,9 @@ namespace s3d
 		m_swapchain = [CAMetalLayer layer];
 		m_swapchain.device		= m_device;
 		m_swapchain.pixelFormat	= MTLPixelFormatBGRA8Unorm;
-		
+		const Vec2 frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
+		m_swapchain.drawableSize = CGSize{ frameBufferSize.x, frameBufferSize.y };
+
 		NSWindow* nswin = ::glfwGetCocoaWindow(m_window);
 		nswin.contentView.layer			= m_swapchain;
 		nswin.contentView.wantsLayer	= YES;
@@ -150,7 +152,7 @@ namespace s3d
 		return m_backBuffer->getLetterBoxColor();
 	}
 
-	std::pair<float, FloatRect> CRenderer_Metal::getLetterboxComposition() const noexcept
+	std::pair<float, RectF> CRenderer_Metal::getLetterboxComposition() const noexcept
 	{
 		return m_backBuffer->getLetterboxComposition();
 	}
@@ -168,5 +170,13 @@ namespace s3d
 	CAMetalLayer* CRenderer_Metal::getSwapchain() const
 	{
 		return m_swapchain;
+	}
+
+	void CRenderer_Metal::changeFrameBufferSize(const Size size)
+	{
+		if (m_swapchain)
+		{
+			m_swapchain.drawableSize = CGSize{ static_cast<CGFloat>(size.x), static_cast<CGFloat>(size.y) };
+		}
 	}
 }

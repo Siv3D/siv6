@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------
+//-----------------------------------------------
 //
 //	This file is part of the Siv3D Engine.
 //
@@ -57,6 +57,6 @@ namespace s3d
 
 		virtual const ColorF& getLetterboxColor() const noexcept = 0;
 
-		virtual std::pair<float, FloatRect> getLetterboxComposition() const noexcept = 0;
+		virtual std::pair<float, RectF> getLetterboxComposition() const noexcept = 0;
 	};
 }
