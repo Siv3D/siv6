@@ -19,7 +19,29 @@ namespace s3d
 {
 	namespace detail
 	{
-		id<MTLTexture> CreateSceneTexture(id<MTLDevice> device, const Size size)
+		id<MTLTexture> CreateSceneTexture(id<MTLDevice> device, const Size size, const uint32 sampleCount)
+		{
+			id<MTLTexture> texture = nil;
+			
+			@autoreleasepool {
+				MTLTextureDescriptor* texDesc = [MTLTextureDescriptor new];
+				{
+					texDesc.width = size.x;
+					texDesc.height = size.y;
+					texDesc.depth = 1;
+					texDesc.sampleCount = sampleCount;
+					texDesc.textureType = (1 < sampleCount) ? MTLTextureType2DMultisample : MTLTextureType2D;
+					texDesc.usage = (MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead);
+					texDesc.storageMode = MTLStorageModePrivate;
+					texDesc.pixelFormat = MTLPixelFormatRGBA8Unorm;
+				}
+				texture = [device newTextureWithDescriptor:texDesc];
+			}
+			
+			return texture;
+		}
+	
+		id<MTLTexture> CreateResolvedTexture(id<MTLDevice> device, const Size size)
 		{
 			id<MTLTexture> texture = nil;
 			
@@ -50,12 +72,11 @@ namespace s3d
 		
 		m_sceneSize = Window::GetState().virtualSize;
 
-		m_sceneBuffers.scene = detail::CreateSceneTexture(m_device, m_sceneSize);
-
-		//if (m_sampleCount > 1)
-		//{
-		//	m_sceneBuffers.resolved = GL4InternalTexture2D::CreateRenderTargetTexture2D(m_sceneSize);
-		//}
+		m_sceneBuffers.scene = detail::CreateSceneTexture(m_device, m_sceneSize, m_sampleCount);
+		if (1 < m_sampleCount)
+		{
+			m_sceneBuffers.resolved = detail::CreateResolvedTexture(m_device, m_sceneSize);
+		}
 
 		//clear(GL4ClearTarget::All);
 	}
@@ -111,9 +132,19 @@ namespace s3d
 	}
 */
 
+	uint32 MetalBackBuffer::getSampleCount() const
+	{
+		return m_sampleCount;
+	}
+
 	id<MTLTexture> MetalBackBuffer::getSceneTexture() const
 	{
 		return m_sceneBuffers.scene;
+	}
+
+	id<MTLTexture> MetalBackBuffer::getResolvedTexture() const
+	{
+		return m_sceneBuffers.resolved;
 	}
 
 	//////////////////////////////////////////////////
@@ -256,12 +287,11 @@ namespace s3d
 
 		{
 			m_sceneBuffers = {};
-			m_sceneBuffers.scene = detail::CreateSceneTexture(m_device, m_sceneSize);
-
-			//if (m_sampleCount > 1)
-			//{
-			//	m_sceneBuffers.resolved = GL4InternalTexture2D::CreateRenderTargetTexture2D(m_sceneSize);
-			//}
+			m_sceneBuffers.scene = detail::CreateSceneTexture(m_device, m_sceneSize, m_sampleCount);
+			if (1 < m_sampleCount)
+			{
+				m_sceneBuffers.resolved = detail::CreateResolvedTexture(m_device, m_sceneSize);
+			}
 		}
 
 		//clear(GL4ClearTarget::All);

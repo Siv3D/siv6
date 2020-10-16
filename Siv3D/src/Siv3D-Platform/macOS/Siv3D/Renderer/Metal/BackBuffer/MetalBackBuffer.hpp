@@ -53,7 +53,7 @@ namespace s3d
 		struct SceneBuffer
 		{
 			id<MTLTexture> scene = nil;
-			//std::unique_ptr<GL4InternalTexture2D> resolved;
+			id<MTLTexture> resolved = nil;
 		} m_sceneBuffers;
 
 		ColorF m_letterboxColor				= Scene::DefaultLetterBoxColor;
@@ -75,7 +75,11 @@ namespace s3d
 
 		void updateFromSceneBuffer();
 */
+		uint32 getSampleCount() const;
+		
 		id<MTLTexture> getSceneTexture() const;
+		
+		id<MTLTexture> getResolvedTexture() const;
 		
 		//////////////////////////////////////////////////
 		//

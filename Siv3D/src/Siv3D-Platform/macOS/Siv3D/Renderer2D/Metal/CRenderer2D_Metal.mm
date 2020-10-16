@@ -75,6 +75,7 @@ namespace s3d
 				rpd.fragmentFunction = psShape;
 				rpd.colorAttachments[0].pixelFormat = MTLPixelFormatRGBA8Unorm;
 				rpd.vertexDescriptor = vertexDescriptor;
+				rpd.sampleCount = pRenderer->getSampleCount();
 			}
 			m_sceneRenderPipelineState = [m_device newRenderPipelineStateWithDescriptor:rpd error:NULL];
 			assert(m_sceneRenderPipelineState);
@@ -117,12 +118,25 @@ namespace s3d
 		
 		@autoreleasepool {
 
-			id<MTLTexture> sceneTexture = pRenderer->getSceneTexture();
-
-			m_renderPassDescriptor.colorAttachments[0].texture = sceneTexture;
-			m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(backgroundColor.r, backgroundColor.g, backgroundColor.b, 1);
-			m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
-			m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
+			if (1 == pRenderer->getSampleCount())
+			{
+				id<MTLTexture> sceneTexture = pRenderer->getSceneTexture();
+				m_renderPassDescriptor.colorAttachments[0].texture = sceneTexture;
+				m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(backgroundColor.r, backgroundColor.g, backgroundColor.b, 1);
+				m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
+				m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionStore;
+			}
+			else
+			{
+				id<MTLTexture> sceneTexture = pRenderer->getSceneTexture();
+				id<MTLTexture> resolvedTexture = pRenderer->getResolvedTexture();
+				m_renderPassDescriptor.colorAttachments[0].texture = sceneTexture;
+				m_renderPassDescriptor.colorAttachments[0].resolveTexture = resolvedTexture;
+				m_renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(backgroundColor.r, backgroundColor.g, backgroundColor.b, 1);
+				m_renderPassDescriptor.colorAttachments[0].loadAction  = MTLLoadActionClear;
+				m_renderPassDescriptor.colorAttachments[0].storeAction = MTLStoreActionMultisampleResolve;
+			}
+		
 			{
 				id<MTLRenderCommandEncoder> sceneCommandEncoder = [commandBuffer renderCommandEncoderWithDescriptor:m_renderPassDescriptor];
 				{
@@ -188,7 +202,7 @@ namespace s3d
 		
 		@autoreleasepool {
 			
-			id<MTLTexture> sceneTexture = pRenderer->getSceneTexture();
+			id<MTLTexture> sceneTexture =  (1 == pRenderer->getSampleCount()) ? pRenderer->getSceneTexture() : pRenderer->getResolvedTexture();
 			id<CAMetalDrawable> drawable = [m_swapchain nextDrawable];
 			assert(drawable);
 

@@ -87,6 +87,10 @@ namespace s3d
 		
 		void changeFrameBufferSize(Size size);
 		
+		uint32 getSampleCount() const;
+		
 		id<MTLTexture> getSceneTexture() const;
+		
+		id<MTLTexture> getResolvedTexture() const;
 	};
 }

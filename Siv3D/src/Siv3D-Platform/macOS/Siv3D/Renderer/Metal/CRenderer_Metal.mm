@@ -186,8 +186,18 @@ namespace s3d
 		}
 	}
 
+	uint32 CRenderer_Metal::getSampleCount() const
+	{
+		return m_backBuffer->getSampleCount();
+	}
+
 	id<MTLTexture> CRenderer_Metal::getSceneTexture() const
 	{
 		return m_backBuffer->getSceneTexture();
+	}
+
+	id<MTLTexture> CRenderer_Metal::getResolvedTexture() const
+	{
+		return m_backBuffer->getResolvedTexture();
 	}
 }
