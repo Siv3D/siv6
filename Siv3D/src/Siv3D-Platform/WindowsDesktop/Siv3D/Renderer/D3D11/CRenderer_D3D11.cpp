@@ -133,7 +133,7 @@ namespace s3d
 		return m_backBuffer->getLetterBoxColor();
 	}
 
-	std::pair<float, FloatRect> CRenderer_D3D11::getLetterboxComposition() const noexcept
+	std::pair<float, RectF> CRenderer_D3D11::getLetterboxComposition() const noexcept
 	{
 		return m_backBuffer->getLetterboxComposition();
 	}

@@ -137,7 +137,7 @@ namespace s3d
 		const Size& getBackBufferSize() const noexcept;
 
 		[[nodiscard]]
-		std::pair<float, FloatRect> getLetterboxComposition() const noexcept;
+		std::pair<float, RectF> getLetterboxComposition() const noexcept;
 
 		//////////////////////////////////////////////////
 		//

@@ -207,7 +207,7 @@ namespace s3d
 		return m_backBuffer.size();
 	}
 
-	std::pair<float, FloatRect> D3D11BackBuffer::getLetterboxComposition() const noexcept
+	std::pair<float, RectF> D3D11BackBuffer::getLetterboxComposition() const noexcept
 	{
 		const Float2 sceneSize = m_sceneSize;
 		const Float2 backBufferSize = m_backBuffer.size();
@@ -219,16 +219,18 @@ namespace s3d
 		if (sx <= sy)
 		{
 			const float offsetY = ((backBufferSize.y - sceneSize.y * s) * 0.5f);
-			const float bottom = (backBufferSize.y - offsetY * 2.0f);
+			const float width = backBufferSize.x;
+			const float height = (backBufferSize.y - offsetY * 2.0f);
 
-			return{ s, FloatRect(0.0f, offsetY, backBufferSize.x, bottom) };
+			return{ s, RectF(0.0f, offsetY, width, height) };
 		}
 		else
 		{
 			const float offsetX = ((backBufferSize.x - sceneSize.x * s) * 0.5f);
-			const float right = (backBufferSize.x - offsetX * 2.0f);
+			const float width = (backBufferSize.x - offsetX * 2.0f);
+			const float height = backBufferSize.y;
 
-			return{ s, FloatRect(offsetX, 0.0f, right, backBufferSize.y) };
+			return{ s, RectF(offsetX, 0.0f, width, height) };
 		}
 	}
 

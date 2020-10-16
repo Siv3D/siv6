@@ -92,6 +92,7 @@ add_library(Siv3D STATIC
   ../Siv3D/src/Siv3D/Console/ConsoleFactory.cpp
   ../Siv3D/src/Siv3D/Console/SivConsole.cpp
   ../Siv3D/src/Siv3D/ConstantBuffer/Null/ConstantBufferDetail_Null.cpp
+  ../Siv3D/src/Siv3D/ConstantBuffer/SivConstantBuffer.cpp
   ../Siv3D/src/Siv3D/Cursor/CCursor_Null.cpp
   ../Siv3D/src/Siv3D/Cursor/CursorFactory.cpp
   ../Siv3D/src/Siv3D/Cursor/SivCursor.cpp

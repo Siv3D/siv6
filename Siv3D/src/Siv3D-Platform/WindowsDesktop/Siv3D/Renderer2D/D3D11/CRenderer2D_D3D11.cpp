@@ -174,8 +174,8 @@ namespace s3d
 		{
 			const auto [s, viewRect] = pRenderer->getLetterboxComposition();
 			const CD3D11_VIEWPORT viewport{
-				viewRect.left, viewRect.top,
-				viewRect.right, viewRect.bottom };
+				static_cast<float>(viewRect.x), static_cast<float>(viewRect.y),
+				static_cast<float>(viewRect.w), static_cast<float>(viewRect.h) };
 			m_context->RSSetViewports(1, &viewport);
 		}
 
