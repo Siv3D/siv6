@@ -148,7 +148,7 @@ namespace s3d
 		}
 	}
 
-	VertexShader::IDType CShader_D3D11::createVSFromFile(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
+	VertexShader::IDType CShader_D3D11::createVSFromFile(const FilePathView path, const StringView entryPoint, const Array<ConstantBufferBinding>& bindings)
 	{
 		Blob blob{ path };
 
@@ -165,14 +165,14 @@ namespace s3d
 			return createVS(std::move(blob), bindings);
 		}
 		
-		Blob binary = compileHLSLFromFile(path, ShaderStage::Vertex, U"VS");
+		Blob binary = compileHLSLFromFile(path, ShaderStage::Vertex, entryPoint);
 
 		return createVS(std::move(binary), bindings);
 	}
 
-	VertexShader::IDType CShader_D3D11::createVSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
+	VertexShader::IDType CShader_D3D11::createVSFromSource(const StringView source, const StringView entryPoint, const Array<ConstantBufferBinding>& bindings)
 	{
-		Blob binary = compileHLSLFromSource(source, ShaderStage::Vertex, U"VS");
+		Blob binary = compileHLSLFromSource(source, ShaderStage::Vertex, entryPoint);
 
 		return createVS(std::move(binary), bindings);
 	}
@@ -191,7 +191,7 @@ namespace s3d
 		return m_vertexShaders.add(std::move(vertexShader));
 	}
 
-	PixelShader::IDType CShader_D3D11::createPSFromFile(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
+	PixelShader::IDType CShader_D3D11::createPSFromFile(const FilePathView path, const StringView entryPoint, const Array<ConstantBufferBinding>& bindings)
 	{
 		Blob blob{ path };
 
@@ -208,14 +208,14 @@ namespace s3d
 			return createPS(std::move(blob), bindings);
 		}
 
-		Blob binary = compileHLSLFromFile(path, ShaderStage::Pixel, U"PS");
+		Blob binary = compileHLSLFromFile(path, ShaderStage::Pixel, entryPoint);
 
 		return createPS(std::move(binary), bindings);
 	}
 
-	PixelShader::IDType CShader_D3D11::createPSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
+	PixelShader::IDType CShader_D3D11::createPSFromSource(const StringView source, const StringView entryPoint, const Array<ConstantBufferBinding>& bindings)
 	{
-		Blob binary = compileHLSLFromSource(source, ShaderStage::Pixel, U"PS");
+		Blob binary = compileHLSLFromSource(source, ShaderStage::Pixel, entryPoint);
 
 		return createPS(std::move(binary), bindings);
 	}

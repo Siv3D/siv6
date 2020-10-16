@@ -28,13 +28,13 @@ namespace s3d
 
 		virtual void init() = 0;
 
-		virtual VertexShader::IDType createVSFromFile(FilePathView path, const Array<ConstantBufferBinding>& bindings) = 0;
+		virtual VertexShader::IDType createVSFromFile(FilePathView path, StringView entryPoint, const Array<ConstantBufferBinding>& bindings) = 0;
 
-		virtual VertexShader::IDType createVSFromSource(StringView source, const Array<ConstantBufferBinding>& bindings) = 0;
+		virtual VertexShader::IDType createVSFromSource(StringView source, StringView entryPoint, const Array<ConstantBufferBinding>& bindings) = 0;
 
-		virtual PixelShader::IDType createPSFromFile(FilePathView path, const Array<ConstantBufferBinding>& bindings) = 0;
+		virtual PixelShader::IDType createPSFromFile(FilePathView path, StringView entryPoint, const Array<ConstantBufferBinding>& bindings) = 0;
 		
-		virtual PixelShader::IDType createPSFromSource(StringView source, const Array<ConstantBufferBinding>& bindings) = 0;
+		virtual PixelShader::IDType createPSFromSource(StringView source, StringView entryPoint, const Array<ConstantBufferBinding>& bindings) = 0;
 
 		virtual void releaseVS(VertexShader::IDType handleID) = 0;
 

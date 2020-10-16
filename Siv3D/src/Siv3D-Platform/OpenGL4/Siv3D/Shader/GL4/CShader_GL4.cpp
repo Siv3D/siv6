@@ -77,7 +77,7 @@ namespace s3d
 		}
 	}
 
-	VertexShader::IDType CShader_GL4::createVSFromFile(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
+	VertexShader::IDType CShader_GL4::createVSFromFile(const FilePathView path, const StringView entryPoint, const Array<ConstantBufferBinding>& bindings)
 	{
 		TextReader reader(path);
 
@@ -86,10 +86,10 @@ namespace s3d
 			return VertexShader::IDType::NullAsset();
 		}
 
-		return createVSFromSource(reader.readAll(), bindings);
+		return createVSFromSource(reader.readAll(), entryPoint, bindings);
 	}
 
-	VertexShader::IDType CShader_GL4::createVSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
+	VertexShader::IDType CShader_GL4::createVSFromSource(const StringView source, const StringView, const Array<ConstantBufferBinding>& bindings)
 	{
 		// VS を作成
 		auto vertexShader = std::make_unique<GL4VertexShader>(source, bindings);
@@ -103,7 +103,7 @@ namespace s3d
 		return m_vertexShaders.add(std::move(vertexShader));
 	}
 
-	PixelShader::IDType CShader_GL4::createPSFromFile(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
+	PixelShader::IDType CShader_GL4::createPSFromFile(const FilePathView path, const StringView entryPoint, const Array<ConstantBufferBinding>& bindings)
 	{
 		TextReader reader(path);
 
@@ -112,10 +112,10 @@ namespace s3d
 			return PixelShader::IDType::NullAsset();
 		}
 
-		return createPSFromSource(reader.readAll(), bindings);
+		return createPSFromSource(reader.readAll(), entryPoint, bindings);
 	}
 
-	PixelShader::IDType CShader_GL4::createPSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
+	PixelShader::IDType CShader_GL4::createPSFromSource(const StringView source, const StringView, const Array<ConstantBufferBinding>& bindings)
 	{
 		// PS を作成
 		auto pixelShader = std::make_unique<GL4PixelShader>(source, bindings);

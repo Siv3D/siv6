@@ -42,14 +42,14 @@ namespace s3d
 
 		void init() override;
 
-		VertexShader::IDType createVSFromFile(FilePathView path, const Array<ConstantBufferBinding>& bindings) override;
+		VertexShader::IDType createVSFromFile(FilePathView path, StringView entryPoint, const Array<ConstantBufferBinding>& bindings) override;
 		
-		VertexShader::IDType createVSFromSource(StringView source, const Array<ConstantBufferBinding>& bindings) override;
+		VertexShader::IDType createVSFromSource(StringView source, StringView entryPoint, const Array<ConstantBufferBinding>& bindings) override;
 
 
-		PixelShader::IDType createPSFromFile(FilePathView path, const Array<ConstantBufferBinding>& bindings) override;
+		PixelShader::IDType createPSFromFile(FilePathView path, StringView entryPoint, const Array<ConstantBufferBinding>& bindings) override;
 	
-		PixelShader::IDType createPSFromSource(StringView source, const Array<ConstantBufferBinding>& bindings) override;
+		PixelShader::IDType createPSFromSource(StringView source, StringView entryPoint, const Array<ConstantBufferBinding>& bindings) override;
 
 
 		// 指定した VS を管理から除外

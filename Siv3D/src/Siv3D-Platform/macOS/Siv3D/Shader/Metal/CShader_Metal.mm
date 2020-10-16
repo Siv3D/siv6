@@ -68,10 +68,10 @@ namespace s3d
 		}
 	}
 
-	VertexShader::IDType CShader_Metal::createVSFromFile(const FilePathView path, const Array<ConstantBufferBinding>&)
+	VertexShader::IDType CShader_Metal::createVSFromFile(const FilePathView path, const StringView entryPoint, const Array<ConstantBufferBinding>&)
 	{
 		// VS を作成
-		auto vertexShader = std::make_unique<MetalVertexShader>(m_defaultLibrary, path);
+		auto vertexShader = std::make_unique<MetalVertexShader>(m_defaultLibrary, entryPoint);
 
 		if (!vertexShader->isInitialized()) // もし作成に失敗していたら
 		{
@@ -82,16 +82,16 @@ namespace s3d
 		return m_vertexShaders.add(std::move(vertexShader));
 	}
 
-	VertexShader::IDType CShader_Metal::createVSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
+	VertexShader::IDType CShader_Metal::createVSFromSource(const StringView source, const StringView entryPoint,, const Array<ConstantBufferBinding>&)
 	{
 		// [Siv3D ToDo]
 		return VertexShader::IDType::NullAsset();
 	}
 
-	PixelShader::IDType CShader_Metal::createPSFromFile(const FilePathView path, const Array<ConstantBufferBinding>& bindings)
+	PixelShader::IDType CShader_Metal::createPSFromFile(const FilePathView path, const StringView entryPoint,, const Array<ConstantBufferBinding>&)
 	{
 		// PS を作成
-		auto pixelShader = std::make_unique<MetalPixelShader>(m_defaultLibrary, path);
+		auto pixelShader = std::make_unique<MetalPixelShader>(m_defaultLibrary, entryPoint);
 
 		if (!pixelShader->isInitialized()) // もし作成に失敗していたら
 		{
@@ -102,7 +102,7 @@ namespace s3d
 		return m_pixelShaders.add(std::move(pixelShader));
 	}
 
-	PixelShader::IDType CShader_Metal::createPSFromSource(const StringView source, const Array<ConstantBufferBinding>& bindings)
+	PixelShader::IDType CShader_Metal::createPSFromSource(const StringView source, const StringView entryPoint,, const Array<ConstantBufferBinding>&)
 	{
 		// [Siv3D ToDo]
 		return PixelShader::IDType::NullAsset();
