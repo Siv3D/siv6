@@ -32,9 +32,13 @@ namespace s3d
 	};
 	DEFINE_BITMASK_OPERATORS(D3D11ClearTarget);
 
+	class CRenderer2D_D3D11;
+
 	class D3D11BackBuffer
 	{
 	private:
+
+		CRenderer2D_D3D11* pRenderer2D = nullptr;
 
 		ID3D11Device* m_device			= nullptr;
 		

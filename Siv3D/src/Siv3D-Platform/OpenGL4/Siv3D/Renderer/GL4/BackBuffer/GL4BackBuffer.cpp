@@ -10,7 +10,7 @@
 //-----------------------------------------------
 
 # include <Siv3D/EngineLog.hpp>
-# include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Renderer2D/GL4/CRenderer2D_GL4.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include "GL4BackBuffer.hpp"
 
@@ -18,6 +18,10 @@ namespace s3d
 {
 	GL4BackBuffer::GL4BackBuffer()
 	{
+		LOG_SCOPED_TRACE(U"GL4BackBuffer::GL4BackBuffer()");
+
+		pRenderer2D = dynamic_cast<CRenderer2D_GL4*>(SIV3D_ENGINE(Renderer2D));
+
 		m_sceneSize = Window::GetState().virtualSize;
 
 		m_sceneBuffers.scene = GL4InternalTexture2D::CreateRenderTargetTexture2D(m_sceneSize, m_sampleCount);
@@ -70,8 +74,6 @@ namespace s3d
 		{
 			::glActiveTexture(GL_TEXTURE0);
 			::glBindTexture(GL_TEXTURE_2D, m_sceneBuffers.scene->getTexture());
-
-			SIV3D_ENGINE(Renderer2D)->drawFullScreenTriangle(m_sceneTextureFilter);
 		}
 		else
 		{
@@ -83,9 +85,9 @@ namespace s3d
 
 			::glActiveTexture(GL_TEXTURE0);
 			::glBindTexture(GL_TEXTURE_2D, m_sceneBuffers.resolved->getTexture());
-
-			SIV3D_ENGINE(Renderer2D)->drawFullScreenTriangle(m_sceneTextureFilter);
 		}
+
+		pRenderer2D->drawFullScreenTriangle(m_sceneTextureFilter);
 
 		::glBindTexture(GL_TEXTURE_2D, 0);
 	}

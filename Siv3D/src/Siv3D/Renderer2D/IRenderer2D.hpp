@@ -27,10 +27,6 @@ namespace s3d
 
 		virtual void init() = 0;
 
-		virtual void flush() = 0;
-
 		virtual void test_renderRectangle(const RectF& rect, const ColorF& color) = 0;
-
-		virtual void drawFullScreenTriangle(TextureFilter textureFilter) = 0;
 	};
 }

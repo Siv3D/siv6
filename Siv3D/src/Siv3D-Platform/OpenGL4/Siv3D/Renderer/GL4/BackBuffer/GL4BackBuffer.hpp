@@ -32,9 +32,13 @@ namespace s3d
 	};
 	DEFINE_BITMASK_OPERATORS(GL4ClearTarget);
 
+	class CRenderer2D_GL4;
+
 	class GL4BackBuffer
 	{
 	private:
+
+		CRenderer2D_GL4* pRenderer2D	= nullptr;
 
 		uint32 m_sampleCount			= Graphics::DefaultSampleCount;
 

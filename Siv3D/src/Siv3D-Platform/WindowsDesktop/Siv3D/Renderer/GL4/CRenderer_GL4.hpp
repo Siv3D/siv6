@@ -24,6 +24,8 @@ namespace s3d
 	{
 	private:
 
+		CRenderer2D_GL4* pRenderer2D = nullptr;
+
 		HWND m_hWnd = nullptr;
 
 		WGLContext m_wglContext;

@@ -66,27 +66,20 @@ namespace s3d
 	private:
 
 		CRenderer_D3D11* pRenderer		= nullptr;
-
 		CShader_D3D11* pShader			= nullptr;
-
 		ID3D11Device* m_device			= nullptr;
-
 		ID3D11DeviceContext* m_context	= nullptr;
 
 		std::unique_ptr<D3D11StandardVS2D> m_standardVS;
-
 		std::unique_ptr<D3D11StandardPS2D> m_standardPS;
 
 		ConstantBuffer<D3D11VSConstants2D> m_vsConstants2D;
-		
 		ConstantBuffer<D3D11PSConstants2D> m_psConstants2D;
 
 		ComPtr<ID3D11InputLayout> m_inputLayout;
 
 		D3D11Vertex2DBatch m_batches;
-
 		D3D11Renderer2DCommand m_command;
-		
 		uint32 m_draw_indexCount = 0;
 
 	public:
@@ -97,10 +90,10 @@ namespace s3d
 
 		void init() override;
 
-		void flush() override;
-
 		void test_renderRectangle(const RectF& rect, const ColorF& color) override;
 
-		void drawFullScreenTriangle(TextureFilter textureFilter) override;
+		void flush();
+
+		void drawFullScreenTriangle(TextureFilter textureFilter);
 	};
 }

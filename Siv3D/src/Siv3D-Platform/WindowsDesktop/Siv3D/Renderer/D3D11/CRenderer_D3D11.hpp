@@ -23,9 +23,13 @@
 
 namespace s3d
 {
+	class CRenderer2D_D3D11;
+
 	class CRenderer_D3D11 final : public ISiv3DRenderer
 	{
 	private:
+
+		CRenderer2D_D3D11* pRenderer2D = nullptr;
 
 		std::unique_ptr<D3D11Device> m_device;
 

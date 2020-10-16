@@ -12,7 +12,7 @@
 # include <Siv3D/DLL.hpp>
 # include <Siv3D/Window.hpp>
 # include <Siv3D/EngineLog.hpp>
-# include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Renderer2D/D3D11/CRenderer2D_D3D11.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 # include "D3D11BackBuffer.hpp"
 
@@ -24,6 +24,8 @@ namespace s3d
 		, m_swapChain1(swapChain.getSwapChain1())
 	{
 		LOG_SCOPED_TRACE(U"D3D11BackBuffer::D3D11BackBuffer()");
+
+		pRenderer2D = dynamic_cast<CRenderer2D_D3D11*>(SIV3D_ENGINE(Renderer2D));
 
 		m_backBuffer	= D3D11InternalTexture2D::GetTextureFromSwapChain(m_device, m_swapChain1);
 
@@ -69,7 +71,7 @@ namespace s3d
 			{
 				setRenderTarget(m_backBuffer);
 				m_context->PSSetShaderResources(0, 1, m_sceneBuffers.scene.getSRVPtr());
-				SIV3D_ENGINE(Renderer2D)->drawFullScreenTriangle(m_sceneTextureFilter);
+				pRenderer2D->drawFullScreenTriangle(m_sceneTextureFilter);
 				
 				D3D11::ResetPSShaderResources(m_context);
 			}
@@ -90,7 +92,7 @@ namespace s3d
 
 				setRenderTarget(m_backBuffer);
 				m_context->PSSetShaderResources(0, 1, m_sceneBuffers.resolved.getSRVPtr());
-				SIV3D_ENGINE(Renderer2D)->drawFullScreenTriangle(m_sceneTextureFilter);
+				pRenderer2D->drawFullScreenTriangle(m_sceneTextureFilter);
 
 				D3D11::ResetPSShaderResources(m_context);
 			}

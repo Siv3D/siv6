@@ -27,10 +27,10 @@ namespace s3d
 
 		void init() override;
 
-		void flush() override;
-
 		void test_renderRectangle(const RectF& rect, const ColorF& color) override;
 
-		void drawFullScreenTriangle(TextureFilter textureFilter) override;
+		void flush();
+
+		void drawFullScreenTriangle(TextureFilter textureFilter);
 	};
 }

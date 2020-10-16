@@ -62,10 +62,11 @@ namespace s3d
 
 		// 標準 VS をロード
 		{
+			LOG_INFO(U"📦 Loading vertex shaders for CRenderer2D_GL4:");
 			m_standardVS = std::make_unique<GL4StandardVS2D>();
 			m_standardVS->sprite = VertexShader(Resource(U"engine/shader/glsl/sprite.vert"), { { U"VSConstants2D", 0 } });
 			m_standardVS->fullscreen_triangle = VertexShader(Resource(U"engine/shader/glsl/fullscreen_triangle.vert"), {});
-			if (!m_standardVS->ok())
+			if (not m_standardVS->ok())
 			{
 				throw EngineError(U"CRenderer2D_GL4::m_standardVS initialization failed");
 			}
@@ -73,19 +74,22 @@ namespace s3d
 
 		// 標準 PS をロード
 		{
+			LOG_INFO(U"📦 Loading pixel shaders for CRenderer2D_GL4:");
 			m_standardPS = std::make_unique<GL4StandardPS2D>();
 			m_standardPS->shape = PixelShader(Resource(U"engine/shader/glsl/shape.frag"), { { U"PSConstants2D", 0 } });
 			m_standardPS->fullscreen_triangle = PixelShader(Resource(U"engine/shader/glsl/fullscreen_triangle.frag"), {});
-			if (!m_standardPS->ok())
+			if (not m_standardPS->ok())
 			{
 				throw EngineError(U"CRenderer2D_GL4::m_standardPS initialization failed");
 			}
 		}
 
 		// Batch 管理を初期化
-		if (!m_batches.init())
 		{
-			throw EngineError(U"GL4Vertex2DBatch::init() failed");
+			if (not m_batches.init())
+			{
+				throw EngineError(U"GL4Vertex2DBatch::init() failed");
+			}
 		}
 
 		// full screen triangle

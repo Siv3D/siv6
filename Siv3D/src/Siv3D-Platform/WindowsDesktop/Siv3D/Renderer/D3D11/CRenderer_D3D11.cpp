@@ -16,7 +16,7 @@
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Texture/ITexture.hpp>
 # include <Siv3D/Shader/IShader.hpp>
-# include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Renderer2D/D3D11/CRenderer2D_D3D11.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
@@ -31,6 +31,8 @@ namespace s3d
 	void CRenderer_D3D11::init()
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_D3D11::init()");
+
+		pRenderer2D = dynamic_cast<CRenderer2D_D3D11*>(SIV3D_ENGINE(Renderer2D));
 
 		HWND hWnd	= static_cast<HWND>(SIV3D_ENGINE(Window)->getHandle());
 		const Size frameBufferSize = SIV3D_ENGINE(Window)->getState().frameBufferSize;
@@ -68,7 +70,7 @@ namespace s3d
 
 	void CRenderer_D3D11::flush()
 	{
-		SIV3D_ENGINE(Renderer2D)->flush();
+		pRenderer2D->flush();
 
 		m_backBuffer->updateFromSceneBuffer();
 	}
