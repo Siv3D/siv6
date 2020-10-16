@@ -18,13 +18,14 @@
 # include <Siv3D/Window/IWindow.hpp>
 # include <Siv3D/Texture/ITexture.hpp>
 # include <Siv3D/Shader/IShader.hpp>
-# include <Siv3D/Renderer2D/IRenderer2D.hpp>
+# include <Siv3D/Renderer2D/GL4/CRenderer2D_GL4.hpp>
 # include <Siv3D/Common/Siv3DEngine.hpp>
 
 namespace s3d
 {
 	namespace detail
 	{
+		/*
 		static void GLDebugMessageARB(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, const GLvoid* userParam)
 		{
 			// [Siv3D ToDo] Linux でのデバッグ用
@@ -34,6 +35,7 @@ namespace s3d
 		{
 			// [Siv3D ToDo] Linux でのデバッグ用
 		}
+		*/
 	}
 
 	CRenderer_GL4::CRenderer_GL4()
@@ -50,6 +52,7 @@ namespace s3d
 	{
 		LOG_SCOPED_TRACE(U"CRenderer_GL4::init()");
 		
+		pRenderer2D = dynamic_cast<CRenderer2D_GL4*>(SIV3D_ENGINE(Renderer2D));
 		m_window = static_cast<GLFWwindow*>(SIV3D_ENGINE(Window)->getHandle());
 		
 		::glfwMakeContextCurrent(m_window);
@@ -63,12 +66,12 @@ namespace s3d
 		
 		if (SIV3D_BUILD(DEBUG) && GLEW_ARB_debug_output)
 		{
-			::glDebugMessageCallbackARB(detail::GLDebugMessageARB, nullptr);
+			//::glDebugMessageCallbackARB(detail::GLDebugMessageARB, nullptr);
 			LOG_INFO(U"ℹ️ GLEW_ARB_debug_output available");
 		}
 		else if (SIV3D_BUILD(DEBUG) && GLEW_AMD_debug_output)
 		{
-			::glDebugMessageCallbackAMD(detail::GLDebugMessageAMD, nullptr);
+			//::glDebugMessageCallbackAMD(detail::GLDebugMessageAMD, nullptr);
 			LOG_INFO(U"ℹ️ GLEW_AMD_debug_output available");
 		}
 		
@@ -123,7 +126,7 @@ namespace s3d
 		// Scene に 2D 描画
 		{
 			m_backBuffer->bindSceneBuffer();
-			SIV3D_ENGINE(Renderer2D)->flush();
+			pRenderer2D->flush();
 			m_backBuffer->unbind();
 		}
 
