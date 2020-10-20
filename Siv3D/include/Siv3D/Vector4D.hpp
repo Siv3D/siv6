@@ -110,9 +110,9 @@ namespace s3d
 
 		//constexpr Vector4D& operator /=(Vector4D v) noexcept;
 
-		template <class U, std::enable_if_t<std::is_scalar_v<U>>* = nullptr>
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
-		friend constexpr Vector4D operator *(U s, const Vector4D& v) noexcept
+		friend constexpr Vector4D operator *(Arithmetic s, const Vector4D& v) noexcept
 		{
 			return (v * static_cast<Type>(s));
 		}

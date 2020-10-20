@@ -16,14 +16,25 @@
 
 namespace s3d
 {
+	/// @brief 3 次元のベクトル
+	/// @tparam Type ベクトルの要素の型
 	template <class Type>
 	struct Vector3D
 	{
+		/// @brief ベクトルの要素の型
 		using value_type = Type;
 
+		/// @brief ベクトルの次元数
 		static constexpr size_t Dimension = 3;
 
-		value_type x, y, z;
+		/// @brief ベクトルの X 成分
+		value_type x;
+
+		/// @brief ベクトルの Y 成分
+		value_type y;
+
+		/// @brief ベクトルの Z 成分
+		value_type z;
 
 		SIV3D_NODISCARD_CXX20
 		Vector3D() = default;
@@ -59,45 +70,45 @@ namespace s3d
 		[[nodiscard]]
 		const value_type* getPointer() const noexcept;
 
-		//[[nodiscard]]
-		//constexpr Vector3D operator +() const noexcept;
-
-		//[[nodiscard]]
-		//constexpr Vector3D operator -() const noexcept;
-
-		//[[nodiscard]]
-		//constexpr Vector3D operator +(Vector3D v) const noexcept;
-
-		//[[nodiscard]]
-		//constexpr Vector3D operator -(Vector3D v) const noexcept;
-
-		//[[nodiscard]]
-		//constexpr Vector3D operator *(value_type s) const noexcept;
-
-		//[[nodiscard]]
-		//constexpr Vector3D operator *(Vector3D v) const noexcept;
-
-		//[[nodiscard]]
-		//constexpr Vector3D operator /(value_type s) const noexcept;
-
-		//[[nodiscard]]
-		//constexpr Vector3D operator /(Vector3D v) const noexcept;
-
-		//constexpr Vector3D& operator +=(Vector3D v) noexcept;
-
-		//constexpr Vector3D& operator -=(Vector3D v) noexcept;
-
-		//constexpr Vector3D& operator *=(value_type s) noexcept;
-
-		//constexpr Vector3D& operator *=(Vector3D v) noexcept;
-
-		//constexpr Vector3D& operator /=(value_type s) noexcept;
-
-		//constexpr Vector3D& operator /=(Vector3D v) noexcept;
-
-		template <class U, std::enable_if_t<std::is_scalar_v<U>>* = nullptr>
 		[[nodiscard]]
-		friend constexpr Vector3D operator *(U s, const Vector3D& v) noexcept
+		constexpr Vector3D operator +() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D operator -() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D operator +(Vector3D v) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D operator -(Vector3D v) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D operator *(value_type s) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D operator *(Vector3D v) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D operator /(value_type s) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D operator /(Vector3D v) const noexcept;
+
+		constexpr Vector3D& operator +=(Vector3D v) noexcept;
+
+		constexpr Vector3D& operator -=(Vector3D v) noexcept;
+
+		constexpr Vector3D& operator *=(value_type s) noexcept;
+
+		constexpr Vector3D& operator *=(Vector3D v) noexcept;
+
+		constexpr Vector3D& operator /=(value_type s) noexcept;
+
+		constexpr Vector3D& operator /=(Vector3D v) noexcept;
+
+		SIV3D_CONCEPT_ARITHMETIC
+		[[nodiscard]]
+		friend constexpr Vector3D operator *(Arithmetic s, const Vector3D& v) noexcept
 		{
 			return (v * static_cast<Type>(s));
 		}
@@ -118,21 +129,205 @@ namespace s3d
 				|| (lhs.z != rhs.z);
 		}
 
-
-
-
-
-
-
-
-
-
+		[[nodiscard]]
+		constexpr bool epsilonEquals(Vector3D other, value_type epsilon) const noexcept;
 
 		[[nodiscard]]
-		size_t hash() const noexcept
-		{
-			return Hash::FNV1a(*this);
-		}
+		constexpr bool hasSameDirection(Vector3D other) const noexcept;
+
+		[[nodiscard]]
+		constexpr bool hasOppositeDirection(Vector3D other) const noexcept;
+
+		[[nodiscard]]
+		constexpr bool isZero() const noexcept;
+
+		[[nodiscard]]
+		bool hasNaN() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type minComponent() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type maxComponent() const noexcept;
+
+		constexpr void clear() noexcept;
+
+		constexpr Vector3D& set(value_type _x, value_type _y, value_type _z) noexcept;
+
+		constexpr Vector3D& set(Vector3D v) noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D movedBy(value_type _x, value_type _y, value_type _z) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D movedBy(Vector3D v) const noexcept;
+
+		constexpr Vector3D& moveBy(value_type _x, value_type _y, value_type _z) noexcept;
+
+		constexpr Vector3D& moveBy(Vector3D v) noexcept;
+		
+		//[[nodiscard]]
+		//Vector3D clamped(const AABB& aabb) const noexcept;
+
+		//Vector3D& clamp(const AABB& aabb) noexcept;
+
+		//[[nodiscard]]
+		//Vector3D clamped(const OBB& obb) const noexcept;
+
+		//Vector3D& clamp(const OBB& obb) noexcept;
+
+		[[nodiscard]]
+		constexpr value_type dot(Vector3D v) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D cross(Vector3D v) const noexcept;
+
+		[[nodiscard]]
+		value_type length() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type lengthSq() const noexcept;
+
+		[[nodiscard]]
+		value_type invLength() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type manhattanLength() const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type manhattanDistanceFrom(value_type _x, value_type _y, value_type _z) const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type manhattanDistanceFrom(Vector3D v) const noexcept;
+
+		[[nodiscard]]
+		value_type distanceFrom(value_type _x, value_type _y, value_type _z) const noexcept;
+
+		[[nodiscard]]
+		value_type distanceFrom(Vector3D v) const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type distanceFromSq(value_type _x, value_type _y, value_type _z) const noexcept;
+
+		[[nodiscard]]
+		constexpr value_type distanceFromSq(Vector3D v) const noexcept;
+
+		[[nodiscard]]
+		Vector3D setLength(value_type _length) const noexcept;
+
+		Vector3D& setLengthSelf(value_type _length) noexcept;
+
+		[[nodiscard]]
+		Vector3D limitLength(value_type maxLength) const noexcept;
+
+		Vector3D& limitLengthSelf(value_type maxLength) noexcept;
+
+		[[nodiscard]]
+		Vector3D normalized() const noexcept;
+
+		Vector3D& normalize() noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D getMidpoint(Vector3D other) const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D lerp(Vector3D other, value_type f) const noexcept;
+
+		[[nodiscard]]
+		size_t hash() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D<value_type> xx() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D<value_type> xy() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D<value_type> xz() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D<value_type> yx() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D<value_type> yy() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D<value_type> yz() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D<value_type> zx() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D<value_type> zy() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector2D<value_type> zz() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D xxx() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D xyz() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D xzy() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D yyy() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D yxz() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D yzx() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D zzz() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D zxy() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D zyx() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector4D<Type> xyz0() const noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D Zero() noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D One() noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D All(value_type value = 1) noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D UnitX() noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D UnitY() noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D UnitZ() noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D Left(value_type length = 1) noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D Right(value_type length = 1) noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D Up(value_type length = 1) noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D Down(value_type length = 1) noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D Forward(value_type length = 1) noexcept;
+
+		[[nodiscard]]
+		static constexpr Vector3D Backward(value_type length = 1) noexcept;
 
 		template <class CharType>
 		friend std::basic_ostream<CharType>& operator <<(std::basic_ostream<CharType>& output, const Vector3D& value)

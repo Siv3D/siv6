@@ -17,6 +17,9 @@
 namespace s3d
 {
 	struct Point;
+	template <class Type> struct Vector2D;
+	template <class Type> struct Vector3D;
+	template <class Type> struct Vector4D;
 
 	/// @brief 2 次元のベクトル
 	/// @tparam Type ベクトルの要素の型
@@ -102,9 +105,9 @@ namespace s3d
 
 		constexpr Vector2D& operator /=(Vector2D v) noexcept;
 
-		template <class U, std::enable_if_t<std::is_scalar_v<U>>* = nullptr>
+		SIV3D_CONCEPT_ARITHMETIC
 		[[nodiscard]]
-		friend constexpr Vector2D operator *(U s, Vector2D v) noexcept
+		friend constexpr Vector2D operator *(Arithmetic s, Vector2D v) noexcept
 		{
 			return (v * static_cast<Type>(s));
 		}
@@ -294,6 +297,9 @@ namespace s3d
 		/// </summary>
 		[[nodiscard]]
 		constexpr Vector2D y0() const noexcept;
+
+		[[nodiscard]]
+		constexpr Vector3D<Type> xy0() const noexcept;
 
 		/// <summary>
 		/// Vector2D{ 0, 0 }

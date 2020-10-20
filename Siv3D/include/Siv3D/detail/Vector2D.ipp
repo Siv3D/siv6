@@ -74,25 +74,25 @@ namespace s3d
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::operator +(const Vector2D v) const noexcept
 	{
-		return{ x + v.x, y + v.y };
+		return{ (x + v.x), (y + v.y) };
 	}
 
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::operator -(const Vector2D v) const noexcept
 	{
-		return{ x - v.x, y - v.y };
+		return{ (x - v.x), (y - v.y) };
 	}
 
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::operator *(const value_type s) const noexcept
 	{
-		return{ x * s, y * s };
+		return{ (x * s), (y * s) };
 	}
 
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::operator *(const Vector2D v) const noexcept
 	{
-		return{ x * v.x, y * v.y };
+		return{ (x * v.x), (y * v.y) };
 	}
 
 	template <class Type>
@@ -104,7 +104,7 @@ namespace s3d
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::operator /(const Vector2D v) const noexcept
 	{
-		return{ x / v.x, y / v.y };
+		return{ (x / v.x), (y / v.y) };
 	}
 
 	template <class Type>
@@ -215,13 +215,13 @@ namespace s3d
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::movedBy(const value_type _x, const value_type _y) const noexcept
 	{
-		return{ x + _x, y + _y };
+		return{ (x + _x), (y + _y) };
 	}
 
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::movedBy(const Vector2D v) const noexcept
 	{
-		return{ x + v.x, y + v.y };
+		return{ (x + v.x), (y + v.y) };
 	}
 
 	template <class Type>
@@ -377,7 +377,7 @@ namespace s3d
 	{
 		const value_type s = std::sin(angle);
 		const value_type c = std::cos(angle);
-		return{ x * c - y * s, x * s + y * c };
+		return{ (x * c - y * s), (x * s + y * c) };
 	}
 
 	template <class Type>
@@ -392,7 +392,7 @@ namespace s3d
 		const value_type s = std::sin(angle);
 		const value_type c = std::cos(angle);
 		const Vector2D b = (*this - center);
-		const Vector2D p{ b.x * c - b.y * s, b.x * s + b.y * c };
+		const Vector2D p{ (b.x * c - b.y * s), (b.x * s + b.y * c) };
 		return (p + center);
 	}
 
@@ -439,7 +439,8 @@ namespace s3d
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::getMidpoint(const Vector2D other) const noexcept
 	{
-		return{ x * Type(0.5) + other.x * Type(0.5), y * Type(0.5) + other.y * Type(0.5) };
+		constexpr value_type half(0.5);
+		return{ (x * half + other.x * half), (y * half + other.y * half) };
 	}
 
 	template <class Type>
@@ -458,7 +459,7 @@ namespace s3d
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::lerp(const Vector2D other, const value_type f) const noexcept
 	{
-		return Vector2D(x + (other.x - x) * f, y + (other.y - y) * f);
+		return{ (x + (other.x - x) * f), (y + (other.y - y) * f) };
 	}
 
 	template <class Type>
@@ -506,7 +507,13 @@ namespace s3d
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::y0() const noexcept
 	{
-		return{ y,0 };
+		return{ y, 0 };
+	}
+
+	template <class Type>
+	inline constexpr Vector3D<Type> Vector2D<Type>::xy0() const noexcept
+	{
+		return{ x, y, 0 };
 	}
 
 	template <class Type>
