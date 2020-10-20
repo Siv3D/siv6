@@ -265,13 +265,13 @@ namespace s3d
 	template <class Type>
 	inline typename Vector2D<Type>::value_type Vector2D<Type>::invLength() const noexcept
 	{
-		return static_cast<value_type>(1.0) / length();
+		return (static_cast<value_type>(1.0) / length());
 	}
 
 	template <class Type>
 	inline constexpr typename Vector2D<Type>::value_type Vector2D<Type>::manhattanLength() const noexcept
 	{
-		return Abs(x) + Abs(y);
+		return (Abs(x) + Abs(y));
 	}
 
 	template <class Type>
@@ -279,7 +279,8 @@ namespace s3d
 	{
 		const auto xMinMax = std::minmax(x, _x);
 		const auto yMinMax = std::minmax(y, _y);
-		return (xMinMax.second - xMinMax.first) + (yMinMax.second - yMinMax.first);
+		return (xMinMax.second - xMinMax.first)
+			+ (yMinMax.second - yMinMax.first);
 	}
 
 	template <class Type>
@@ -483,7 +484,7 @@ namespace s3d
 	template <class Type>
 	inline constexpr Vector2D<Type> Vector2D<Type>::xy() const noexcept
 	{
-		return{ x, y };
+		return *this;
 	}
 
 	template <class Type>
