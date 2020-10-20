@@ -100,7 +100,7 @@ namespace s3d
 		/// @param maxSpeed 最大速度。無制限の場合は unspecified
 		/// @return 新しい現在地
 		[[nodiscard]]
-		Float2 SmoothDamp(const Float2& from, Float2 to, Float2& velocity, float smoothTime, float deltaTime, const Optional<float>& maxSpeed = unspecified);
+		Float2 SmoothDamp(const Float2& from, const Float2& to, Float2& velocity, float smoothTime, float deltaTime, const Optional<float>& maxSpeed = unspecified);
 
 		/// @brief 目標地点に向かってスムーズに移動させます。
 		/// @param from 現在地
@@ -111,7 +111,7 @@ namespace s3d
 		/// @param maxSpeed 最大速度。無制限の場合は unspecified
 		/// @return 新しい現在地
 		[[nodiscard]]
-		Vec2 SmoothDamp(const Vec2& from, Vec2 to, Vec2& velocity, double smoothTime, double deltaTime, const Optional<double>& maxSpeed = unspecified);
+		Vec2 SmoothDamp(const Vec2& from, const Vec2& to, Vec2& velocity, double smoothTime, double deltaTime, const Optional<double>& maxSpeed = unspecified);
 
 		/// @brief 目標地点に向かってスムーズに移動させます。
 		/// @param from 現在地
@@ -122,7 +122,7 @@ namespace s3d
 		/// @param maxSpeed 最大速度。無制限の場合は unspecified
 		/// @return 新しい現在地
 		[[nodiscard]]
-		Float3 SmoothDamp(const Float3& from, Float3 to, Float3& velocity, float smoothTime, float deltaTime, const Optional<float>& maxSpeed = unspecified);
+		Float3 SmoothDamp(const Float3& from, const Float3& to, Float3& velocity, float smoothTime, float deltaTime, const Optional<float>& maxSpeed = unspecified);
 
 		/// @brief 目標地点に向かってスムーズに移動させます。
 		/// @param from 現在地
@@ -133,7 +133,7 @@ namespace s3d
 		/// @param maxSpeed 最大速度。無制限の場合は unspecified
 		/// @return 新しい現在地
 		[[nodiscard]]
-		Vec3 SmoothDamp(const Vec3& from, Vec3 to, Vec3& velocity, double smoothTime, double deltaTime, const Optional<double>& maxSpeed = unspecified);
+		Vec3 SmoothDamp(const Vec3& from, const Vec3& to, Vec3& velocity, double smoothTime, double deltaTime, const Optional<double>& maxSpeed = unspecified);
 
 		/// @brief 目標地点に向かってスムーズに移動させます。
 		/// @param from 現在地
@@ -144,7 +144,7 @@ namespace s3d
 		/// @param maxSpeed 最大速度。無制限の場合は unspecified
 		/// @return 新しい現在地
 		[[nodiscard]]
-		Float4 SmoothDamp(const Float4& from, Float4 to, Float4& velocity, float smoothTime, float deltaTime, const Optional<float>& maxSpeed = unspecified);
+		Float4 SmoothDamp(const Float4& from, const Float4& to, Float4& velocity, float smoothTime, float deltaTime, const Optional<float>& maxSpeed = unspecified);
 
 		/// @brief 目標地点に向かってスムーズに移動させます。
 		/// @param from 現在地
@@ -155,7 +155,7 @@ namespace s3d
 		/// @param maxSpeed 最大速度。無制限の場合は unspecified
 		/// @return 新しい現在地
 		[[nodiscard]]
-		Vec4 SmoothDamp(const Vec4& from, Vec4 to, Vec4& velocity, double smoothTime, double deltaTime, const Optional<double>& maxSpeed = unspecified);
+		Vec4 SmoothDamp(const Vec4& from, const Vec4& to, Vec4& velocity, double smoothTime, double deltaTime, const Optional<double>& maxSpeed = unspecified);
 	}
 }
 

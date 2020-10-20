@@ -16,6 +16,17 @@
 
 namespace s3d
 {
+	/// @brief 長方形
+	/// @tparam SizeType 位置とサイズを表すベクトルの型
+	///
+	///  pos, tl()    top()     tr()
+	///        +-----------------+
+	///        |                 |
+	/// left() |                 | right()
+	///		   |                 |
+	///        +-----------------+
+	///       bl()   bottom()   br() 
+	/// 
 	template <class SizeType>
 	struct Rectangle
 	{
