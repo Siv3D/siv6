@@ -654,11 +654,11 @@
 
 // 線形補間
 // Interpolation
-//# include <Siv3D/Interpolation.hpp>
+# include <Siv3D/Interpolation.hpp>
 
 // イージング関数
 // Easing
-//# include <Siv3D/Easing.hpp>
+# include <Siv3D/Easing.hpp> // [Siv3D ToDo]
 
 // イージング ユーティリティ
 // Easing Utility
@@ -751,7 +751,7 @@
 
 // ベクトル
 // Vectors
-# include <Siv3D/PointVector.hpp> // [Siv3D ToDo]
+# include <Siv3D/PointVector.hpp>
 
 // 円座標
 # include <Siv3D/Circular.hpp> // [Siv3D ToDo]

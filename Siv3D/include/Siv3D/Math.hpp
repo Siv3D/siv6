@@ -261,7 +261,29 @@ namespace s3d
 
 	namespace Math
 	{
+		[[nodiscard]]
+		inline float Exp(float x) noexcept;
 
+		[[nodiscard]]
+		inline double Exp(double x) noexcept;
+
+		[[nodiscard]]
+		inline Float2 Exp(Float2 v) noexcept;
+
+		[[nodiscard]]
+		inline Float3 Exp(Float3 v) noexcept;
+
+		[[nodiscard]]
+		inline Float4 Exp(Float4 v) noexcept;
+
+		[[nodiscard]]
+		inline Vec2 Exp(Vec2 v) noexcept;
+
+		[[nodiscard]]
+		inline Vec3 Exp(Vec3 v) noexcept;
+
+		[[nodiscard]]
+		inline Vec4 Exp(Vec4 v) noexcept;
 	}
 
 	//////////////////////////////////////////////////

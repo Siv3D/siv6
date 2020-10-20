@@ -125,6 +125,19 @@ namespace s3d
 
 
 
+		inline float Exp(const float x) noexcept
+		{
+			return std::exp(x);
+		}
+
+		inline double Exp(const double x) noexcept
+		{
+			return std::exp(x);
+		}
+
+		SIV3D_MATH_FUNCTION_X(Exp)
+
+
 
 
 		inline constexpr float Square(const float x) noexcept
