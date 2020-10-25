@@ -172,6 +172,7 @@
 		2C439F8A241DCEA9001154C2 /* bignum-dtoa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C439F76241DCEA9001154C2 /* bignum-dtoa.cc */; };
 		2C4442A12427AA7C00557D51 /* miniutf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 2C4442A02427AA7C00557D51 /* miniutf.hpp */; };
 		2C4564E1247946AF00DB01F0 /* int128.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2C4564E0247946AF00DB01F0 /* int128.cc */; };
+		2C473B182545415300CF864D /* SivInterpolation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C473B172545415300CF864D /* SivInterpolation.cpp */; };
 		2C47B08324DD974A008D83BE /* agg_span_interpolator_trans.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C47AFEA24DD9749008D83BE /* agg_span_interpolator_trans.h */; };
 		2C47B08424DD974A008D83BE /* agg_span_interpolator_linear.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C47AFEB24DD9749008D83BE /* agg_span_interpolator_linear.h */; };
 		2C47B08524DD974A008D83BE /* agg_rasterizer_sl_clip.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C47AFEC24DD9749008D83BE /* agg_rasterizer_sl_clip.h */; };
@@ -1154,6 +1155,11 @@
 		2C4564E0247946AF00DB01F0 /* int128.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int128.cc; sourceTree = "<group>"; };
 		2C46837924590D8D000006C0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2C46837A24590D8D000006C0 /* EnumBitmask.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EnumBitmask.hpp; sourceTree = "<group>"; };
+		2C473B122545403A00CF864D /* Interpolation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Interpolation.hpp; sourceTree = "<group>"; };
+		2C473B132545403A00CF864D /* Easing.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Easing.hpp; sourceTree = "<group>"; };
+		2C473B142545406B00CF864D /* Interpolation.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Interpolation.ipp; sourceTree = "<group>"; };
+		2C473B152545407A00CF864D /* Easing.ipp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Easing.ipp; sourceTree = "<group>"; };
+		2C473B172545415300CF864D /* SivInterpolation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SivInterpolation.cpp; sourceTree = "<group>"; };
 		2C47AFEA24DD9749008D83BE /* agg_span_interpolator_trans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agg_span_interpolator_trans.h; sourceTree = "<group>"; };
 		2C47AFEB24DD9749008D83BE /* agg_span_interpolator_linear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agg_span_interpolator_linear.h; sourceTree = "<group>"; };
 		2C47AFEC24DD9749008D83BE /* agg_rasterizer_sl_clip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agg_rasterizer_sl_clip.h; sourceTree = "<group>"; };
@@ -1997,6 +2003,7 @@
 				2C4397592535DD3000F6AECD /* Distribution.hpp */,
 				2C43966D2535DD3000F6AECD /* DLL.hpp */,
 				2C4397702535DD3000F6AECD /* Duration.hpp */,
+				2C473B132545403A00CF864D /* Easing.hpp */,
 				2C43966F2535DD3000F6AECD /* Ellipse.hpp */,
 				2C43972C2535DD3000F6AECD /* Endian.hpp */,
 				2C4396642535DD3000F6AECD /* EngineLog.hpp */,
@@ -2037,6 +2044,7 @@
 				2C4397532535DD3000F6AECD /* Indexed.hpp */,
 				2C4396722535DD3000F6AECD /* INIData.hpp */,
 				2C4396A72535DD3000F6AECD /* Int128.hpp */,
+				2C473B122545403A00CF864D /* Interpolation.hpp */,
 				2C43969A2535DD3000F6AECD /* IntFormatter.hpp */,
 				2C4396912535DD3000F6AECD /* IReader.hpp */,
 				2C4396A12535DD3000F6AECD /* ISteadyClock.hpp */,
@@ -2178,6 +2186,7 @@
 				2C4396C42535DD3000F6AECD /* DiscreteDistribution.ipp */,
 				2C4396C22535DD3000F6AECD /* Distribution.ipp */,
 				2C4396CD2535DD3000F6AECD /* Duration.ipp */,
+				2C473B152545407A00CF864D /* Easing.ipp */,
 				2C4397212535DD3000F6AECD /* Ellipse.ipp */,
 				2C4396E12535DD3000F6AECD /* Endian.ipp */,
 				2C43971E2535DD3000F6AECD /* EngineLog.ipp */,
@@ -2206,6 +2215,7 @@
 				2C4396C02535DD3000F6AECD /* Indexed.ipp */,
 				2C43972A2535DD3000F6AECD /* INIData.ipp */,
 				2C4397132535DD3000F6AECD /* Int128.ipp */,
+				2C473B142545406B00CF864D /* Interpolation.ipp */,
 				2C4397082535DD3000F6AECD /* IReader.ipp */,
 				2C43970A2535DD3000F6AECD /* ISteadyClock.ipp */,
 				2C4397282535DD3000F6AECD /* IWriter.ipp */,
@@ -2417,6 +2427,14 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		2C473B162545415300CF864D /* Interpolation */ = {
+			isa = PBXGroup;
+			children = (
+				2C473B172545415300CF864D /* SivInterpolation.cpp */,
+			);
+			path = Interpolation;
+			sourceTree = "<group>";
+		};
 		2C47AFE924DD9749008D83BE /* agg */ = {
 			isa = PBXGroup;
 			children = (
@@ -2612,6 +2630,7 @@
 				2C47B2B424DD9789008D83BE /* ImageFormat */,
 				2C47B2F424DD9789008D83BE /* INIData */,
 				2C47B2F624DD9789008D83BE /* Int128 */,
+				2C473B162545415300CF864D /* Interpolation */,
 				2C47B24D24DD9789008D83BE /* IntFormatter */,
 				2C47B23824DD9789008D83BE /* LicenseManager */,
 				2C47B26124DD9789008D83BE /* Logger */,
@@ -4935,6 +4954,7 @@
 				2C68508B24B768A800B98A7F /* SivDateTime_macOS_Linux.cpp in Sources */,
 				2C4396192535DCCA00F6AECD /* svgrect.cpp in Sources */,
 				2C47B2FF24DD9789008D83BE /* MathParserDetail.cpp in Sources */,
+				2C473B182545415300CF864D /* SivInterpolation.cpp in Sources */,
 				2C47B31124DD9789008D83BE /* SivBigInt.cpp in Sources */,
 				2C378CAC251E492B00D4B14B /* CAddon.cpp in Sources */,
 				2C834D92248805D4006208B8 /* iso8859_11.c in Sources */,
